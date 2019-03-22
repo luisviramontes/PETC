@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class ListasDeAsitencias extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('listas_de_asistencias', function (Blueprint $table) {
+            $table->increments('id_listas_de_asistencias');
+            $table->foreign('id_centro_trabajo')->references('id_centro_trabajo')->on('centro_trabajo');
+            $table->string('mes');
+            $table->string('estado');
+            $table->string('observaciones')->nullable();
+            $table->string('captura');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('listas_de_asistencias');
+    }
+}
