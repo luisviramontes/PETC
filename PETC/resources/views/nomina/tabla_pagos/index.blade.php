@@ -15,13 +15,13 @@
 <body>
   <div class="pull-left breadcrumb_admin clear_both">
     <div class="pull-left page_title theme_color">
-      <h1>Almacén de Agroquímicos</h1>
-      <h2 class="">Almacén de Agroquímicos</h2>
+      <h1>Tabla de Pagos Ciclo</h1>
+      <h2 class="">Tabla de Pagos</h2>
     </div>
     <div class="pull-right">
       <ol class="breadcrumb">
-        <li ><a style="color: #808080" href="{{url('/almacenes/agroquimicos')}}">Inicio</a></li>
-        <li class="active">Almacén de Agroquímicos</a></li>
+        <li ><a style="color: #808080" href="{{url('/')}}">Inicio</a></li>
+        <li class="active">Tabla de Pagos</a></li>
       </ol>
     </div>
   </div>
@@ -33,7 +33,7 @@
             <div class="row" style="margin-top: 15px; margin-bottom: 12px;">
               <div class="col-sm-7">
                 <div class="actions"> </div>
-                <h2 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Agroquímicos </strong></h2>
+                <h2 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Pagos </strong></h2>
               </div>
               <div class="col-md-12">
                 <div class="btn-group pull-right">
@@ -41,13 +41,13 @@
 
 
                     <div class="btn-group" style="margin-right: 10px;">
-                      <a class="btn btn-sm btn-success tooltips" href="{{ route('almacenes.agroquimicos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nuevo Material"> <i class="fa fa-plus"></i> Registrar Agroquímico </a>
+                      <a class="btn btn-sm btn-success tooltips" href="{{ route('almacenes.agroquimicos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nuevo Material"> <i class="fa fa-plus"></i>Tabla de Pagos </a>
 
-                      <a class="btn btn-sm btn-warning tooltips" href="{{ route('almacen.agroquimicos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+                      <a class="btn btn-sm btn-warning tooltips" href="{{ route('')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
 
-                      <a class="btn btn-sm btn-danger"  href="{{ route('almacen.salidas.agroquimicos.index')}}"  style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nueva Salida"> <i class="fa fa-plus"></i>Salidas de Almacén </a>
+                      <a class="btn btn-sm btn-danger"  href="{{ route('')}}"  style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nueva Salida"> <i class="fa fa-plus"></i>Salidas de Almacén </a>
 
-                      <a class="btn btn-sm btn btn-info" href="{{ route('almacen.entradas.agroquimicos.index')}}"  style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nueva Entrada"> <i class="fa fa-plus"></i>Entradas de Almacén </a>
+                      <a class="btn btn-sm btn btn-info" href="{{ route('')}}"  style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nueva Entrada"> <i class="fa fa-plus"></i>Entradas de Almacén </a>
 
 
                     </div>
@@ -64,17 +64,14 @@
                 <thead>
                   <tr>
 
-                   <th>Nombre </th>
-
-                   <th>Codigo de Barras </th>
-                   <th>Imagen </th>
-                   <th>Descripción </th>
-                   <th>Cantidad en Almacén &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                   </th>
-                   <th>Stock Minimo</th> 
-                   <th>Agregar Stock</th>
+                   <th>Quincena </th>
+                   <th>Dias </th>
+                   <th>Pago por Director </th>
+                   <th>Pago por Docente </th>
+                   <th>Pago por Intendente</th>
+                   <th>Modificado Por</th> 
+                   <th>Fecha de Creación</th>
+                   <th>Fecha de Modificación</th>
 
                    <td><center><b>Editar</b></center></td>
                    <td><center><b>Borrar</b></center></td>                            

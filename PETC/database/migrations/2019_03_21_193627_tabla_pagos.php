@@ -20,6 +20,7 @@ class TablaPagos extends Migration
             $table->double('pago_docente');
             $table->double('pago_intendente');
             $table->string('captura');
+            $table->string('ciclo');
             $table->timestamps();
         });
     }
