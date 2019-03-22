@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use CEPROZAC\TablaPagosModel;
+use DB;
 
 class TablaPagosController extends Controller
 {
@@ -16,6 +19,8 @@ class TablaPagosController extends Controller
      */
     public function index()
     {
+        $tabla_pagos= DB::table('tabla_pagos')->get();
+        return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos]);
         //
     }
 
