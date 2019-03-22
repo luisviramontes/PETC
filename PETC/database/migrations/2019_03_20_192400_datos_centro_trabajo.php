@@ -13,7 +13,7 @@ class DatosCentroTrabajo extends Migration
     public function up()
     {
         Schema::create('datos_centro_trabajo', function (Blueprint $table) {
-            $table->increments('id_centro_trabajo');
+            $table->increments('id_datos_centro_trabajo');
             $table->integer('total_alumnos');
             $table->integer('total_ninas');
             $table->integer('total_ninos');
@@ -23,7 +23,8 @@ class DatosCentroTrabajo extends Migration
             $table->integer('total_docentes');
             $table->integer('total_fisica');
             $table->integer('total_usaer');
-            $table->integer('total_eartistica');
+            $table->integer('total_artistica');
+            $table->integer('id_centro_trabajo')->unsigned();
             $table->foreign('id_centro_trabajo')->references('id_centro_trabajo')->on('centro_trabajo');
             $table->date('fecha_ingreso');
             $table->date('fecha_baja');

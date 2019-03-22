@@ -14,6 +14,7 @@ class Reclamos extends Migration
     {
         Schema::create('reclamos', function (Blueprint $table) {
             $table->increments('id_reclamos');
+            $table->integer('id_captura')->unsigned();
             $table->foreign('id_captura')->references('id_captura')->on('captura');
             $table->string('qnas_reclamo');
             $table->integer('dias_reclamo');

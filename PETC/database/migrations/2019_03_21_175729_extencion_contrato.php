@@ -14,6 +14,7 @@ class ExtencionContrato extends Migration
     {
         Schema::create('extencion_contrato', function (Blueprint $table) {
             $table->increments('id_extencion_contrato');
+            $table->integer('id_captura')->unsigned();
             $table->foreign('id_captura')->references('id_captura')->on('captura');
             $table->date('fecha_inicial');
             $table->date('fecha_final');

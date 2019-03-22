@@ -15,7 +15,7 @@ class NominaFederal extends Migration
         Schema::create('nomina_federal', function (Blueprint $table) {
             $table->increments('id__nomina_federal');
             $table->integer('region');
-            $table->foreign('rfc')->references('rfc')->on('personal');
+            $table->string('rfc');
             $table->string('nombre_emp');
             $table->integer('entidad_federal');
             $table->string('ct_clasif');

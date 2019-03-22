@@ -17,7 +17,7 @@ class NominaEstatal extends Migration
             $table->integer('bco');
             $table->integer('num_cheque');
             $table->integer('num_empleado');
-            $table->foreign('rfc')->references('rfc')->on('personal');
+            $table->integer('rfc');
             $table->string('nombre');
             $table->string('cve');
             $table->string('plaza');

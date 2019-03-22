@@ -14,6 +14,7 @@ class BajasContrato extends Migration
     {
         Schema::create('bajas_contrato', function (Blueprint $table) {
             $table->increments('id_bajas_contrato');
+             $table->integer('id_captura')->unsigned();
             $table->foreign('id_captura')->references('id_captura')->on('captura');
             $table->date('fecha_baja');
             $table->string('documentacion_entregada');

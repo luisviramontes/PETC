@@ -21,10 +21,9 @@ class CentroTrabajo extends Migration
             $table->string('municipio');
             $table->integer('region');
             $table->string('captura');
-            $table->foreing('id_director')->references('id_personal')->on('personal');
+            //$table->foreign('id_director')->references('id_personal')->on('personal');
             $table->integer('telefono')->nullable();
             $table->string('email')->nullable();
-            $table->string('captura');
             $table->string('ciclo_escolar');
             $table->string('entrego_carta');
             $table->string('alimentacion');

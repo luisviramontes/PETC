@@ -14,6 +14,8 @@ class CambiosCct extends Migration
     {
         Schema::create('cambios_cct', function (Blueprint $table) {
             $table->increments('id_cambios_cct');
+            $table->integer('id_captura')->unsigned();
+
             $table->foreign('id_captura')->references('id_captura')->on('captura');
             $table->date('fecha_cambio');
             $table->string('documentacion_entregada');
