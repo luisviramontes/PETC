@@ -14,7 +14,7 @@ class DirectorioRegional extends Migration
     {
         Schema::create('directorio_regional', function (Blueprint $table) {
             $table->increments('id_directorio_reginal');
-            $table->index('region');
+            $table->integer('region');
             $table->string('sostenimiento');
             $table->string('nombre_enlace');
             $table->integer('telefono')->nullable();

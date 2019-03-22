@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Peronal extends Migration
+class Personal extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,14 @@ class Peronal extends Migration
      */
     public function up()
     {
-        Schema::create('personal', function (Blueprint $table) {
+        Schema::create('Personal', function (Blueprint $table) {
             $table->increments('id_personal');
             $table->string('nombre');
-            $table->string('rfc');
+            $table->string('rfc')->index();
             $table->integer('telefono');
             $table->string('email');
             $table->string('cct');
+            $table->integer('clave')->unsigned();
             $table->foreign('clave')->references('idcat_puesto')->on('cat_puesto');
             $table->string('sostenimiento');
             $table->string('captura');

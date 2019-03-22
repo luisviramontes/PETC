@@ -14,6 +14,7 @@ class Fortalecimiento extends Migration
     {
         Schema::create('fortalecimiento', function (Blueprint $table) {
             $table->increments('id_fortalecimiento');
+            $table->integer('id_cct')->unsigned();
             $table->foreign('id_cct')->references('id_centro_trabajo')->on('centro_trabajo');
             $table->string('monto_forta');
             $table->string('ciclo_escolar');
