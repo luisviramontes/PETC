@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::resource('cat_puesto', 'CatPuestoController');
+Route::resource('tabla_pagos', 'TablaPagosController');
