@@ -16,7 +16,8 @@ class ReclamosController extends Controller
      */
     public function index()
     {
-        //
+      return view('nomina.reclamos.index');
+
     }
 
     /**

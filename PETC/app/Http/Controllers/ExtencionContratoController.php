@@ -16,6 +16,8 @@ class ExtencionContratoController extends Controller
      */
     public function index()
     {
+      return view('nomina.extencion_contrato.index');
+
         //
     }
 

@@ -16,6 +16,9 @@ class ListasAsistenciasController extends Controller
      */
     public function index()
     {
+
+      return view('nomina.listas_asistencias.index');
+
         //
     }
 

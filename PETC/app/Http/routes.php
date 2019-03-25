@@ -16,4 +16,39 @@ Route::get('/', function () {
 });
 
 Route::resource('cat_puesto', 'CatPuestoController');
+<<<<<<< HEAD
+
+Route::resource('bajas_contrato', 'BajasContratoController');
+
+Route::resource('cambios_cct', 'CambiosCctController');
+
+Route::resource('captura', 'CapturaController');
+
+Route::resource('centro_trabajo', 'CentroTrabajoController');
+
+Route::resource('datos_centro_trabajo', 'DatosCentroTrabajoController');
+
+Route::resource('directorio_regional', 'DirectorioRegionalController');
+
+Route::resource('extencion_contrato', 'ExtencionContratoController');
+
+Route::resource('fortalecimiento', 'FortalecimientoController');
+
+Route::resource('inasistencias', 'InasistenciasController');
+
+Route::resource('listas_asistencias', 'ListasAsistenciasController');
+
+Route::resource('nomina_estatal', 'NominaEstatalController');
+
+Route::resource('nomina_federal', 'NominaFederalController');
+
+Route::resource('personal', 'PersonalController');
+
+Route::resource('reclamos', 'ReclamosController');
+
+Route::resource('reintegros', 'ReintegrosController');
+
 Route::resource('tabla_pagos', 'TablaPagosController');
+=======
+Route::resource('tabla_pagos', 'TablaPagosController');
+>>>>>>> 6b1447988de78c08a4d6444d70d605cc0ad3254f

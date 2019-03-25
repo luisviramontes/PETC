@@ -1,4 +1,4 @@
-@extends('layouts.principal')
+edit.blade.php@extends('layouts.principal')
 @section('contenido')
 
 <h1>Edit</h1>

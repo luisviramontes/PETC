@@ -16,6 +16,8 @@ class CambiosCctController extends Controller
      */
     public function index()
     {
+
+      return view('nomina.cambios_cct.index');
         //
     }
 
