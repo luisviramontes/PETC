@@ -16,7 +16,8 @@ class ReintegrosController extends Controller
      */
     public function index()
     {
-        //
+      return view('nomina.reintegros.index');
+
     }
 
     /**

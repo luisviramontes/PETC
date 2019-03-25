@@ -16,6 +16,8 @@ class FortalecimientoController extends Controller
      */
     public function index()
     {
+      return view('nomina.fortalecimiento.index');
+
         //
     }
 

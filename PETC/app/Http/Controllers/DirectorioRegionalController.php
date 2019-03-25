@@ -16,6 +16,8 @@ class DirectorioRegionalController extends Controller
      */
     public function index()
     {
+      return view('nomina.directorio_regional.index');
+
         //
     }
 

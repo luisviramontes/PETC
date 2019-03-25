@@ -18,6 +18,8 @@ class BajasContratoController extends Controller
      */
     public function index()
     {
+      return view('nomina.bajas_contrato.index');
+
         //
     }
 

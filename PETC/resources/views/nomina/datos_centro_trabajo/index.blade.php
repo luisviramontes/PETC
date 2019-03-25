@@ -1,6 +1,6 @@
 @extends('layouts.principal')
 @section('contenido')
 
-<h1>Index cat_puesto</h1>
+<h1>Index datos_centro_trabajo</h1>
 
 @endsection

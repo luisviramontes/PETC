@@ -16,7 +16,10 @@ class NominafederalController extends Controller
      */
     public function index()
     {
+      return view('nomina.nomina_federal.index');
+
         //
+
     }
 
     /**

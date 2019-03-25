@@ -16,6 +16,9 @@ class CentroTrabajoController extends Controller
      */
     public function index()
     {
+
+      return view('nomina.centro_trabajo.index');
+
         //
     }
 

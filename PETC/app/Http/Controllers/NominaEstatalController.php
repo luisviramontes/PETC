@@ -16,6 +16,8 @@ class NominaEstatalController extends Controller
      */
     public function index()
     {
+      return view('nomina.nomina_estatal.index');
+
         //
     }
 
