@@ -8,7 +8,7 @@
 	<div class="pull-right">
 		<ol class="breadcrumb">
 			<li ><a style="color: #808080" href="{{url('/unidades_medida')}}">Inicio</a></li>
-			<li class="active">Tabla de Pagos</a></li>
+			<li class="active">Tabla de Pagos Por Quincena</a></li>
 		</ol>
 	</div>
 </div>
@@ -49,9 +49,9 @@
 								<th>Pago por Director </th>
 								<th>Pago por Docente </th>
 								<th>Pago por Intendente </th>
+								<th>Ciclo </th>
 								<th>Capturo </th>
-								<th>Creado Por </th>
-								<th>Modificado Por </th>
+								<th>Modificado </th>
 
 
 								<td><center><b>Editar</b></center></td>
@@ -63,11 +63,11 @@
 							<tr class="gradeA">
 								<td>{{$tabla_pago->qna}} </td>
 								<td>{{$tabla_pago->dias}} </td>
-								<td>{{$tabla_pago->pago_director}} </td>
-								<td>{{$tabla_pago->pago_docente}} </td>
-								<td>{{$tabla_pago->pago_intendente}} </td>
+								<td>${{$tabla_pago->pago_director}}.00 </td>
+								<td>${{$tabla_pago->pago_docente}}.00 </td>
+								<td>${{$tabla_pago->pago_intendente}}.00 </td>
+								<th>{{$tabla_pago->ciclo}} </th>
 								<td>{{$tabla_pago->captura}} </td>
-								<td>{{$tabla_pago->created_at}} </td>
 								<td>{{$tabla_pago->updated_at}} </td>
 
 
@@ -92,9 +92,9 @@
 								<th>Pago por Director </th>
 								<th>Pago por Docente </th>
 								<th>Pago por Intendente </th>
+								<th>Ciclo </th>>
 								<th>Capturo </th>
-								<th>Creado Por </th>
-								<th>Modificado Por </th>
+								<th>Modificado</th>
 
 
 								<td><center><b>Editar</b></center></td>

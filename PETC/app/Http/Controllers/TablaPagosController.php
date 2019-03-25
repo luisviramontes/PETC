@@ -19,7 +19,7 @@ class TablaPagosController extends Controller
      */
     public function index()
     {
-        $tabla_pagos= DB::table('tabla_pagos')->get();
+        $tabla_pagos= DB::table('tabla_pagos')->orderBy('qna', 'ASC')->where('ciclo','2018-2019')->get();
         return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos]);
         //
     }
