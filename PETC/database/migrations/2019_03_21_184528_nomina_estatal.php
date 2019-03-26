@@ -13,7 +13,7 @@ class NominaEstatal extends Migration
     public function up()
     {
         Schema::create('nomina_estatal', function (Blueprint $table) {
-            $table->increments('id__nomina_estatal');
+            $table->increments('id');
             $table->integer('bco');
             $table->integer('num_cheque');
             $table->integer('num_empleado');

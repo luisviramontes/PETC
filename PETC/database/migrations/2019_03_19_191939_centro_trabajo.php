@@ -13,7 +13,7 @@ class CentroTrabajo extends Migration
     public function up()
     {
         Schema::create('centro_trabajo', function (Blueprint $table) {
-            $table->increments('id_centro_trabajo');
+            $table->increments('id');
             $table->string('cct');
             $table->string('nombre_escuela');
             $table->string('domicilio');

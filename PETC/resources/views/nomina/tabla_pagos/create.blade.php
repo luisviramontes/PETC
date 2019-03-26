@@ -140,7 +140,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Pago por Intendete: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="pago_intendete" type="number"   class="form-control" required value="50" />
+								<input name="pago_intendente" type="number"   class="form-control" required value="50" />
 							</div>
 						</div>
 
@@ -149,7 +149,7 @@
 							<div class="col-sm-6">
 								<select name="ciclo" class="form-control" required>
 								@foreach($ciclos as $ciclo)
-									<option value="{{$ciclo->id}}">
+									<option value="{{$ciclo->ciclo}}">
 										{{$ciclo->ciclo}}
 									</option>
 									@endforeach

@@ -13,9 +13,9 @@ class Reclamos extends Migration
     public function up()
     {
         Schema::create('reclamos', function (Blueprint $table) {
-            $table->increments('id_reclamos');
+            $table->increments('id');
             $table->integer('id_captura')->unsigned();
-            $table->foreign('id_captura')->references('id_captura')->on('captura');
+            $table->foreign('id_captura')->references('id')->on('captura');
             $table->string('qnas_reclamo');
             $table->integer('dias_reclamo');
             $table->date('periodo_inicial');

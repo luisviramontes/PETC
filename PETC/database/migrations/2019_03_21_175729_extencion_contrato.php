@@ -13,9 +13,9 @@ class ExtencionContrato extends Migration
     public function up()
     {
         Schema::create('extencion_contrato', function (Blueprint $table) {
-            $table->increments('id_extencion_contrato');
+            $table->increments('id');
             $table->integer('id_captura')->unsigned();
-            $table->foreign('id_captura')->references('id_captura')->on('captura');
+            $table->foreign('id_captura')->references('id')->on('captura');
             $table->date('fecha_inicial');
             $table->date('fecha_final');
             $table->string('documentacion_entregada');

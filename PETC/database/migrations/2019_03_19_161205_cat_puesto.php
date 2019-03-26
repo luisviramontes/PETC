@@ -13,7 +13,7 @@ class CatPuesto extends Migration
     public function up()
     {
         Schema::create('cat_puesto', function (Blueprint $table) {
-            $table->increments('idcat_puesto');
+            $table->increments('id');
             $table->string('cv_ur');
             $table->string('entidad');
             $table->string('ccp');

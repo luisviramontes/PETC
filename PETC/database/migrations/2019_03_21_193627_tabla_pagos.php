@@ -13,7 +13,7 @@ class TablaPagos extends Migration
     public function up()
     {
         Schema::create('tabla_pagos', function (Blueprint $table) {
-            $table->increments('id_tabla_pagos');
+            $table->increments('id');
             $table->integer('qna');
             $table->integer('dias');
             $table->double('pago_director');

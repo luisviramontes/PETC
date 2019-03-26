@@ -75,12 +75,12 @@
 								<td>{{$tabla_pago->updated_at}} </td>
 								<td> 
 									<center>
-										<a href="{{URL::action('TablaPagosController@edit',$tabla_pago->id_tabla_pagos)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
+										<a href="{{URL::action('TablaPagosController@edit',$tabla_pago->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
 									</center>
 								</td>
 								<td>
 									<center>
-										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$tabla_pago->id_tabla_pagos}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$tabla_pago->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 									</td>
 								</td>
 							</tr>

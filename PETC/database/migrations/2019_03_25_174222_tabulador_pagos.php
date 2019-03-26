@@ -13,7 +13,7 @@ class TabuladorPagos extends Migration
     public function up()
     {
         Schema::create('tabulador_pagos', function (Blueprint $table) {
-            $table->increments('id_tabulador');
+            $table->increments('id');
             $table->double('pago_director');
             $table->double('pago_docente');
             $table->double('pago_intendente');

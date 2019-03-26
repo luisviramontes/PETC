@@ -15,7 +15,7 @@ class Inasistencias extends Migration
         Schema::create('inasistencias', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_captura')->unsigned();
-            $table->foreign('id_captura')->references('id_captura')->on('captura');
+            $table->foreign('id_captura')->references('id')->on('captura');
             $table->string('mes');
             $table->string('faltas');
             $table->string('estado');

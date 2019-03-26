@@ -13,7 +13,7 @@ class NominaFederal extends Migration
     public function up()
     {
         Schema::create('nomina_federal', function (Blueprint $table) {
-            $table->increments('id__nomina_federal');
+            $table->increments('id');
             $table->integer('region');
             $table->string('rfc');
             $table->string('nombre_emp');

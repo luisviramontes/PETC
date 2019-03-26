@@ -13,9 +13,9 @@ class Reintegros extends Migration
     public function up()
     {
         Schema::create('reintegros', function (Blueprint $table) {
-            $table->increments('id_reintegros');
+            $table->increments('id');
             $table->integer('id_captura')->unsigned();
-            $table->foreign('id_captura')->references('id_captura')->on('captura');
+            $table->foreign('id_captura')->references('id')->on('captura');
             $table->string('qnas_reintegrar');
             $table->integer('dias_reintegrar');
             $table->string('motivo');

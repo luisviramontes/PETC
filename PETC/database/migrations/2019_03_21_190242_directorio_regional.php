@@ -13,7 +13,7 @@ class DirectorioRegional extends Migration
     public function up()
     {
         Schema::create('directorio_regional', function (Blueprint $table) {
-            $table->increments('id_directorio_reginal');
+            $table->increments('id');
             $table->integer('region');
             $table->string('sostenimiento');
             $table->string('nombre_enlace');

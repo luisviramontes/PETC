@@ -13,9 +13,9 @@ class ListasDeAsitencias extends Migration
     public function up()
     {
         Schema::create('listas_de_asistencias', function (Blueprint $table) {
-            $table->increments('id_listas_de_asistencias');
+            $table->increments('id');
                $table->integer('id_centro_trabajo')->unsigned();
-            $table->foreign('id_centro_trabajo')->references('id_centro_trabajo')->on('centro_trabajo');
+            $table->foreign('id_centro_trabajo')->references('id')->on('centro_trabajo');
             $table->string('mes');
             $table->string('estado');
             $table->string('observaciones')->nullable();

@@ -13,11 +13,11 @@ class Captura extends Migration
     public function up()
     {
         Schema::create('captura', function (Blueprint $table) {
-            $table->increments('id_captura');
+            $table->increments('id');
             $table->integer('id_personal')->unsigned();
-            $table->foreign('id_personal')->references('id_personal')->on('personal');
+            $table->foreign('id_personal')->references('id')->on('personal');
             $table->integer('id_cct_etc')->unsigned ();
-            $table->foreign('id_cct_etc')->references('id_centro_trabajo')->on('centro_trabajo');
+            $table->foreign('id_cct_etc')->references('id')->on('centro_trabajo');
             $table->string('sostenimiento');
             $table->string('categoria');
             $table->string('estado');

@@ -13,14 +13,14 @@ class Personal extends Migration
     public function up()
     {
         Schema::create('Personal', function (Blueprint $table) {
-            $table->increments('id_personal');
+            $table->increments('id');
             $table->string('nombre');
             $table->string('rfc')->index();
             $table->integer('telefono');
             $table->string('email');
             $table->string('cct');
             $table->integer('clave')->unsigned();
-            $table->foreign('clave')->references('idcat_puesto')->on('cat_puesto');
+            $table->foreign('clave')->references('id')->on('cat_puesto');
             $table->string('sostenimiento');
             $table->string('captura');
             $table->timestamps();
