@@ -1,11 +1,5 @@
 @extends('layouts.principal')
 @section('contenido')
-<<<<<<< HEAD
-
-<h1>Index tabla_pagos</h1>
-
-@endsection
-=======
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
 		<h1>Tabla de Pagos </h1>
@@ -14,7 +8,7 @@
 	<div class="pull-right">
 		<ol class="breadcrumb">
 			<li ><a style="color: #808080" href="{{url('/unidades_medida')}}">Inicio</a></li>
-			<li class="active">Tabla de Pagos</a></li>
+			<li class="active">Tabla de Pagos Por Quincena</a></li>
 		</ol>
 	</div>
 </div>
@@ -33,7 +27,7 @@
 								<b>
 
 									<div class="btn-group" style="margin-right: 10px;">
-										<a class="btn btn-sm btn-success tooltips" href="{{ route('tabla_pagos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nuevo Invernadero"> <i class="fa fa-plus"></i> Registrar </a>
+										<a class="btn btn-sm btn-success tooltips" href="{{ route('tabla_pagos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Pago Qna"> <i class="fa fa-plus"></i> Registrar </a>
 
 
 									</div>
@@ -55,9 +49,9 @@
 								<th>Pago por Director </th>
 								<th>Pago por Docente </th>
 								<th>Pago por Intendente </th>
+								<th>Ciclo </th>
 								<th>Capturo </th>
-								<th>Creado Por </th>
-								<th>Modificado Por </th>
+								<th>Modificado </th>
 
 
 								<td><center><b>Editar</b></center></td>
@@ -69,11 +63,11 @@
 							<tr class="gradeA">
 								<td>{{$tabla_pago->qna}} </td>
 								<td>{{$tabla_pago->dias}} </td>
-								<td>{{$tabla_pago->pago_director}} </td>
-								<td>{{$tabla_pago->pago_docente}} </td>
-								<td>{{$tabla_pago->pago_intendente}} </td>
+								<td>${{$tabla_pago->pago_director}}.00 </td>
+								<td>${{$tabla_pago->pago_docente}}.00 </td>
+								<td>${{$tabla_pago->pago_intendente}}.00 </td>
+								<th>{{$tabla_pago->ciclo}} </th>
 								<td>{{$tabla_pago->captura}} </td>
-								<td>{{$tabla_pago->created_at}} </td>
 								<td>{{$tabla_pago->updated_at}} </td>
 
 
@@ -98,9 +92,9 @@
 								<th>Pago por Director </th>
 								<th>Pago por Docente </th>
 								<th>Pago por Intendente </th>
+								<th>Ciclo </th>>
 								<th>Capturo </th>
-								<th>Creado Por </th>
-								<th>Modificado Por </th>
+								<th>Modificado</th>
 
 
 								<td><center><b>Editar</b></center></td>
@@ -115,4 +109,3 @@
 </div><!--/row-->
 </div>
 @stop
->>>>>>> 6b1447988de78c08a4d6444d70d605cc0ad3254f

@@ -19,7 +19,8 @@ class TablaPagosController extends Controller
      */
     public function index()
     {
-        $tabla_pagos= DB::table('tabla_pagos')->get();
+        $ciclos=DB::table('ciclo_escolar')->get();
+        $tabla_pagos= DB::table('tabla_pagos')->orderBy('qna', 'ASC')->where('ciclo','2018-2019')->get();
         return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos]);
         //
     }
@@ -31,6 +32,9 @@ class TablaPagosController extends Controller
      */
     public function create()
     {
+        $ciclos=DB::table('ciclo_escolar')->get();
+
+        return view('nomina.tabla_pagos.create', ['ciclos'=> $ciclos]);
         //
     }
 
@@ -42,6 +46,18 @@ class TablaPagosController extends Controller
      */
     public function store(Request $request)
     {
+        $tabla= new TablaPagos;
+        $tabla->qna=$request->get('qna');
+        $tabla->dias=$request->get('pago_director');
+        $tabla->pago_director=$request->get('pago_director');
+        $tabla->pago_docente=$request->get('pago_director');
+        $tabla->pago_intendente=$request->get('pago_intendente');
+        $tabla->captura=$request->get('ADMINISTRADOR');
+        $tabla->ciclo=$request->get('ciclo');
+
+
+        $material->nombre=$request->get('nombre');
+
         //
     }
 

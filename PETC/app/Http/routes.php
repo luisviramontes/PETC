@@ -15,7 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::resource('cat_puesto', 'CatPuestoController'); //
+=======
+Route::resource('cat_puesto', 'CatPuestoController');
+>>>>>>> a82156159f9f8d4e90dadd1c34cc2002a0c63c52
 
 Route::resource('bajas_contrato', 'BajasContratoController');//
 
