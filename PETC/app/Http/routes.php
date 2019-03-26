@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 
 Route::resource('cat_puesto', 'CatPuestoController');
-<<<<<<< HEAD
 
 Route::resource('bajas_contrato', 'BajasContratoController');
 
@@ -49,6 +48,3 @@ Route::resource('reclamos', 'ReclamosController');
 Route::resource('reintegros', 'ReintegrosController');
 
 Route::resource('tabla_pagos', 'TablaPagosController');
-=======
-Route::resource('tabla_pagos', 'TablaPagosController');
->>>>>>> 6b1447988de78c08a4d6444d70d605cc0ad3254f

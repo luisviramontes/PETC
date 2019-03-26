@@ -1,11 +1,5 @@
 @extends('layouts.principal')
 @section('contenido')
-<<<<<<< HEAD
-
-<h1>Index tabla_pagos</h1>
-
-@endsection
-=======
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
 		<h1>Tabla de Pagos </h1>
@@ -33,7 +27,7 @@
 								<b>
 
 									<div class="btn-group" style="margin-right: 10px;">
-										<a class="btn btn-sm btn-success tooltips" href="{{ route('tabla_pagos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar nuevo Invernadero"> <i class="fa fa-plus"></i> Registrar </a>
+										<a class="btn btn-sm btn-success tooltips" href="{{ route('tabla_pagos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Pago Qna"> <i class="fa fa-plus"></i> Registrar </a>
 
 
 									</div>
@@ -115,4 +109,3 @@
 </div><!--/row-->
 </div>
 @stop
->>>>>>> 6b1447988de78c08a4d6444d70d605cc0ad3254f
