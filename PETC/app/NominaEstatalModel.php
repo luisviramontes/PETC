@@ -8,4 +8,5 @@ class NominaEstatalModel extends Model
 {
 	protected $table= "nomina_estatal";
     //
+
 }

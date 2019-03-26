@@ -1,6 +1,6 @@
 @extends('layouts.principal')
 @section('contenido')
 
-<h1>Index extencion_contrato</h1>
+<h1>Index directorio_regional</h1>
 
 @endsection

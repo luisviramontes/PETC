@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\NominaEstatalModel;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -28,7 +30,8 @@ class NominaEstatalController extends Controller
      */
     public function create()
     {
-        //
+      $nomina_estatal = new NominaEstatalModel; //para que devuelva campo vacio en formcreate
+      return view("nomina.nomina_estatal.create",["nomina_estatal" => $nomina_estatal]);
     }
 
     /**
