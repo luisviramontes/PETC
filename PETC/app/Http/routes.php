@@ -48,3 +48,5 @@ Route::resource('reclamos', 'ReclamosController');
 Route::resource('reintegros', 'ReintegrosController');
 
 Route::resource('tabla_pagos', 'TablaPagosController');
+
+Route::get('descargar-tabla-pagos', 'TablaPagosController@excel')->name('nomina.tabla_pagos.excel');

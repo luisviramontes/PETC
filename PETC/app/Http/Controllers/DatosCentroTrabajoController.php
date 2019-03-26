@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace petc\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use petc\Http\Requests;
+use petc\Http\Controllers\Controller;
 
 class DatosCentroTrabajoController extends Controller
 {

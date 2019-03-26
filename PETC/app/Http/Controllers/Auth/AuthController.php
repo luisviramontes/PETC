@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace petc\Http\Controllers\Auth;
 
-use App\User;
+use petc\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use petc\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

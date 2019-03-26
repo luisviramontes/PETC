@@ -137,14 +137,17 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        petc\Providers\AppServiceProvider::class,
+        petc\Providers\AuthServiceProvider::class,
+        petc\Providers\EventServiceProvider::class,
+        petc\Providers\RouteServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Milon\Barcode\BarcodeServiceProvider::class,
 
         ],
 
@@ -195,6 +198,11 @@ return [
     'View'      => Illuminate\Support\Facades\View::class,
     'Form'      => Illuminate\Html\FormFacade::class,
     'Html'      => Illuminate\Html\HtmlFacade::class,
+    'PDF' => 'Barryvdh\DomPDF\Facade',
+    'PDF' => Barryvdh\DomPDF\Facade::class,
+    'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+    'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+    'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
 
     ],
 

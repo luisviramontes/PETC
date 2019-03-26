@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace petc\Http\Requests;
 
-use App\Http\Requests\Request;
+use petc\Http\Requests\Request;
 
 class NominaFederalRequest extends Request
 {

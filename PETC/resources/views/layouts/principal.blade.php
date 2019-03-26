@@ -497,7 +497,7 @@
                                                               {!!Html::script('plugins/validation/parsley.min.js')!!}
                                                               {!!Html::script('plugins/data-tables/jquery.dataTables.js')!!}
                                                               {!!Html::script('plugins/data-tables/DT_bootstrap.js')!!}
-                                                              {!!Html::script('plugins/data-tables/dynamic_table_init.js')!!}
+                                                      
                                                               {!!Html::script('plugins/edit-table/edit-table.js')!!}
                                                               {!!Html::script('plugins/file-uploader/js/vendor/jquery.ui.widget.js')!!}
                                                               {!!Html::script('plugins/file-uploader/js/jquery.iframe-transport.js')!!}

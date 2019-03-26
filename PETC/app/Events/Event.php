@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace petc\Events;
 
 abstract class Event
 {

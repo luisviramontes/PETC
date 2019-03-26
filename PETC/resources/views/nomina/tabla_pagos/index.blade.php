@@ -21,6 +21,7 @@
 						<div class="col-sm-7">
 							<div class="actions"> </div>
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Pagos</strong></h2>
+							@include('nomina.tabla_pagos.search')
 						</div>
 						<div class="col-md-5">
 							<div class="btn-group pull-right">
@@ -28,6 +29,9 @@
 
 									<div class="btn-group" style="margin-right: 10px;">
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('tabla_pagos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Pago Qna"> <i class="fa fa-plus"></i> Registrar </a>
+
+
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.tabla_pagos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
 
 
 									</div>
@@ -59,7 +63,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						@foreach($tabla_pagos  as $tabla_pago)
+							@foreach($tabla_pagos  as $tabla_pago)
 							<tr class="gradeA">
 								<td>{{$tabla_pago->qna}} </td>
 								<td>{{$tabla_pago->dias}} </td>
@@ -69,8 +73,6 @@
 								<th>{{$tabla_pago->ciclo}} </th>
 								<td>{{$tabla_pago->captura}} </td>
 								<td>{{$tabla_pago->updated_at}} </td>
-
-
 								<td> 
 									<center>
 										<a href="{{URL::action('TablaPagosController@edit',$tabla_pago->id_tabla_pagos)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
@@ -82,7 +84,7 @@
 									</td>
 								</td>
 							</tr>
-					
+
 							@endforeach
 						</tbody>
 						<tfoot>
@@ -102,6 +104,7 @@
 							</tr>
 						</tfoot>
 					</table>
+					{!! $tabla_pagos->render() !!}
 				</div><!--/table-responsive-->
 			</div><!--/porlets-content-->
 		</div><!--/block-web-->

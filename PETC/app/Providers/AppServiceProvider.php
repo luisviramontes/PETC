@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace petc\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

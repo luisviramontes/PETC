@@ -1,208 +1,113 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CEPROZAC | www.CEPROZAC.com</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
-    <link rel="apple-touch-icon" href="{{asset('img/apple-touch-icon.png')}}">
-    <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}">
+@extends('layouts.principal')
+@section('contenido')
+<div class="pull-left breadcrumb_admin clear_both">
+  <div class="pull-left page_title theme_color">
+    <h1>Tabla de Pagos </h1>
+    <h2 class="">Tabla de Pagos</h2>
+  </div>
+  <div class="pull-right">
+    <ol class="breadcrumb">
+      <li ><a style="color: #808080" href="{{url('/unidades_medida')}}">Inicio</a></li>
+      <li class="active">Tabla de Pagos Por Quincena</a></li>
+    </ol>
+  </div>
+</div>
+<div class="container clear_both padding_fix">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="block-web">
+        <div class="header">
+          <div class="row" style="margin-top: 15px; margin-bottom: 12px;">
+            <div class="col-sm-7">
+              <div class="actions"> </div>
+              <h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Pagos</strong></h2>
+            </div>
+            <div class="col-md-5">
+              <div class="btn-group pull-right">
+                <b>
 
-  </head>
-  <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-
-      <header class="main-header">
-
-        <!-- Logo -->
-        <a href="index2.html" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>AD</b>V</span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>CEPROZAC</b></span>
-        </a>
-
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Navegación</span>
-          </a>
-          <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <!-- Messages: style can be found in dropdown.less-->
-              
-              <!-- User Account: style can be found in dropdown.less -->
-              <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <small class="bg-red">Online</small>
-                  <span class="hidden-xs">ISC LUIS VIRAMONTES</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <!-- User image -->
-                  <li class="user-header">
-                    
-                    <p>
-                      www.CEPROZAC.com - Desarrollando Software De Calidad
-                      <small>www.youtube.com/jcarlosad7</small>
-                    </p>
-                  </li>
-                  
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    
-                    <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              
-            </ul>
-          </div>
-
-        </nav>
-      </header>
-      <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-          <!-- Sidebar user panel -->
-                    
-          <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-            <li class="header"></li>
-            
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span>Almacén</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="http://localhost:8000/almacen/refaccion"><i class="fa fa-circle-o"></i> Refacciones</a></li>
-                <li><a href="almacen/categoria"><i class="fa fa-circle-o"></i> Categorías</a></li>
-              </ul>
-            </li>
-            
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-th"></i>
-                <span>Compras</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ingresos</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Proveedores</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-shopping-cart"></i>
-                <span>Ventas</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="ventas/venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
-                <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li>
-              </ul>
-            </li>
-                       
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span>Taller</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="configuracion/usuario"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-                
-              </ul>
-            </li>
-             <li>
-              <a href="#">
-                <i class="fa fa-plus-square"></i> <span>Ayuda</span>
-                <small class="label pull-right bg-red">PDF</small>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
-                <small class="label pull-right bg-yellow">IT</small>
-              </a>
-            </li>
-                        
-          </ul>
-        </section>
-        <!-- /.sidebar -->
-      </aside>
-
-
-
-
-
-       <!--Contenido-->
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        
-        <!-- Main content -->
-        <section class="content">
-          
-          <div class="row">
-            <div class="col-md-12">
-              <div class="box">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Sistema de Control de la Empresa</h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  <div class="btn-group" style="margin-right: 10px;">
+                    <a class="btn btn-sm btn-success tooltips" href="{{ route('tabla_pagos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Pago Qna"> <i class="fa fa-plus"></i> Registrar </a>
                   </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                  	<div class="row">
-	                  	<div class="col-md-12">
-		                          <!--Contenido-->
-                              @yield('contenido')
-		                          <!--Fin Contenido-->
-                           </div>
-                        </div>
-		                    
-                  		</div>
-                  	</div><!-- /.row -->
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
 
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-      <!--Fin-Contenido-->
-      <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
+                  <div class="btn-group" style="margin-right: 10px;">
+                  <a class="btn btn-sm btn-success tooltips" href="{{ route('tabla_pagos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar Reporte de Pagos"> <i class="fa fa-plus"></i> Descargar </a>
+                  </div>
+
+                </a>
+              </b>
+            </div>
+          </div>
         </div>
-        <strong>Copyright &copy; 2015-2020 <a href="www.incanatoit.com">ISC Luis Viramontes</a>.</strong> Todos los Derechos Reservados
-      </footer>
+      </div>
 
-      
-    <!-- jQuery 2.1.4 -->
-    <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{asset('js/app.min.js')}}"></script>
-    
-  </body>
-</html>
+      <div class="porlets-content">
+        <div class="table-responsive">
+          <table  class="display table table-bordered table-striped" id="dynamic-table">
+            <thead>
+              <tr>
+                <th>Quincena </th>
+                <th>Dias Trabajados</th>
+                <th>Pago por Director </th>
+                <th>Pago por Docente </th>
+                <th>Pago por Intendente </th>
+                <th>Ciclo </th>
+                <th>Capturo </th>
+                <th>Modificado </th>
+
+
+                <td><center><b>Editar</b></center></td>
+                <td><center><b>Borrar</b></center></td>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($tabla_pagos  as $tabla_pago)
+              <tr class="gradeA">
+                <td>{{$tabla_pago->qna}} </td>
+                <td>{{$tabla_pago->dias}} </td>
+                <td>${{$tabla_pago->pago_director}}.00 </td>
+                <td>${{$tabla_pago->pago_docente}}.00 </td>
+                <td>${{$tabla_pago->pago_intendente}}.00 </td>
+                <th>{{$tabla_pago->ciclo}} </th>
+                <td>{{$tabla_pago->captura}} </td>
+                <td>{{$tabla_pago->updated_at}} </td>
+
+
+                <td> 
+                  <center>
+                    <a href="{{URL::action('TablaPagosController@edit',$tabla_pago->id_tabla_pagos)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
+                  </center>
+                </td>
+                <td>
+                  <center>
+                    <a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$tabla_pago->id_tabla_pagos}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+                  </td>
+                </td>
+              </tr>
+
+              @endforeach
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Quincena </th>
+                <th>Dias Trabajados</th>
+                <th>Pago por Director </th>
+                <th>Pago por Docente </th>
+                <th>Pago por Intendente </th>
+                <th>Ciclo </th>>
+                <th>Capturo </th>
+                <th>Modificado</th>
+
+
+                <td><center><b>Editar</b></center></td>
+                <td><center><b>Borrar</b></center></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div><!--/table-responsive-->
+      </div><!--/porlets-content-->
+    </div><!--/block-web-->
+  </div><!--/col-md-12-->
+</div><!--/row-->
+</div>
+@stop
