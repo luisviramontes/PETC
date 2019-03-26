@@ -124,7 +124,7 @@
             <div class="form-group">
 							<label class="col-sm-3 control-label">Ext2 Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext1_enlace" type="number"   class="form-control" required value="" />
+								<input name="ext2_enlace" type="number"   class="form-control" required value="" />
 							</div>
 						</div>
 
@@ -184,8 +184,8 @@
 
 								</select>
 								<div class="help-block with-errors"></div>
-							</div>-->
-						</div><!--/form-group-->
+							</div>
+						</div>--><!--/form-group-->
 
 
 

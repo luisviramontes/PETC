@@ -27,7 +27,7 @@
 								<b>
 
 									<div class="btn-group" style="margin-right: 10px;">
-										<a class="btn btn-sm btn-success tooltips" href="{{ route('directorio_regional.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Pago Qna"> <i class="fa fa-plus"></i> Registrar </a>
+										<a class="btn btn-sm btn-success tooltips" href="{{ route('directorio_regional.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Directorio"> <i class="fa fa-plus"></i> Registrar </a>
 
 
 									</div>
@@ -44,7 +44,7 @@
 					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered" id="hidden-table-info">
 						<thead>
 							<tr>
-
+								
 								<th>Region </th>
 								<th>Sostenimiento</th>
 								<th>Nombre Enlace </th>
@@ -81,8 +81,19 @@
                 <td style="display:none;">{{$directorio_regional->ext_reg_1}} </td>
                 <td style="display:none;">{{$directorio_regional->ext_reg_2}} </td>
                 <td>{{$directorio_regional->captura}} </td>
-								<td>{{$directorio_regional->updated_at}} </td>
+								<td style="display:none">{{$directorio_regional->updated_at}} </td>
 
+								<td>
+									<center>
+										<a href="{{URL::action('DirectorioRegionalController@edit',$directorio_regional->id_directorio_reginal)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+									</center>
+								</td>
+								<td>
+									<center>
+										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$directorio_regional->id_directorio_reginal}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+									</td>
+								</td>
+							</tr>
 
 
 							@endforeach
