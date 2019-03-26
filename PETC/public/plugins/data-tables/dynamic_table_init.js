@@ -2,17 +2,21 @@ function fnFormatDetails ( oTable, nTr )
 {
     var aData = oTable.fnGetData( nTr );
     var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-    sOut += '<tr><td><strong>Nombre:</strong></td><td>'+aData[1]+' </td></tr>';
-    sOut += '<tr><td><strong>CURP:</strong></td><td>'+aData[6]+' </td></tr>';
-    sOut += '<tr><td><strong>Fecha Nacimiento:</strong></td><td>'+aData[5]+' </td></tr>';
-    sOut += '<tr><td><strong>Sexo:</strong></td><td>'+aData[10]+' </td></tr>';
-    sOut += '<tr><td><strong>Fecha de Ingreso a la empresa:</strong></td><td>'+aData[2]+' </td></tr>';
-    sOut += '<tr><td><strong>Fecha de alta en Seguro Social:</strong></td><td>'+aData[3]+' </td></tr>';
-    sOut += '<tr><td><strong>Numero de Seguro Social:</strong></td><td>'+aData[4]+' </td></tr>';
-    sOut += '<tr><td><strong>Correo:</strong></td><td>'+aData[7]+' </td></tr>';
-    sOut += '<tr><td><strong>Telefono:</strong></td><td>'+aData[8]+' </td></tr>';
-    sOut += '<tr><td><strong>Sueldo:</strong></td><td>'+aData[9]+' </td></tr>';
-    
+    sOut += '<tr><td><strong>Region:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Sostenimiento:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de Enlace:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>Teléfono:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Extencion 1:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>Extencion 2:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Correo Enlace:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>Director Regional:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Telefono Director:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Financiero Regional:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Teléfono Financiero:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Extencion Financiero 1:</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>Extencion Financiero 2:</strong></td><td>'+aData[13]+' </td></tr>';
+
+
     sOut += '</table>';
 
     return sOut;
@@ -382,7 +386,7 @@ function fnFormatDetails5 ( oTable, nTr )
     sOut += '<tr><td><strong>Direccion Fisica:</strong></td><td>'+aData[5]+' </td></tr>';
     sOut += '<tr><td><strong>Direccion de Facturación:</strong></td><td>'+aData[4]+' </td></tr>';
     sOut += '<tr><td><strong>Correo:</strong></td><td>'+aData[7]+' </td></tr>';
-    
+
 
     sOut += '</table>';
 
@@ -574,7 +578,7 @@ $(document).ready(function() {
      */
      var nCloneTh = document.createElement( 'th' );
      var nCloneTd = document.createElement( 'td' );
-     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">'; 
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
      nCloneTd.className = "center";
 
      $('#hidden-table-info7 thead tr').each( function () {
@@ -718,7 +722,7 @@ function fnFormatDetails9 ( oTable, nTr )
     sOut += '</table>';
 
     return sOut;
-} 
+}
 
 $(document).ready(function() {
 
@@ -731,7 +735,7 @@ $(document).ready(function() {
      */
      var nCloneTh = document.createElement( 'th' );
      var nCloneTd = document.createElement( 'td' );
-     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">'; 
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
      nCloneTd.className = "center";
 
      $('#hidden-table-info9 thead tr').each( function () {

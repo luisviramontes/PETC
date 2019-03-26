@@ -15,29 +15,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
-Route::resource('cat_puesto', 'CatPuestoController'); //
-=======
+
 Route::resource('cat_puesto', 'CatPuestoController');
->>>>>>> a82156159f9f8d4e90dadd1c34cc2002a0c63c52
 
-Route::resource('bajas_contrato', 'BajasContratoController');//
+Route::resource('cat_puesto', 'CatPuestoController');
 
-Route::resource('cambios_cct', 'CambiosCctController');//
 
-Route::resource('captura', 'CapturaController');//
+Route::resource('bajas_contrato', 'BajasContratoController');
 
-Route::resource('centro_trabajo', 'CentroTrabajoController');//
+Route::resource('cambios_cct', 'CambiosCctController');
 
-Route::resource('datos_centro_trabajo', 'DatosCentroTrabajoController');//
+Route::resource('captura', 'CapturaController');
 
-Route::resource('directorio_regional', 'DirectorioRegionalController');//
+Route::resource('centro_trabajo', 'CentroTrabajoController');
 
-Route::resource('extencion_contrato', 'ExtencionContratoController');//
+Route::resource('datos_centro_trabajo', 'DatosCentroTrabajoController');
 
-Route::resource('fortalecimiento', 'FortalecimientoController');//
+Route::resource('directorio_regional', 'DirectorioRegionalController');
 
-Route::resource('inasistencias', 'InasistenciasController');//
+Route::resource('extencion_contrato', 'ExtencionContratoController');
+
+Route::resource('fortalecimiento', 'FortalecimientoController');
+
+Route::resource('inasistencias', 'InasistenciasController');
 
 Route::resource('listas_asistencias', 'ListasAsistenciasController');
 
