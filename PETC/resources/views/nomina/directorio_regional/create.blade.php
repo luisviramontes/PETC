@@ -103,77 +103,77 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="nombre_enlace" type="text"   class="form-control" required value="" />
+								<input name="nombre_enlace" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="" onchange="mayus(this)" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Telefono: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="telefono" type="number"   class="form-control" required value="" />
+								<input name="telefono" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ext1 Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext1_enlace" type="number"   class="form-control" required value="" />
+								<input name="ext1_enlace" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Ext2 Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext2_enlace" type="number"   class="form-control" required value="" />
+								<input name="ext2_enlace" type="number"  onkeypress="soloNumeros(event)"  class="form-control" required value="" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Correo Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="correo_enlace" type="text"   class="form-control" required value="" />
+								<input name="correo_enlace" type="email" placeholder="usuario@correo.com"  class="form-control" required value="" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Director Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="director_regional" type="text"   class="form-control" required value="" />
+								<input name="director_regional" type="text" onchange="mayus(this)" onkeypress="return soloLetras(event)"  class="form-control" required value="" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Telefono Director: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="telefono_director" type="number"   class="form-control" required value="" />
+								<input name="telefono_director" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Financiero Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="financiero_regional" type="text"   class="form-control" required value="" />
+								<input name="financiero_regional" type="text" onchange="mayus(this)" onkeypress="return soloLetras(event)"  class="form-control" required value="" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Telefono Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="telefono_regional" type="nunmber"   class="form-control" required value="" />
+								<input name="telefono_regional" type="number" onkeypress="soloNumeros(event)"  class="form-control" required value="" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Extencion Regional 1: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext_reg_1" type="number"   class="form-control" required value="" />
+								<input name="ext_reg_1" type="number" onkeypress="soloNumeros(event)"  class="form-control" required value="" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Extencion Regional 2: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext_reg_2" type="number"   class="form-control" required value="" />
+								<input name="ext_reg_2" type="number" onkeypress="soloNumeros(event)"  class="form-control" required value="" />
 							</div>
 						</div>
 

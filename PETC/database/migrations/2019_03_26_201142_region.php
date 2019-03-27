@@ -14,7 +14,7 @@ class Region extends Migration
     {
         Schema::create('region', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreing('municipios')->references('')->('')on;
+            $table->string('municipios');
             $table->timestamps();
         });
     }

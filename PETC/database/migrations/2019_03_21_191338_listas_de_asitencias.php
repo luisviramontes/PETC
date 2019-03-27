@@ -14,7 +14,7 @@ class ListasDeAsitencias extends Migration
     {
         Schema::create('listas_de_asistencias', function (Blueprint $table) {
             $table->increments('id');
-               $table->integer('id_centro_trabajo')->unsigned();
+            $table->integer('id_centro_trabajo')->unsigned();
             $table->foreign('id_centro_trabajo')->references('id')->on('centro_trabajo');
             $table->string('mes');
             $table->string('estado');
