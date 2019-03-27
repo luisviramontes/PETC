@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+ 
 
 Route::resource('cat_puesto', 'CatPuestoController');
 
@@ -51,6 +51,7 @@ Route::resource('reclamos', 'ReclamosController');
 
 Route::resource('reintegros', 'ReintegrosController');
 
+///TABLA DE PAGOS
 Route::resource('tabla_pagos', 'TablaPagosController');
-
 Route::get('descargar-tabla-pagos', 'TablaPagosController@excel')->name('nomina.tabla_pagos.excel');
+Route::get('pdf_tablapagos/{id}', array('as'=> '/pdf_tablapagos','uses'=>'TablaPagosController@invoice'));

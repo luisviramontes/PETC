@@ -1,34 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Tabla de Pagos Ciclo: {{$entrada->factura}}</title>
+  <title>Tabla de Pagos Ciclo: {{$tabla_2->ciclo}}</title>
   <link rel="stylesheet" href="css/plantilla.css" media="all" />
 </head>
 <body>
   <header class="clearfix">
     <div id="logo">
-      <img src="images/logoCeprozac.png"  width="100" height="100"/>
+      <img src="img/logopetc2.jpg"  width="750" height="80"/>
     </div>
-    <h1>Tabla de Pagos Ciclo: {{$entrada->factura}}</h1>
+    <h1>Tabla de Pagos Ciclo: {{$tabla_2->ciclo}}</h1>
     <div id="project" >
-      <div><span>EMPRESA: </span> CEPROZAC</div>
-      <div><span>COMPRADOR: </span> {{$entrada->empresaNombre}}</div> 
-      <div><span>PROVEEDOR: </span> {{$entrada->ProvedorNombre}}</div> 
-      <div><span>DOMICILIO: </span>{{$entrada->ProvedorDireccion}}</div> 
-      <div><span>EMAIL: </span> <a href="{{$entrada->ProvedorEmail}}">{{$entrada->ProvedorEmail}}</a></div>
-      <div><span>TEL: </span>{{$entrada->ProvedorTelefono}}</div>
+      <div><span> Programa</span> PROGRAMA ESCUELAS DE TIEMPO COMPLETO</div>
+      <div><span>Área: </span> Nomina y Sistemas</div> 
+      <div><span>Email: </span> NOMINA.ETC@GMAIL.COM</div>
+      <div><span>Tel: </span>9220666 EXT: 5403-5405</div>
     </div>
  
     <div id="project2" align="right" >
-      <div><span>FACTURA: </span> {{$entrada->factura}}</div>
-      <div><span>FECHA: </span> {{$entrada->fecha}}</div>
-      <div><span>MONEDA: </span>{{$entrada->moneda}}</div>
-      <div><span>RECIBIO COMPRA: </span>{{$entrada->nombre1}} {{$entrada->apellido1}}</div>
-      <div><span>RECIBIO EN ALMACÉN:</span>{{$entrada->nombre2}} {{$entrada->apellido2}}</div>
+      <div><span>Fecha: </span> {{$date}}</div>
+      <div><span>Pago Por Dia Director: </span>${{$pago->pago_director}}</div>
+      <div><span>Pago Por Dia Docente: </span>${{$pago->pago_docente}}</div>
+      <div><span>Pago Por Dia Director:</span>${{$pago->pago_intendente}}</div>
     </div>
   </header>
-
 
   <main>
 
@@ -44,14 +40,14 @@
         </tr>
       </thead>
       <tbody>
-        @foreach($data2 as $datos)
+        @foreach($tabla as $datos)
         <tr>
           <td class="no">{{$datos->qna}}</td>           
-          <td class="unit">${{$datos->dias}}</td>
+          <td class="unit">{{$datos->dias}}</td>
           <td class="total">${{$datos->pago_director}} </td>
           <td class="unit">${{$datos->pago_docente}}</td>
           <td class="unit">${{$datos->pago_intendente}}</td>
-          <td class="unit">${{$datos->ciclo}}</td>      
+          <td class="unit">{{$datos->ciclo}}</td>      
         </tr>
         @endforeach
       </tbody>

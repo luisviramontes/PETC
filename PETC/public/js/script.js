@@ -1,6 +1,10 @@
+
 function mayus(e) {
-  e.value = e.value.toUpperCase();
+
+    var tecla=e.value;
+    var tecla2=tecla.toUpperCase();
 }
+
 
 function soloLetras(e){
   key = e.keyCode || e.which;
@@ -852,303 +856,11 @@ function  validarSSN(){
 
 } 
 
-/////////////////////////////////////////////////
 
-/////validar cliente///////
+     
 
-function  validarcliente(){
 
-  var rfc =document.getElementById('rfc').value;
-  var oculto =document.getElementById('oculto').value;
-  var route = "http://localhost:8000/validarcliente/"+rfc;
 
-  $.get(route,function(res){
-    if(res.length > 0  &&  res[0].estado =="Inactivo"){
-     document.getElementById('submit').disabled=true;
-     var idCliente = res[0].id;
-     document.getElementById("idCliente").value= idCliente;
-     $("#modal-reactivar").modal();
-
-   } 
-   else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].rfc != oculto )  {
-
-    document.getElementById("errorRFC").innerHTML = "El Cliente  que  intenta registrar ya existe en el sistema";
-    document.getElementById('submit').disabled=true;
-
-  }
-  else {
-    document.getElementById("errorRFC").innerHTML = "";
-    document.getElementById('submit').disabled=false;
-
-  }
-});
-
-}
-
-
-/////////////////////////////// validar provedor de materiales
-
-function  validarprovmat(){
-
-  var rfc =document.getElementById('rfc').value;
-  var oculto =document.getElementById('oculto').value;
-  var route = "http://localhost:8000/validarprovedormat/"+rfc;
-
-  $.get(route,function(res){
-    if(res.length > 0  &&  res[0].estado =="Inactivo"){
-     document.getElementById('submit').disabled=true;
-     var idProvedor = res[0].id;
-     document.getElementById("idProvedor").value= idProvedor;
-     $("#modal-reactivar").modal();
-
-   } 
-   else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].rfc != oculto )  {
-
-    document.getElementById("errorRFC").innerHTML = "El Provedor  que  intenta registrar ya existe en el sistema";
-    document.getElementById('submit').disabled=true;
-
-  }
-  else {
-    document.getElementById("errorRFC").innerHTML = "";
-    document.getElementById('submit').disabled=false;
-
-  }
-});
-
-}
-
-   /////////////////////////////// validar agroquimicos
-
-   function  validaragroquimicos(){
-
-    var codigo =document.getElementById('segundo').value;
-    var oculto =document.getElementById('oculto').value;
-    var route = "http://localhost:8000/validaragroquimicos/"+codigo;
-
-    $.get(route,function(res){
-      if(res.length > 0  &&  res[0].estado =="Inactivo"){
-       document.getElementById('submit').disabled=true;
-       var idAgro = res[0].id;
-       document.getElementById("idAgro").value= idAgro;
-       $("#modal-reactivar").modal();
-
-     } 
-     else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].codigo != oculto )  {
-
-      document.getElementById("errorCodigo").innerHTML = "El Codigo de Barras que  intenta registrar ya existe en el sistema";
-      document.getElementById('submit').disabled=true;
-
-    }
-    else {
-      document.getElementById("errorCodigo").innerHTML = "";
-      document.getElementById('submit').disabled=false;
-
-    }
-  });
-
-  }
-
-   /////////////////////////////// validar materiales/refacciones
-
-   function  validarmateriales(){
-
-    var codigo =document.getElementById('segundo').value;
-    var oculto =document.getElementById('oculto').value;
-    var route = "http://localhost:8000/validarmateriales/"+codigo;
-
-    $.get(route,function(res){
-      if(res.length > 0  &&  res[0].estado =="Inactivo"){
-       document.getElementById('submit').disabled=true;
-       var idMat = res[0].id;
-       document.getElementById("idMat").value= idMat;
-       $("#modal-reactivar").modal();
-
-     } 
-     else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].codigo != oculto )  {
-
-      document.getElementById("errorCodigo").innerHTML = "El Codigo de Barras que  intenta registrar ya existe en el sistema";
-      document.getElementById('submit').disabled=true;
-
-    }
-    else {
-      document.getElementById("errorCodigo").innerHTML = "";
-      document.getElementById('submit').disabled=false;
-
-    }
-  });
-
-  }
-
-   /////////////////////////////// validar empaques
-
-   function  validarempaque(){
-
-    var codigo =document.getElementById('segundo').value;
-    var oculto =document.getElementById('oculto').value;
-    var route = "http://localhost:8000/validarempaque/"+codigo;
-
-    $.get(route,function(res){
-      if(res.length > 0  &&  res[0].estado =="Inactivo"){
-       document.getElementById('submit').disabled=true;
-       var idEmp = res[0].id;
-       document.getElementById("idEmp").value= idEmp;
-       $("#modal-reactivar").modal();
-
-     } 
-     else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].codigo != oculto )  {
-
-      document.getElementById("errorCodigo").innerHTML = "El Codigo de Barras que  intenta registrar ya existe en el sistema";
-      document.getElementById('submit').disabled=true;
-
-    }
-    else {
-      document.getElementById("errorCodigo").innerHTML = "";
-      document.getElementById('submit').disabled=false;
-
-    }
-  });
-
-  }
-
-      /////////////////////////////// validar limpieza
-
-      function  validarlimpieza(){
-
-        var codigo =document.getElementById('segundo').value;
-        var oculto =document.getElementById('oculto').value;
-        var route = "http://localhost:8000/validarlimpieza/"+codigo;
-
-        $.get(route,function(res){
-          if(res.length > 0  &&  res[0].estado =="Inactivo"){
-           document.getElementById('submit').disabled=true;
-           var idLim = res[0].id;
-           document.getElementById("idLim").value= idLim;
-           $("#modal-reactivar").modal();
-
-         } 
-         else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].codigo != oculto )  {
-
-          document.getElementById("errorCodigo").innerHTML = "El Codigo de Barras que  intenta registrar ya existe en el sistema";
-          document.getElementById('submit').disabled=true;
-
-        }
-        else {
-          document.getElementById("errorCodigo").innerHTML = "";
-          document.getElementById('submit').disabled=false;
-
-        }
-      });
-
-      }
-
-
-
-      document.getElementById("div").onload = oQuickReplyswap();
-
-      function oQuickReplyswap() {
-        var id=document.getElementById("idEmpleado").value;
-        Carga(id);
-
-      }
-
-
-      function validarRoles(){
-
-        var filas = $("#myTable").find("tr"); //devulve las filas del body de tu tabla segun el ejemplo que brindaste
-
-        if (filas.length <=1 ){
-         document.getElementById('submit').disabled=true;
-         document.getElementById("errorRoles").innerHTML = "No hay roles registrados a este empleado";
-       } else {
-
-         document.getElementById('submit').disabled=false;
-         document.getElementById("errorRoles").innerHTML = "";
-       }
-
-
-
-
-     }
-
-
-     function validarRolesDuplicados(rol){
-
-
-       var filas = $("#myTable").find("tr"); //devulve las filas del body de tu tabla segun el ejemplo que brindaste
-       var resultado = false;
-       for(i=1; i<filas.length; i++)
-       { 
-       var celdas = $(filas[i]).find("td"); //devolverá las celdas de una fila
-       //valor = $($(celdas[1]).children("input")[0]).val();
-       rol_Agregar = $(celdas[0]).text();
-
-       if(rol_Agregar== rol){
-        resultado =true;
-        break;
-      }else {
-        resultado =false;
-      }
-    }
-
-    return resultado;
-  }
-
-
-  function validarRolesCrear(){
-
-        var filas = $("#myTable").find("tr"); //devulve las filas del body de tu tabla segun el ejemplo que brindaste
-
-        if (filas.length <=1 ){
-         document.getElementById('submit').disabled=true;
-         document.getElementById("errorRoles").innerHTML = "No hay roles registrados a este empleado";
-       } else {
-
-         document.getElementById('submit').disabled=false;
-         document.getElementById("errorRoles").innerHTML = "";
-       }
-
-     }
-
-
-
-     function validarRolesDuplicadosCrear(rol){
-
-       var filas = $("#myTable").find("tr"); //devulve las filas del body de tu tabla segun el ejemplo que brindaste
-       var resultado = false;
-       
-       for(i=1; i<filas.length; i++)
-       { 
-         var celdas = $(filas[i]).find("td"); //devolverá las celdas de una fila
-          //valor = $($(celdas[1]).children("input")[0]).val();
-          rol_Agregar = $(celdas[1]).text();
-
-          if(rol_Agregar== rol){
-           resultado =true;
-           break;
-         }else {
-          resultado =false;
-        }
-      }
-
-      return resultado;
-
-    }
-
-
-
-
-    function calcularCalidad(){
-     var select = document.getElementById("selectCalidad");
-     var options=document.getElementsByTagName("option");
-     var idRol= select.value;
-
-     var x = select.options[select.selectedIndex].text;
-
-
-
-     document.getElementById("calidad").value = x;
-
-   }
 
 
    function quitarEspacios(e) {
@@ -1158,125 +870,23 @@ function  validarprovmat(){
 
 
 
-  function agregarTipoProvedor() {
+  
 
+    function valida_montos() {
 
+      var x= document.getElementById("pago_director").value;
+      var y= document.getElementById("pago_docente").value;
+      var z= document.getElementById("pago_intendente").value;
 
-    var select = document.getElementById("tipo_provedor");
-    var options=document.getElementsByTagName("option");
-    var idProvedor= select.value;
+      if(parseInt(z) >= parseInt(y)){
+        swal("Error!", "El Intendente No puede Ganar más o Igual que el Docente ", "error");
+        return false;
+      }else if(parseInt(z) >= parseInt(x)){
+        swal("Error!", "El Intendente No puede Ganar más o Igual que el Director ", "error");
+       return false;
+     }else if(parseInt(y) >= parseInt(x)){
+       swal("Error!", "El Docente No puede Ganar más o Igual que el Director ", "error");
+       return false;
+     } 
+   }
 
-    var x = select.options[select.selectedIndex].text;
-
-
-    if(!validarProvedorDuplicadosCrear(x)){
-      document.getElementById("errorTipo").innerHTML = "";
-      var fila="<tr><td style=\"display:none;\"><input name=\"idProvedor[]\" value=\""+idProvedor+"\">"
-      +"</td><td colspan=\"2\">"+x+"</td>"
-      +""+
-      "<td>"+
-      " <button type=\"button\"  onclick=\"myDeleteFunction(this)\" class=\"btn btn-danger btn-icon\"> Quitar<i class=\"fa fa-times\"></i> </button>"
-      +"</td>";
-      var btn = document.createElement("TR");
-      btn.innerHTML=fila;
-      document.getElementById("myTable").appendChild(btn);
-      validarTIpoCrear();
-    } else {
-      document.getElementById("errorTipo").innerHTML = "El tipo de proveedor  que intentas ingresar ya pertenece al proveedor";
-    }
-
-  }
-
-
-  function validarProvedorDuplicadosCrear(tipoProvedor){
-
-
-
-       var filas = $("#myTable").find("tr"); //devulve las filas del body de tu tabla segun el ejemplo que brindaste
-
-       var resultado = false;
-
-       for(i=1; i<filas.length; i++)
-       { 
-       var celdas = $(filas[i]).find("td"); //devolverá las celdas de una fila
-       //valor = $($(celdas[1]).children("input")[0]).val();
-       tipo_Agregar = $(celdas[1]).text();
-       
-       if(tipo_Agregar== tipoProvedor){
-        resultado =true;
-        break;
-      }else {
-        resultado =false;
-      }
-    }
-
-    return resultado;
-  }
-
-
-  function validarTIpoCrear(){
-
-        var filas = $("#myTable").find("tr"); //devulve las filas del body de tu tabla segun el ejemplo que brindaste
-
-        if (filas.length <=1 ){
-         document.getElementById('submit').disabled=true;
-         document.getElementById("errorTipo").innerHTML = "No se  a registrado un tipo a Proveedor";
-       } else {
-
-         document.getElementById('submit').disabled=false;
-         document.getElementById("errorTipo").innerHTML = "";
-       }
-
-     }
-
-
-
-
-
-     function agregarTipoProvedor1() {
-
-
-
-      var select = document.getElementById("tipo_provedor");
-      var options=document.getElementsByTagName("option");
-      var idProvedor= select.value;
-
-      var x = select.options[select.selectedIndex].text;
-
-
-      if(!validarProvedorDuplicadosCrear(x)){
-        document.getElementById("errorTipo").innerHTML = "";
-        var fila="<tr><td style=\"display:none;\"><input name=\"idProvedor[]\" value=\""+idProvedor+"\">"
-        +"</td><td colspan=\"2\">"+x+"</td>"
-        +""+
-        "<td>"+
-        " <button type=\"button\"  onclick=\"eliminarTipo(this);myDeleteFunction(this)\" class=\"btn btn-danger btn-icon\"> Quitar<i class=\"fa fa-times\"></i> </button>"
-        +"</td>";
-        var btn = document.createElement("TR");
-        btn.innerHTML=fila;
-        document.getElementById("myTable").appendChild(btn);
-        validarTIpoCrear();
-      } else {
-        document.getElementById("errorTipo").innerHTML = "El tipo de proveedor  que intentas ingresar ya pertenece al proveedor";
-      }
-
-    }
-
-
-
-
-    function eliminarTipo(btn) {
-
-      var route = "http://localhost:8000/eliminarTipoProvedor/"+btn.value+"";
-      var token = $("#token").val();
-
-      $.ajax({
-        url: route,
-        headers: {'X-CSRF-TOKEN': token},
-        type: 'get',
-        dataType: 'json',
-        success: function(){
-          $("#msj-success").fadeIn();
-        }
-      });
-    }

@@ -1,7 +1,7 @@
 {!! Form::open(array('url'=>'/tabla_pagos','method' => 'GET','autocomplete'=>'off','role'=>'search')) !!}
 <div class="form-group">
 	<div class="input-group">
-		<select name="searchText" id="searchText" value="{{$searchText}}" class="form-control" required>
+		<select name="searchText" id="searchText" value="2018-2019" class="form-control" required>
 				@foreach($ciclos as $ciclo)
 				<option value="{{$ciclo->ciclo}}">
 					{{$ciclo->ciclo}}

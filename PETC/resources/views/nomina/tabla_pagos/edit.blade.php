@@ -1,5 +1,6 @@
 @extends('layouts.principal')
 @section('contenido')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
 		<h1>Inicio</h1>
@@ -34,6 +35,7 @@
 					<form action="{{url('/tabla_pagos', [$pago->id])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
 						{{csrf_field()}}
 						<input type="hidden" name="_method" value="PUT">
+
 						<div class="form-group">
 							<label class="col-sm-3 control-label">N° Quincena: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
@@ -45,28 +47,28 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Dias Hábiles: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="dias" type="number"   value="{{$pago->dias}}" class="form-control" required value="10" />
+								<input name="dias" type="number"   value="{{$pago->dias}}" class="form-control" required maxlength="3" min="1" max ="199" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Pago por Director: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="pago_director" type="number"   class="form-control" required value="{{$pago->pago_director}}" />
+								<input name="pago_director" id="pago_director" type="number"   class="form-control" required value="{{$pago->pago_director}}"  maxlength="3" min="1" max ="999"/>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Pago por Docente: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="pago_docente" type="number"   class="form-control" required value="{{$pago->pago_docente}}" />
+								<input name="pago_docente" id="pago_docente" type="number"   class="form-control" required value="{{$pago->pago_docente}}" maxlength="3" min="1" max ="999"/>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Pago por Intendete: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="pago_intendente" type="number"   class="form-control" required value="{{$pago->pago_intendente}}" />
+								<input name="pago_intendente" id="pago_intendente"  type="number"   class="form-control" required value="{{$pago->pago_intendente}}" maxlength="3" min="1" max ="999"/>
 							</div>
 						</div>
 
@@ -93,9 +95,9 @@
 
 
 
-						<div class="form-group">
+							<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button type="submit" onclick="return valida_montos();"  id="submit" class="btn btn-primary">Guardar</button>
 								<a href="{{url('/tabla_pagos')}}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->

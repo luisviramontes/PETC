@@ -15,12 +15,12 @@
 <div class="container clear_both padding_fix">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="block-web">
+			<div class="block-web"> 
 				<div class="header">
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
 							<div class="actions"> </div>
-							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Pagos</strong></h2>
+							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Pagos {{$tabla_2->ciclo}}</strong></h2>
 							@include('nomina.tabla_pagos.search')
 						</div>
 						<div class="col-md-5">
@@ -31,7 +31,9 @@
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('tabla_pagos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Pago Qna"> <i class="fa fa-plus"></i> Registrar </a>
 
 
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.tabla_pagos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.tabla_pagos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
+
+										<a class="btn btn-primary btn-sm" href="{{URL::action('TablaPagosController@invoice',$tabla_2->ciclo)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
 
 
 									</div>
@@ -84,7 +86,7 @@
 									</td>
 								</td>
 							</tr>
-
+                            @include('nomina.tabla_pagos.modal')
 							@endforeach
 						</tbody>
 						<tfoot>

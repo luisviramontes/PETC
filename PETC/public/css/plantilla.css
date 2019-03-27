@@ -27,13 +27,12 @@ header {
 }
 
 #logo {
-  text-align: center;
+  text-align: left;
   margin-bottom: 10px;
+  width: 80px;
 }
 
-#logo img {
-  width: 90px;
-}
+
 
 h1 {
   border-top: 1px solid  #5D6975;
