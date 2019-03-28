@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
- 
+
 
 Route::resource('cat_puesto', 'CatPuestoController');
 
@@ -30,8 +30,12 @@ Route::resource('captura', 'CapturaController');
 Route::resource('centro_trabajo', 'CentroTrabajoController');
 
 Route::resource('datos_centro_trabajo', 'DatosCentroTrabajoController');
-
+////////////directorio_regional////////////////////////////
 Route::resource('directorio_regional', 'DirectorioRegionalController');
+Route::get('descargar-directorio-regional', 'DirectorioRegionalController@excel')->name('nomina.directorio_regional.excel');
+Route::get('pdf_directorioregional/{id}', array('as'=> '/pdf_directorioregional','uses'=>'DirectorioRegionalController@invoice'));
+
+
 
 Route::resource('extencion_contrato', 'ExtencionContratoController');
 
