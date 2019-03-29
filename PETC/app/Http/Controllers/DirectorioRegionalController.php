@@ -1,16 +1,20 @@
 <?php
 
 namespace petc\Http\Controllers;
-
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
-
-
 use petc\Http\Requests;
 use petc\Http\Controllers\Controller;
 
 use petc\DirectorioRegionalModel;
 
 use DB;
+
+use Maatwebsite\Excel\Facades\Excel;
+use PHPExcel_Worksheet_Drawing;
+use Validator;
+use \Milon\Barcode\DNS1D;
+use \Milon\Barcode\DNS2D;
 
 
 class DirectorioRegionalController extends Controller
@@ -20,14 +24,29 @@ class DirectorioRegionalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+      $region = $request->get('region');
 
-      $directorio_regional= DB::table('directorio_regional')->get();
-      return view('nomina.directorio_regional.index',['directorio_regional' => $directorio_regional]);
+    $sostenimiento = $request->get('sostenimiento');
 
+    $nombre_enlace = $request->get('nombre_enlace');
+
+    $directorio_regional = DirectorioRegionalModel::orderBy('id', 'DESC')
+                ->region($region)
+               ->sostenimiento($sostenimiento)
+                //->nombre_enlace($nombre_enlace)
+              ->paginate(24);
+    return view('nomina.directorio_regional.index',['directorio_regional' => $directorio_regional]);
 
     }
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -76,6 +95,24 @@ class DirectorioRegionalController extends Controller
       return view('director_regional.index');
       }
 
+    }
+
+    //convertir y descargar pdf
+
+    public function invoice($id){
+        $directorio_regional= DB::table('directorio_regional')->get();
+      //    $directorio_regional= DB::table('tabulador_pagos')->where('ciclo','=',$id)->first();
+         //$material   = AlmacenMaterial:: findOrFail($id);
+        //$customPaper = array(0,0,567.00,283.80);
+        $date = date('Y-m-d');
+        $invoice = "2222";
+       // print_r($materiales);
+        $view =  \View::make('nomina.directorio_regional.invoice', compact('date', 'invoice','directorio_regional'))->render();
+        //->setPaper($customPaper, 'landscape');
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->setPaper('A4', 'portrait');
+        $pdf->loadHTML($view);
+        return $pdf->stream('invoice');
     }
 
     /**
@@ -150,4 +187,23 @@ class DirectorioRegionalController extends Controller
       DirectorioRegionalModel::destroy($id);
       return redirect('/directorio_regional');
     }
+
+    ////////////exel////////////////
+
+    public function excel(Request $request)
+    {
+
+     Excel::create('directorio_regional', function($excel) {
+         $excel->sheet('Excel sheet', function($sheet) {
+                 //otra opción -> $products = Product::select('name')->get();
+             $tabla = DirectorioRegionalModel::select('region','sostenimiento','nombre_enlace','telefono','ext1_enlace','ext2_enlace','correo_enlace','director_regional','telefono_director','financiero_regional','telefono_regional','ext_reg_1','ext_reg_2')
+             //->where('directorio_regional')
+             ->get();
+             $sheet->fromArray($tabla);
+             $sheet->row(1,['REGION','SOSTENIMIENTO','NOMBRE DE ENLACE','TELEFONO','EXTENCION 1 ENLACE' ,'EXTENCION 2 ENLACE','CORREO ENLACE','DIRECTOR REGIONAL','TELEFONO DIRECTOR','FINANCIOERO REGIONAL','TELEFONO REGIONAL','EXTENCION REGIONAL 1','EXTENCION REGIONAL 2']);
+             $sheet->setOrientation('landscape');
+         });
+     })->export('xls');
+ }
+
 }

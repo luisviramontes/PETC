@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
- 
+
 
 Route::resource('cat_puesto', 'CatPuestoController');
 
@@ -32,8 +32,12 @@ Route::resource('centro_trabajo', 'CentroTrabajoController');
 Route::get('descargar-centros-trabajo', 'CentroTrabajoController@excel')->name('nomina.centro_trabajo.excel');
 
 Route::resource('datos_centro_trabajo', 'DatosCentroTrabajoController');
-
+////////////directorio_regional////////////////////////////
 Route::resource('directorio_regional', 'DirectorioRegionalController');
+Route::get('descargar-directorio-regional', 'DirectorioRegionalController@excel')->name('nomina.directorio_regional.excel');
+Route::get('pdf_directorioregional/{id}', array('as'=> '/pdf_directorioregional','uses'=>'DirectorioRegionalController@invoice'));
+
+
 
 Route::resource('extencion_contrato', 'ExtencionContratoController');
 
@@ -57,9 +61,12 @@ Route::resource('reintegros', 'ReintegrosController');
 Route::resource('tabla_pagos', 'TablaPagosController');
 Route::get('descargar-tabla-pagos', 'TablaPagosController@excel')->name('nomina.tabla_pagos.excel');
 Route::get('pdf_tablapagos/{id}', array('as'=> '/pdf_tablapagos','uses'=>'TablaPagosController@invoice'));
+<<<<<<< HEAD
 
 //TABULADOR DE PAGOS
 Route::resource('tabulador_pagos', 'TabuladorPagosController');
 Route::get('descargar-tabla-empleado', 'TabuladorPagosController@excel')->name('nomina.tabulador_pagos.excel');
 Route::get('tablaempleado/{id}', array('as'=> '/pdf_tablaempleado','uses'=>'TabuladorPagosController@invoice'));
 Route::get('calculadora_pagos', 'TabuladorPagosController@calculadora')->name('nomina.tabulador_pagos.calculadora_pagos');
+=======
+>>>>>>> 5a9cd5912dcdf0d0859ec6b095ab8d64966db408

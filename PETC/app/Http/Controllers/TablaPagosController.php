@@ -13,7 +13,7 @@ use petc\TablaPagosModel;
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
 use PHPExcel_Worksheet_Drawing;
-use Validator; 
+use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 
@@ -37,7 +37,7 @@ class TablaPagosController extends Controller
         if(is_null($tabla_2)){
          $tabla_2= DB::table('tabla_pagos')->where('ciclo','=','2018-2019')->first();
         }
-        
+
         $tabla_pagos= DB::table('tabla_pagos')->where('ciclo','LIKE','%'.$query.'%')->paginate(24);
         return view('nomina.tabla_pagos.index',["tabla_pagos"=>$tabla_pagos,"searchText"=>$query,'ciclos'=> $ciclos,"tabla_2"=>$tabla_2]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
@@ -55,7 +55,7 @@ class TablaPagosController extends Controller
 
         return view('nomina.tabla_pagos.create', ['ciclos'=> $ciclos]);
         //
-    }    
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -79,14 +79,14 @@ class TablaPagosController extends Controller
         //
     }
 
-    public function invoice($id){ 
+    public function invoice($id){
         $tabla_2= DB::table('tabla_pagos')->where('ciclo','=',$id)->first();
         $tabla= DB::table('tabla_pagos')->where('ciclo','=',$id)->get();
         $pago= DB::table('tabulador_pagos')->where('ciclo','=',$id)->first();
          //$material   = AlmacenMaterial:: findOrFail($id);
         $date = date('Y-m-d');
         $invoice = "2222";
-       // print_r($materiales);    
+       // print_r($materiales);
         $view =  \View::make('nomina.tabla_pagos.invoice', compact('date', 'invoice','tabla','tabla_2','pago'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
@@ -157,14 +157,14 @@ class TablaPagosController extends Controller
 
 
    public function excel(Request $request)
-   {        
+   {
 
     Excel::create('tabla_pagos', function($excel) {
         $excel->sheet('Excel sheet', function($sheet) {
                 //otra opción -> $products = Product::select('name')->get();
             $tabla = TablaPagosModel::select('qna','dias','pago_director','pago_docente','pago_intendente','captura','ciclo')
             ->where('ciclo','2018-2019')
-            ->get();          
+            ->get();
             $sheet->fromArray($tabla);
             $sheet->row(1,['QNA','DIAS','PAGO DIRECTOR','PAGO DOCENTE' ,'PAGO INTENDENTE','CAPTURA','CICLO ESCOLAR']);
             $sheet->setOrientation('landscape');
