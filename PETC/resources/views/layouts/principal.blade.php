@@ -114,7 +114,7 @@
 
         <div class="left_nav_slidebar">
           <ul >
-          <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> NOMINAS<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> NOMINAS<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 
 
               <ul  >
@@ -189,6 +189,12 @@
               <ul>
                 <li> <a href="{{url('tabla_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tabla de Pagos</b> </a> </li>
               </ul>
+              <ul>
+                <li> <a href="{{url('tabulador_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tabla de Pagos Por Dia Laborado</b> </a> </li>
+              </ul>
+              <ul>
+                <li> <a href="{{url('calculadora_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Calculadora de Pagos</b> </a> </li>
+              </ul>
             </li>
 
 
@@ -258,7 +264,7 @@
   {!!Html::script('plugins/validation/parsley.min.js')!!}
   {!!Html::script('plugins/data-tables/jquery.dataTables.js')!!}
   {!!Html::script('plugins/data-tables/DT_bootstrap.js')!!}
-
+  {!!Html::script('plugins/data-tables/dynamic_table_init.js')!!}
   {!!Html::script('plugins/edit-table/edit-table.js')!!}
   {!!Html::script('plugins/file-uploader/js/vendor/jquery.ui.widget.js')!!}
   {!!Html::script('plugins/file-uploader/js/jquery.iframe-transport.js')!!}

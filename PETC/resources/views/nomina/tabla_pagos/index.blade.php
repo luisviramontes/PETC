@@ -7,7 +7,7 @@
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
-			<li ><a style="color: #808080" href="{{url('/unidades_medida')}}">Inicio</a></li>
+			<li ><a style="color: #808080" href="{{url('/tabla_pagos')}}">Inicio</a></li>
 			<li class="active">Tabla de Pagos Por Quincena</a></li>
 		</ol>
 	</div>
@@ -34,6 +34,9 @@
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.tabla_pagos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
 
 										<a class="btn btn-primary btn-sm" href="{{URL::action('TablaPagosController@invoice',$tabla_2->ciclo)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
+
+										<a  class="btn btn-sm btn btn-info" href="{{route('nomina.tabulador_pagos.calculadora_pagos')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Calculadora de Pagos"> <i class="fa fa-plus"></i> Calculadora de Pagos </a> 
+
 
 
 									</div>

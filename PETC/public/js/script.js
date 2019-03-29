@@ -1,8 +1,8 @@
 
 function mayus(e) {
 
-    var tecla=e.value;
-    var tecla2=tecla.toUpperCase();
+  var tecla=e.value;
+  var tecla2=tecla.toUpperCase();
 }
 
 
@@ -857,36 +857,67 @@ function  validarSSN(){
 } 
 
 
-     
 
 
 
 
 
-   function quitarEspacios(e) {
-    e.value = e.value.replace(/([\ \t]+(?=[\ \t])|^\s+|\s+$)/g, '');
-  }
+
+function quitarEspacios(e) {
+  e.value = e.value.replace(/([\ \t]+(?=[\ \t])|^\s+|\s+$)/g, '');
+}
 
 
 
 
-  
 
-    function valida_montos() {
 
-      var x= document.getElementById("pago_director").value;
-      var y= document.getElementById("pago_docente").value;
-      var z= document.getElementById("pago_intendente").value;
+function valida_montos() {
 
-      if(parseInt(z) >= parseInt(y)){
-        swal("Error!", "El Intendente No puede Ganar más o Igual que el Docente ", "error");
-        return false;
-      }else if(parseInt(z) >= parseInt(x)){
-        swal("Error!", "El Intendente No puede Ganar más o Igual que el Director ", "error");
-       return false;
-     }else if(parseInt(y) >= parseInt(x)){
-       swal("Error!", "El Docente No puede Ganar más o Igual que el Director ", "error");
-       return false;
-     } 
-   }
+  var x= document.getElementById("pago_director").value;
+  var y= document.getElementById("pago_docente").value;
+  var z= document.getElementById("pago_intendente").value;
+
+  if(parseInt(z) >= parseInt(y)){
+    swal("Error!", "El Intendente No puede Ganar más o Igual que el Docente ", "error");
+    return false;
+  }else if(parseInt(z) >= parseInt(x)){
+    swal("Error!", "El Intendente No puede Ganar más o Igual que el Director ", "error");
+    return false;
+  }else if(parseInt(y) >= parseInt(x)){
+   swal("Error!", "El Docente No puede Ganar más o Igual que el Director ", "error");
+   return false;
+ } 
+}
+
+function calculadora() {
+ var i= 0;
+ var x = String(document.getElementById("cat2").value);
+ var y = parseInt(document.getElementById("diast").value);
+
+ var select2 = document.getElementById("ciclo");
+ var selectedOption2 = select2.selectedIndex;
+ var cantidadtotal = select2.value;
+ limite = "9",
+ separador = "_",
+ arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+ ciclo=arregloDeSubCadenas[0];
+ pago_director=arregloDeSubCadenas[1];
+ pago_docente=arregloDeSubCadenas[2];
+ pago_intendente=arregloDeSubCadenas[3];
+
+ if(x == "Director"){
+  document.getElementById("dias").value=pago_director;
+  document.getElementById("total").value=pago_director * y
+
+}else if (x == "Docente") {
+  document.getElementById("dias").value=pago_docente;
+  document.getElementById("total").value=pago_docente * y
+}else{
+  document.getElementById("dias").value=pago_intendente;
+  document.getElementById("total").value=pago_intendente * y
+}
+
+}
+
 
