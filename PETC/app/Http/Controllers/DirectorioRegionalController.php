@@ -37,7 +37,7 @@ class DirectorioRegionalController extends Controller
                ->sostenimiento($sostenimiento)
                 //->nombre_enlace($nombre_enlace)
               ->paginate(24);
-    return view('nomina.directorio_regional.index',['directorio_regional' => $directorio_regional]);
+    return view('nomina.directorio_regional.index',['directorio_regional' => $directorio_regional);
 
     }
 

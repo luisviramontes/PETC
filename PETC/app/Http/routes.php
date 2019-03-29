@@ -21,6 +21,13 @@ Route::resource('cat_puesto', 'CatPuestoController');
 Route::resource('cat_puesto', 'CatPuestoController');
 
 
+///////////////////ciclo escolar///////////////////////////
+Route::resource('ciclo_escolar', 'CicloEscolarController');
+Route::get('descargar-ciclo-escolar', 'CicloEscolarController@excel')->name('nomina.ciclo_escolar.excel');
+Route::get('pdf_cicloescolar/{id}', array('as'=> '/pdf_cicloescolar','uses'=>'CicloEscolarController@invoice'));
+
+
+
 Route::resource('bajas_contrato', 'BajasContratoController');
 
 Route::resource('cambios_cct', 'CambiosCctController');

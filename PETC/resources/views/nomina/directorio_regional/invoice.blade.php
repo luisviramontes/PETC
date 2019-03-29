@@ -11,12 +11,13 @@
 <body>
   <header class="clearfix">
     <div id="logo">
-      <img src="img/logopetc.jpg"  width="500"  height="60"/>
+      <img src="img/logopetc2.jpg"  width="1400"  height="70"/>
+
+
+
     </div>
 
-    <div id="logo1">
-        <img src="img/logo fortalecimiento.jpg" width="500"  height="60"/>
-    </div>
+
 
     <h1>Directorio Regional: </h1>
     <div id="project" >

@@ -29,21 +29,16 @@ header {
   margin-bottom: 30px;
 }
 
-#logo {
+.logo {
   text-align: left;
   margin-bottom: 10px;
   width: 80px;
-
+  .logo1{
+    text-align: right;
+    margin-bottom: 10px;
+    width: 80px;
+  }
 }
-
-#logo1 {
-  padding-left: 300px;
-  text-align: right;
-  margin-bottom: 10px;
-  width: 80px;
-}
-
-
 
 h1 {
   border-top: 1px solid  #5D6975;
