@@ -6,6 +6,7 @@ use petc\Http\Requests\Request;
 
 class TablaDePagosRequest extends Request
 {
+  protected $redirect = "tabulador_pagos/create";
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +14,7 @@ class TablaDePagosRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,28 @@ class TablaDePagosRequest extends Request
      */
     public function rules()
     {
-        return [
+      return [
+      'ciclo' => 'unique:tabulador_pagos,ciclo',
             //
-        ];
+      ];
+  }
+
+  public function messages(){
+    return [
+
+    'ciclo.unique' => 'Ya se han Registrado los Pagos Correspondientes a este Ciclo Escolar',
+    ];
+}
+
+public function response(array $errors){
+    if ($this->ajax()){
+        return response()->json($errors, 200);
     }
+    else
+    {
+        return redirect($this->redirect)
+        ->withErrors($errors, 'formulario')
+        ->withInput();
+    }
+}
 }

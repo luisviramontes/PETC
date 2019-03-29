@@ -151,18 +151,33 @@ function fnFormatDetails2 ( oTable, nTr )
     var aData = oTable.fnGetData( nTr );
     var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
 
-    sOut += '<tr><td><strong>Nombre:</strong></td><td>'+aData[1]+' </td></tr>';
-    sOut += '<tr><td><strong>RFC:</strong></td><td>'+aData[2]+' </td></tr>';
-    sOut += '<tr><td><strong>Regimen Fiscal:</strong></td><td>'+aData[3]+' </td></tr>';
-    sOut += '<tr><td><strong>Contacto:</strong></td><td>'+aData[11]+' </td></tr>';
-    sOut += '<tr><td><strong>Telefono:</strong></td><td>'+aData[4]+' </td></tr>';
-    sOut += '<tr><td><strong>Correo:</strong></td><td>'+aData[5]+' </td></tr>';
-    sOut += '<tr><td><strong>Codigo Postal:</strong></td><td>'+aData[10]+' </td></tr>';
-    sOut += '<tr><td><strong>Direccion de Facturación:</strong></td><td>'+aData[6]+' </td></tr>';
-    sOut += '<tr><td><strong>Direccion de Entrega de Embarques:</strong></td><td>'+aData[7]+' </td></tr>';
-    sOut += '<tr><td><strong>Asignación de Volumen de Venta por Año:</strong></td><td>'+aData[8]+' </td></tr>';
-    sOut += '<tr><td><strong>Saldo Cliente:</strong></td><td>'+aData[9]+' </td></tr>';
-
+    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de la Escuela:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>Municipio:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Localidad:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Domicilio:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>Región:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Sostenimiento:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>Teléfono:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Email:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Entrego Carta Compromiso:</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>Alimentacion:</strong></td><td>'+aData[13]+' </td></tr>';
+    sOut += '<tr><td><strong>Modificado:</strong></td><td>'+aData[14]+' </td></tr>';
+    sOut += '<tr><td><strong>Total de Alumnos:</strong></td><td>'+aData[15]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Niñas:</strong></td><td>'+aData[16]+' </td></tr>';    
+    sOut += '<tr><td><strong>Total Niños:</strong></td><td>'+aData[17]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Grupos:</strong></td><td>'+aData[18]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Grados:</strong></td><td>'+aData[19]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Directores:</strong></td><td>'+aData[20]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Docentes:</strong></td><td>'+aData[21]+' </td></tr>';
+    sOut += '<tr><td><strong>Total E.Fisica:</strong></td><td>'+aData[22]+' </td></tr>';
+    sOut += '<tr><td><strong>Total USAER:</strong></td><td>'+aData[23]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Artistica :</strong></td><td>'+aData[24]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Intendentes:</strong></td><td>'+aData[25]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha Ingreso PETC:</strong></td><td>'+aData[26]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha Baja PETC:</strong></td><td>'+aData[27]+' </td></tr>';
     sOut += '</table>';
 
     return sOut;
@@ -220,6 +235,7 @@ $(document).ready(function() {
         }
     } );
  } );
+
 
 
 
@@ -386,7 +402,7 @@ function fnFormatDetails5 ( oTable, nTr )
     sOut += '<tr><td><strong>Direccion Fisica:</strong></td><td>'+aData[5]+' </td></tr>';
     sOut += '<tr><td><strong>Direccion de Facturación:</strong></td><td>'+aData[4]+' </td></tr>';
     sOut += '<tr><td><strong>Correo:</strong></td><td>'+aData[7]+' </td></tr>';
-
+    
 
     sOut += '</table>';
 
@@ -578,7 +594,7 @@ $(document).ready(function() {
      */
      var nCloneTh = document.createElement( 'th' );
      var nCloneTd = document.createElement( 'td' );
-     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">'; 
      nCloneTd.className = "center";
 
      $('#hidden-table-info7 thead tr').each( function () {
@@ -722,7 +738,7 @@ function fnFormatDetails9 ( oTable, nTr )
     sOut += '</table>';
 
     return sOut;
-}
+} 
 
 $(document).ready(function() {
 
@@ -735,7 +751,7 @@ $(document).ready(function() {
      */
      var nCloneTh = document.createElement( 'th' );
      var nCloneTd = document.createElement( 'td' );
-     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">'; 
      nCloneTd.className = "center";
 
      $('#hidden-table-info9 thead tr').each( function () {

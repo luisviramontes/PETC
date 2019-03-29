@@ -24,6 +24,7 @@ class DatosCentroTrabajo extends Migration
             $table->integer('total_fisica');
             $table->integer('total_usaer');
             $table->integer('total_artistica');
+            $table->integer('total_intendentes');
             $table->integer('id_centro_trabajo')->unsigned();
             $table->foreign('id_centro_trabajo')->references('id')->on('centro_trabajo');
             $table->date('fecha_ingreso');

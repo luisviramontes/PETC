@@ -171,4 +171,6 @@ class TablaPagosController extends Controller
         });
     })->export('xls');
 }
+
+
 }

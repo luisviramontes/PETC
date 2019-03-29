@@ -20,6 +20,7 @@ class CentroTrabajo extends Migration
             $table->string('localidad');
             $table->string('municipio');
             $table->integer('region');
+            $table->string('sostenimiento');
             $table->string('captura');
             //$table->foreign('id_director')->references('id_personal')->on('personal');
             $table->integer('telefono')->nullable();
@@ -27,6 +28,7 @@ class CentroTrabajo extends Migration
             $table->string('ciclo_escolar');
             $table->string('entrego_carta');
             $table->string('alimentacion');
+            $table->string('estado');
             $table->timestamps();
         });
     }
