@@ -1702,8 +1702,8 @@
 				else if ( cOption == 'f' && oSettings.oFeatures.bFilter )
 				{
 					/* Filter */
-					nTmp = _fnFeatureHtmlFilter( oSettings );
-					iPushFeature = 1;
+					//nTmp = _fnFeatureHtmlFilter( oSettings );
+					//iPushFeature = 1;
 				}
 				else if ( cOption == 'r' && oSettings.oFeatures.bProcessing )
 				{
@@ -6283,7 +6283,7 @@
 			"_fnFeatureHtmlTable": _fnFeatureHtmlTable,
 			"_fnScrollDraw": _fnScrollDraw,
 			"_fnAdjustColumnSizing": _fnAdjustColumnSizing,
-			"_fnFeatureHtmlFilter": _fnFeatureHtmlFilter,
+			//"_fnFeatureHtmlFilter": _fnFeatureHtmlFilter,
 			"_fnFilterComplete": _fnFilterComplete,
 			"_fnFilterCustom": _fnFilterCustom,
 			"_fnFilterColumn": _fnFilterColumn,

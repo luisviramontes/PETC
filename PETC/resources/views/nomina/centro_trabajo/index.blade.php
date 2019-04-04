@@ -28,7 +28,7 @@
 								<b>
 
 									<div class="btn-group" style="margin-right: 10px;">
-										<a class="btn btn-sm btn-success tooltips" href="{{ route('centro_trabajo.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Pago Qna"> <i class="fa fa-plus"></i> Registrar </a>
+										<a class="btn btn-sm btn-success tooltips" href="{{ route('centro_trabajo.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo CT"> <i class="fa fa-plus"></i> Registrar </a>
 
 
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.centro_trabajo.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
@@ -60,7 +60,21 @@
 									<th>Capturo </th>
 									<th>Ciclo Escolar </th>
 									<th style="display:none;" >Entrego Carta Compromiso </th>
-
+									<th>Alimentacion </th>
+									<th>Modificado </th>
+									<th style="display:none;" >Total de Alumnos </th>
+									<th style="display:none;" >Total Niñas </th>
+									<th style="display:none;" >Total Niños </th>
+									<th style="display:none;" >Total Grupos </th>
+									<th style="display:none;" >Total Grados </th>
+									<th style="display:none;" >Total Directores </th>
+									<th style="display:none;" >Total Docentes </th>
+									<th style="display:none;" >Total E.Fisica </th>
+									<th style="display:none;" >Total USAER </th>
+									<th style="display:none;" >Total Artistica </th>
+									<th style="display:none;" >Total Intendentes </th>
+									<th style="display:none;" >Fecha Ingreso PETC </th>
+									<th style="display:none;" >Fecha Baja PETC</th>
 									<td><center><b>Editar</b></center></td>
 									<td><center><b>Borrar</b></center></td>
 								</tr>
@@ -71,7 +85,7 @@
 									<td>{{$datos->cct}} </td>
 									<td>{{$datos->nombre_escuela}} </td>
 									<td style="display:none;" >{{$datos->municipio}} </td>
-									<td style="display:none;" >{{$datos->localidad}} </td>
+									<td style="display:none;" >{{$datos->nom_loc}} </td>
 									<td style="display:none;" >{{$datos->domicilio}} </td>
 									<td>{{$datos->region}} </td>
 									<td>{{$datos->sostenimiento}}</td>
@@ -79,7 +93,22 @@
 									<td>{{$datos->email}} </td>
 									<td>{{$datos->captura}} </td>
 									<td>{{$datos->ciclo_escolar}} </td>
-										<td style="display:none;" >{{$datos->entrego_carta}} </td>
+									<td style="display:none;" >{{$datos->entrego_carta}} </td>
+									<td>{{$datos->alimentacion}} </td>
+									<td>{{$datos->updated_at}} </td>
+									<td style="display:none;" >{{$datos->total_alumnos}} </td>
+									<td style="display:none;" >{{$datos->total_ninas}} </td>
+									<td style="display:none;" >{{$datos->total_ninos}} </td>
+									<td style="display:none;" >{{$datos->total_grupos}} </td>
+									<td style="display:none;" >{{$datos->total_grados}} </td>
+									<td style="display:none;" >{{$datos->total_directores}} </td>
+									<td style="display:none;" >{{$datos->total_docentes}} </td>
+									<td style="display:none;" >{{$datos->total_fisica}} </td>
+									<td style="display:none;" >{{$datos->total_usaer}} </td>
+									<td style="display:none;" >{{$datos->total_artistica}} </td>
+									<td style="display:none;" >{{$datos->total_intendentes}} </td>
+									<td style="display:none;" >{{$datos->fecha_ingreso}} </td>
+									<td style="display:none;" >{{$datos->fecha_baja}} </td>
 
 									<td> 
 										<a href="{{URL::action('CentroTrabajoController@edit',$datos->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
@@ -106,6 +135,20 @@
 									<th>Capturo </th>
 									<th>Ciclo Escolar </th>
 									<th style="display:none;" >Entrego Carta Compromiso </th>
+									<th>Alimentacion </th>
+									<th >Modificado </th>
+									<th style="display:none;" >Total de Alumnos </th>
+									<th style="display:none;" >Total Niñas </th>
+									<th style="display:none;" >Total Grupos </th>
+									<th style="display:none;" >Total Grados </th>
+									<th style="display:none;" >Total Directores </th>
+									<th style="display:none;" >Total Docentes </th>
+									<th style="display:none;" >Total E.Fisica </th>
+									<th style="display:none;" >Total USAER </th>
+									<th style="display:none;" >Total Artistica </th>
+									<th style="display:none;" >Total Intendentes </th>
+									<th style="display:none;" >Fecha Ingreso PETC </th>
+									<th style="display:none;" >Fecha Baja PETC</th>
 									<td><center><b>Editar</b></center></td>
 									<td><center><b>Borrar</b></center></td>
 								</tr>

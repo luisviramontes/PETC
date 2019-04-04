@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TablaPagosSeeder::class);
         $this->call(TabuladorPagosSeeder::class);
         $this->call(CicloEscolarSeeder::class);
+        $this->call(RegionSeeder::class);
         $this->call(CatPuestoSeeder::class);
 
 

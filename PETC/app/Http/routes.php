@@ -31,6 +31,7 @@ Route::resource('captura', 'CapturaController');
 Route::resource('centro_trabajo', 'CentroTrabajoController');
 Route::get('descargar-centros-trabajo', 'CentroTrabajoController@excel')->name('nomina.centro_trabajo.excel');
 
+
 Route::resource('datos_centro_trabajo', 'DatosCentroTrabajoController');
 ////////////directorio_regional////////////////////////////
 Route::resource('directorio_regional', 'DirectorioRegionalController');
@@ -61,12 +62,21 @@ Route::resource('reintegros', 'ReintegrosController');
 Route::resource('tabla_pagos', 'TablaPagosController');
 Route::get('descargar-tabla-pagos', 'TablaPagosController@excel')->name('nomina.tabla_pagos.excel');
 Route::get('pdf_tablapagos/{id}', array('as'=> '/pdf_tablapagos','uses'=>'TablaPagosController@invoice'));
-<<<<<<< HEAD
 
 //TABULADOR DE PAGOS
 Route::resource('tabulador_pagos', 'TabuladorPagosController');
 Route::get('descargar-tabla-empleado', 'TabuladorPagosController@excel')->name('nomina.tabulador_pagos.excel');
 Route::get('tablaempleado/{id}', array('as'=> '/pdf_tablaempleado','uses'=>'TabuladorPagosController@invoice'));
 Route::get('calculadora_pagos', 'TabuladorPagosController@calculadora')->name('nomina.tabulador_pagos.calculadora_pagos');
-=======
->>>>>>> 5a9cd5912dcdf0d0859ec6b095ab8d64966db408
+
+///MUNICIPIOS
+Route::resource('municipios', 'MunicipiosController');
+Route::get('descargar-tabla-municipios', 'MunicipiosController@excel')->name('nomina.region.municipios.excel');
+Route::get('pdf_municipios', array('as'=> '/pdf_municipios','uses'=>'MunicipiosController@invoice'));
+
+
+//LOCALIDADES
+Route::resource('localidades', 'LocalidadesController');
+Route::get('descargar-tabla-localidades', 'LocalidadesController@excel')->name('nomina.region.municipios.localidades.excel');
+Route::get('pdf_localidades', array('as'=> '/pdf_localidades','uses'=>'LocalidadesController@invoice'));
+Route::get('ver_localidades/{id}', array('as'=> '/ver_localidades','uses'=>'LocalidadesController@verInformacion'));

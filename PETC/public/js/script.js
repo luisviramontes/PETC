@@ -920,4 +920,26 @@ function calculadora() {
 
 }
 
+function centros_verifica(){
+  var x = parseInt(document.getElementById('alumnos').value);
+  var y = parseInt(document.getElementById('ninos').value);
+  var z = parseInt(document.getElementById('ninas').value);
+  var a = document.getElementById('cct').value;
+  var c = a.length;
+  var suma = y +z;
+
+
+  if(x > suma || x < suma){
+   swal("Error!", "La Suma Total de Alumnos, debe ser Igual que la Suma de Niños y Niñas ", "error");
+   document.getElementById('alumnos').focus();
+   return false
+ }
+
+ if(c < 10 || c > 10){
+     swal("Error!", "La CCT Debe ser Igual a 10 Digitos ", "error");
+ return false
+ }
+
+}
+
 

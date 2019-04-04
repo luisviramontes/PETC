@@ -8,7 +8,7 @@
               <h3 class="content-header theme_color">&nbsp;Eliminar Registro</h3>
             </div>
             <div class="porlets-content" style="margin-bottom: -50px;">
-              <h4>¿Esta segúro que desea eliminar este Registro de Centros de Trabajos?</h4>
+              <h4>¿Esta segúro que desea eliminar este Registro de Municipios?</h4>
             </div><!--/porlets-content-->
           </div><!--/block-web-->
         </div>
@@ -16,7 +16,7 @@
     </div>
     <div class="modal-footer" style="margin-top: -10px;">
       <div class="row col-md-5 col-md-offset-7" style="margin-top: -5px;">
-      <form action="{{url('centro_trabajo', [$datos->id])}}" method="POST">
+      <form action="{{url('municipios', [$datos->id])}}" method="POST">
          <input type="hidden" name="_method" value="DELETE">
          <input type="hidden" name="_token" value="{{ csrf_token() }}">
          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

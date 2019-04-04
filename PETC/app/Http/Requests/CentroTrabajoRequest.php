@@ -6,14 +6,15 @@ use petc\Http\Requests\Request;
 
 class CentroTrabajoRequest extends Request
 {
+      protected $redirect = "centro_trabajo/create";
     /**
      * Determine if the user is authorized to make this request.
      *
-     * @return bool
+     * @return bool 
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,29 @@ class CentroTrabajoRequest extends Request
      */
     public function rules()
     {
-        return [
+      return [
+      'cct' => 'unique:centro_trabajo,cct',
             //
-        ];
+      ];
+  }
+
+  public function messages(){
+    return [
+
+    'cct.unique' => 'Ya se ha Registrado Esta CCT, Verifique los Datos',
+    ];
+}
+
+public function response(array $errors){
+    if ($this->ajax()){
+        return response()->json($errors, 200);
+    }
+    else
+    {
+        return redirect($this->redirect)
+        ->withErrors($errors, 'formulario')
+        ->withInput();
     }
 }
+}
+
