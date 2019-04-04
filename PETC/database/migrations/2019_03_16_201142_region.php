@@ -14,7 +14,9 @@ class Region extends Migration
     {
         Schema::create('region', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('municipios');
+            $table->integer('region');
+            $table->string('sostenimiento');
+            $table->string('capturo');            
             $table->timestamps();
         });
     }

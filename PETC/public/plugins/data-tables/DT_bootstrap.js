@@ -1,4 +1,4 @@
-/* Set the defaults for DataTables initialisation */
+dataTables_Filter/* Set the defaults for DataTables initialisation */
 $.extend( true, $.fn.dataTable.defaults, {
 	"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
 	"sPaginationType": "bootstrap",

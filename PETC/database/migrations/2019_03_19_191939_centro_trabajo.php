@@ -14,13 +14,19 @@ class CentroTrabajo extends Migration
     {
         Schema::create('centro_trabajo', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cct');
+            $table->string('cct')->unique();
             $table->string('nombre_escuela');
             $table->string('domicilio');
-            $table->string('localidad');
-            $table->string('municipio');
-            $table->integer('region');
-            $table->string('sostenimiento');
+            //$table->string('localidad');
+            //$table->string('municipio');
+            //$table->integer('region');
+            $table->integer('id_region')->unsigned();
+            $table->foreign('id_region')->references('id')->on('region'); 
+            $table->integer('id_localidades')->unsigned();
+            $table->foreign('id_localidades')->references('id')->on('localidades'); 
+            $table->integer('id_municipios')->unsigned();
+            $table->foreign('id_municipios')->references('id')->on('municipios'); 
+            //$table->string('sostenimiento'); 
             $table->string('captura');
             //$table->foreign('id_director')->references('id_personal')->on('personal');
             $table->integer('telefono')->nullable();
