@@ -350,7 +350,7 @@
 
 										<div class="form-group">
 											<div class="col-sm-offset-7 col-sm-5">
-												<button onclick="return centros_verifica();"  id="submit2" class="btn btn-primary">Guardar</button>
+												<button onclick="return centros_verifica();"  id="submit3" class="btn btn-primary">Guardar</button>
 												<a href="{{url('/centro_trabajo')}}" class="btn btn-default"> Cancelar</a>
 											</div>
 										</div><!--/form-group--> 
