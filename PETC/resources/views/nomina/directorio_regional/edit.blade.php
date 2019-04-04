@@ -14,7 +14,7 @@
 </div>
 <div class="container clear_both padding_fix">
 	<div class="row">
-		<div class="col-md-12"> 
+		<div class="col-md-12">
 			<div class="block-web">
 				<div class="header">
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
@@ -163,7 +163,7 @@
             <div class="form-group">
 							<label class="col-sm-3 control-label">Telefono Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="telefono_regional" type="nunmber"   class="form-control" required value="{{$directorio->telefono_regional}}" />
+								<input name="telefono_regional" type="number"   class="form-control" required value="{{$directorio->telefono_regional}}" />
 							</div>
 						</div>
 

@@ -2,9 +2,9 @@
 <div class="form-group">
 	<div class="input-group">
 		<select name="searchText" id="searchText" value="2018-2019" class="form-control" required>
-				@foreach($tabla_pagos as $tabla_pagos)
-				<option value="{{$tabla_pagos->tabla_pagos}}">
-					{{$tabla_pagos->tabla_pagos}}
+				@foreach($ciclos as $ciclo)
+				<option value="{{$ciclo->ciclo}}">
+					{{$ciclo->ciclo}}
 				</option>
 				@endforeach
 			</select>

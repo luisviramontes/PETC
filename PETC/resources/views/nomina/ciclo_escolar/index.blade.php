@@ -43,7 +43,7 @@
 
 			<div class="porlets-content">
 				<div class="table-responsive">
-					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered" id="hidden-table-info">
+					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered" id="dynamic-table">
 						<thead>
 							<tr>
 

@@ -19,7 +19,7 @@ class CatPuestoSeeder extends Seeder
         'cat_puesto' => 'S01807',
         'des_puesto' => 'ASISTENTE DE SERVICIOS EN PLANTEL',
         'categoria' => 'EDUCACION',
-        'tipo_puesto' => 'INDEPENDIENTE',
+        'tipo_puesto' => 'INTENDENTE',
         'captura' => 'ADMINISTRADOR',
         'created_a' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -33,7 +33,7 @@ class CatPuestoSeeder extends Seeder
           'cat_puesto' => 'S01803',
           'des_puesto' => 'OFICIAL DE SERVICIOS Y MANTENIMIENTO',
           'categoria' => 'EDUCACION',
-          'tipo_puesto' => 'INDEPENDIENTE',
+          'tipo_puesto' => 'INTENDENTE',
           'captura' => 'ADMINISTRADOR',
           'created_a' => '0000-00-00 00:00:00',
           'updated_at' => '0000-00-00 00:00:00'
@@ -216,7 +216,7 @@ class CatPuestoSeeder extends Seeder
             'cat_puesto' => 'S08802',
             'des_puesto' => 'OFICIAL DE MANTENIMIENTO MECANICO',
             'categoria' => 'EDUCACION',
-            'tipo_puesto' => 'INDEPENDIENTE',
+            'tipo_puesto' => 'INTENDENTE',
             'captura' => 'ADMINISTRADOR',
             'created_a' => '0000-00-00 00:00:00',
             'updated_at' => '0000-00-00 00:00:00'
@@ -230,7 +230,7 @@ class CatPuestoSeeder extends Seeder
             'cat_puesto' => 'E1813',
             'des_puesto' => 'AYUDANTE B DE TALLER DE PRIMARIA, FORANEO',
             'categoria' => 'EDUCACION',
-            'tipo_puesto' => 'INDEPENDIENTE',
+            'tipo_puesto' => 'INTENDENTE',
             'captura' => 'ADMINISTRADOR',
             'created_a' => '0000-00-00 00:00:00',
             'updated_at' => '0000-00-00 00:00:00'

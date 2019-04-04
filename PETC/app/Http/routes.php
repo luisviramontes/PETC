@@ -15,17 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+//////////////////cat_puesto///////////////////////////////
 Route::resource('cat_puesto', 'CatPuestoController');
-
-Route::resource('cat_puesto', 'CatPuestoController');
-
+Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
+Route::get('pdf_catpuesto/{id}', array('as'=> '/pdf_catpuesto','uses'=>'CatPuestoController@invoice'));
+/////////////////////////////////////////////////////////////
 
 ///////////////////ciclo escolar///////////////////////////
 Route::resource('ciclo_escolar', 'CicloEscolarController');
 Route::get('descargar-ciclo-escolar', 'CicloEscolarController@excel')->name('nomina.ciclo_escolar.excel');
 Route::get('pdf_cicloescolar/{id}', array('as'=> '/pdf_cicloescolar','uses'=>'CicloEscolarController@invoice'));
-
+/////////////////////////////////////////////
 
 
 Route::resource('bajas_contrato', 'BajasContratoController');
@@ -52,7 +52,12 @@ Route::resource('fortalecimiento', 'FortalecimientoController');
 
 Route::resource('inasistencias', 'InasistenciasController');
 
+////////////listas de asisrencias////////////////
+
 Route::resource('listas_asistencias', 'ListasAsistenciasController');
+Route::get('descargar-listas-asistencias', 'ListasAsistenciasController@excel')->name('nomina.listas_asistencias.excel');
+Route::get('pdf_listasasistencias/{id}', array('as'=> '/pdf_listasasistencias','uses'=>'ListasAsistenciasController@invoice'));
+
 
 Route::resource('nomina_estatal', 'NominaEstatalController');
 
@@ -68,12 +73,10 @@ Route::resource('reintegros', 'ReintegrosController');
 Route::resource('tabla_pagos', 'TablaPagosController');
 Route::get('descargar-tabla-pagos', 'TablaPagosController@excel')->name('nomina.tabla_pagos.excel');
 Route::get('pdf_tablapagos/{id}', array('as'=> '/pdf_tablapagos','uses'=>'TablaPagosController@invoice'));
-<<<<<<< HEAD
+
 
 //TABULADOR DE PAGOS
 Route::resource('tabulador_pagos', 'TabuladorPagosController');
 Route::get('descargar-tabla-empleado', 'TabuladorPagosController@excel')->name('nomina.tabulador_pagos.excel');
 Route::get('tablaempleado/{id}', array('as'=> '/pdf_tablaempleado','uses'=>'TabuladorPagosController@invoice'));
 Route::get('calculadora_pagos', 'TabuladorPagosController@calculadora')->name('nomina.tabulador_pagos.calculadora_pagos');
-=======
->>>>>>> 5a9cd5912dcdf0d0859ec6b095ab8d64966db408

@@ -39,28 +39,30 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ciclo Escolar: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ciclo" type="text"  class="form-control" required value="" />
+								<input name="ciclo" type="text"  class="form-control" required value="{{Input::old('ciclo')}}" />
+								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('ciclo')}}</div>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Días Hablies: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="dias_habiles" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="" />
+								<input name="dias_habiles" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="{{Input::old('dias_habiles')}}" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Inicio Ciclo: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="inicio_ciclo" type="date"   class="form-control" required value="" />
+								<input name="inicio_ciclo" type="date"   class="form-control" required value="{{Input::old('inicio_ciclo')}}" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Fin Ciclo: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="fin_ciclo" type="date"  class="form-control" required value="" />
+								<input name="fin_ciclo" type="date"  class="form-control" required value="{{Input::old('fin_ciclo')}}" />
 							</div>
 						</div>
 

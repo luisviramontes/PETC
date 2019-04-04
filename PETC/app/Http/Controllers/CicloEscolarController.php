@@ -66,7 +66,7 @@ if($request)
     public function store(CicloEscolarRequest $formulario)
     {
 
-        $validador = Validador::make(
+        $validator = Validator::make(
         $formulario->all(),
         $formulario->rules(),
         $formulario->messages());
@@ -76,10 +76,10 @@ if($request)
         }
         else{
           $ciclo= new CicloEscolarModel;
-          $ciclo -> ciclo = $request ->ciclo;
-          $ciclo -> dias_habiles = $request ->dias_habiles;
-          $ciclo -> inicio_ciclo = $request ->inicio_ciclo;
-          $ciclo -> fin_ciclo = $request ->fin_ciclo;
+          $ciclo -> ciclo = $formulario ->ciclo;
+          $ciclo -> dias_habiles = $formulario ->dias_habiles;
+          $ciclo -> inicio_ciclo = $formulario ->inicio_ciclo;
+          $ciclo -> fin_ciclo = $formulario ->fin_ciclo;
           $ciclo -> capturo="Administrador";
 
           if($ciclo->save()){

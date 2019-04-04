@@ -1,15 +1,14 @@
-
 @extends('layouts.principal')
 @section('contenido')
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
 		<h1>Inicio</h1>
-		<h2 class="">Editar Listas de Asistencias</h2>
+		<h2 class="">Lista de Asistencia</h2>
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
 			<li><a style="color: #808080" href="{{url('listas_asistencias')}}">Inicio</a></li>
-			<li><a style="color: #808080" href="{{url('listas_asistencias')}}">Editar Ciclo Escolar</a></li>
+			<li><a style="color: #808080" href="{{url('listas_asistencias')}}">Listas de Asistencias</a></li>
 		</ol>
 	</div>
 </div>
@@ -21,7 +20,7 @@
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-8">
 							<div class="actions"> </div>
-							<h2 class="content-header" style="margin-top: -5px;"><strong>Editar Listas de Asistencias</strong></h2>
+							<h2 class="content-header" style="margin-top: -5px;"><strong>Agregar Lista de Asistencia</strong></h2>
 						</div>
 						<div class="col-md-4">
 							<div class="btn-group pull-right">
@@ -32,10 +31,8 @@
 					</div>
 				</div>
 				<div class="porlets-content">
-          <form action="{{url('/listas_asistencias', [$listas->id])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
+					<form action="{{route('listas_asistencias.store')}}" method="post" class="form-horizontal row-border" parsley-validate novalidate  files="true" enctype="multipart/form-data" accept-charset="UTF-8">
 						{{csrf_field()}}
-						<input type="hidden" name="_method" value="PUT">
-
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Clave Centro de Trabajo <strog class="theme_color">*</strog></label>
@@ -55,7 +52,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Escuela: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="escuela" id="escuela" disabled type="text"   class="form-control" required value="{{$listas->escuela}}" />
+								<input name="escuela" id="escuela" disabled type="text"   class="form-control" required value="{{Input::old('escuelas')}}" />
 							</div>
 						</div>
 
@@ -105,10 +102,11 @@
 						</div><!--/form-group-->
 
 
-            <div class="form-group">
+
+						<div class="form-group">
 							<label class="col-sm-3 control-label">Observaciones: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="observaciones" type="text"   class="form-control" required value="{{$listas->observaciones}}" />
+								<input name="observaciones" type="text"   class="form-control" required value="{{Input::old('observaciones')}}" />
 							</div>
 						</div>
 
@@ -144,12 +142,10 @@
 		</div><!--/col-md-12-->
 	</div><!--/row-->
 </div><!--/container clear_both padding_fix-->
-
 <script type="text/javascript">
 			window.onload=function(){
 				claves();
 			}
 </script>
-
 
 @endsection

@@ -64,14 +64,14 @@ function curp2date() {
 }
 
 
-Date.prototype.toString = function() { 
-  var anyo = this.getFullYear(); 
-  var mes = this.getMonth()+1; 
-  if( mes<=9 ) mes = "0"+mes; 
-  var dia = this.getDate(); 
-  if( dia<=9 ) dia = "0"+dia; 
-  return dia+"/"+mes+"/"+anyo;  
-}  
+Date.prototype.toString = function() {
+  var anyo = this.getFullYear();
+  var mes = this.getMonth()+1;
+  if( mes<=9 ) mes = "0"+mes;
+  var dia = this.getDate();
+  if( dia<=9 ) dia = "0"+dia;
+  return dia+"/"+mes+"/"+anyo;
+}
 
 
 function myCreateFunction() {
@@ -225,7 +225,7 @@ function validarFecha1(){
 
 function validarFecha2(){
 
-  var fecha2= document.getElementById('fechaFin').value;  
+  var fecha2= document.getElementById('fechaFin').value;
 
   if (!moment(fecha2).isValid()) {
     document.getElementById("errorFechaFin").innerHTML = "Fecha Invalida";
@@ -245,7 +245,7 @@ function validarFechas(){
 
   if (moment(fecha2).isBefore(moment(fecha1))    || moment(fecha2).isSame(moment(fecha1))  ){
     document.getElementById("errorFechas").innerHTML="La fecha  de  Inicio  es mayor o igual que la fecha de Fin";
-    
+
   } else {
     document.getElementById("errorFechas").innerHTML="";
 
@@ -278,7 +278,7 @@ function validarFechas(){
 
   if (moment(fecha2).isBefore(moment(fecha1))    || moment(fecha2).isSame(moment(fecha1))  ){
     document.getElementById("errorFechas").innerHTML="La fecha  de  Inicio  es mayor o igual que la fecha de Fin";
-    
+
   } else {
     document.getElementById("errorFechas").innerHTML="";
   }
@@ -330,7 +330,7 @@ function doSearch()
 
 
 
-    
+
 
 
 
@@ -349,7 +349,7 @@ function doSearch()
 
 
 
-     
+
      apellidos = apellidos.replace(/([\ \t]+(?=[\ \t])|^\s+|\s+$)/g, '');
 
 
@@ -367,7 +367,7 @@ function doSearch()
        document.getElementById("idProvedor").value= idProvedor;
        $("#modal-reactivar").modal();
 
-     } 
+     }
      else if (res.length > 0  &&  res[0].estado =="Activo"  && (res[0].nombre +" " +res[0].apellidos) != oculto )  {
 
 
@@ -400,8 +400,8 @@ function doSearch()
         var idProvedor = res[0].id;
         document.getElementById("idProvedor").value= idProvedor;
         $("#modal-reactivar").modal();
-        
-      } 
+
+      }
       else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].nombre != oculto )  {
 
 
@@ -417,7 +417,7 @@ function doSearch()
 
   }
 
-//Validacion empresas de  proveedores 
+//Validacion empresas de  proveedores
 
 function  validarEmpresa(){
 
@@ -433,7 +433,7 @@ function  validarEmpresa(){
    document.getElementById("idEmpresa").value= idEmpresa;
    $("#modal-reactivar").modal();
 
- } 
+ }
  else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].rfc != oculto )  {
 
   document.getElementById("errorRFC").innerHTML = "La empresa que  intenta registrar ya existe en el sistema";
@@ -467,7 +467,7 @@ else {
        document.getElementById("idBanco").value= idBanco;
        $("#modal-reactivar").modal();
 
-     } 
+     }
      else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].nombre != oculto )  {
 
       document.getElementById("errorNombre").innerHTML = "El banco que  intenta registrar ya existe en el sistema";
@@ -507,7 +507,7 @@ function  validarPlacas(){
 
      $("#modal-reactivar").modal();
 
-   } 
+   }
    else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].placas != ocultoPlaca )  {
 
 
@@ -546,7 +546,7 @@ function  validarNumeroSerie(){
 
      $("#modal-reactivar").modal();
 
-   } 
+   }
    else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].no_Serie != ocultoSerie )  {
 
 
@@ -584,7 +584,7 @@ function  validarEmpresaCEPROZAC(){
 
      $("#modal-reactivar").modal();
 
-   } 
+   }
    else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].rfc != ocultoRFC )  {
 
 
@@ -624,7 +624,7 @@ function  validarNumeroCuentaEmProvedor(){
 
      $("#modal-reactivar").modal();
 
-   } 
+   }
    else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].num_cuenta != ocultoNumCuenta )  {
 
 
@@ -663,7 +663,7 @@ function  validarNumeroCveInterbancariaEmProvedor(){
 
      $("#modal-reactivar").modal();
 
-   } 
+   }
    else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].cve_interbancaria != ocultoCve_Interbancaria )  {
 
 
@@ -703,7 +703,7 @@ function  validarNumeroCuentaEmCEPROZAC(){
 
      $("#modal-reactivar").modal();
 
-   } 
+   }
    else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].num_cuenta != ocultoNumCuenta )  {
 
 
@@ -742,7 +742,7 @@ function  validarNumeroCveInterbancariaEmCEPROZAC(){
 
      $("#modal-reactivar").modal();
 
-   } 
+   }
    else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].cve_interbancaria != ocultoCve_Interbancaria )  {
 
 
@@ -787,7 +787,7 @@ function  validarCURP(){
 
      $("#modal-reactivar").modal();
 
-   } 
+   }
    else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].curp != curpOculta )  {
 
      var tipo = res[0].tipo;
@@ -808,7 +808,7 @@ function  validarCURP(){
 });
 
 
-} 
+}
 
 //////////////////////////////////////////////////////////////////
 //Validar  empelado por numero de seguro social
@@ -833,7 +833,7 @@ function  validarSSN(){
 
      $("#modal-reactivar").modal();
 
-   } 
+   }
    else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].curp != ssnOculta )  {
 
      var tipo = res[0].tipo;
@@ -854,7 +854,7 @@ function  validarSSN(){
 });
 
 
-} 
+}
 
 
 
@@ -887,7 +887,7 @@ function valida_montos() {
   }else if(parseInt(y) >= parseInt(x)){
    swal("Error!", "El Docente No puede Ganar más o Igual que el Director ", "error");
    return false;
- } 
+ }
 }
 
 function calculadora() {
@@ -920,4 +920,16 @@ function calculadora() {
 
 }
 
+function claves() {
+ var select2 = document.getElementById("cct");
+ var selectedOption2 = select2.selectedIndex;
+ var cantidadtotal = select2.value;
+ limite = "9",
+ separador = "_",
+ arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+ cct=arregloDeSubCadenas[0];
+ escuela=arregloDeSubCadenas[1];
 
+document.getElementById('escuela').value=escuela;
+
+}

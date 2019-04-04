@@ -47,7 +47,6 @@
 					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered" id="hidden-table-info">
 						<thead>
 							<tr>
-
 								<th>Region </th>
 								<th>Sostenimiento</th>
 								<th>Nombre Enlace </th>
@@ -70,7 +69,6 @@
 						<tbody>
 						@foreach($directorio_regional  as $directorio_regional)
 							<tr class="gradeX">
-
 								<td>{{$directorio_regional->region}} </td>
 								<td>{{$directorio_regional->sostenimiento}} </td>
 								<td>{{$directorio_regional->nombre_enlace}} </td>
@@ -85,8 +83,6 @@
                 <td style="display:none;">{{$directorio_regional->ext_reg_2}} </td>
                 <td style="display:none">{{$directorio_regional->captura}} </td>
 								<td style="display:none">{{$directorio_regional->updated_at}} </td>
-
-								<td>
 									<center>
 										<a href="{{URL::action('DirectorioRegionalController@edit',$directorio_regional->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 									</center>
