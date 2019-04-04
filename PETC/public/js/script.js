@@ -920,7 +920,7 @@ function calculadora() {
 
 }
 
-<<<<<<< HEAD
+
 function claves() {
  var select2 = document.getElementById("cct");
  var selectedOption2 = select2.selectedIndex;
@@ -930,9 +930,10 @@ function claves() {
  arregloDeSubCadenas = cantidadtotal.split(separador, limite);
  cct=arregloDeSubCadenas[0];
  escuela=arregloDeSubCadenas[1];
-
+alert(escuela);
 document.getElementById('escuela').value=escuela;
-=======
+}
+
 function centros_verifica(){
   var x = parseInt(document.getElementById('alumnos').value);
   var y = parseInt(document.getElementById('ninos').value);
@@ -952,9 +953,5 @@ function centros_verifica(){
      swal("Error!", "La CCT Debe ser Igual a 10 Digitos ", "error");
  return false
  }
-
-}
-
->>>>>>> 9754e047a27445ed7cd6d06d862fcccc01c13d57
 
 }

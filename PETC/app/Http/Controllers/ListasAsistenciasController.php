@@ -32,14 +32,16 @@ class ListasAsistenciasController extends Controller
        $query=trim($request->GET('searchText'));
        $listas = DB::table('listas_de_asistencias')
        ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
+       ->select('centro_trabajo.id_region as id_region' )
+       ->join('region','centro_trabajo.id_region', '=' ,'region.id')
      //->join('centro_trabajo','listas_de_asistencias.id', '=','centro_trabajo.id')
 
        ->select('listas_de_asistencias.id as id','listas_de_asistencias.id_centro_trabajo','listas_de_asistencias.mes'
        ,'listas_de_asistencias.estado','listas_de_asistencias.observaciones','listas_de_asistencias.captura',
-       'centro_trabajo.nombre_escuela','centro_trabajo.cct','centro_trabajo.region')
+       'centro_trabajo.nombre_escuela','centro_trabajo.cct','region.region')
        ->where('nombre_escuela','LIKE','%'.$query.'%')
        ->orwhere('cct','LIKE','%'.$query.'%')
-       ->orwhere('region','LIKE','%'.$query.'%')
+       ->orwhere('region.region','LIKE','%'.$query.'%')
        ->paginate(10);
        //print_r($listas);
       return view('nomina.listas_asistencias.index',["listas"=>$listas,"searchText"=>$query]);
