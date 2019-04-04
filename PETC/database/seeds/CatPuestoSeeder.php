@@ -40,7 +40,7 @@ class CatPuestoSeeder extends Seeder
           ]);
 
 
-<<<<<<< HEAD
+
         DB::table('tabla_pagos')->insert([
             'cv_ur' => '32',
             'entidad' => 'ZACATECAS',
