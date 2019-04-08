@@ -28,9 +28,10 @@ class SolicitudesController extends Controller
      */
     public function index()
     {
-        $solicitudes = DB::table('solicitudes')->get();
+      $solicitudes = SolicitudesModel::orderBy('id', 'DESC')
+                            ->paginate(24);
 
-        return view('nomina.solicitudes.index',["solicitudes"=>$solicitudes ,"searchText"=>$query]);
+        return view('nomina.solicitudes.index',["solicitudes"=>$solicitudes]);
     }
 
     /**

@@ -33,7 +33,7 @@ Route::get('descargar-region', 'RegionController@excel')->name('nomina.region.ex
 Route::get('pdf_region/{id}', array('as'=> '/pdf_region','uses'=>'RegionController@invoice'));
 ///////////////////////////////////////////////////
 
-Route::response('solicitudes','SolicitudesController');
+Route::resource('solicitudes','SolicitudesController');
 
 Route::resource('bajas_contrato', 'BajasContratoController');
 

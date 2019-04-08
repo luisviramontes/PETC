@@ -1,3 +1,91 @@
+////////////////Solicitudes////////////////////
+function fnFormatDetails_cat ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+
+    sOut += '<tr><td><strong>Entrego Carta:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Solicitud Incorporacion:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre Escuela:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Municipio:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>Localidad:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Domicilio:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>Nivel:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>PNPSVD:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>CNH:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Carta Compromiso:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Acta Constitutiva:</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>Acta CPS:</strong></td><td>'+aData[13]+' </td></tr>';
+    sOut += '<tr><td><strong>Acta CTCS:</strong></td><td>'+aData[14]+' </td></tr>';
+    sOut += '<tr><td><strong>Tramite Estado:</strong></td><td>'+aData[15]+' </td></tr>';
+    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[16]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Recepcion:</strong></td><td>'+aData[17]+' </td></tr>';
+    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[18]+' </td></tr>';
+
+
+
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table1').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info_cat_puesto thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info_cat_puesto tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info_cat_puesto').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info_cat_puesto tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails_cat(oTable, nTr), 'details' );
+        }
+    } );
+ } );
+
+//////////////////////////////////////////////
+
+
 ////////////////cat_puesto////////////////////
 function fnFormatDetails_cat ( oTable, nTr )
 {
