@@ -84,7 +84,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Región <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-													<select name="region" class="form-control"  value="{{Input::old('region')}}"  required>
+														<select name="region" class="form-control"  value="{{Input::old('region')}}"  required>
 															@foreach($region as $dato)
 															<option value="{{$dato->id}}">
 																{{$dato->region}}-{{$dato->sostenimiento}}
@@ -138,6 +138,24 @@
 															<option value="NO">
 																NO                 
 															</option>                         
+														</select>
+														<div class="help-block with-errors"></div>
+													</div>
+												</div><!--/form-group-->
+
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Nivel: <strog class="theme_color">*</strog></label>
+													<div class="col-sm-6">
+														<select name="nivel" id="nivel" class="form-control" required>  
+															<option value="PREESCOLAR">
+																PREESCOLAR                
+															</option>
+															<option value="PRIMARIA">
+																PRIMARIA                 
+															</option>
+															<option value="TELESECUNDARIA">
+																TELESECUNDARIA                 
+															</option>                              
 														</select>
 														<div class="help-block with-errors"></div>
 													</div>
@@ -252,7 +270,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Total de Grupos: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="grupos"  placeholder="Ingrese el Total de Grupos" id="grupos" type="number"   class="form-control" required maxlength="3" min="1" max ="999" />
+														<input name="grupos" id="grupos" placeholder="Ingrese el Total de Grupos"  type="number"   class="form-control" required maxlength="3" min="1" max ="999" />
 													</div>
 												</div>
 
@@ -301,7 +319,13 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Total Intendentes: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="intendente" id="intendente" type="number"   class="form-control" required placeholder="Ingrese el Total de Intendentes"  maxlength="3" min="0" max ="999" />
+														<input name="intendente" id="intendente"   type="number"   class="form-control" required placeholder="Ingrese el Total de Intendentes"  maxlength="3" min="0" max ="999" />
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="col-sm-6">
+													<input  id="organizacion"  name="organizacion" type="hidden"  class="form-control" />
 													</div>
 												</div>
 
@@ -403,10 +427,49 @@
               document.getElementById("precio").style.border="1px solid #f00";
               return false;
           }*/
+          if(stepNumber == 0){
+          	var a = document.getElementById('cct').value;
+          	var c = a.length;
+          	var nivel = String(document.getElementById('nivel').value);
 
-          if (stepNumber == 3){
-          	if (document.getElementById('asignado').value == ""){
-          		document.getElementById("error_asig").innerHTML = "Ingrese el Espacio , donde se Enviara la Materia Prima";
+
+          	if(c < 10 || c > 10){
+          		swal("Error!", "La CCT Debe ser Igual a 10 Digitos ", "error");
+          		document.getElementById("cct").focus();
+          		return false
+          	}else{
+          		subCadena = a.substring(4,2);
+          		if(subCadena == "DP" || subCadena == "EP" ){
+          			if(nivel == "PREESCOLAR"){
+          				swal("Error!", "Un PREESCOLAR NO PUEDE SER '32DP' Ó '32EP' ", "error");
+          				return false
+          			}else if(nivel == "TELESECUNDARIA") {
+          				swal("Error!", "Una TELESECUNDARIA NO PUEDE SER '32ET' ", "error");
+          				return false
+          			}
+
+          		}else if(subCadena == "ET" ){
+          			if(nivel == "PREESCOLAR"){
+          				swal("Error!", "Un PREESCOLAR NO PUEDE SER '32ET'", "error");
+          				return false
+          			}else if(nivel == "PRIMARIA"){
+          				swal("Error!", "Una PRIMARIA NO PUEDE SER '32ET'", "error");
+          				return false
+          			}
+          		}
+          		else if(subCadena == "EJ" || subCadena == "DJ" ){
+          			if(nivel == "TELESECUNDARIA"){
+          				swal("Error!", "Una TELESECUNDARIA NO PUEDE SER '32EJ' Ó '32DJ' ", "error");
+          				return false
+          			}else if(nivel == "PRIMARIA"){
+          				swal("Error!", "Una PRIMARIA NO PUEDE SER '32EJ' Ó '32DJ' ", "error");
+          				return false
+          			}
+          		}
+          	}}
+          	if (stepNumber == 3){
+          		if (document.getElementById('asignado').value == ""){
+          			document.getElementById("error_asig").innerHTML = "Ingrese el Espacio , donde se Enviara la Materia Prima";
                // swal("Error!", "Ingrese el Espacio , donde se Enviara la Materia Prima!", "error");
                 //alert('Ingrese el Espacio , donde se Enviara la Materia Prima');
                 //document.getElementById("asignado").style.border="1px solid #f00";

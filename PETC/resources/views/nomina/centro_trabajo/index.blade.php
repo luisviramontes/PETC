@@ -33,7 +33,7 @@
 
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.centro_trabajo.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
 
-										<a class="btn btn-primary btn-sm" href="{{URL::action('TablaPagosController@invoice','2018-2019' )}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 										
+										<a class="btn btn-primary btn-sm" href="{{URL::action('CentroTrabajoController@invoice' )}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 										
 
 
 									</div>								
@@ -75,8 +75,9 @@
 									<th style="display:none;" >Total Intendentes </th>
 									<th style="display:none;" >Fecha Ingreso PETC </th>
 									<th style="display:none;" >Fecha Baja PETC</th>
+									<th>Ver Datos Completos&nbsp; &nbsp;</th>
 									<td><center><b>Editar</b></center></td>
-									<td><center><b>Borrar</b></center></td>
+									<td><center><b>Borrar</b></center></td> 
 								</tr>
 							</thead>
 							<tbody>
@@ -109,56 +110,59 @@
 									<td style="display:none;" >{{$datos->total_intendentes}} </td>
 									<td style="display:none;" >{{$datos->fecha_ingreso}} </td>
 									<td style="display:none;" >{{$datos->fecha_baja}} </td>
+									<td >
+										<a href="{{URL::action('CentroTrabajoController@verInformacion',$datos->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>    </td>
 
-									<td> 
-										<a href="{{URL::action('CentroTrabajoController@edit',$datos->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
-									</td>
-									<td>
-										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$datos->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></
-									</td>
-								</tr>
-								@include('nomina.centro_trabajo.modal')
-								@endforeach
-							</tbody>
-							<tfoot>
-								<tr>
-									<th></th> 
-									<th>CCT </th>
-									<th>Nombre de la Escuela</th>
-									<th style="display:none;" >Municipio </th>
-									<th style="display:none;" >Localidad </th>
-									<th style="display:none;" >Domicilio </th>
-									<th>Región </th>
-									<th>Sostenimiento </th>
-									<th>Teléfono </th>
-									<th>Email </th>
-									<th>Capturo </th>
-									<th>Ciclo Escolar </th>
-									<th style="display:none;" >Entrego Carta Compromiso </th>
-									<th>Alimentacion </th>
-									<th >Modificado </th>
-									<th style="display:none;" >Total de Alumnos </th>
-									<th style="display:none;" >Total Niñas </th>
-									<th style="display:none;" >Total Grupos </th>
-									<th style="display:none;" >Total Grados </th>
-									<th style="display:none;" >Total Directores </th>
-									<th style="display:none;" >Total Docentes </th>
-									<th style="display:none;" >Total E.Fisica </th>
-									<th style="display:none;" >Total USAER </th>
-									<th style="display:none;" >Total Artistica </th>
-									<th style="display:none;" >Total Intendentes </th>
-									<th style="display:none;" >Fecha Ingreso PETC </th>
-									<th style="display:none;" >Fecha Baja PETC</th>
-									<td><center><b>Editar</b></center></td>
-									<td><center><b>Borrar</b></center></td>
-								</tr>
-							</tfoot>
-						</table>
-						{!! $centro->render() !!}
-					</div><!--/table-responsive-->
-				</div><!--/porlets-content-->
-			</div><!--/block-web-->
-		</div><!--/col-md-12-->
-	</div><!--/row-->
-</div>
-@endsection
+										<td> 
+											<a href="{{URL::action('CentroTrabajoController@edit',$datos->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
+										</td>
+										<td>
+											<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$datos->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></
+										</td>
+									</tr>
+									@include('nomina.centro_trabajo.modal')
+									@endforeach
+								</tbody>
+								<tfoot>
+									<tr>
+										<th></th> 
+										<th>CCT </th>
+										<th>Nombre de la Escuela</th>
+										<th style="display:none;" >Municipio </th>
+										<th style="display:none;" >Localidad </th>
+										<th style="display:none;" >Domicilio </th>
+										<th>Región </th>
+										<th>Sostenimiento </th>
+										<th>Teléfono </th>
+										<th>Email </th>
+										<th>Capturo </th>
+										<th>Ciclo Escolar </th>
+										<th style="display:none;" >Entrego Carta Compromiso </th>
+										<th>Alimentacion </th>
+										<th >Modificado </th>
+										<th style="display:none;" >Total de Alumnos </th>
+										<th style="display:none;" >Total Niñas </th>
+										<th style="display:none;" >Total Grupos </th>
+										<th style="display:none;" >Total Grados </th>
+										<th style="display:none;" >Total Directores </th>
+										<th style="display:none;" >Total Docentes </th>
+										<th style="display:none;" >Total E.Fisica </th>
+										<th style="display:none;" >Total USAER </th>
+										<th style="display:none;" >Total Artistica </th>
+										<th style="display:none;" >Total Intendentes </th>
+										<th style="display:none;" >Fecha Ingreso PETC </th>
+										<th style="display:none;" >Fecha Baja PETC</th>
+										<th>Ver Datos Completos&nbsp; &nbsp;</th>
+										<td><center><b>Editar</b></center></td>
+										<td><center><b>Borrar</b></center></td>
+									</tr>
+								</tfoot>
+							</table>
+							{!! $centro->render() !!}
+						</div><!--/table-responsive-->
+					</div><!--/porlets-content-->
+				</div><!--/block-web-->
+			</div><!--/col-md-12-->
+		</div><!--/row-->
+	</div>
+	@endsection

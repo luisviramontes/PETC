@@ -34,6 +34,8 @@ class CentroTrabajo extends Migration
             $table->string('ciclo_escolar');
             $table->string('entrego_carta');
             $table->string('alimentacion');
+            $table->string('tipo_organizacion');
+            $table->string('nivel');
             $table->string('estado');
             $table->timestamps();
         });

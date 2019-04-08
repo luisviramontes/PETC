@@ -175,202 +175,245 @@
 										</div><!--/form-group-->
 
 										<div class="form-group">
-											<label class="col-sm-3 control-label">Fecha de Ingreso al PETC: <strog class="theme_color">*</strog></label>
+											<label class="col-sm-3 control-label">Nivel: <strog class="theme_color">*</strog></label>
 											<div class="col-sm-6">
-												<input name="ingreso" id="ingreso" value="{{$centros->fecha_ingreso}}" type="date"  required  />
-											</div>
-										</div>
-
-
-
-
-
-									</div><!--validator-->
-								</div><!--user-profile-content-->
-							</div><!--step-1-->
-
-							<div id="step-2" class="">
-								<div class="user-profile-content">
-									<div id="form-step-1" role="form" data-toggle="validator">
-										<h3 class="h3titulo">Dirección</h3>
-
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Municipio <strog class="theme_color">*</strog></label>
-											<div class="col-sm-8">
-												<select name="municipio" class="form-control select2"   value="{{Input::old('municipio')}}"  required>
-													@foreach($municipios as $municipio)
-													@if($centros->id_municipios == $municipio->id)
-													<option value="{{$municipio->id}}" selected>
-														{{$municipio->municipio}}
+												<select name="nivel" class="form-control" required>  
+													@if($centros->nivel == "PREESCOLAR")
+													<option value="PREESCOLAR" selected>
+														PREESCOLAR                
 													</option>
-													@else
-													<option value="{{$municipio->id}}">
-														{{$municipio->municipio}}
+													<option value="PRIMARIA">
+														PRIMARIA                 
 													</option>
-													@endif
-													@endforeach
+													<option value="TELESECUNDARIA">
+														TELESECUNDARIA                 
+													</option>                              
 												</select>
-												<div class="help-block with-errors"></div>
-												<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('municipio')}}</div>
-											</div>
-										</div><!--/form-group-->
+												@elseif($centros->nivel == "PRIMARIA")
+												<option value="PREESCOLAR">
+													PREESCOLAR                
+												</option>
+												<option value="PRIMARIA" selected>
+													PRIMARIA                 
+												</option>
+												<option value="TELESECUNDARIA">
+													TELESECUNDARIA                 
+												</option>  
+												@else
+												<option value="PREESCOLAR">
+													PREESCOLAR                
+												</option>
+												<option value="PRIMARIA" >
+													PRIMARIA                 
+												</option>
+												<option value="TELESECUNDARIA" selected>
+													TELESECUNDARIA                 
+												</option>
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Localidad <strog class="theme_color">*</strog></label>
-											<div class="col-sm-8">
-												<select name="localidad" class="form-control select2"   value="{{Input::old('localidad')}}"  required>
-													@foreach($localidades as $localidad)
-													@if($centros->id_localidades == $localidad->id)
-													<option value="{{$localidad->id}}" selected>
-														{{$localidad->nom_loc}}
-													</option>
-													@else
-													<option value="{{$localidad->id}}" >
-														{{$localidad->nom_loc}}
-													</option>
-													@endif
-													@endforeach
-												</select>
-												<div class="help-block with-errors"></div>
-												<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('localidad')}}</div>
-											</div>
-										</div><!--/form-group-->
-
-										<div class="form-group">
-											<label class="col-sm-3 control-label">CALLE Y NUMERO: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="domicilio" id="domicilio" value="{{$centros->domicilio}}" type="text"   class="form-control" required placeholder="Ingrese la Calle y Numero" maxlength="40" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  />
-											</div>
+												@endif                            
+											</select>
+											<div class="help-block with-errors"></div>
 										</div>
+									</div><!--/form-group-->
 
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Teléfono: <strog class="theme_color"></strog></label>
-											<div class="col-sm-6">
-												<input name="telefono" id="telefono" type="number" maxlength="10"   class="form-control" value="{{$centros->telefono}}" placeholder="(492)-000-0000"	/>
-											</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Fecha de Ingreso al PETC: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="ingreso" id="ingreso" value="{{$centros->fecha_ingreso}}" type="date"  required  />
 										</div>
+									</div>
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Email: <strog class="theme_color"></strog></label>
-											<div class="col-sm-6">
-												<input name="email" id="email" type="email"   placeholder="Ingrese el Nombre de la Escuela" value="{{$centros->email}}" class="form-control" size="30"  />
-											</div>
+
+
+
+
+								</div><!--validator-->
+							</div><!--user-profile-content-->
+						</div><!--step-1-->
+
+						<div id="step-2" class="">
+							<div class="user-profile-content">
+								<div id="form-step-1" role="form" data-toggle="validator">
+									<h3 class="h3titulo">Dirección</h3>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Municipio <strog class="theme_color">*</strog></label>
+										<div class="col-sm-8">
+											<select name="municipio" class="form-control select2"   value="{{Input::old('municipio')}}"  required>
+												@foreach($municipios as $municipio)
+												@if($centros->id_municipios == $municipio->id)
+												<option value="{{$municipio->id}}" selected>
+													{{$municipio->municipio}}
+												</option>
+												@else
+												<option value="{{$municipio->id}}">
+													{{$municipio->municipio}}
+												</option>
+												@endif
+												@endforeach
+											</select>
+											<div class="help-block with-errors"></div>
+											<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('municipio')}}</div>
 										</div>
+									</div><!--/form-group-->
 
-
-
-
-
-									</div><!--validator-->
-								</div><!--user-profile-content-->
-							</div><!--step-2-->
-
-							<div id="step-3" class="">
-								<div class="user-profile-content">
-									<div id="form-step-2" role="form" data-toggle="validator">
-										<h3 class="h3titulo">Información</h3>
-
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Total de Alumnos: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="alumnos" id="alumnos" type="number"   class="form-control"  value="{{$centros->total_alumnos}}" required placeholder="Ingrese el Total de Alumnos" maxlength="3" min="1" max ="999" />
-											</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Localidad <strog class="theme_color">*</strog></label>
+										<div class="col-sm-8">
+											<select name="localidad" class="form-control select2"   value="{{Input::old('localidad')}}"  required>
+												@foreach($localidades as $localidad)
+												@if($centros->id_localidades == $localidad->id)
+												<option value="{{$localidad->id}}" selected>
+													{{$localidad->nom_loc}}
+												</option>
+												@else
+												<option value="{{$localidad->id}}" >
+													{{$localidad->nom_loc}}
+												</option>
+												@endif
+												@endforeach
+											</select>
+											<div class="help-block with-errors"></div>
+											<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('localidad')}}</div>
 										</div>
+									</div><!--/form-group-->
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Total de Niñas: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="ninas" id="ninas" value="{{$centros->total_ninas}}" type="number"   class="form-control" required placeholder="Ingrese el Total de Niñas" maxlength="3" min="1" max ="999" />
-											</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">CALLE Y NUMERO: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="domicilio" id="domicilio" value="{{$centros->domicilio}}" type="text"   class="form-control" required placeholder="Ingrese la Calle y Numero" maxlength="40" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  />
 										</div>
+									</div>
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Total de Niños: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="ninos" id="ninos" value="{{$centros->total_ninos}}" type="number"   class="form-control"  required placeholder="Ingrese el Total de Niños" maxlength="3" min="1" max ="999" />
-											</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Teléfono: <strog class="theme_color"></strog></label>
+										<div class="col-sm-6">
+											<input name="telefono" id="telefono" type="number" maxlength="10"   class="form-control" value="{{$centros->telefono}}" placeholder="(492)-000-0000"	/>
 										</div>
+									</div>
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Total de Grupos: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="grupos"  value="{{$centros->total_grupos}}" placeholder="Ingrese el Total de Grupos" id="grupos" type="number"   class="form-control" required maxlength="3" min="1" max ="999" />
-											</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Email: <strog class="theme_color"></strog></label>
+										<div class="col-sm-6">
+											<input name="email" id="email" type="email"   placeholder="Ingrese el Nombre de la Escuela" value="{{$centros->email}}" class="form-control" size="30"  />
 										</div>
+									</div>
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Total de Grados: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="grados" id="grados" type="number"  value="{{$centros->total_grados}}"  class="form-control" required placeholder="Ingrese el Total de Grados"  maxlength="3" min="1" max ="999" />
-											</div>
+
+
+
+
+								</div><!--validator-->
+							</div><!--user-profile-content-->
+						</div><!--step-2-->
+
+						<div id="step-3" class="">
+							<div class="user-profile-content">
+								<div id="form-step-2" role="form" data-toggle="validator">
+									<h3 class="h3titulo">Información</h3>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total de Alumnos: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="alumnos" id="alumnos" type="number"   class="form-control"  value="{{$centros->total_alumnos}}" required placeholder="Ingrese el Total de Alumnos" maxlength="3" min="1" max ="999" />
 										</div>
+									</div>
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Total Director: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="director" value="{{$centros->total_directores}}"  placeholder="Ingrese el Total de Director" id="director" type="number"   class="form-control" required  maxlength="3" min="1" max ="999" />
-											</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total de Niñas: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="ninas" id="ninas" value="{{$centros->total_ninas}}" type="number"   class="form-control" required placeholder="Ingrese el Total de Niñas" maxlength="3" min="1" max ="999" />
 										</div>
+									</div>
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Total Docentes: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="docente" value="{{$centros->total_docentes}}" id="docente" type="number"   class="form-control" required placeholder="Ingrese el Total de Docentes"  maxlength="3" min="1" max ="999" />
-											</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total de Niños: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="ninos" id="ninos" value="{{$centros->total_ninos}}" type="number"   class="form-control"  required placeholder="Ingrese el Total de Niños" maxlength="3" min="1" max ="999" />
 										</div>
+									</div>
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Total Educación Fisica: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="e_fisica" value="{{$centros->total_fisica}}" id="e_fisica" type="number"   class="form-control" required placeholder="Ingrese el Total de Docentes de Educación Fisica"  maxlength="3" min="0" max ="999" />
-											</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total de Grupos: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="grupos"  value="{{$centros->total_grupos}}" placeholder="Ingrese el Total de Grupos" id="grupos" type="number"   class="form-control" required maxlength="3" min="1" max ="999" />
 										</div>
+									</div>
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Total USAER: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="usaer" id="usaer" value="{{$centros->total_usaer}}" type="number"   class="form-control" required  placeholder="Ingrese el Total de USAER" maxlength="3" min="0" max ="999" />
-											</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total de Grados: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="grados" id="grados" type="number"  value="{{$centros->total_grados}}"  class="form-control" required placeholder="Ingrese el Total de Grados"  maxlength="3" min="1" max ="999" />
 										</div>
+									</div>
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Total Educación Artistica: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="artistica" id="artistica" value="{{$centros->total_artistica}}" type="number"   class="form-control" required placeholder="Ingrese el Total de Docentes de Educación Artistica"  maxlength="3" min="0" max ="999" />
-											</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total Director: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="director" value="{{$centros->total_directores}}"  placeholder="Ingrese el Total de Director" id="director" type="number"   class="form-control" required  maxlength="3" min="1" max ="999" />
 										</div>
+									</div>
 
-										<div class="form-group">
-											<label class="col-sm-3 control-label">Total Intendentes: <strog class="theme_color">*</strog></label>
-											<div class="col-sm-6">
-												<input name="intendente" id="intendente" value="{{$centros->total_intendentes}}" type="number"   class="form-control" required placeholder="Ingrese el Total de Intendentes"  maxlength="3" min="0" max ="999" />
-											</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total Docentes: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="docente" value="{{$centros->total_docentes}}" id="docente" type="number"   class="form-control" required placeholder="Ingrese el Total de Docentes"  maxlength="3" min="1" max ="999" />
 										</div>
+									</div>
 
-										<div class="form-group">
-											<div class="col-sm-offset-7 col-sm-5">
-												<button onclick="return centros_verifica();"  id="submit3" class="btn btn-primary">Guardar</button>
-												<a href="{{url('/centro_trabajo')}}" class="btn btn-default"> Cancelar</a>
-											</div>
-										</div><!--/form-group--> 
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total Educación Fisica: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="e_fisica" value="{{$centros->total_fisica}}" id="e_fisica" type="number"   class="form-control" required placeholder="Ingrese el Total de Docentes de Educación Fisica"  maxlength="3" min="0" max ="999" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total USAER: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="usaer" id="usaer" value="{{$centros->total_usaer}}" type="number"   class="form-control" required  placeholder="Ingrese el Total de USAER" maxlength="3" min="0" max ="999" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total Educación Artistica: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="artistica" id="artistica" value="{{$centros->total_artistica}}" type="number"   class="form-control" required placeholder="Ingrese el Total de Docentes de Educación Artistica"  maxlength="3" min="0" max ="999" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Total Intendentes: <strog class="theme_color">*</strog></label>
+										<div class="col-sm-6">
+											<input name="intendente" id="intendente" value="{{$centros->total_intendentes}}" type="number"   class="form-control" required placeholder="Ingrese el Total de Intendentes"  maxlength="3" min="0" max ="999" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-sm-offset-7 col-sm-5">
+											<button onclick="return centros_verifica();"  id="submit3" class="btn btn-primary">Guardar</button>
+											<a href="{{url('/centro_trabajo')}}" class="btn btn-default"> Cancelar</a>
+										</div>
+									</div><!--/form-group--> 
 
 
 
-									</div><!--validator-->
-								</div><!--user-profile-content-->
-							</div><!--step-3-->
+								</div><!--validator-->
+							</div><!--user-profile-content-->
+						</div><!--step-3-->
 
 
 
 
-						</div><!--validator-->
-					</div><!--user-profile-content-->
-				</div><!--step-2-->
+					</div><!--validator-->
+				</div><!--user-profile-content-->
+			</div><!--step-2-->
 
-			</div>
-		</div>  <!--smartwizard-->            
-	</form>
+		</div>
+	</div>  <!--smartwizard-->            
+</form>
 </div><!--/form-horizontal-->
 </div><!--/porlets-content-->
 </div><!--/block-web-->
@@ -446,7 +489,46 @@
               document.getElementById("precio").style.border="1px solid #f00";
               return false;
           }*/
+          if(stepNumber == 0){
+          	var a = document.getElementById('cct').value;
+          	var c = a.length;
+          	var nivel = String(document.getElementById('nivel').value);
 
+
+          	if(c < 10 || c > 10){
+          		swal("Error!", "La CCT Debe ser Igual a 10 Digitos ", "error");
+          		document.getElementById("cct").focus();
+          		return false
+          	}else{
+          		subCadena = a.substring(4,2);
+          		if(subCadena == "DP" || subCadena == "EP" ){
+          			if(nivel == "PREESCOLAR"){
+          				swal("Error!", "Un PREESCOLAR NO PUEDE SER '32DP' Ó '32EP' ", "error");
+          				return false
+          			}else if(nivel == "TELESECUNDARIA") {
+          				swal("Error!", "Una TELESECUNDARIA NO PUEDE SER '32ET' ", "error");
+          				return false
+          			}
+
+          		}else if(subCadena == "ET" ){
+          			if(nivel == "PREESCOLAR"){
+          				swal("Error!", "Un PREESCOLAR NO PUEDE SER '32ET'", "error");
+          				return false
+          			}else if(nivel == "PRIMARIA"){
+          				swal("Error!", "Una PRIMARIA NO PUEDE SER '32ET'", "error");
+          				return false
+          			}
+          		}
+          		else if(subCadena == "EJ" || subCadena == "DJ" ){
+          			if(nivel == "TELESECUNDARIA"){
+          				swal("Error!", "Una TELESECUNDARIA NO PUEDE SER '32EJ' Ó '32DJ' ", "error");
+          				return false
+          			}else if(nivel == "PRIMARIA"){
+          				swal("Error!", "Una PRIMARIA NO PUEDE SER '32EJ' Ó '32DJ' ", "error");
+          				return false
+          			}
+          		}
+          	}}
           if (stepNumber == 3){
           	if (document.getElementById('asignado').value == ""){
           		document.getElementById("error_asig").innerHTML = "Ingrese el Espacio , donde se Enviara la Materia Prima";

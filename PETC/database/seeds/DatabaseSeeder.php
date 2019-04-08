@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CicloEscolarSeeder::class);
         $this->call(RegionSeeder::class);
         $this->call(CatPuestoSeeder::class);
+        $this->call(MunicipiosSeeder::class);
+         $this->call(LocalidadesSeeder::class);
 
 
         // $this->call(UserTableSeeder::class);

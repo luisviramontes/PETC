@@ -419,35 +419,6 @@ function doSearch()
 
 //Validacion empresas de  proveedores
 
-function  validarEmpresa(){
-
- var rfc =document.getElementById('RFC').value;
- var oculto =document.getElementById('oculto').value;
-
- var route = "http://localhost:8000/validarEmpresa/"+rfc;
-
- $.get(route,function(res){
-  if(res.length > 0  &&  res[0].estado =="Inactivo"){
-   document.getElementById('submit').disabled=true;
-   var idEmpresa = res[0].id;
-   document.getElementById("idEmpresa").value= idEmpresa;
-   $("#modal-reactivar").modal();
-
- }
- else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].rfc != oculto )  {
-
-  document.getElementById("errorRFC").innerHTML = "La empresa que  intenta registrar ya existe en el sistema";
-  document.getElementById('submit').disabled=true;
-
-}
-else {
-  document.getElementById("errorRFC").innerHTML = "";
-  document.getElementById('submit').disabled=false;
-
-}
-});
-
-}
    //Aqui termina validacion de  empresas de proveedor
 
    ///////////////////
@@ -564,209 +535,6 @@ function  validarNumeroSerie(){
 
 }
 
-////////////////////////////////////////////////////
-//Validar Empresa CEPROZAC
-/////////////////
-function  validarEmpresaCEPROZAC(){
-
-  var rfc =document.getElementById('rfc').value;
-  var ocultoRFC =document.getElementById('ocultoRFC').value;
-  var route = "http://localhost:8000/validarEmpresasCEPROZAC/"+rfc;
-
-  console.log(ocultoRFC);
-
-  $.get(route,function(res){
-
-    if(res.length > 0  &&  res[0].estado =="Inactivo"){
-     document.getElementById('submit').disabled=true;
-     var idEmpresa = res[0].id;
-     document.getElementById("idEmpresa").value= idEmpresa;
-
-     $("#modal-reactivar").modal();
-
-   }
-   else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].rfc != ocultoRFC )  {
-
-
-    document.getElementById("errorRFC").innerHTML = "La empresa que  intenta registrar ya existe en el sistema";
-    document.getElementById('submit').disabled=true;
-
-  }
-  else {
-
-    document.getElementById("errorRFC").innerHTML = "";
-    document.getElementById('submit').disabled=false;
-
-  }
-});
-
-}
-/////////////////////////
-//Validacion de Cuentas Bancarias de Empresas de Provedores
-////////////////////////
-///Validar numero de cuenta
-function  validarNumeroCuentaEmProvedor(){
-
-  var num_cuenta =document.getElementById('num_cuenta').value;
-
-  var ocultoNumCuenta =document.getElementById('ocultoNumCuenta').value;
-  var route = "http://localhost:8000/validarNumCuenta_Cve_Interbancaria/"+num_cuenta;
-
-
-
-  $.get(route,function(res){
-    console.log(res);
-
-    if(res.length > 0  &&  res[0].estado =="Inactivo"){
-     document.getElementById('submit').disabled=true;
-     var idCuenta = res[0].id;
-     document.getElementById("idCuenta").value= idCuenta;
-
-     $("#modal-reactivar").modal();
-
-   }
-   else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].num_cuenta != ocultoNumCuenta )  {
-
-
-    document.getElementById("errorNumCuenta").innerHTML = "El numero de cuenta que  intenta registrar ya existe en el sistema";
-    document.getElementById('submit').disabled=true;
-
-  }
-  else {
-
-    document.getElementById("errorNumCuenta").innerHTML = "";
-    document.getElementById('submit').disabled=false;
-
-  }
-});
-
-}
-
-////////////////////////////
-///Validar Clave Interbancaria
-
-function  validarNumeroCveInterbancariaEmProvedor(){
-
-  var cve_Interbancaria =document.getElementById('cve_Interbancaria').value;
-  var ocultoCve_Interbancaria =document.getElementById('ocultoCve_Interbancaria').value;
-  var route = "http://localhost:8000/validarNumCuenta_Cve_Interbancaria/"+cve_Interbancaria;
-
-
-
-  $.get(route,function(res){
-    console.log(res);
-
-    if(res.length > 0  &&  res[0].estado =="Inactivo"){
-     document.getElementById('submit').disabled=true;
-     var idCuenta = res[0].id;
-     document.getElementById("idCuenta").value= idCuenta;
-
-     $("#modal-reactivar").modal();
-
-   }
-   else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].cve_interbancaria != ocultoCve_Interbancaria )  {
-
-
-    document.getElementById("errorCveInterbancaria").innerHTML = "La clave interbancaria que  intenta registrar ya existe en el sistema";
-    document.getElementById('submit').disabled=true;
-
-  }
-  else {
-
-    document.getElementById("errorCveInterbancaria").innerHTML = "";
-    document.getElementById('submit').disabled=false;
-
-  }
-});
-
-}
-
-
-////////////////////////////////////////////////////////
-//Validacion de cuentas de CEPROZAC
-////////////////////////////////////////
-
-function  validarNumeroCuentaEmCEPROZAC(){
-
-  var num_cuenta =document.getElementById('num_cuenta').value;
-  var ocultoNumCuenta =document.getElementById('ocultoNumCuenta').value;
-  var route = "http://localhost:8000/validarNumCuenta_Cve_InterbancariaCEPROZAC/"+num_cuenta;
-  console.log(route);
-
-  $.get(route,function(res){
-    console.log(res);
-
-    if(res.length > 0  &&  res[0].estado =="Inactivo"){
-     document.getElementById('submit').disabled=true;
-     var idCuenta = res[0].id;
-     document.getElementById("idCuenta").value= idCuenta;
-
-     $("#modal-reactivar").modal();
-
-   }
-   else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].num_cuenta != ocultoNumCuenta )  {
-
-
-    document.getElementById("errorNumCuenta").innerHTML = "El numero de cuenta que  intenta registrar ya existe en el sistema";
-    document.getElementById('submit').disabled=true;
-
-  }
-  else {
-
-    document.getElementById("errorNumCuenta").innerHTML = "";
-    document.getElementById('submit').disabled=false;
-
-  }
-});
-
-}
-
-////////////////////////////
-///Validar Clave Interbancaria
-
-function  validarNumeroCveInterbancariaEmCEPROZAC(){
-
-  var cve_Interbancaria =document.getElementById('cve_Interbancaria').value;
-  var ocultoCve_Interbancaria =document.getElementById('ocultoCve_Interbancaria').value;
-  var route = "http://localhost:8000/validarNumCuenta_Cve_InterbancariaCEPROZAC/"+cve_Interbancaria;
-
-
-
-  $.get(route,function(res){
-
-
-    if(res.length > 0  &&  res[0].estado =="Inactivo"){
-     document.getElementById('submit').disabled=true;
-     var idCuenta = res[0].id;
-     document.getElementById("idCuenta").value= idCuenta;
-
-     $("#modal-reactivar").modal();
-
-   }
-   else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].cve_interbancaria != ocultoCve_Interbancaria )  {
-
-
-    document.getElementById("errorCveInterbancaria").innerHTML = "La clave interbancaria que  intenta registrar ya existe en el sistema";
-    document.getElementById('submit').disabled=true;
-
-  }
-  else {
-
-    document.getElementById("errorCveInterbancaria").innerHTML = "";
-    document.getElementById('submit').disabled=false;
-
-  }
-});
-
-}
-
-
-
-
-
-////////////////////////////////////////////
-///Validar  Empleado Normal
-////////////////////////////////////////
 
 
 function  validarCURP(){
@@ -930,28 +698,59 @@ function claves() {
  arregloDeSubCadenas = cantidadtotal.split(separador, limite);
  cct=arregloDeSubCadenas[0];
  escuela=arregloDeSubCadenas[1];
-alert(escuela);
-document.getElementById('escuela').value=escuela;
+ document.getElementById('escuela').value=escuela;
 }
+
+
 
 function centros_verifica(){
   var x = parseInt(document.getElementById('alumnos').value);
   var y = parseInt(document.getElementById('ninos').value);
   var z = parseInt(document.getElementById('ninas').value);
-  var a = document.getElementById('cct').value;
-  var c = a.length;
+
+  var nivel = String(document.getElementById('nivel').value);
+  var grupo = parseInt(document.getElementById('grupos').value);
+  var total_int_prees = Math.ceil(grupo / 3);
+  var total_int_prima = Math.ceil(grupo / 6);
   var suma = y +z;
 
-
+  var int = parseInt(document.getElementById('intendente').value);
   if(x > suma || x < suma){
    swal("Error!", "La Suma Total de Alumnos, debe ser Igual que la Suma de Niños y Niñas ", "error");
    document.getElementById('alumnos').focus();
    return false
  }
 
- if(c < 10 || c > 10){
-     swal("Error!", "La CCT Debe ser Igual a 10 Digitos ", "error");
- return false
- }
+ if (nivel == "PREESCOLAR" &&  int > total_int_prees){
+  swal("Error!", "El Número Maximo de Intendentes Permitidos En PREESCOLARES es de 1 por Cada 3 Grupos", "error");
+  return false
+  document.getElementById("intendente").focus();
+}
+  else if(nivel == "PRIMARIA" && int > total_int_prima ){
+  swal("Error!", "El Número Maximo de Intendentes Permitidos En PRIMARIAS es de 1 por Cada 6 Grupos", "error");
+  return false
+  document.getElementById("intendente").focus();
+}
+else if (nivel == "TELESECUNDARIA" &&  int > total_int_prees){
+  swal("Error!", "El Número Maximo de Intendentes Permitidos En TELESECUNDARIAS es de 1 por Cada 3 Grupos", "error");
+  return false
+  document.getElementById("intendente").focus();
+}
+
+if(grupo == 1){
+  document.getElementById('organizacion').value = "UNITARIA";
+}else if(grupo == 2){
+  document.getElementById('organizacion').value = "BIDOCENTE";
+}else if(grupo == 3){
+  document.getElementById('organizacion').value = "TRIDOCENTE";
+}else if(grupo == 4){
+  document.getElementById('organizacion').value = "TETRADOCENTE";
+}else if(grupo == 5){
+  document.getElementById('organizacion').value = "PENTADOCENTE";
+}else if(grupo >= 6 ){
+  document.getElementById('organizacion').value = "COMPLETA";
+}
+
+
 
 }
