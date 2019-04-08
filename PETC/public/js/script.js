@@ -954,4 +954,10 @@ function centros_verifica(){
  return false
  }
 
+function regiones (){
+  
+
+  }
+}
+
 }
