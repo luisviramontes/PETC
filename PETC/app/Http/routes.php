@@ -27,6 +27,13 @@ Route::get('descargar-ciclo-escolar', 'CicloEscolarController@excel')->name('nom
 Route::get('pdf_cicloescolar/{id}', array('as'=> '/pdf_cicloescolar','uses'=>'CicloEscolarController@invoice'));
 /////////////////////////////////////////////
 
+//////////////////////Region///////////////////////7
+Route::resource('region', 'RegionController');
+Route::get('descargar-region', 'RegionController@excel')->name('nomina.region.excel');
+Route::get('pdf_region/{id}', array('as'=> '/pdf_region','uses'=>'RegionController@invoice'));
+///////////////////////////////////////////////////
+
+Route::response('solicitudes','SolicitudesController');
 
 Route::resource('bajas_contrato', 'BajasContratoController');
 
