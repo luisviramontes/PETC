@@ -44,6 +44,8 @@ Route::resource('captura', 'CapturaController');
 ///CENTRO DE TRABAJO
 Route::resource('centro_trabajo', 'CentroTrabajoController');
 Route::get('descargar-centros-trabajo', 'CentroTrabajoController@excel')->name('nomina.centro_trabajo.excel');
+Route::get('pdf_centros_trabajo', array('as'=> '/pdf_centros_trabajo','uses'=>'CentroTrabajoController@invoice'));
+Route::get('verInformacion/{id}', array('as'=> '/verInformacion','uses'=>'CentroTrabajoController@verInformacion'));
 
 
 Route::resource('datos_centro_trabajo', 'DatosCentroTrabajoController');
