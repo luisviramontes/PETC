@@ -93,6 +93,7 @@ class CentroTrabajoController extends Controller
             $datos->alimentacion=$formulario->get('alimentacion');
             $datos->estado="ACTIVO";
             $datos->save();
+
             $ultimo = CentroTrabajoModel::orderby('created_at','DESC')->first()->id;
             $datos2->total_alumnos=$formulario->get('alumnos');
             $datos2->total_ninas=$formulario->get('ninas');
@@ -160,8 +161,41 @@ class CentroTrabajoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pago=TabuladorPagosModel::findOrFail($id);
-        print_r($id);
+        $datos=CentroTrabajoModel::findOrFail($id);
+
+        $datos->cct=$request->get('cct');
+        $datos->nombre_escuela=$request->get('nombre');
+        $datos->domicilio=$request->get('domicilio');
+        $datos->id_localidades=$request->get('localidad');
+        $datos->id_municipios=$request->get('municipio');
+        $datos->id_region=$request->get('region');
+        $datos->captura="ADMINISTRADOR";
+        $datos->telefono=$request->get('telefono');
+        $datos->email=$request->get('email');
+        $datos->ciclo_escolar=$request->get('ciclo');
+        $datos->entrego_carta=$request->get('carta_compromiso');
+        $datos->alimentacion=$request->get('alimentacion');
+        $datos->estado="ACTIVO";
+        $datos->update();
+
+        $id_datos=DB::table('datos_centro_trabajo')->where('id_centro_trabajo','=',$id)->first();
+        $datos2=DatosCentroTrabajoModel::findOrFail($id_datos->id);
+        $datos2->total_alumnos=$request->get('alumnos');
+        $datos2->total_ninas=$request->get('ninas');
+        $datos2->total_ninos=$request->get('ninos');
+        $datos2->total_grupos=$request->get('grupos');
+        $datos2->total_grados=$request->get('grados');
+        $datos2->total_directores=$request->get('director');
+        $datos2->total_docentes=$request->get('docente');
+        $datos2->total_fisica=$request->get('e_fisica');
+        $datos2->total_usaer=$request->get('usaer');
+        $datos2->total_artistica=$request->get('artistica');
+        $datos2->total_intendentes=$request->get('intendente');
+        $datos2->id_centro_trabajo=$id;
+        $datos2->fecha_ingreso=$request->get('ingreso');
+        $datos2->captura="ADMINISTRADOR";
+        $datos2->update();
+        return Redirect::to('centro_trabajo');
         //
     }
 
