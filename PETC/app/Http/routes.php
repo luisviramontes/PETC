@@ -33,8 +33,11 @@ Route::get('descargar-region', 'RegionController@excel')->name('nomina.region.ex
 Route::get('pdf_region/{id}', array('as'=> '/pdf_region','uses'=>'RegionController@invoice'));
 ///////////////////////////////////////////////////
 
+///////////////////Solicitudes/////////////////////////////7
 Route::resource('solicitudes','SolicitudesController');
-
+Route::get('descargar-solicitudes', 'SolicitudesController@excel')->name('nomina.solicitudes.excel');
+Route::get('pdf_solicitudes/{id}', array('as'=> '/pdf_solicitudes','uses'=>'SolicitudesController@invoice'));
+//////////////////////////////////////////////////////////////
 Route::resource('bajas_contrato', 'BajasContratoController');
 
 Route::resource('cambios_cct', 'CambiosCctController');

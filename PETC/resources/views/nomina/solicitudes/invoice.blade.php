@@ -2,9 +2,10 @@
 <html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Regiones</title>
+  <title>Solicitudes</title>
   <link rel="stylesheet" href="css/plantilla.css" media="all" />
   <style media="screen">
+
   </style>
 </head>
 <body>
@@ -18,7 +19,7 @@
 
 
 
-    <h1>Regiones: </h1>
+    <h1>Solicitudes: </h1>
     <div id="project" >
       <div><span> Programa</span> PROGRAMA ESCUELAS DE TIEMPO COMPLETO</div>
       <div><span>Área: </span> Nomina y Sistemas</div>
@@ -36,16 +37,29 @@
     <table name="table_producto" id="table_producto" border="0" cellspacing="0" cellpadding="0">
       <thead>
         <tr>
-          <th>Region</th>
-          <th>Sostenimiento</th>
+          <th>CCT</th>
+          <th>Nombre de la Escuela</th>
+          <th>Municipio</th>
+          <th>Localidad</th>
+          <th>Domicilio</th>
+          <th>Nivel</th>
+          <th>Fecha Recepcion</th>
+
+
 
         </tr>
       </thead>
       <tbody>
-        @foreach($regiones as $region)
+        @foreach($solicitudes as $solicitud)
         <tr>
-          <td>{{$region->region}}</td>
-          <td>{{$region->sostenimiento}}</td>
+          <td>{{$solicitud->cct}} </td>
+          <td>{{$solicitud->nombre_escuela}}</td>
+          <td>{{$solicitud->municipio}}</td>
+          <td>{{$solicitud->nom_loc}}</td>
+          <td>{{$solicitud->domicilio}}</td>
+          <td>{{$solicitud->nivel}}</td>
+          <td>{{$solicitud->fecha_recepcion}}</td>
+
 
 
 
@@ -56,8 +70,8 @@
 
       </tfoot>
     </table>
-        <div><?php echo DNS2D::getBarcodeHTML('{$entrada->region}', "QRCODE",3,3);?></div>
+        <div><?php echo DNS2D::getBarcodeHTML('{$entrada->solicitudes}', "QRCODE",3,3);?></div>
 <br/>
-        <div><?php echo DNS1D::getBarcodeHTML('{$entrada->region', "C128",1,40);?></div>
+        <div><?php echo DNS1D::getBarcodeHTML('{$entrada->solicitudes', "C128",1,40);?></div>
   </body>
   </html>

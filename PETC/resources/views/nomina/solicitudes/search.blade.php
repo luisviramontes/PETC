@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['region.index'],'method' => 'GET','autocomplete'=>'off','role'=>'search']) !!}
+{!! Form::open(['route' => ['solicitudes.index'],'method' => 'GET','autocomplete'=>'off','role'=>'search']) !!}
 <div class="form-group">
 	<div class="input-group">
 		<div class="form-group">

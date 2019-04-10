@@ -1,10 +1,10 @@
 ////////////////Solicitudes////////////////////
-function fnFormatDetails_cat ( oTable, nTr )
+function fnFormatDetails_soli ( oTable, nTr )
 {
     var aData = oTable.fnGetData( nTr );
     var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
 
-    sOut += '<tr><td><strong>Entrego Carta:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Entrego Acta:</strong></td><td>'+aData[1]+' </td></tr>';
     sOut += '<tr><td><strong>Solicitud Incorporacion:</strong></td><td>'+aData[2]+' </td></tr>';
     sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[3]+' </td></tr>';
     sOut += '<tr><td><strong>Nombre Escuela:</strong></td><td>'+aData[4]+' </td></tr>';
@@ -19,9 +19,8 @@ function fnFormatDetails_cat ( oTable, nTr )
     sOut += '<tr><td><strong>Acta CPS:</strong></td><td>'+aData[13]+' </td></tr>';
     sOut += '<tr><td><strong>Acta CTCS:</strong></td><td>'+aData[14]+' </td></tr>';
     sOut += '<tr><td><strong>Tramite Estado:</strong></td><td>'+aData[15]+' </td></tr>';
-    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[16]+' </td></tr>';
-    sOut += '<tr><td><strong>Fecha de Recepcion:</strong></td><td>'+aData[17]+' </td></tr>';
-    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[18]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Recepcion:</strong></td><td>'+aData[16]+' </td></tr>';
+    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[17]+' </td></tr>';
 
 
 
@@ -32,7 +31,7 @@ function fnFormatDetails_cat ( oTable, nTr )
 
 $(document).ready(function() {
 
-    $('#dynamic-table1').dataTable( {
+    $('#dynamic-table7').dataTable( {
         "aaSorting": [[ 4, "desc" ]]
     } );
 
@@ -44,18 +43,18 @@ $(document).ready(function() {
      nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
      nCloneTd.className = "center";
 
-     $('#hidden-table-info_cat_puesto thead tr').each( function () {
+     $('#hidden-table-info_solicitudes thead tr').each( function () {
         this.insertBefore( nCloneTh, this.childNodes[0] );
     } );
 
-     $('#hidden-table-info_cat_puesto tbody tr').each( function () {
+     $('#hidden-table-info_solicitudes tbody tr').each( function () {
         this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
     } );
 
     /*
      * Initialse DataTables, with no sorting on the 'details' column
      */
-     var oTable = $('#hidden-table-info_cat_puesto').dataTable( {
+     var oTable = $('#hidden-table-info_solicitudes').dataTable( {
         "aoColumnDefs": [
         { "bSortable": false, "aTargets": [ 0 ] }
         ],
@@ -66,7 +65,7 @@ $(document).ready(function() {
      * Note that the indicator for showing which row is open is not controlled by DataTables,
      * rather it is done here
      */
-     $('#hidden-table-info_cat_puesto tbody td img').click(function () {
+     $('#hidden-table-info_solicitudes tbody td img').click(function () {
         var nTr = $(this).parents('tr')[0];
         if ( oTable.fnIsOpen(nTr) )
         {
@@ -78,7 +77,7 @@ $(document).ready(function() {
         {
             /* Open this row */
             this.src = "plugins/advanced-datatable/images/details_close.png";
-            oTable.fnOpen( nTr, fnFormatDetails_cat(oTable, nTr), 'details' );
+            oTable.fnOpen( nTr, fnFormatDetails_soli(oTable, nTr), 'details' );
         }
     } );
  } );

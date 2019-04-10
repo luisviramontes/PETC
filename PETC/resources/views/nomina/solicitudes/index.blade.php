@@ -2,8 +2,8 @@
 @section('contenido')
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
-		<h1>Region </h1>
-		<h2 class="">Region</h2>
+		<h1>Solicitudes de Ingreso </h1>
+		<h2 class="">Solicitudes de Ingreso</h2>
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
@@ -21,17 +21,17 @@
 						<div class="col-sm-7">
 							<div class="actions"> </div>
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Solicitudes</strong></h2>
-								<!--	@include('nomina.region.search')-->
+								@include('nomina.solicitudes.search')
 			</div>
 						<div class="col-md-5">
 							<div class="btn-group pull-right">
 								<b>
 
 									<div class="btn-group" style="margin-right: 10px;">
-								<!--			<a class="btn btn-sm btn-success tooltips" href="{{ route('region.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Region"> <i class="fa fa-plus"></i> Registrar </a>
-											<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.region.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-											<a class="btn btn-primary btn-sm" href="{{URL::action('RegionController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
-										-->
+											<a class="btn btn-sm btn-success tooltips" href="{{ route('solicitudes.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Solicitud"> <i class="fa fa-plus"></i> Registrar </a>
+											<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.solicitudes.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+										<a class="btn btn-primary btn-sm" href="{{URL::action('SolicitudesController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+
 									</div>
 
 								</a>
@@ -43,28 +43,27 @@
 
 			<div class="porlets-content">
 				<div class="table-responsive">
-					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered" id="dynamic-table">
+					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered " id="hidden-table-info_solicitudes">
 						<thead>
 							<tr>
 
-								<th>Carta </th>
-								<th>Solicitud de Incorporacion</th>
+								<th style="display:none;">Entrego Acta</th>
+								<th style="display:none;">Solicitud de Incorporacion</th>
 								<th>CCT</th>
 								<th>Nombre de la Escuela</th>
 								<th>Municipio</th>
 								<th>Localidad</th>
 								<th>Domicilio</th>
 								<th>Nivel</th>
-								<th>PNPSVD</th>
-								<th>CNH</th>
-								<th>Carta Compromiso</th>
-								<th>Acta Constitutiva</th>
-								<th>Acta CPS</th>
-								<th>Acta CTCS</th>
+								<th style="display:none;">PNPSVD</th>
+								<th style="display:none;">CNH</th>
+								<th style="display:none;">Carta Compromiso</th>
+								<th style="display:none;">Acta Constitutiva</th>
+								<th style="display:none;">Acta CPS</th>
+								<th style="display:none;">Acta CTCS</th>
 								<th>Tramite Estado</th>
-								<th>Estado</th>
 								<th>Fecha Recepcion</th>
-								<th>Capturo</th>
+								<th style="display:none;">Capturo</th>
 
 
 
@@ -76,42 +75,40 @@
 						@foreach($solicitudes  as $solicitud)
 							<tr class="gradeX">
 
-								<td>{{$solicitud->entrego_carta}} </td>
-								<td>{{$solicitud->solicitud_inco}} </td>
+								<td style="display:none;">{{$solicitud->entrego_acta}} </td>
+								<td style="display:none;">{{$solicitud->solicitud_inco}} </td>
 								<td>{{$solicitud->cct}} </td>
 								<td>{{$solicitud->nombre_escuela}}</td>
 								<td>{{$solicitud->municipio}}</td>
-								<td>{{$solicitud->localidad}}</td>
+								<td>{{$solicitud->nom_loc}}</td>
 								<td>{{$solicitud->domicilio}}</td>
 								<td>{{$solicitud->nivel}}</td>
-								<td>{{$solicitud->pnpsvd}}</td>
-								<td>{{$solicitud->cnh}}</td>
-								<td>{{$solicitud->carta_compromiso}}</td>
-								<td>{{$solicitud->acta_constitutiva_cte}}</td>
-								<td>{{$solicitud->acta_cps}}</td>
-								<td>{{$solicitud->acta_ctcs}}</td>
+								<td style="display:none;">{{$solicitud->pnpsvd}}</td>
+								<td style="display:none;">{{$solicitud->cnh}}</td>
+								<td style="display:none;">{{$solicitud->carta_compromiso}}</td>
+								<td style="display:none;">{{$solicitud->acta_constitutiva_cte}}</td>
+								<td style="display:none;">{{$solicitud->acta_cps}}</td>
+								<td style="display:none;">{{$solicitud->acta_ctcs}}</td>
 								<td>{{$solicitud->tramite_estado}}</td>
-								<td>{{$solicitud->estado}}</td>
 								<td>{{$solicitud->fecha_recepcion}}</td>
-								<td>{{$solicitud->captura}}</td>
+								<td style="display:none;">{{$solicitud->captura}}</td>
 
 
 								<td>
 									<center>
-								<!--		<a href="{{URL::action('RegionController@edit',$region->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
-								-->
+										<a href="{{URL::action('SolicitudesController@edit',$solicitud->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
 									</center>
 								</td>
 								<td>
 									<center>
-								<!--		<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$region->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
-								-->
+										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$solicitud->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+
 									</center>
 									</td>
 								</td>
 							</tr>
-						<!--	@include('nomina.region.modal')
- 						-->
+							@include('nomina.solicitudes.modal')
 							@endforeach
 						</tbody>
 						<!--<tfoot>
