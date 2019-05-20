@@ -33,18 +33,13 @@ Route::get('descargar-region', 'RegionController@excel')->name('nomina.region.ex
 Route::get('pdf_region/{id}', array('as'=> '/pdf_region','uses'=>'RegionController@invoice'));
 ///////////////////////////////////////////////////
 
-<<<<<<< HEAD
-Route::resource('solicitudes','SolicitudesController');
-
-=======
 ///////////////////Solicitudes/////////////////////////////7
 Route::resource('solicitudes','SolicitudesController');
 Route::get('descargar-solicitudes', 'SolicitudesController@excel')->name('nomina.solicitudes.excel');
 Route::get('pdf_solicitudes/{id}', array('as'=> '/pdf_solicitudes','uses'=>'SolicitudesController@invoice'));
 //////////////////////////////////////////////////////////////
->>>>>>> eeadbc41c15890424660476679ad909c3d1ab0b0
-Route::resource('bajas_contrato', 'BajasContratoController');
 
+Route::resource('bajas_contrato', 'BajasContratoController');
 Route::resource('cambios_cct', 'CambiosCctController');
 
 //CAPTURA PERSONAL

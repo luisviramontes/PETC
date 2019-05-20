@@ -510,10 +510,7 @@ if(grupo == 1){
   document.getElementById('organizacion').value = "COMPLETA";
 }
 }
-<<<<<<< HEAD
 
-function regiones (){
-=======
 
 //////////////////////////////////////////////////7/*Validaciones Nomina capturada*/////////////////////////////////////////7
 
@@ -525,12 +522,17 @@ function activar_button(){
 		document.getElementById('submit8').disabled=true;
 	}
 }
->>>>>>> eeadbc41c15890424660476679ad909c3d1ab0b0
 
 function valida_file(){
-	if( document.getElementById("file").files.length == 0 ){
+  if( document.getElementById("file").files.length == 0 ){
 
-<<<<<<< HEAD
+    swal("ERROR!","No se ha seleccionado ninguna Nomina.","error");
+    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+    return false
+  }else{
+
+  }
+
 }
 
 //Función para validar un RFC
@@ -742,8 +744,6 @@ function validarInput(input) {
   document.getElementById("docente_cubrir").required = false;
 
 }else if(aux == "REINCORPORACION"){
-
-
   document.getElementById('docente_cu').style.display = 'none';
   document.getElementById('docente_cubrir').required = false;
   var route2 = "http://localhost:8000/validarnuevor/"+cct+"/"+categoria;
@@ -792,33 +792,46 @@ function validarInput(input) {
 
     }
   });
-
-  
-}     
-document.getElementById("docente_cubrir").required = false;
-=======
-		swal("ERROR!","No se ha seleccionado ninguna Nomina.","error");
-		//document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
-		return false
-	}else{
-
-	}
-
->>>>>>> eeadbc41c15890424660476679ad909c3d1ab0b0
 }
+}
+
+
+
+
 // Inside Document Ready
 function valida_nomina(){
-		var x = document.getElementById('file').value;
-	var qna= document.getElementById("qna").value;
-	var sostenimiento= document.getElementById("sostenimiento").value;
-	var tipo= document.getElementById("tipo").value;
-	var route = "http://localhost:8000/validar_nomina/"+qna+"/"+sostenimiento+"/"+tipo;
-	var aux=0;
+  var x = document.getElementById('file').value;
+  var qna= document.getElementById("qna").value;
+  var sostenimiento= document.getElementById("sostenimiento").value;
+  var tipo= document.getElementById("tipo").value;
+  var route = "http://localhost:8000/validar_nomina/"+qna+"/"+sostenimiento+"/"+tipo;
+  var aux=0;
 
 
-	$.get(route,function(res){
+  $.get(route,function(res){
 
-<<<<<<< HEAD
+    if(res.length > 0 ){
+      for (var i=0; i < res.length; i++){
+        if(res[i].estado=="ACTIVO" && x == "" || res[i].estado=="ACTIVO" && x != "" ){
+
+
+          document.getElementById('submit8').disabled=true;
+          swal("ERROR!","La Quincena que intenta registrar ya ha sido insertada anteriormente","error");
+          //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+          return false
+        }
+
+      }
+    }else if(x != ""){
+
+      document.getElementById('submit8').disabled=false;
+  //valida_file();
+}
+
+});
+//  valida_file();
+}
+
 function limpiar_input(){
   var x = document.getElementById('docente_cubrir');
   if (x.length > 0){
@@ -874,32 +887,8 @@ function limpiar_input(){
   var x =document.getElementById('ciclo_escolar').value;
   var y =document.getElementById('id_personal').value;
 
-location.href="http://localhost:8000/ver_datoscaptura/"+y+"/"+x;
-
-
-
-=======
-			if(res.length > 0 ){
-				for (var i=0; i < res.length; i++){
-					if(res[i].estado=="ACTIVO" && x == "" || res[i].estado=="ACTIVO" && x != "" ){
-
-
-	document.getElementById('submit8').disabled=true;
-						swal("ERROR!","La Quincena que intenta registrar ya ha sido insertada anteriormente","error");
-					//	document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
-						return false
-					}
-
-				}
-			}else if(x != ""){
-
-					document.getElementById('submit8').disabled=false;
-	//valida_file();
-			}
-
-	});
-//	valida_file();
->>>>>>> eeadbc41c15890424660476679ad909c3d1ab0b0
+  location.href="http://localhost:8000/ver_datoscaptura/"+y+"/"+x;
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
