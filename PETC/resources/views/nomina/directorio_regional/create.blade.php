@@ -103,77 +103,91 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="nombre_enlace" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="" onchange="mayus(this)" />
+								<input name="nombre_enlace" id="nombre_enlace" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre_enlace')}}" onchange="mayus(this)" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Telefono: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="telefono" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="" />
+								<input name="telefono" type="number" id="telefono" placeholder="xxx-xxx-xx-xx" maxlength="10" onkeypress="soloNumeros(event)"   class="form-control" required value="{{Input::old('telefono')}}" />
+								<div class="help-block with-errors"></div>
+							<div class="text-danger" id='error_telefono'>{{$errors->formulario->first('telefono')}}</div>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ext1 Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext1_enlace" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="" />
+								<input name="ext1_enlace" type="number" id="ext1_enlace" placeholder="xxxx" maxlength="4" onkeypress="soloNumeros(event)"   class="form-control" required value="{{Input::old('ext1_enlace')}}" />
+								<div class="help-block with-errors"></div>
+							<div class="text-danger" id='error_ext1_enlace'>{{$errors->formulario->first('ext1_enlace')}}</div>
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Ext2 Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext2_enlace" type="number"  onkeypress="soloNumeros(event)"  class="form-control" required value="" />
+								<input name="ext2_enlace" type="number" id="ext2_enlace" placeholder="xxxx" maxlength="4" onkeypress="soloNumeros(event)"  class="form-control" required value="{{Input::old('ext2_enlace')}}" />
+								<div class="help-block with-errors"></div>
+							<div class="text-danger" id='error_ext2_enlace'>{{$errors->formulario->first('ext2_enlace')}}</div>
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Correo Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="correo_enlace" type="email" placeholder="usuario@correo.com"  class="form-control" required value="" />
+								<input name="correo_enlace" type="email" id="correo_enlace" placeholder="usuario@correo.com"  class="form-control" required value="{{Input::old('correo_enlace')}}" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Director Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="director_regional" type="text" onchange="mayus(this)" onkeypress="return soloLetras(event)"  class="form-control" required value="" />
+								<input name="director_regional" type="text" id="director_regional" onchange="mayus(this)" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('director_regional')}}" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Telefono Director: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="telefono_director" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="" />
+								<input name="telefono_director" id="telefono_director" placeholder="xxx-xxx-xx-xx" type="number" maxlength="10" onkeypress="soloNumeros(event)"   class="form-control" required value="{{Input::old('telefono_director')}}" />
+								<div class="help-block with-errors"></div>
+							<div class="text-danger" id='error_telefono_director'>{{$errors->formulario->first('telefono_director')}}</div>
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Financiero Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="financiero_regional" type="text" onchange="mayus(this)" onkeypress="return soloLetras(event)"  class="form-control" required value="" />
+								<input name="financiero_regional" type="text" id="financiero_regional" onchange="mayus(this)" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('financiero_regional')}}" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Telefono Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="telefono_regional" type="number" onkeypress="soloNumeros(event)"  class="form-control" required value="" />
+								<input name="telefono_regional" type="number" id="telefono_regional" maxlength="10" placeholder="xxx-xxx-xx-xx" onkeypress="soloNumeros(event)"  class="form-control" required value="{{Input::old('telefono_regional')}}" />
+								<div class="help-block with-errors"></div>
+							<div class="text-danger" id='error_telefono_regional'>{{$errors->formulario->first('telefono_regional')}}</div>
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Extencion Regional 1: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext_reg_1" type="number" onkeypress="soloNumeros(event)"  class="form-control" required value="" />
+								<input name="ext_reg_1" type="number" id="ext_reg_1" maxlength="4" placeholder="xxxx" onkeypress="soloNumeros(event)"  class="form-control" required value="{{Input::old('ext_reg_1')}}" />
+								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_ext_reg_1'>{{$errors->formulario->first('ext_reg_1')}}</div>
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Extencion Regional 2: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext_reg_2" type="number" onkeypress="soloNumeros(event)"  class="form-control" required value="" />
+								<input name="ext_reg_2" type="number" id="ext_reg_2" maxlength="4" placeholder="xxxx" onkeypress="soloNumeros(event)"  class="form-control" required value="{{Input::old('ext_reg_2')}}" />
+								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_ext_reg_2'>{{$errors->formulario->first('ext_reg_2')}}</div>
 							</div>
 						</div>
 

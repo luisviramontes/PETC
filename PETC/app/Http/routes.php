@@ -56,13 +56,16 @@ Route::resource('datos_centro_trabajo', 'DatosCentroTrabajoController');
 Route::resource('directorio_regional', 'DirectorioRegionalController');
 Route::get('descargar-directorio-regional', 'DirectorioRegionalController@excel')->name('nomina.directorio_regional.excel');
 Route::get('pdf_directorioregional/{id}', array('as'=> '/pdf_directorioregional','uses'=>'DirectorioRegionalController@invoice'));
-
+///////////////////////////////////////////////////////////////////////////////
 
 
 Route::resource('extencion_contrato', 'ExtencionContratoController');
 
+///////////////////////Fortalecimiento///////////////////////////7
 Route::resource('fortalecimiento', 'FortalecimientoController');
-
+Route::get('descargar-fortalecimiento', 'FortalecimientoController@excel')->name('nomina.fortalecimiento.excel');
+Route::get('pdf_fortalecimiento/{id}', array('as'=> '/pdf_fortalecimiento','uses'=>'FortalecimientoController@invoice'));
+////////////////////////////////////////////////////////////////////7
 Route::resource('inasistencias', 'InasistenciasController');
 
 ////////////listas de asisrencias////////////////
@@ -71,10 +74,30 @@ Route::resource('listas_asistencias', 'ListasAsistenciasController');
 Route::get('descargar-listas-asistencias', 'ListasAsistenciasController@excel')->name('nomina.listas_asistencias.excel');
 Route::get('pdf_listasasistencias/{id}', array('as'=> '/pdf_listasasistencias','uses'=>'ListasAsistenciasController@invoice'));
 
-
+//////////////////nomina estatal////////////////////////////////
 Route::resource('nomina_estatal', 'NominaEstatalController');
+Route::post('importExcel', 'NominaEstatalController@importExcel');
+////////////////////////////////////////////////////////////////
 
+//////////////////nomina Capturada Estatal////////////////////////////////
+Route::resource('nomina_capturada', 'NominaCapturadaController');
+Route::get('descargar-nominas-capturadas', 'NominaCapturadaController@excel')->name('nomina.nomina_capturada.excel');
+Route::get('pdf_nomina_capturada/{id}', array('as'=> '/pdf_nomina_capturada','uses'=>'NominaCapturadaController@invoice'));
+Route::get('validar_nomina/{qna}/{sostenimiento}/{tipo}','NominaCapturadaController@validar_nomina');
+Route::get('verInformacion/{id}', array('as'=> '/verInformacion','uses'=>'NominaFederalController@verInformacion'));
+
+////////////////////////////////////////////////////////////////
+
+////////////////Nomina Federañ//////////////////////////7
 Route::resource('nomina_federal', 'NominaFederalController');
+Route::post('importExcel', 'NominaFederalController@importExcel');
+Route::get('pdf_bancos/{id}', array('as'=> '/pdf_bancos','uses'=>'BancosController@invoice'));
+////////////////////////////////////////////////////////////////
+
+////////////BANCOS////////////////////////////////////////////////7
+Route::resource('bancos', 'BancosController');
+Route::get('descargar-bancos', 'BancosController@excel')->name('nomina.bancos.excel');
+///////////////////////////////////////////////////////////////////
 
 Route::resource('personal', 'PersonalController');
 

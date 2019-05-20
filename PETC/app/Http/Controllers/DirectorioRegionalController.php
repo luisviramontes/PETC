@@ -15,6 +15,7 @@ use PHPExcel_Worksheet_Drawing;
 use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
+use petc\Http\Requests\DirectorioRegionalRequest;
 
 
 class DirectorioRegionalController extends Controller
@@ -26,17 +27,17 @@ class DirectorioRegionalController extends Controller
      */
     public function index(Request $request)
     {
-      $region = $request->get('region');
-
-    $sostenimiento = $request->get('sostenimiento');
-
-    $nombre_enlace = $request->get('nombre_enlace');
-
-    $directorio_regional = DirectorioRegionalModel::orderBy('id', 'DESC')
-                ->region($region)
-               ->sostenimiento($sostenimiento)
-                //->nombre_enlace($nombre_enlace)
-              ->paginate(24);
+      if($request)
+      {
+       $query=trim($request->GET('searchText'));
+       $directorio_regional = DB::table('directorio_regional')
+       ->where('region','LIKE','%'.$query.'%')
+       ->orwhere('sostenimiento','LIKE','%'.$query.'%')
+       ->orwhere('nombre_enlace','LIKE','%'.$query.'%')
+       ->orwhere('director_regional','LIKE','%'.$query.'%')
+       ->orwhere('financiero_regional','LIKE','%'.$query.'%')
+       ->paginate(24);
+      }
     return view('nomina.directorio_regional.index',['directorio_regional' => $directorio_regional]);
 
     }
@@ -65,23 +66,32 @@ class DirectorioRegionalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DirectorioRegionalRequest $formulario)
     {
+      $validator = Validator::make(
+      $formulario->all(),
+      $formulario->rules(),
+      $formulario->messages());
+
+      if ($formulario->ajax()){
+        return response()->json(["valid" => true], 200);
+      }else{
       $directorio= new DirectorioRegionalModel;
-      $directorio -> region = $request ->region;
-      $directorio -> sostenimiento = $request ->sostenimiento;
-      $directorio -> nombre_enlace=$request ->nombre_enlace;
-      $directorio -> telefono=$request->telefono;
-      $directorio -> ext1_enlace=$request ->ext1_enlace;
-      $directorio -> ext2_enlace=$request ->ext2_enlace;
-      $directorio -> correo_enlace=$request ->correo_enlace;
-      $directorio -> director_regional=$request ->director_regional;
-      $directorio -> telefono_director=$request ->telefono_director;
-      $directorio -> financiero_regional=$request ->financiero_regional;
-      $directorio -> telefono_regional=$request ->telefono_regional;
-      $directorio -> ext_reg_1=$request ->ext_reg_1;
-      $directorio -> ext_reg_2=$request ->ext_reg_2;
-      $directorio -> captura="Administrador";
+      $directorio -> region = $formulario ->region;
+      $directorio -> sostenimiento = $formulario ->sostenimiento;
+      $directorio -> nombre_enlace=$formulario ->nombre_enlace;
+      $directorio -> telefono=$formulario->telefono;
+      $directorio -> ext1_enlace=$formulario ->ext1_enlace;
+      $directorio -> ext2_enlace=$formulario ->ext2_enlace;
+      $directorio -> correo_enlace=$formulario ->correo_enlace;
+      $directorio -> director_regional=$formulario ->director_regional;
+      $directorio -> telefono_director=$formulario ->telefono_director;
+      $directorio -> financiero_regional=$formulario ->financiero_regional;
+      $directorio -> telefono_regional=$formulario ->telefono_regional;
+      $directorio -> ext_reg_1=$formulario ->ext_reg_1;
+      $directorio -> ext_reg_2=$formulario ->ext_reg_2;
+      $directorio -> estado="ACTIVO";
+      $directorio -> captura="ADMINISTRADOR";
 
 
 
@@ -95,15 +105,13 @@ class DirectorioRegionalController extends Controller
       return view('director_regional.index');
       }
 
+     }
     }
 
     //convertir y descargar pdf
 
     public function invoice($id){
         $directorio_regional= DB::table('directorio_regional')->get();
-      //    $directorio_regional= DB::table('tabulador_pagos')->where('ciclo','=',$id)->first();
-         //$material   = AlmacenMaterial:: findOrFail($id);
-        //$customPaper = array(0,0,567.00,283.80);
         $date = date('Y-m-d');
         $invoice = "2222";
        // print_r($materiales);
@@ -165,7 +173,8 @@ class DirectorioRegionalController extends Controller
         $directorio -> telefono_regional=$request ->telefono_regional;
         $directorio -> ext_reg_1=$request ->ext_reg_1;
         $directorio -> ext_reg_2=$request ->ext_reg_2;
-        $directorio -> captura="Administrador";
+        $directorio -> estado="ACTIVO";
+        $directorio -> captura="ADMINISTRADOR";
         //guardar
         if($directorio->save()){
 
@@ -184,8 +193,11 @@ class DirectorioRegionalController extends Controller
      */
     public function destroy($id)
     {
-      DirectorioRegionalModel::destroy($id);
-      return redirect('/directorio_regional');
+      $directorio=DirectorioRegionalModel::findOrFail($id);
+      $directorio->estado="INACTIVO";
+      $directorio->captura="ADMINISTRADOR";
+      $directorio->update();
+        return redirect('directorio_regional');
     }
 
     ////////////exel////////////////

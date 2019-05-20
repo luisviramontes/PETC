@@ -3,7 +3,7 @@
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
 		<h1>Inicio</h1>
-		<h2 class="">Ciclo Escolar</h2>
+		<h2 class="">Fortalecimiento</h2>
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
@@ -39,7 +39,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">CCT <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="id_cct" class="form-control"  value="{{Input::old('id_cct')}}"  required>
+								<select name="id_cct" class="form-control select2"  value="{{Input::old('id_cct')}}"  required>
 									@foreach($cct as $cct)
 									<option value="{{$cct->id}}">
 										{{$cct->cct}}

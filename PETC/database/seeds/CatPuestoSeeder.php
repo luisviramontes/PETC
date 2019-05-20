@@ -22,6 +22,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRO DE GRUPO DE PRIMARIA, FORANEO.',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -36,6 +37,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRA DE JARDIN DE NI?OS, FORANEA.',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -50,6 +52,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRO DE EDUCACION ESPECIAL',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -64,6 +67,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'DIRECTOR DE PRIMARIA, FORANEO.',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DIRECTOR',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -78,6 +82,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'ASISTENTE DE SERVICIOS Y MANTENIMIENTO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'INTENDENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -92,6 +97,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'JEFE DE SERVICIOS Y MANTENIMIENTO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'INTENDENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -106,6 +112,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'PROFESOR NORMALISTA DE EDUCACION FISICA, FORANEO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -120,6 +127,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRO DE GRUPO DE PRIMARIA DE 3/4 DE TIEMPO EN CURSO CON F',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -134,6 +142,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'AUXILIAR DE SERVICIOS Y MANTENIMIENTO EN PLANTEL',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'INTENDENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -148,6 +157,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'AUXILIAR DE SERVICIOS Y MANTENIMIENTO EN PLANTEL',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'INTENDENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -162,6 +172,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'EDUCADORA PARA CENTROS DE DESARROLLO INFANTIL.',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -176,6 +187,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'DIRECTORA DE JARDIN DE NI?OS, FORANEA.',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DIRECTOR',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -190,6 +202,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'OFICIAL DE MANTENIMIENTO MECANICO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'INDEPENDIENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -204,6 +217,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'AYUDANTE B DE TALLER DE PRIMARIA, FORANEO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'INDEPENDIENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -218,6 +232,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'PROFESOR DE EDUCACI?N BASICA PARA ADULTOS NOCTURNA, FORANEO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -232,6 +247,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRO "A" DE MISION CULTURAL',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -247,6 +263,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'PROFESOR ASIGNATURA "B" (E.S.) DE CAPACITACION Y MEJORAMIENT',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -261,6 +278,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'DIRECTOR DE ESCUELA DE EDUCACION ESPECIAL',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DIRECTOR',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -275,6 +293,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRO DE EDUCACION FISICA',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -289,6 +308,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRO NO TITULADO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -303,6 +323,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRO DE EDUCACION FISICA',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -317,6 +338,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -331,6 +353,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'INTENDENTE',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'INTENDENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -345,6 +368,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'DIRECTOR',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DIRECTOR',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -359,6 +383,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'ASISTENTE DE SERVICIOS',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'INTENDENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -373,6 +398,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'INTENDENTE',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => '',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -387,6 +413,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -401,6 +428,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'INTENDENTE',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'INTENDENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -415,6 +443,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRO DE TELESECUNDARIA',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -429,6 +458,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'DIRECTOR DE TELESECUNDARIA',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DIRECTOR',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -443,6 +473,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'DIRECTOR',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DIRECTOR',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -457,6 +488,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'MAESTRO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -471,6 +503,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'COORDINADOR PROFESIONAL DICTAMINADOR',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'INTENDENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -485,6 +518,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => '',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => '',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -499,6 +533,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'DIRECTOR',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DIRECTOR',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -513,6 +548,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'INTENDENTE MEDIA SUPERIOR Y SUPERIOR',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -527,6 +563,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'Docente',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'Docente',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -541,6 +578,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'Docente',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'Docente',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -555,6 +593,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'Docente',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'Docente',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -569,6 +608,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'Intendente',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'Intendente',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -583,6 +623,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'Intendente',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'Intendente',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -597,6 +638,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'Docente',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'Docente',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -611,6 +653,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'Docente',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'Docente',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -625,6 +668,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'INTERINO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'INTERINO',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -639,6 +683,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'SUBDIRECTOR DE GESTIÃ“N ESCOLAR DE PRIMARIA',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'
@@ -653,6 +698,7 @@ class CatPuestoSeeder extends Seeder
         'des_puesto' => 'SUBDIRECTOR ACADEMICO',
         'categoria' => 'EDUCACION',
         'tipo_puesto' => 'DOCENTE',
+        'estado' => 'ACTIVO',
         'captura' => 'ADMINISTRADOR',
         'created_at' => '0000-00-00 00:00:00',
         'updated_at' => '0000-00-00 00:00:00'

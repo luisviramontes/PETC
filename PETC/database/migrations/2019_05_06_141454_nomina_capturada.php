@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CicloEscolar extends Migration
+class NominaCapturada extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,13 @@ class CicloEscolar extends Migration
      */
     public function up()
     {
-        Schema::create('ciclo_escolar', function (Blueprint $table) {
+        Schema::create('nomina_capturada', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ciclo');
-            $table->integer('dias_habiles');
-            $table->date('inicio_ciclo');
-            $table->date('fin_ciclo');
+            $table->integer('qna');
+            $table->string('sostenimiento');
             $table->string('estado');
-            $table->string('capturo');
+            $table->string('tipo');
+            $table->string('captura');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CicloEscolar extends Migration
      */
     public function down()
     {
-        Schema::drop('ciclo_escolar');
+        Schema::drop('nomina_capturada');
     }
 }

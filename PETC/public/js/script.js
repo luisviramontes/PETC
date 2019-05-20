@@ -750,13 +750,62 @@ if(grupo == 1){
 }else if(grupo >= 6 ){
   document.getElementById('organizacion').value = "COMPLETA";
 }
-
-
-
-function regiones (){
-  
-
-  }
 }
 
+//////////////////////////////////////////////////7/*Validaciones Nomina capturada*/////////////////////////////////////////7
+
+function activar_button(){
+	var x = document.getElementById('file').value;
+	if (x != ""){
+		document.getElementById('submit8').disabled=false;
+	}else{
+		document.getElementById('submit8').disabled=true;
+	}
 }
+
+function valida_file(){
+	if( document.getElementById("file").files.length == 0 ){
+
+		swal("ERROR!","No se ha seleccionado ninguna Nomina.","error");
+		//document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+		return false
+	}else{
+
+	}
+
+}
+// Inside Document Ready
+function valida_nomina(){
+		var x = document.getElementById('file').value;
+	var qna= document.getElementById("qna").value;
+	var sostenimiento= document.getElementById("sostenimiento").value;
+	var tipo= document.getElementById("tipo").value;
+	var route = "http://localhost:8000/validar_nomina/"+qna+"/"+sostenimiento+"/"+tipo;
+	var aux=0;
+
+
+	$.get(route,function(res){
+
+			if(res.length > 0 ){
+				for (var i=0; i < res.length; i++){
+					if(res[i].estado=="ACTIVO" && x == "" || res[i].estado=="ACTIVO" && x != "" ){
+
+
+	document.getElementById('submit8').disabled=true;
+						swal("ERROR!","La Quincena que intenta registrar ya ha sido insertada anteriormente","error");
+					//	document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+						return false
+					}
+
+				}
+			}else if(x != ""){
+
+					document.getElementById('submit8').disabled=false;
+	//valida_file();
+			}
+
+	});
+//	valida_file();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

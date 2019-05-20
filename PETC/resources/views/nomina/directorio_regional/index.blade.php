@@ -8,7 +8,7 @@
 	<div class="pull-right">
 		<ol class="breadcrumb">
 			<li ><a style="color: #808080" href="{{url('/')}}">Inicio</a></li>
-			<li class="active">Tabla de Directorios</a></li>
+			<li class="active">Directorio Regional</a></li>
 		</ol>
 	</div>
 </div>
@@ -44,7 +44,7 @@
 
 			<div class="porlets-content">
 				<div class="table-responsive">
-					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered" id="hidden-table-info">
+					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered" id="hidden-table-info_dir">
 						<thead>
 							<tr>
 								<th>Region </th>
@@ -53,13 +53,15 @@
 								<th>Telefono </th>
 								<th style="display:none;">Ext1 Enlace </th>
 								<th style="display:none;">Ext2 Enlace </th>
-								<th>Correo Enlace </th>
+								<th style="display:none;">Correo Enlace </th>
 								<th>Director Regional </th>
                 <th>Telefono Director </th>
                 <th>Financiero Regional </th>
                 <th style="display:none;">Telefono Regional </th>
                 <th style="display:none;">Extencion Regional 1 </th>
                 <th style="display:none;">Extencion Regional 2 </th>
+								<th>Estado </th>
+								<th style="display:none;">Captura </th>
 
 
 								<td><center><b>Editar</b></center></td>
@@ -68,33 +70,72 @@
 						</thead>
 						<tbody>
 						@foreach($directorio_regional  as $directorio_regional)
+						@if ($directorio_regional->estado == "ACTIVO")
 							<tr class="gradeX">
-								<td>{{$directorio_regional->region}} </td>
-								<td>{{$directorio_regional->sostenimiento}} </td>
-								<td>{{$directorio_regional->nombre_enlace}} </td>
-								<td>{{$directorio_regional->telefono}} </td>
+								<td style="background-color:#DBFFC2;">{{$directorio_regional->region}} </td>
+								<td style="background-color:#DBFFC2;">{{$directorio_regional->sostenimiento}} </td>
+								<td style="background-color:#DBFFC2;">{{$directorio_regional->nombre_enlace}} </td>
+								<td style="background-color:#DBFFC2;">{{$directorio_regional->telefono}} </td>
 								<td style="display:none;">{{$directorio_regional->ext1_enlace}} </td>
 								<td style="display:none;">{{$directorio_regional->ext2_enlace}} </td>
-								<td>{{$directorio_regional->correo_enlace}} </td>
-                <td>{{$directorio_regional->director_regional}} </td>
-                <td>{{$directorio_regional->telefono_director}} </td>
-                <td>{{$directorio_regional->financiero_regional}} </td>
+								<td style="display:none;">{{$directorio_regional->correo_enlace}} </td>
+                <td style="background-color:#DBFFC2;">{{$directorio_regional->director_regional}} </td>
+                <td style="background-color:#DBFFC2;">{{$directorio_regional->telefono_director}} </td>
+                <td style="background-color:#DBFFC2;">{{$directorio_regional->financiero_regional}} </td>
+								<td style="display:none;">{{$directorio_regional->telefono_regional}}</td>
                 <td style="display:none;">{{$directorio_regional->ext_reg_1}} </td>
                 <td style="display:none;">{{$directorio_regional->ext_reg_2}} </td>
+								<td style="background-color:#DBFFC2;">{{$directorio_regional->estado}}</td>
                 <td style="display:none">{{$directorio_regional->captura}} </td>
-								<td style="display:none">{{$directorio_regional->updated_at}} </td>
+
+
+								<td style="background-color:#DBFFC2;">
 									<center>
 										<a href="{{URL::action('DirectorioRegionalController@edit',$directorio_regional->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 									</center>
 								</td>
-								<td>
+								<td style="background-color:#DBFFC2;">
 									<center>
-
 										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$directorio_regional->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 									</center>
 									</td>
 								</td>
 							</tr>
+							@else
+
+							<tr class="gradeX">
+								<td style="background-color:#FFE4E1;">{{$directorio_regional->region}} </td>
+								<td style="background-color:#FFE4E1;">{{$directorio_regional->sostenimiento}} </td>
+								<td style="background-color:#FFE4E1;">{{$directorio_regional->nombre_enlace}} </td>
+								<td style="background-color:#FFE4E1;">{{$directorio_regional->telefono}} </td>
+								<td style="display:none;">{{$directorio_regional->ext1_enlace}} </td>
+								<td style="display:none;">{{$directorio_regional->ext2_enlace}} </td>
+								<td style="display:none;">{{$directorio_regional->correo_enlace}} </td>
+                <td style="background-color:#FFE4E1;">{{$directorio_regional->director_regional}} </td>
+                <td style="background-color:#FFE4E1;">{{$directorio_regional->telefono_director}} </td>
+                <td style="background-color:#FFE4E1;">{{$directorio_regional->financiero_regional}} </td>
+								<td style="display:none;">{{$directorio_regional->telefono_regional}}</td>
+                <td style="display:none;">{{$directorio_regional->ext_reg_1}} </td>
+                <td style="display:none;">{{$directorio_regional->ext_reg_2}} </td>
+								<td style="background-color:#FFE4E1;">{{$directorio_regional->estado}}</td>
+                <td style="display:none">{{$directorio_regional->captura}} </td>
+
+
+								<td style="background-color:#FFE4E1;">
+									<center>
+										<a href="{{URL::action('DirectorioRegionalController@edit',$directorio_regional->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+									</center>
+								</td>
+								<td style="background-color:#FFE4E1;">
+									<center>
+										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$directorio_regional->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+									</center>
+									</td>
+								</td>
+							</tr>
+
+							@endif
+
 							@include('nomina.directorio_regional.modal')
 							@endforeach
 						</tbody>

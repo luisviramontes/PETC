@@ -4,8 +4,18 @@ namespace petc\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use petc\NominaFederalModel;
+
 use petc\Http\Requests;
 use petc\Http\Controllers\Controller;
+
+use DB;
+use Excel;
+use PHPExcel_Worksheet_Drawing;
+use Validator;
+use \Milon\Barcode\DNS1D;
+use \Milon\Barcode\DNS2D;
+use petc\Http\Requests\NominaFederalRequest;
 
 class NominafederalController extends Controller
 {
@@ -14,11 +24,28 @@ class NominafederalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      return view('nomina.nomina_federal.index');
+      if($request)
+      {
+       $query=trim($request->GET('searchText'));
+       $nomina_federal = DB::table('nomina_federal')
+       ->where('region','LIKE','%'.$query.'%')
+       ->orwhere('rfc','LIKE','%'.$query.'%')
+       ->orwhere('nom_emp','LIKE','%'.$query.'%')
+       ->orwhere('ent_fed','LIKE','%'.$query.'%')
+       ->orwhere('cod_pago','LIKE','%'.$query.'%')
+       ->orwhere('cat_puesto','LIKE','%'.$query.'%')
+       ->orwhere('qna_ini_01','LIKE','%'.$query.'%')
+      ->orwhere('qna_fin_01','LIKE','%'.$query.'%')
+       ->orwhere('qna_pago','LIKE','%'.$query.'%')
+       ->orwhere('num_cheque','LIKE','%'.$query.'%')
+       ->orwhere('ciclo_escolar','LIKE','%'.$query.'%')
+       ->paginate(24);
+      }
 
-        //
+
+      return view('nomina.nomina_federal.index',["nomina_federal" => $nomina_federal,"searchText"=>$query]);
 
     }
 
@@ -83,8 +110,15 @@ class NominafederalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+     public function destroy($qna_pago)
+     {
+
+       NominaFederalModel::where('qna_pago', $qna_pago)->delete();
+
+
+       return redirect('/nomina_federal');
+     }
+
+
+     
 }
