@@ -150,10 +150,10 @@ class LocalidadesController extends Controller
             $excel->sheet('Excel sheet', function($sheet) {
                 //otra opción -> $products = Product::select('name')->get();            
                 $tabla = LocalidadesModel::join('municipios', 'localidades.id_municipio', '=','municipios.id') 
-                ->select('municipios.municipio','localidades.nom_loc','localidades.longitud','localidades.latitud','localidades.altitud','localidades.pobtot','localidades.pobmas','localidades.pobfem','localidades.captura')
+                ->select('localidades.id','municipios.municipio','localidades.nom_loc','localidades.longitud','localidades.latitud','localidades.altitud','localidades.pobtot','localidades.pobmas','localidades.pobfem','localidades.captura')
                 ->get();
                 $sheet->fromArray($tabla);
-                $sheet->row(1,['MUNICIPIO','LOCALIDAD','LONGITUD','LATITUD' ,'ALTITUD','POBLACION TOTAL','POBLACION MASCULINA','POBLACION FEMENINA','CAPTURO']);
+                $sheet->row(1,['ID','MUNICIPIO','LOCALIDAD','LONGITUD','LATITUD' ,'ALTITUD','POBLACION TOTAL','POBLACION MASCULINA','POBLACION FEMENINA','CAPTURO']);
                 $sheet->setOrientation('landscape');
             });
         })->export('xls');

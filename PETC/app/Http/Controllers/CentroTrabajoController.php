@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use petc\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 use petc\Http\Controllers\Controller;
 use petc\CentroTrabajoModel;
 use petc\DatosCentroTrabajoModel; 
 
+use Dompdf\Dompdf;
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
 use PHPExcel_Worksheet_Drawing;
@@ -220,23 +222,35 @@ class CentroTrabajoController extends Controller
  }
 
  public function invoice(){
-    $centros = DB::table('centro_trabajo')
-    ->join('datos_centro_trabajo', 'centro_trabajo.id', '=','datos_centro_trabajo.id_centro_trabajo')
-    ->join('region', 'centro_trabajo.id_region', '=','region.id')
-    ->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
-    ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id') 
-    ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.*','municipios.*','datos_centro_trabajo.id as id_datos_centro','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos', 
-        'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores', 
-        'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes', 
-        'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')->where('centro_trabajo.estado','=','ACTIVO')->get();
+
+   set_time_limit(0);
+   ini_set("memory_limit",-1);
+   ini_set('max_execution_time', 0);
+
+   $centros = DB::table('centro_trabajo')
+   ->join('datos_centro_trabajo', 'centro_trabajo.id', '=','datos_centro_trabajo.id_centro_trabajo')
+   ->join('region', 'centro_trabajo.id_region', '=','region.id')
+   ->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
+   ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id') 
+   ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.*','municipios.*','datos_centro_trabajo.id as id_datos_centro','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos', 
+    'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores', 
+    'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes', 
+    'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')->where('centro_trabajo.estado','=','ACTIVO')->take(200)->get();
          //$material   = AlmacenMaterial:: findOrFail($id);
-    $date = date('Y-m-d');
-    $invoice = "2222";
+
+     //$pdf = new DOMPDF();
+   $date = date('Y-m-d');
+   $invoice = "2222";
        // print_r($materiales);
-    $view =  \View::make('nomina.centro_trabajo.invoice', compact('date', 'invoice','centros'))->render();
-    $pdf = \App::make('dompdf.wrapper');
-    $pdf->loadHTML($view);
-    return $pdf->stream('invoice');
+
+   //$pdf = \PDF::loadView('nomina.centro_trabajo.invoice',['centros' => $centros]);
+   $view =  \View::make('nomina.centro_trabajo.invoice', array('centros'=>$centros))->render();
+   $pdf = \App::make('dompdf.wrapper');
+   $pdf->loadHTML($view);
+
+   return $pdf->stream('invoice23');
+    //return $pdf->download('invoice.pdf');
+
 }
 
 public function excel(Request $request)

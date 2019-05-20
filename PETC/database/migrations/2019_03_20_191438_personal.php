@@ -17,11 +17,12 @@ class Personal extends Migration
             $table->string('nombre');
             $table->string('rfc')->index();
             $table->integer('telefono');
-            $table->string('email');
-            $table->string('cct');
+            $table->string('email'); 
+            //$table->string('cct');
             $table->integer('clave')->unsigned();
             $table->foreign('clave')->references('id')->on('cat_puesto');
-            $table->string('sostenimiento');
+            //$table->string('sostenimiento');
+            $table->string('estado');
             $table->string('captura');
             $table->timestamps();
         });

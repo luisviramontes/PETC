@@ -49,11 +49,8 @@
 
 				<div class="porlets-content">
 					<div  class="form-horizontal row-border" > <!--acomodo-->
-						<form action="{{url('/captura', [$personal->id])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
+						<form class="" id="myForm" action="{{route('captura.store')}}" method="post" role="form" enctype="multipart/form-data" parsley-validate novalidate data-toggle="validator">
 							{{csrf_field()}}
-							<input type="hidden" name="_method" value="PUT">
-
-
 							<div id="smartwizard">
 								<ul>
 									<li><a href="#step-1">Datos del Trabajador</a></li>
@@ -69,7 +66,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Nombre del Empleado: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="nombre" id="nombre" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="{{$personal->nombre}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+														<input name="nombre" id="nombre" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 													</div>
 												</div>
 
@@ -77,8 +74,8 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">RFC: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="rfc_input" id="rfc_input" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" type="text"   class="form-control" required value="{{$personal->rfc}}"   oninput="validarInput(this);"  onchange="validarRFC();"  />
-														<div class="text-danger" id='error_rfc'>{{$errors->formulario->first('rfc_input')}}</div>
+														<input name="rfc_input" id="rfc_input" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" type="text"   class="form-control" required value="{{Input::old('rfc_input')}}"   oninput="validarInput(this);"  onchange="validarRFC();"  />
+														<div class="text-danger" id='error_rfc' name="error_rfc" ></div>
 													</div>
 													<pre id="resultado"></pre>						
 												</div>
@@ -86,14 +83,14 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Teléfono: <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
-														<input name="telefono" id="telefono" type="text"   onkeypress="soloNumeros(event)" class="form-control" value="{{$personal->telefono}}" />
+														<input name="telefono" id="telefono" type="text"   onkeypress="soloNumeros(event)" class="form-control"  value="{{Input::old('telefono')}}" />
 													</div>
 												</div>
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Email: <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
-														<input name="email" id="email" type="text"   class="form-control"  value="{{$personal->email}}" />
+														<input name="email" id="email" type="text"   class="form-control"  value="{{Input::old('email')}}" />
 													</div>
 												</div>
 
@@ -123,30 +120,10 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Tipo de Movimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="movimiento" id="movimiento" class="form-control select" onchange="captura_personal(this.value)" required>
-															@if($personal->tipo_movimiento == "NUEVO") 
+														<select name="movimiento" id="movimiento" class="form-control select" onchange="captura_personal(this.value)" required> 
 															<option value="INICIO" >DESDE INICIO DE CICLO</option>
 															<option value="NUEVO" selected>NUEVO RECURSO </option>
-															<option value="ALTA">ALTA</option>
-															<option value="REINCORPORACION" >REINCORPORACION</option>				
-															@elseif ($personal->tipo_movimiento == "INICIO")
-															<option value="INICIO" selected>DESDE INICIO DE CICLO</option>
-															<option value="NUEVO" >NUEVO RECURSO </option>
-															<option value="ALTA">ALTA</option>
-															<option value="REINCORPORACION" >REINCORPORACION</option>
-															@elseif ($personal->tipo_movimiento == "REINCORPORACION")
-															<option value="INICIO" >DESDE INICIO DE CICLO</option>
-															<option value="NUEVO" >NUEVO RECURSO </option>
-															<option value="ALTA">ALTA</option>
-															<option value="REINCORPORACION" selected>REINCORPORACION</option>
-															@else
-															<option value="INICIO" >DESDE INICIO DE CICLO</option>
-															<option value="NUEVO" >NUEVO RECURSO </option>
-															<option value="ALTA" selected>ALTA</option>
-															<option value="REINCORPORACION" >REINCORPORACION</option>
-															@endif
-
-
+															<option value="ALTA">ALTA</option>				
 														</select>
 														<div class="text-danger" id='error_movimiento'>{{$errors->formulario->first('error_movimiento')}}</div>
 													</div> 
@@ -157,15 +134,9 @@
 													<div class="col-sm-6">
 														<select name="clave" id="clave"  onchange="verifica_clave()" class="form-control select" required>
 															@foreach($claves as $clave)
-															@if($clave->id == $personal->clave)
-															<option value="{{$clave->id}}_{{$clave->tipo_puesto}}" selected>
-																{{$clave->cat_puesto}}: {{$clave->des_puesto}} - {{$clave->tipo_puesto}}
-															</option>
-															@else
 															<option value="{{$clave->id}}_{{$clave->tipo_puesto}}">
 																{{$clave->cat_puesto}}: {{$clave->des_puesto}} - {{$clave->tipo_puesto}}
 															</option>
-															@endif
 															@endforeach
 														</select>
 														<div class="text-danger" id='error_clave'>{{$errors->formulario->first('error_clave')}}</div>
@@ -177,37 +148,13 @@
 													<label class="col-sm-3 control-label">Categoria;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 														<select name="puesto" id="puesto" class="form-control select" onchange="cambia(this.value);captura_personal()" required> 
-															@if($personal->categoria == "DOCENTE")
+
 															<option value="DIRECTOR" >DIRECTOR</option>
 															<option value="DOCENTE" selected>DOCENTE </option>
 															<option value="INTENDENTE">INTENDENTE</option>
 															<option value="USAER">USAER</option>
 															<option value="EDUCACION FISICA">EDUCACION FISICA</option>
-															@elseif($personal->categoria == "DIRECTOR")
-															<option value="DIRECTOR" selected>DIRECTOR</option>
-															<option value="DOCENTE" >DOCENTE </option>
-															<option value="INTENDENTE">INTENDENTE</option>
-															<option value="USAER">USAER</option>
-															<option value="EDUCACION FISICA">EDUCACION FISICA</option>
-															@elseif($personal->categoria == "INTENDENTE")
-															<option value="DIRECTOR" >DIRECTOR</option>
-															<option value="DOCENTE" >DOCENTE </option>
-															<option value="INTENDENTE" selected>INTENDENTE</option>
-															<option value="USAER">USAER</option>
-															<option value="EDUCACION FISICA">EDUCACION FISICA</option>
-															@elseif($personal->categoria == "USAER")
-															<option value="DIRECTOR" >DIRECTOR</option>
-															<option value="DOCENTE" >DOCENTE </option>
-															<option value="INTENDENTE">INTENDENTE</option>
-															<option value="USAER" selected>USAER</option>
-															<option value="EDUCACION FISICA">EDUCACION FISICA</option>
-															@else
-															<option value="DIRECTOR" >DIRECTOR</option>
-															<option value="DOCENTE" >DOCENTE </option>
-															<option value="INTENDENTE">INTENDENTE</option>
-															<option value="USAER">USAER</option>
-															<option value="EDUCACION FISICA" selected>EDUCACION FISICA</option>
-															@endif
+
 														</select>
 														
 													</div> 
@@ -219,15 +166,9 @@
 													<div class="col-sm-8">
 														<select name="cct" id="cct" class="form-control select2"   value="{{Input::old('cct')}}"  onchange="captura_personal()" required>
 															@foreach($cct as $ct)
-															@if($personal->id_cct_etc == $ct->id)
-															<option value="{{$ct->id}}" selected>
+															<option value="{{$ct->id}}">
 																{{$ct->cct}}
 															</option>
-															@else
-															<option value="{{$ct->id}}" >
-																{{$ct->cct}}
-															</option>
-															@endif
 															@endforeach
 														</select>
 														<div class="help-block with-errors"></div>
@@ -239,13 +180,9 @@
 													<label class="col-sm-3 control-label">Sostenimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 														<select name="sostenimiento" id="sostenimiento" class="form-control select" required> 
-															@if($personal->sostenimiento == "FEDERAL")
+
 															<option value="FEDERAL" selected>FEDERAL</option>
 															<option value="ESTATAL" >ESTATAL </option>
-															@else
-															<option value="FEDERAL" >FEDERAL</option>
-															<option value="ESTATAL" selected>ESTATAL </option>
-															@endif
 
 														</select>
 														
@@ -258,15 +195,9 @@
 													<div class="col-sm-6">
 														<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2" ">
 															@foreach($ciclos as $ciclo)
-															@if($personal->id_ciclo == $ciclo->id)
-															<option value='{{$ciclo->id}}' selected>
-																{{$ciclo->ciclo}}
-															</option>
-															@else
 															<option value='{{$ciclo->id}}'>
 																{{$ciclo->ciclo}}
 															</option>
-															@endif
 															@endforeach
 														</select>
 
@@ -280,17 +211,16 @@
 														<input type="checkbox" name="doc2" id="doc2" onchange="cambia5(this.id)" value="OFICIO">Ofició<br>
 														<input type="checkbox" name="doc3" id="doc3" onchange="cambia5(this.id)" value="TALON">Talón de Cheque<br>
 													</div>
-
 												</div><!--/form-group-->				
 												<div class="form-group" id="diasdiv" style='display:none;'>
 													<div class="form-group">
 														<label class="col-sm-3 control-label">Dias Trabajados en este CT: <strog class="theme_color">*</strog></label>
 														<div class="col-sm-3">
-															<input type="checkbox" name="LUNES" id="LUNES" onchange="cambia4(this.value)" value="LUNES">LUNES<br>
-															<input type="checkbox" name="MARTES" id="MARTES" onchange="cambia4(this.value)" value="MARTES">MARTES<br>
-															<input type="checkbox" name="MIERCOLES" id="MIERCOLES" onchange="cambia4(this.value)" value="MIERCOLES">MIERCOLES<br>
-															<input type="checkbox" name="JUEVES" id="JUEVES" onchange="cambia4(this.value)" value="JUEVES">JUEVES<br>
-															<input type="checkbox" name="VIERNES" id="VIERNES" onchange="cambia4(this.value)" value="VIERNES">VIERNES<br>
+															<input type="checkbox" name="Lunes" id="Lunes" onchange="cambia4(this.value)" value="LUNES">Lunes<br>
+															<input type="checkbox" name="Martes" id="Martes" onchange="cambia4(this.value)" value="MARTES">Martes<br>
+															<input type="checkbox" name="Miercoles" id="Miercoles" onchange="cambia4(this.value)" value="MIERCOLES">Miercoles<br>
+															<input type="checkbox" name="Jueves" id="Jueves" onchange="cambia4(this.value)" value="JUEVES">Jueves<br>
+															<input type="checkbox" name="Viernes" id="Viernes" onchange="cambia4(this.value)" value="VIERNES">Viernes<br>
 														</div>
 
 													</div><!--/form-group-->
@@ -303,7 +233,7 @@
 														<label class="col-sm-3 control-label">Número de Escuelas ETC: <strog class="theme_color">*</strog></label>
 														<div class="col-sm-2">
 
-															<input name="num_escuelas" type="number" class="form-control" value="{{$personal->num_escuelas}}" onchange="cambiacct(this.value)" required value="1" >
+															<input name="num_escuelas" type="number" class="form-control" onchange="cambiacct(this.value)" required value="1" >
 														</div>
 													</div>
 												</div>
@@ -313,7 +243,7 @@
 													<div class="form-group">
 														<label class="col-sm-3 control-label">CCT Tiempo Completo 2: <strog class="theme_color">*</strog></label>
 														<div class="col-sm-6">
-															<input name="cct_etc2" id="cct_etc2" type="text"  onchange="mayus(this);"  class="form-control" onkeypress=" return soloLetras(event);"  value="{{$personal->cct_2}}"   placeholder="Ingrese el CCT de Tiempo Completo" />
+															<input name="cct_etc2" id="cct_etc2" type="text"  onchange="mayus(this);"  class="form-control" onkeypress=" return soloLetras(event);" value="" placeholder="Ingrese el CCT de Tiempo Completo" />
 														</div>
 													</div>
 												</div>
@@ -335,7 +265,7 @@
 													<label class="col-sm-3 control-label">Fecha de Inicio de Labores: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 
-														<input type="date" name="fechai" id="fechai" value="{{$personal->fecha_inicio}}" class="form-control mask" required>
+														<input type="date" name="fechai" id="fechai" value="" class="form-control mask" required>
 													</div>
 												</div>
 
@@ -343,7 +273,7 @@
 													<label class="col-sm-3 control-label">Fecha de Termino de Labores: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 
-														<input type="date" name="fechaf" id="fechaf" value="{{$personal->fecha_termino}}" class="form-control mask"  onchange="verifica_fecha()"" required >
+														<input type="date" name="fechaf" id="fechaf" value="" class="form-control mask"  onchange="verifica_fecha()"" required >
 													</div>
 													<div class="text-danger" id='error_fecha'>{{$errors->formulario->first('error_fecha')}}</div>
 												</div>
@@ -351,13 +281,13 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Observaciónes: <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
-														<input name="observaciones" id="observaciones" type="text" onkeypress="return soloLetras(event)"  class="form-control"  value="{{$personal->observaciones}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
-													</div> 
+														<input name="observaciones" id="observaciones" type="text" onkeypress="return soloLetras(event)"  class="form-control"  value="{{Input::old('observaciones')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+													</div>
 												</div>
 
 												<div class="form-group">
 													<div class="col-sm-offset-7 col-sm-5">
-														<button id="submit3" class="btn btn-primary">Guardar</button>
+														<button id="submit3"  onclick="return save();" class="btn btn-primary">Guardar</button>
 														<a href="{{url('/captura')}}" class="btn btn-default"> Cancelar</a>
 													</div>
 												</div><!--/form-group--> 
@@ -365,13 +295,13 @@
 
 												<div class="form-group">
 													<div class="col-sm-6">
-														<input  id="diassemana"  name="diassemana" type="hidden"  class="form-control""/>
+														<input  id="diassemana" value="" name="diassemana" type="hidden"  class="form-control""/>
 													</div>
 												</div>
 
 												<div class="form-group">
 													<div class="col-sm-6">
-														<input  id="doc"  name="doc" type="hidden"  class="form-control""/>
+														<input  id="doc" value="" name="doc" type="hidden"  class="form-control""/>
 													</div>
 												</div>
 
@@ -448,7 +378,7 @@
           	if(stepNumber == 0){
           		var r = document.getElementById("error_rfc").value;
           		if(r==1){
-          			return false;
+          			return false; 
           		}
 
           	}else if (stepNumber == 1){
@@ -522,6 +452,16 @@ if (shouldSwitch) {
 
 
 function save(){
+	var z = document.getElementById('error_movimiento').value;
+	var c = document.getElementById('error_fecha').value;
+	var x = document.getElementById('error_clave').value;
+	var r = document.getElementById("error_rfc").value;
+	
+
+	if (z== 1 || c==1 || x==1 || r==1){
+		return false;
+
+	}
 
 }
 
@@ -529,159 +469,65 @@ function save(){
 
 window.onload = function() {
 	document.getElementById('nombre').focus();
-	var x = "{{$personal->documentacion_entregada}}";
-	var z = "{{$personal->tipo_movimiento}}";
-	var y= "{{$personal->categoria}}";
-	var w= "{{$personal->dias_trabajados}}";
-
-	if(x.length > 0){
-		var select=String(x);
-		var cantidadtotal = select;
-		limite = "3",
-		separador = ",",
-		arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-		if(arregloDeSubCadenas[0] || "ORDEN" || arregloDeSubCadenas[1] == "ORDEN" || arregloDeSubCadenas[2] == "ORDEN"){
-			document.getElementById('doc1').checked = true;
-
-		}
-		if(arregloDeSubCadenas[0] == "OFICIO" || arregloDeSubCadenas[1] == "OFICIO" || arregloDeSubCadenas[2] == "OFICIO"){
-			document.getElementById('doc2').checked = true;
-
-		}
-		if (arregloDeSubCadenas[0] == "TALON" || arregloDeSubCadenas[1] == "TALON" || arregloDeSubCadenas[2] == "TALON"){
-			document.getElementById('doc3').checked = true;
-
-		}
-
-	}
-
-	captura_personal(z);
-	verifica_clave();
-	cambia(y);
-	if(y == "USAER" || y == "EDUCACION FISICA"){
-		if(x.length > 0){
-			var select=String(x);
-			var cantidadtotal = select;
-			limite = "5",
-			separador = ",",
-			arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-
-			if (arregloDeSubCadenas[0] == "LUNES" || arregloDeSubCadenas[1] == "LUNES" || arregloDeSubCadenas[2] == "LUNES" || arregloDeSubCadenas[3] == "LUNES"|| arregloDeSubCadenas[4] == "LUNES"){
-				document.getElementById('LUNES').checked = true;
-
-			}
-
-			if (arregloDeSubCadenas[0] == "MARTES" || arregloDeSubCadenas[1] == "MARTES" || arregloDeSubCadenas[2] == "MARTES" || arregloDeSubCadenas[3] == "MARTES"|| arregloDeSubCadenas[4] == "MARTES"){
-				document.getElementById('MARTES').checked = true;
-
-			}
-			if (arregloDeSubCadenas[0] == "MIERCOLES" || arregloDeSubCadenas[1] == "MIERCOLES" || arregloDeSubCadenas[2] == "MIERCOLES" || arregloDeSubCadenas[3] == "MIERCOLES"|| arregloDeSubCadenas[4] == "MIERCOLES"){
-				document.getElementById('MIERCOLES').checked = true;
-
-			}
-			if (arregloDeSubCadenas[0] == "JUEVES" || arregloDeSubCadenas[1] == "JUEVES" || arregloDeSubCadenas[2] == "JUEVES" || arregloDeSubCadenas[3] == "JUEVES"|| arregloDeSubCadenas[4] == "JUEVES"){
-				document.getElementById('JUEVES').checked = true;
-
-			}
-			if (arregloDeSubCadenas[0] == "VIERNES" || arregloDeSubCadenas[1] == "VIERNES" || arregloDeSubCadenas[2] == "VIERNES" || arregloDeSubCadenas[3] == "VIERNES"|| arregloDeSubCadenas[4] == "VIERNES"){
-				document.getElementById('VIERNES').checked = true;
-
-			}
-			if(w.length > 0){
-				var select2=String(w);
-				//alert(select2);
-				var cantidadtotal2 = select2;
-				limite2 = "5",
-				separador2 = ",",
-				arregloDeSubCadenas2 = cantidadtotal2.split(separador2, limite2);
-			//	alert(arregloDeSubCadenas2[0]);
-			cambia6(arregloDeSubCadenas2[0]);
-			cambia6(arregloDeSubCadenas2[1]);
-			cambia6(arregloDeSubCadenas2[2]);
-			cambia6(arregloDeSubCadenas2[3]);
-			cambia6(arregloDeSubCadenas2[4]);
-		}
-
-	}
-}
-}
-
-
-
-
   //funciones a ejecutar
+};
 
 
 
 
-  function cambia(value) {
-  	if (value == "USAER" || value == "EDUCACION FISICA"){
-  		document.getElementById('diasdiv').style.display = 'block';
-  		document.getElementById('num_esc').style.display = 'block';
-  		document.getElementById('num_esc').style.required = true;
-  	}else{
-  		document.getElementById('diasdiv').style.display = 'none';
-  		document.getElementById('num_esc').style.display = 'none';
-  		document.getElementById('num_esc').style.required = false;
-  		document.getElementById('diasdiv').style.required = false;
+function cambia(value) {
+	if (value == "USAER" || value == "EDUCACION FISICA"){
+		document.getElementById('diasdiv').style.display = 'block';
+		document.getElementById('num_esc').style.display = 'block';
+		document.getElementById('num_esc').style.required = true;
+	}else{
+		document.getElementById('diasdiv').style.display = 'none';
+		document.getElementById('num_esc').style.display = 'none';
+		document.getElementById('num_esc').style.required = false;
+		document.getElementById('diasdiv').style.required = false;
 
-  	}
+	}
   // body...
 }
 
 var aux = [];
 function cambia4(x){
-	alert(x);
-	if (x > 0){
-		var z = document.getElementById(x).checked;
-		if (z == true){
-			aux.push(x);
+	var z = document.getElementById(x).checked;
+	if (z == true){
+		aux.push(x);
 
-		}else{
-			var pos = aux.indexOf(x);
-			var elementoEliminado = aux.splice(pos, 1);
-
-		}
-		document.getElementById('diassemana').value = aux;
-		var y = document.getElementById('diassemana').value;
-	}}
-
-	var aux2 = [];
-	function cambia5(x){
-
-		var z = document.getElementById(x).checked;
-		var j =document.getElementById(x).value;
-		if (z == true){
-			aux2.push(j);
-
-		}else{
-			var pos = aux2.indexOf(j);
-			var elementoEliminado = aux2.splice(pos, 1);
-
-		}
-		document.getElementById('doc').value = aux2;
-		var y = document.getElementById('doc').value;
+	}else{
+		var pos = aux.indexOf(x);
+		var elementoEliminado = aux.splice(pos, 1);
 
 	}
+	document.getElementById('diassemana').value = aux;
+	var y = document.getElementById('diassemana').value;
+}
 
-	function cambia6(x){
-		if(x != " "){
-			var z = document.getElementById(x).checked;
-			document.getElementById(x).checked= true;
-			var j =document.getElementById(x).value;
+var aux = [];
+function cambia5(x){
+	var z = document.getElementById(x).checked;
+	var j =document.getElementById(x).value;
+	if (z == true){
+		aux.push(j);
 
-			aux.push(j);
-			document.getElementById('diassemana').value = aux;
-			var y = document.getElementById('diassemana').value;
+	}else{
+		var pos = aux.indexOf(j);
+		var elementoEliminado = aux.splice(pos, 1);
 
-		}}
+	}
+	document.getElementById('doc').value = aux;
+	var y = document.getElementById('doc').value;
 
-		function cambiacct(value) {
-			if (value == 2){
-				document.getElementById('cct2div').style.display = 'block';
-				document.getElementById('cct_etc2').style.required = true;
-				document.getElementById('cct3div').style.display = 'none';
-				document.getElementById('cct_etc3').style.required = false;
+}
+
+function cambiacct(value) {
+	if (value == 2){
+		document.getElementById('cct2div').style.display = 'block';
+		document.getElementById('cct_etc2').style.required = true;
+		document.getElementById('cct3div').style.display = 'none';
+		document.getElementById('cct_etc3').style.required = false;
   // body...
 }else if (value >= 3){
 	document.getElementById('cct2div').style.display = 'block';

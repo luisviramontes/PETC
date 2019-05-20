@@ -27,8 +27,8 @@ class DatosCentroTrabajo extends Migration
             $table->integer('total_intendentes');
             $table->integer('id_centro_trabajo')->unsigned();
             $table->foreign('id_centro_trabajo')->references('id')->on('centro_trabajo');
-            $table->date('fecha_ingreso')->nullable();
-            $table->date('fecha_baja')->nullable();
+            $table->string('fecha_ingreso')->nullable();
+            $table->string('fecha_baja')->nullable();
             $table->string('captura');
             $table->timestamps();
         });

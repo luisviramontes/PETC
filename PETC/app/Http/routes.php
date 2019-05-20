@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 //////////////////cat_puesto///////////////////////////////
@@ -33,13 +33,26 @@ Route::get('descargar-region', 'RegionController@excel')->name('nomina.region.ex
 Route::get('pdf_region/{id}', array('as'=> '/pdf_region','uses'=>'RegionController@invoice'));
 ///////////////////////////////////////////////////
 
-Route::response('solicitudes','SolicitudesController');
+Route::resource('solicitudes','SolicitudesController');
 
 Route::resource('bajas_contrato', 'BajasContratoController');
 
 Route::resource('cambios_cct', 'CambiosCctController');
 
+//CAPTURA PERSONAL
 Route::resource('captura', 'CapturaController');
+Route::get('descargar-tabla-captura', 'CapturaController@excel')->name('nomina.captura.excel');
+Route::get('ver_datoscaptura/{id}/{ciclo}', array('as'=> '/ver_datoscaptura','uses'=>'CapturaController@verInformacion'));
+Route::get('validarcaptura/{cct}/{puesto}', 'CapturaController@validarCaptura'); 
+Route::post('activarrfc', 'CapturaController@activar');
+Route::get('validarnuevor/{cct}/{puesto}', 'CapturaController@validarNuevo');
+Route::get('validarpersonal/{rfc}', 'CapturaController@validarRFC');  
+Route::get('extender_contrato/{id}', 'CapturaController@extender_contrato'); 
+Route::post('guardar_contrato/{id}', 'CapturaController@guardar_contrato')->name('nomina.captura.guardar_contrato');
+Route::get('pdf_captura/{id}/{ciclo}', array('as'=> '/pdf_captura','uses'=>'CapturaController@invoice'));
+
+
+
 
 ///CENTRO DE TRABAJO
 Route::resource('centro_trabajo', 'CentroTrabajoController');
@@ -73,7 +86,13 @@ Route::resource('nomina_estatal', 'NominaEstatalController');
 
 Route::resource('nomina_federal', 'NominaFederalController');
 
+///PERSONAL
 Route::resource('personal', 'PersonalController');
+Route::get('descargar-tabla-personal', 'PersonalController@excel')->name('nomina.personal.excel');
+Route::get('ver_datospersonal/{id}', array('as'=> '/ver_datospersonal','uses'=>'PersonalController@verInformacion'));
+//Route::post('activarrfc', 'PersonalController@activar');
+//Route::get('pdf_tablapagos/{id}', array('as'=> '/pdf_tablapagos','uses'=>'TablaPagosController@invoice'));
+
 
 Route::resource('reclamos', 'ReclamosController');
 

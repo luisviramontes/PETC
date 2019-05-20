@@ -4684,6 +4684,12 @@ class LocalidadesSeeder extends Seeder
     	DB::table('localidades')->insert(['id_municipio'=>'58  ' ,'nom_loc' =>' San Miguel Tepetitlán '  ,'longitud' =>' 1032007 '  ,'latitud' => '213014 ' ,'altitud'=> ' 1962',  'pobtot' => '75  ' , 'pobmas' => '41', 'pobfem' => '34 ','estado' => 'ACTIVO','captura' => 'ADMINISTRADOR', ]);
     	DB::table('localidades')->insert(['id_municipio'=>'58  ' ,'nom_loc' =>' San Rafael '  ,'longitud' =>' 1032218 '  ,'latitud' => '213139 ' ,'altitud'=> ' 2046',  'pobtot' => '4  ' , 'pobmas' => '*', 'pobfem' => '* ','estado' => 'ACTIVO','captura' => 'ADMINISTRADOR', ]);
 
+        DB::table('localidades')->insert(['id_municipio'=>'10' ,'nom_loc' =>' La Luz (El Jagüey) '  ,'longitud' =>' 1030162 '  ,'latitud' => '232249 ' ,'altitud'=> ' 2070',  'pobtot' => '4  ' , 'pobmas' => '*', 'pobfem' => '* ','estado' => 'ACTIVO','captura' => 'ADMINISTRADOR', ]);
+
+        DB::table('localidades')->insert(['id_municipio'=>'10' ,'nom_loc' =>' Los Chilitos '  ,'longitud' =>' 1028465 '  ,'latitud' => '231477' ,'altitud'=> '2195',  'pobtot' => '23  ' , 'pobmas' => '11', 'pobfem' => '12 ','estado' => 'ACTIVO','captura' => 'ADMINISTRADOR', ]);
+
+        DB::table('localidades')->insert(['id_municipio'=>'37' ,'nom_loc' =>' Los Números '  ,'longitud' =>' 102546'  ,'latitud' => '230378' ,'altitud'=> '2196',  'pobtot' => '13' , 'pobmas' => '5', 'pobfem' => '8','estado' => 'ACTIVO','captura' => 'ADMINISTRADOR', ]);
+
         //
     }
 }

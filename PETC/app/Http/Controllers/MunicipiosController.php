@@ -158,10 +158,10 @@ public function excel()
         $excel->sheet('Excel sheet', function($sheet) {
                 //otra opción -> $products = Product::select('name')->get();            
             $tabla = MunicipiosModel::join('region', 'region.id', '=','municipios.id_region') 
-            ->select('region.region as reg','municipios.municipio','municipios.cabecera','municipios.fecha_creacion','municipios.poblacion','municipios.area_km','municipios.capturo')
+            ->select('municipios.id','region.region as reg','municipios.municipio','municipios.cabecera','municipios.fecha_creacion','municipios.poblacion','municipios.area_km','municipios.capturo')
             ->get();
             $sheet->fromArray($tabla);
-            $sheet->row(1,['REGION','MUNICIPIO','CABECERA','FECHA CREACION','TOTAL POBLACION' ,'AREA KM','CAPTURA']);
+            $sheet->row(1,['N°','REGION','MUNICIPIO','CABECERA','FECHA CREACION','TOTAL POBLACION' ,'AREA KM','CAPTURA']);
             $sheet->setOrientation('landscape');
         });
     })->export('xls');

@@ -131,161 +131,6 @@ function myDeleteFunction1(btn) {
 
 
 
-function Carga($id){
-
-  var tablaDatos = $('#myTable');
-  var route = "http://localhost:8000/rolesEspecificos/"+$id;
-
-  $.get(route,function(res){
-    $(res).each(function(key,value){
-      tablaDatos.append("<tr><td colspan=\"2\">"+value.rol_Empleado+ "</td><td>"+""+
-        "<button type=\"button\" id=\"btn\" onclick=\"myDeleteFunction1(this);myDeleteFunction(this);\" value="+ value.idERT+" class=\"btn btn-danger btn-icon\">"
-        +"Quitar<i class=\"fa fa-times\"></i> </button><td></tr>");
-    });
-  });
-
-
-
-}
-
-
-
-function Carga1(){
-  var tablaDatos = $('#myTable');
-  var route = "http://localhost:8000/ultimo";
-
-  $.get(route,function(res){
-    $(res).each(function(key,value){
-      tablaDatos.append("<tr><td colspan=\"2\">"+value.rol_Empleado+ "</td><td>"+""+
-        "<button type=\"button\" id=\"btn\" onclick=\"myDeleteFunction1(this);myDeleteFunction(this);\" value="+ value.idERT+" class=\"btn btn-danger btn-icon\">"
-        +"Quitar<i class=\"fa fa-times\"></i> </button><td></tr>");
-      validarRoles();
-    });
-  });
-
-
-}
-
-
-
-function myCreateFunction1() {
-
- var select = document.getElementById("rol");
- var options=document.getElementsByTagName("option");
- var idRol= select.value;
-
- var x = select.options[select.selectedIndex].text;
-
-
-
- if(!validarRolesDuplicados(x)){
-  document.getElementById("errorRoles").innerHTML = "";
-
-  var dato1 = select.value;
-  var dato2 = $("#idEmpleado").val();
-  var route = "/empleadoRoles";
-  var token = $("#token").val();
-
-  $.ajax({
-    url: route,
-    headers: {'X-CSRF-TOKEN': token},
-    type: 'POST',
-    dataType: 'json',
-    data:{idRol: dato1,idEmpleado: dato2},
-
-    success:function(){
-      $("#msj-success").fadeIn();
-    }
-  });
-  Carga1();
-}
-else {
-
-  document.getElementById("errorRoles").innerHTML = "El rol que intentas ingresar ya existe";
-}
-
-}
-
-
-
-
-function validarFecha1(){
-  var fecha1 =document.getElementById('fechaInicio').value;
-
-
-  if (!moment(fecha1).isValid()) {
-    document.getElementById("errorFechaInicio").innerHTML = "Fecha Invalida";
-  } else {
-    document.getElementById("errorFechaInicio").innerHTML = "";
-  }
-
-}
-
-
-
-function validarFecha2(){
-
-  var fecha2= document.getElementById('fechaFin').value;
-
-  if (!moment(fecha2).isValid()) {
-    document.getElementById("errorFechaFin").innerHTML = "Fecha Invalida";
-  } else {
-   document.getElementById("errorFechaFin").innerHTML = "";
- }
-
-}
-
-function validarFechas(){
-
-
-
-  var fecha1 =document.getElementById('fechaInicio').value;
-  var fecha2= document.getElementById('fechaFin').value;
-  var FechaIngreso= document.getElementById('FechaIngreso').value;
-
-  if (moment(fecha2).isBefore(moment(fecha1))    || moment(fecha2).isSame(moment(fecha1))  ){
-    document.getElementById("errorFechas").innerHTML="La fecha  de  Inicio  es mayor o igual que la fecha de Fin";
-
-  } else {
-    document.getElementById("errorFechas").innerHTML="";
-
-  }
-
- // alert(moment('2013-02-03', 'YYYY-MM-DD').diff(moment('2013-02-06', 'YYYY-MM-DD'), 'days'));
-
-
- var fechaF =   moment(fecha1).format('YYYY-DD-MM');
- var fechaF2 =   moment(fecha2).format('YYYY-DD-MM');
-
-
-
-  //alert(fecha22.diff(fecha11, 'days'));
-
-   var diff =moment( fechaF2).diff(moment(fechaF), "days"); // Diff in days
-
-
-
-   document.getElementById("duracionContrato").value = diff;
-
-
- }
-
- function validarFechaIngreso(){
-
-  var fecha1 =document.getElementById('fechaInicio').value;
-  var fecha2= document.getElementById('fechaFin').value;
-  var FechaIngreso= document.getElementById('FechaIngreso').value;
-
-  if (moment(fecha2).isBefore(moment(fecha1))    || moment(fecha2).isSame(moment(fecha1))  ){
-    document.getElementById("errorFechas").innerHTML="La fecha  de  Inicio  es mayor o igual que la fecha de Fin";
-
-  } else {
-    document.getElementById("errorFechas").innerHTML="";
-  }
-
-}
-
-
 
 
 
@@ -330,92 +175,6 @@ function doSearch()
 
 
 
-
-
-
-
-
-    function  validarProvedor(){
-
-     var nombre =document.getElementById('nombre').value;
-     var apellidos =document.getElementById('apellidos').value;
-     var ocultoNombre =document.getElementById('ocultoNombre').value;
-     var ocultoApellidos = document.getElementById('ocultoApellidos').value;
-     var oculto = ocultoNombre +ocultoApellidos;
-
-
-
-     nombre = nombre.replace(/([\ \t]+(?=[\ \t])|^\s+|\s+$)/g, '');
-
-
-
-
-     apellidos = apellidos.replace(/([\ \t]+(?=[\ \t])|^\s+|\s+$)/g, '');
-
-
-
-
-
-     var route = "http://localhost:8000/validarProvedor/"+nombre + "/" +apellidos;
-
-
-
-     $.get(route,function(res){
-      if(res.length > 0  &&  res[0].estado =="Inactivo"){
-       document.getElementById('submit').disabled=true;
-       var idProvedor = res[0].id;
-       document.getElementById("idProvedor").value= idProvedor;
-       $("#modal-reactivar").modal();
-
-     }
-     else if (res.length > 0  &&  res[0].estado =="Activo"  && (res[0].nombre +" " +res[0].apellidos) != oculto )  {
-
-
-
-      document.getElementById("errorNombre").innerHTML = "El proveedor intenta registrar ya existe en el sistema";
-      document.getElementById('submit').disabled=true;
-
-    }
-    else {
-
-    //  alert("entre en else");
-    document.getElementById("errorNombre").innerHTML = "";
-    document.getElementById('submit').disabled=false;
-
-  }
-});
-
-   }
-
-
-
-   function  validarFormularioProvedor(){
-
-    var nombre =document.getElementById('nombre').value;
-
-    var route = "http://localhost:8000/validarProvedor/"+nombre;
-
-    $.get(route,function(res){
-      if(res.length > 0  &&  res[0].estado =="Inactivo"){
-        var idProvedor = res[0].id;
-        document.getElementById("idProvedor").value= idProvedor;
-        $("#modal-reactivar").modal();
-
-      }
-      else if (res.length > 0  &&  res[0].estado =="Activo"  && res[0].nombre != oculto )  {
-
-
-        document.getElementById("errorNombre").innerHTML = "El proveedor intenta registrar ya existe en el sistema";
-        document.getElementById('submit').disabled=false;
-      }
-      else {
-        document.getElementById("errorNombre").innerHTML = "";
-
-        return true;
-      }
-    });
-
-  }
 
 //Validacion empresas de  proveedores
 
@@ -726,7 +485,7 @@ function centros_verifica(){
   return false
   document.getElementById("intendente").focus();
 }
-  else if(nivel == "PRIMARIA" && int > total_int_prima ){
+else if(nivel == "PRIMARIA" && int > total_int_prima ){
   swal("Error!", "El Número Maximo de Intendentes Permitidos En PRIMARIAS es de 1 por Cada 6 Grupos", "error");
   return false
   document.getElementById("intendente").focus();
@@ -750,13 +509,335 @@ if(grupo == 1){
 }else if(grupo >= 6 ){
   document.getElementById('organizacion').value = "COMPLETA";
 }
-
-
+}
 
 function regiones (){
-  
+
+
+}
+
+//Función para validar un RFC
+// Devuelve el RFC sin espacios ni guiones si es correcto
+// Devuelve false si es inválido
+// (debe estar en mayúsculas, guiones y espacios intermedios opcionales)
+function rfcValido(rfc, aceptarGenerico = true) {
+  const re       = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/;
+  var   validado = rfc.match(re);
+
+    if (!validado)  //Coincide con el formato general del regex?
+      return false;
+
+    //Separar el dígito verificador del resto del RFC
+    const digitoVerificador = validado.pop(),
+    rfcSinDigito      = validado.slice(1).join(''),
+    len               = rfcSinDigito.length,
+
+    //Obtener el digito esperado
+    diccionario       = "0123456789ABCDEFGHIJKLMN&OPQRSTUVWXYZ Ñ",
+    indice            = len + 1;
+    var   suma,
+    digitoEsperado;
+
+    if (len == 12) suma = 0
+    else suma = 481; //Ajuste para persona moral
+
+  for(var i=0; i<len; i++)
+    suma += diccionario.indexOf(rfcSinDigito.charAt(i)) * (indice - i);
+  digitoEsperado = 11 - suma % 11;
+  if (digitoEsperado == 11) digitoEsperado = 0;
+  else if (digitoEsperado == 10) digitoEsperado = "A";
+
+    //El dígito verificador coincide con el esperado?
+    // o es un RFC Genérico (ventas a público general)?
+    if ((digitoVerificador != digitoEsperado)
+     && (!aceptarGenerico || rfcSinDigito + digitoVerificador != "XAXX010101000"))
+      return false;
+    else if (!aceptarGenerico && rfcSinDigito + digitoVerificador == "XEXX010101000")
+      return false;
+    return rfcSinDigito + digitoVerificador;
+  }
+
+
+//Handler para el evento cuando cambia el input
+// -Lleva la RFC a mayúsculas para validarlo
+// -Elimina los espacios que pueda tener antes o después
+function validarInput(input) {
+  var rfc         = input.value.trim().toUpperCase(),
+  resultado   = document.getElementById("resultado"),
+  valido;
+
+    var rfcCorrecto = rfcValido(rfc);   // ⬅️ Acá se comprueba
+
+    if (rfcCorrecto) {
+      document.getElementById("error_rfc").innerHTML = "";
+      document.getElementById("error_rfc").value = "0";
+      document.getElementById('submit3').disabled=false;
+      valido = "Válido"; 
+      resultado.classList.add("ok");          
+    } else {
+      document.getElementById("error_rfc").innerHTML = "RFC Incorrecto";
+      document.getElementById("error_rfc").value = "1"; 
+      document.getElementById('submit3').disabled=true;
+      valido = "No válido-Compruebe el RFC";
+      resultado.classList.remove("ok");
+
+    }
+
+    resultado.innerText = "RFC: " + rfc 
+    + "\nResultado: " + rfcCorrecto
+    + "\nFormato: " + valido;
+  }
+
+  function personal_verifica(){
+    var x = document.getElementById('error_rfc').value;
+    if (x == 1 ){
+
+      swal("Error!", "Verifique el RFC", "error");
+      return false;
+    }
+  }
+
+  function  validarRFC(){
+    var rfc =document.getElementById('rfc_input').value;
+    var oculto =document.getElementById('oculto').value;
+    var route = "http://localhost:8000/validarpersonal/"+rfc;
+
+    $.get(route,function(res){
+      if(res.length > 0  &&  res[0].estado =="INACTIVO"){
+       document.getElementById('submit3').disabled=true;
+       var idCliente = res[0].id;
+       document.getElementById("idCliente").value= idCliente;
+       $("#modal-reactivar").modal();
+
+     } 
+     else if (res.length > 0  &&  res[0].estado =="ACTIVO"  && res[0].rfc != oculto )  {
+
+      document.getElementById("error_rfc").innerHTML = "EL RFC QUE INTENTA REGISTRAR YA SE ENCUENTRA ACTIVO EN EL SISTEMA";
+      document.getElementById("error_rfc").value = "1";
+      document.getElementById('submit3').disabled=true;
+
+    }
+    else {
+      document.getElementById("error_rfc").innerHTML = "";
+      document.getElementById('submit3').disabled=false;
+    //  document.getElementById("error_rfc").value = "0";
 
   }
+});
+
+  }
+
+  function captura_personal(){
+
+    var aux =document.getElementById('movimiento').value;
+    var cct =document.getElementById('cct').value;
+    var categoria=document.getElementById('puesto').value;
+
+    if(aux == "ALTA"){
+      document.getElementById('docente_cu').style.display = 'block';
+      document.getElementById('docente_cubrir').required = true
+ //   document.getElementById('docente_cubrir').style.display = 'none';
+ var route = "http://localhost:8000/validarcaptura/"+cct+"/"+categoria;
+
+ limpiar_input();
+ verifica_clave();
+
+ $.get(route,function(res){
+  if(res.length > 0){
+    for (var i = 0; i < res.length; i++) {
+      if(res[i].estado =="ACTIVO"){       
+        var x = document.getElementById("docente_cubrir");
+        var option = document.createElement("option");
+        option.text = res[i].nombre +"-"+res[i].rfc;
+        option.value = res[i].id;
+        x.add(option, x[i])
+        document.getElementById('error_movimiento').innerHTML= "";
+        document.getElementById('error_movimiento').value= "0";
+      }
+    }
+  }else{
+    limpiar_input();
+    document.getElementById('error_movimiento').innerHTML= "NO SE ENCUENTRA REGISTRADO NINGUN EMPLEADO EN ESTA CATEGORIA, NECESITA AGREGARLO COMO NUEVO RECURSO PARA PODER CONTINUAR";
+    document.getElementById('error_movimiento').value= "1";
+  }
+});
+}else if(aux == "NUEVO"){
+  document.getElementById('docente_cu').style.display = 'none';
+  document.getElementById('docente_cubrir').required = false;
+  var route2 = "http://localhost:8000/validarnuevor/"+cct+"/"+categoria;
+  verifica_clave();
+
+  $.get(route2,function(res){
+    var total = res.length;
+    if(res.length > 0){
+
+      if(categoria == "DIRECTOR"){
+        document.getElementById('error_movimiento').innerHTML= "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
+        swal("Error!", "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE ( "+res[0].nombre+" ), NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR", "error");
+        document.getElementById('error_movimiento').value= "1";
+      }
+      else if(categoria == "INTENDENTE"){      
+        var nivel = res[0].nivel;
+        var tot_gru = res[0].total_grupos;
+       // var suma_tot = tot_gru *
+       var total_int_prees = Math.ceil(tot_gru / 3);
+       var total_int_prima = Math.ceil(tot_gru / 6);
+       //alert(total_int_prees);
+
+       if (nivel == "PREESCOLAR"){
+        if (res.length > total_int_prees){
+          swal("Error!", "El Número Maximo de Intendentes Permitidos En PREESCOLARES es de 1 por Cada 3 Grupos, Se Detecto que se Encuentran "+res.length+" Intendentes Ya Registrados en este CTE", "error");
+          document.getElementById('error_movimiento').innerHTML= "El Número Maximo de Intendentes Permitidos En PREESCOLARES es de 1 por Cada 3 Grupos, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
+          document.getElementById('error_movimiento').value= "1";
+        }}
+        else if(nivel == "PRIMARIA" ){
+          if (res.length > total_int_prima ){
+            swal("Error!", "El Número Maximo de Intendentes Permitidos En PRIMARIAS es de 1 por Cada 6 Grupos Se Detecto que se Encuentran "+res.length+" Intendentes Ya Registrados en este CTE", "error");
+            document.getElementById('error_movimiento').innerHTML= "El Número Maximo de Intendentes Permitidos En PRIMARIAS es de 1 por Cada 6 Grupos, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
+            document.getElementById('error_movimiento').value= "1";
+          }}
+          else if (nivel == "TELESECUNDARIA" ){
+           if ( res.length > total_int_prees){
+            swal("Error!", "El Número Maximo de Intendentes Permitidos En TELESECUNDARIAS es de 1 por Cada 3 Grupos Se Detecto que se Encuentran "+res.length+" Intendentes Ya Registrados en este CTE", "error");
+            document.getElementById('error_movimiento').innerHTML= "El Número Maximo de Intendentes Permitidos En TELESECUNDARIAS es de 1 por Cada 3 Grupos, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
+            document.getElementById('error_movimiento').value= "1";
+          }
+        }
+      }
+    }else{
+      document.getElementById('error_movimiento').innerHTML= "";
+      document.getElementById('error_movimiento').value= "0";
+
+    }
+  });
+}else if(aux == "INICIO"){
+  document.getElementById('docente_cu').style.display = 'none';
+  document.getElementById('docente_cubrir').required = false;
+  verifica_clave();
+  document.getElementById('error_movimiento').innerHTML= "";
+  document.getElementById('error_movimiento').value= "0";
+}else if(aux == "EXTENCION"){
+  verifica_clave();
+  //document.getElementById('docente_cu').style.display = 'none';
+  document.getElementById('docente_cubrir').required = false;
+  document.getElementById('error_movimiento').innerHTML= "";
+  document.getElementById('error_movimiento').value= "0";
+  document.getElementById("docente_cubrir").required = false;
+
+}else if(aux == "REINCORPORACION"){
+
+
+  document.getElementById('docente_cu').style.display = 'none';
+  document.getElementById('docente_cubrir').required = false;
+  var route2 = "http://localhost:8000/validarnuevor/"+cct+"/"+categoria;
+  verifica_clave();
+
+  $.get(route2,function(res){
+    var total = res.length;
+    if(res.length > 0){
+
+      if(categoria == "DIRECTOR"){
+        document.getElementById('error_movimiento').innerHTML= "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
+        swal("Error!", "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE ( "+res[0].nombre+" ), NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR", "error");
+        document.getElementById('error_movimiento').value= "1";
+      }
+      else if(categoria == "INTENDENTE"){      
+        var nivel = res[0].nivel;
+        var tot_gru = res[0].total_grupos;
+       // var suma_tot = tot_gru *
+       var total_int_prees = Math.ceil(tot_gru / 3);
+       var total_int_prima = Math.ceil(tot_gru / 6);
+       //alert(total_int_prees);
+
+       if (nivel == "PREESCOLAR"){
+        if (res.length > total_int_prees){
+          swal("Error!", "El Número Maximo de Intendentes Permitidos En PREESCOLARES es de 1 por Cada 3 Grupos, Se Detecto que se Encuentran "+res.length+" Intendentes Ya Registrados en este CTE", "error");
+          document.getElementById('error_movimiento').innerHTML= "El Número Maximo de Intendentes Permitidos En PREESCOLARES es de 1 por Cada 3 Grupos, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
+          document.getElementById('error_movimiento').value= "1";
+        }}
+        else if(nivel == "PRIMARIA" ){
+          if (res.length > total_int_prima ){
+            swal("Error!", "El Número Maximo de Intendentes Permitidos En PRIMARIAS es de 1 por Cada 6 Grupos Se Detecto que se Encuentran "+res.length+" Intendentes Ya Registrados en este CTE", "error");
+            document.getElementById('error_movimiento').innerHTML= "El Número Maximo de Intendentes Permitidos En PRIMARIAS es de 1 por Cada 6 Grupos, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
+            document.getElementById('error_movimiento').value= "1";
+          }}
+          else if (nivel == "TELESECUNDARIA" ){
+           if ( res.length > total_int_prees){
+            swal("Error!", "El Número Maximo de Intendentes Permitidos En TELESECUNDARIAS es de 1 por Cada 3 Grupos Se Detecto que se Encuentran "+res.length+" Intendentes Ya Registrados en este CTE", "error");
+            document.getElementById('error_movimiento').innerHTML= "El Número Maximo de Intendentes Permitidos En TELESECUNDARIAS es de 1 por Cada 3 Grupos, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
+            document.getElementById('error_movimiento').value= "1";
+          }
+        }
+      }
+    }else{
+      document.getElementById('error_movimiento').innerHTML= "";
+      document.getElementById('error_movimiento').value= "0";
+
+    }
+  });
+
+  
+}     
+document.getElementById("docente_cubrir").required = false;
 }
+
+function limpiar_input(){
+  var x = document.getElementById('docente_cubrir');
+  if (x.length > 0){
+    for (var i = 0; i < x.length; i++) {
+      x.remove(i);
+    }}
+  }
+
+  function verifica_fecha(){
+    var x =document.getElementById('fechai').value;
+    var z = document.getElementById('fechaf').value;
+
+    if (z <= x){
+      document.getElementById('error_fecha').innerHTML= "LA FECHA DE TERMINO DE LABORES, NO PUEDE SER MAYOR O IGUAL QUE LA FECHA INICIAL";
+      document.getElementById('error_fecha').value= "1";
+    }else{
+      document.getElementById('error_fecha').innerHTML= "";
+      document.getElementById('error_fecha').value= "0";
+    }
+  }
+
+  function verifica_clave(){
+    var categoria=document.getElementById('puesto').value;
+    var select=document.getElementById('clave');
+    var cantidadtotal = select.value;
+    limite = "2",
+    separador = "_",
+    clave = cantidadtotal.split(separador, limite);
+    if (categoria ==  "INTENDENTE"  && clave[1] != "INTENDENTE"){
+     document.getElementById('error_clave').innerHTML= "UN INTENDENTE NO PUEDE TENER CLAVE DE "+clave[1];
+     document.getElementById('error_clave').value= "1";
+
+   }else if(categoria == "DOCENTE" && clave[1] ==  "INTENDENTE"){
+     document.getElementById('error_clave').innerHTML= "UN "+categoria+ " NO PUEDE TENER CLAVE DE " +clave[1];
+     document.getElementById('error_clave').value= "1";
+   }else if(categoria == "DIRECTOR" && clave[1] ==  "INTENDENTE"){
+     document.getElementById('error_clave').innerHTML= "UN "+categoria+ " NO PUEDE TENER CLAVE DE " +clave[1];
+     document.getElementById('error_clave').value= "1";
+   }else if(categoria == "USAER" && clave[1] ==  "INTENDENTE"){
+     document.getElementById('error_clave').innerHTML= "UN "+categoria+ " NO PUEDE TENER CLAVE DE " +clave[1];
+     document.getElementById('error_clave').value= "1";
+   }else if(categoria == "EDUCACION FISICA" && clave[1] ==  "INTENDENTE"){
+     document.getElementById('error_clave').innerHTML= "UN "+categoria+ " NO PUEDE TENER CLAVE DE " +clave[1];
+     document.getElementById('error_clave').value= "1";
+   }else{
+     document.getElementById('error_clave').innerHTML= "";
+     document.getElementById('error_clave').value= "0";
+   }
+
+ }
+
+ function enviar_ciclo(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var y =document.getElementById('id_personal').value;
+
+location.href="http://localhost:8000/ver_datoscaptura/"+y+"/"+x;
+
+
 
 }

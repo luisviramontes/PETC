@@ -52,11 +52,6 @@
 								<th>Mes </th>
 								<th>Estado</th>
 								<th>Observaciones</th>
-
-
-
-
-
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>

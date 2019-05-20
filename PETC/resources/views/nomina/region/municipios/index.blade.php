@@ -64,7 +64,7 @@
 						<tbody>
 							@foreach($dato  as $datos)
 							<tr class="gradeA">
-								<td>{{$datos->region}} </td>
+								<td>{{$datos->region}} </td>	
 								<td>{{$datos->municipio}} </td>
 								<td>{{$datos->cabecera}} </td>
 								<td>{{$datos->poblacion}} </td>
