@@ -27,6 +27,7 @@ class DirectorioRegional extends Migration
             $table->integer('telefono_regional')->nullable();
             $table->integer('ext_reg_1')->nullable();
             $table->integer('ext_reg_2')->nullable();
+            $table->string('estado');
             $table->string('captura');
             $table->timestamps();
         });

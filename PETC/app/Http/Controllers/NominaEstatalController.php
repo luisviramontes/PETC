@@ -2,12 +2,21 @@
 
 namespace petc\Http\Controllers;
 
-use App\NominaEstatalModel;
+use petc\NominaEstatalModel;
 
 use Illuminate\Http\Request;
 
 use petc\Http\Requests;
 use petc\Http\Controllers\Controller;
+
+use DB;
+use Excel;
+use PHPExcel_Worksheet_Drawing;
+use Validator;
+use \Milon\Barcode\DNS1D;
+use \Milon\Barcode\DNS2D;
+use petc\Http\Requests\NominaEstatalRequest;
+
 
 class NominaEstatalController extends Controller
 {
@@ -16,9 +25,26 @@ class NominaEstatalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      return view('nomina.nomina_estatal.index');
+
+      if($request)
+      {
+       $query=trim($request->GET('searchText'));
+       $nomina_estatal = DB::table('nomina_estatal')
+       ->where('RFC','LIKE','%'.$query.'%')
+       ->orwhere('nombre','LIKE','%'.$query.'%')
+       ->orwhere('num_empleado','LIKE','%'.$query.'%')
+       ->orwhere('num_cheque','LIKE','%'.$query.'%')
+       ->orwhere('cct','LIKE','%'.$query.'%')
+       ->orwhere('qna_ini','LIKE','%'.$query.'%')
+       ->orwhere('qna_fin','LIKE','%'.$query.'%')
+       ->orwhere('qna_pago','LIKE','%'.$query.'%')
+       ->paginate(24);
+      }
+
+
+      return view('nomina.nomina_estatal.index',["nomina_estatal" => $nomina_estatal,"searchText"=>$query]);
 
         //
     }
@@ -30,8 +56,7 @@ class NominaEstatalController extends Controller
      */
     public function create()
     {
-      $nomina_estatal = new NominaEstatalModel; //para que devuelva campo vacio en formcreate
-      return view("nomina.nomina_estatal.create",["nomina_estatal" => $nomina_estatal]);
+
     }
 
     /**
@@ -42,8 +67,15 @@ class NominaEstatalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nomina_estatal = new NominaEstatalModel;
+
     }
+
+    //importar Excel a la BD
+
+    
+    ////////////////////////////
+
 
     /**
      * Display the specified resource.
@@ -85,8 +117,12 @@ class NominaEstatalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($qna_pago)
     {
-        //
+
+      NominaEstatalModel::where('qna_pago', $qna_pago)->delete();
+
+
+      return redirect('/nomina_estatal');
     }
 }

@@ -21,6 +21,7 @@
 						<div class="col-sm-7">
 							<div class="actions"> </div>
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Ciclos Escolares</strong></h2>
+							<br>
 								@include('nomina.ciclo_escolar.search')
 						</div>
 						<div class="col-md-5">
@@ -51,7 +52,8 @@
 								<th>Dias Habiles</th>
 								<th>Inicio Ciclo</th>
 								<th>Fin Ciclo</th>
-
+								<th>Estado</th>
+								<th>Captura</th>
 
 
 
@@ -61,21 +63,79 @@
 						</thead>
 						<tbody>
 						@foreach($ciclos  as $ciclo)
+						@if ($ciclo->estado == "ACTIVO")
 							<tr class="gradeX">
 
-								<td>{{$ciclo->ciclo}} </td>
-								<td>{{$ciclo->dias_habiles}} </td>
-								<td>{{$ciclo->inicio_ciclo}} </td>
-								<td>{{$ciclo->fin_ciclo}} </td>
+								<td style="background-color:#DBFFC2;" >{{$ciclo->dias_habiles}} </td>
+								<td style="background-color:#DBFFC2;" >{{$ciclo->ciclo}} </td>
+								<td style="background-color:#DBFFC2;" >{{$ciclo->inicio_ciclo}} </td>
+								<td style="background-color:#DBFFC2;" >{{$ciclo->fin_ciclo}} </td>
+								<td style="background-color:#DBFFC2;" >{{$ciclo->estado}}</td>
+								<td style="background-color:#DBFFC2;" >{{$ciclo->capturo}}</td>
+								<!-- //////////////////////////////////////////////////////////////////// -->
+									@if ($ciclo->estado == "INACTIVO")
 
+
+								<td style="background-color:#DBFFC2;">
+									<center>
+										<a href="{{URL::action('CicloEscolarController@edit',$ciclo->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+									</center>
+								</td>
+									@else
+									<td style="background-color:#DBFFC2;">
+									<center>
+
+											<h4><span class="label label-warning">Inactivar para editar</span></h4>
+
+									</center>
+								</td>
+									@endif
+									<!-- //////////////////////////////////////////////////////////////////// -->
+
+
+								<td style="background-color:#DBFFC2;">
+									<center>
+										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$ciclo->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+
+									</center>
+									</td>
+								</td>
+
+							</tr>
+							@else
+							<!-- /////////////if color else //////////////////////////7-->
+							<tr class="gradeX">
+
+								<td style="background-color:#FFE4E1;" >{{$ciclo->dias_habiles}} </td>
+								<td style="background-color:#FFE4E1;" >{{$ciclo->ciclo}} </td>
+								<td style="background-color:#FFE4E1;" >{{$ciclo->inicio_ciclo}} </td>
+								<td style="background-color:#FFE4E1;" >{{$ciclo->fin_ciclo}} </td>
+								<td style="background-color:#FFE4E1;" >{{$ciclo->estado}}</td>
+
+
+								<td>{{$ciclo->capturo}}</td>
+								<!-- //////////////////////////////////////////////////////////////////// -->
+									@if ($ciclo->estado == "INACTIVO")
 
 
 								<td>
 									<center>
-										<a href="{{URL::action('CicloEscolarController@edit',$ciclo->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+										<a href="{{URL::action('CicloEscolarController@edit',$ciclo->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 
 									</center>
 								</td>
+									@else <td>
+									<center>
+
+											<h4><span class="label label-warning">Inactivar para editar</span></h4>
+
+									</center>
+								</td>
+									@endif
+									<!-- //////////////////////////////////////////////////////////////////// -->
+
+
 								<td>
 									<center>
 										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$ciclo->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
@@ -83,7 +143,9 @@
 									</center>
 									</td>
 								</td>
+
 							</tr>
+							@endif
 								  @include('nomina.ciclo_escolar.modal')
 							@endforeach
 						</tbody>

@@ -48,7 +48,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Entidad: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="entidad" type="text" onchange="mayus(this)" class="form-control" required value="{{Input::old('entidad')}}" />
+								<input name="entidad" type="text" id="entidad" onchange="mayus(this)" class="form-control" required value="{{Input::old('entidad')}}" />
 								<div class="help-block with-errors"></div>
 							<!--	<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('ciclo')}}</div>
 							--></div>

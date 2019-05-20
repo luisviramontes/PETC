@@ -28,23 +28,16 @@ class CicloEscolarController extends Controller
      */
     public function index(Request $request)
     {
-      $ciclos = CicloEscolarModel::orderBy('id', 'DESC')
-                            ->paginate(24);
-////////////////////////////////////////////////////////////////
-if($request)
-{
- $aux=$request->get('searchText');
 
- $query=trim($request->GET('searchText'));
- $ciclo2= DB::table('ciclo_escolar')->where('ciclo','=',$aux)->first();
- if(is_null($ciclo2)){
-  $ciclo2= DB::table('ciclo_escolar')->where('ciclo','=','2018-2019')->first();
- }
+      if($request)
+      {
+       $query=trim($request->GET('searchText'));
+       $ciclos = DB::table('ciclo_escolar')
+       ->where('ciclo','LIKE','%'.$query.'%')
+       ->paginate(24);
+      }
 
- $ciclo_escolar= DB::table('ciclo_escolar')->where('ciclo','LIKE','%'.$query.'%')->paginate(24);
-
-                           }
-        return view('nomina.ciclo_escolar.index',["ciclos"=>$ciclos,"searchText"=>$query,'ciclo2'=> $ciclo2,'ciclo_escolar'=>$ciclo_escolar]);
+        return view('nomina.ciclo_escolar.index',["ciclos"=>$ciclos,"searchText"=>$query]);
     }
 
     /**
@@ -80,7 +73,8 @@ if($request)
           $ciclo -> dias_habiles = $formulario ->dias_habiles;
           $ciclo -> inicio_ciclo = $formulario ->inicio_ciclo;
           $ciclo -> fin_ciclo = $formulario ->fin_ciclo;
-          $ciclo -> capturo="Administrador";
+          $ciclo -> estado = "ACTIVO";
+          $ciclo -> capturo="ADMINISTRDOR";
 
           if($ciclo->save()){
 
@@ -152,7 +146,8 @@ if($request)
       $ciclos -> dias_habiles = $request ->dias_habiles;
       $ciclos -> inicio_ciclo = $request ->inicio_ciclo;
       $ciclos -> fin_ciclo = $request ->fin_ciclo;
-      $ciclos -> capturo="Administrador";
+      $ciclos -> estado = "ACTIVO";
+      $ciclos -> capturo="ADMINISTRDOR";
       //guardar
       if($ciclos->save()){
 
@@ -171,8 +166,12 @@ if($request)
      */
     public function destroy($id)
     {
-      CicloEscolarModel::destroy($id);
-      return redirect('/ciclo_escolar');
+
+      $ciclo=CicloEscolarModel::findOrFail($id);
+      $ciclo->estado="INACTIVO";
+      $ciclo->capturo="ADMINISTRADOR";
+      $ciclo->update();
+        return redirect('ciclo_escolar');
     }
 
 

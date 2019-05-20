@@ -18,6 +18,7 @@ class CicloEscolar extends Migration
             $table->integer('dias_habiles');
             $table->date('inicio_ciclo');
             $table->date('fin_ciclo');
+            $table->string('estado');
             $table->string('capturo');
             $table->timestamps();
         });

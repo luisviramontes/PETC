@@ -22,6 +22,7 @@ class CatPuesto extends Migration
             $table->string('des_puesto');
             $table->string('categoria');
             $table->string('tipo_puesto');
+            $table->string('estado'); 
             $table->string('captura');
             $table->timestamps();
         });
