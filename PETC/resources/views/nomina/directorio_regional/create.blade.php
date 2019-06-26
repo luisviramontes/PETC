@@ -33,71 +33,23 @@
 				<div class="porlets-content">
 					<form action="{{route('directorio_regional.store')}}" method="post" class="form-horizontal row-border" parsley-validate novalidate  files="true" enctype="multipart/form-data" accept-charset="UTF-8">
 						{{csrf_field()}}
+ 
+											
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Región <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<select name="region" id="region" class="form-control select"   >
+								@foreach($region as $region)
+								<option value="{{$region->id}}">
+									{{$region->region}} {{$region->sostenimiento}}
 
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Region <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<select name="region" class="form-control" required>
-									<option value="1">
-										1
-									</option>
-									<option value="2">
-										2
-									</option>
-									<option value="3">
-										3
-									</option>
-									<option value="4">
-										4
-									</option>
-									<option value="5">
-										5
-									</option>
-									<option value="6">
-										6
-									</option>
-									<option value="7">
-										7
-									</option>
-									<option value="8">
-										8
-									</option>
-									<option value="9">
-										9
-									</option>
-									<option value="10">
-										10
-									</option>
-									<option value="11">
-										11
-									</option>
-									<option value="12">
-										12
-									</option>
-									<option value="13">
-										13
-									</option>
-
-								</select>
-								<div class="help-block with-errors"></div>
-							</div>
-						</div><!--/form-group-->
-
-
-            <div class="form-group">
-							<label class="col-sm-3 control-label">Sostenimiento <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<select name="sostenimiento" class="form-control" required>
-									<option value="estatal">
-										Estatal
-									</option>
-									<option value="federal">
-										Federal
-									</option>
-                </select>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div><!--/form-group-->
+								</option>
+								@endforeach
+							</select>
+							<div class="help-block with-errors"></div>
+							<!--	<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
+						--></div>
+					</div>
 
 
 						<div class="form-group">

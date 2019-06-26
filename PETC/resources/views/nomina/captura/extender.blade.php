@@ -319,7 +319,7 @@
 													<label class="col-sm-3 control-label">Fecha de Inicio de Labores: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 
-														<input type="date" name="fechai" id="fechai" value="{{$personal->fecha_inicio}}" class="form-control mask" required>
+														<input type="date" name="fechai" onchange="verifica_fecha()" id="fechai" value="{{$personal->fecha_inicio}}" class="form-control mask" required>
 													</div>
 												</div>
 
@@ -338,6 +338,7 @@
 														<input name="observaciones" id="observaciones" type="text" onkeypress="return soloLetras(event)"  class="form-control"  value="{{$personal->observaciones}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 													</div> 
 												</div>
+												
 
 												<div class="form-group">
 													<div class="col-sm-offset-7 col-sm-5">
@@ -345,8 +346,7 @@
 														<a href="{{url('/captura')}}" class="btn btn-default"> Cancelar</a>
 													</div>
 												</div><!--/form-group--> 
-
-
+												
 												<div class="form-group">
 													<div class="col-sm-6">
 														<input  id="diassemana"  name="diassemana" type="hidden"  class="form-control""/>
@@ -657,23 +657,23 @@ function cambia4(x){
 
 		function cambia6(x){
 
-				var z = document.getElementById(x).checked;
-				document.getElementById(x).checked= true;
-				var j =document.getElementById(x).value;
+			var z = document.getElementById(x).checked;
+			document.getElementById(x).checked= true;
+			var j =document.getElementById(x).value;
 
-				aux.push(j);
-				alert(aux);
-				document.getElementById('diassemana').value = aux;
-				var y = document.getElementById('diassemana').value;
+			aux.push(j);
+			alert(aux);
+			document.getElementById('diassemana').value = aux;
+			var y = document.getElementById('diassemana').value;
 
-			}
+		}
 
-			function cambiacct(value) {
-				if (value == 2){
-					document.getElementById('cct2div').style.display = 'block';
-					document.getElementById('cct_etc2').style.required = true;
-					document.getElementById('cct3div').style.display = 'none';
-					document.getElementById('cct_etc3').style.required = false;
+		function cambiacct(value) {
+			if (value == 2){
+				document.getElementById('cct2div').style.display = 'block';
+				document.getElementById('cct_etc2').style.required = true;
+				document.getElementById('cct3div').style.display = 'none';
+				document.getElementById('cct_etc3').style.required = false;
   // body...
 }else if (value >= 3){
 	document.getElementById('cct2div').style.display = 'block';

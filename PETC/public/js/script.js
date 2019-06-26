@@ -653,8 +653,9 @@ function validarInput(input) {
     var categoria=document.getElementById('puesto').value;
 
     if(aux == "ALTA"){
-      document.getElementById('docente_cu').style.display = 'block';
-      document.getElementById('docente_cubrir').required = true
+     desabilita_cct_nuevo();
+     document.getElementById('docente_cu').style.display = 'block';
+     document.getElementById('docente_cubrir').required = true
  //   document.getElementById('docente_cubrir').style.display = 'none';
  var route = "http://localhost:8000/validarcaptura/"+cct+"/"+categoria;
 
@@ -681,90 +682,105 @@ function validarInput(input) {
   }
 });
 }else if(aux == "NUEVO"){
-  document.getElementById('docente_cu').style.display = 'none';
-  document.getElementById('docente_cubrir').required = false;
-  var route2 = "http://localhost:8000/validarnuevor/"+cct+"/"+categoria;
-  verifica_clave();
-
-  $.get(route2,function(res){
-    var total = res.length;
-    if(res.length > 0){
-
-      if(categoria == "DIRECTOR"){
-        document.getElementById('error_movimiento').innerHTML= "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
-        swal("Error!", "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE ( "+res[0].nombre+" ), NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR", "error");
-        document.getElementById('error_movimiento').value= "1";
-      }
-      else if(categoria == "INTENDENTE"){      
-        var nivel = res[0].nivel;
-        var tot_gru = res[0].total_grupos;
-       // var suma_tot = tot_gru *
-       var total_int_prees = Math.ceil(tot_gru / 3);
-       var total_int_prima = Math.ceil(tot_gru / 6);
-       //alert(total_int_prees);
-
-       if (nivel == "PREESCOLAR"){
-        if (res.length > total_int_prees){
-          swal("Error!", "El Número Maximo de Intendentes Permitidos En PREESCOLARES es de 1 por Cada 3 Grupos, Se Detecto que se Encuentran "+res.length+" Intendentes Ya Registrados en este CTE", "error");
-          document.getElementById('error_movimiento').innerHTML= "El Número Maximo de Intendentes Permitidos En PREESCOLARES es de 1 por Cada 3 Grupos, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
-          document.getElementById('error_movimiento').value= "1";
-        }}
-        else if(nivel == "PRIMARIA" ){
-          if (res.length > total_int_prima ){
-            swal("Error!", "El Número Maximo de Intendentes Permitidos En PRIMARIAS es de 1 por Cada 6 Grupos Se Detecto que se Encuentran "+res.length+" Intendentes Ya Registrados en este CTE", "error");
-            document.getElementById('error_movimiento').innerHTML= "El Número Maximo de Intendentes Permitidos En PRIMARIAS es de 1 por Cada 6 Grupos, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
-            document.getElementById('error_movimiento').value= "1";
-          }}
-          else if (nivel == "TELESECUNDARIA" ){
-           if ( res.length > total_int_prees){
-            swal("Error!", "El Número Maximo de Intendentes Permitidos En TELESECUNDARIAS es de 1 por Cada 3 Grupos Se Detecto que se Encuentran "+res.length+" Intendentes Ya Registrados en este CTE", "error");
-            document.getElementById('error_movimiento').innerHTML= "El Número Maximo de Intendentes Permitidos En TELESECUNDARIAS es de 1 por Cada 3 Grupos, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
-            document.getElementById('error_movimiento').value= "1";
-          }
-        }
-      }
-    }else{
-      document.getElementById('error_movimiento').innerHTML= "";
-      document.getElementById('error_movimiento').value= "0";
-
-    }
-  });
+ desabilita_cct_nuevo();
+ document.getElementById('docente_cu').style.display = 'none';
+ document.getElementById('docente_cubrir').required = false;
+ verifica_clave();
+ verifica_personal(categoria,cct);
 }else if(aux == "INICIO"){
-  document.getElementById('docente_cu').style.display = 'none';
-  document.getElementById('docente_cubrir').required = false;
+  desabilita_docente();
   verifica_clave();
-  document.getElementById('error_movimiento').innerHTML= "";
-  document.getElementById('error_movimiento').value= "0";
+  desabilita_cct_nuevo();
+  verifica_personal(categoria,cct);
+
 }else if(aux == "EXTENCION"){
   verifica_clave();
-  //document.getElementById('docente_cu').style.display = 'none';
-  document.getElementById('docente_cubrir').required = false;
-  document.getElementById('error_movimiento').innerHTML= "";
-  document.getElementById('error_movimiento').value= "0";
-  document.getElementById("docente_cubrir").required = false;
+  desabilita_docente();
+  desabilita_cct_nuevo();
 
 }else if(aux == "REINCORPORACION"){
-  document.getElementById('docente_cu').style.display = 'none';
-  document.getElementById('docente_cubrir').required = false;
-  var route2 = "http://localhost:8000/validarnuevor/"+cct+"/"+categoria;
+ desabilita_cct_nuevo();
+ document.getElementById('docente_cu').style.display = 'none';
+ document.getElementById('docente_cubrir').required = false;
+ var route2 = "http://localhost:8000/validarnuevor/"+cct+"/"+categoria;
+ verifica_personal(categoria,cct);
+
+}else if(aux == "CAMBIOCCT"){
+  //document.getElementById('cct').disabled= true;
+  document.getElementById('cct_nuevo_div').style.display = 'block';
+  document.getElementById('cct_nuevo').required = true;
+
   verifica_clave();
+  desabilita_docente();
+  combrueba_estado();
+  var cct2 = document.getElementById('cct_nuevo').value ;
+  verifica_personal(categoria,cct2);
 
-  $.get(route2,function(res){
-    var total = res.length;
-    if(res.length > 0){
+  
+}else if(aux == "CAMBIOFUNCION"){
+  verifica_clave();
+  desabilita_docente();
+  combrueba_estado();
+  desabilita_cct_nuevo();
+  verifica_personal(categoria,cct);
 
-      if(categoria == "DIRECTOR"){
-        document.getElementById('error_movimiento').innerHTML= "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
-        swal("Error!", "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE ( "+res[0].nombre+" ), NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR", "error");
-        document.getElementById('error_movimiento').value= "1";
-      }
-      else if(categoria == "INTENDENTE"){      
-        var nivel = res[0].nivel;
-        var tot_gru = res[0].total_grupos;
+
+
+}
+
+}
+
+function combrueba_estado() {
+  var x = document.getElementById('estado').value;
+  if (x == "INACTIVO" || x == ""){
+    document.getElementById('error_movimiento').innerHTML= "NO PUEDE AGREGAR UN DOCENTE INACTIVO COMO CAMBIO DE CTE Ó CAMBIO DE FUNCIÓN, PARA REACTIVARLO SELECCIONE: -ALTA -REINCORPORACION -NUEVO RECURSO";
+    document.getElementById('error_movimiento').value= "1";
+  }else{
+    document.getElementById('error_movimiento').innerHTML= "";
+    document.getElementById('error_movimiento').value= "0";
+  }
+}
+
+function desabilita_cct_nuevo(){
+  var s = document.getElementById('cct').value;
+  document.getElementById('cct').disabled= false;
+  document.getElementById('cct_nuevo_div').style.display = 'none';
+  document.getElementById('cct_nuevo').required = false;
+  document.getElementById('cct_nuevo').value = s;
+
+}
+
+function desabilita_docente(){
+ document.getElementById('docente_cu').style.display = 'none';
+ document.getElementById('docente_cubrir').required = false;
+ document.getElementById('error_movimiento').innerHTML= "";
+ document.getElementById('error_movimiento').value= "0";
+ document.getElementById("docente_cubrir").required = false; 
+}
+
+function verifica_personal(categoria,cct){
+ //desabilita_cct_nuevo();
+ document.getElementById('docente_cu').style.display = 'none';
+ document.getElementById('docente_cubrir').required = false;
+ var route2 = "http://localhost:8000/validarnuevor/"+cct+"/"+categoria;
+ verifica_clave();
+
+ $.get(route2,function(res){
+  var total = res.length;
+  if(res.length > 0){
+
+    if(categoria == "DIRECTOR"){
+      document.getElementById('error_movimiento').innerHTML= "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
+      swal("Error!", "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE ( "+res[0].nombre+" ), NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR", "error");
+      document.getElementById('error_movimiento').value= "1";
+    }
+    else if(categoria == "INTENDENTE"){      
+      var nivel = res[0].nivel;
+      var tot_gru = res[0].total_grupos;
        // var suma_tot = tot_gru *
        var total_int_prees = Math.ceil(tot_gru / 3);
        var total_int_prima = Math.ceil(tot_gru / 6);
-       //alert(total_int_prees);
+       //             (total_int_prees);
 
        if (nivel == "PREESCOLAR"){
         if (res.length > total_int_prees){
@@ -792,9 +808,8 @@ function validarInput(input) {
 
     }
   });
-}
-}
 
+}
 
 
 
@@ -891,4 +906,420 @@ function limpiar_input(){
 }
 
 
+function enviar_ciclo2(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var z =document.getElementById('searchText').value;
+
+  location.href="/inasistencias2/"+x+"?searchText="+z;
+}
+
+function enviar_ciclo3(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var z =document.getElementById('id_personal').value;
+  location.href="http://localhost:8000/ver_inasistencias/"+z+"/"+x;
+}
+
+function enviar_ciclo4(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var z =document.getElementById('id_centro').value;
+  location.href="http://localhost:8000/verInformacionCentro/"+z+"/"+x;
+}
+
+function busca_personal(){
+  var Table = document.getElementById("detalles");
+  Table.innerHTML = "";
+
+  var select2 = document.getElementById("cct");
+  var selectedOption2 = select2.selectedIndex;
+  var cantidadtotal = select2.value;
+  limite = "3",
+  separador = "_",
+  arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+  id_cct=arregloDeSubCadenas[2];
+  var mes= document.getElementById("mes").value;
+  var ciclo= document.getElementById("ciclo_escolar").value;
+  var route = "http://localhost:8000/validar_lista/"+id_cct+"/"+mes+"/"+ciclo;
+  var route2 = "http://localhost:8000/busca_personal/"+id_cct+"/";
+  var route3 = "http://localhost:8000/busca_dias/"+mes+"/"+ciclo+"/";
+  var dias;
+  var arreglo= [] ;
+
+  $.get(route,function(res){
+
+    if(res.length > 0 ){
+      for (var i=0; i < res.length; i++){
+        if(res[i].estado=="ACTIVO"){
+          document.getElementById('submit8').disabled=true;
+          swal("ERROR!","La Lista de Asistencia que Intenta Registrar Ya se Ha Registrado","error");
+          //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+          document.getElementById('submit8').disabled=false;
+          return false
+
+        }
+
+      }
+    }else{
+
+      $.get(route3,function(res){
+        dias = parseInt(res.length);
+        if(res.length > 0 ){ 
+          var tabla = document.getElementById("detalles");
+    //tabla.setAttribute("id", id2);
+    var row = tabla.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3); 
+    cell1.innerHTML =  "N°";
+    cell2.innerHTML = "Nombre del Empleado";
+    cell3.innerHTML = "R.F.C" ;
+    cell4.innerHTML = "Categoria" ;      
+    for (var i=0; i < res.length; i++){   
+      var aux = 4 + i;
+      var cellx = row.insertCell(aux);
+      cellx.innerHTML = res[i].l_semana+"-"+res[i].dia ;   
+    }
+
+    $.get(route2,function(res){
+      if(res.length > 0 ){
+        for (var i=0; i < res.length; i++){
+          if(res[i].estado=="ACTIVO"){
+            var tabla = document.getElementById("detalles");
+    //tabla.setAttribute("id", id2);
+    var row = tabla.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+
+
+    cell1.innerHTML =  res[i].id;
+    cell2.innerHTML = res[i].nombre;
+    cell3.innerHTML = res[i].rfc;
+    cell4.innerHTML = res[i].categoria;
+    for (var p = 0 ; p < dias; p++) {
+      var aux = 4 + p;
+      var z = tabla.rows[0].cells[aux].innerHTML;
+      var agregaHTML = "<input type=button value=O class=agrega id="+(res[i].id)+"-"+(z)+">";
+      var cellx = row.insertCell(aux);
+      cellx.innerHTML = agregaHTML ; 
+      //document.getElementById(""+res[i].id+z).style.color = "#00ff00";
+
+      cellx.addEventListener("click", function(event) {
+        var currentId = event.target.id;
+        var aux = event.target.id;
+        var calcula = document.getElementById(""+aux).value;
+        var arr = document.getElementById(""+aux).id;
+        if (calcula == "O"){
+          document.getElementById(""+aux).value = "/";
+          document.getElementById(""+aux).style.color = "#ff0000";
+          arreglo.push(aux);
+          document.getElementById('inasistencias').value=arreglo;
+        }else{
+          for (var i = 0; i < arreglo.length; i++) {
+            if (arr == arreglo[i]) {
+              arreglo.splice(i, 1);
+              document.getElementById('inasistencias').value=arreglo;
+            }
+          }
+          document.getElementById(""+aux).value = "O";
+          document.getElementById(""+aux).style.color = "#000000";
+
+        }
+        cuenta_arreglo(arreglo);
+      })
+    }
+    cuenta_arreglo(arreglo);
+          //  document.getElementById('submit8').disabled=true;
+
+          //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+          //return false
+        }
+
+      }
+
+
+
+
+    }
+
+  });
+
+  }else{
+    swal("ERROR!","No Se Encuentran Dias Habilen en este Mes, Dentro de este Ciclo Escolar","error");
+    document.getElementById('submit8').disabled=false;
+          //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+          return false
+
+        }
+
+      });
+
+      document.getElementById('submit8').disabled=false;
+  //valida_file();
+}
+
+});
+//  valida_file();
+}
+
+
+
+function busca_personal2(){
+  var Table = document.getElementById("detalles");
+  Table.innerHTML = "";
+
+  var dia = document.getElementById("dia").value;
+  var mes = document.getElementById("mes").value;
+  var mesaux = document.getElementById("mesaux").value;
+  var ciclo = document.getElementById("ciclo_escolar").value;
+  var nombre = document.getElementById("nombre").value;
+  var rfc = document.getElementById("rfc").value;
+  var categoria = document.getElementById("categoria").value;
+  var id = document.getElementById("personal").value;
+  var route3 = "http://localhost:8000/busca_dias/"+mes+"/"+ciclo+"/";
+  var dias;
+  var arreglo= [] ;
+
+  $.get(route3,function(res){
+    dias = parseInt(res.length);
+    if(res.length > 0 ){ 
+
+
+      var tabla = document.getElementById("detalles");
+    //tabla.setAttribute("id", id2);
+    var row = tabla.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3); 
+    cell1.innerHTML =  "N°";
+    cell2.innerHTML = "Nombre del Empleado";
+    cell3.innerHTML = "R.F.C" ;
+    cell4.innerHTML = "Categoria" ; 
+
+    var tabla2 = document.getElementById("detalles");
+    //tabla.setAttribute("id", id2);
+    var row2 = tabla2.insertRow(1);
+    var cell11 = row2.insertCell(0);
+    var cell22 = row2.insertCell(1);
+    var cell33 = row2.insertCell(2);
+    var cell44 = row2.insertCell(3);
+
+
+    cell11.innerHTML =  id;
+    cell22.innerHTML = nombre;
+    cell33.innerHTML = rfc;
+    cell44.innerHTML = categoria;
+
+
+
+    for (var i=0; i < res.length; i++){   
+      var aux = 4 + i;
+      var cellx = row.insertCell(aux);
+      cellx.innerHTML = res[i].l_semana+"-"+res[i].dia ;   
+
+      var z = tabla2.rows[0].cells[aux].innerHTML;
+    //  var arr = document.getElementById(""+aux).id;
+    if(res[i].dia == dia && mes == mesaux ){
+      var agregaHTML = "<input type=button value=/ class=agrega id="+(id)+"-"+(z)+">";
+      var va=""+id+"-"+z
+      var cellx = row2.insertCell(aux);
+      cellx.innerHTML = agregaHTML ;     
+      document.getElementById(""+va).style.color = "#ff0000";
+      arreglo.push(va);
+      document.getElementById('inasistencias').value=arreglo;  
+
+    }else{
+      var agregaHTML = "<input type=button value=O class=agrega id="+(id)+"-"+(z)+">";
+      var cellx = row2.insertCell(aux);
+      cellx.innerHTML = agregaHTML ; 
+    }
+
+
+
+    cellx.addEventListener("click", function(event) {
+      var currentId = event.target.id;
+      var aux = event.target.id;
+      var calcula = document.getElementById(""+aux).value;
+      var arr = document.getElementById(""+aux).id;
+      if (calcula == "O"){
+        document.getElementById(""+aux).value = "/";
+        document.getElementById(""+aux).style.color = "#ff0000";
+        arreglo.push(aux);
+        document.getElementById('inasistencias').value=arreglo;
+        
+      }else{
+        for (var i = 0; i < arreglo.length; i++) {
+          if (arr == arreglo[i]) {
+            arreglo.splice(i, 1);
+            document.getElementById('inasistencias').value=arreglo;
+            
+          }
+        }
+        document.getElementById(""+aux).value = "O";
+        document.getElementById(""+aux).style.color = "#000000";
+
+      }
+      cuenta_arreglo(arreglo);
+    })
+
+  }
+  cuenta_arreglo(arreglo);
+}
+
+});
+}
+
+function cuenta_arreglo(arreglo){
+  document.getElementById('total').value=arreglo.length;
+}
+
+
+
+function busca_personal3(callback){
+  var Table = document.getElementById("detalles");
+  Table.innerHTML = "";
+
+  var mes= document.getElementById("mes").value;
+  var ciclo= document.getElementById("nombre_ciclo").value;
+  var id_cct= document.getElementById("id_centro").value;
+
+  var route = "http://localhost:8000/validar_lista/"+id_cct+"/"+mes+"/"+ciclo;
+  var route2 = "http://localhost:8000/busca_personal/"+id_cct+"/";
+  var route3 = "http://localhost:8000/busca_dias/"+mes+"/"+ciclo+"/";
+  var dias;
+  var arreglo= [] ;
+
+  $.get(route,function(res){
+    if(res.length <= 0 ){
+      for (var i=0; i < res.length; i++){
+         // document.getElementById('submit8').disabled=true;
+         swal("ERROR!","El Mes seleccionado No se Ha capturado en las Listas de Asistencia","error");
+          //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+          //document.getElementById('submit8').disabled=false;
+          //return false
+
+        }
+      }else{
+
+        $.get(route3,function(res){
+          dias = parseInt(res.length);
+          if(res.length > 0 ){ 
+            var tabla = document.getElementById("detalles");
+    //tabla.setAttribute("id", id2);
+    var row = tabla.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3); 
+    cell1.innerHTML =  "N°";
+    cell2.innerHTML = "Nombre del Empleado";
+    cell3.innerHTML = "R.F.C" ;
+    cell4.innerHTML = "Categoria" ;      
+    for (var i=0; i < res.length; i++){   
+      var aux = 4 + i;
+      var cellx = row.insertCell(aux);
+      cellx.innerHTML = res[i].l_semana+"-"+res[i].dia ;   
+    }
+
+    $.get(route2,function(res){
+      if(res.length > 0 ){
+        for (var i=0; i < res.length; i++){
+          if(res[i].estado=="ACTIVO"){
+            var tabla = document.getElementById("detalles");
+    //tabla.setAttribute("id", id2);
+    var row2 = tabla.insertRow(1);
+    var cell1 = row2.insertCell(0);
+    var cell2 = row2.insertCell(1);
+    var cell3 = row2.insertCell(2);
+    var cell4 = row2.insertCell(3);
+
+
+
+    cell1.innerHTML =  res[i].id;
+    cell2.innerHTML = res[i].nombre;
+    cell3.innerHTML = res[i].rfc;
+    cell4.innerHTML = res[i].categoria;
+
+    for (var p = 0 ; p < dias; p++) {
+      var aux = 4 + p;
+      var z = tabla.rows[0].cells[aux].innerHTML;
+      var agregaHTML = "<input type=button value=O class=agrega id="+(res[i].id)+"-"+(z)+">";
+      var cellx = row2.insertCell(aux);
+      cellx.innerHTML = agregaHTML ; 
+    }
+    
+    cuenta_arreglo(arreglo);
+  }
+
+}
+
+
+
+}
+
+}); 
+  }else{
+    swal("ERROR!","No Se Encuentran Dias Habilen en este Mes, Dentro de este Ciclo Escolar","error");
+    //document.getElementById('submit8').disabled=false;
+          //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+          //return false
+
+        }
+
+      });
+  //    document.getElementById('submit8').disabled=false;
+  //valida_file();
+}
+});
+    //setTimeout(callback(dias),9000);
+    setTimeout(function(){callback(dias)},5000);
+
+  }
+
+  function  callback(dias){
+    var tabla = document.getElementById("detalles");
+    var rw= tabla.rows.length;
+    var mes= document.getElementById("mes").value;
+    var ciclo= document.getElementById("nombre_ciclo").value;
+    var id_cct= document.getElementById("id_centro").value;
+    var arreglo= [] ;
+
+
+    var route4 = "http://localhost:8000/busca_inasistencias/"+id_cct+"/"+ciclo+"/"+mes;
+
+    $.get(route4,function(res){
+      for (var i = 1; i <= rw-1; i++) {
+        for(var f=0; f<= res.length-1;f++ ){
+         for (var p = 0 ; p < dias; p++) {
+          var aux=p+4;
+          var z = tabla.rows[0].cells[aux].innerHTML;
+          var id = tabla.rows[i].cells[0].innerHTML;
+          var z = tabla.rows[0].cells[aux].innerHTML;
+          limite = "2",
+          separador = "-",
+          arregloDeSubCadenas = z.split(separador, limite);
+          dia=arregloDeSubCadenas[1];
+          if(res.length > 0){
+           // alert('ID '+res[f].id_captura+"-"+id+" DIA "+res[f].dia+"-"+dia+" "+res[f].mes+"-"+mes);
+            if(res[f].id_captura == id && dia==res[f].dia && mes==res[f].mes){
+             var agregaHTML = "<input type=button value=/ class=agrega id="+id+"-"+(z)+">";
+             var va=""+id+"-"+z
+             tabla.rows[i].cells[aux].innerHTML= agregaHTML;  
+             document.getElementById(""+va).style.color = "#ff0000";
+             arreglo.push(va);
+             document.getElementById('inasistencias').value=arreglo; 
+           }
+
+         }
+      }
+    }
+  }
+  cuenta_arreglo(arreglo);
+});
+  }
+
+  
+//  valida_file();;
 

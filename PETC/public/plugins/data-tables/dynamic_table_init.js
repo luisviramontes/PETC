@@ -362,7 +362,7 @@ function fnFormatDetails_dir ( oTable, nTr )
   sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[14]+' </td></tr>';
   sOut += '<tr><td><strong>Captura:</strong></td><td>'+aData[15]+' </td></tr>';
 
-    return sOut;
+  return sOut;
 }
 
 $(document).ready(function() {
@@ -1073,23 +1073,26 @@ function fnFormatDetails9 ( oTable, nTr )
 
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de CTE</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[6]+' </td></tr>';
-        sOut += '<tr><td><strong>Nombre de la Escuela:</strong></td><td>'+aData[27]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de la Escuela:</strong></td><td>'+aData[27]+' </td></tr>';
     sOut += '<tr><td><strong>Región:</strong></td><td>'+aData[1]+' </td></tr>';
     sOut += '<tr><td><strong>Sostenimiento Actual:</strong></td><td>'+aData[7]+' </td></tr>';
     sOut += '<tr><td><strong>Nombre de Localidad</strong></td><td>'+aData[20]+' </td></tr>';
     sOut += '<tr><td><strong>Municipio</strong></td><td>'+aData[21]+' </td></tr>';
 
-    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos del Contrato</strong></td><td> </td></tr>';
-     sOut += '<tr><td><strong>Tipo de Movimiento</strong></td><td>'+aData[28]+' </td></tr>';
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de la Ultima Modificación</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Tipo de Movimiento</strong></td><td>'+aData[28]+' </td></tr>'; 
     sOut += '<tr><td><strong>Ciclo Escolar</strong></td><td>'+aData[19]+' </td></tr>';
+    sOut += '<tr><td><strong>Llega a Cubrir A:</strong></td><td>'+aData[30]+' </td></tr>';
+    sOut += '<tr><td><strong>RFC de a Quien Cubre:</strong></td><td>'+aData[31]+' </td></tr>';
     sOut += '<tr><td><strong>Clave:</strong></td><td>'+aData[8]+' </td></tr>';
     sOut += '<tr><td><strong>Categoria:</strong></td><td>'+aData[9]+' </td></tr>';
     sOut += '<tr><td><strong>Contrato Actual:</strong></td><td>'+aData[10]+' </td></tr>';
     sOut += '<tr><td><strong>Contrato Fin:</strong></td><td>'+aData[11]+' </td></tr>';
     sOut += '<tr><td><strong>Documentación Entregada:</strong></td><td>'+aData[12]+' </td></tr>';
     sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[13]+' </td></tr>';
-        sOut += '<tr><td><strong>CCT 2:</strong></td><td>'+aData[14]+' </td></tr>';
+    sOut += '<tr><td><strong>CCT 2:</strong></td><td>'+aData[14]+' </td></tr>';
     sOut += '<tr><td><strong>Dias Trabajados</strong></td><td>'+aData[22]+' </td></tr>';
+
     
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de Captura</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>Capturado Por:</strong></td><td>'+aData[15]+' </td></tr>';
@@ -1158,3 +1161,427 @@ $(document).ready(function() {
         }
     } );
  } );
+
+
+function fnFormatDetails10 ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos Personales</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>RFC:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre del Empleado:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Teléfono:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Email:</strong></td><td>'+aData[5]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de CTE</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de la Escuela:</strong></td><td>'+aData[26]+' </td></tr>';
+    sOut += '<tr><td><strong>Región:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Sostenimiento Actual:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de Localidad</strong></td><td>'+aData[19]+' </td></tr>';
+    sOut += '<tr><td><strong>Municipio</strong></td><td>'+aData[20]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de la Ultima Modificación</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Tipo de Movimiento</strong></td><td>'+aData[27]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar</strong></td><td>'+aData[18]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de quien lo Llega a Cubrir :</strong></td><td>'+aData[29]+' </td></tr>';
+    sOut += '<tr><td><strong>RFC de Quien lo llega a Cubrir:</strong></td><td>'+aData[30]+' </td></tr>';
+    sOut += '<tr><td><strong>Clave:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Categoria:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Baja :</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Documentación Entregada:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>CCT 2:</strong></td><td>'+aData[13]+' </td></tr>';
+    sOut += '<tr><td><strong>Dias Trabajados</strong></td><td>'+aData[21]+' </td></tr>';
+    
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de Captura</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Capturado Por:</strong></td><td>'+aData[14]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Modificacion</strong></td><td>'+aData[23]+' </td></tr>';
+    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[15]+' </td></tr>';
+    sOut += '<tr><td><strong>Pagos Registrados:</strong></td><td>'+aData[16]+' </td></tr>';
+    sOut += '<tr><td><strong>Qna Actual:</strong></td><td>'+aData[17]+' </td></tr>';
+
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Historial de Contatos</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Ver Historial de Contratos</strong></td><td>'+aData[22]+' </td></tr>';
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table10').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info10 thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info10 tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info10').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info10 tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails10(oTable, nTr), 'details' );
+        }
+    } );
+ } );
+
+
+function fnFormatDetails11 ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos Personales</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>RFC:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre del Empleado:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Teléfono:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Email:</strong></td><td>'+aData[5]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de CTE Actual</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de la Escuela:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>Región:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Sostenimiento Actual:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de Localidad</strong></td><td>'+aData[21]+' </td></tr>';
+    sOut += '<tr><td><strong>Municipio</strong></td><td>'+aData[22]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de CTE Anterior</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[24]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de la Escuela:</strong></td><td>'+aData[25]+' </td></tr>';
+    sOut += '<tr><td><strong>Región:</strong></td><td>'+aData[23]+' </td></tr>';
+    sOut += '<tr><td><strong>Sostenimiento Actual:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de Localidad</strong></td><td>'+aData[26]+' </td></tr>';
+    sOut += '<tr><td><strong>Municipio</strong></td><td>'+aData[27]+' </td></tr>';
+
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de la Ultima Modificación</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Tipo de Movimiento</strong></td><td>'+aData[33]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar</strong></td><td>'+aData[20]+' </td></tr>';
+    sOut += '<tr><td><strong>Clave:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Categoria:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Inicio :</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Baja :</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>Documentación Entregada:</strong></td><td>'+aData[13]+' </td></tr>';
+    sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[14]+' </td></tr>';
+    sOut += '<tr><td><strong>CCT 2:</strong></td><td>'+aData[15]+' </td></tr>';
+    sOut += '<tr><td><strong>Dias Trabajados</strong></td><td>'+aData[28]+' </td></tr>';
+    
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de Captura</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Capturado Por:</strong></td><td>'+aData[16]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Modificacion</strong></td><td>'+aData[30]+' </td></tr>';
+    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[17]+' </td></tr>';
+    sOut += '<tr><td><strong>Pagos Registrados:</strong></td><td>'+aData[18]+' </td></tr>';
+    sOut += '<tr><td><strong>Qna Actual:</strong></td><td>'+aData[19]+' </td></tr>';
+
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Historial de Contatos</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Ver Historial de Contratos</strong></td><td>'+aData[29]+' </td></tr>';
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table11').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info11 thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info11 tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info11').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info11 tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails11(oTable, nTr), 'details' );
+        }
+    } );
+ } );
+
+
+function fnFormatDetails12 ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos Personales</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>RFC:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre del Empleado:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Teléfono:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Email:</strong></td><td>'+aData[5]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de CTE Actual</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de la Escuela:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>Región:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Sostenimiento Actual:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de Localidad</strong></td><td>'+aData[21]+' </td></tr>';
+    sOut += '<tr><td><strong>Municipio</strong></td><td>'+aData[22]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Function Actual</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Categoria:</strong></td><td>'+aData[10]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Function Anterior</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Categoria:</strong></td><td>'+aData[11]+' </td></tr>';
+
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de la Ultima Modificación</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Tipo de Movimiento</strong></td><td>'+aData[28]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar</strong></td><td>'+aData[20]+' </td></tr>';
+    sOut += '<tr><td><strong>Clave:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Categoria:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Inicio :</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Baja :</strong></td><td>'+aData[13]+' </td></tr>';
+    sOut += '<tr><td><strong>Documentación Entregada:</strong></td><td>'+aData[14]+' </td></tr>';
+    sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[15]+' </td></tr>';
+    sOut += '<tr><td><strong>CCT 2:</strong></td><td>'+aData[16]+' </td></tr>';
+    sOut += '<tr><td><strong>Dias Trabajados</strong></td><td>'+aData[23]+' </td></tr>';
+    
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de Captura</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Capturado Por:</strong></td><td>'+aData[16]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Modificacion</strong></td><td>'+aData[25]+' </td></tr>';
+    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[17]+' </td></tr>';
+    sOut += '<tr><td><strong>Pagos Registrados:</strong></td><td>'+aData[18]+' </td></tr>';
+    sOut += '<tr><td><strong>Qna Actual:</strong></td><td>'+aData[19]+' </td></tr>';
+
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Historial de Contatos</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Ver Historial de Contratos</strong></td><td>'+aData[24]+' </td></tr>';
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table12').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info12 thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info12 tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info12').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info12 tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails12(oTable, nTr), 'details' );
+        }
+    } );
+ } );
+
+
+
+function fnFormatDetails13 ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos Personales</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>RFC:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre del Empleado:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Teléfono:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Email:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>Categoria:</strong></td><td>'+aData[9]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de La Inasistencia</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Fecha:</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[13]+' </td></tr>';
+    sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[14]+' </td></tr>';
+    sOut += '<tr><td><strong>Ver Historial de Inasistencias</strong></td><td>'+aData[33]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de CTE Actual</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de la Escuela:</strong></td><td>'+aData[30]+' </td></tr>';
+    sOut += '<tr><td><strong>Región:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Sostenimiento Actual:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de Localidad</strong></td><td>'+aData[23]+' </td></tr>';
+    sOut += '<tr><td><strong>Municipio</strong></td><td>'+aData[24]+' </td></tr>';
+
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de la Ultima Modificación</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Tipo de Movimiento</strong></td><td>'+aData[31]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar</strong></td><td>'+aData[22]+' </td></tr>';
+    sOut += '<tr><td><strong>Clave:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Categoria:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Inicio :</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Baja :</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Documentación Entregada:</strong></td><td>'+aData[15]+' </td></tr>';
+    sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[16]+' </td></tr>';
+    sOut += '<tr><td><strong>CCT 2:</strong></td><td>'+aData[17]+' </td></tr>';
+    sOut += '<tr><td><strong>Dias Trabajados</strong></td><td>'+aData[25]+' </td></tr>';
+    
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de Captura</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Capturado Por:</strong></td><td>'+aData[18]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Modificacion</strong></td><td>'+aData[27]+' </td></tr>';
+    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[19]+' </td></tr>';
+    sOut += '<tr><td><strong>Pagos Registrados:</strong></td><td>'+aData[20]+' </td></tr>';
+    sOut += '<tr><td><strong>Qna Actual:</strong></td><td>'+aData[21]+' </td></tr>';
+
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Historial de Contatos</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Ver Historial de Contratos</strong></td><td>'+aData[26]+' </td></tr>';
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table13').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info13 thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info13 tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info13').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info13 tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails13(oTable, nTr), 'details' );
+        }
+    } );
+ } );
+
+

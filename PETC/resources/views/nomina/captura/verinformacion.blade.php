@@ -53,11 +53,14 @@
 
 									<a class="btn btn-sm btn-danger tooltips" href="{{URL::action('CapturaController@index')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-times"></i> Salir</a>
 
-									<a class="btn btn-primary btn-sm" href="{{URL::action('CapturaController@invoice',$nombre->id.'/'.$id_ciclo)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
+									<a class="btn btn-primary btn-sm" href="{{URL::action('CapturaController@invoice',$nombre->id.'/'.$id_ciclo)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar" target="_blank" > <i class="fa fa-print"></i> Generar PDF</a> 
 									
 								</div>
 
 							</a>
+								<div class="porlets-content container clear_both padding_fix">
+						<div class="alert alert-danger"> <strong>El </strong>Empleado Registra un Total de {{$total_ina}} Inasistencias en el Ciclo Escolar Seleccionado </div>
+						</div>
 						</b>
 					</div>
 
@@ -97,9 +100,17 @@
 							<tr>
 								<th>Email: </th>
 								<td>{{$personal->email}}</td>
+							</tr>
+							<tr>
+								<th>Función Actual: </th>
+								<td>{{$personal->categoria}}</td>
 							</tr>	
+							<tr>
+								<th>Clave: </th>
+								<td>{{$personal->cat_puesto}}</td>
+							</tr>
 
-								<tr>
+							<tr>
 								<th>Estado Actual en el PETC: </th>
 								<td>{{$personal->estado}}</td>
 							</tr>													
@@ -248,7 +259,7 @@
 
 		
 
-		@if($altas==null)
+		@if($altas==null && $altas2==null)
 		<div class="porlets-content container clear_both padding_fix">
 			<div class="alert alert-danger"> <strong>No</strong> Se encuentran Altas Registradas a este Docente En El Ciclo escolar Seleccionado. <a class="alert-link" href="{{URL::action('CapturaController@create')}}">Click Para registrar</a></div>
 		</div>
@@ -264,6 +275,10 @@
 							<tr>
 								<th>Alta Número: </th>
 								<td>{{$alta->id}}</td>
+							</tr>
+							<tr>
+								<th>Tipo de Movimiento : </th>
+								<td>{{$alta->tipo_movimiento}}</td>
 							</tr>
 							<tr>
 								<th>Fecha de Inicio: </th>
@@ -292,10 +307,92 @@
 							<tr>
 								<th>Clave: </th>
 								<td>{{$alta->cat_puesto}}</td>
+							</tr>							
+
+							<tr>
+								<th>Observaciónes: </th>
+								<td>{{$alta->observaciones}}</td>
+							</tr>
+							<tr>
+								<th>Estado: </th>
+								<td> {{$alta->estado}}</td>
+							</tr>
+							<tr>
+								<th>Capturo: </th>
+								<td> {{$alta->captura}} </td>
+							</tr>
+							<tr>
+								<th>Fecha de Captura: </th>
+								<td> {{$alta->created_at}}</td>
+							</tr>
+							<tr>
+								<th> </th>
+								<td></td>
+							</tr>
+							
+
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+		@endforeach
+		
+
+		@foreach($altas2 as $alta)
+		<div class="col-lg-6"> 
+			<section class="panel default blue_title h4">
+				<div class="panel-heading"><span class="semi-bold">Historial de Altas</span> 
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<th>Alta Número: </th>
+								<td>{{$alta->id}}</td>
+							</tr>
+
+							<tr>
+								<th>Tipo de Movimiento : </th>
+								<td>{{$alta->tipo_movimiento}}</td>
+							</tr>
+
+							<tr>
+								<th>Fecha de Inicio: </th>
+								<td>{{$alta->fecha_inicio}}</td>
+							</tr>
+							<tr>
+								<th>Fecha de Termino:</th>
+								<td>{{$alta->fecha_baja}}</td>
+							</tr>
+							<tr>
+								<th>Documentación Entregada: </th>
+								<td>{{$alta->documentacion_entregada}}</td>
+							</tr>
+							<tr>
+								<th>CCT: </th>
+								<td>{{$alta->cct}}</td>
+							</tr>
+							<tr>
+								<th>Nombre de la Escuela: </th>
+								<td>{{$alta->nombre_escuela}}</td>
+							</tr>
+							<tr>
+								<th>Categoria: </th>
+								<td>{{$alta->categoria}}</td>
+							</tr>
+							<tr>
+								<th>Clave: </th>
+								<td>{{$alta->cat_puesto}} </td>
 							</tr>
 							<tr>
 								<th>Llego a Cubrir A: </th>
-								<td>{{$alta->nombre}}</td>
+								<td>{{$alta->nombre_baja}} </td>
+							</tr>
+
+							<tr>
+								<th>RFC de Quien LLega a Cubrir: </th>
+								<td>{{$alta->rfc_baja}}</td>
 							</tr>
 
 							<tr>
@@ -341,7 +438,11 @@
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped">
-						<tbody>							
+						<tbody>	
+							<tr>
+								<th>Baja Número: </th>
+								<td>{{$baja->id}}</td>
+							</tr>						
 							<tr>
 								<th>Fecha de Baja:</th>
 								<td>{{$baja->fecha_baja}}</td>
@@ -360,7 +461,7 @@
 							</tr>							
 							<tr>
 								<th>Lo Llega a Cubrir: </th>
-								<td>{{$baja->nombre}}</td>
+								<td>No Hay Datos</td>
 							</tr>
 							<tr>
 								<th>Observaciónes: </th>
@@ -386,6 +487,68 @@
 			</section>
 		</div>
 		@endforeach
+
+		@foreach($bajas2 as $baja)
+		<div class="col-lg-6"> 
+			<section class="panel default blue_title h4">
+				<div class="panel-heading"><span class="semi-bold">Historial de Bajas</span> 
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<tbody>	
+							<tr>
+								<th>Baja Número: </th>
+								<td>{{$baja->id}}</td>
+							</tr>						
+							<tr>
+								<th>Fecha de Baja:</th>
+								<td>{{$baja->fecha_baja}}</td>
+							</tr>
+							<tr>
+								<th>Documentación Entregada: </th>
+								<td>{{$baja->documentacion_entregada}}</td>
+							</tr>
+							<tr>
+								<th>CCT: </th>
+								<td>{{$baja->cct}}</td>
+							</tr>
+							<tr>
+								<th>Nombre de la Escuela: </th>
+								<td>{{$baja->nombre_escuela}}</td>
+							</tr>							
+							<tr>
+								<th>Lo Llega a Cubrir: </th>
+								<td>{{$baja->nombre_baja}}</td>
+							</tr>
+							<tr>
+								<th>RFC de Quien lo LLega a Cubrir: </th>
+								<td>{{$baja->rfc_baja}}</td>
+							</tr>
+							<tr>
+								<th>Observaciónes: </th>
+								<td>{{$baja->observaciones}}</td>
+							</tr>
+							<tr>
+								<th>Estado: </th>
+								<td> {{$baja->estado}}</td>
+							</tr>
+							<tr>
+								<th>Capturo: </th>
+								<td> {{$baja->captura}} </td>
+							</tr>
+							<tr>
+								<th>Fecha de Captura: </th>
+								<td> {{$baja->created_at}}</td>
+							</tr>
+							
+
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+		@endforeach
+
 		@endif
 
 
@@ -402,7 +565,11 @@
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped">
-						<tbody>		
+						<tbody>	
+							<tr>
+								<th>Extención Número: </th>
+								<td>{{$extencion->id}}</td>
+							</tr>	
 							<tr>
 								<th>Fecha de Inicio:</th>
 								<td>{{$extencion->fecha_inicio}}</td>
@@ -458,6 +625,10 @@
 					<table class="table table-striped">
 						<tbody>	
 							<tr>
+								<th>Cambio Número: </th>
+								<td>{{$cambio->id}}</td>
+							</tr>	
+							<tr>
 								<th>Anterior Escuela:</th>
 								<td>{{$cambio->anteriorcentro_nombre_escuela}}</td>
 							</tr>		
@@ -467,7 +638,7 @@
 							</tr>					
 							<tr>
 								<th>Fecha de Cambio:</th>
-								<td>{{$cambio->fecha_cambio}}</td>
+								<td>{{$cambio->fecha_inicio}}</td>
 							</tr>
 							<tr>
 								<th>Nueva Escuela:</th>
@@ -512,6 +683,153 @@
 			</div>
 			@endforeach 
 			@endif
+
+
+			@if($cambiosfun==null)
+			<div class="porlets-content container clear_both padding_fix">
+				<div class="alert alert-danger"> <strong>No</strong> Se encuentran Cambios de Función  de esta Persona En El Ciclo escolar Seleccionado. <a class="alert-link" href="{{URL::action('CapturaController@create')}}">Click Para registrar</a></div>
+			</div>
+			@else
+
+			@foreach($cambiosfun as $cambio)
+			<div class="col-lg-6"> 
+				<section class="panel default blue_title h4">
+					<div class="panel-heading"><span class="semi-bold">Historial de Cambios de Función</span> 
+					</div>
+					<div class="panel-body">
+						<table class="table table-striped">
+							<tbody>	
+								<tr>
+									<th>Cambio Número: </th>
+									<td>{{$cambio->id}} </td>
+								</tr>	
+								<tr>
+									<th>Función Anterior:</th>
+									<td>{{$cambio->categoria_anterior}}</td>
+								</tr>		
+								<tr>
+									<th>Función Nueva:</th>
+									<td>{{$cambio->categoria_nueva}}</td>
+								</tr>					
+								<tr>
+									<th>Fecha de Cambio:</th>
+									<td>{{$cambio->fecha_inicio}}</td>
+								</tr>
+								<tr>
+									<th>Fecha de Termino:</th>
+									<td>{{$cambio->fecha_inicio}}</td>
+								</tr>
+								<tr>
+									<th>Escuela:</th>
+									<td>{{$cambio->nombre_escuela}}</td>
+								</tr>		
+								<tr>
+									<th> CCT:</th>
+									<td>{{$cambio->cct}}</td>
+								</tr>													
+								<tr>
+									<th>Documentación Entregada: </th>
+									<td>{{$cambio->documentacion_entregada}}</td>
+								</tr>>
+
+								<tr>
+									<th>Clave: </th>
+									<td>{{$cambio->cat_puesto}}</td>
+								</tr>						
+								<tr>
+									<th>Observaciónes: </th>
+									<td>{{$cambio->observaciones}}</td>
+								</tr>
+								<tr>
+									<th>Capturo: </th>
+									<td> {{$cambio->captura}} </td>
+								</tr>
+								<tr>
+									<th>Fecha de Captura: </th>
+									<td> {{$cambio->created_at}} </td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</section>
+			</div>
+			@endforeach 
+			@endif
+
+<!-- {{$x=1}} -->
+			@if($inasistencias == null)
+		<div class="porlets-content container clear_both padding_fix">
+			<div class="alert alert-danger"> <strong>No</strong> Se encuentran Inasistencias Registradas a este Empleado En El Ciclo escolar Seleccionado. <a class="alert-link" href="{{URL::action('CapturaController@create')}}">Click Para registrar</a></div>
+		</div>
+		@else
+		@foreach($inasistencias as $personal)
+		<div class="col-lg-6"> 
+			<section class="panel default blue_title h4">
+				<div class="panel-heading"><span class="semi-bold">Historial de Inasistencias</span> 
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<th>Inasistencia Número: </th>
+								<td>{{$x}}</td>
+							</tr>							
+							<tr>
+								<th>Fecha de Inasistencia: </th>
+								<td>{{$personal->dia}}  {{$personal->mes}}</td>
+							</tr>
+							<tr>
+								<th>Ciclo Escolar:</th>
+								<td>{{$personal->ciclo_ina}}</td>
+							</tr>							
+							<tr>
+								<th>Estado: </th>
+								<td>{{$personal->estado_ina}}</td>
+							</tr>
+							<tr>
+								<th>Nombre de la Escuela: </th>
+								<td>{{$personal->nombre_escuela_ina}}</td>
+							</tr>
+							<tr>
+								<th>CCT: </th>
+								<td>{{$personal->cct_ina}}</td>
+							</tr>
+							<tr>
+								<th>QNA en que se Aplico la Inasistencia: </th>
+								<td>{{$personal->fecha_aplica}}</td>
+							</tr>							
+
+							<tr>
+								<th>Observaciónes: </th>
+								<td>{{$personal->observaciones}}</td>
+							</tr>							
+							<tr>
+								<th>Capturo: </th>
+								<td> {{$personal->captura}} </td>
+							</tr>
+							<tr>
+								<th>Fecha de Captura: </th>
+								<td> {{$personal->updated_at}}</td>
+							</tr>
+							<tr>
+								<th> </th>
+								<td></td>
+							</tr>
+							
+
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+		<?php
+		$x=$x+1;
+		?>
+		@endforeach				
+		@endif
+
+
 
 			<div class="form-group">
 				<div class="col-sm-6">

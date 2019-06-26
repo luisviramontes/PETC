@@ -31,155 +31,110 @@
 					</div>
 				</div>
 				<div class="porlets-content">
-          <form action="{{url('/directorio_regional', [$directorio->id])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
+					<form action="{{url('/directorio_regional', [$directorio->id])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
 						{{csrf_field()}}
 						<input type="hidden" name="_method" value="PUT">
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Region <strog class="theme_color">*</strog></label>
+							<label class="col-sm-3 control-label">Región <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="region" class="form-control" required>
-                  <option value="{{$directorio->region}}">
-										{{$directorio->region}}
-									</option>
-                  <option  value="1">
-										1
-									</option>
-									<option value="2">
-										2
-									</option>
-									<option value="3">
-										3
-									</option>
-									<option value="4">
-										4
-									</option>
-									<option value="5">
-										5
-									</option>
-									<option value="6">
-										6
-									</option>
-									<option value="7">
-										7
-									</option>
-									<option value="8">
-										8
-									</option>
-									<option value="9">
-										9
-									</option>
-									<option value="10">
-										10
-									</option>
-									<option value="11">
-										11
-									</option>
-									<option value="12">
-										12
-									</option>
-									<option value="13">
-										13
-									</option>
+								<select name="region" id="region" class="form-control select"   >
+									@foreach($region as $region)
+									@if($region->id == $directorio->id_region)
+									<option value="{{$region->id}}" selected>
+										{{$region->region}} {{$region->sostenimiento}}
 
+									</option>
+									@else
+									<option value="{{$region->id}}">
+										{{$region->region}} {{$region->sostenimiento}}
+
+									</option>
+									@endif
+									@endforeach
 								</select>
 								<div class="help-block with-errors"></div>
-							</div>
-						</div><!--/form-group-->
+							<!--	<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
+						--></div>
+					</div>
 
 
-            <div class="form-group">
-							<label class="col-sm-3 control-label">Sostenimiento <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<select name="sostenimiento" class="form-control" required>
-									<option value="estatal">
-										Estatal
-									</option>
-									<option value="federal">
-										Federal
-									</option>
-                </select>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div><!--/form-group-->
-
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Nombre Enlace: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="nombre_enlace" type="text"   class="form-control" required value="{{$directorio->nombre_enlace}}" />
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Nombre Enlace: <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<input name="nombre_enlace" type="text"   class="form-control" required value="{{$directorio->nombre_enlace}}" />
 						</div>
+					</div>
 
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Telefono: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="telefono" type="number"   class="form-control" required value="{{$directorio->telefono}}" />
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Telefono: <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<input name="telefono" type="number"   class="form-control" required value="{{$directorio->telefono}}" />
 						</div>
+					</div>
 
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Ext1 Enlace: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="ext1_enlace" type="number"   class="form-control" required value="{{$directorio->ext1_enlace}}" />
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Ext1 Enlace: <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<input name="ext1_enlace" type="number"   class="form-control" required value="{{$directorio->ext1_enlace}}" />
 						</div>
+					</div>
 
-            <div class="form-group">
-							<label class="col-sm-3 control-label">Ext2 Enlace: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="ext2_enlace" type="number"   class="form-control" required value="{{$directorio->ext2_enlace}}" />
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Ext2 Enlace: <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<input name="ext2_enlace" type="number"   class="form-control" required value="{{$directorio->ext2_enlace}}" />
 						</div>
+					</div>
 
-            <div class="form-group">
-							<label class="col-sm-3 control-label">Correo Enlace: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="correo_enlace" type="text"   class="form-control" required value="{{$directorio->correo_enlace}}" />
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Correo Enlace: <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<input name="correo_enlace" type="text"   class="form-control" required value="{{$directorio->correo_enlace}}" />
 						</div>
+					</div>
 
-            <div class="form-group">
-							<label class="col-sm-3 control-label">Director Regional: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="director_regional" type="text"   class="form-control" required value="{{$directorio->director_regional}}" />
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Director Regional: <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<input name="director_regional" type="text"   class="form-control" required value="{{$directorio->director_regional}}" />
 						</div>
+					</div>
 
-            <div class="form-group">
-							<label class="col-sm-3 control-label">Telefono Director: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="telefono_director" type="number"   class="form-control" required value="{{$directorio->telefono_director}}" />
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Telefono Director: <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<input name="telefono_director" type="number"   class="form-control" required value="{{$directorio->telefono_director}}" />
 						</div>
+					</div>
 
-            <div class="form-group">
-							<label class="col-sm-3 control-label">Financiero Regional: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="financiero_regional" type="text"   class="form-control" required value="{{$directorio->financiero_regional}}" />
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Financiero Regional: <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<input name="financiero_regional" type="text"   class="form-control" required value="{{$directorio->financiero_regional}}" />
 						</div>
+					</div>
 
-            <div class="form-group">
-							<label class="col-sm-3 control-label">Telefono Regional: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="telefono_regional" type="number"   class="form-control" required value="{{$directorio->telefono_regional}}" />
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Telefono Regional: <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<input name="telefono_regional" type="number"   class="form-control" required value="{{$directorio->telefono_regional}}" />
 						</div>
+					</div>
 
-            <div class="form-group">
-							<label class="col-sm-3 control-label">Extencion Regional 1: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="ext_reg_1" type="number"   class="form-control" required value="{{$directorio->ext_reg_1}}" />
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Extencion Regional 1: <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<input name="ext_reg_1" type="number"   class="form-control" required value="{{$directorio->ext_reg_1}}" />
 						</div>
+					</div>
 
-            <div class="form-group">
-							<label class="col-sm-3 control-label">Extencion Regional 2: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="ext_reg_2" type="number"   class="form-control" required value="{{$directorio->ext_reg_2}}" />
-							</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Extencion Regional 2: <strog class="theme_color">*</strog></label>
+						<div class="col-sm-6">
+							<input name="ext_reg_2" type="number"   class="form-control" required value="{{$directorio->ext_reg_2}}" />
 						</div>
+					</div>
 
 					<!--	<div class="form-group">
 							<label class="col-sm-3 control-label">Correo enlace <strog class="theme_color">*</strog></label>

@@ -110,8 +110,8 @@
 									<td style="display:none;" >{{$datos->total_intendentes}} </td>
 									<td style="display:none;" >{{$datos->fecha_ingreso}} </td>
 									<td style="display:none;" >{{$datos->fecha_baja}} </td>
-									<td >
-										<a href="{{URL::action('CentroTrabajoController@verInformacion',$datos->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>    </td>
+									<td > 
+										<a href="{{URL::action('CentroTrabajoController@verInformacion',$datos->id.'/1')}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>    </td>
 
 										<td> 
 											<a href="{{URL::action('CentroTrabajoController@edit',$datos->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  

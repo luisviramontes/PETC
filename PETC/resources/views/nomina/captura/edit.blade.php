@@ -123,34 +123,56 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Tipo de Movimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="movimiento" id="movimiento" class="form-control select" onchange="captura_personal(this.value)" required>
+														<select name="movimiento" id="movimiento" class="form-control select" onchange="captura_personal(this.value)" required> 
+												
 															@if($personal->tipo_movimiento == "NUEVO") 
 															<option value="INICIO" >DESDE INICIO DE CICLO</option>
 															<option value="NUEVO" selected>NUEVO RECURSO </option>
 															<option value="ALTA">ALTA</option>
-															<option value="REINCORPORACION" >REINCORPORACION</option>				
+															<option value="REINCORPORACION" >REINCORPORACION</option>
+															<option value="CAMBIOCCT" >CAMBIO DE CCT</option>
+															<option value="CAMBIOFUNCION" >CAMBIO DE FUNCION</option>				
 															@elseif ($personal->tipo_movimiento == "INICIO")
 															<option value="INICIO" selected>DESDE INICIO DE CICLO</option>
 															<option value="NUEVO" >NUEVO RECURSO </option>
 															<option value="ALTA">ALTA</option>
 															<option value="REINCORPORACION" >REINCORPORACION</option>
+															<option value="CAMBIOCCT" >CAMBIO DE CCT</option>
+															<option value="CAMBIOFUNCION" >CAMBIO DE FUNCION</option>
 															@elseif ($personal->tipo_movimiento == "REINCORPORACION")
 															<option value="INICIO" >DESDE INICIO DE CICLO</option>
 															<option value="NUEVO" >NUEVO RECURSO </option>
 															<option value="ALTA">ALTA</option>
+															<option value="CAMBIOCCT" >CAMBIO DE CCT</option>
+															<option value="CAMBIOFUNCION" >CAMBIO DE FUNCION</option>
 															<option value="REINCORPORACION" selected>REINCORPORACION</option>
+															@elseif ($personal->tipo_movimiento == "CAMBIOCCT")
+															<option value="INICIO" >DESDE INICIO DE CICLO</option>
+															<option value="NUEVO" >NUEVO RECURSO </option>
+															<option value="ALTA">ALTA</option>
+															<option value="REINCORPORACION">REINCORPORACION</option>
+															<option value="CAMBIOCCT" selected>CAMBIO DE CCT</option>
+															<option value="CAMBIOFUNCION" >CAMBIO DE FUNCION</option>
+															@elseif ($personal->tipo_movimiento == "CAMBIOFUNCION")
+															<option value="INICIO" >DESDE INICIO DE CICLO</option>
+															<option value="NUEVO" >NUEVO RECURSO </option>
+															<option value="ALTA">ALTA</option>
+															<option value="REINCORPORACION">REINCORPORACION</option>
+															<option value="CAMBIOCCT" >CAMBIO DE CCT</option>
+															<option value="CAMBIOFUNCION" selected>CAMBIO DE FUNCION</option>
 															@else
 															<option value="INICIO" >DESDE INICIO DE CICLO</option>
 															<option value="NUEVO" >NUEVO RECURSO </option>
 															<option value="ALTA" selected>ALTA</option>
 															<option value="REINCORPORACION" >REINCORPORACION</option>
-															@endif
-
-
+															<option value="CAMBIOCCT" >CAMBIO DE CCT</option>
+															<option value="CAMBIOFUNCION" >CAMBIO DE FUNCION</option>
+															@endif																	
 														</select>
 														<div class="text-danger" id='error_movimiento'>{{$errors->formulario->first('error_movimiento')}}</div>
 													</div> 
 												</div>
+
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Clave <strog class="theme_color">*</strog></label>
@@ -209,10 +231,10 @@
 															<option value="EDUCACION FISICA" selected>EDUCACION FISICA</option>
 															@endif
 														</select>
-														
+
 													</div> 
 												</div>
-												
+
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">CCT <strog class="theme_color">*</strog></label>
@@ -235,6 +257,29 @@
 													</div>
 												</div><!--/form-group-->
 
+												<div class="form-group" id="cct_nuevo_div" style='display:none;'>
+													<div class="form-group">
+														<label class="col-sm-3 control-label">CCT NUEVO <strog class="theme_color">*</strog></label>
+														<div class="col-sm-8">
+															<select name="cct_nuevo" id="cct_nuevo" class="form-control select2"   value="{{Input::old('cct')}}"  onchange="captura_personal()" >
+																@foreach($cct as $ct)
+																@if($personal->id_cct_etc == $ct->id)
+																<option value="{{$ct->id}}" selected>
+																	{{$ct->cct}}
+																</option>
+																@else
+																<option value="{{$ct->id}}" >
+																	{{$ct->cct}}
+																</option>
+																@endif
+																@endforeach
+															</select>
+															<div class="help-block with-errors"></div>
+															<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
+														</div>
+													</div><!--/form-group-->
+												</div>
+
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Sostenimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
@@ -248,9 +293,10 @@
 															@endif
 
 														</select>
-														
+
 													</div> 
 												</div>
+
 
 
 												<div class="form-group">
@@ -273,6 +319,7 @@
 													</div>
 												</div>
 
+
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Documentación Entregada: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-3">
@@ -280,8 +327,8 @@
 														<input type="checkbox" name="doc2" id="doc2" onchange="cambia5(this.id)" value="OFICIO">Ofició<br>
 														<input type="checkbox" name="doc3" id="doc3" onchange="cambia5(this.id)" value="TALON">Talón de Cheque<br>
 													</div>
+												</div><!--/form-group-->	
 
-												</div><!--/form-group-->				
 												<div class="form-group" id="diasdiv" style='display:none;'>
 													<div class="form-group">
 														<label class="col-sm-3 control-label">Dias Trabajados en este CT: <strog class="theme_color">*</strog></label>
@@ -335,7 +382,7 @@
 													<label class="col-sm-3 control-label">Fecha de Inicio de Labores: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 
-														<input type="date" name="fechai" id="fechai" value="{{$personal->fecha_inicio}}" class="form-control mask" required>
+														<input type="date" name="fechai" id="fechai" value="{{$personal->fecha_inicio}}" onchange="verifica_fecha()" class="form-control mask" required>
 													</div>
 												</div>
 
@@ -357,7 +404,7 @@
 
 												<div class="form-group">
 													<div class="col-sm-offset-7 col-sm-5">
-														<button id="submit3" class="btn btn-primary">Guardar</button>
+														<button id="submit3" onclick="return save();" class="btn btn-primary">Guardar</button>
 														<a href="{{url('/captura')}}" class="btn btn-default"> Cancelar</a>
 													</div>
 												</div><!--/form-group--> 
@@ -372,6 +419,12 @@
 												<div class="form-group">
 													<div class="col-sm-6">
 														<input  id="doc"  name="doc" type="hidden"  class="form-control""/>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="col-sm-6">
+														<input  id="estado"  name="estado" value="{{$personal->estado}}" type="hidden"  class="form-control""/>
 													</div>
 												</div>
 
@@ -455,6 +508,7 @@
           		var z = document.getElementById('error_movimiento').value;
           		var c = document.getElementById('error_fecha').value;
           		var x = document.getElementById('error_clave').value;
+          alert(z);
 
           		if (z == 1 || c == 1 || x == 1){
           			return false;
@@ -522,6 +576,16 @@ if (shouldSwitch) {
 
 
 function save(){
+	var z = document.getElementById('error_movimiento').value;
+	var c = document.getElementById('error_fecha').value;
+	var x = document.getElementById('error_clave').value;
+	var r = document.getElementById("error_rfc").value;
+	
+
+	if (z== 1 || c==1 || x==1 || r==1){
+		return false;
+
+	}
 
 }
 

@@ -125,15 +125,24 @@
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-edit"></i>FEDERAL <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
-                <li> <a href="{{url('clientes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Clientes</b> </a> </li>
+                <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
+                <li> <a href="{{url('interinosfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Interinos</b> </a> </li>
+                <li> <a href="{{url('altasfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Altas</b> </a> </li>
+                <li> <a href="{{url('bajasfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bajas</b> </a> </li>
+                <li> <a href="{{url('cambios_cct_fed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios CTE</b> </a> </li>
+                <li> <a href="{{url('cambios_funcion_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios de Función</b> </a> </li>
+                
               </ul>
 
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>ESTATAL<span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
-                <li> <a href="{{url('productos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Productos</b> </a> </li>
-                <li> <a href="{{url('calidad')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Calidad</b> </a> </li>
-                <li> <a href="{{url('empaques')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Empaques</b> </a> </li>
+                <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
+                <li> <a href="{{url('interinosest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Interinos</b> </a> </li>
+                <li> <a href="{{url('altasest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Altas</b> </a> </li>
+                <li> <a href="{{url('bajasest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bajas</b> </a> </li>
+                <li> <a href="{{url('cambios_cct_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios CTE</b> </a> </li>
+                 <li> <a href="{{url('cambios_funcion_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios de Función</b> </a> </li>
               </ul>
 
 
@@ -148,7 +157,7 @@
             </li>
             <li> <a href="javascript:void(0);"> <i class="fa fa-truck icon"></i> CAPTURA <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
-                <li> <a href="{{url('transportes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Federak</b> </a> </li>
+                <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
                 <li> <a href="{{url('mantenimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mantenimientos</b> </a> </li>                
               </ul>
 
@@ -157,6 +166,7 @@
             <li> <a href="javascript:void(0);"> <i class="fa fa-shopping-cart"></i> ESCUELAS <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
                 <li> <a href="{{url('centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Centros de Trabajo</b> </a> </li>
+                 <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores->PETC</b> </a> </li>
               </ul>
             </li>
 
@@ -164,6 +174,7 @@
             <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> DIRECTORIO <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
                 <li> <a href="{{url('directorio_regional')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio Regional</b> </a> </li>
+                <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores->PETC</b> </a> </li>
 
 
 
@@ -173,7 +184,7 @@
             <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> LISTAS DE ASISTENCIA <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
                 <li> <a href="{{url('listas_asistencias')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Asistencia</b> </a> </li>
-                <li> <a href="{{url('inasistencias')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inasistencias</b> </a> </li>
+                <li> <a href="{{url('inasistencias2/2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inasistencias</b> </a> </li>
               </ul>
             </li>
 

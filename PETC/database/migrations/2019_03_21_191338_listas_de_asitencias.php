@@ -16,9 +16,11 @@ class ListasDeAsitencias extends Migration
             $table->increments('id');
             $table->integer('id_centro_trabajo')->unsigned();
             $table->foreign('id_centro_trabajo')->references('id')->on('centro_trabajo');
+            $table->integer('id_ciclo')->unsigned();
+            $table->foreign('id_ciclo')->references('id')->on('ciclo_escolar');
             $table->string('mes');
             $table->string('estado');
-            $table->string('observaciones')->nullable();
+            $table->string('observaciones')->nullable(); 
             $table->string('captura');
             $table->timestamps();
         });

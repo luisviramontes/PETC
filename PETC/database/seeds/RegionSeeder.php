@@ -143,6 +143,12 @@ class RegionSeeder extends Seeder
     		'capturo' => 'ADMINISTRADOR' 
     		]);
 
+                DB::table('region')->insert([
+            'region' => '12', 
+            'sostenimiento' => 'ESTATAL', 
+            'capturo' => 'ADMINISTRADOR' 
+            ]);
+
     	    	DB::table('region')->insert([
     		'region' => '12', 
     		'sostenimiento' => 'FEDERAL', 

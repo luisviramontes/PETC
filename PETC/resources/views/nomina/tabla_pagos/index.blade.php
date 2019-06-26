@@ -23,7 +23,7 @@
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Pagos {{$tabla_2->ciclo}}</strong></h2>
 							@include('nomina.tabla_pagos.search')
 						</div>
-						<div class="col-md-5">
+						<div class="col-md-5"> 
 							<div class="btn-group pull-right">
 								<b>
 
@@ -33,7 +33,7 @@
 
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.tabla_pagos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
 
-										<a class="btn btn-primary btn-sm" href="{{URL::action('TablaPagosController@invoice',$tabla_2->ciclo)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
+										<a class="btn btn-primary btn-sm" href="{{URL::action('TablaPagosController@invoice',$tabla_2->id_ciclo)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
 
 										<a  class="btn btn-sm btn btn-info" href="{{route('nomina.tabulador_pagos.calculadora_pagos')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Calculadora de Pagos"> <i class="fa fa-plus"></i> Calculadora de Pagos </a> 
 

@@ -38,7 +38,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">N° Quincena <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="qna" class="form-control" required>  
+								<select name="qna" class="form-control select2" required>  
 									<option value="1">
 										1                
 									</option>
@@ -150,7 +150,7 @@
 							<div class="col-sm-6">
 								<select name="ciclo" class="form-control" required>
 								@foreach($ciclos as $ciclo)
-									<option value="{{$ciclo->ciclo}}">
+									<option value="{{$ciclo->id}}">
 										{{$ciclo->ciclo}}
 									</option>
 									@endforeach

@@ -131,7 +131,7 @@
 												
 												@else
 												<tr class="gradeX">									
-													<td style="background-color: #FFE4E1;">{{$datos->region}} </td>
+													<td style="background-color: #FFE4E1;">{{$datos->region}} {{$datos->sostenimiento}}</td>
 													<td style="background-color: #FFE4E1;">{{$datos->rfc}} </td>
 													<td style="background-color: #FFE4E1;">{{$datos->nombre}} </td>
 													<td style="display:none;" >{{$datos->telefono}}</td>

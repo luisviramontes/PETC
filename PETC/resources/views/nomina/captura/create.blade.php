@@ -176,6 +176,27 @@
 													</div>
 												</div><!--/form-group-->
 
+												<div class="form-group" id="cct_nuevo_div" style='display:none;'>
+													<div class="form-group">
+														<label class="col-sm-3 control-label">CCT NUEVO <strog class="theme_color">*</strog></label>
+														<div class="col-sm-8">
+															<select name="cct_nuevo" id="cct_nuevo" class="form-control select2"   value="{{Input::old('cct')}}"  onchange="captura_personal()" >
+																@foreach($cct as $ct)
+																
+																<option value="{{$ct->id}}" >
+																	{{$ct->cct}}
+																</option>
+															
+															
+																@endforeach
+															</select>
+															<div class="help-block with-errors"></div>
+															<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
+														</div>
+													</div><!--/form-group-->
+												</div>
+
+
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Sostenimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
@@ -265,7 +286,7 @@
 													<label class="col-sm-3 control-label">Fecha de Inicio de Labores: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 
-														<input type="date" name="fechai" id="fechai" value="" class="form-control mask" required>
+														<input type="date" name="fechai" id="fechai" value="" class="form-control mask"  onchange="verifica_fecha()" required>
 													</div>
 												</div>
 
@@ -273,7 +294,7 @@
 													<label class="col-sm-3 control-label">Fecha de Termino de Labores: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 
-														<input type="date" name="fechaf" id="fechaf" value="" class="form-control mask"  onchange="verifica_fecha()"" required >
+														<input type="date" name="fechaf" id="fechaf" value="" class="form-control mask"  onchange="verifica_fecha()" required >
 													</div>
 													<div class="text-danger" id='error_fecha'>{{$errors->formulario->first('error_fecha')}}</div>
 												</div>

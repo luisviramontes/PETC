@@ -9,6 +9,7 @@ use petc\Http\Requests;
 
 use petc\Http\Controllers\Controller;
 use petc\TablaPagosModel;
+use petc\CicloEscolarModel;
 
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -27,22 +28,25 @@ class TablaPagosController extends Controller
     public function index(request $request)
     {
 
-       $ciclos=DB::table('ciclo_escolar')->get();
-       if($request)
-       {
+     $ciclos=DB::table('ciclo_escolar')->get();
+
+
+     if($request)
+     {
         $aux=$request->get('searchText');
 
         $query=trim($request->GET('searchText'));
-        $tabla_2= DB::table('tabla_pagos')->where('ciclo','=',$aux)->first();
+        $tabla_2= DB::table('tabla_pagos')->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')->where('id_ciclo','=',$aux)->first(); 
+    
         if(is_null($tabla_2)){
-         $tabla_2= DB::table('tabla_pagos')->where('ciclo','=','2018-2019')->first();
-        }
+           $tabla_2= DB::table('tabla_pagos')->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')->where('tabla_pagos.id_ciclo','=','1')->first();
+       }
+     $tabla_pagos= DB::table('tabla_pagos')->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')->where('tabla_pagos.id_ciclo','LIKE','%'.$query.'%')->paginate(24);
 
-        $tabla_pagos= DB::table('tabla_pagos')->where('ciclo','LIKE','%'.$query.'%')->paginate(24);
-        return view('nomina.tabla_pagos.index',["tabla_pagos"=>$tabla_pagos,"searchText"=>$query,'ciclos'=> $ciclos,"tabla_2"=>$tabla_2]);
+     return view('nomina.tabla_pagos.index',["tabla_pagos"=>$tabla_pagos,"searchText"=>$query,'ciclos'=> $ciclos,"tabla_2"=>$tabla_2]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
-    }}
+ }}
 
     /**
      * Show the form for creating a new resource.
@@ -66,13 +70,23 @@ class TablaPagosController extends Controller
     public function store(Request $request)
     {
         $tabla= new TablaPagosModel;
-        $tabla->qna=$request->get('qna');
+        $tabla->id_ciclo=$request->get('ciclo');
+        $tabla2=CicloEscolarModel::findOrFail($tabla->id_ciclo);
+        $name3 = explode("-",$tabla2->ciclo);
+        $x=$request->get('qna'); 
+
+        if ($x > 16 && $x < 24) {
+            $tabla->qna=$name3[0].$request->get('qna'); 
+            # code...
+        }else{
+            $tabla->qna=$name3[1].$request->get('qna');
+        }
         $tabla->dias=$request->get('dias');
         $tabla->pago_director=$request->get('pago_director');
         $tabla->pago_docente=$request->get('pago_docente');
         $tabla->pago_intendente=$request->get('pago_intendente');
         $tabla->captura="ADMINISTRADOR";
-        $tabla->ciclo=$request->get('ciclo');
+        
         $tabla->save();
         return Redirect::to('tabla_pagos');
 
@@ -80,9 +94,11 @@ class TablaPagosController extends Controller
     }
 
     public function invoice($id){
-        $tabla_2= DB::table('tabla_pagos')->where('ciclo','=',$id)->first();
-        $tabla= DB::table('tabla_pagos')->where('ciclo','=',$id)->get();
-        $pago= DB::table('tabulador_pagos')->where('ciclo','=',$id)->first();
+        $tabla_2= DB::table('tabla_pagos')->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')->where('id_ciclo','=',$id)->first();
+        $tabla= DB::table('tabla_pagos')->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')->where('id_ciclo','=',$id)->get();
+
+print_r($tabla_2->ciclo);
+        $pago= DB::table('tabulador_pagos')->where('ciclo','=',$tabla_2->ciclo)->first();
          //$material   = AlmacenMaterial:: findOrFail($id);
         $date = date('Y-m-d');
         $invoice = "2222";
@@ -128,13 +144,22 @@ class TablaPagosController extends Controller
     public function update(Request $request, $id)
     {
         $pago=TablaPagosModel::findOrFail($id);
-        $pago->qna=$request->get('qna');
+        $pago->id_ciclo=$request->get('ciclo');
+        $tabla2=CicloEscolarModel::findOrFail($pago->id_ciclo);
+        $name3 = explode("-",$tabla2->ciclo);
+        $x=$request->get('qna'); 
+
+        if ($x > 16 && $x < 24) {
+            $pago->qna=$name3[0].$request->get('qna'); 
+            # code...
+        }else{
+            $pago->qna=$name3[1].$request->get('qna');
+        }
         $pago->dias=$request->get('dias');
         $pago->pago_director=$request->get('pago_director');
         $pago->pago_docente=$request->get('pago_docente');
         $pago->pago_intendente=$request->get('pago_intendente');
         $pago->captura="ADMINISTRADOR";
-        $pago->ciclo=$request->get('ciclo');
         $pago->update();
         return Redirect::to('tabla_pagos');
         //
@@ -148,21 +173,21 @@ class TablaPagosController extends Controller
      */
     public function destroy($id)
     {
-       $pago=TablaPagosModel::findOrFail($id);
-       $pago->delete();
-       return Redirect::to('tabla_pagos');
+     $pago=TablaPagosModel::findOrFail($id);
+     $pago->delete();
+     return Redirect::to('tabla_pagos');
 
         //
-   }
+ }
 
 
-   public function excel(Request $request)
-   {
+ public function excel(Request $request)
+ {
 
     Excel::create('tabla_pagos', function($excel) {
         $excel->sheet('Excel sheet', function($sheet) {
                 //otra opción -> $products = Product::select('name')->get();
-            $tabla = TablaPagosModel::select('qna','dias','pago_director','pago_docente','pago_intendente','captura','ciclo')
+            $tabla = TablaPagosModel::join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('qna','dias','pago_director','pago_docente','pago_intendente','captura','ciclo_escolar.ciclo')
             ->where('ciclo','2018-2019')
             ->get();
             $sheet->fromArray($tabla);
