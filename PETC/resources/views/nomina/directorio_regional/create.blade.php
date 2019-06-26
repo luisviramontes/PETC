@@ -1,5 +1,7 @@
 @extends('layouts.principal')
 @section('contenido')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
 		<h1>Inicio</h1>
@@ -37,7 +39,10 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Region <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="region" class="form-control" required>
+								<select name="region" id="region" onchange="valida_region()" class="form-control" required>
+									<option selected>
+										Selecciona una opción
+									</option>
 									<option value="1">
 										1
 									</option>
@@ -80,37 +85,43 @@
 
 								</select>
 								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_region'>{{$errors->formulario->first('region')}}</div>
 							</div>
 						</div><!--/form-group-->
 
 
-            <div class="form-group">
-							<label class="col-sm-3 control-label">Sostenimiento <strog class="theme_color">*</strog></label>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Sostenimiento: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="sostenimiento" class="form-control" required>
-									<option value="estatal">
-										Estatal
+								<select name="sostenimiento" onchange="valida_region();"  id="sostenimiento" class="form-control" required>
+									<option selected>
+										Selecciona una opción
 									</option>
-									<option value="federal">
-										Federal
+									<option value="ESTATAL">
+									ESTATAL
 									</option>
-                </select>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div><!--/form-group-->
+									<option value="FEDERAL">
+										FEDERAL
+									</option>
+
+								</select>
+								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_sostenimiento'>{{$errors->formulario->first('sostenimiento')}}</div>
+							</div>
+						</div><!--/form-group-->
 
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="nombre_enlace" id="nombre_enlace" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre_enlace')}}" onchange="mayus(this)" />
+								<input name="nombre_enlace" id="nombre_enlace" type="text" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre_enlace')}}"/>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Telefono: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="telefono" type="number" id="telefono" placeholder="xxx-xxx-xx-xx" maxlength="10" onkeypress="soloNumeros(event)"   class="form-control" required value="{{Input::old('telefono')}}" />
+								<input name="telefono" type="number" id="telefono" placeholder="xxx-xxx-xx-xx" onkeypress="return maxlengthtelefonos();soloNumeros()"   class="form-control" required value="{{Input::old('telefono')}}" />
 								<div class="help-block with-errors"></div>
 							<div class="text-danger" id='error_telefono'>{{$errors->formulario->first('telefono')}}</div>
 							</div>
@@ -119,7 +130,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ext1 Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext1_enlace" type="number" id="ext1_enlace" placeholder="xxxx" maxlength="4" onkeypress="soloNumeros(event)"   class="form-control" required value="{{Input::old('ext1_enlace')}}" />
+								<input name="ext1_enlace" type="text" id="ext1_enlace" placeholder="xxxx" maxlength="4" onkeypress="return soloNumeros(event)"   class="form-control" required value="{{Input::old('ext1_enlace')}}" />
 								<div class="help-block with-errors"></div>
 							<div class="text-danger" id='error_ext1_enlace'>{{$errors->formulario->first('ext1_enlace')}}</div>
 							</div>
@@ -128,7 +139,7 @@
             <div class="form-group">
 							<label class="col-sm-3 control-label">Ext2 Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext2_enlace" type="number" id="ext2_enlace" placeholder="xxxx" maxlength="4" onkeypress="soloNumeros(event)"  class="form-control" required value="{{Input::old('ext2_enlace')}}" />
+								<input name="ext2_enlace" type="text" id="ext2_enlace" placeholder="xxxx" maxlength="4" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{Input::old('ext2_enlace')}}" />
 								<div class="help-block with-errors"></div>
 							<div class="text-danger" id='error_ext2_enlace'>{{$errors->formulario->first('ext2_enlace')}}</div>
 							</div>
@@ -144,14 +155,14 @@
             <div class="form-group">
 							<label class="col-sm-3 control-label">Director Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="director_regional" type="text" id="director_regional" onchange="mayus(this)" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('director_regional')}}" />
+								<input name="director_regional" type="text" id="director_regional" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('director_regional')}}" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Telefono Director: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="telefono_director" id="telefono_director" placeholder="xxx-xxx-xx-xx" type="number" maxlength="10" onkeypress="soloNumeros(event)"   class="form-control" required value="{{Input::old('telefono_director')}}" />
+								<input name="telefono_director" id="telefono_director" placeholder="xxx-xxx-xx-xx" type="number" maxlength="10" onkeypress="return maxlengthtelefonosdir();soloNumeros()"   class="form-control" required value="{{Input::old('telefono_director')}}" />
 								<div class="help-block with-errors"></div>
 							<div class="text-danger" id='error_telefono_director'>{{$errors->formulario->first('telefono_director')}}</div>
 							</div>
@@ -160,14 +171,14 @@
             <div class="form-group">
 							<label class="col-sm-3 control-label">Financiero Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="financiero_regional" type="text" id="financiero_regional" onchange="mayus(this)" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('financiero_regional')}}" />
+								<input name="financiero_regional" type="text" id="financiero_regional" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('financiero_regional')}}" />
 							</div>
 						</div>
 
             <div class="form-group">
 							<label class="col-sm-3 control-label">Telefono Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="telefono_regional" type="number" id="telefono_regional" maxlength="10" placeholder="xxx-xxx-xx-xx" onkeypress="soloNumeros(event)"  class="form-control" required value="{{Input::old('telefono_regional')}}" />
+								<input name="telefono_regional" type="number" id="telefono_regional" maxlength="10" placeholder="xxx-xxx-xx-xx" onkeypress="return maxlengthtelefonoreg();soloNumeros(event)"  class="form-control" required value="{{Input::old('telefono_regional')}}" />
 								<div class="help-block with-errors"></div>
 							<div class="text-danger" id='error_telefono_regional'>{{$errors->formulario->first('telefono_regional')}}</div>
 							</div>
@@ -176,7 +187,7 @@
             <div class="form-group">
 							<label class="col-sm-3 control-label">Extencion Regional 1: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext_reg_1" type="number" id="ext_reg_1" maxlength="4" placeholder="xxxx" onkeypress="soloNumeros(event)"  class="form-control" required value="{{Input::old('ext_reg_1')}}" />
+								<input name="ext_reg_1" type="text" id="ext_reg_1" maxlength="4" placeholder="xxxx" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{Input::old('ext_reg_1')}}" />
 								<div class="help-block with-errors"></div>
 								<div class="text-danger" id='error_ext_reg_1'>{{$errors->formulario->first('ext_reg_1')}}</div>
 							</div>
@@ -185,7 +196,7 @@
             <div class="form-group">
 							<label class="col-sm-3 control-label">Extencion Regional 2: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="ext_reg_2" type="number" id="ext_reg_2" maxlength="4" placeholder="xxxx" onkeypress="soloNumeros(event)"  class="form-control" required value="{{Input::old('ext_reg_2')}}" />
+								<input name="ext_reg_2" type="text" id="ext_reg_2" maxlength="4" placeholder="xxxx" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{Input::old('ext_reg_2')}}" />
 								<div class="help-block with-errors"></div>
 								<div class="text-danger" id='error_ext_reg_2'>{{$errors->formulario->first('ext_reg_2')}}</div>
 							</div>
@@ -207,7 +218,7 @@
 
 						<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button type="submit" id="submit" disabled="true" class="btn btn-primary">Guardar</button>
 								<a href="{{url('/directorio_regional')}}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->
@@ -219,4 +230,38 @@
 		</div><!--/col-md-12-->
 	</div><!--/row-->
 </div><!--/container clear_both padding_fix-->
+<script type="text/javascript">
+/*
+function maxlengthtelefonos() {
+	if( document.getElementById("telefono").value.length > 9 ){
+
+    swal("ERROR!","Un numero telefonico se compone de 10 numeros, revisa tus datos","error");
+    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+    return false
+  }
+}
+
+function maxlengthtelefonosdir() {
+	if( document.getElementById("telefono_director").value.length > 9 ){
+
+    swal("ERROR!","Un numero telefonico se compone de 10 numeros, revisa tus datos","error");
+    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+    return false
+  }
+}
+
+function maxlengthtelefonoreg() {
+	if( document.getElementById("telefono_regional").value.length > 9 ){
+
+    swal("ERROR!","Un numero telefonico se compone de 10 numeros, revisa tus datos","error");
+    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+    return false
+  }
+} */
+
+window.onload = function() {
+	valida_sostenimiento();
+	valida_region();
+};
+</script>
 @endsection

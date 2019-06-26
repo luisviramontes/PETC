@@ -15,6 +15,32 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
+//////////////////contatc///////////////////////////////
+Route::get('contact', function () {
+	return view('contact');
+});
+/////////////////////////////////////////////////////////////
+
+//////////////////contatc///////////////////////////////
+Route::get('about', function () {
+	return view('about');
+});
+/////////////////////////////////////////////////////////////
+
+//////////////////contatc///////////////////////////////
+Route::get('services', function () {
+	return view('services');
+});
+/////////////////////////////////////////////////////////////
+
+
+//////////////////reintegros///////////////////////////////
+Route::resource('reintegros', 'ReintegrosController');
+Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
+Route::get('pdf_catpuesto/{id}', array('as'=> '/pdf_catpuesto','uses'=>'CatPuestoController@invoice'));
+/////////////////////////////////////////////////////////////
+
+
 //////////////////cat_puesto///////////////////////////////
 Route::resource('cat_puesto', 'CatPuestoController');
 Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
@@ -33,6 +59,27 @@ Route::get('descargar-region', 'RegionController@excel')->name('nomina.region.ex
 Route::get('pdf_region/{id}', array('as'=> '/pdf_region','uses'=>'RegionController@invoice'));
 ///////////////////////////////////////////////////
 
+//////////////////////RchazosCAP///////////////////////7
+Route::resource('cap_rechazo', 'RechazoCapController');
+Route::get('descargar-rechazocap', 'RechazoCapController@excel')->name('nomina.cap_rechazo.excel');
+Route::get('pdf_cap_rechazo/{id}', array('as'=> '/pdf_region','uses'=>'RechazoCapController@invoice'));
+Route::get('validar_quincena/{qna}/{sostenimiento}/{tipo}','RechazoCapController@validar_quincena');
+Route::get('validar_quincenaExis/{qna}/{sostenimiento}/{tipo}','RechazoCapController@validar_quincenaExis');
+///////////////////////////////////////////////////
+
+//////////////////////RchazosFED///////////////////////7
+Route::resource('rechazos_fed', 'RechazosFederalController');
+Route::get('descargar-rechazos_fed', 'RechazosFederalController@excel')->name('nomina.rechazos_fed.excel');
+Route::get('pdf_rechazosfed/{id}', array('as'=> '/pdf_rechazosfed','uses'=>'RechazosFederalController@invoice'));
+///////////////////////////////////////////////////
+
+
+//////////////////////RchazosEst///////////////////////7
+Route::resource('rechazos_est', 'RechazosEstController');
+Route::get('descargar-rechazosest', 'RechazosEstController@excel')->name('nomina.rechazosest.excel');
+Route::get('pdf_rechazoest/{id}', array('as'=> '/pdf_rechazoest','uses'=>'RechazosEstController@invoice'));
+///////////////////////////////////////////////////
+
 ///////////////////Solicitudes/////////////////////////////7
 Route::resource('solicitudes','SolicitudesController');
 Route::get('descargar-solicitudes', 'SolicitudesController@excel')->name('nomina.solicitudes.excel');
@@ -46,11 +93,11 @@ Route::resource('cambios_cct', 'CambiosCctController');
 Route::resource('captura', 'CapturaController');
 Route::get('descargar-tabla-captura', 'CapturaController@excel')->name('nomina.captura.excel');
 Route::get('ver_datoscaptura/{id}/{ciclo}', array('as'=> '/ver_datoscaptura','uses'=>'CapturaController@verInformacion'));
-Route::get('validarcaptura/{cct}/{puesto}', 'CapturaController@validarCaptura'); 
+Route::get('validarcaptura/{cct}/{puesto}', 'CapturaController@validarCaptura');
 Route::post('activarrfc', 'CapturaController@activar');
 Route::get('validarnuevor/{cct}/{puesto}', 'CapturaController@validarNuevo');
-Route::get('validarpersonal/{rfc}', 'CapturaController@validarRFC');  
-Route::get('extender_contrato/{id}', 'CapturaController@extender_contrato'); 
+Route::get('validarpersonal/{rfc}', 'CapturaController@validarRFC');
+Route::get('extender_contrato/{id}', 'CapturaController@extender_contrato');
 Route::post('guardar_contrato/{id}', 'CapturaController@guardar_contrato')->name('nomina.captura.guardar_contrato');
 Route::get('pdf_captura/{id}/{ciclo}', array('as'=> '/pdf_captura','uses'=>'CapturaController@invoice'));
 
@@ -92,12 +139,12 @@ Route::resource('nomina_estatal', 'NominaEstatalController');
 Route::post('importExcel', 'NominaEstatalController@importExcel');
 ////////////////////////////////////////////////////////////////
 
-//////////////////nomina Capturada Estatal////////////////////////////////
+//////////////////nomina Capturada E////////////////////////////////
 Route::resource('nomina_capturada', 'NominaCapturadaController');
 Route::get('descargar-nominas-capturadas', 'NominaCapturadaController@excel')->name('nomina.nomina_capturada.excel');
 Route::get('pdf_nomina_capturada/{id}', array('as'=> '/pdf_nomina_capturada','uses'=>'NominaCapturadaController@invoice'));
 Route::get('validar_nomina/{qna}/{sostenimiento}/{tipo}','NominaCapturadaController@validar_nomina');
-Route::get('verInformacion/{id}', array('as'=> '/verInformacion','uses'=>'NominaFederalController@verInformacion'));
+Route::get('validar_quincenaIna/{qna}/{sostenimiento}/{tipo}','NominaCapturadaController@validar_quincenaIna');
 
 ////////////////////////////////////////////////////////////////
 
@@ -122,7 +169,7 @@ Route::get('ver_datospersonal/{id}', array('as'=> '/ver_datospersonal','uses'=>'
 
 Route::resource('reclamos', 'ReclamosController');
 
-Route::resource('reintegros', 'ReintegrosController');
+
 
 ///TABLA DE PAGOS
 Route::resource('tabla_pagos', 'TablaPagosController');

@@ -50,32 +50,35 @@
 								<th>Nombre de la Escuela </th>
 								<th>Region </th>
 								<th>Mes </th>
-								<th>Estado</th>
 								<th>Observaciones</th>
+								<th>Captura</th>
+								<th>Estado</th>
+
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach($listas  as $lista)
+						@if ($lista->estado == "ACTIVO")
 							<tr class="gradeX">
-								<td>{{$lista->cct}} </td>
-								<td>{{$lista->nombre_escuela}} </td>
-								<td>{{$lista->region}}</td>
-								<td>{{$lista->mes}} </td>
-								<td>{{$lista->estado}} </td>
-								<td>{{$lista->observaciones}} </td>
+								<td style= "background-color:#DBFFC2;">{{$lista->cct}} </td>
+								<td style= "background-color:#DBFFC2;">{{$lista->nombre_escuela}} </td>
+								<td style= "background-color:#DBFFC2;">{{$lista->region}}</td>
+								<td style= "background-color:#DBFFC2;">{{$lista->mes}} </td>
+								<td style= "background-color:#DBFFC2;">{{$lista->observaciones}} </td>
+								<td style= "background-color:#DBFFC2;">{{$lista->captura}}</td>
+								<td style= "background-color:#DBFFC2;">{{$lista->estado}} </td>
 
 
-
-
-								<td>
+								<td style="background-color:#DBFFC2;">
 									<center>
-										 <a href="{{URL::action('ListasAsistenciasController@edit',$lista->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+										<a href="{{URL::action('ListasAsistenciasController@edit',$lista->id)}}" id="edit" onchange="valida_edit()" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 
 									</center>
 								</td>
-								<td>
+
+								<td style="background-color:#DBFFC2;">
 									<center>
 									<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$lista->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 
@@ -83,6 +86,31 @@
 									</td>
 								</td>
 							</tr>
+							@else
+
+							<tr class="gradeX">
+								<td style= "background-color:#FFE4E1;">{{$lista->cct}} </td>
+								<td style= "background-color:#FFE4E1;">{{$lista->nombre_escuela}} </td>
+								<td style= "background-color:#FFE4E1;">{{$lista->region}}</td>
+								<td style= "background-color:#FFE4E1;">{{$lista->mes}} </td>
+								<td style= "background-color:#FFE4E1;">{{$lista->observaciones}} </td>
+								<td style= "background-color:#FFE4E1;">{{$lista->captura}}</td>
+								<td style= "background-color:#FFE4E1;">{{$lista->estado}} </td>
+								<td style="background-color:FFE4E12;">
+									<center>
+										<a href="{{URL::action('ListasAsistenciasController@edit',$lista->id)}}" id="edit" onchange="valida_edit()" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+									</center>
+								</td>
+								<td style="background-color:#FFE4E1;">
+									<center>
+									<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$lista->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+
+									</center>
+									</td>
+								</td>
+							</tr>
+							@endif
 								  @include('nomina.listas_asistencias.modal')
 							@endforeach
 						</tbody>

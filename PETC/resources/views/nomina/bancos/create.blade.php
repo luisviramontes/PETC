@@ -64,8 +64,11 @@
             <div class="form-group">
               <label class="col-sm-3 control-label">Descripcion: <strog class="theme_color">*</strog></label>
               <div class="col-sm-6">
-                <select name="descripcion" id="descripcion" class="form-control" value="{{Input::old('descripcion')}}"  onchange=""required>
-                  <option value="DEPOSITO">
+                <select name="descripcion" id="descripcion" class="form-control" value="{{Input::old('descripcion')}}"  onchange="valida_desc()"required>
+									<option selected>
+										Selecciona una opción
+									</option>
+									<option value="DEPOSITO">
                     DEPOSITO
                   </option>
                   <option value="CHEQUE">
@@ -75,6 +78,7 @@
 
                 </select>
                 <div class="help-block with-errors"></div>
+									<div class="text-danger" id='error_desc'>{{$errors->formulario->first('descripcion')}}</div>
               </div>
             </div><!--/form-group-->
 
@@ -116,7 +120,22 @@
 </div><!--/container clear_both padding_fix-->
 
 <script type="text/javascript">
+window.onload = function() {
+	valida_desc();
+}
 
+
+function valida_desc() {
+		if( document.getElementById('descripcion').value == "Selecciona una opción"){
+		//	swal("ERROR!","Selecciona tipo se puesto","error");
+			document.getElementById('submit').disabled=true;
+			document.getElementById("error_desc").innerHTML = "No se ha seleccionado ninguna opción.";
+			return false
+		}else if(document.getElementById('descripcion').value != "Selecciona una opción"){
+					document.getElementById('submit').disabled=false;
+					document.getElementById("error_desc").innerHTML = "Proceda con la captura. 😀";
+		}
+	}
 </script>
 
 @endsection

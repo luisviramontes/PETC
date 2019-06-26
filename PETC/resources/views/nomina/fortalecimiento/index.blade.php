@@ -64,23 +64,30 @@
 						</thead>
 						<tbody>
 						@foreach($fortalecimientos  as $fortalecimiento)
+								@if ($fortalecimiento->estado == "ACTIVO")
 							<tr class="gradeX">
 
-								<td>{{$fortalecimiento->cct}} </td>
-								<td>{{$fortalecimiento->monto_forta}} </td>
-								<td>{{$fortalecimiento->ciclo_escolar}} </td>
-								<td>{{$fortalecimiento->estado}} </td>
-                <td>{{$fortalecimiento->observaciones}}</td>
-                <td>{{$fortalecimiento->captura}}</td>
+								<td style="background-color:#DBFFC2;">{{$fortalecimiento->cct}} </td>
+								<td style="background-color:#DBFFC2;">{{$fortalecimiento->monto_forta}} </td>
+								<td style="background-color:#DBFFC2;">{{$fortalecimiento->ciclo_escolar}} </td>
+								<td style="background-color:#DBFFC2;">{{$fortalecimiento->estado}} </td>
+                <td style="background-color:#DBFFC2;">{{$fortalecimiento->observaciones}}</td>
+                <td style="background-color:#DBFFC2;">{{$fortalecimiento->captura}}</td>
+
+								<!-- //////////////////////////////////////////////////////////////////// -->
 
 
 
-								<td>
-									<center>
-										<a href="{{URL::action('FortalecimientoController@edit',$fortalecimiento->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
-									</center>
-								</td>
-								<td>
+							<td style="background-color:#DBFFC2;">
+								<center>
+									<a href="{{URL::action('FortalecimientoController@edit',$fortalecimiento->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+								</center>
+							</td>
+
+								<!-- //////////////////////////////////////////////////////////////////// -->
+
+								<td style="background-color:#DBFFC2;" >
 									<center>
 										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$fortalecimiento->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 
@@ -88,6 +95,29 @@
 									</td>
 								</td>
 							</tr>
+								@else
+
+								<td style="background-color:#FFE4E1;">{{$fortalecimiento->cct}} </td>
+								<td style="background-color:#FFE4E1;">{{$fortalecimiento->monto_forta}} </td>
+								<td style="background-color:#FFE4E1;">{{$fortalecimiento->ciclo_escolar}} </td>
+								<td style="background-color:#FFE4E1;">{{$fortalecimiento->estado}} </td>
+								<td style="background-color:#FFE4E1;">{{$fortalecimiento->observaciones}}</td>
+								<td style="background-color:#FFE4E1;">{{$fortalecimiento->captura}}</td>
+
+								<td style="background-color:#FFE4E1;">
+									<center>
+										<a href="{{URL::action('FortalecimientoController@edit',$fortalecimiento->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+									</center>
+								</td>
+
+								<td style="background-color:#FFE4E1;" >
+									<center>
+										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$fortalecimiento->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+
+									</center>
+									</td>
+								@endif
 						@include('nomina.fortalecimiento.modal')
 							@endforeach
 						</tbody>

@@ -227,7 +227,7 @@ class NominaCapturadaController extends Controller
         $nomina -> sostenimiento = $request ->sostenimiento;
         $nomina -> estado ="ACTIVO";
         $nomina -> tipo = $request ->tipo;
-        $nomina ->  captura="ADMINISTRADOR";
+        $nomina -> captura="ADMINISTRADOR";
 
 
 
@@ -384,14 +384,16 @@ class NominaCapturadaController extends Controller
 
    }
 
-   public function validar_edit($estado)
+   public function validar_quincenaIna($qna,$sostenimiento,$tipo)
    {
-    $nomina = NominaCapturadaModel::select('estado')
-
-    ->where('estado', "=" ,$estado)
+    $rechazo = NominaCapturadaModel::select('qna','sostenimiento','tipo','estado')
+    ->where('qna',"=" ,$qna)
+    ->where('sostenimiento', "=" ,$sostenimiento)
+    ->where('tipo', "=" ,$tipo)
+    ->where('estado', "=" ,"INACTIVO")
     ->get();
         return response()->json(
-          $nomina->toArray());
+          $rechazo->toArray());
 
    }
 

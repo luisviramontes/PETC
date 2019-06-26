@@ -68,34 +68,35 @@
 						</thead>
 						<tbody>
 						@foreach($nomina_capturada  as $nominac)
+							@if ($nominac->estado == "ACTIVO")
 							<tr class="gradeX">
 
-								<td>{{$nominac->qna}} </td>
-								<td>{{$nominac->sostenimiento}}</td>
-								<td>{{$nominac->tipo}}</td>
-								<td>{{$nominac->estado}}</td>
-								<td>
+								<td style="background-color:#DBFFC2;">{{$nominac->qna}} </td>
+								<td style="background-color:#DBFFC2;">{{$nominac->sostenimiento}}</td>
+								<td style="background-color:#DBFFC2;">{{$nominac->tipo}}</td>
+								<td style="background-color:#DBFFC2;">{{$nominac->estado}}</td>
+								<td style="background-color:#DBFFC2;">
 									@if ($nominac->sostenimiento == "FEDERAL")
 									<a href="{{ action('NominaFederalController@index') }}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
 									@else
 									<a href="{{ action('NominaEstatalController@index') }}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
 									@endif
 								</td>
-								<td>{{$nominac->created_at}}</td>
-								<td>{{$nominac->captura}}</td>
+								<td style="background-color:#DBFFC2;">{{$nominac->created_at}}</td>
+								<td style="background-color:#DBFFC2;">{{$nominac->captura}}</td>
 
 
 
 								@if ($nominac->estado == "INACTIVO")
 
 
-								<td>
+								<td style="background-color:#DBFFC2;">
 									<center>
 										<a href="{{URL::action('NominaCapturadaController@edit',$nominac->id)}}" id="edit" onchange="valida_edit()" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 
 									</center>
 								</td>
-								@else <td>
+								@else <td style="background-color:#DBFFC2;">
 									<center>
 
 											<h4><span class="label label-warning">Inactivar para editar</span></h4>
@@ -103,7 +104,7 @@
 									</center>
 								</td>
 								@endif
-								<td>
+								<td style="background-color:#DBFFC2;">
 									<center>
 										<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$nominac->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 
@@ -111,6 +112,51 @@
 									</td>
 								</td>
 							</tr>
+							@else
+							<tr class="gradeX">
+
+								<td style="background-color:#FFE4E1;">{{$nominac->qna}} </td>
+								<td style="background-color:#FFE4E1;">{{$nominac->sostenimiento}}</td>
+								<td style="background-color:#FFE4E1;">{{$nominac->tipo}}</td>
+								<td style="background-color:#FFE4E1;">{{$nominac->estado}}</td>
+								<td style="background-color:#FFE4E1;">
+									@if ($nominac->sostenimiento == "FEDERAL")
+									<a href="{{ action('NominaFederalController@index') }}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
+									@else
+									<a href="{{ action('NominaEstatalController@index') }}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
+									@endif
+								</td>
+								<td style="background-color:#FFE4E1;">{{$nominac->created_at}}</td>
+								<td style="background-color:#FFE4E1;">{{$nominac->captura}}</td>
+
+
+
+								@if ($nominac->estado == "INACTIVO")
+
+
+								<td style="background-color:#FFE4E1;">
+									<center>
+										<a href="{{URL::action('NominaCapturadaController@edit',$nominac->id)}}" id="edit" onchange="valida_edit()" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+									</center>
+								</td>
+								@else <td style="background-color:#FFE4E1;">
+									<center>
+
+											<h4><span class="label label-warning">Inactivar para editar</span></h4>
+
+									</center>
+								</td>
+								@endif
+								<td style="background-color:#FFE4E1;">
+									<center>
+										<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$nominac->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+
+									</center>
+									</td>
+								</td>
+							</tr>
+							@endif
 							@include('nomina.nomina_capturada.modal')
 					@endforeach
 						</tbody>
@@ -143,6 +189,8 @@
 window.onload = function() {
 
 	//valida_edit();
+
+
 
 function valida_edit(){
 
@@ -180,6 +228,9 @@ function valida_edit(){
 
 }
 
-};
+}
+
+
+
 </script>
 @endsection

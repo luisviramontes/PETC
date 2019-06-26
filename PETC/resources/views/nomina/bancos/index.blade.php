@@ -65,33 +65,26 @@
 						</thead>
 						<tbody>
 						@foreach($bancos  as $banco)
+						@if ($banco->estado == "ACTIVO")
 							<tr class="gradeX">
 
-								<td>{{$banco->nombre_banco}} </td>
-								<td>{{$banco->operacion}}</td>
-								<td>{{$banco->descripcion}}</td>
-								<td>{{$banco->estado}}</td>
-								<td>{{$banco->created_at}}</td>
-								<td>{{$banco->captura}}</td>
-								@if ($banco->estado == "INACTIVO")
+								<td style="background-color:#DBFFC2;">{{$banco->nombre_banco}} </td>
+								<td style="background-color:#DBFFC2;">{{$banco->operacion}}</td>
+								<td style="background-color:#DBFFC2;">{{$banco->descripcion}}</td>
+								<td style="background-color:#DBFFC2;">{{$banco->estado}}</td>
+								<td style="background-color:#DBFFC2;">{{$banco->created_at}}</td>
+								<td style="background-color:#DBFFC2;">{{$banco->captura}}</td>
 
 
-								<td>
+
+								<td style="background-color:#DBFFC2;">
 									<center>
 										<a href="{{URL::action('BancosController@edit',$banco->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 
 									</center>
 								</td>
-								@else <td>
-									<center>
 
-											<h4><span class="label label-warning">Inactivar para editar</span></h4>
-
-									</center>
-								</td>
-								@endif
-
-								<td>
+								<td style="background-color:#DBFFC2;">
 									<center>
 										<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$banco->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 
@@ -99,6 +92,34 @@
 									</td>
 								</td>
 							</tr>
+							@else
+							<tr class="gradeX">
+
+								<td style="background-color:#FFE4E1;">{{$banco->nombre_banco}} </td>
+								<td style="background-color:#FFE4E1;">{{$banco->operacion}}</td>
+								<td style="background-color:#FFE4E1;">{{$banco->descripcion}}</td>
+								<td style="background-color:#FFE4E1;">{{$banco->estado}}</td>
+								<td style="background-color:#FFE4E1;">{{$banco->created_at}}</td>
+								<td style="background-color:#FFE4E1;">{{$banco->captura}}</td>
+
+
+
+								<td style="background-color:#FFE4E1;">
+									<center>
+										<a href="{{URL::action('BancosController@edit',$banco->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+									</center>
+								</td>
+
+								<td style="background-color:#FFE4E1;">
+									<center>
+										<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$banco->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+
+									</center>
+									</td>
+								</td>
+							</tr>
+							@endif
 							@include('nomina.bancos.modal')
 					@endforeach
 						</tbody>

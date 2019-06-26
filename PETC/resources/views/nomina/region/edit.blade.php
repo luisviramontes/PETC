@@ -39,8 +39,8 @@
 							<label class="col-sm-3 control-label">Region <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
 								<select name="region" class="form-control" required>
-                  <option value="{{$regiones->region}}">
-										{{$regiones->region}}
+  								<option selected value="	{{$regiones->region}}">
+											{{$regiones->region}}
 									</option>
                   <option  value="1">
 										1
@@ -88,21 +88,22 @@
 						</div><!--/form-group-->
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Sostenimiento <strog class="theme_color">*</strog></label>
+							<label class="col-sm-3 control-label">Sostenimiento: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="sostenimiento" class="form-control" required>
-                  <option value="{{$regiones->sostenimiento}}">
-										{{$regiones->sostenimiento}}
+								<select name="sostenimiento" onchange="valida_sostenimiento();"  id="sostenimiento" class="form-control" required>
+									<option selected value="	{{$regiones->sostenimiento}}">
+												{{$regiones->sostenimiento}}
 									</option>
-                  <option  value="Estatal">
-										Estatal
+									<option value="ESTATAL">
+										ESTATAL
 									</option>
-									<option value="Federal">
-										Federal
+									<option value="FEDERAL">
+										FEDERAL
 									</option>
 
 								</select>
 								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_sostenimiento'>{{$errors->formulario->first('sostenimiento')}}</div>
 							</div>
 						</div><!--/form-group-->
 
@@ -129,7 +130,7 @@
 
 						<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button type="submit" id="submit"disabled="true" onkeypress="valida_sostenimiento()"  class="btn btn-primary">Guardar</button>
 								<a href="{{url('/cat_puesto')}}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->
@@ -141,4 +142,9 @@
 		</div><!--/col-md-12-->
 	</div><!--/row-->
 </div><!--/container clear_both padding_fix-->
+<script type="text/javascript">
+window.onload = function() {
+	valida_sostenimiento();
+};
+</script>
 @endsection

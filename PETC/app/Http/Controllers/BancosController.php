@@ -162,11 +162,11 @@ class BancosController extends Controller
      Excel::create('bancos', function($excel) {
          $excel->sheet('Excel sheet', function($sheet) {
                  //otra opción -> $products = Product::select('name')->get();
-             $tabla = BancosModel::select('nombre_banco','operacion','descripcion','estado')
+             $tabla = BancosModel::select('nombre_banco','operacion','descripcion','estado','created_at')
              //->where('directorio_regional')
              ->get();
              $sheet->fromArray($tabla);
-             $sheet->row(1,['NOMBRE BANCO','OPERACION','DESCRIPCION','ESTADO']);
+             $sheet->row(1,['NOMBRE BANCO','OPERACION','DESCRIPCION','ESTADO','Fecha de Registro']);
              $sheet->setOrientation('landscape');
          });
      })->export('xls');

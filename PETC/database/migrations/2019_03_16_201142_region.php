@@ -16,7 +16,8 @@ class Region extends Migration
             $table->increments('id');
             $table->integer('region');
             $table->string('sostenimiento');
-            $table->string('capturo');            
+            $table->string('estado');
+            $table->string('capturo');
             $table->timestamps();
         });
     }

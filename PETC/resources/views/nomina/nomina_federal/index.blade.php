@@ -70,7 +70,7 @@
                 <th style="display:none;">PERC</th>
                 <th style="display:none;">DED</th>
                 <th style="display:none;">Neto</th>
-                <th>Ciclo escolar</th>
+                <th style="display:none;">Ciclo escolar</th>
 								<th>Fecha de Registro</th>
                 <th style="display:none;">Captura</th>
 
@@ -102,7 +102,7 @@
                 <td style="display:none;">{{$nomina->perc}}</td>
                 <td style="display:none;">{{$nomina->ded}}</td>
                 <td style="display:none;">{{$nomina->neto}}</td>
-                <td>{{$nomina->ciclo_escolar}}</td>
+                <td style="display:none;">{{$nomina->ciclo_escolar}}</td>
 								<td>{{$nomina->created_at}}</td>
                 <td style="display:none;">{{$nomina->captura}}</td>
 

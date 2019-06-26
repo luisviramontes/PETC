@@ -18,7 +18,7 @@
 
 
 
-    <h1>Fortalecimiento: </h1>
+    <h1>Fortalecimientos: </h1>
     <div id="project" >
       <div><span> Programa</span> PROGRAMA ESCUELAS DE TIEMPO COMPLETO</div>
       <div><span>Área: </span> Nomina y Sistemas</div>

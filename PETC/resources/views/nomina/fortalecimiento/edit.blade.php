@@ -41,7 +41,10 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">CCT <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="id_cct" class="form-control"  value="{{Input::old('id_cct')}}"  required>
+								<select name="id_cct" class="form-control" id="cct" onchange="validar_cct()" value="{{Input::old('id_cct')}}"  required>
+									<option selected>
+										Selecciona una opción
+									</option>
 									@foreach($cct as $cct)
 									<option value="{{$cct->id}}">
 										{{$cct->cct}}
@@ -49,8 +52,7 @@
 									@endforeach
 								</select>
 								<div class="help-block with-errors"></div>
-
-
+								<div class="text-danger" id='error_cct'>{{$errors->formulario->first('cct')}}</div>
 							</div>
 						</div><!--/form-group-->
 
@@ -64,7 +66,10 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ciclo Escolar <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="ciclo_escolar" class="form-control"  value="{{Input::old('ciclo_escolar')}}"  required>
+								<select name="ciclo_escolar" id="ciclo_escolar" onchange="validar_ciclo()" class="form-control"  value="{{Input::old('ciclo_escolar')}}"  required>
+									<option selected>
+										Selecciona una opción
+									</option>
 									@foreach($ciclos as $ciclo)
 									<option value="{{$ciclo->ciclo}}">
 										{{$ciclo->ciclo}}
@@ -72,26 +77,11 @@
 									@endforeach
 								</select>
 								<div class="help-block with-errors"></div>
-								<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('ciclo')}}</div>
+								<div class="text-danger" id='error_ciclo_escolar'>{{$errors->formulario->first('ciclo_escolar')}}</div>
 							</div>
 						</div><!--/form-group-->
 
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Estado <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<select name="estado" class="form-control" value="{{Input::old('estado')}}" required>
-									<option value="ACTIVO">
-										ACTIVO
-									</option>
-									<option value="INACTIVO">
-										INACTIVO
-									</option>
 
-
-								</select>
-								<div class="help-block with-errors"></div>
-							</div>
-						</div><!--/form-group-->
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Observaciones: <strog class="theme_color">*</strog></label>
@@ -105,7 +95,7 @@
 
 						<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button type="submit" id="submit" class="btn btn-primary">Guardar</button>
 								<a href="{{url('/fortalecimiento')}}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->
@@ -117,4 +107,42 @@
 		</div><!--/col-md-12-->
 	</div><!--/row-->
 </div><!--/container clear_both padding_fix-->
+<script type="text/javascript">
+window.onload = function() {
+		validar_cct();
+		validar_ciclo();
+	}
+
+function validar_cct() {
+		 if( document.getElementById('cct').value == "Selecciona una opción" ){
+				document.getElementById('submit').disabled=true;
+				document.getElementById('ciclo_escolar').disabled=true;
+		 //	swal("ERROR!","Selecciona tipo se puesto","error");
+			 document.getElementById("error_cct").innerHTML = "No se ha seleccionado ninguna opción.";
+			 return false
+
+		 }else if(document.getElementById('cct').value != "Selecciona una opción"){
+			 			document.getElementById('ciclo_escolar').disabled=false;
+					 document.getElementById("error_cct").innerHTML = "Proceda con la captura. 😀";
+
+		 }
+	 }
+
+function validar_ciclo() {
+	 		 if( document.getElementById('ciclo_escolar').value == "Selecciona una opción" ){
+
+	 		 //	swal("ERROR!","Selecciona tipo se puesto","error");
+	 			 document.getElementById("error_ciclo_escolar").innerHTML = "No se ha seleccionado ninguna opción.";
+	 			 return false
+
+	 		 }else if(document.getElementById('ciclo_escolar').value != "Selecciona una opción"){
+	 					document.getElementById('submit').disabled=false;
+	 					 document.getElementById("error_ciclo_escolar").innerHTML = "Proceda con la captura. 😀";
+
+	 		 }
+}
+
+
+
+</script>
 @endsection
