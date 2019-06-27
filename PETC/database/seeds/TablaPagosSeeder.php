@@ -18,7 +18,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '2000',
     		'pago_intendente' => '500',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -30,7 +30,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '2000',
     		'pago_intendente' => '500',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -42,7 +42,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '1800',
     		'pago_intendente' => '450',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -54,7 +54,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '2200',
     		'pago_intendente' => '550',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -66,7 +66,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '2200',
     		'pago_intendente' => '550',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -78,7 +78,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '2000',
     		'pago_intendente' => '500',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -90,7 +90,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '1800',
     		'pago_intendente' => '450',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -102,7 +102,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '2000',
     		'pago_intendente' => '500',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -114,7 +114,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '600',
     		'pago_intendente' => '150',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -126,7 +126,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '1400',
     		'pago_intendente' => '350',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -139,7 +139,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '2200',
     		'pago_intendente' => '550',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -151,7 +151,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '2000',
     		'pago_intendente' => '500',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -163,7 +163,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '1800',
     		'pago_intendente' => '450',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -175,7 +175,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '2000',
     		'pago_intendente' => '500',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -187,7 +187,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '1800',
     		'pago_intendente' => '450',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -199,7 +199,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '1800',
     		'pago_intendente' => '450',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -211,7 +211,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '400',
     		'pago_intendente' => '100',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -223,7 +223,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '1800',
     		'pago_intendente' => '450',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -235,7 +235,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '2200',
     		'pago_intendente' => '550',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -248,7 +248,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '2000',
     		'pago_intendente' => '500',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -260,7 +260,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '1800',
     		'pago_intendente' => '450',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);
@@ -272,7 +272,7 @@ class TablaPagosSeeder extends Seeder
     		'pago_docente' => '1000',
     		'pago_intendente' => '250',
     		'captura' => 'ADMINISTRADOR',
-    		'ciclo' => '2018-2019',
+    		'id_ciclo' => '1',
     		'created_at' => '0000-00-00 00:00:00',
     		'updated_at' => '0000-00-00 00:00:00	'
     		]);

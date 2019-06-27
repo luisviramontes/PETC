@@ -23,14 +23,15 @@ class CambiosCct extends Migration
             $table->integer('clave')->unsigned();
             $table->foreign('clave')->references('id')->on('cat_puesto');     
             $table->string('categoria');
-            $table->date('fecha_cambio');
+            $table->date('fecha_inicio');
+            $table->date('fecha_baja');
             $table->string('documentacion_entregada');
             $table->string('observaciones')->nullable();
             $table->string('captura');
             $table->string('estado');
             $table->integer('id_ciclo')->unsigned ();
             $table->foreign('id_ciclo')->references('id')->on('ciclo_escolar');
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

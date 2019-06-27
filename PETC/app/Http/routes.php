@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () { 
 	return view('welcome');
 });
+
 
 //////////////////contatc///////////////////////////////
 Route::get('contact', function () {
@@ -103,13 +104,98 @@ Route::post('guardar_contrato/{id}', 'CapturaController@guardar_contrato')->name
 Route::get('pdf_captura/{id}/{ciclo}', array('as'=> '/pdf_captura','uses'=>'CapturaController@invoice'));
 
 
+//ALTAS FEDERALES
+Route::resource('altasfed', 'AltasFedController');
+Route::post('activaraltafed/{id}', 'AltasFedController@activar');
+Route::get('descargar-altas-federales', 'AltasFedController@excel')->name('nomina.altas_federales.excel');
+
+//ALTAS ESTATALES
+Route::resource('altasest', 'AltasEstController');
+Route::post('activaraltaest/{id}', 'AltasEstController@activar');
+Route::get('descargar-altas-estatales', 'AltasEstController@excel')->name('nomina.altas_estatales.excel');
+
+//BAJAS FEDERALES
+Route::resource('bajasfed', 'BajasFedController');
+Route::post('activarbajafed/{id}', 'BajasFedController@activar');
+Route::get('descargar-bajas-federales', 'BajasFedController@excel')->name('nomina.bajas_federales.excel');
+
+//BAJAS ESTATALES
+Route::resource('bajasest', 'BajasEstController'); 
+Route::post('activarbajaest/{id}', 'BajasEstController@activar');
+Route::get('descargar-bajas-estatales', 'BajasEstController@excel')->name('nomina.bajas_estatales.excel');
+
+//CAMBIOS DE CTE FEDERALES
+Route::resource('cambios_cct_fed', 'CambiosFedController');
+Route::post('activarcambiocct_fed/{id}', 'CambiosFedController@activar');
+Route::get('descargar-cambioscct-federal', 'CambiosFedController@excel')->name('nomina.cambios_cct_fed.excel');
+
+
+//CAMBIOS DE CTE ESTATALES
+Route::resource('cambios_cct_est', 'CambiosEstController');
+Route::post('activarcambiocct_est/{id}', 'CambiosEstController@activar');
+Route::get('descargar-cambioscct-estatal', 'CambiosEstController@excel')->name('nomina.cambios_cct_est.excel');
+
+
+//CAMBIOS DE FUNCION ESTATALES
+Route::resource('cambios_funcion_est', 'CambiosFunEstController');
+Route::post('activarcambiofuncion_est/{id}', 'CambiosFunEstController@activar');
+Route::get('descargar-cfuncion-estatal', 'CambiosFunEstController@excel')->name('nomina.cambios_festatal.excel');
+
+//CAMBIOS DE FUNCION FEDERAL
+Route::resource('cambios_funcion_fed', 'CambiosFunFedController');
+Route::post('activarcambiofuncion_fed/{id}', 'CambiosFunFedController@activar');
+Route::get('descargar-cfuncion-federal', 'CambiosFunFedController@excel')->name('nomina.cambios_ffederal.excel');
+
+
+//INTERINOS FEDERALES 
+Route::resource('interinosfed', 'InterinosFedController');
+Route::post('activar_interinosfed/{id}', 'InterinosFedController@activar');
+Route::get('descargar-interinos-fed', 'InterinosFedController@excel')->name('nomina.interinos-fed.excel');
+
+//INTERINOS ESTATALES 
+Route::resource('interinosest', 'InterinosEstController');
+Route::post('activar_interinosest/{id}', 'InterinosEstController@activar');
+Route::get('descargar-interinos-est', 'InterinosEstController@excel')->name('nomina.interinos-est.excel');
+
+
+//INASISTENCIAS
+Route::resource('inasistencias', 'InasistenciasController');
+Route::get('inasistencias2/{id}', 'InasistenciasController@index');
+Route::post('eliminar_lista/{id}', 'InasistenciasController@inactivar');
+Route::get('validar_lista/{cct}/{mes}/{ciclo}', 'InasistenciasController@validarLista');  
+Route::get('busca_personal/{cct}', 'InasistenciasController@BuscaPersonal'); 
+Route::get('busca_personal2/{cct}', 'InasistenciasController@BuscaPersonal2'); 
+Route::get('busca_dias/{mes}/{ciclo}', 'InasistenciasController@BuscaDias');
+Route::get('ver_inasistencias/{id}/{ciclo}', array('as'=> '/ver_inasistencias','uses'=>'InasistenciasController@verInformacion')); 
+Route::get('pdf_inasistencias/{id}/{ciclo}', array('as'=> '/pdf_inasistencias','uses'=>'InasistenciasController@invoice'));
+Route::get('descargar-inasistencias/{ciclo}', 'InasistenciasController@excel')->name('nomina.inasistencias.excel');
+Route::get('ver_inasistencias_personal/{id}/{ciclo}', array('as'=> '/ver_inasistencias_personal','uses'=>'InasistenciasController@excel2'));
+Route::get('ver_inasistencias_ct/{id}/{ciclo}', array('as'=> '/ver_inasistencias_ct','uses'=>'InasistenciasController@excel3'));
+Route::get('busca_inasistencias/{id_cct}/{ciclo}/{mes}', 'InasistenciasController@BuscaInasistencias');
+
+Route::get('genera_listas', 'InasistenciasController@generar_listas');
+Route::get('busca_escuelas_region/{region}', 'InasistenciasController@busca_escuelas_region'); 
+Route::post('generar_pdf_listas/','InasistenciasController@generar_pdf_listas')->name('nomina.inasistencias.generar_pdf_listas');
+
+Route::get('extender_contrato/{id}', 'CapturaController@extender_contrato'); 
+Route::post('guardar_contrato/{id}', 'CapturaController@guardar_contrato')->name('nomina.captura.guardar_contrato');
+
 
 
 ///CENTRO DE TRABAJO
 Route::resource('centro_trabajo', 'CentroTrabajoController');
 Route::get('descargar-centros-trabajo', 'CentroTrabajoController@excel')->name('nomina.centro_trabajo.excel');
 Route::get('pdf_centros_trabajo', array('as'=> '/pdf_centros_trabajo','uses'=>'CentroTrabajoController@invoice'));
-Route::get('verInformacion/{id}', array('as'=> '/verInformacion','uses'=>'CentroTrabajoController@verInformacion'));
+Route::get('verInformacionCentro/{id}/{ciclo}', array('as'=> '/verInformacionCentro','uses'=>'CentroTrabajoController@verInformacion'));
+Route::get('pdf_centro_cct/{cct}/{ciclo}', array('as'=> '/pdf_centro_cct','uses'=>'CentroTrabajoController@invoice_centro_cct'));
+Route::get('pdf_plantilla_personal/{cct}/{ciclo}', array('as'=> '/pdf_plantilla_personal','uses'=>'CentroTrabajoController@invoice_plantilla'));
+
+
+//DIRECTOR->CENTRO DE TRABAJO
+Route::resource('director_centro_trabajo', 'DirectorCentroController');
+Route::get('pdf_directores/', array('as'=> '/pdf_directores','uses'=>'DirectorCentroController@invoice'));
+Route::get('descargar-directores-cte', 'DirectorCentroController@excel')->name('nomina.directores-cte.excel');
+
 
 
 Route::resource('datos_centro_trabajo', 'DatosCentroTrabajoController');
@@ -127,7 +213,6 @@ Route::resource('fortalecimiento', 'FortalecimientoController');
 Route::get('descargar-fortalecimiento', 'FortalecimientoController@excel')->name('nomina.fortalecimiento.excel');
 Route::get('pdf_fortalecimiento/{id}', array('as'=> '/pdf_fortalecimiento','uses'=>'FortalecimientoController@invoice'));
 ////////////////////////////////////////////////////////////////////7
-Route::resource('inasistencias', 'InasistenciasController');
 
 ////////////listas de asisrencias////////////////
 
