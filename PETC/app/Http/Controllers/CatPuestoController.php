@@ -72,7 +72,8 @@ if($request)
       $categorias -> des_puesto = $request ->des_puesto;
       $categorias -> tipo_puesto = $request ->tipo_puesto;
       $categorias -> categoria = $request ->categoria;
-      $categorias -> captura="Administrador";
+      $categorias -> estado = "ACTIVO";
+      $categorias -> captura="ADMINISTRADOR";
 
       if($categorias->save()){
 
@@ -142,7 +143,8 @@ if($request)
       $categorias -> des_puesto = $request ->des_puesto;
       $categorias -> tipo_puesto = $request ->tipo_puesto;
       $categorias -> categoria = $request ->categoria;
-      $categorias -> captura="Administrador";
+      $categorias -> estado = "ACTIVO";
+      $categorias -> captura="ADMINISTRADOR";
       //guardar
       if($categorias->save()){
 
@@ -161,8 +163,11 @@ if($request)
      */
     public function destroy($id)
     {
-      CatPuestoModel::destroy($id);
-      return redirect('/cat_puesto');
+      $categoria=CatPuestoModel::findOrFail($id);
+      $categoria->estado="INACTIVO";
+      $categoria->captura="ADMINISTRADOR";
+      $categoria->update();
+        return redirect('cat_puesto');
     }
 
     ////////////exel////////////////

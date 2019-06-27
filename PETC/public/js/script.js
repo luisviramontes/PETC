@@ -591,18 +591,18 @@ function validarInput(input) {
       document.getElementById("error_rfc").innerHTML = "";
       document.getElementById("error_rfc").value = "0";
       document.getElementById('submit3').disabled=false;
-      valido = "Válido"; 
-      resultado.classList.add("ok");          
+      valido = "Válido";
+      resultado.classList.add("ok");
     } else {
       document.getElementById("error_rfc").innerHTML = "RFC Incorrecto";
-      document.getElementById("error_rfc").value = "1"; 
+      document.getElementById("error_rfc").value = "1";
       document.getElementById('submit3').disabled=true;
       valido = "No válido-Compruebe el RFC";
       resultado.classList.remove("ok");
 
     }
 
-    resultado.innerText = "RFC: " + rfc 
+    resultado.innerText = "RFC: " + rfc
     + "\nResultado: " + rfcCorrecto
     + "\nFormato: " + valido;
   }
@@ -628,7 +628,7 @@ function validarInput(input) {
        document.getElementById("idCliente").value= idCliente;
        $("#modal-reactivar").modal();
 
-     } 
+     }
      else if (res.length > 0  &&  res[0].estado =="ACTIVO"  && res[0].rfc != oculto )  {
 
       document.getElementById("error_rfc").innerHTML = "EL RFC QUE INTENTA REGISTRAR YA SE ENCUENTRA ACTIVO EN EL SISTEMA";
@@ -665,7 +665,7 @@ function validarInput(input) {
  $.get(route,function(res){
   if(res.length > 0){
     for (var i = 0; i < res.length; i++) {
-      if(res[i].estado =="ACTIVO"){       
+      if(res[i].estado =="ACTIVO"){
         var x = document.getElementById("docente_cubrir");
         var option = document.createElement("option");
         option.text = res[i].nombre +"-"+res[i].rfc;
@@ -698,12 +698,27 @@ function validarInput(input) {
   desabilita_docente();
   desabilita_cct_nuevo();
 
+<<<<<<< HEAD
 }else if(aux == "REINCORPORACION"){
  desabilita_cct_nuevo();
  document.getElementById('docente_cu').style.display = 'none';
  document.getElementById('docente_cubrir').required = false;
  var route2 = "http://localhost:8000/validarnuevor/"+cct+"/"+categoria;
  verifica_personal(categoria,cct);
+=======
+      if(categoria == "DIRECTOR"){
+        document.getElementById('error_movimiento').innerHTML= "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
+        swal("Error!", "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE ( "+res[0].nombre+" ), NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR", "error");
+        document.getElementById('error_movimiento').value= "1";
+      }
+      else if(categoria == "INTENDENTE"){
+        var nivel = res[0].nivel;
+        var tot_gru = res[0].total_grupos;
+       // var suma_tot = tot_gru *
+       var total_int_prees = Math.ceil(tot_gru / 3);
+       var total_int_prima = Math.ceil(tot_gru / 6);
+       //alert(total_int_prees);
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 
 }else if(aux == "CAMBIOCCT"){
   //document.getElementById('cct').disabled= true;
@@ -725,6 +740,7 @@ function validarInput(input) {
   verifica_personal(categoria,cct);
 
 
+<<<<<<< HEAD
 
 }
 
@@ -777,6 +793,16 @@ function verifica_personal(categoria,cct){
     else if(categoria == "INTENDENTE"){      
       var nivel = res[0].nivel;
       var tot_gru = res[0].total_grupos;
+=======
+      if(categoria == "DIRECTOR"){
+        document.getElementById('error_movimiento').innerHTML= "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
+        swal("Error!", "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE ( "+res[0].nombre+" ), NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR", "error");
+        document.getElementById('error_movimiento').value= "1";
+      }
+      else if(categoria == "INTENDENTE"){
+        var nivel = res[0].nivel;
+        var tot_gru = res[0].total_grupos;
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
        // var suma_tot = tot_gru *
        var total_int_prees = Math.ceil(tot_gru / 3);
        var total_int_prima = Math.ceil(tot_gru / 6);
@@ -814,12 +840,16 @@ function verifica_personal(categoria,cct){
 
 
 // Inside Document Ready
+
+
 function valida_nomina(){
   var x = document.getElementById('file').value;
   var qna= document.getElementById("qna").value;
   var sostenimiento= document.getElementById("sostenimiento").value;
   var tipo= document.getElementById("tipo").value;
   var route = "http://localhost:8000/validar_nomina/"+qna+"/"+sostenimiento+"/"+tipo;
+  var fileInput = document.getElementById('file');
+   var filePath = fileInput.value;
   var aux=0;
 
 
@@ -830,16 +860,18 @@ function valida_nomina(){
         if(res[i].estado=="ACTIVO" && x == "" || res[i].estado=="ACTIVO" && x != "" ){
 
 
-          document.getElementById('submit8').disabled=true;
-          swal("ERROR!","La Quincena que intenta registrar ya ha sido insertada anteriormente","error");
+          document.getElementById('submit').disabled=true;
+
+         swal("WARNING!","La nomina correspondiente a la quincena <<"+qna+">> <<"+sostenimiento+">> ya han sido registrados anteriormente.","warning");
           //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+          fileInput.value = '';
           return false
         }
 
       }
     }else if(x != ""){
 
-      document.getElementById('submit8').disabled=false;
+      document.getElementById('submit').disabled=false;
   //valida_file();
 }
 
@@ -905,7 +937,11 @@ function limpiar_input(){
   location.href="http://localhost:8000/ver_datoscaptura/"+y+"/"+x;
 }
 
+///dir regional//
+function maxlengthtelefonos() {
+	if( document.getElementById("telefono").value.length > 9 ){
 
+<<<<<<< HEAD
 function enviar_ciclo2(){
   var x =document.getElementById('ciclo_escolar').value;
   var z =document.getElementById('searchText').value;
@@ -1322,4 +1358,214 @@ function busca_personal3(callback){
 
   
 //  valida_file();;
+=======
+    swal("ERROR!","Un numero telefonico se compone de 10 numeros, revisa tus datos","error");
+    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+    return false
+  }
+}
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 
+function maxlengthtelefonosdir() {
+	if( document.getElementById("telefono_director").value.length > 9 ){
+
+    swal("ERROR!","Un numero telefonico se compone de 10 numeros, revisa tus datos","error");
+    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+    return false
+  }
+}
+
+function maxlengthtelefonoreg() {
+	if( document.getElementById("telefono_regional").value.length > 9 ){
+
+    swal("ERROR!","Un numero telefonico se compone de 10 numeros, revisa tus datos","error");
+    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+    return false
+  }
+}
+
+  ///dir regional//
+function extencionmin() {
+  	if( document.getElementById("ext1_enlace").value.length < 4  ){
+
+      swal("ERROR!","Una EXTENCION se compone de 4 numeros, revisa tus datos","error");
+      //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+      return false
+    }
+  }
+
+  function extencion2min() {
+    	if( document.getElementById("ext2_enlace").value.length < 4  ){
+
+        swal("ERROR!","Una EXTENCION se compone de 4 numeros, revisa tus datos","error");
+        //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+        return false
+      }
+    }
+
+  function extencionregmin() {
+    	if( document.getElementById("ext_reg_1").value.length < 4  ){
+
+        swal("ERROR!","Una EXTENCION se compone de 4 numeros, revisa tus datos","error");
+        //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+        return false
+      }
+    }
+
+    function extencionreg2min() {
+        if( document.getElementById("ext_reg_2").value.length < 4  ){
+
+          swal("ERROR!","Una EXTENCION se compone de 4 numeros, revisa tus datos","error");
+          //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+          return false
+        }
+      }
+
+
+/////////////////
+
+function valida_puesto() {
+		if( document.getElementById("tipo_puesto").value == "Selecciona una opción"  ){
+			 document.getElementById('submit').disabled=true;
+		//	swal("ERROR!","Selecciona tipo se puesto","error");
+			document.getElementById("error_tipo_puesto").innerHTML = "No se ha seleccionado ninguna opción.";
+			return false
+		}else{
+				 document.getElementById('submit').disabled=false;
+				 	document.getElementById("error_tipo_puesto").innerHTML = "Proceda con la captura. 😀";
+		}
+	}
+
+
+	  function valida_sostenimiento() {
+	  		if( document.getElementById('sostenimiento').value == "Selecciona una opción"  ){
+	  			 document.getElementById('submit').disabled=true;
+	  		//	swal("ERROR!","Selecciona tipo se puesto","error");
+	  			document.getElementById("error_sostenimiento").innerHTML = "No se ha seleccionado ninguna opción.";
+	  			return false
+	  		}else{
+	  				 document.getElementById('submit').disabled=false;
+	  				 	document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
+	  		}
+	  	}
+
+     function valida_region() {
+  	  		if( document.getElementById('region').value == "Selecciona una opción" && document.getElementById('sostenimiento').value == "Selecciona una opción" ){
+  	  			 document.getElementById('submit').disabled=true;
+  	  		//	swal("ERROR!","Selecciona tipo se puesto","error");
+  	  			document.getElementById("error_region").innerHTML = "No se ha seleccionado ninguna opción.";
+            document.getElementById("error_sostenimiento").innerHTML = "No se ha seleccionado ninguna opción.";
+  	  			return false
+
+        	}else if(document.getElementById('region').value != "Selecciona una opción" && document.getElementById('sostenimiento').value != "Selecciona una opción"){
+  	  				 document.getElementById('submit').disabled=false;
+  	  				 	document.getElementById("error_region").innerHTML = "Proceda con la captura. 😀";
+                document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
+
+        	}else if (document.getElementById('region').value != "Selecciona una opción" && document.getElementById('sostenimiento').value == "Selecciona una opción") {
+            document.getElementById('submit').disabled=true;
+             document.getElementById("error_region").innerHTML = "Proceda con la captura. 😀";
+             document.getElementById("error_sostenimiento").innerHTML = "No se ha seleccionado ninguna opción.";
+          }else if (document.getElementById('region').value == "Selecciona una opción" && document.getElementById('sostenimiento').value != "Selecciona una opción") {
+            document.getElementById('submit').disabled=true;
+             document.getElementById("error_region").innerHTML = "No se ha seleccionado ninguna opción.";
+             document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
+          }
+  	  	}
+
+        function valida_cct() {
+             if( document.getElementById('cct').value == "Selecciona una opción" && document.getElementById('mes').value == "Selecciona una opción" ){
+                document.getElementById('submit').disabled=true;
+             //	swal("ERROR!","Selecciona tipo se puesto","error");
+               document.getElementById("error_cct").innerHTML = "No se ha seleccionado ninguna opción.";
+               document.getElementById("error_mes").innerHTML = "No se ha seleccionado ninguna opción.";
+               return false
+
+             }else if(document.getElementById('cct').value != "Selecciona una opción" && document.getElementById('mes').value != "Selecciona una opción"){
+                  document.getElementById('submit').disabled=false;
+                   document.getElementById("error_cct").innerHTML = "Proceda con la captura. 😀";
+                   document.getElementById("error_mes").innerHTML = "Proceda con la captura. 😀";
+
+             }else if (document.getElementById('cct').value != "Selecciona una opción" && document.getElementById('mes').value == "Selecciona una opción") {
+               document.getElementById('submit').disabled=true;
+                document.getElementById("error_cct").innerHTML = "Proceda con la captura. 😀";
+                document.getElementById("error_mes").innerHTML = "No se ha seleccionado ninguna opción.";
+             }else if (document.getElementById('cct').value == "Selecciona una opción" && document.getElementById('mes').value != "Selecciona una opción") {
+               document.getElementById('submit').disabled=true;
+                document.getElementById("error_cct").innerHTML = "No se ha seleccionado ninguna opción.";
+                document.getElementById("error_mes").innerHTML = "Proceda con la captura. 😀";
+             }
+           }
+
+
+function rechazorfc() {
+    var select2 = document.getElementById("rfc");
+    var selectedOption2 = select2.selectedIndex;
+    var cantidadtotal = select2.value;
+    limite = "9",
+    separador = "_",
+    arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+    cct=arregloDeSubCadenas[0];
+    escuela=arregloDeSubCadenas[1];
+    document.getElementById('nombre').value=escuela;
+   }
+
+
+function validar_quincena(){
+     var qna= document.getElementById("qna").value;
+     var sostenimiento= document.getElementById("sostenimiento").value;
+     var tipo= document.getElementById("tipo").value;
+     var route = "http://localhost:8000/validar_quincena/"+qna+"/"+sostenimiento+"/"+tipo;
+
+
+
+     $.get(route,function(res){
+
+       if(res.length > 0 ){
+
+         for (var i=0; i < res.length; i++){
+           if(res[i].estado=="INACTIVO"){
+             document.getElementById('file').disabled=true;
+
+             swal("ERROR!","La Quincena << "+qna+" >> <<"+sostenimiento+">> que intenta registrar está en un estado <<INACTIVO>>, <<ACTIVAR>> y seguir con el registro.","error");
+             //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+             return false;
+           }
+
+         }
+
+       }
+
+   });
+   //  valida_file();
+   }
+
+function validar_quincenaExis(){
+
+    var qna= document.getElementById("qna").value;
+    var sostenimiento= document.getElementById("sostenimiento").value;
+    var tipo= document.getElementById("tipo").value;
+    var route = "http://localhost:8000/validar_quincenaExis/"+qna+"/"+sostenimiento+"/"+tipo;
+
+
+
+     $.get(route,function(res){
+
+   		  if(res.length > 0 ){
+
+   				  for (var i=0; i < res.length; i++){
+   				    if(res[i].estado=="ACTIVO"){
+   				 		   document.getElementById('file').disabled=true;
+
+   				 			  swal("WARNING!","Los rechazos correspondientes a la quincena <<"+qna+">> <<"+sostenimiento+">> ya han sido registrados anteriormente.","warning");
+   				 			             //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+                              return false;
+   				    }
+
+   				  }
+
+   			 }else{
+   			    document.getElementById('file').disabled=false;
+   			 }
+    });
+    }

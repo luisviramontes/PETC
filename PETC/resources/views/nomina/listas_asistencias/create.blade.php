@@ -1,5 +1,7 @@
 @extends('layouts.principal')
 @section('contenido')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
 		<h1>Inicio</h1>
@@ -37,7 +39,10 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Clave Centro de Trabajo <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="cct" id="cct" class="form-control select2" onchange="claves(this);"  required>
+								<select name="cct" id="cct" class="form-control select2" onchange="claves(this);valida_cct()"  required>
+									<option selected>
+										Selecciona una opción
+									</option>
 									@foreach($cct as $cct)
 									<option value="{{$cct->cct}}_{{$cct->nombre_escuela}}_{{$cct->id}}">
 										{{$cct->cct}}
@@ -45,8 +50,8 @@
 									@endforeach
 								</select>
 								<div class="help-block with-errors"></div>
-							<!--	<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
-							--></div>
+								<div class="text-danger" id='error_cct'>{{$errors->formulario->first('cct')}}</div>
+							</div>
 						</div>
 
 						<div class="form-group">
@@ -59,7 +64,10 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Mes <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select  name="mes" class="form-control select2" required>
+								<select  name="mes" id="mes" onchange="valida_cct()" class="form-control select2" required>
+									<option selected>
+										Selecciona una opción
+									</option>
 									<option value="Enero">
 										Enero
 									</option>
@@ -98,6 +106,7 @@
 									</option>
 								</select>
 								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_mes'>{{$errors->formulario->first('mes')}}</div>
 							</div>
 						</div><!--/form-group-->
 
@@ -130,7 +139,7 @@
 
 						<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button type="submit" id="submit" disabled="true" class="btn btn-primary">Guardar</button>
 								<a href="{{url('/listas_asistencias')}}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->
@@ -145,6 +154,7 @@
 <script type="text/javascript">
 			window.onload=function(){
 				claves();
+				valida_cct();
 			}
 </script>
 

@@ -19,7 +19,7 @@ use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\PersonalRequest;
 
 class PersonalController extends Controller
-{ 
+{
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +31,7 @@ class PersonalController extends Controller
      if($request)
      {
        // $aux=$request->get('searchText');
-        $query=trim($request->GET('searchText')); 
+        $query=trim($request->GET('searchText'));
 
         $personal= DB::table('personal')->join('cat_puesto', 'personal.clave', '=','cat_puesto.id')->select('personal.*','cat_puesto.cat_puesto')->where('estado','=','ACTIVO')->where('personal.rfc','LIKE','%'.$query.'%')->orwhere('personal.nombre','LIKE','%'.$query.'%')->paginate(30);
         return view('nomina.personal.index',["personal"=>$personal,"searchText"=>$query]);
@@ -61,7 +61,7 @@ class PersonalController extends Controller
     public function store(PersonalRequest $formulario)
     {
         $validator = Validator::make(
-            $formulario->all(), 
+            $formulario->all(),
             $formulario->rules(),
             $formulario->messages());
         if ($validator->valid()){
@@ -69,7 +69,7 @@ class PersonalController extends Controller
             if ($formulario->ajax()){
               return response()->json(["valid" => true], 200);
           }
-          else{ 
+          else{
             $tabla= new PersonalModel;
             $tabla->nombre=$formulario->get('nombre');
             $tabla->rfc=$formulario->get('rfc_input');
@@ -172,7 +172,7 @@ public function validarRFC($rfc)
     $personal= PersonalModel::
     select('id','rfc','nombre', 'estado')
     ->where('rfc','=',$rfc)
-    ->get(); 
+    ->get();
 
     return response()->json(
       $personal->toArray());
@@ -180,7 +180,7 @@ public function validarRFC($rfc)
 }
 
 public function activar(Request $request)
-{ 
+{
     $id =  $request->get('idCliente');
     $cliente=PersonalModel::findOrFail($id);
     $cliente->estado="ACTIVO";

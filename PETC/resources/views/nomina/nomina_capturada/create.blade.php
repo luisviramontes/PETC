@@ -44,7 +44,10 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Quincena <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="qna" id="qna" class="form-control select2" value="{{Input::old('qna')}}"  onchange="valida_nomina()" required>
+														<select name="qna" id="qna" class="form-control select2" value="{{Input::old('qna')}}"  onchange="valida_nomina();valida_qna();validar_quincenaIna()" required>
+															<option selected>
+																Selecciona una opción
+															</option>
 															@foreach($quincena as $quincena)
 															<option value="{{$quincena->qna}}">
 																{{$quincena->qna}}
@@ -61,8 +64,11 @@
             <div class="form-group">
               <label class="col-sm-3 control-label">Sostenimiento <strog class="theme_color">*</strog></label>
               <div class="col-sm-6">
-                <select name="sostenimiento" id="sostenimiento" class="form-control" value="{{Input::old('sostenimiento')}}"  onchange="valida_nomina() "required>
-                  <option value="FEDERAL">
+                <select name="sostenimiento" id="sostenimiento" class="form-control" value="{{Input::old('sostenimiento')}}"  onchange="valida_nomina();valida_sos();validar_quincenaIna() "required>
+									<option>
+											Selecciona una opción
+									</option>
+									<option value="FEDERAL">
                     FEDERAL
                   </option>
                   <option value="ESTATAL">
@@ -71,7 +77,8 @@
 
 
                 </select>
-                <div class="help-block with-errors"></div>
+								<div class="help-block with-errors"></div>
+							<div class="text-danger" id='error_sos'>{{$errors->formulario->first('sostenimiento')}}</div>
               </div>
             </div><!--/form-group-->
 
@@ -98,17 +105,19 @@
             <div class="form-group">
 							<label class="col-sm-3 control-label">Tipo <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="tipo" id="tipo" class="form-control" onchange="valida_nomina()" value="{{Input::old('tipo')}}" required>
+								<select name="tipo" id="tipo" disabled="disabled" class="form-control" onchange="valida_nomina();valida_tipo();validar_quincenaIna()" value="{{Input::old('tipo')}}" required>
+									<option selected>
+										Selecciona una opción
+									</option>
 									<option value="ORDINARIO">
 										ORDINARIO
 									</option>
 									<option value="EXTRAORDINARIO">
 										EXTRAORDINARIO
 									</option>
-
-
 								</select>
 								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_tipo'>{{$errors->formulario->first('tipo')}}</div>
 							</div>
 						</div><!--/form-group-->
 
@@ -118,7 +127,7 @@
 						  <label class="col-sm-3 control-label">Subir Nomina: <strog class="theme_color">*</strog></label>
 						  <div class="col-sm-6">
 
-									<input type="file" id="file" name="file" onchange="valida_nomina();" <br> </br>
+									<input type="file" id="file" name="file" onchange="valida_nomina();valida_file_cargar();validar_quincenaIna()">
 								<div class="text-danger" id='error_file'>{{$errors->formulario->first('file')}}</div>
 
 							</div>
@@ -147,7 +156,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
 
-								<button type="submit" id="submit8"   disabled="true" onclick="valida_nomina();" class="btn btn-primary">Guardar</button>
+								<button type="submit" id="submit"   onclick="valida_nomina();validar_quincenaIna()" class="btn btn-primary">Guardar</button>
 								<a href="{{url('/nomina_capturada')}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->
@@ -161,6 +170,105 @@
 </div><!--/container clear_both padding_fix-->
 
 <script type="text/javascript">
+window.onload = function() {
+	valida_qna();
+	valida_sos();
+	valida_tipo();
+	valida_file_cargar();
+}
+function valida_qna() {
+		if( document.getElementById('qna').value == "Selecciona una opción"){
+		//	swal("ERROR!","Selecciona tipo se puesto","error");
+			document.getElementById('sostenimiento').disabled=true;
+			document.getElementById('tipo').disabled=true;
+			document.getElementById('file').disabled=true;
+			document.getElementById("error_qna").innerHTML = "Seleccione una opción para habilitar los otros campos.";
+			return false
+		}else if(document.getElementById('qna').value != "Selecciona una opción"){
+			document.getElementById('sostenimiento').disabled=false;
+			document.getElementById("error_qna").innerHTML = "Proceda con la captura. 😀";
+		}
+	}
+
+	function valida_sos() {
+			if( document.getElementById('sostenimiento').value == "Selecciona una opción"){
+			//	swal("ERROR!","Selecciona tipo se puesto","error");
+				document.getElementById('tipo').disabled=true;
+				document.getElementById("error_sos").innerHTML = "No se ha seleccionado ninguna opción.";
+				return false
+			}else if(document.getElementById('sostenimiento').value != "Selecciona una opción"){
+						document.getElementById('tipo').disabled=false;
+						document.getElementById("error_sos").innerHTML = "Proceda con la captura. 😀";
+			}
+		}
+
+
+		function valida_tipo() {
+				if( document.getElementById('tipo').value == "Selecciona una opción"){
+				//	swal("ERROR!","Selecciona tipo se puesto","error");
+					document.getElementById('file').disabled=true;
+					document.getElementById("error_tipo").innerHTML = "No se ha seleccionado ninguna opción.";
+					return false
+				}else if(document.getElementById('tipo').value != "Selecciona una opción"){
+							document.getElementById('file').disabled=false;
+							document.getElementById("error_tipo").innerHTML = "Proceda con la captura. 😀";
+				}
+			}
+
+			function valida_file_cargar(){
+				var fileInput = document.getElementById('file');
+				var filePath = fileInput.value;
+				var allowedExtensions = /(.xls|.xlsx)$/i;
+
+				if( document.getElementById("file").files.length == 0 ){
+
+					//swal("ERROR!","No se ha seleccionado ninguna Nomina.","error");
+					document.getElementById("error_file").innerHTML = "Carga tu nomina.";
+					return false
+				}else{
+
+					if(!allowedExtensions.exec(filePath)){
+			 swal("WARNING!",'Solo es permitido subir archivos con extención ".xls y .xlsx" o de tipo Excel verifique sus datos',"warning");
+			 fileInput.value = '';
+			 return false;
+				}
+					document.getElementById('submit').disabled=false;
+					document.getElementById("error_file").innerHTML = "Proceda con la captura. 😀";
+				}
+
+			}
+
+			function validar_quincenaIna(){
+			     var qna= document.getElementById("qna").value;
+			     var sostenimiento= document.getElementById("sostenimiento").value;
+			     var tipo= document.getElementById("tipo").value;
+			     var route = "http://localhost:8000/validar_quincenaIna/"+qna+"/"+sostenimiento+"/"+tipo;
+					 var fileInput = document.getElementById('file');
+	 				var filePath = fileInput.value;
+
+
+			     $.get(route,function(res){
+
+			       if(res.length > 0 ){
+
+			         for (var i=0; i < res.length; i++){
+			           if(res[i].estado=="INACTIVO"){
+
+									 document.getElementById('submit').disabled=true;
+			             swal("ERROR!","La Quincena << "+qna+" >> <<"+sostenimiento+">> que intenta registrar está en un estado <<INACTIVO>>, <<ACTIVAR>> y seguir con el registro.","error");
+			             //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+									 fileInput.value = '';
+									 return false;
+			           }
+
+			         }
+
+			       }
+
+			   });
+			   //
+			}
+
 /*
 function activar_button(){
 	var x = document.getElementById('file').value;

@@ -71,6 +71,7 @@ class RegionController extends Controller
       $region= new RegionModel;
       $region -> region = $formulario ->region;
       $region -> sostenimiento = $formulario ->sostenimiento;
+      $region -> estado = "ACTIVO";
       $region -> capturo="ADMINISTRADOR";
 
       if($region->save()){
@@ -137,6 +138,7 @@ class RegionController extends Controller
       //asignamos nuevos valores
       $regiones -> region = $request ->region;
       $regiones -> sostenimiento = $request ->sostenimiento;
+      $regiones -> estado = "ACTIVO";
       $regiones -> capturo="ADMINISTRADOR";
       //guardar
       if($regiones->save()){
@@ -156,8 +158,11 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
-      RegionModel::destroy($id);
-      return redirect('/region');
+      $region=RegionModel::findOrFail($id);
+      $region->estado="INACTIVO";
+      $region->capturo="ADMINISTRADOR";
+      $region->update();
+        return redirect('region');
     }
 
     ////////////exel////////////////

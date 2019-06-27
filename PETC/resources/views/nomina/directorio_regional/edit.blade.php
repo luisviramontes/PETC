@@ -1,5 +1,7 @@
 @extends('layouts.principal')
 @section('contenido')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
 		<h1>Inicio</h1>
@@ -38,12 +40,57 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Región <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
+<<<<<<< HEAD
 								<select name="region" id="region" class="form-control select"   >
 									@foreach($region as $region)
 									@if($region->id == $directorio->id_region)
 									<option value="{{$region->id}}" selected>
 										{{$region->region}} {{$region->sostenimiento}}
 
+=======
+								<select name="region" class="form-control" required>
+                  <option selected value="{{$directorio->region}}">
+										{{$directorio->region}}
+									</option>
+                  <option  value="1">
+										1
+									</option>
+									<option value="2">
+										2
+									</option>
+									<option value="3">
+										3
+									</option>
+									<option value="4">
+										4
+									</option>
+									<option value="5">
+										5
+									</option>
+									<option value="6">
+										6
+									</option>
+									<option value="7">
+										7
+									</option>
+									<option value="8">
+										8
+									</option>
+									<option value="9">
+										9
+									</option>
+									<option value="10">
+										10
+									</option>
+									<option value="11">
+										11
+									</option>
+									<option value="12">
+										12
+									</option>
+									<option value="13">
+										13
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 									</option>
 									@else
 									<option value="{{$region->id}}">
@@ -54,6 +101,7 @@
 									@endforeach
 								</select>
 								<div class="help-block with-errors"></div>
+<<<<<<< HEAD
 							<!--	<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
 						--></div>
 					</div>
@@ -63,76 +111,200 @@
 						<label class="col-sm-3 control-label">Nombre Enlace: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<input name="nombre_enlace" type="text"   class="form-control" required value="{{$directorio->nombre_enlace}}" />
+=======
+							</div>
+						</div><!--/form-group-->
+
+
+            <div class="form-group">
+							<label class="col-sm-3 control-label">Sostenimiento <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<select name="sostenimiento" class="form-control" required>
+									<option selected value="{{$directorio->region}}">
+										{{$directorio->sostenimiento}}
+									</option>
+									<option value="ESTATAL">
+										ESTATAL
+									</option>
+									<option value="FEDERAL">
+										FEDERAL
+									</option>
+                </select>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div><!--/form-group-->
+
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Nombre Enlace: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="nombre_enlace" type="text" id="nombre_enlace"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"  class="form-control" required value="{{$directorio->nombre_enlace}}" />
+							</div>
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Telefono: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<input name="telefono" type="number"   class="form-control" required value="{{$directorio->telefono}}" />
+=======
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Telefono: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="telefono" type="number"  id="telefono" placeholder="xxx-xxx-xx-xx" onkeypress="return maxlengthtelefonos();soloNumeros()"  class="form-control" required value="{{$directorio->telefono}}" />
+								<div class="help-block with-errors"></div>
+							<div class="text-danger" id='error_telefono'>{{$errors->formulario->first('telefono')}}</div>
+							</div>
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Ext1 Enlace: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<input name="ext1_enlace" type="number"   class="form-control" required value="{{$directorio->ext1_enlace}}" />
+=======
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Ext1 Enlace: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="ext1_enlace" type="text" id="ext1_enlace" placeholder="xxxx" min="3" maxlength="4" onkeypress="return soloNumeros(event)" onchange="extencionmin();" class="form-control" required value="{{$directorio->ext1_enlace}}" />
+								<div class="help-block with-errors"></div>
+							<div class="text-danger" id='error_ext1_enlace'>{{$errors->formulario->first('ext1_enlace')}}</div>
+							</div>
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Ext2 Enlace: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<input name="ext2_enlace" type="number"   class="form-control" required value="{{$directorio->ext2_enlace}}" />
+=======
+            <div class="form-group">
+							<label class="col-sm-3 control-label">Ext2 Enlace: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="ext2_enlace" type="text" id="ext2_enlace" placeholder="xxxx" maxlength="4" onkeypress="return soloNumeros(event)" onchange="extencion2min();"  class="form-control" required value="{{$directorio->ext2_enlace}}" />
+								<div class="help-block with-errors"></div>
+							<div class="text-danger" id='error_ext2_enlace'>{{$errors->formulario->first('ext2_enlace')}}</div>
+							</div>
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Correo Enlace: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<input name="correo_enlace" type="text"   class="form-control" required value="{{$directorio->correo_enlace}}" />
+=======
+            <div class="form-group">
+							<label class="col-sm-3 control-label">Correo Enlace: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="correo_enlace" type="email" id="correo_enlace" placeholder="usuario@correo.com" class="form-control" required value="{{$directorio->correo_enlace}}" />
+							</div>
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Director Regional: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<input name="director_regional" type="text"   class="form-control" required value="{{$directorio->director_regional}}" />
+=======
+            <div class="form-group">
+							<label class="col-sm-3 control-label">Director Regional: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="director_regional" type="text" id="director_regional" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"   class="form-control" required value="{{$directorio->director_regional}}" />
+							</div>
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Telefono Director: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<input name="telefono_director" type="number"   class="form-control" required value="{{$directorio->telefono_director}}" />
+=======
+            <div class="form-group">
+							<label class="col-sm-3 control-label">Telefono Director: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="telefono_director" id="telefono_director" placeholder="xxx-xxx-xx-xx" type="number" maxlength="10" onkeypress="return maxlengthtelefonosdir();soloNumeros()"  class="form-control" required value="{{$directorio->telefono_director}}" />
+								<div class="help-block with-errors"></div>
+							<div class="text-danger" id='error_telefono_director'>{{$errors->formulario->first('telefono_director')}}</div>
+							</div>
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Financiero Regional: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<input name="financiero_regional" type="text"   class="form-control" required value="{{$directorio->financiero_regional}}" />
+=======
+            <div class="form-group">
+							<label class="col-sm-3 control-label">Financiero Regional: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="financiero_regional" type="text" id="financiero_regional" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"   class="form-control" required value="{{$directorio->financiero_regional}}" />
+							</div>
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Telefono Regional: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<input name="telefono_regional" type="number"   class="form-control" required value="{{$directorio->telefono_regional}}" />
+=======
+            <div class="form-group">
+							<label class="col-sm-3 control-label">Telefono Regional: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="telefono_director" id="telefono_director" placeholder="xxx-xxx-xx-xx" type="number" maxlength="10" onkeypress="return maxlengthtelefonosdir();soloNumeros()"  class="form-control" required value="{{$directorio->telefono_regional}}" />
+								<div class="help-block with-errors"></div>
+							<div class="text-danger" id='error_telefono_regional'>{{$errors->formulario->first('telefono_regional')}}</div>
+							</div>
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Extencion Regional 1: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<input name="ext_reg_1" type="number"   class="form-control" required value="{{$directorio->ext_reg_1}}" />
+=======
+            <div class="form-group">
+							<label class="col-sm-3 control-label">Extencion Regional 1: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="ext_reg_1" type="text" id="ext_reg_1" maxlength="4" placeholder="xxxx" onkeypress="return soloNumeros(event)"  onchange="extencionregmin()"  class="form-control" required value="{{$directorio->ext_reg_1}}" />
+								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_ext_reg_1'>{{$errors->formulario->first('ext_reg_1')}}</div>
+							</div>
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Extencion Regional 2: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<input name="ext_reg_2" type="number"   class="form-control" required value="{{$directorio->ext_reg_2}}" />
+=======
+            <div class="form-group">
+							<label class="col-sm-3 control-label">Extencion Regional 2: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="ext_reg_2" type="text" id="ext_reg_2" maxlength="4" placeholder="xxxx" onkeypress="return soloNumeros(event)" onchange="extencionreg2min()"  class="form-control"   class="form-control" required value="{{$directorio->ext_reg_2}}" />
+								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_ext_reg_2'>{{$errors->formulario->first('ext_reg_2')}}</div>
+							</div>
+>>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 						</div>
 					</div>
 

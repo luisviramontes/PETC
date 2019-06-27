@@ -42,7 +42,7 @@ class ListasAsistenciasController extends Controller
        ->where('nombre_escuela','LIKE','%'.$query.'%')
        ->orwhere('cct','LIKE','%'.$query.'%')
        ->orwhere('region.region','LIKE','%'.$query.'%')
-       ->paginate(10);
+       ->paginate(24);
        //print_r($listas);
       return view('nomina.listas_asistencias.index',["listas"=>$listas,"searchText"=>$query]);
       // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
@@ -107,8 +107,8 @@ class ListasAsistenciasController extends Controller
     public function invoice($id){
         $listas= DB::table('listas_de_asistencias')
         ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
-      //->join('centro_trabajo','listas_de_asistencias.id', '=','centro_trabajo.id'
-        ->select('listas_de_asistencias.*','centro_trabajo.nombre_escuela','centro_trabajo.cct as cct','centro_trabajo.region')->get();
+         ->join('region','centro_trabajo.id_region', '=' ,'region.id')
+        ->select('listas_de_asistencias.*','centro_trabajo.nombre_escuela','centro_trabajo.cct as cct','region.region')->get();
         //$centro_trabajo= DB::table('centro_trabajo')->where('cct','=',$id)->first();
          //$material   = AlmacenMaterial:: findOrFail($id);
         //$customPaper = array(0,0,567.00,283.80);
@@ -167,9 +167,9 @@ class ListasAsistenciasController extends Controller
       $listas -> id_centro_trabajo = $name[2];
       //$listas -> region = $request ->region;
       $listas -> mes = $request ->mes;
-      //$listas -> estado = $request ->estado;
+      $listas -> estado = "ACTIVO";
       $listas -> observaciones = $request ->observaciones;
-      $listas -> captura="Administrador";
+      $listas -> captura="ADMINISTRADOR";
 
       if($listas->save()){
 
@@ -188,8 +188,11 @@ class ListasAsistenciasController extends Controller
      */
     public function destroy($id)
     {
-      ListasAsistenciaModel::destroy($id);
-      return redirect('/listas_asistencias');
+      $lista=ListasAsistenciaModel::findOrFail($id);
+      $lista->estado="INACTIVO";
+      $lista->captura="ADMINISTRADOR";
+      $lista->update();
+        return redirect('listas_asistencias');
     }
 
     ////////////exel////////////////
@@ -201,11 +204,12 @@ class ListasAsistenciasController extends Controller
          $excel->sheet('Excel sheet', function($sheet) {
 
              $tabla = ListasAsistenciaModel::join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id')
-             ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','centro_trabajo.region','listas_de_asistencias.mes'
-             ,'listas_de_asistencias.estado','listas_de_asistencias.observaciones')
+              ->join('region','centro_trabajo.id_region', '=' ,'region.id')
+             ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','region.region','listas_de_asistencias.mes'
+             ,'listas_de_asistencias.observaciones','listas_de_asistencias.estado')
              ->get();
              $sheet->fromArray($tabla);
-             $sheet->row(1,['CCT','NOMBRE ESCUELA','REGION','MES','ESTADO','OBSERVACIONES']);
+             $sheet->row(1,['CCT','NOMBRE ESCUELA','REGION','MES','OBSERVACIONES','ESTADO']);
              $sheet->setOrientation('landscape');
          });
      })->export('xls');

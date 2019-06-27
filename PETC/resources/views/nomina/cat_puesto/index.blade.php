@@ -47,14 +47,15 @@
 						<thead>
 							<tr>
 								<th>CV_UR </th>
-								<th>ENTIDAD </th>
+								<th>Entidad </th>
 								<th style="display:none;" >CCP </th>
-								<th>NOM_PROG </th>
-								<th>CATEGORIA PUESTO</th>
-								<th>DESCRIPCION PUESTO</th>
-                <th>CATEGORIA</th>
-                <th>TIPO PUESTO</th>
-                <th style="display:none;">CAPTURA</th>
+								<th>Nom_Prog </th>
+								<th>Categoria Puesto</th>
+								<th>Descripcion Puesto</th>
+                <th>Categoria</th>
+                <th>Tipo Puesto</th>
+								<td>Estado</td>
+                <th style="display:none;">Captura</th>
 
 
 
@@ -66,34 +67,77 @@
 						</thead>
 						<tbody>
 						@foreach($categorias  as $categoria)
+							@if ($categoria->estado == "ACTIVO")
 							<tr class="gradeX">
-								<td>{{$categoria->cv_ur}} </td>
-								<td>{{$categoria->entidad}} </td>
+								<td style="background-color:#DBFFC2;">{{$categoria->cv_ur}} </td>
+								<td style="background-color:#DBFFC2;">{{$categoria->entidad}} </td>
 								<td style="display:none;">{{$categoria->ccp}}</td>
-								<td>{{$categoria->nom_prog}}</td>
-								<td>{{$categoria->cat_puesto}} </td>
-								<td>{{$categoria->des_puesto}} </td>
-								<td>{{$categoria->categoria}} </td>
-                <th>{{$categoria->tipo_puesto}}</th>
+								<td style="background-color:#DBFFC2;">{{$categoria->nom_prog}}</td>
+								<td style="background-color:#DBFFC2;">{{$categoria->cat_puesto}} </td>
+								<td style="background-color:#DBFFC2;">{{$categoria->des_puesto}} </td>
+								<td style="background-color:#DBFFC2;">{{$categoria->categoria}} </td>
+                <th style="background-color:#DBFFC2;">{{$categoria->tipo_puesto}}</th>
+								<th style="background-color:#DBFFC2;">{{$categoria->estado}}</th>
                 <th style="display:none;">{{$categoria->captura}}</th>
 
+								<!-- //////////////////////////////////////////////////////////////////// -->
 
 
 
 
-								<td>
-									<center>
-										<a href="{{URL::action('CatPuestoController@edit',$categoria->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 
-									</center>
-								</td>
-								<td>
+							<td style="background-color:#DBFFC2;">
+								<center>
+									<a href="{{URL::action('CatPuestoController@edit',$categoria->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+								</center>
+							</td>
+								<!-- //////////////////////////////////////////////////////////////////// -->
+
+
+
+								<td style="background-color:#DBFFC2;">
 									<center>
 										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$categoria->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 									</center>
 									</td>
 								</td>
 							</tr>
+							@else
+
+							<tr class="gradeX">
+								<td style="background-color:#FFE4E1;">{{$categoria->cv_ur}} </td>
+								<td style="background-color:#FFE4E1;">{{$categoria->entidad}} </td>
+								<td style="display:none;">{{$categoria->ccp}}</td>
+								<td style="background-color:#FFE4E1;">{{$categoria->nom_prog}}</td>
+								<td style="background-color:#FFE4E1;">{{$categoria->cat_puesto}} </td>
+								<td style="background-color:#FFE4E1;">{{$categoria->des_puesto}} </td>
+								<td style="background-color:#FFE4E1;">{{$categoria->categoria}} </td>
+                <th style="background-color:#FFE4E1;">{{$categoria->tipo_puesto}}</th>
+								<th style="background-color:#FFE4E1;">{{$categoria->estado}}</th>
+                <th style="display:none;">{{$categoria->captura}}</th>
+
+
+							<td style="background-color:#FFE4E1;">
+								<center>
+									<a href="{{URL::action('CatPuestoController@edit',$categoria->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+								</center>
+							</td>
+
+
+
+
+								<td style="background-color:#FFE4E1;">
+									<center>
+										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$categoria->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+									</center>
+									</td>
+								</td>
+							</tr>
+
+							@endif
+
 							@include('nomina.cat_puesto.modal')
 							@endforeach
 						</tbody>

@@ -40,6 +40,7 @@
           <th>Nombre de la Escuela</th>
           <th>Region</th>
           <th>Mes</th>
+          <th>Observaciones</th>
           <th>Estado</th>
 
         </tr>
@@ -51,6 +52,7 @@
           <td>{{$lista->nombre_escuela}}</td>
           <td>{{$lista->region}} </td>
           <td>{{$lista->mes}}</td>
+          <td>{{$lista->observaciones}}</td>
           <td>{{$lista->estado}}</td>
 
 

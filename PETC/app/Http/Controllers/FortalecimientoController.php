@@ -70,9 +70,9 @@ class FortalecimientoController extends Controller
         $fortalecimientos -> id_cct = $request ->id_cct;
         $fortalecimientos -> monto_forta = $request ->monto_forta;
         $fortalecimientos -> ciclo_escolar = $request ->ciclo_escolar;
-        $fortalecimientos -> estado = $request ->estado;
+        $fortalecimientos -> estado = "ACTIVO";
         $fortalecimientos -> observaciones = $request ->observaciones;
-        $fortalecimientos -> captura="Administrador";
+        $fortalecimientos -> captura="ADMINISTRADOR";
 
         if($fortalecimientos->save()){
 
@@ -141,9 +141,9 @@ class FortalecimientoController extends Controller
       $fortalecimientos -> id_cct = $request ->id_cct;
       $fortalecimientos -> monto_forta = $request ->monto_forta;
       $fortalecimientos -> ciclo_escolar = $request ->ciclo_escolar;
-      $fortalecimientos -> estado = $request ->estado;
+      $fortalecimientos -> estado = "ACTIVO";
       $fortalecimientos -> observaciones = $request ->observaciones;
-      $fortalecimientos -> captura="Administrador";
+      $fortalecimientos -> captura="ADMINISTRADOR";
 
       if($fortalecimientos->save()){
 
@@ -162,8 +162,11 @@ class FortalecimientoController extends Controller
      */
     public function destroy($id)
     {
-      FortalecimientoModel::destroy($id);
-      return redirect('/fortalecimiento');
+      $fortalecimiento=FortalecimientoModel::findOrFail($id);
+      $fortalecimiento->estado="INACTIVO";
+      $fortalecimiento->captura="ADMINISTRADOR";
+      $fortalecimiento->update();
+        return redirect('fortalecimiento');
     }
 
     ////////////exel////////////////

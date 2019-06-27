@@ -25,10 +25,11 @@ class DirectorioRegionalRequest extends Request
       public function rules()
       {
           return [
-                'telefono' => 'max:10',
                 'telefono' => 'min:10',
-                'ext1_enlace' => 'max:4',
                 'ext1_enlace' => 'min:4',
+                'ext2_enlace' => 'min:4',
+                'ext_reg_1' => 'min:4',
+                'ext_reg_2' => 'min:4',
 
           ];
       }
@@ -36,9 +37,11 @@ class DirectorioRegionalRequest extends Request
         return [
 
         'telefono.min' => 'El numero telefonico consta de 10 digitos, revisa tus datos.',
-        'telefono.max' => 'El numero telefonico consta de 10 digitos, revisa tus datos.',
         'ext1_enlace.min' => 'Una Extencion se compone de 4 digitos, revisa tus datos.',
-        'ext1_enlace.max' => 'Una Extencion se compone de 4 digitos, revisa tus datos.',
+        'ext2_enlace.min' => 'Una Extencion se compone de 4 digitos, revisa tus datos.',
+        'ext_reg_1.min'  => 'Una Extencion se compone de 4 digitos, revisa tus datos.',
+        'ext_reg_2.min'  => 'Una Extencion se compone de 4 digitos, revisa tus datos.',
+
         ];
     }
 

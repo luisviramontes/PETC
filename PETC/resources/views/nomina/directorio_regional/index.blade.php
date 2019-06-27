@@ -88,18 +88,29 @@
 								<td style="background-color:#DBFFC2;">{{$directorio_regional->estado}}</td>
                 <td style="display:none">{{$directorio_regional->captura}} </td>
 
+								<!-- //////////////////////////////////////////////////////////////////// -->
 
-								<td style="background-color:#DBFFC2;">
-									<center>
-										<a href="{{URL::action('DirectorioRegionalController@edit',$directorio_regional->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
-									</center>
+
+
+
+
+							<td style="background-color:#DBFFC2;">
+								<center>
+									<a href="{{URL::action('DirectorioRegionalController@edit',$directorio_regional->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+								</center>
+							</td>
+
+
+							<td style="background-color:#DBFFC2;">
+								<center>
+									<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$directorio_regional->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+
+								</center>
 								</td>
-								<td style="background-color:#DBFFC2;">
-									<center>
-										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$directorio_regional->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
-									</center>
-									</td>
-								</td>
+							</td>
+
+
 							</tr>
 							@else
 

@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 use petc\Http\Requests;
 use petc\Http\Controllers\Controller;
 
+use DB;
+
+use Maatwebsite\Excel\Facades\Excel;
+use PHPExcel_Worksheet_Drawing;
+use Validator;
+use \Milon\Barcode\DNS1D;
+use \Milon\Barcode\DNS2D;
+use petc\Http\Requests\ReintegrosRequest;
+
+
 class ReintegrosController extends Controller
 {
     /**
@@ -14,12 +24,39 @@ class ReintegrosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      return view('nomina.reintegros.index');
+      if($request)
+      {
+       $query=trim($request->GET('searchText'));
+       $reintegros = DB::table('reintegros')
+       ->join('centro_trabajo','reintegros.id_centro_trabajo', '=', 'centro_trabajo.id' ) //cct
+       ->join('captura','reintegros.id_captura', '=', 'captura.id' ) //nombre, sostenimiento, categoria
+       ->join('directorio_regional','reintegros.id_directorio_regional', '=', 'directorio_regional.id' ) //director_regional,sostenimiento
+       ->join('ciclo_escolar','reintegros.id_ciclo_escolar', '=', 'ciclo_escolar.id' ) //ciclo
+
+       ->select('reintegros.id as id','reintegros.id_centro_trabajo','reintegros.id_captura','reintegros.id_directorio_regional','reintegros.id_ciclo_escolar'
+       ,'reintegros.num_dias','reintegros.categoria','reintegros.total','reintegros.n_oficio','reintegros.motivo','reintegros.estado'
+       ,'reintegros.captura','reintegros.created_at'
+       ,'centro_trabajo.cct'
+       ,'captura.nombre','captura.sostenimiento','captura.categoria'
+       ,'directorio_regional.director_regional','captura.sostenimiento'
+       ,'ciclo_escolar.ciclo')
+
+       ->where('reintegros.total','LIKE','%'.$query.'%')
+       ->orwhere('reintegros.n_oficio','LIKE','%'.$query.'%')
+       ->orwhere('reintegros.motivo','LIKE','%'.$query.'%')
+       ->orwhere('reintegros.estado','LIKE','%'.$query.'%')
+       ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
+       ->orwhere('captura.nombre','LIKE','%'.$query.'%')
+       ->orwhere('directorio_regional.director_regional','LIKE','%'.$query.'%')
+       ->orwhere('directorio_regional.sostenimiento','LIKE','%'.$query.'%')
+       ->paginate(24);
+       //print_r($listas);
+      return view('nomina.reintegros.index',["reintegros"=>$reintegros,"searchText"=>$query]);
 
     }
-
+}
     /**
      * Show the form for creating a new resource.
      *
@@ -27,7 +64,11 @@ class ReintegrosController extends Controller
      */
     public function create()
     {
-        //
+      $cct= DB::table('centro_trabajo')->get();
+      $captura= DB::table('captura')->get();
+      $directorio_regional=DB::table('directorio_regional')->get();
+      $tabla= DB::table('tabulador_pagos')->get();
+      return view("nomina.reintegros.create",["directorio_regional"=>$directorio_regional,"captura"=>$captura,"cct"=>$cct,"tabla"=>$tabla]);
     }
 
     /**
