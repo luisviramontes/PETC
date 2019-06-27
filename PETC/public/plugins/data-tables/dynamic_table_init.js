@@ -1181,10 +1181,7 @@ function fnFormatDetails9 ( oTable, nTr )
     sOut += '<tr><td><strong>CCT 2:</strong></td><td>'+aData[14]+' </td></tr>';
     sOut += '<tr><td><strong>Dias Trabajados</strong></td><td>'+aData[22]+' </td></tr>';
 
-<<<<<<< HEAD
-    
-=======
->>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
+
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de Captura</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>Capturado Por:</strong></td><td>'+aData[15]+' </td></tr>';
     sOut += '<tr><td><strong>Fecha de Modificacion</strong></td><td>'+aData[24]+' </td></tr>';

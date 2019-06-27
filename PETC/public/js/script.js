@@ -646,7 +646,7 @@ function validarInput(input) {
 
   }
 
-  function captura_personal(){
+    function captura_personal(){
 
     var aux =document.getElementById('movimiento').value;
     var cct =document.getElementById('cct').value;
@@ -665,7 +665,7 @@ function validarInput(input) {
  $.get(route,function(res){
   if(res.length > 0){
     for (var i = 0; i < res.length; i++) {
-      if(res[i].estado =="ACTIVO"){
+      if(res[i].estado =="ACTIVO"){       
         var x = document.getElementById("docente_cubrir");
         var option = document.createElement("option");
         option.text = res[i].nombre +"-"+res[i].rfc;
@@ -698,27 +698,12 @@ function validarInput(input) {
   desabilita_docente();
   desabilita_cct_nuevo();
 
-<<<<<<< HEAD
 }else if(aux == "REINCORPORACION"){
  desabilita_cct_nuevo();
  document.getElementById('docente_cu').style.display = 'none';
  document.getElementById('docente_cubrir').required = false;
  var route2 = "http://localhost:8000/validarnuevor/"+cct+"/"+categoria;
  verifica_personal(categoria,cct);
-=======
-      if(categoria == "DIRECTOR"){
-        document.getElementById('error_movimiento').innerHTML= "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
-        swal("Error!", "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE ( "+res[0].nombre+" ), NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR", "error");
-        document.getElementById('error_movimiento').value= "1";
-      }
-      else if(categoria == "INTENDENTE"){
-        var nivel = res[0].nivel;
-        var tot_gru = res[0].total_grupos;
-       // var suma_tot = tot_gru *
-       var total_int_prees = Math.ceil(tot_gru / 3);
-       var total_int_prima = Math.ceil(tot_gru / 6);
-       //alert(total_int_prees);
->>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 
 }else if(aux == "CAMBIOCCT"){
   //document.getElementById('cct').disabled= true;
@@ -740,11 +725,12 @@ function validarInput(input) {
   verifica_personal(categoria,cct);
 
 
-<<<<<<< HEAD
 
 }
 
 }
+
+
 
 function combrueba_estado() {
   var x = document.getElementById('estado').value;
@@ -793,16 +779,6 @@ function verifica_personal(categoria,cct){
     else if(categoria == "INTENDENTE"){      
       var nivel = res[0].nivel;
       var tot_gru = res[0].total_grupos;
-=======
-      if(categoria == "DIRECTOR"){
-        document.getElementById('error_movimiento').innerHTML= "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE, NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR";
-        swal("Error!", "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE ( "+res[0].nombre+" ), NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR", "error");
-        document.getElementById('error_movimiento').value= "1";
-      }
-      else if(categoria == "INTENDENTE"){
-        var nivel = res[0].nivel;
-        var tot_gru = res[0].total_grupos;
->>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
        // var suma_tot = tot_gru *
        var total_int_prees = Math.ceil(tot_gru / 3);
        var total_int_prima = Math.ceil(tot_gru / 6);
@@ -937,11 +913,6 @@ function limpiar_input(){
   location.href="http://localhost:8000/ver_datoscaptura/"+y+"/"+x;
 }
 
-///dir regional//
-function maxlengthtelefonos() {
-	if( document.getElementById("telefono").value.length > 9 ){
-
-<<<<<<< HEAD
 function enviar_ciclo2(){
   var x =document.getElementById('ciclo_escolar').value;
   var z =document.getElementById('searchText').value;
@@ -959,6 +930,17 @@ function enviar_ciclo4(){
   var x =document.getElementById('ciclo_escolar').value;
   var z =document.getElementById('id_centro').value;
   location.href="http://localhost:8000/verInformacionCentro/"+z+"/"+x;
+}
+
+
+
+///dir regional//
+function maxlengthtelefonos() {
+	if( document.getElementById("telefono").value.length > 9 ){
+    swal("ERROR!","Un numero telefonico se compone de 10 numeros, revisa tus datos","error");
+    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
+    return false
+  }
 }
 
 function busca_personal(){
@@ -1358,13 +1340,7 @@ function busca_personal3(callback){
 
   
 //  valida_file();;
-=======
-    swal("ERROR!","Un numero telefonico se compone de 10 numeros, revisa tus datos","error");
-    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
-    return false
-  }
-}
->>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
+
 
 function maxlengthtelefonosdir() {
 	if( document.getElementById("telefono_director").value.length > 9 ){

@@ -14,9 +14,7 @@
 Route::get('/', function () { 
 	return view('welcome');
 });
-<<<<<<< HEAD
- 
-=======
+
 
 //////////////////contatc///////////////////////////////
 Route::get('contact', function () {
@@ -44,7 +42,6 @@ Route::get('pdf_catpuesto/{id}', array('as'=> '/pdf_catpuesto','uses'=>'CatPuest
 /////////////////////////////////////////////////////////////
 
 
->>>>>>> e88372a86ed12c0ad3d0aafe418c95cd7455e501
 //////////////////cat_puesto///////////////////////////////
 Route::resource('cat_puesto', 'CatPuestoController');
 Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
