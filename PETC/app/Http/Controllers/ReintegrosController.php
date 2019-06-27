@@ -8,7 +8,7 @@ use petc\Http\Requests;
 use petc\Http\Controllers\Controller;
 
 use DB;
-
+use petc\CapturaModel;
 use Maatwebsite\Excel\Facades\Excel;
 use PHPExcel_Worksheet_Drawing;
 use Validator;
@@ -126,4 +126,16 @@ class ReintegrosController extends Controller
     {
         //
     }
+
+    public function traerpersonal(Request $request,$cct)
+      {
+        $personal= CapturaModel::
+        select('id','categoria','nombre', 'estado')
+        ->where('id_cct_etc','=',$cct)->where('estado','=','ACTIVO')
+        ->get();
+
+        return response()->json(
+          $personal->toArray());
+      }
+
 }

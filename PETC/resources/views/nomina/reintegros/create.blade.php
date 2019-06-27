@@ -39,12 +39,12 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">CCT <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select  name="cct" id="cct" onchange="" class="form-control select2" required>
+								<select  name="cct" id="cct" onchange="cctescuela();" class="form-control select2" required>
 									<option selected>
 										Selecciona una opción
 									</option>
 									@foreach($cct as $cct)
-									<option value="{{$cct->cct}}">
+									<option value="{{$cct->id}}">
 										{{$cct->cct}}
 									</option>
 								@endforeach
@@ -58,15 +58,11 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select  name="nombre" id="nombre" onchange="nombre_clave()" class="form-control select2" required>
+								<select  name="nombre" id="nombre"  onchange="nombre_clave()" class="form-control select2" required>
 									<option selected>
 										Selecciona una opción
 									</option>
-									@foreach($captura as $captura)
-									<option value="{{$captura->nombre}}_{{$captura->categoria}}_{{$captura->id}}">
-										{{$captura->nombre}}
-									</option>
-									@endforeach
+
 								</select>
 								<div class="help-block with-errors"></div>
 								<div class="text-danger" id='error_nombre'>{{$errors->formulario->first('nombre')}}</div>
@@ -190,7 +186,7 @@
 <script type="text/javascript">
 			window.onload=function(){
 
-				valida_cct();
+
 }
 
 function nombre_clave() {
@@ -201,8 +197,9 @@ function nombre_clave() {
       separador = "_",
       arregloDeSubCadenas = cantidadtotal.split(separador, limite);
      	cct=arregloDeSubCadenas[0];
-     	escuela=arregloDeSubCadenas[1];
-     	document.getElementById('categoria').value=escuela;
+     	categoria=arregloDeSubCadenas[1];
+     	document.getElementById('categoria').value=categoria;
+			alert(cantidadtotal);
 }
 
 function dire_clave() {
@@ -213,8 +210,8 @@ function dire_clave() {
       separador = "_",
       arregloDeSubCadenas = cantidadtotal.split(separador, limite);
      	cct=arregloDeSubCadenas[0];
-     	escuela=arregloDeSubCadenas[1];
-     	document.getElementById('sostenimiento').value=escuela;
+     	sostenimiento=arregloDeSubCadenas[1];
+     	document.getElementById('sostenimiento').value=sostenimiento;
 }
 
 function calculadoradire() {
@@ -245,6 +242,30 @@ function calculadoradire() {
   document.getElementById("total").value=pago_intendente * y
 }
 
+}
+
+
+
+function cctescuela(){
+var cct = document.getElementById("cct").value;
+var route = "http://localhost:8000/traerpersonal/"+cct;
+
+$.get(route,function(res){
+  if(res.length > 0){
+    for (var i = 0; i < res.length; i++) {
+      if(res[i].estado =="ACTIVO"){
+        var x = document.getElementById("nombre");
+        var option = document.createElement("option");
+        option.text = res[i].nombre +"-"+res[i].categoria;
+        option.value = res[i].nombre;
+				alert(route);
+				x.add(option, x[i]);
+
+      }
+    }
+  }
+
+});
 }
 
 

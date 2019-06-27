@@ -38,6 +38,7 @@ Route::get('services', function () {
 Route::resource('reintegros', 'ReintegrosController');
 Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
 Route::get('pdf_catpuesto/{id}', array('as'=> '/pdf_catpuesto','uses'=>'CatPuestoController@invoice'));
+Route::get('traerpersonal/{cct}','ReintegrosController@traerpersonal');
 /////////////////////////////////////////////////////////////
 
 
