@@ -39,72 +39,61 @@
 				</thead>
 				<tbody>
 					@if($y == 1)
-					<!-- {{$p=0}} -->
-					@for($z=0;$z < $captura_n; $z++)
-					@if($captura[$z]->id_cct_etc == $centros->id && $p < 14)
-					<tr>									
-						<td class="no"> {{$p+1}} </td>
-						<td class="no"> {{$captura[$z]->nombre}}</td>
-						<td class="no"> {{$captura[$z]->rfc}}</td>
-						<td class="no"> {{$captura[$z]->categoria}}</td>
-						<td class="no"> </td>
-						@for($i=0;$i < $cuenta_dias; $i++)
-						<td class="no"> </td>
-						@endfor
-						<?php
-						$p=$p+1;
-						?>
-						@endif
-					</tr>
-					@endfor
-					@for($p;$p < 14; $p++)
+					@for($x=0;$x < 14; $x++)				
 					<tr>
-						<td class="no"> {{$p+1}} </td>
+						@if($x >= $captura_n)
+						<td class="no"> {{$x+1}} </td>
 						<td class="no"> </td>
 						<td class="no"> </td>
 						<td class="no"> </td>
-						<td class="no"> </td>
-						@for($i=0;$i < $cuenta_dias; $i++)
-						<td class="no"> </td>
-						@endfor	
-					</tr>				
-					@endfor
-					@else
-
-					@for($z=15;$z < $captura_n; $z++)					
-						@if($captura[$z]->id_cct_etc == $centros->id && $p < 29)
-						<tr>									
-						<td class="no"> {{$p+1}} </td>
-						<td class="no"> {{$captura[$z]->nombre}}</td>
-						<td class="no"> {{$captura[$z]->rfc}}</td>
-						<td class="no"> {{$captura[$z]->categoria}}</td>
 						<td class="no"> </td>
 						@for($i=0;$i < $cuenta_dias; $i++)
 						<td class="no"> </td>
 						@endfor
-						<?php
-						$p=$p+1;
-						?>
-						</tr>
+						@else
+						<td class="no"> {{$x+1}} </td>
+						@if($captura[$x]->id_cct_etc == $centros->id)
+						<td class="no"> {{$captura[$x]->nombre}}</td>
+						<td class="no"> {{$captura[$x]->rfc}}</td>
+						<td class="no"> {{$captura[$x]->categoria}}</td>
+						@else
+						<td class="no"> </td>
+						<td class="no"> </td>
+						<td class="no"> </td>
 						@endif					
-					@endfor
-					@for($p;$p < 29; $p++)
+						<td class="no"> </td>
+						@for($i=0;$i < $cuenta_dias; $i++)
+						<td class="no"> </td>
+						@endfor				
+						@endif							
+						@endfor
+					</tr>
+					@else
+					@for($x=15;$x < 29; $x++)
 					<tr>
-						<td class="no"> {{$p+1}} </td>
+						@if($x >= $captura_n)
+						<td class="no"> {{$x}} </td>
 						<td class="no"> </td>
 						<td class="no"> </td>
 						<td class="no"> </td>
 						<td class="no"> </td>
 						@for($i=0;$i < $cuenta_dias; $i++)
 						<td class="no"> </td>
-						@endfor	
-					</tr>				
-					@endfor		
-					@endif	
+						@endfor
+						@else
+						<td class="no"> {{$x+1}} </td>
+						<td class="no"> {{$captura[$x]->nombre}}</td>
+						<td class="no"> {{$captura[$x]->rfc}}</td>
+						<td class="no"> {{$captura[$x]->categoria}}</td>
+						<td class="no"> </td>
+						@for($i=0;$i < $cuenta_dias; $i++)
+						<td class="no"> </td>
+						@endfor				
+						@endif							
+						@endfor
+					</tr>
 
-
-					
-
+					@endif
 
 
 

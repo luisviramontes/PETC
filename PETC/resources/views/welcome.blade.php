@@ -15,86 +15,108 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
+	
+
 	<title>PETC</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto:400,500" rel="stylesheet">
 	<!--
 			CSS
 			============================================= -->
-	<link rel="stylesheet" href="css/linearicons.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/owl.carousel.css">
-	<link rel="stylesheet" href="css/magnific-popup.css">
-	<link rel="stylesheet" href="css/nice-select.css">
-	<link rel="stylesheet" href="css/main.css">
+			<link rel="stylesheet" href="css/linearicons.css">
+			<link rel="stylesheet" href="css/font-awesome.min.css">
+			<link rel="stylesheet" href="css/bootstrap.css">
+			<link rel="stylesheet" href="css/owl.carousel.css">
+			<link rel="stylesheet" href="css/magnific-popup.css">
+			<link rel="stylesheet" href="css/nice-select.css">
+			<link rel="stylesheet" href="css/main.css">
 
-</head>
+		</head>
 
-<body>
+		<body>
 
-	<!-- Start Header Area -->
-	<header class="default-header">
-		<nav class="navbar navbar-expand-lg navbar-light">
+			<!-- Start Header Area -->
+			<header class="default-header">
+				<nav class="navbar navbar-expand-lg navbar-light">
+					<div class="container">
+						<a class="navbar-brand" href="index.html">
+							<img src="img/logopetc.png" width="95px" height="45px" alt="">
+						</a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="fa fa-bars"></span>
+					</button>
+
+					<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+						<ul class="navbar-nav">
+							<li><a class="active" href="#">Inicio</a></li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+									Acerca del PETC
+								</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="projects.html">¿Que es El PETC?</a>
+									<a class="dropdown-item" href="projects.html">Reglas de Operacion</a>
+									<a class="dropdown-item" href="projects.html">Convenio Marco</a>
+									<a class="dropdown-item" href="projects.html">Lineamientos Estatales</a>
+									<a class="dropdown-item" href="projects.html">Lineamientos Preescolar</a>
+									<a class="dropdown-item" href="projects.html">Lineamientos Telesecundaria</a>
+									<a class="dropdown-item" href="projects.html">Tipos de Apoyo</a>
+								</div>
+							</li>
+							<li><a href="services">Normatividad</a></li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+									Áreas
+								</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="projects.html">Nomina y Sistemas</a>
+									<a class="dropdown-item" href="projects.html">Academica</a>
+									<a class="dropdown-item" href="projects.html">Materiales</a>
+									<a class="dropdown-item" href="projects.html">Alimentación</a>
+								</div>
+							</li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+									Seguimiento y Monitoreo
+								</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="projects.html">Visitas de Seguimiento</a>								
+								</div>
+							</li>
+							<li><a href="contact">Escuelas Incorporadas</a></li>					
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<!-- End Header Area -->
+
+		<!-- start banner Area -->
+		<section class="home-banner-area relative" id="home" data-parallax="scroll" data-image-src="img/portada.png">
+			<div class="overlay-bg overlay"></div>
+			<h1 class="template-name">PETC</h1>
 			<div class="container">
-				<a class="navbar-brand" href="index.html">
-					<img src="img/logopetc.png" width="95px" height="45px" alt="">
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-				 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="fa fa-bars"></span>
-				</button>
-
-				<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
-					<ul class="navbar-nav">
-						<li><a class="active" href="#">Inicio</a></li>
-						<li><a href="about">Nosotros</a></li>
-						<li><a href="services">Servicios</a></li>
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-								Áreas
-							</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="projects.html">Momina y Sistemas</a>
-								<a class="dropdown-item" href="projects.html">Academicos</a>
-                <a class="dropdown-item" href="projects.html">Materiales</a>
-                <a class="dropdown-item" href="projects.html">Alimentación</a>
-							</div>
-						</li>
-						<li><a href="contact">Contacto</a></li>
-            <li><a href="contact.html">Registro</a></li>
-					</ul>
+				<div class="row fullscreen">
+					<div class="banner-content col-lg-12">
+						<p>El día en que México lleve acabo la gran revolución educativa que requiere tendra que ampliar sustancialmente el tiempo de
+							la jornada escolar en su educación básica, recuperar aquella escuela "de mañana y tarde". <br>By. Pablo Latapí.  </p>
+							<h1>
+								Programa Escuelas <br>
+								de Tiempo Completo
+							</h1>
+						</div>
+					</div>
 				</div>
-			</div>
-		</nav>
-	</header>
-	<!-- End Header Area -->
-
-	<!-- start banner Area -->
-	<section class="home-banner-area relative" id="home" data-parallax="scroll" data-image-src="img/portada.png">
-		<div class="overlay-bg overlay"></div>
-		<h1 class="template-name">PETC</h1>
-		<div class="container">
-			<div class="row fullscreen">
-				<div class="banner-content col-lg-12">
-					<p>El día en que México lleve acabo la gran revolución educativa que requiere tendra que ampliar sustancialmente el tiempo de
-            la jornada escolar en su educación básica, recuperar aquella escuela "de mañana y tarde". <br>By. Pablo Latapí.  </p>
-					<h1>
-						Programa Escuelas <br>
-						de Tiempo Completo
-					</h1>
+				<div class="head-bottom-meta">
+					<div class="d-flex meta-left no-padding">
+						<a href="#"><span class="fa fa-facebook-f"></span></a>
+						<a href="#"><span class="fa fa-twitter"></span></a>
+						<a href="#"><span class="fa fa-instagram"></span></a>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="head-bottom-meta">
-			<div class="d-flex meta-left no-padding">
-				<a href="#"><span class="fa fa-facebook-f"></span></a>
-				<a href="#"><span class="fa fa-twitter"></span></a>
-				<a href="#"><span class="fa fa-instagram"></span></a>
-			</div>
-		</div>
-	</section>
-	<!-- End banner Area -->
+			</section>
+			<!-- End banner Area -->
 
 	<!-- Start callto Area
 	<section class="callto-area section-gap relative">
@@ -108,7 +130,7 @@
 			</div>
 		</div>
 	</section>
-	 End callto Area -->
+	End callto Area -->
 
 
 	<section class="top-category-widget-area section-gap">
@@ -227,25 +249,25 @@
 
 -->
 
-	<!-- Start About Area -->
-	<section class="about-area section-gap">
-		<div class="container">
-			<div class="row align-items-center justify-content-center">
-				<div class="col-lg-7 col-md-12 about-left">
-					<img class="img-fluid" src="img/petc.png" alt="">
+<!-- Start About Area -->
+<section class="about-area section-gap">
+	<div class="container">
+		<div class="row align-items-center justify-content-center">
+			<div class="col-lg-7 col-md-12 about-left">
+				<img class="img-fluid" src="img/petc.png" alt="">
+			</div>
+			<div class="col-lg-5 col-md-12 about-right">
+				<div class="section-title text-left">
+					<h4>Acerca de Nosotros</h4>
+					<h2>Programa Escuela <br />de Tiempo Completo. </h2>
 				</div>
-				<div class="col-lg-5 col-md-12 about-right">
-					<div class="section-title text-left">
-						<h4>Acerca de Nosotros</h4>
-						<h2>Programa Escuela <br />de Tiempo Completo. </h2>
-					</div>
-					<div align="justify">
-						<p>
-							El Programa Escuelas de Tiempo Completo está destinado a lograr que los alumnos y
-							alumnas de las escuelas públicas de educación básica cuenten con ambientes que les
-						 permitan el logro de mejores aprendizajes y de un desarrollo integral mediante la ampliación y uso eficaz
-						 de la jornada escolar y de mecanismos de mejora en el aprendizaje que hagan un alto a la deserción educativa
-						  y que favorezcan la retención escolar.
+				<div align="justify">
+					<p>
+						El Programa Escuelas de Tiempo Completo está destinado a lograr que los alumnos y
+						alumnas de las escuelas públicas de educación básica cuenten con ambientes que les
+						permitan el logro de mejores aprendizajes y de un desarrollo integral mediante la ampliación y uso eficaz
+						de la jornada escolar y de mecanismos de mejora en el aprendizaje que hagan un alto a la deserción educativa
+						y que favorezcan la retención escolar.
 
 	          <!-- En este servicio, el aprendizaje es el centro de acción del colectivo docente y se garantiza que el tiempo de la jornada
 	           escolar sea invertido de manera efectiva en la formación de los alumnos. Por ello, el programa ofrece materiales educativos
@@ -364,7 +386,7 @@
 			<div class="row">
 				<div class="call-wrap mx-auto">
 					<h1>Audiovisual Informativo</h1>
-				<iframe width="600" height="315" src="https://www.youtube.com/embed/hDLSQG_OAwk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<iframe width="600" height="315" src="https://www.youtube.com/embed/hDLSQG_OAwk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				</div>
 			</div>
 		</div>
@@ -392,9 +414,9 @@
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 							</p>
-							<h4>Danyel Yarde</h4>
+							<h4>Prof.Antonio Reyes Carlos</h4>
 							<div class="bottom">
-								<p>CEO & Founder</p>
+								<p>Coordinador Estatal del PETC</p>
 							</div>
 						</div>
 					</div>
@@ -406,9 +428,9 @@
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 							</p>
-							<h4>Manel djuice</h4>
+							<h4>Lic.Adriana Lopez</h4>
 							<div class="bottom">
-								<p>CEO & Founder</p>
+								<p>Encargada del Área de Alimentacion</p>
 							</div>
 						</div>
 					</div>
@@ -420,9 +442,9 @@
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 							</p>
-							<h4>Mark Alviro Wiens</h4>
+							<h4>Lic.José Sebastian Vazquez</h4>
 							<div class="bottom">
-								<p>CEO & Founder</p>
+								<p>Encargado del Área de Nomina</p>
 							</div>
 						</div>
 					</div>
@@ -434,9 +456,9 @@
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 							</p>
-							<h4>Manel djuice</h4>
+							<h4>Lic.Antonio Soriano</h4>
 							<div class="bottom">
-								<p>CEO & Founder</p>
+								<p>Encargado del Área Academica</p>
 							</div>
 						</div>
 					</div>
@@ -448,9 +470,9 @@
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 							</p>
-							<h4>Mark Alviro Wiens</h4>
+							<h4>Ing.David</h4>
 							<div class="bottom">
-								<p>CEO & Founder</p>
+								<p>Encargado del Área de Materiales</p>
 							</div>
 						</div>
 					</div>
@@ -507,50 +529,50 @@
 					<p>You can trust us. we only send promo offers,</p>
 					<div class="form-wrap" id="mc_embed_signup">
 						<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-						 method="get" class="form-inline">
-							<input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'"
-							 required="" type="email" />
-							<button class="click-btn btn btn-default">
-								<span>subscribe</span>
-							</button>
-							<div style="position: absolute; left: -5000px;">
-								<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text" />
-							</div>
+						method="get" class="form-inline">
+						<input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'"
+						required="" type="email" />
+						<button class="click-btn btn btn-default">
+							<span>subscribe</span>
+						</button>
+						<div style="position: absolute; left: -5000px;">
+							<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text" />
+						</div>
 
-							<div class="info"></div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="row footer-bottom d-flex justify-content-between">
-				<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				</p>
-				<div class="col-lg-4 col-sm-12 footer-social">
-					<a href="#"><i class="fa fa-facebook-f"></i></a>
-					<a href="#"><i class="fa fa-twitter"></i></a>
-					<a href="#"><i class="fa fa-dribbble"></i></a>
-					<a href="#"><i class="fa fa-linkedin"></i></a>
+						<div class="info"></div>
+					</form>
 				</div>
 			</div>
 		</div>
-	</footer>
-	<!-- End footer Area -->
+		<div class="row footer-bottom d-flex justify-content-between">
+			<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+				Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			</p>
+			<div class="col-lg-4 col-sm-12 footer-social">
+				<a href="#"><i class="fa fa-facebook-f"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-dribbble"></i></a>
+				<a href="#"><i class="fa fa-linkedin"></i></a>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- End footer Area -->
 
-	<script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-	 crossorigin="anonymous"></script>
-	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="js/parallax.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/isotope.pkgd.min.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/main.js"></script>
+<script src="js/vendor/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+crossorigin="anonymous"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/parallax.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/isotope.pkgd.min.js"></script>
+<script src="js/jquery.nice-select.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/main.js"></script>
 </body>
 
 </html>

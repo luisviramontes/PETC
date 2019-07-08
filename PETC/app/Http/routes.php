@@ -251,10 +251,17 @@ Route::get('ver_datospersonal/{id}', array('as'=> '/ver_datospersonal','uses'=>'
 //Route::post('activarrfc', 'PersonalController@activar');
 //Route::get('pdf_tablapagos/{id}', array('as'=> '/pdf_tablapagos','uses'=>'TablaPagosController@invoice'));
 
+ 
+//RECLAMOS
 
 Route::resource('reclamos', 'ReclamosController');
+Route::get('valida_reclamos/{dia}/{mes}/{year}/','ReclamosController@valida_reclamos');
+Route::get('calcular_reclamo/{dias}/{categoria}/{ciclo}','ReclamosController@calcular_reclamo');
+Route::get('buscar_qnas/{ciclo}', 'ReclamosController@buscar_qnas');
 
 
+//OFICIOS EMITIDOS
+Route::get('buscar_oficio/{oficio}/{ciclo}', 'OficiosEmitidosController@buscar_oficio'); 
 
 ///TABLA DE PAGOS
 Route::resource('tabla_pagos', 'TablaPagosController');

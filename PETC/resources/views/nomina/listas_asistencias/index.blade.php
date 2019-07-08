@@ -22,15 +22,18 @@
 							<div class="actions"> </div>
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Listas de Asistencias</strong></h2>
 							@include('nomina.listas_asistencias.search')
-            </div>
+						</div>
 						<div class="col-md-5">
 							<div class="btn-group pull-right">
 								<b>
 
 									<div class="btn-group" style="margin-right: 10px;">
-											<a class="btn btn-sm btn-success tooltips" href="{{ route('listas_asistencias.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Lista"> <i class="fa fa-plus"></i> Registrar </a>
-											<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.listas_asistencias.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-											<a class="btn btn-primary btn-sm" href="{{URL::action('ListasAsistenciasController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+										<a class="btn btn-sm btn-success tooltips" href="{{ route('listas_asistencias.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Lista"> <i class="fa fa-plus"></i> Registrar </a>
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.listas_asistencias.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+										<a class="btn btn-primary btn-sm" href="{{URL::action('ListasAsistenciasController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+
+										<a class="btn btn-primary btn-sm" href="{{URL::action('InasistenciasController@generar_listas')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar Listas</a>
+
 
 									</div>
 
@@ -59,8 +62,8 @@
 							</tr>
 						</thead>
 						<tbody>
-						@foreach($listas  as $lista)
-						@if ($lista->estado == "ACTIVO")
+							@foreach($listas  as $lista)
+							@if ($lista->estado == "ACTIVO")
 							<tr class="gradeX">
 								<td style= "background-color:#DBFFC2;">{{$lista->cct}} </td>
 								<td style= "background-color:#DBFFC2;">{{$lista->nombre_escuela}} </td>
@@ -80,40 +83,40 @@
 
 								<td style="background-color:#DBFFC2;">
 									<center>
+										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$lista->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+
+									</center>
+								</td>
+							</td>
+						</tr>
+						@else
+
+						<tr class="gradeX">
+							<td style= "background-color:#FFE4E1;">{{$lista->cct}} </td>
+							<td style= "background-color:#FFE4E1;">{{$lista->nombre_escuela}} </td>
+							<td style= "background-color:#FFE4E1;">{{$lista->region}}</td>
+							<td style= "background-color:#FFE4E1;">{{$lista->mes}} </td>
+							<td style= "background-color:#FFE4E1;">{{$lista->observaciones}} </td>
+							<td style= "background-color:#FFE4E1;">{{$lista->captura}}</td>
+							<td style= "background-color:#FFE4E1;">{{$lista->estado}} </td>
+							<td style="background-color:FFE4E12;">
+								<center>
+									<a href="{{URL::action('ListasAsistenciasController@edit',$lista->id)}}" id="edit" onchange="valida_edit()" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+								</center>
+							</td>
+							<td style="background-color:#FFE4E1;">
+								<center>
 									<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$lista->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 
-									</center>
-									</td>
-								</td>
-							</tr>
-							@else
-
-							<tr class="gradeX">
-								<td style= "background-color:#FFE4E1;">{{$lista->cct}} </td>
-								<td style= "background-color:#FFE4E1;">{{$lista->nombre_escuela}} </td>
-								<td style= "background-color:#FFE4E1;">{{$lista->region}}</td>
-								<td style= "background-color:#FFE4E1;">{{$lista->mes}} </td>
-								<td style= "background-color:#FFE4E1;">{{$lista->observaciones}} </td>
-								<td style= "background-color:#FFE4E1;">{{$lista->captura}}</td>
-								<td style= "background-color:#FFE4E1;">{{$lista->estado}} </td>
-								<td style="background-color:FFE4E12;">
-									<center>
-										<a href="{{URL::action('ListasAsistenciasController@edit',$lista->id)}}" id="edit" onchange="valida_edit()" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
-
-									</center>
-								</td>
-								<td style="background-color:#FFE4E1;">
-									<center>
-									<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$lista->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
-
-									</center>
-									</td>
-								</td>
-							</tr>
-							@endif
-								  @include('nomina.listas_asistencias.modal')
-							@endforeach
-						</tbody>
+								</center>
+							</td>
+						</td>
+					</tr>
+					@endif
+					@include('nomina.listas_asistencias.modal')
+					@endforeach
+				</tbody>
 						<!--<tfoot>
 							<tr>
                 <th></th>

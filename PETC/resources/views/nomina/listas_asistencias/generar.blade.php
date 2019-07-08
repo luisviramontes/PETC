@@ -40,9 +40,15 @@
 								<div class="col-sm-6">
 									<select name="ciclo_escolar" id="ciclo_escolar"  class="form-control select2" ">
 										@foreach($ciclos as $ciclo) 
-										<option value='{{$ciclo->ciclo}}'>
+										@if($ciclo->id == 2)
+										<option value='{{$ciclo->ciclo}}' selected>
 											{{$ciclo->ciclo}}
 										</option>
+										@else
+										<option value='{{$ciclo->ciclo}}' >
+											{{$ciclo->ciclo}}
+										</option>
+										@endif
 										@endforeach
 									</select>
 
@@ -61,19 +67,7 @@
 
 							<div class="form-group" id="div_region" style='display:none;'>
 
-								<div class="form-group">
-									<label class="col-sm-3 control-label">Seleccione Una Opción <strog class="theme_color">*</strog></label>
-									<div class="col-sm-6">
-
-										<input type="radio" name="option2" id="option2"  onchange="busca_escuelasr(1)" value="1"> Todas los CTE<br>
-										<input type="radio" name="option2" id="option2" onchange="busca_escuelasr(2)" value="2"> Seleccionar CTE<br>
-										<div class="help-block with-errors"></div>
-							<!--	<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
-						--></div>
-					</div>
-
-					
-					<div class="form-group">
+							<div class="form-group">
 						<label class="col-sm-3 control-label">Región <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<select name="region" id="region" class="form-control select" onchange="busca_escuelasr(2)"  >
@@ -89,6 +83,20 @@
 						--></div>
 					</div>
 
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Seleccione Una Opción <strog class="theme_color">*</strog></label>
+									<div class="col-sm-6">
+
+										<input type="radio" name="option2" id="option2"  onchange="busca_escuelasr(1)" value="1"> Todas los CTE<br>
+										<input type="radio" name="option2" id="option2" onchange="busca_escuelasr(2)" value="2"> Seleccionar CTE<br>
+										<div class="help-block with-errors"></div>
+							<!--	<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
+						--></div>
+					</div>
+
+					
+					
 
 
 
@@ -109,19 +117,8 @@
 					
 				</div>
 
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Seleccione Una Opción <strog class="theme_color">*</strog></label>
-					<div class="col-sm-6">
-
-						<input type="radio" value="1" name="option3" id="option3" onchange="cambia_mes(1)"> Todos los Meses<br>
-						<input type="radio" value="2" name="option3" id="option3" onchange="cambia_mes(2)"> Seleccionar Mes<br>
-						<div class="help-block with-errors"></div>
-							<!--	<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
-						--></div>
-					</div>
 
 
-					<div class="form-group" id="div_mes" style='display:none;'>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Mes <strog class="theme_color">*</strog></label>
@@ -169,11 +166,11 @@
 						</div><!--/form-group-->
 
 
-					</div>
+
 					<div class="form-group">
 						<div class="col-sm-offset-7 col-sm-5">
-							<button id="submit3" class="btn btn-primary">Guardar</button>
-							<a href="{{url('/captura')}}" class="btn btn-default"> Cancelar</a>
+							<button id="submit3" target="_blank" class="btn btn-primary">Generar</button>
+							<a href="{{url('/listas_asistencias')}}" class="btn btn-default"> Cancelar</a>
 						</div>
 					</div><!--/form-group--> 
 
@@ -189,21 +186,7 @@
 						</div>--><!--/form-group-->
 						
 
-						<div class="col-md-5">
-							<div class="btn-group pull-right">
-								<b>
 
-									<div class="btn-group" style="margin-right: 10px;">										
-
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.captura.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>  
-
-										<a class="btn btn-primary btn-sm" href="{{ route('nomina.inasistencias.generar_pdf_listas')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"  > <i class="fa fa-print"></i> Generar PDF</a> 										
-
-
-									</div>								
-								</b>
-							</div>
-						</div>
 
 
 
@@ -251,16 +234,7 @@
 		}
 	}
 
-	function cambia_mes(aux){	
 
-		if(aux == 1){
-			document.getElementById('div_mes').style.display = 'none';
-
-		}else{
-
-			document.getElementById('div_mes').style.display = 'block';
-		}
-	}
 
 	function limpiar_input_cct(){
 		var x = document.getElementById('cct');

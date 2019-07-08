@@ -285,13 +285,12 @@ class CapturaController extends Controller
      $cat=$request->get('puesto');
 
      if($cat == "DIRECTOR"){
-      $id_aux_cct=$request->get('cct'); 
-      $id_aux=DB::table('Director_CCT')->where('id_cct_etc','=',$id_aux_cct)->first();
-      $Direcor_CCT=Director_CCTModel::findOrFail($id_aux->id);
+      $id_aux_cct=$request->get('cct');       
+      $id_aux2=DB::table('Director_CCT')->where('id_cct_etc','=',$id_aux_cct)->first();
+      $Direcor_CCT=Director_CCTModel::findOrFail($id_aux2->id);
       $Direcor_CCT->id_captura=$id;
       $Direcor_CCT->fecha_inicio=$request->get('fechai');
       $Direcor_CCT->fecha_baja=$request->get('fechaf');
-      $Direcor_CCT->documentacion_entregada=$request->get('doc');
       $Direcor_CCT->documentacion_entregada=$request->get('doc');
       $Direcor_CCT->captura="ADMINISTRADOR";
       $Direcor_CCT->estado="ACTIVO";

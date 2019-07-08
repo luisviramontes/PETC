@@ -376,7 +376,7 @@ class InasistenciasController extends Controller
        });
      })->export('xls');
    }
-
+ 
    public function generar_listas()
    {
     $cct=DB::table('centro_trabajo')->get();
@@ -389,72 +389,57 @@ class InasistenciasController extends Controller
 
   public function generar_pdf_listas(Request $request){
     $mes=$request->get('mes');
-    $x=$request->get('ciclo_escolar');
+    $ciclo_aux=$request->get('ciclo_escolar');
     $todos=$request->get('option1');
     $region=$request->get('region');
     $escuelas=$request->get('option2');
-    $meses=$request->get('option3');
     $cct=$request->get('cct');
 
     if ($todos == "1") {
-      $centros= CentroTrabajoModel::join('directorio_regional','directorio_regional.id_region','=','centro_trabajo.id_region')->join('director_cct','director_cct.id_cct_etc','=','centro_trabajo.id')->join('captura','captura.id','=','director_cct.id_captura')->select('captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','directorio_regional.director_regional','directorio_regional.nombre_enlace')->where('centro_trabajo.estado','=','ACTIVO')->get();
-      if($meses == "1"){
-        $mes_aux = array("ENERO", "FEBRERO", "MARZO", "ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-        $dias=DiasMesModel::select('l_semana','dia')->where('tipo_dia','=','HABIL')->where('ciclo','=',$x)->get();
+      $centros= CentroTrabajoModel::join('centro_trabajo.id','directorio_regional','directorio_regional.id_region','=','centro_trabajo.id_region')->join('director_cct','director_cct.id_cct_etc','=','centro_trabajo.id')->join('captura','captura.id','=','director_cct.id_captura')->select('captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','directorio_regional.director_regional','directorio_regional.nombre_enlace')->where('centro_trabajo.estado','=','ACTIVO')->orderBy('centro_trabajo.id','desc')->get();
 
-      }else{
-        $mes_aux = $mes;
-        $dias=DiasMesModel::select('l_semana','dia')->where('mes','=',$mes)->where('tipo_dia','=','HABIL')->where('ciclo','=',$x)->get();
-      }
+      $captura=CapturaModel::select('captura.nombre','captura.rfc','captura.categoria','captura.id_cct_etc')->where('estado','=','ACTIVO')->orderBy('id_cct_etc','desc')->get();
       # code...
     }else{
       if($escuelas == "1"){
-        $centros= CentroTrabajoModel::join('directorio_regional','directorio_regional.id_region','=','centro_trabajo.id_region')->join('director_cct','director_cct.id_cct_etc','=','centro_trabajo.id')->join('captura','captura.id','=','director_cct.id_captura')->select('captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','directorio_regional.director_regional','directorio_regional.nombre_enlace')->where('centro_trabajo.estado','=','ACTIVO')->where('centro_trabajo.id_region','=',$region)->get();
-        if($meses == "1"){
-          $mes_aux = array("ENERO", "FEBRERO", "MARZO", "ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-          $dias=DiasMesModel::select('l_semana','dia')->where('tipo_dia','=','HABIL')->where('ciclo','=',$x)->get();
+        $centros= CentroTrabajoModel::join('directorio_regional','directorio_regional.id_region','=','centro_trabajo.id_region')->join('director_cct','director_cct.id_cct_etc','=','centro_trabajo.id')->join('captura','captura.id','=','director_cct.id_captura')->select('centro_trabajo.id','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','directorio_regional.director_regional','directorio_regional.nombre_enlace')->where('centro_trabajo.estado','=','ACTIVO')->where('centro_trabajo.id_region','=',$region)->orderBy('centro_trabajo.id','desc')->get();
 
-        }else{
-          $mes_aux = $mes;
-          $dias=DiasMesModel::select('l_semana','dia')->where('mes','=',$mes)->where('tipo_dia','=','HABIL')->where('ciclo','=',$x)->get();
-        }        
+        $captura=CapturaModel::join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->select('captura.nombre','captura.rfc','captura.categoria','captura.id_cct_etc')->where('centro_trabajo.id_region','=',$region)->where('captura.estado','=','ACTIVO')->orderBy('centro_trabajo.id','desc')->get();
+
+        
       }else{
-       $centros= CentroTrabajoModel::join('directorio_regional','directorio_regional.id_region','=','centro_trabajo.id_region')->join('director_cct','director_cct.id_cct_etc','=','centro_trabajo.id')->join('captura','captura.id','=','director_cct.id_captura')->select('captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','directorio_regional.director_regional','directorio_regional.nombre_enlace')->where('centro_trabajo.estado','=','ACTIVO')->where('centro_trabajo.id','=',$cct)->get();
-       if($meses == "1"){
-        $mes_aux = array("ENERO", "FEBRERO", "MARZO", "ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-        $dias=DiasMesModel::select('l_semana','dia')->where('tipo_dia','=','HABIL')->where('ciclo','=',$x)->get();
+       $centros= CentroTrabajoModel::join('directorio_regional','directorio_regional.id_region','=','centro_trabajo.id_region')->join('director_cct','director_cct.id_cct_etc','=','centro_trabajo.id')->join('captura','captura.id','=','director_cct.id_captura')->select('centro_trabajo.id','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','directorio_regional.director_regional','directorio_regional.nombre_enlace')->where('centro_trabajo.estado','=','ACTIVO')->where('centro_trabajo.id','=',$cct)->orderBy('centro_trabajo.id','desc')->get();
 
-      }else{
-        $mes_aux = $mes;
-        $dias=DiasMesModel::select('l_semana','dia')->where('mes','=',$mes)->where('tipo_dia','=','HABIL')->where('ciclo','=',$x)->get();
-      } 
+       $captura=CapturaModel::join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->select('captura.nombre','captura.rfc','captura.categoria','captura.id_cct_etc')->where('centro_trabajo.id','=',$cct)->where('captura.estado','=','ACTIVO')->orderBy('centro_trabajo.id','desc')->get();
 
-    }
-  }
-
+     }
+   }
+   $mes_aux = $mes;
+   $dias=DiasMesModel::select('l_semana','dia')->where('mes','=',$mes)->where('tipo_dia','=','HABIL')->where('ciclo','=',$ciclo_aux)->get();
   //print_r($meses);
-$cuenta=count($centros);
-$cuenta_dias=count($dias);
+   $cuenta=count($centros);
+   $cuenta_dias=count($dias);
+   $captura_n=count($captura);
 
-  $view =  \View::make('nomina.listas_asistencias.invoice_listas', compact('centros','dias','mes_aux','cuenta','cuenta_dias'))->render();
+   $view =  \View::make('nomina.listas_asistencias.invoice_listas', compact('captura_n','captura','ciclo_aux','centros','dias','mes_aux','cuenta','cuenta_dias'))->render();
         //->setPaper($customPaper, 'landscape');
-  $pdf = \App::make('dompdf.wrapper');
-  $pdf->loadHTML($view);
-  return $pdf->stream('invoice_listas');
+   $pdf = \App::make('dompdf.wrapper');
+   $pdf->loadHTML($view);
+   return $pdf->stream('invoice_listas.pdf');
 
 
 
-}
+ }
 
-public function busca_escuelas_region($id_region){
+ public function busca_escuelas_region($id_region){
 
 
- $centro= CentroTrabajoModel::select('id','cct','nombre_escuela')
- ->where('id_region','=',$id_region)->where('estado','=','ACTIVO')
- ->get(); 
+   $centro= CentroTrabajoModel::select('id','cct','nombre_escuela')
+   ->where('id_region','=',$id_region)->where('estado','=','ACTIVO')
+   ->get(); 
 
- return response()->json(
-  $centro->toArray());
-}
+   return response()->json(
+    $centro->toArray());
+ }
 
 }

@@ -199,25 +199,25 @@
 													<label class="col-sm-3 control-label">Categoria;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 														<select name="puesto" id="puesto" class="form-control select" onchange="cambia(this.value);captura_personal()" required> 
-															@if($personal->categoria == "DOCENTE")
+															@if($personal->categoria == 'DOCENTE')
 															<option value="DIRECTOR" >DIRECTOR</option>
 															<option value="DOCENTE" selected>DOCENTE </option>
 															<option value="INTENDENTE">INTENDENTE</option>
 															<option value="USAER">USAER</option>
 															<option value="EDUCACION FISICA">EDUCACION FISICA</option>
-															@elseif($personal->categoria == "DIRECTOR")
+															@elseif($personal->categoria == 'DIRECTOR')
 															<option value="DIRECTOR" selected>DIRECTOR</option>
 															<option value="DOCENTE" >DOCENTE </option>
 															<option value="INTENDENTE">INTENDENTE</option>
 															<option value="USAER">USAER</option>
 															<option value="EDUCACION FISICA">EDUCACION FISICA</option>
-															@elseif($personal->categoria == "INTENDENTE")
+															@elseif($personal->categoria == 'INTENDENTE')
 															<option value="DIRECTOR" >DIRECTOR</option>
 															<option value="DOCENTE" >DOCENTE </option>
 															<option value="INTENDENTE" selected>INTENDENTE</option>
 															<option value="USAER">USAER</option>
 															<option value="EDUCACION FISICA">EDUCACION FISICA</option>
-															@elseif($personal->categoria == "USAER")
+															@elseif($personal->categoria == 'USAER')
 															<option value="DIRECTOR" >DIRECTOR</option>
 															<option value="DOCENTE" >DOCENTE </option>
 															<option value="INTENDENTE">INTENDENTE</option>
@@ -228,7 +228,7 @@
 															<option value="DOCENTE" >DOCENTE </option>
 															<option value="INTENDENTE">INTENDENTE</option>
 															<option value="USAER">USAER</option>
-															<option value="EDUCACION FISICA" selected>EDUCACION FISICA</option>
+															<option value="EDUCACION FISICA" >EDUCACION FISICA</option>
 															@endif
 														</select>
 

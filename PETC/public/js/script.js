@@ -646,7 +646,7 @@ function validarInput(input) {
 
   }
 
-    function captura_personal(){
+  function captura_personal(){
 
     var aux =document.getElementById('movimiento').value;
     var cct =document.getElementById('cct').value;
@@ -825,7 +825,7 @@ function valida_nomina(){
   var tipo= document.getElementById("tipo").value;
   var route = "http://localhost:8000/validar_nomina/"+qna+"/"+sostenimiento+"/"+tipo;
   var fileInput = document.getElementById('file');
-   var filePath = fileInput.value;
+  var filePath = fileInput.value;
   var aux=0;
 
 
@@ -838,7 +838,7 @@ function valida_nomina(){
 
           document.getElementById('submit').disabled=true;
 
-         swal("WARNING!","La nomina correspondiente a la quincena <<"+qna+">> <<"+sostenimiento+">> ya han sido registrados anteriormente.","warning");
+          swal("WARNING!","La nomina correspondiente a la quincena <<"+qna+">> <<"+sostenimiento+">> ya han sido registrados anteriormente.","warning");
           //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
           fileInput.value = '';
           return false
@@ -1321,7 +1321,7 @@ function busca_personal3(callback){
           dia=arregloDeSubCadenas[1];
           if(res.length > 0){
            // alert('ID '+res[f].id_captura+"-"+id+" DIA "+res[f].dia+"-"+dia+" "+res[f].mes+"-"+mes);
-            if(res[f].id_captura == id && dia==res[f].dia && mes==res[f].mes){
+           if(res[f].id_captura == id && dia==res[f].dia && mes==res[f].mes){
              var agregaHTML = "<input type=button value=/ class=agrega id="+id+"-"+(z)+">";
              var va=""+id+"-"+z
              tabla.rows[i].cells[aux].innerHTML= agregaHTML;  
@@ -1331,11 +1331,11 @@ function busca_personal3(callback){
            }
 
          }
-      }
-    }
-  }
-  cuenta_arreglo(arreglo);
-});
+       }
+     }
+   }
+   cuenta_arreglo(arreglo);
+ });
   }
 
   
@@ -1361,7 +1361,7 @@ function maxlengthtelefonoreg() {
 }
 
   ///dir regional//
-function extencionmin() {
+  function extencionmin() {
   	if( document.getElementById("ext1_enlace").value.length < 4  ){
 
       swal("ERROR!","Una EXTENCION se compone de 4 numeros, revisa tus datos","error");
@@ -1371,15 +1371,15 @@ function extencionmin() {
   }
 
   function extencion2min() {
-    	if( document.getElementById("ext2_enlace").value.length < 4  ){
+   if( document.getElementById("ext2_enlace").value.length < 4  ){
 
-        swal("ERROR!","Una EXTENCION se compone de 4 numeros, revisa tus datos","error");
+    swal("ERROR!","Una EXTENCION se compone de 4 numeros, revisa tus datos","error");
         //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
         return false
       }
     }
 
-  function extencionregmin() {
+    function extencionregmin() {
     	if( document.getElementById("ext_reg_1").value.length < 4  ){
 
         swal("ERROR!","Una EXTENCION se compone de 4 numeros, revisa tus datos","error");
@@ -1389,9 +1389,9 @@ function extencionmin() {
     }
 
     function extencionreg2min() {
-        if( document.getElementById("ext_reg_2").value.length < 4  ){
+      if( document.getElementById("ext_reg_2").value.length < 4  ){
 
-          swal("ERROR!","Una EXTENCION se compone de 4 numeros, revisa tus datos","error");
+        swal("ERROR!","Una EXTENCION se compone de 4 numeros, revisa tus datos","error");
           //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
           return false
         }
@@ -1401,109 +1401,109 @@ function extencionmin() {
 /////////////////
 
 function valida_puesto() {
-		if( document.getElementById("tipo_puesto").value == "Selecciona una opción"  ){
-			 document.getElementById('submit').disabled=true;
+  if( document.getElementById("tipo_puesto").value == "Selecciona una opción"  ){
+    document.getElementById('submit').disabled=true;
 		//	swal("ERROR!","Selecciona tipo se puesto","error");
-			document.getElementById("error_tipo_puesto").innerHTML = "No se ha seleccionado ninguna opción.";
-			return false
-		}else{
-				 document.getElementById('submit').disabled=false;
-				 	document.getElementById("error_tipo_puesto").innerHTML = "Proceda con la captura. 😀";
-		}
-	}
+   document.getElementById("error_tipo_puesto").innerHTML = "No se ha seleccionado ninguna opción.";
+   return false
+ }else{
+   document.getElementById('submit').disabled=false;
+   document.getElementById("error_tipo_puesto").innerHTML = "Proceda con la captura. 😀";
+ }
+}
 
 
-	  function valida_sostenimiento() {
-	  		if( document.getElementById('sostenimiento').value == "Selecciona una opción"  ){
-	  			 document.getElementById('submit').disabled=true;
+function valida_sostenimiento() {
+ if( document.getElementById('sostenimiento').value == "Selecciona una opción"  ){
+   document.getElementById('submit').disabled=true;
 	  		//	swal("ERROR!","Selecciona tipo se puesto","error");
-	  			document.getElementById("error_sostenimiento").innerHTML = "No se ha seleccionado ninguna opción.";
-	  			return false
-	  		}else{
-	  				 document.getElementById('submit').disabled=false;
-	  				 	document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
-	  		}
-	  	}
+        document.getElementById("error_sostenimiento").innerHTML = "No se ha seleccionado ninguna opción.";
+        return false
+      }else{
+        document.getElementById('submit').disabled=false;
+        document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
+      }
+    }
 
-     function valida_region() {
-  	  		if( document.getElementById('region').value == "Selecciona una opción" && document.getElementById('sostenimiento').value == "Selecciona una opción" ){
-  	  			 document.getElementById('submit').disabled=true;
+    function valida_region() {
+     if( document.getElementById('region').value == "Selecciona una opción" && document.getElementById('sostenimiento').value == "Selecciona una opción" ){
+       document.getElementById('submit').disabled=true;
   	  		//	swal("ERROR!","Selecciona tipo se puesto","error");
-  	  			document.getElementById("error_region").innerHTML = "No se ha seleccionado ninguna opción.";
-            document.getElementById("error_sostenimiento").innerHTML = "No se ha seleccionado ninguna opción.";
-  	  			return false
+          document.getElementById("error_region").innerHTML = "No se ha seleccionado ninguna opción.";
+          document.getElementById("error_sostenimiento").innerHTML = "No se ha seleccionado ninguna opción.";
+          return false
 
-        	}else if(document.getElementById('region').value != "Selecciona una opción" && document.getElementById('sostenimiento').value != "Selecciona una opción"){
-  	  				 document.getElementById('submit').disabled=false;
-  	  				 	document.getElementById("error_region").innerHTML = "Proceda con la captura. 😀";
-                document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
+        }else if(document.getElementById('region').value != "Selecciona una opción" && document.getElementById('sostenimiento').value != "Selecciona una opción"){
+          document.getElementById('submit').disabled=false;
+          document.getElementById("error_region").innerHTML = "Proceda con la captura. 😀";
+          document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
 
-        	}else if (document.getElementById('region').value != "Selecciona una opción" && document.getElementById('sostenimiento').value == "Selecciona una opción") {
-            document.getElementById('submit').disabled=true;
-             document.getElementById("error_region").innerHTML = "Proceda con la captura. 😀";
-             document.getElementById("error_sostenimiento").innerHTML = "No se ha seleccionado ninguna opción.";
-          }else if (document.getElementById('region').value == "Selecciona una opción" && document.getElementById('sostenimiento').value != "Selecciona una opción") {
-            document.getElementById('submit').disabled=true;
-             document.getElementById("error_region").innerHTML = "No se ha seleccionado ninguna opción.";
-             document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
-          }
-  	  	}
+        }else if (document.getElementById('region').value != "Selecciona una opción" && document.getElementById('sostenimiento').value == "Selecciona una opción") {
+          document.getElementById('submit').disabled=true;
+          document.getElementById("error_region").innerHTML = "Proceda con la captura. 😀";
+          document.getElementById("error_sostenimiento").innerHTML = "No se ha seleccionado ninguna opción.";
+        }else if (document.getElementById('region').value == "Selecciona una opción" && document.getElementById('sostenimiento').value != "Selecciona una opción") {
+          document.getElementById('submit').disabled=true;
+          document.getElementById("error_region").innerHTML = "No se ha seleccionado ninguna opción.";
+          document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
+        }
+      }
 
-        function valida_cct() {
-             if( document.getElementById('cct').value == "Selecciona una opción" && document.getElementById('mes').value == "Selecciona una opción" ){
-                document.getElementById('submit').disabled=true;
+      function valida_cct() {
+       if( document.getElementById('cct').value == "Selecciona una opción" && document.getElementById('mes').value == "Selecciona una opción" ){
+        document.getElementById('submit').disabled=true;
              //	swal("ERROR!","Selecciona tipo se puesto","error");
-               document.getElementById("error_cct").innerHTML = "No se ha seleccionado ninguna opción.";
-               document.getElementById("error_mes").innerHTML = "No se ha seleccionado ninguna opción.";
-               return false
+             document.getElementById("error_cct").innerHTML = "No se ha seleccionado ninguna opción.";
+             document.getElementById("error_mes").innerHTML = "No se ha seleccionado ninguna opción.";
+             return false
 
-             }else if(document.getElementById('cct').value != "Selecciona una opción" && document.getElementById('mes').value != "Selecciona una opción"){
-                  document.getElementById('submit').disabled=false;
-                   document.getElementById("error_cct").innerHTML = "Proceda con la captura. 😀";
-                   document.getElementById("error_mes").innerHTML = "Proceda con la captura. 😀";
+           }else if(document.getElementById('cct').value != "Selecciona una opción" && document.getElementById('mes').value != "Selecciona una opción"){
+            document.getElementById('submit').disabled=false;
+            document.getElementById("error_cct").innerHTML = "Proceda con la captura. 😀";
+            document.getElementById("error_mes").innerHTML = "Proceda con la captura. 😀";
 
-             }else if (document.getElementById('cct').value != "Selecciona una opción" && document.getElementById('mes').value == "Selecciona una opción") {
-               document.getElementById('submit').disabled=true;
-                document.getElementById("error_cct").innerHTML = "Proceda con la captura. 😀";
-                document.getElementById("error_mes").innerHTML = "No se ha seleccionado ninguna opción.";
-             }else if (document.getElementById('cct').value == "Selecciona una opción" && document.getElementById('mes').value != "Selecciona una opción") {
-               document.getElementById('submit').disabled=true;
-                document.getElementById("error_cct").innerHTML = "No se ha seleccionado ninguna opción.";
-                document.getElementById("error_mes").innerHTML = "Proceda con la captura. 😀";
-             }
-           }
-
-
-function rechazorfc() {
-    var select2 = document.getElementById("rfc");
-    var selectedOption2 = select2.selectedIndex;
-    var cantidadtotal = select2.value;
-    limite = "9",
-    separador = "_",
-    arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-    cct=arregloDeSubCadenas[0];
-    escuela=arregloDeSubCadenas[1];
-    document.getElementById('nombre').value=escuela;
-   }
+          }else if (document.getElementById('cct').value != "Selecciona una opción" && document.getElementById('mes').value == "Selecciona una opción") {
+           document.getElementById('submit').disabled=true;
+           document.getElementById("error_cct").innerHTML = "Proceda con la captura. 😀";
+           document.getElementById("error_mes").innerHTML = "No se ha seleccionado ninguna opción.";
+         }else if (document.getElementById('cct').value == "Selecciona una opción" && document.getElementById('mes').value != "Selecciona una opción") {
+           document.getElementById('submit').disabled=true;
+           document.getElementById("error_cct").innerHTML = "No se ha seleccionado ninguna opción.";
+           document.getElementById("error_mes").innerHTML = "Proceda con la captura. 😀";
+         }
+       }
 
 
-function validar_quincena(){
-     var qna= document.getElementById("qna").value;
-     var sostenimiento= document.getElementById("sostenimiento").value;
-     var tipo= document.getElementById("tipo").value;
-     var route = "http://localhost:8000/validar_quincena/"+qna+"/"+sostenimiento+"/"+tipo;
+       function rechazorfc() {
+        var select2 = document.getElementById("rfc");
+        var selectedOption2 = select2.selectedIndex;
+        var cantidadtotal = select2.value;
+        limite = "9",
+        separador = "_",
+        arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+        cct=arregloDeSubCadenas[0];
+        escuela=arregloDeSubCadenas[1];
+        document.getElementById('nombre').value=escuela;
+      }
+
+
+      function validar_quincena(){
+       var qna= document.getElementById("qna").value;
+       var sostenimiento= document.getElementById("sostenimiento").value;
+       var tipo= document.getElementById("tipo").value;
+       var route = "http://localhost:8000/validar_quincena/"+qna+"/"+sostenimiento+"/"+tipo;
 
 
 
-     $.get(route,function(res){
+       $.get(route,function(res){
 
-       if(res.length > 0 ){
+         if(res.length > 0 ){
 
-         for (var i=0; i < res.length; i++){
-           if(res[i].estado=="INACTIVO"){
-             document.getElementById('file').disabled=true;
+           for (var i=0; i < res.length; i++){
+             if(res[i].estado=="INACTIVO"){
+               document.getElementById('file').disabled=true;
 
-             swal("ERROR!","La Quincena << "+qna+" >> <<"+sostenimiento+">> que intenta registrar está en un estado <<INACTIVO>>, <<ACTIVAR>> y seguir con el registro.","error");
+               swal("ERROR!","La Quincena << "+qna+" >> <<"+sostenimiento+">> que intenta registrar está en un estado <<INACTIVO>>, <<ACTIVAR>> y seguir con el registro.","error");
              //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
              return false;
            }
@@ -1512,36 +1512,496 @@ function validar_quincena(){
 
        }
 
-   });
+     });
    //  valida_file();
-   }
+ }
 
-function validar_quincenaExis(){
+ function validar_quincenaExis(){
 
-    var qna= document.getElementById("qna").value;
-    var sostenimiento= document.getElementById("sostenimiento").value;
-    var tipo= document.getElementById("tipo").value;
-    var route = "http://localhost:8000/validar_quincenaExis/"+qna+"/"+sostenimiento+"/"+tipo;
+  var qna= document.getElementById("qna").value;
+  var sostenimiento= document.getElementById("sostenimiento").value;
+  var tipo= document.getElementById("tipo").value;
+  var route = "http://localhost:8000/validar_quincenaExis/"+qna+"/"+sostenimiento+"/"+tipo;
 
 
 
-     $.get(route,function(res){
+  $.get(route,function(res){
 
-   		  if(res.length > 0 ){
+   if(res.length > 0 ){
 
-   				  for (var i=0; i < res.length; i++){
-   				    if(res[i].estado=="ACTIVO"){
-   				 		   document.getElementById('file').disabled=true;
+     for (var i=0; i < res.length; i++){
+       if(res[i].estado=="ACTIVO"){
+         document.getElementById('file').disabled=true;
 
-   				 			  swal("WARNING!","Los rechazos correspondientes a la quincena <<"+qna+">> <<"+sostenimiento+">> ya han sido registrados anteriormente.","warning");
+         swal("WARNING!","Los rechazos correspondientes a la quincena <<"+qna+">> <<"+sostenimiento+">> ya han sido registrados anteriormente.","warning");
    				 			             //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
                               return false;
-   				    }
+                            }
 
-   				  }
+                          }
 
-   			 }else{
-   			    document.getElementById('file').disabled=false;
-   			 }
-    });
+                        }else{
+                          document.getElementById('file').disabled=false;
+                        }
+                      });
+}
+
+function cambia_reclamos(){
+  var select2 = document.getElementById("personal");
+  var selectedOption2 = select2.selectedIndex;
+  var cantidadtotal = select2.value;
+  limite = "8",
+  separador = "_",
+  arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+  id=arregloDeSubCadenas[0];
+  rfc=arregloDeSubCadenas[1];
+  nombre=arregloDeSubCadenas[2];
+  categoria=arregloDeSubCadenas[3];
+  cct=arregloDeSubCadenas[4];
+  nombre_escuela=arregloDeSubCadenas[5];
+  fecha_inicio=arregloDeSubCadenas[6];
+  fecha_termino=arregloDeSubCadenas[7];
+
+  document.getElementById('cct').value = cct;
+  document.getElementById('escuela').value = nombre_escuela;
+  document.getElementById('categoria').value = categoria;
+  document.getElementById('fechai').value = fecha_inicio;
+  document.getElementById('fechaf').value = fecha_termino;
+  document.getElementById('rfc').value = rfc;
+  document.getElementById('total').value = " ";
+  document.getElementById('dias').value = " " ;
+
+
+
+
+}
+
+function llenado_modale(){
+ x = document.getElementById('motivo').value;
+ var y =document.getElementById('total').value;
+ var dias =document.getElementById('dias').value;
+
+ if(x == " " || y == " " || dias == " "){
+   document.getElementById("errorUnidad").innerHTML = "Faltan Campos por LLenar";
+   return false;
+ }else{
+   $("#modal-delete-2").modal();
+   return false;
+
+ }
+}
+
+
+function llenado(){
+  var x = document.getElementById('motivo').value;
+  var y =document.getElementById('total').value;
+  var dias =document.getElementById('dias').value;
+
+  if(x == " " || y == " " || dias == " "){
+   document.getElementById("errorUnidad").innerHTML = "Faltan Campos por LLenar";
+   return false;
+ }else{
+  document.getElementById("errorUnidad").innerHTML = "";
+  var select2 = document.getElementById("personal");
+  var selectedOption2 = select2.selectedIndex;
+  var cantidadtotal = select2.value;
+  limite = "8",
+  separador = "_",
+  arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+  id=arregloDeSubCadenas[0];
+  nombre=arregloDeSubCadenas[2];
+  var rfc = document.getElementById('rfc').value;
+  var cct = document.getElementById('cct').value ;
+  var nombre_escuela = document.getElementById('escuela').value ;
+  var categoria = document.getElementById('categoria').value ;
+  var fecha_inicio = document.getElementById('fechai').value ;
+  var fecha_termino = document.getElementById('fechaf').value ;
+
+  var comprueba = recorre2(id)
+  if (comprueba == 1){
+    swal("Alerta!", "Este Empleado Ya se ha Insertado en la Tabla!", "error");
+    return false;
+  }
+
+
+  var tabla = document.getElementById("detalles");
+    //tabla.setAttribute("id", id2);
+    var row = tabla.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+    var cell8 = row.insertCell(7);
+    var cell9 = row.insertCell(8);
+    var cell10 = row.insertCell(9);
+    cell1.innerHTML =  '<input type="button" value="Eliminar"  onClick="eliminarFila(this.parentNode.parentNode.rowIndex);">';
+    cell2.innerHTML = id;
+    cell3.innerHTML = nombre;
+    cell4.innerHTML =  rfc;
+    cell5.innerHTML = categoria;
+    cell6.innerHTML = cct;
+    cell7.innerHTML = dias;
+    cell8.innerHTML = fecha_inicio  ;
+    cell9.innerHTML = fecha_termino ;
+    cell10.innerHTML = y ;
+
+    var menos =document.getElementById("detalles").rows
+    var r = menos.length;
+    document.getElementById("totale").value= r - 2;
+
+    var sub = y  ;
+    var auxsuma= document.getElementById("subtotal").value;
+    var sumatodo = parseFloat(sub) + parseFloat(auxsuma);
+    document.getElementById("subtotal").value=sumatodo;
+
+
+
+
+  }
+}
+
+function calcula_monto(){
+  var dias = document.getElementById('dias').value;
+  var categoria = document.getElementById('categoria').value;
+  var monto = document.getElementById('total').value;
+  var ciclo = document.getElementById('ciclo_escolar').value;
+
+  var route = "http://localhost:8000/calcular_reclamo/"+dias+"/"+categoria+"/"+ciclo;
+  $.get(route,function(res){
+    document.getElementById('total').value = res;
+  });
+
+}
+
+function recorre2(valor) {
+ var z = 1
+ var arreglo = [];
+ var table = document.getElementById('detalles');
+ for (var r = 1, n = table.rows.length-1; r < n; r++) {
+  for (var c = 1, m = table.rows[r].cells.length; c < m; c++) {
+   if (z == 1){
+    var j = table.rows[r].cells[c].innerHTML;
+
+    if (valor == j ){             
+      var r = 1;
+      return(r);
+    }else{
+     z ++;
+   }
+ }
+ else if(z == 2){
+   z ++;
+ }else if(z == 3){
+  z ++;
+}else if(z == 4){
+ z ++;
+} else if (z == 5){
+  z ++;
+}else if (z == 6){
+ z ++;
+
+}else if(z == 7){
+ z ++;
+
+}else if(z == 8){
+ z ++;
+
+}else{
+ z = 1;
+
+}
+
+}
+}
+}
+
+
+function eliminarFila(value) {
+
+  var cantidadanueva=document.getElementById("detalles").rows[value].cells[9].innerHTML;
+  document.getElementById("detalles").deleteRow(value);
+  var menos =document.getElementById("detalles").rows
+  var r = menos.length;
+  document.getElementById("totale").value= r - 2;
+  var sub= document.getElementById("subtotal").value;
+  alert(cantidadanueva);
+  alert(sub);
+  document.getElementById("subtotal").value= sub - cantidadanueva;
+ // limpiar();
+}
+
+function guardar_reclamo() {
+  if (document.getElementById('total').value > 0){
+   var z = 1
+   var arreglo = [];
+   var table = document.getElementById('detalles');
+   for (var r = 1, n = table.rows.length-1; r < n; r++) {
+    for (var c = 1, m = table.rows[r].cells.length; c < m; c++) {
+     if (z == 1){
+      arreglo.push(table.rows[r].cells[c].innerHTML);
+      z ++;
     }
+
+    else if(z == 2){
+     //arreglo.push(table.rows[r].cells[c].innerHTML);
+     z ++;
+   }else if(z == 3){
+     //arreglo.push(table.rows[r].cells[c].innerHTML);
+     z ++;
+   }else if(z == 4){
+     //arreglo.push(table.rows[r].cells[c].innerHTML);
+     z ++;
+   } else if (z == 5){
+     //arreglo.push(table.rows[r].cells[c].innerHTML);
+     z ++;
+   }else if (z == 6){
+     arreglo.push(table.rows[r].cells[c].innerHTML);
+     z ++;
+
+   }else if (z == 7){
+     arreglo.push(table.rows[r].cells[c].innerHTML);
+     z ++;
+
+   }else if (z == 8){
+     arreglo.push(table.rows[r].cells[c].innerHTML);
+     z ++;
+
+   }else{
+    arreglo.push(table.rows[r].cells[c].innerHTML);
+    document.getElementById("codigo2").value=arreglo;
+    z = 1;
+
+  }
+
+}
+}
+}else{
+  //alert('No hay Elementos Agregados, Para Poder Guardar');
+  swal("Alerta!", "No hay Elementos Agregados, Para Poder Guardar!", "error");
+  return false;
+
+}
+
+///tabla2
+var arreglo_v = [];
+var table = document.getElementById('detalles2');
+for (var r = 1, n = table.rows.length-1; r < n; r++) {
+  for (var c = 1, m = table.rows[r].cells.length; c < m; c++) {
+   if (z == 1){
+    arreglo_v.push(table.rows[r].cells[c].innerHTML);
+    z ++;
+  }
+
+  else if(z == 2){
+   arreglo_v.push(table.rows[r].cells[c].innerHTML);
+   z ++;
+ }else if(z == 3){
+   arreglo_v.push(table.rows[r].cells[c].innerHTML);
+   z ++;
+ }else{
+  arreglo_v.push(table.rows[r].cells[c].innerHTML);
+  document.getElementById("visto_bueno").value=arreglo_v;
+  z = 1;
+
+}
+
+}
+}
+
+//tabla3 
+var arreglo_c = [];
+var table = document.getElementById('detalles3');
+for (var r = 1, n = table.rows.length-1; r < n; r++) {
+  for (var c = 1, m = table.rows[r].cells.length; c < m; c++) {
+   if (z == 1){
+    arreglo_c.push(table.rows[r].cells[c].innerHTML);
+    z ++;
+  }
+
+  else if(z == 2){
+   arreglo_c.push(table.rows[r].cells[c].innerHTML);
+   z ++;
+ }else if(z == 3){
+   arreglo_c.push(table.rows[r].cells[c].innerHTML);
+   z ++;
+ }else if(z == 4){
+   arreglo_c.push(table.rows[r].cells[c].innerHTML);
+   z ++;
+ }else{
+  arreglo_c.push(table.rows[r].cells[c].innerHTML);
+  document.getElementById("c_copia").value=arreglo_c;
+  z = 1;
+
+}
+
+}
+}
+
+}
+
+function agregar2() {
+ var table_count = document.getElementById('detalles2').rows.length-2;
+
+ if(table_count >= 2){
+   swal("Alerta!", "Solo se Puede Ingresar comó Maximo 2 Vo.Bo!", "error");
+   return false;
+
+ }
+ var select2 = document.getElementById("vo");
+ var selectedOption2 = select2.selectedIndex;
+ var cantidadtotal = select2.value;
+ limite = "5",
+ separador = "_",
+ arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+ puesto=arregloDeSubCadenas[0];
+ nombre_c=arregloDeSubCadenas[1];
+ id=arregloDeSubCadenas[2];
+ lic=arregloDeSubCadenas[3];
+
+ var comprueba = recorre3(id)
+ if (comprueba == 1){
+  swal("Alerta!", "Este Empleado Ya se ha Insertado en la Tabla!", "error");
+  return false;
+}
+
+var tabla = document.getElementById("detalles2");
+    //tabla.setAttribute("id", id2);
+    var row = tabla.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    cell1.innerHTML =  '<input type="button" value="Eliminar"  onClick="eliminarFila2(this.parentNode.parentNode.rowIndex);">';
+    cell2.innerHTML = id;
+    cell3.innerHTML = lic;
+    cell4.innerHTML = nombre_c;
+    cell5.innerHTML = puesto;
+  }
+
+  function recorre3(valor) {
+   var z = 1
+   var arreglo = [];
+   var table = document.getElementById('detalles2');
+   for (var r = 1, n = table.rows.length-1; r < n; r++) {
+    for (var c = 1, m = table.rows[r].cells.length; c < m; c++) {
+      var j = table.rows[r].cells[1].innerHTML;
+      if (valor == j ){             
+        var r = 1;
+        return(r);
+      }
+
+    }
+  }}
+
+  function eliminarFila2(value) {
+
+    document.getElementById("detalles2").deleteRow(value);
+ // limpiar();
+}
+
+function agregar3() {
+ var table_count = document.getElementById('detalles3').rows.length-2;
+
+ if(table_count >= 6){
+   swal("Alerta!", "Solo se Puede Ingresar comó Maximo 5 Vo.Bo!", "error");
+   return false;
+
+ }
+ var select2 = document.getElementById("ccp");
+ var selectedOption2 = select2.selectedIndex;
+ var cantidadtotal = select2.value;
+ limite = "6",
+ separador = "_",
+ arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+ puesto=arregloDeSubCadenas[0];
+ nombre_c=arregloDeSubCadenas[1];
+ id=arregloDeSubCadenas[2];
+ lic=arregloDeSubCadenas[3];
+ a_n=arregloDeSubCadenas[4];
+
+ var comprueba = recorre4(id)
+ if (comprueba == 1){
+  swal("Alerta!", "Este Empleado Ya se ha Insertado en la Tabla!", "error");
+  return false;
+}
+
+var tabla = document.getElementById("detalles3");
+    //tabla.setAttribute("id", id2);
+    var row = tabla.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(4);
+    cell1.innerHTML =  '<input type="button" value="Eliminar"  onClick="eliminarFila3(this.parentNode.parentNode.rowIndex);">';
+    cell2.innerHTML = id;
+    cell3.innerHTML = lic;
+    cell4.innerHTML = nombre_c;
+    cell5.innerHTML = a_n;
+    cell6.innerHTML = puesto;
+  }
+
+  function recorre4(valor) {
+   var z = 1
+   var arreglo = [];
+   var table = document.getElementById('detalles3');
+   for (var r = 1, n = table.rows.length-1; r < n; r++) {
+    for (var c = 1, m = table.rows[r].cells.length; c < m; c++) {
+      var j = table.rows[r].cells[1].innerHTML;
+      if (valor == j ){             
+        var r = 1;
+        return(r);
+      }
+
+    }
+  }}
+
+  function eliminarFila3(value) {
+
+    document.getElementById("detalles3").deleteRow(value);
+ // limpiar();
+}
+
+function buscar_qnas(){
+  var x = document.getElementById('pagos');
+  if (x.length > 0){
+    for (var i = 0; i < x.length; i++) {
+      x.remove(i);
+    }}
+    var ciclo = document.getElementById('ciclo_escolar').value;
+
+    var route = "http://localhost:8000/buscar_qnas/"+ciclo;
+    $.get(route,function(res){
+      for (var p = 0 ; p < res.length; p++) {
+        var x = document.getElementById("pagos");
+        var option = document.createElement("option");
+        option.text = res[p].qna ;
+        option.value = res[p].qna;
+        x.add(option, x[p])
+      }
+    });
+
+  }
+
+  function num_oficio(){
+    var ciclo = document.getElementById('ciclo_escolar').value;
+    var x= document.getElementById('oficio_aux').value;
+    var route = "http://localhost:8000/buscar_oficio/"+x+"/"+ciclo;
+    $.get(route,function(res){
+      if(res.length > 0){
+       swal("Alerta!", "Este Oficio Ya se ha Registrado Anteriormente!", "error");
+       document.getElementById('submit8').disabled= true;
+       return false;
+     }else{
+      var fecha = new Date();
+      var ano = fecha.getFullYear();
+      document.getElementById('oficio').value = "SA/DFE/DHA/ETC.-"+x+"/"+ano;
+      document.getElementById('submit8').disabled= false;
+    }
+  });
+  }

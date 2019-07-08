@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         
         Model::unguard();
         
+        $this->call(DirectorioExternoSeeder::class);
         $this->call(TabuladorPagosSeeder::class);
         $this->call(CicloEscolarSeeder::class);
         $this->call(RegionSeeder::class);
@@ -31,6 +32,9 @@ class DatabaseSeeder extends Seeder
         $this->call(Captura2Seeder::class);
         $this->call(Director_CCTSeeder::class);
         $this->call(DirectorioSeeder::class);
+        $this->call(DirectorioInternoSeeder::class);
+
+        
 
 
         // $this->call(UserTableSeeder::class); 

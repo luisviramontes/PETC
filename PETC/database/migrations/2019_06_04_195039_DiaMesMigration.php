@@ -14,6 +14,7 @@ class DiaMesMigration extends Migration
     {
         Schema::create('dia_mes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('n_mes')->nullable();
             $table->string('mes');
             $table->string('dia');
             $table->string('dia_semana');
