@@ -15,12 +15,10 @@ class DatabaseSeeder extends Seeder
     {
 
         Model::unguard();
-<<<<<<< HEAD
+
         
         $this->call(DirectorioExternoSeeder::class);
-=======
 
->>>>>>> 7907baf0578c9ad597decf187c3304b1f4cdaf65
         $this->call(TabuladorPagosSeeder::class);
         $this->call(CicloEscolarSeeder::class);
         $this->call(RegionSeeder::class);
