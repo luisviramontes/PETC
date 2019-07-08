@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () { 
+Route::get('/', function () {
 	return view('welcome');
 });
 
@@ -40,6 +40,7 @@ Route::resource('reintegros', 'ReintegrosController');
 Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
 Route::get('pdf_catpuesto/{id}', array('as'=> '/pdf_catpuesto','uses'=>'CatPuestoController@invoice'));
 Route::get('traerpersonal/{cct}','ReintegrosController@traerpersonal');
+Route::get('traerdire/{dire}','ReintegrosController@traerdire');
 /////////////////////////////////////////////////////////////
 
 
@@ -120,7 +121,7 @@ Route::post('activarbajafed/{id}', 'BajasFedController@activar');
 Route::get('descargar-bajas-federales', 'BajasFedController@excel')->name('nomina.bajas_federales.excel');
 
 //BAJAS ESTATALES
-Route::resource('bajasest', 'BajasEstController'); 
+Route::resource('bajasest', 'BajasEstController');
 Route::post('activarbajaest/{id}', 'BajasEstController@activar');
 Route::get('descargar-bajas-estatales', 'BajasEstController@excel')->name('nomina.bajas_estatales.excel');
 
@@ -147,12 +148,12 @@ Route::post('activarcambiofuncion_fed/{id}', 'CambiosFunFedController@activar');
 Route::get('descargar-cfuncion-federal', 'CambiosFunFedController@excel')->name('nomina.cambios_ffederal.excel');
 
 
-//INTERINOS FEDERALES 
+//INTERINOS FEDERALES
 Route::resource('interinosfed', 'InterinosFedController');
 Route::post('activar_interinosfed/{id}', 'InterinosFedController@activar');
 Route::get('descargar-interinos-fed', 'InterinosFedController@excel')->name('nomina.interinos-fed.excel');
 
-//INTERINOS ESTATALES 
+//INTERINOS ESTATALES
 Route::resource('interinosest', 'InterinosEstController');
 Route::post('activar_interinosest/{id}', 'InterinosEstController@activar');
 Route::get('descargar-interinos-est', 'InterinosEstController@excel')->name('nomina.interinos-est.excel');
@@ -162,11 +163,11 @@ Route::get('descargar-interinos-est', 'InterinosEstController@excel')->name('nom
 Route::resource('inasistencias', 'InasistenciasController');
 Route::get('inasistencias2/{id}', 'InasistenciasController@index');
 Route::post('eliminar_lista/{id}', 'InasistenciasController@inactivar');
-Route::get('validar_lista/{cct}/{mes}/{ciclo}', 'InasistenciasController@validarLista');  
-Route::get('busca_personal/{cct}', 'InasistenciasController@BuscaPersonal'); 
-Route::get('busca_personal2/{cct}', 'InasistenciasController@BuscaPersonal2'); 
+Route::get('validar_lista/{cct}/{mes}/{ciclo}', 'InasistenciasController@validarLista');
+Route::get('busca_personal/{cct}', 'InasistenciasController@BuscaPersonal');
+Route::get('busca_personal2/{cct}', 'InasistenciasController@BuscaPersonal2');
 Route::get('busca_dias/{mes}/{ciclo}', 'InasistenciasController@BuscaDias');
-Route::get('ver_inasistencias/{id}/{ciclo}', array('as'=> '/ver_inasistencias','uses'=>'InasistenciasController@verInformacion')); 
+Route::get('ver_inasistencias/{id}/{ciclo}', array('as'=> '/ver_inasistencias','uses'=>'InasistenciasController@verInformacion'));
 Route::get('pdf_inasistencias/{id}/{ciclo}', array('as'=> '/pdf_inasistencias','uses'=>'InasistenciasController@invoice'));
 Route::get('descargar-inasistencias/{ciclo}', 'InasistenciasController@excel')->name('nomina.inasistencias.excel');
 Route::get('ver_inasistencias_personal/{id}/{ciclo}', array('as'=> '/ver_inasistencias_personal','uses'=>'InasistenciasController@excel2'));
@@ -174,10 +175,10 @@ Route::get('ver_inasistencias_ct/{id}/{ciclo}', array('as'=> '/ver_inasistencias
 Route::get('busca_inasistencias/{id_cct}/{ciclo}/{mes}', 'InasistenciasController@BuscaInasistencias');
 
 Route::get('genera_listas', 'InasistenciasController@generar_listas');
-Route::get('busca_escuelas_region/{region}', 'InasistenciasController@busca_escuelas_region'); 
+Route::get('busca_escuelas_region/{region}', 'InasistenciasController@busca_escuelas_region');
 Route::post('generar_pdf_listas/','InasistenciasController@generar_pdf_listas')->name('nomina.inasistencias.generar_pdf_listas');
 
-Route::get('extender_contrato/{id}', 'CapturaController@extender_contrato'); 
+Route::get('extender_contrato/{id}', 'CapturaController@extender_contrato');
 Route::post('guardar_contrato/{id}', 'CapturaController@guardar_contrato')->name('nomina.captura.guardar_contrato');
 
 

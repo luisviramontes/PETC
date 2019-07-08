@@ -665,7 +665,7 @@ function validarInput(input) {
  $.get(route,function(res){
   if(res.length > 0){
     for (var i = 0; i < res.length; i++) {
-      if(res[i].estado =="ACTIVO"){       
+      if(res[i].estado =="ACTIVO"){
         var x = document.getElementById("docente_cubrir");
         var option = document.createElement("option");
         option.text = res[i].nombre +"-"+res[i].rfc;
@@ -716,7 +716,7 @@ function validarInput(input) {
   var cct2 = document.getElementById('cct_nuevo').value ;
   verifica_personal(categoria,cct2);
 
-  
+
 }else if(aux == "CAMBIOFUNCION"){
   verifica_clave();
   desabilita_docente();
@@ -757,7 +757,7 @@ function desabilita_docente(){
  document.getElementById('docente_cubrir').required = false;
  document.getElementById('error_movimiento').innerHTML= "";
  document.getElementById('error_movimiento').value= "0";
- document.getElementById("docente_cubrir").required = false; 
+ document.getElementById("docente_cubrir").required = false;
 }
 
 function verifica_personal(categoria,cct){
@@ -776,7 +776,7 @@ function verifica_personal(categoria,cct){
       swal("Error!", "SE ENCUENTRA REGISTRADO UN DIRECTOR ACTUALMENTE EN ESTE CTE ( "+res[0].nombre+" ), NECESITA AGREGARLO COMO ALTA PARA PODER CONTINUAR", "error");
       document.getElementById('error_movimiento').value= "1";
     }
-    else if(categoria == "INTENDENTE"){      
+    else if(categoria == "INTENDENTE"){
       var nivel = res[0].nivel;
       var tot_gru = res[0].total_grupos;
        // var suma_tot = tot_gru *
@@ -980,22 +980,22 @@ function busca_personal(){
 
       $.get(route3,function(res){
         dias = parseInt(res.length);
-        if(res.length > 0 ){ 
+        if(res.length > 0 ){
           var tabla = document.getElementById("detalles");
     //tabla.setAttribute("id", id2);
     var row = tabla.insertRow(0);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3); 
+    var cell4 = row.insertCell(3);
     cell1.innerHTML =  "N°";
     cell2.innerHTML = "Nombre del Empleado";
     cell3.innerHTML = "R.F.C" ;
-    cell4.innerHTML = "Categoria" ;      
-    for (var i=0; i < res.length; i++){   
+    cell4.innerHTML = "Categoria" ;
+    for (var i=0; i < res.length; i++){
       var aux = 4 + i;
       var cellx = row.insertCell(aux);
-      cellx.innerHTML = res[i].l_semana+"-"+res[i].dia ;   
+      cellx.innerHTML = res[i].l_semana+"-"+res[i].dia ;
     }
 
     $.get(route2,function(res){
@@ -1020,7 +1020,7 @@ function busca_personal(){
       var z = tabla.rows[0].cells[aux].innerHTML;
       var agregaHTML = "<input type=button value=O class=agrega id="+(res[i].id)+"-"+(z)+">";
       var cellx = row.insertCell(aux);
-      cellx.innerHTML = agregaHTML ; 
+      cellx.innerHTML = agregaHTML ;
       //document.getElementById(""+res[i].id+z).style.color = "#00ff00";
 
       cellx.addEventListener("click", function(event) {
@@ -1101,7 +1101,7 @@ function busca_personal2(){
 
   $.get(route3,function(res){
     dias = parseInt(res.length);
-    if(res.length > 0 ){ 
+    if(res.length > 0 ){
 
 
       var tabla = document.getElementById("detalles");
@@ -1110,11 +1110,11 @@ function busca_personal2(){
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3); 
+    var cell4 = row.insertCell(3);
     cell1.innerHTML =  "N°";
     cell2.innerHTML = "Nombre del Empleado";
     cell3.innerHTML = "R.F.C" ;
-    cell4.innerHTML = "Categoria" ; 
+    cell4.innerHTML = "Categoria" ;
 
     var tabla2 = document.getElementById("detalles");
     //tabla.setAttribute("id", id2);
@@ -1132,10 +1132,10 @@ function busca_personal2(){
 
 
 
-    for (var i=0; i < res.length; i++){   
+    for (var i=0; i < res.length; i++){
       var aux = 4 + i;
       var cellx = row.insertCell(aux);
-      cellx.innerHTML = res[i].l_semana+"-"+res[i].dia ;   
+      cellx.innerHTML = res[i].l_semana+"-"+res[i].dia ;
 
       var z = tabla2.rows[0].cells[aux].innerHTML;
     //  var arr = document.getElementById(""+aux).id;
@@ -1143,15 +1143,15 @@ function busca_personal2(){
       var agregaHTML = "<input type=button value=/ class=agrega id="+(id)+"-"+(z)+">";
       var va=""+id+"-"+z
       var cellx = row2.insertCell(aux);
-      cellx.innerHTML = agregaHTML ;     
+      cellx.innerHTML = agregaHTML ;
       document.getElementById(""+va).style.color = "#ff0000";
       arreglo.push(va);
-      document.getElementById('inasistencias').value=arreglo;  
+      document.getElementById('inasistencias').value=arreglo;
 
     }else{
       var agregaHTML = "<input type=button value=O class=agrega id="+(id)+"-"+(z)+">";
       var cellx = row2.insertCell(aux);
-      cellx.innerHTML = agregaHTML ; 
+      cellx.innerHTML = agregaHTML ;
     }
 
 
@@ -1166,13 +1166,13 @@ function busca_personal2(){
         document.getElementById(""+aux).style.color = "#ff0000";
         arreglo.push(aux);
         document.getElementById('inasistencias').value=arreglo;
-        
+
       }else{
         for (var i = 0; i < arreglo.length; i++) {
           if (arr == arreglo[i]) {
             arreglo.splice(i, 1);
             document.getElementById('inasistencias').value=arreglo;
-            
+
           }
         }
         document.getElementById(""+aux).value = "O";
@@ -1223,22 +1223,22 @@ function busca_personal3(callback){
 
         $.get(route3,function(res){
           dias = parseInt(res.length);
-          if(res.length > 0 ){ 
+          if(res.length > 0 ){
             var tabla = document.getElementById("detalles");
     //tabla.setAttribute("id", id2);
     var row = tabla.insertRow(0);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3); 
+    var cell4 = row.insertCell(3);
     cell1.innerHTML =  "N°";
     cell2.innerHTML = "Nombre del Empleado";
     cell3.innerHTML = "R.F.C" ;
-    cell4.innerHTML = "Categoria" ;      
-    for (var i=0; i < res.length; i++){   
+    cell4.innerHTML = "Categoria" ;
+    for (var i=0; i < res.length; i++){
       var aux = 4 + i;
       var cellx = row.insertCell(aux);
-      cellx.innerHTML = res[i].l_semana+"-"+res[i].dia ;   
+      cellx.innerHTML = res[i].l_semana+"-"+res[i].dia ;
     }
 
     $.get(route2,function(res){
@@ -1265,9 +1265,9 @@ function busca_personal3(callback){
       var z = tabla.rows[0].cells[aux].innerHTML;
       var agregaHTML = "<input type=button value=O class=agrega id="+(res[i].id)+"-"+(z)+">";
       var cellx = row2.insertCell(aux);
-      cellx.innerHTML = agregaHTML ; 
+      cellx.innerHTML = agregaHTML ;
     }
-    
+
     cuenta_arreglo(arreglo);
   }
 
@@ -1277,7 +1277,7 @@ function busca_personal3(callback){
 
 }
 
-}); 
+});
   }else{
     swal("ERROR!","No Se Encuentran Dias Habilen en este Mes, Dentro de este Ciclo Escolar","error");
     //document.getElementById('submit8').disabled=false;
@@ -1324,10 +1324,10 @@ function busca_personal3(callback){
             if(res[f].id_captura == id && dia==res[f].dia && mes==res[f].mes){
              var agregaHTML = "<input type=button value=/ class=agrega id="+id+"-"+(z)+">";
              var va=""+id+"-"+z
-             tabla.rows[i].cells[aux].innerHTML= agregaHTML;  
+             tabla.rows[i].cells[aux].innerHTML= agregaHTML;
              document.getElementById(""+va).style.color = "#ff0000";
              arreglo.push(va);
-             document.getElementById('inasistencias').value=arreglo; 
+             document.getElementById('inasistencias').value=arreglo;
            }
 
          }
@@ -1338,7 +1338,7 @@ function busca_personal3(callback){
 });
   }
 
-  
+
 //  valida_file();;
 
 

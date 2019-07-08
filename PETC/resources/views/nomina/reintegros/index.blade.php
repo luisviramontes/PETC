@@ -73,17 +73,21 @@
 
 
 								<td style="background-color:#DBFFC2;">{{$reintegro->cct}} </td>
-                <td style="background-color:#DBFFC2;">{{$reintegro->nombre}} </td>
-								<td style="display:none;">{{$reintegro->categoria}} </td>
-								<td style="display:none;">{{$reintegro->num_dias}} </td>
-                <td style="background-color:#DBFFC2;">{{$reintegro->director_regional}} </td>
-                <td style="background-color:#DBFFC2;">{{$reintegro->sostenimiento}} </td>
-                <td style="display:none;">{{$reintegro->n_oficio}} </td>
-                <td style="background-color:#DBFFC2;">{{$reintegro->motivo}} </td>
+								<td style="background-color:#DBFFC2;">{{$reintegro->nombre}} </td>
+								<td style="background-color:#DBFFC2;">{{$reintegro->categoria}} </td>
+								<td style="background-color:#DBFFC2;">{{$reintegro->num_dias}} </td>
+								<td style="background-color:#DBFFC2;">{{$reintegro->director_regional}} </td>
+								<td style="background-color:#DBFFC2;">{{$reintegro->sostenimiento}} </td>
+								<td style="background-color:#DBFFC2;">{{$reintegro->n_oficio}} </td>
+								<td style="background-color:#DBFFC2;">{{$reintegro->motivo}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->total}} </td>
-								<td style="display:none;">{{$reintegro->capturo}} </td>
-								<td style="background-color:#DBFFC2;">{{$reintegro->estado}}</td>
-                <td style="background-color:#DBFFC2;">{{$reintegro->created_at}} </td>
+								<td style="background-color:#DBFFC2;">{{$reintegro->captura}} </td>
+								<td style="background-color:#DBFFC2;">{{$reintegro->estado}} </td>
+								<td style="background-color:#DBFFC2;">{{$reintegro->created_at}} </td>
+
+								<td style="display:none;">{{$reintegro->num_dias}} </td>
+
+
 
 
 
@@ -114,14 +118,14 @@
 
 						<td style="background-color:#FFE4E1;">{{$reintegro->cct}} </td>
 					 	<td style="background-color:FFE4E1;">{{$reintegro->nombre}} </td>
-						<td style="display:none;">{{$reintegro->categoria}} </td>
+
 						<td style="display:none;">{{$reintegro->num_dias}} </td>
 					 	<td style="background-color:#FFE4E1;">{{$reintegro->director_regional}} </td>
-					 	<td style="background-color:#FFE4E1;">{{$reintegro->sostenimiento}} </td>
+
 					 	<td style="display:none;">{{$reintegro->n_oficio}} </td>
 					 	<td style="background-color:#FFE4E1;">{{$reintegro->motivo}} </td>
 						<td style="background-color:#FFE4E1;">{{$reintegro->total}} </td>
-						<td style="display:none;">{{$reintegro->capturo}} </td>
+						<td style="display:none;">{{$reintegro->captura}} </td>
 						<td style="background-color:#FFE4E1;">{{$reintegro->estado}}</td>
 						<td style="background-color:#FFE4E1;">{{$reintegro->created_at}} </td>
 
@@ -142,7 +146,7 @@
 								</td>
 							</tr>
 							@endif
-						<!--	@include('nomina.region.modal') -->
+							@include('nomina.reintegros.modal')
 
 							@endforeach
 						</tbody>

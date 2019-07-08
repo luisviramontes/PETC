@@ -9,6 +9,8 @@ use petc\Http\Controllers\Controller;
 
 use DB;
 use petc\CapturaModel;
+use petc\DirectorioRegionalModel;
+use petc\ReintegrosModel;
 use Maatwebsite\Excel\Facades\Excel;
 use PHPExcel_Worksheet_Drawing;
 use Validator;
@@ -34,13 +36,14 @@ class ReintegrosController extends Controller
        ->join('captura','reintegros.id_captura', '=', 'captura.id' ) //nombre, sostenimiento, categoria
        ->join('directorio_regional','reintegros.id_directorio_regional', '=', 'directorio_regional.id' ) //director_regional,sostenimiento
        ->join('ciclo_escolar','reintegros.id_ciclo_escolar', '=', 'ciclo_escolar.id' ) //ciclo
+       ->join('region','reintegros.id_region', '=', 'region.id' ) //region
 
        ->select('reintegros.id as id','reintegros.id_centro_trabajo','reintegros.id_captura','reintegros.id_directorio_regional','reintegros.id_ciclo_escolar'
-       ,'reintegros.num_dias','reintegros.categoria','reintegros.total','reintegros.n_oficio','reintegros.motivo','reintegros.estado'
+       ,'reintegros.num_dias','reintegros.total','reintegros.n_oficio','reintegros.motivo','reintegros.estado'
        ,'reintegros.captura','reintegros.created_at'
        ,'centro_trabajo.cct'
-       ,'captura.nombre','captura.sostenimiento','captura.categoria'
-       ,'directorio_regional.director_regional','captura.sostenimiento'
+       ,'captura.nombre','captura.categoria'
+       ,'directorio_regional.director_regional','directorio_regional.id_region'
        ,'ciclo_escolar.ciclo')
 
        ->where('reintegros.total','LIKE','%'.$query.'%')
@@ -50,7 +53,6 @@ class ReintegrosController extends Controller
        ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
        ->orwhere('captura.nombre','LIKE','%'.$query.'%')
        ->orwhere('directorio_regional.director_regional','LIKE','%'.$query.'%')
-       ->orwhere('directorio_regional.sostenimiento','LIKE','%'.$query.'%')
        ->paginate(24);
        //print_r($listas);
       return view('nomina.reintegros.index',["reintegros"=>$reintegros,"searchText"=>$query]);
@@ -79,8 +81,41 @@ class ReintegrosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $reintegros= new ReintegrosModel;
+
+      $id_cap=$request->get('id_captura');
+      //$first=head($id_cct);
+      $name=explode("_",$id_cap);
+      $reintegros -> id_captura = $name[2];
+
+      $reintegros -> id_centro_trabajo = $request ->id_centro_trabajo;
+
+      $reintegros -> id_directorio_regional = $request ->id_directorio_regional;
+
+      $id_ciclo=$request->get('id_ciclo_escolar');
+      //$first=head($id_cct);
+      $ciclo=explode("_",$id_ciclo);
+      $reintegros -> id_ciclo_escolar = $ciclo[4];
+
+      $reintegros -> num_dias = $request ->num_dias;
+      //$reintegros -> categoria = $request ->categoria;
+      $reintegros -> total = $request ->total;
+      $reintegros -> n_oficio = $request ->n_oficio;
+      $reintegros -> motivo = $request ->motivo;
+
+      $reintegros -> estado = "ACTIVO";
+      $reintegros -> captura = "ADMINISTRADOR";
+
+
+      if($reintegros->save()){
+
+        return redirect('/reintegros');
+
+      }else {
+      return false;
+      }
     }
+
 
     /**
      * Display the specified resource.
@@ -130,12 +165,24 @@ class ReintegrosController extends Controller
     public function traerpersonal(Request $request,$cct)
       {
         $personal= CapturaModel::
-        select('id','categoria','nombre', 'estado')
+        select('id','categoria','nombre','sostenimiento', 'estado')
         ->where('id_cct_etc','=',$cct)->where('estado','=','ACTIVO')
         ->get();
 
         return response()->json(
           $personal->toArray());
-      }
+}
+
+public function traerdire(Request $request,$dire)
+  {
+    $director= DirectorioRegionalModel::select('id','director_regional', 'estado')
+    ->where('id_region','=',$dire)->where('estado','=','ACTIVO')
+    ->get();
+
+    return response()->json(
+      $director->toArray());
+}
+
+
 
 }

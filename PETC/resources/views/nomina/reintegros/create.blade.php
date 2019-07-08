@@ -39,7 +39,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">CCT <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select  name="cct" id="cct" onchange="cctescuela();" class="form-control select2" required>
+								<select  name="id_centro_trabajo" id="id_centro_trabajo" onchange="cctescuela();valida_cctre()" class="form-control select2" required>
 									<option selected>
 										Selecciona una opción
 									</option>
@@ -58,7 +58,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select  name="nombre" id="nombre"  onchange="nombre_clave()" class="form-control select2" required>
+								<select  name="id_captura" id="id_captura"  onchange="nombre_clave();valida_nom();nombre_sos();direc()" class="form-control select2" required>
 									<option selected>
 										Selecciona una opción
 									</option>
@@ -79,12 +79,12 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ciclo Escolar <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select  name="ciclo_escolar" id="ciclo" onchange="" class="form-control select2" required>
+								<select  name="id_ciclo_escolar" id="id_ciclo_escolar" onchange="valida_ciclore();" class="form-control select2" required>
 									<option selected>
 										Selecciona una opción
 									</option>
 									@foreach($tabla as $ciclo)
-									<option value="{{$ciclo->ciclo}}_{{$ciclo->pago_director}}_{{$ciclo->pago_docente}}_{{$ciclo->pago_intendente}}">
+									<option value="{{$ciclo->ciclo}}_{{$ciclo->pago_director}}_{{$ciclo->pago_docente}}_{{$ciclo->pago_intendente}}_{{$ciclo->id}}">
 										{{$ciclo->ciclo}}
 									</option>
 								@endforeach
@@ -105,15 +105,12 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Director Regional <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select  name="director_regional" id="director_regional" onchange="dire_clave()" class="form-control select2" required>
+								<select  name="id_directorio_regional" id="id_directorio_regional" onchange="valida_dire();" class="form-control select2" required>
 									<option selected>
 										Selecciona una opción
 									</option>
-									@foreach($directorio_regional as $director)
-									<option value="{{$director->director_regional}}_{{$director->sostenimiento}}_{{$director->id}}">
-										{{$director->director_regional}}
-									</option>
-										@endforeach
+
+
 								</select>
 								<div class="help-block with-errors"></div>
 								<div class="text-danger" id='error_director_regional'>{{$errors->formulario->first('director_regional')}}</div>
@@ -123,7 +120,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Sostenimiento: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="sostenimiento" id="sostenimiento" disabled type="text"   class="form-control" required value="{{Input::old('sostenimiento')}}" />
+								<input name="id_reg" id="id_reg" disabled type="text"  class="form-control" required value="{{Input::old('id_reg')}}" />
 							</div>
 						</div>
 
@@ -151,7 +148,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Total: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="total"  disabled id="total" type="number"  class="form-control" required maxlength="3" min="1" max ="199" />
+								<input name="total"  disabled="true" id="total" type="number" value="{{Input::old('total')}}"  class="form-control" required min="1" max ="199" />
 							</div>
 						</div>
 
@@ -172,7 +169,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
 								<button type="submit" id="submit" disabled="true" class="btn btn-primary">Guardar</button>
-								<a href="{{url('/listas_asistencias')}}" class="btn btn-default"> Cancelar</a>
+								<a href="{{url('/reintegros')}}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->
 
@@ -185,41 +182,73 @@
 </div><!--/container clear_both padding_fix-->
 <script type="text/javascript">
 			window.onload=function(){
-
+				valida_cctre();
+				valida_nom();
+				valida_ciclore();
 
 }
 
-function nombre_clave() {
-      var select2 = document.getElementById("nombre");
-      var selectedOption2 = select2.selectedIndex;
-     	var cantidadtotal = select2.value;
-     	limite = "9",
-      separador = "_",
-      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-     	cct=arregloDeSubCadenas[0];
-     	categoria=arregloDeSubCadenas[1];
-     	document.getElementById('categoria').value=categoria;
-			alert(cantidadtotal);
+function valida_cctre() {
+		if( document.getElementById('id_centro_trabajo').value == "Selecciona una opción"){
+		//	swal("ERROR!","Selecciona tipo se puesto","error");
+			document.getElementById('id_captura').disabled=true;
+			document.getElementById('id_ciclo_escolar').disabled=true;
+			document.getElementById('num_dias').disabled=true;
+			document.getElementById('id_directorio_regional').disabled=true;
+			document.getElementById("error_cct").innerHTML = "Seleccione una opción para habilitar los otros campos.";
+			return false
+		}else if(document.getElementById('id_centro_trabajo').value != "Selecciona una opción"){
+			document.getElementById('id_captura').disabled=false;
+			document.getElementById("error_cct").innerHTML = "Proceda con la captura. 😀";
+		}
 }
 
-function dire_clave() {
-      var select2 = document.getElementById("director_regional");
-      var selectedOption2 = select2.selectedIndex;
-     	var cantidadtotal = select2.value;
-     	limite = "9",
-      separador = "_",
-      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-     	cct=arregloDeSubCadenas[0];
-     	sostenimiento=arregloDeSubCadenas[1];
-     	document.getElementById('sostenimiento').value=sostenimiento;
+function valida_nom() {
+			if( document.getElementById('id_captura').value == "Selecciona una opción"){
+			//	swal("ERROR!","Selecciona tipo se puesto","error");
+
+				document.getElementById("error_nombre").innerHTML = "Seleccione una opción.";
+				return false
+			}else if(document.getElementById('id_captura').value != "Selecciona una opción"){
+				document.getElementById('id_ciclo_escolar').disabled=false;
+				document.getElementById("error_nombre").innerHTML = "Proceda con la captura. 😀";
+			}
 }
+
+function valida_ciclore() {
+			if( document.getElementById('id_ciclo_escolar').value == "Selecciona una opción"){
+			//	swal("ERROR!","Selecciona tipo se puesto","error");
+
+				document.getElementById("error_ciclo_escolar").innerHTML = "Seleccione una opción.";
+				return false
+			}else if(document.getElementById('id_ciclo_escolar').value != "Selecciona una opción"){
+				document.getElementById('num_dias').disabled=false;
+				document.getElementById('id_directorio_regional').disabled=false;
+				document.getElementById("error_ciclo_escolar").innerHTML = "Proceda con la captura. 😀";
+			}
+}
+
+function valida_dire() {
+			if( document.getElementById('id_directorio_regional').value == "Selecciona una opción"){
+			//	swal("ERROR!","Selecciona tipo se puesto","error");
+
+				document.getElementById("error_director_regional").innerHTML = "Seleccione una opción.";
+				return false
+			}else if(document.getElementById('id_directorio_regional').value != "Selecciona una opción"){
+
+				document.getElementById('submit').disabled=false;
+				document.getElementById("error_director_regional").innerHTML = "Proceda con la captura. 😀";
+			}
+}
+
+
 
 function calculadoradire() {
  var i= 0;
  var x = String(document.getElementById("categoria").value);
  var y = parseInt(document.getElementById("num_dias").value);
 
- var select2 = document.getElementById("ciclo");
+ var select2 = document.getElementById("id_ciclo_escolar");
  var selectedOption2 = select2.selectedIndex;
  var cantidadtotal = select2.value;
  limite = "9",
@@ -247,18 +276,19 @@ function calculadoradire() {
 
 
 function cctescuela(){
-var cct = document.getElementById("cct").value;
+var cct = document.getElementById("id_centro_trabajo").value;
+
 var route = "http://localhost:8000/traerpersonal/"+cct;
 
 $.get(route,function(res){
   if(res.length > 0){
     for (var i = 0; i < res.length; i++) {
       if(res[i].estado =="ACTIVO"){
-        var x = document.getElementById("nombre");
+        var x = document.getElementById("id_captura");
         var option = document.createElement("option");
-        option.text = res[i].nombre +"-"+res[i].categoria;
-        option.value = res[i].nombre;
-				alert(route);
+        option.text = res[i].nombre;
+        option.value = res[i].nombre +"_"+res[i].categoria +"_"+res[i].sostenimiento +"_"+res[i].id;
+
 				x.add(option, x[i]);
 
       }
@@ -266,6 +296,64 @@ $.get(route,function(res){
   }
 
 });
+}
+
+
+function direc(){
+
+var dire = document.getElementById("id_reg").value;
+
+var route = "http://localhost:8000/traerdire/"+dire;
+
+$.get(route,function(res){
+  if(res.length > 0){
+alert('entro');
+    for (var i = 0; i < res.length; i++) {
+      if(res[i].estado =="ACTIVO"){
+        var x = document.getElementById("id_directorio_regional");
+        var option = document.createElement("option");
+        option.text = res[i].director_regional;
+        option.value = res[i].director_regional +"_"+res[i].id;
+
+				x.add(option, x[i]);
+
+      }
+    }
+  }
+
+});
+
+}
+
+
+
+
+
+function nombre_clave() {
+      var select2 = document.getElementById("id_captura");
+      var selectedOption2 = select2.selectedIndex;
+     	var cantidadtotal = select2.value;
+     	limite = "9",
+      separador = "_",
+      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+     	cct=arregloDeSubCadenas[0];
+     	categoria=arregloDeSubCadenas[1];
+     	document.getElementById('categoria').value=categoria;
+
+}
+
+function nombre_sos() {
+      var select2 = document.getElementById("id_captura");
+      var selectedOption2 = select2.selectedIndex;
+     	var cantidadtotal = select2.value;
+     	limite = "9",
+      separador = "_",
+      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+     	cct=arregloDeSubCadenas[0];
+			sostenimiento=arregloDeSubCadenas[2];
+     	id_reg=arregloDeSubCadenas[3];
+     	document.getElementById('id_reg').value=id_reg;
+			
 }
 
 
