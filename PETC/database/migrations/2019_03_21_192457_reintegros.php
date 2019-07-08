@@ -22,8 +22,9 @@ class Reintegros extends Migration
             $table->foreign('id_directorio_regional')->references('id')->on('directorio_regional');
             $table->integer('id_ciclo_escolar')->unsigned();
             $table->foreign('id_ciclo_escolar')->references('id')->on('ciclo_escolar');
+            $table->integer('id_region')->unsigned();
+            $table->foreign('id_region')->references('id')->on('region');
             $table->integer('num_dias');
-            $table->string('categoria');
             $table->integer('total');
             $table->string('n_oficio');
             $table->string('motivo');
