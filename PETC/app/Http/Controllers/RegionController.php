@@ -18,7 +18,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\RegionRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 
 class RegionController extends Controller
 {
@@ -27,6 +28,10 @@ class RegionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request)
     {
       ///////////////////buscar////////////////////////7
@@ -59,6 +64,7 @@ class RegionController extends Controller
      */
     public function store(RegionRequest $formulario)
     {
+      $user = Auth::user()->name;
       $validator = Validator::make(
       $formulario->all(),
       $formulario->rules(),
@@ -72,7 +78,7 @@ class RegionController extends Controller
       $region -> region = $formulario ->region;
       $region -> sostenimiento = $formulario ->sostenimiento;
       $region -> estado = "ACTIVO";
-      $region -> capturo="ADMINISTRADOR";
+      $region -> capturo=$user;
 
       if($region->save()){
 
@@ -134,12 +140,13 @@ class RegionController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
       $regiones = RegionModel::find($id);
       //asignamos nuevos valores
       $regiones -> region = $request ->region;
       $regiones -> sostenimiento = $request ->sostenimiento;
       $regiones -> estado = "ACTIVO";
-      $regiones -> capturo="ADMINISTRADOR";
+      $regiones -> capturo=$user;
       //guardar
       if($regiones->save()){
 
@@ -158,9 +165,10 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
+      $user = Auth::user()->name;
       $region=RegionModel::findOrFail($id);
       $region->estado="INACTIVO";
-      $region->capturo="ADMINISTRADOR";
+      $region->capturo=$user;
       $region->update();
         return redirect('region');
     }

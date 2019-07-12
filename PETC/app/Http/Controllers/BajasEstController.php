@@ -16,6 +16,9 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D; 
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
+
 
 class BajasEstController extends Controller
 { 
@@ -24,6 +27,10 @@ class BajasEstController extends Controller
      *
      * @return \Illuminate\Http\Response
      */ 
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request){
      if($request)
      {
@@ -108,12 +115,13 @@ class BajasEstController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
      $datos=BajasContratoModel::findOrFail($id);
       //$datos->id_alta=$request->get('docente_cubrir'); 
      $datos->fecha_baja=$request->get('fechaf');
      $datos->documentacion_entregada=$request->get('doc');
      $datos->observaciones=$request->get('observaciones');
-     $datos->captura="ADMINISTRADOR";
+     $datos->captura=$user;
      $datos->estado="PENDIENTE";
       //$datos->clave=$name[0];
      $datos->id_cct_etc=$request->get('cct');
@@ -126,7 +134,7 @@ class BajasEstController extends Controller
      $tabla->fecha_termino=$request->get('fechaf');
      $tabla->documentacion_entregada=$request->get('doc');
      $tabla->observaciones=$request->get('observaciones');
-     $tabla->captura="ADMINISTRADOR";
+     $tabla->captura=$user;
      $tabla->id_ciclo=$request->get('ciclo_escolar'); 
      $tabla->id_cct_etc=$request->get('cct'); 
      $tabla->tipo_movimiento="BAJA";
@@ -148,9 +156,10 @@ class BajasEstController extends Controller
      */
     public function destroy($id)
     {
+      $user = Auth::user()->name;
       $bajas=BajasContratoModel::findOrFail($id);
       $bajas->estado="PENDIENTE";
-      $bajas->captura="ADMINISTRADOR";
+      $bajas->captura=$user;
       $bajas->update();
       return redirect('bajasest');
         //
@@ -158,9 +167,10 @@ class BajasEstController extends Controller
 
     public function activar($id)
     { 
+      $user = Auth::user()->name;
       $bajas=BajasContratoModel::findOrFail($id);
       $bajas->estado="RESUELTO";
-      $bajas->captura="ADMINISTRADOR";
+      $bajas->captura=$user;
       $bajas->update();
       return redirect('bajasest');
         //

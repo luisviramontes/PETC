@@ -19,6 +19,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\RechazoCapRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class RechazoCapController extends Controller
 {
     /**
@@ -26,6 +28,10 @@ class RechazoCapController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
       if($request)
@@ -64,12 +70,13 @@ class RechazoCapController extends Controller
      */
     public function store(Request $request)
     {
+      $user = Auth::user()->name;
       $rechazo = new RechazoCapModel;
       $rechazo -> qna = $request ->qna;
       $rechazo -> sostenimiento = $request ->sostenimiento;
       $rechazo -> tipo = $request ->tipo;
       $rechazo -> estado ="ACTIVO";
-      $rechazo ->  captura="ADMINISTRADOR";
+      $rechazo ->  captura=$user;
 
       $sostenimiento = $rechazo->sostenimiento;
       if($sostenimiento  == "ESTATAL") {
@@ -195,7 +202,7 @@ class RechazoCapController extends Controller
         $rechazo -> sostenimiento = $request ->sostenimiento;
         $rechazo -> tipo = $request ->tipo;
         $rechazo -> estado ="ACTIVO";
-        $rechazo ->  captura="ADMINISTRADOR";
+        $rechazo ->  captura=$user;
 
         $sostenimiento = $rechazo->sostenimiento;
         if($sostenimiento  == "ESTATAL") {
@@ -304,7 +311,7 @@ class RechazoCapController extends Controller
     {
       $rechazo=RechazoCapModel::findOrFail($id);
       $rechazo->estado="INACTIVO";
-      $rechazo->captura="ADMINISTRADOR";
+      $rechazo->captura=$user;
       $rechazo->update();
 
       $qna =  $rechazo->qna;

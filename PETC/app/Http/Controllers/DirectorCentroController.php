@@ -12,7 +12,8 @@ use DB;
 use Maatwebsite\Excel\Facades\Excel;
 use PHPExcel_Worksheet_Drawing;
 use Validator;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class DirectorCentroController extends Controller
 {
     /**
@@ -20,6 +21,10 @@ class DirectorCentroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request)
     {
 

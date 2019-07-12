@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+
+    protected $redirectTo = '/captura';
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -33,7 +36,7 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
-    /**
+    /** 
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data

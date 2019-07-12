@@ -18,6 +18,9 @@ use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\BancosRequest;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
+
 class BancosController extends Controller
 {
     /**
@@ -25,6 +28,10 @@ class BancosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
       if($request)
@@ -60,12 +67,13 @@ class BancosController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user()->name;
         $banco = new BancosModel;
         $banco -> nombre_banco = $request ->nombre_banco;
         $banco -> operacion = $request ->operacion;
         $banco -> descripcion = $request ->descripcion;
         $banco -> estado = "ACTIVO";
-        $banco -> captura = "ADMINISTRADOR";
+        $banco -> captura = $user;
         if($banco->save()){
 
           return redirect('bancos');
@@ -124,12 +132,13 @@ class BancosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user()->name;
         $banco = BancosModel::find($id);
         $banco -> nombre_banco = $request ->nombre_banco;
         $banco -> operacion = $request ->operacion;
         $banco -> descripcion = $request ->descripcion;
         $banco -> estado = "ACTIVO";
-        $banco -> captura = "ADMINISTRADOR";
+        $banco -> captura = $user;
         if($banco->save()){
 
           return redirect('bancos');
@@ -147,9 +156,10 @@ class BancosController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user()->name;
       $banco=BancosModel::findOrFail($id);
       $banco->estado="INACTIVO";
-      $banco->captura="ADMINISTRADOR";
+      $banco->captura=$user;
       $banco->update();
         return redirect('bancos');
     }

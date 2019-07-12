@@ -17,7 +17,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\CatPuestoRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class CatPuestoController extends Controller
 {
     /**
@@ -25,6 +26,10 @@ class CatPuestoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request)
     {
     //  $categorias = CatPuestoModel::orderBy('id', 'DESC')
@@ -63,6 +68,7 @@ if($request)
      */
     public function store(Request $request)
     {
+      $user = Auth::user()->name;
       $categorias= new CatPuestoModel;
       $categorias -> cv_ur = $request ->cv_ur;
       $categorias -> entidad = $request ->entidad;
@@ -73,7 +79,7 @@ if($request)
       $categorias -> tipo_puesto = $request ->tipo_puesto;
       $categorias -> categoria = $request ->categoria;
       $categorias -> estado = "ACTIVO";
-      $categorias -> captura="ADMINISTRADOR";
+      $categorias -> captura=$user;
 
       if($categorias->save()){
 
@@ -133,6 +139,7 @@ if($request)
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
       $categorias = CatPuestoModel::find($id);
       //asignamos nuevos valores
       $categorias -> cv_ur = $request ->cv_ur;
@@ -144,7 +151,7 @@ if($request)
       $categorias -> tipo_puesto = $request ->tipo_puesto;
       $categorias -> categoria = $request ->categoria;
       $categorias -> estado = "ACTIVO";
-      $categorias -> captura="ADMINISTRADOR";
+      $categorias -> captura=$user;
       //guardar
       if($categorias->save()){
 
@@ -163,9 +170,10 @@ if($request)
      */
     public function destroy($id)
     {
+      $user = Auth::user()->name;
       $categoria=CatPuestoModel::findOrFail($id);
       $categoria->estado="INACTIVO";
-      $categoria->captura="ADMINISTRADOR";
+      $categoria->captura=$user;
       $categoria->update();
         return redirect('cat_puesto');
     }

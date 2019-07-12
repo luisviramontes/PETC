@@ -16,6 +16,8 @@ use PHPExcel_Worksheet_Drawing;
 use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 
 class AltasFedController extends Controller
 {
@@ -24,6 +26,13 @@ class AltasFedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */ 
+
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index(request $request){
      if($request)
      {
@@ -121,6 +130,7 @@ class AltasFedController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
       $aux=$request->get('clave');
       $name = explode("_",$aux);
 
@@ -130,7 +140,7 @@ class AltasFedController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct');
@@ -146,7 +156,7 @@ class AltasFedController extends Controller
       $tabla->fecha_termino=$request->get('fechaf');
       $tabla->documentacion_entregada=$request->get('doc');
       $tabla->observaciones=$request->get('observaciones');
-      $tabla->captura="ADMINISTRADOR";
+      $tabla->captura=$user;
       $tabla->id_ciclo=$request->get('ciclo_escolar'); 
       $tabla->tipo_movimiento=$datos->tipo_movimiento;
       $tabla->cct_2=$request->get('cct_2');
@@ -167,9 +177,10 @@ class AltasFedController extends Controller
      */
     public function destroy($id)
     { 
+      $user = Auth::user()->name;
       $altas=AltasContratoModel::findOrFail($id);
       $altas->estado="PENDIENTE";
-      $altas->captura="ADMINISTRADOR";
+      $altas->captura=$user;
       $altas->update();
       return redirect('altasfed');
         //
@@ -177,9 +188,10 @@ class AltasFedController extends Controller
 
     public function activar($id)
     { 
+      $user = Auth::user()->name;
       $altas=AltasContratoModel::findOrFail($id);
       $altas->estado="RESUELTO";
-      $altas->captura="ADMINISTRADOR";
+      $altas->captura=$user;
       $altas->update();
       return redirect('altasfed');
         //

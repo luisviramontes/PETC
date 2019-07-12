@@ -19,7 +19,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\FortalecimientoRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 
 class FortalecimientoController extends Controller
 {
@@ -28,6 +29,10 @@ class FortalecimientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
 
@@ -66,13 +71,14 @@ class FortalecimientoController extends Controller
      */
     public function store(Request $request)
     {
+      $user = Auth::user()->name;
         $fortalecimientos = new FortalecimientoModel;
         $fortalecimientos -> id_cct = $request ->id_cct;
         $fortalecimientos -> monto_forta = $request ->monto_forta;
         $fortalecimientos -> ciclo_escolar = $request ->ciclo_escolar;
         $fortalecimientos -> estado = "ACTIVO";
         $fortalecimientos -> observaciones = $request ->observaciones;
-        $fortalecimientos -> captura="ADMINISTRADOR";
+        $fortalecimientos -> captura=$user;
 
         if($fortalecimientos->save()){
 
@@ -137,13 +143,14 @@ class FortalecimientoController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
       $fortalecimientos = FortalecimientoModel::find($id);
       $fortalecimientos -> id_cct = $request ->id_cct;
       $fortalecimientos -> monto_forta = $request ->monto_forta;
       $fortalecimientos -> ciclo_escolar = $request ->ciclo_escolar;
       $fortalecimientos -> estado = "ACTIVO";
       $fortalecimientos -> observaciones = $request ->observaciones;
-      $fortalecimientos -> captura="ADMINISTRADOR";
+      $fortalecimientos -> captura=$user;
 
       if($fortalecimientos->save()){
 
@@ -162,9 +169,10 @@ class FortalecimientoController extends Controller
      */
     public function destroy($id)
     {
+      $user = Auth::user()->name;
       $fortalecimiento=FortalecimientoModel::findOrFail($id);
       $fortalecimiento->estado="INACTIVO";
-      $fortalecimiento->captura="ADMINISTRADOR";
+      $fortalecimiento->captura=$user;
       $fortalecimiento->update();
         return redirect('fortalecimiento');
     }

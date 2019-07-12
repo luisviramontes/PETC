@@ -17,7 +17,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\PersonalRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class PersonalController extends Controller
 {
     /**
@@ -25,6 +26,10 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request)
     {
 
@@ -60,6 +65,7 @@ class PersonalController extends Controller
      */
     public function store(PersonalRequest $formulario)
     {
+        $user = Auth::user()->name;
         $validator = Validator::make(
             $formulario->all(),
             $formulario->rules(),
@@ -76,7 +82,7 @@ class PersonalController extends Controller
             $tabla->telefono=$formulario->get('telefono');
             $tabla->email=$formulario->get('email');
             $tabla->clave=$formulario->get('clave');
-            $tabla->captura="ADMINISTRADOR";
+            $tabla->captura=$user;
             $tabla->estado="ACTIVO";
             $tabla->save();
             return Redirect::to('personal');
@@ -117,13 +123,14 @@ class PersonalController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user()->name;
        $tabla=PersonalModel::findOrFail($id);
        $tabla->nombre=$request->get('nombre');
        $tabla->rfc=$request->get('rfc_input');
        $tabla->telefono=$request->get('telefono');
        $tabla->email=$request->get('email');
        $tabla->clave=$request->get('clave');
-       $tabla->captura="ADMINISTRADOR";
+       $tabla->captura=$user;
        $tabla->estado="ACTIVO";
        $tabla->update();
        return Redirect::to('personal');
@@ -138,8 +145,9 @@ class PersonalController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user()->name;
      $tabla=PersonalModel::findOrFail($id);
-     $tabla->captura="ADMINISTRADOR";
+     $tabla->captura=$user;
      $tabla->estado="INACTIVO";
      $tabla->update();
      return Redirect::to('personal');
@@ -181,6 +189,7 @@ public function validarRFC($rfc)
 
 public function activar(Request $request)
 {
+    $user = Auth::user()->name;
     $id =  $request->get('idCliente');
     $cliente=PersonalModel::findOrFail($id);
     $cliente->estado="ACTIVO";

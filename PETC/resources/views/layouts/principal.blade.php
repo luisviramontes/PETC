@@ -90,207 +90,237 @@
 
           </div>
 
-          <div class="top_right_bar">
-
-            <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="images/user.png" /><span class="user_adminname"><!--{{Route::getCurrentRoute()->getName()}}-->John Doe</span> <b class="caret"></b> </a>
-              <ul class="dropdown-menu">
-                <div class="top_pointer"></div>
-                <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-                <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-                <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-                <li> <a href="{{url('/')}}""><i class="fa fa-power-off"></i> Logout</a> </li>
+          <div class="top_right_bar">            
+            <div class="container">
+             @if (Session::has('errors'))
+             <div class="alert alert-warning" role="alert">
+              <ul>
+                <strong>Oops! Something went wrong : </strong>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
               </ul>
             </div>
+            @endif
+          </div>
+          
+           @if (Auth::guest())
+           <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+           <li><a href="{{route('auth/login')}}">Login</a></li>
+            <li><a href="{{route('auth/register')}}">Register</a></li>
+
+           @else
+           <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><span class="user_adminname"><!--{{Route::getCurrentRoute()->getName()}}-->{{ Auth::user()->name }}</span> <b class="caret"></b> </a>
+
+            <ul class="dropdown-menu">
+              <div class="top_pointer"></div>
+              <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
+              <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
+              <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
+              <li> <a href="{{route('auth/logout')}}""><i class="fa fa-power-off"></i> Logout</a> </li>
+            </ul>
+           @endif 
           </div>
         </div>
-        <!--\\\\\\\ header top bar end \\\\\\-->
       </div>
-      <!--\\\\\\\ header end \\\\\\-->
-      <div class="inner">
-        <!--\\\\\\\ inner start \\\\\\--><div class="left_nav">
-
-        <!--\\\\\\\left_nav start \\\\\\-->
-
-
-        <div class="left_nav_slidebar">
-          <ul >
-            <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> NOMINAS<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-
-
-              <ul  >
-                <li> <a href="{{url('provedores')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Federal</b> </a> </li>
-                <li> <a href="{{url('empresas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Estatal</b> </a> </li>               
-
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-edit"></i>FEDERAL <span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul>
-                <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
-                <li> <a href="{{url('interinosfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Interinos</b> </a> </li>
-                <li> <a href="{{url('altasfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Altas</b> </a> </li>
-                <li> <a href="{{url('bajasfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bajas</b> </a> </li>
-                <li> <a href="{{url('cambios_cct_fed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios CTE</b> </a> </li>
-                <li> <a href="{{url('cambios_funcion_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios de Función</b> </a> </li>
-                
-              </ul>
-
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>ESTATAL<span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul>
-                <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
-                <li> <a href="{{url('interinosest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Interinos</b> </a> </li>
-                <li> <a href="{{url('altasest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Altas</b> </a> </li>
-                <li> <a href="{{url('bajasest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bajas</b> </a> </li>
-                <li> <a href="{{url('cambios_cct_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios CTE</b> </a> </li>
-                 <li> <a href="{{url('cambios_funcion_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios de Función</b> </a> </li>
-              </ul>
-
-
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-users"></i>USAER/E.FISICA <span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul>
-                <li> <a href="{{url('empleados')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Empleados</b> </a> </li>
-                <li> <a href="{{url('rol')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Roles Empleados</b> </a> </li>
-                <li> <a href="{{url('contratos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Contratos</b> </a> </li>
-              </ul>
-
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-truck icon"></i> CAPTURA <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
-                <li> <a href="{{url('mantenimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mantenimientos</b> </a> </li>                
-              </ul>
-
-
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-shopping-cart"></i> ESCUELAS <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="{{url('centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Centros de Trabajo</b> </a> </li>
-                 <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores->PETC</b> </a> </li>
-              </ul>
-            </li>
-
-
-            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> DIRECTORIO <span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul>
-                <li> <a href="{{url('directorio_regional')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio Regional</b> </a> </li>
-                <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores->PETC</b> </a> </li>
-
-
-
-
-              </ul>
-            </li>
-            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> LISTAS DE ASISTENCIA <span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul>
-                <li> <a href="{{url('listas_asistencias')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Asistencia</b> </a> </li>
-                <li> <a href="{{url('inasistencias2/2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inasistencias</b> </a> </li>
-              </ul>
-            </li>
-
-
-            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> REINTEGROS <span class="plus"><i class="fa fa-plus"></i></span></a>
-              <ul>
-                <li> <a href="{{url('reintegros')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reintegros</b> </a> </li>
-
-              </ul>
-            </li>
-
-            <li> <a href="javascript:void(0);"> <i class="fa fa-shopping-cart"></i> TABLA DE PAGOS <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="{{url('tabla_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tabla de Pagos</b> </a> </li>
-              </ul>
-              <ul>
-                <li> <a href="{{url('tabulador_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tabla de Pagos Por Dia Laborado</b> </a> </li>
-              </ul>
-              <ul>
-                <li> <a href="{{url('calculadora_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Calculadora de Pagos</b> </a> </li>
-              </ul>
-            </li>
-
-
-            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> FORTALECIMIENTO <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="{{url('fortalecimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recurso de Fortalecimeinto</b> </a> </li>
-              </ul>
-            </li>
-
-
-            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> CATEGORIAS/PUESTO <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="{{url('cat_puesto')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Categorias y Puestos</b> </a> </li>
-              </ul>
-            </li>
-
-            <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> SOLICITUDES DE INGRESO <span class="plus"><i class="fa fa-plus"></i></span> </a>
-              <ul>
-                <li> <a href="{{url('')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Fumigaciones</b> </a> </li>
-              </ul>
-            </li>
-
-
-          </ul>
-        </div>
-      </div>
-      <!--\\\\\\\left_nav end \\\\\\-->
-      <div class="contentpanel">
-
-        @yield('contenido')
-
-        <div class="row col-md-6 col-md-offset-3"  style="height: 1000px;" >
-
-        </div>
-
-        <!--\\\\\\\ container  end \\\\\\-->
-      </div>
-
-
-
-      <!--\\\\\\\ content panel end \\\\\\-->
+      <!--\\\\\\\ header top bar end \\\\\\-->
     </div>
-    <!--\\\\\\\ inner end\\\\\\-->
+    <!--\\\\\\\ header end \\\\\\-->
+    <div class="inner">
+      <!--\\\\\\\ inner start \\\\\\--><div class="left_nav">
+
+      <!--\\\\\\\left_nav start \\\\\\-->
+
+
+      <div class="left_nav_slidebar">
+        <ul >
+          <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> NOMINAS<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+
+
+            <ul  >
+              <li> <a href="{{url('provedores')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Federal</b> </a> </li>
+              <li> <a href="{{url('empresas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Estatal</b> </a> </li>               
+
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-edit"></i>FEDERAL <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
+              <li> <a href="{{url('interinosfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Interinos</b> </a> </li>
+              <li> <a href="{{url('altasfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Altas</b> </a> </li>
+              <li> <a href="{{url('bajasfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bajas</b> </a> </li>
+              <li> <a href="{{url('cambios_cct_fed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios CTE</b> </a> </li>
+              <li> <a href="{{url('cambios_funcion_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios de Función</b> </a> </li>
+              
+            </ul>
+
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>ESTATAL<span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
+              <li> <a href="{{url('interinosest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Interinos</b> </a> </li>
+              <li> <a href="{{url('altasest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Altas</b> </a> </li>
+              <li> <a href="{{url('bajasest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bajas</b> </a> </li>
+              <li> <a href="{{url('cambios_cct_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios CTE</b> </a> </li>
+              <li> <a href="{{url('cambios_funcion_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios de Función</b> </a> </li>
+            </ul>
+
+
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-users"></i>USAER/E.FISICA <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="{{url('empleados')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Empleados</b> </a> </li>
+              <li> <a href="{{url('rol')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Roles Empleados</b> </a> </li>
+              <li> <a href="{{url('contratos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Contratos</b> </a> </li>
+            </ul>
+
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-truck icon"></i> CAPTURA <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
+              <li> <a href="{{url('mantenimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mantenimientos</b> </a> </li>                
+            </ul>
+
+
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-shopping-cart"></i> ESCUELAS <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Centros de Trabajo</b> </a> </li>
+              <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>
+            </ul>
+          </li>
+
+
+          <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> DIRECTORIO <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="{{url('directorio_regional')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio Regional</b> </a> </li>
+              <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>
+              <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio  SEDUZAC</b> </a> </li>
+              <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio Interno PETC</b> </a> </li>
+
+
+
+
+            </ul>
+          </li>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> LISTAS DE ASISTENCIA <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="{{url('listas_asistencias')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Asistencia</b> </a> </li>
+              <li> <a href="{{url('inasistencias2/2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inasistencias</b> </a> </li>
+            </ul>
+          </li>
+
+
+          <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> REINTEGROS <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="{{url('reintegros')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reintegros</b> </a> </li>
+
+            </ul>
+          </li>
+
+          <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> RECLAMOS <span class="plus"><i class="fa fa-plus"></i></span></a>
+            <ul>
+              <li> <a href="{{url('reclamos2/2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reclamos</b> </a> </li>
+
+            </ul>
+          </li>
+
+          <li> <a href="javascript:void(0);"> <i class="fa fa-shopping-cart"></i> TABLA DE PAGOS <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('tabla_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tabla de Pagos</b> </a> </li>
+            </ul>
+            <ul>
+              <li> <a href="{{url('tabulador_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tabla de Pagos Por Dia Laborado</b> </a> </li>
+            </ul>
+            <ul>
+              <li> <a href="{{url('calculadora_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Calculadora de Pagos</b> </a> </li>
+            </ul>
+          </li>
+
+
+          <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> FORTALECIMIENTO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('fortalecimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recurso de Fortalecimeinto</b> </a> </li>
+            </ul>
+          </li>
+
+
+          <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> CATEGORIAS/PUESTO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('cat_puesto')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Categorias y Puestos</b> </a> </li>
+            </ul>
+          </li>
+
+          <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> SOLICITUDES DE INGRESO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Fumigaciones</b> </a> </li>
+            </ul>
+          </li>
+
+
+        </ul>
+      </div>
+    </div>
+    <!--\\\\\\\left_nav end \\\\\\-->
+    <div class="contentpanel">
+
+      @yield('contenido')
+
+      <div class="row col-md-6 col-md-offset-3"  style="height: 1000px;" >
+
+      </div>
+
+      <!--\\\\\\\ container  end \\\\\\-->
+    </div>
+
+
+
+    <!--\\\\\\\ content panel end \\\\\\-->
   </div>
-  {!!Html::script('js/jquery-2.1.0.js')!!}
-  {!!Html::script('js/script.js')!!}
-  {!!Html::script('js/moment.min.js')!!}
-  {!!Html::script('js/jquery-2.1.0.js')!!}
-  {!!Html::script('js/bootstrap.min.js')!!}
-  {!!Html::script('js/common-script.js')!!}
-  {!!Html::script('js/jquery.slimscroll.min.js')!!}
-  {!!Html::script('plugins/toggle-switch/toggles.min.js')!!} 
-  {!!Html::script('plugins/checkbox/zepto.js')!!}
-  {!!Html::script('plugins/checkbox/icheck.js')!!}
-  {!!Html::script('js/icheck-init.js')!!}
-  {!!Html::script('plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')!!} 
-  {!!Html::script('plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js')!!} 
-  {!!Html::script('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js')!!} 
-  {!!Html::script('plugins/bootstrap-timepicker/js/bootstrap-timepicker.js')!!} 
-  {!!Html::script('js/form-components.js')!!} 
-  {!!Html::script('plugins/input-mask/jquery.inputmask.min.js')!!} 
-  {!!Html::script('plugins/input-mask/demo-mask.js')!!} 
-  {!!Html::script('plugins/bootstrap-fileupload/bootstrap-fileupload.min.js')!!} 
-  {!!Html::script('plugins/dropzone/dropzone.min.js')!!} 
-  {!!Html::script('plugins/ckeditor/ckeditor.js')!!}
-  {!!Html::script('js/jPushMenu.js')!!} 
-  {!!Html::script('plugins/validation/parsley.min.js')!!}
-  {!!Html::script('plugins/data-tables/jquery.dataTables.js')!!}
-  {!!Html::script('plugins/data-tables/DT_bootstrap.js')!!}
-  {!!Html::script('plugins/data-tables/dynamic_table_init.js')!!}
-  {!!Html::script('plugins/edit-table/edit-table.js')!!}
-  {!!Html::script('plugins/file-uploader/js/vendor/jquery.ui.widget.js')!!}
-  {!!Html::script('plugins/file-uploader/js/jquery.iframe-transport.js')!!}
-  {!!Html::script('plugins/file-uploader/js/jquery.fileupload.js')!!}
-  {!!Html::script('plugins/validation/parsley.min.js')!!}
-  {!!Html::script('plugins/select2/dist/js/select2.full.min.js')!!}
-  <!-- Include SmartWizard JavaScript source -->
-  {!!Html::script('plugins/wizard/js/jquery.smartWizard.js')!!}
-  <!-- Include jQuery Validator plugin -->
-  {!!Html::script('https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js')!!}
+  <!--\\\\\\\ inner end\\\\\\-->
+</div>
+{!!Html::script('js/jquery-2.1.0.js')!!}
+{!!Html::script('js/script.js')!!}
+{!!Html::script('js/moment.min.js')!!}
+{!!Html::script('js/jquery-2.1.0.js')!!}
+{!!Html::script('js/bootstrap.min.js')!!}
+{!!Html::script('js/common-script.js')!!}
+{!!Html::script('js/jquery.slimscroll.min.js')!!}
+{!!Html::script('plugins/toggle-switch/toggles.min.js')!!} 
+{!!Html::script('plugins/checkbox/zepto.js')!!}
+{!!Html::script('plugins/checkbox/icheck.js')!!}
+{!!Html::script('js/icheck-init.js')!!}
+{!!Html::script('plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')!!} 
+{!!Html::script('plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js')!!} 
+{!!Html::script('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js')!!} 
+{!!Html::script('plugins/bootstrap-timepicker/js/bootstrap-timepicker.js')!!} 
+{!!Html::script('js/form-components.js')!!} 
+{!!Html::script('plugins/input-mask/jquery.inputmask.min.js')!!} 
+{!!Html::script('plugins/input-mask/demo-mask.js')!!} 
+{!!Html::script('plugins/bootstrap-fileupload/bootstrap-fileupload.min.js')!!} 
+{!!Html::script('plugins/dropzone/dropzone.min.js')!!} 
+{!!Html::script('plugins/ckeditor/ckeditor.js')!!}
+{!!Html::script('js/jPushMenu.js')!!} 
+{!!Html::script('plugins/validation/parsley.min.js')!!}
+{!!Html::script('plugins/data-tables/jquery.dataTables.js')!!}
+{!!Html::script('plugins/data-tables/DT_bootstrap.js')!!}
+{!!Html::script('plugins/data-tables/dynamic_table_init.js')!!}
+{!!Html::script('plugins/edit-table/edit-table.js')!!}
+{!!Html::script('plugins/file-uploader/js/vendor/jquery.ui.widget.js')!!}
+{!!Html::script('plugins/file-uploader/js/jquery.iframe-transport.js')!!}
+{!!Html::script('plugins/file-uploader/js/jquery.fileupload.js')!!}
+{!!Html::script('plugins/validation/parsley.min.js')!!}
+{!!Html::script('plugins/select2/dist/js/select2.full.min.js')!!}
+<!-- Include SmartWizard JavaScript source -->
+{!!Html::script('plugins/wizard/js/jquery.smartWizard.js')!!}
+<!-- Include jQuery Validator plugin -->
+{!!Html::script('https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js')!!}
 
 
-  {!!Html::script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js')!!}
-  <script type="text/javascript">
-   $(document).on('ready', function()  {
+{!!Html::script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js')!!}
+<script type="text/javascript">
+ $(document).on('ready', function()  {
 
           //Initialize Select2 Elements
           $('.select2').select2()

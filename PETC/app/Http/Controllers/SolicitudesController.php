@@ -18,7 +18,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\SolicitudesRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class SolicitudesController extends Controller
 {
     /**
@@ -26,6 +27,10 @@ class SolicitudesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
       if($request)
@@ -66,6 +71,7 @@ class SolicitudesController extends Controller
      */
     public function store(Request $request)
     {
+      $user = Auth::user()->name;
       $solicitudes= new SolicitudesModel;
       $solicitudes -> entrego_acta = $request ->entrego_acta;
       $solicitudes -> solicitud_inco = $request ->solicitud_inco;
@@ -84,7 +90,7 @@ class SolicitudesController extends Controller
       $solicitudes -> tramite_estado = $request ->tramite_estado;
       $solicitudes -> estado = $request ->estado;
       $solicitudes -> fecha_recepcion = $request ->fecha_recepcion;
-      $solicitudes -> captura="Administrador";
+      $solicitudes -> captura=$user;
 
       if($solicitudes->save()){
 
@@ -147,6 +153,7 @@ class SolicitudesController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
       $solicitudes=SolicitudesModel::findOrFail($id);
       $solicitudes -> entrego_acta = $request ->entrego_acta;
       $solicitudes -> solicitud_inco = $request ->solicitud_inco;
@@ -165,7 +172,7 @@ class SolicitudesController extends Controller
       $solicitudes -> tramite_estado = $request ->tramite_estado;
       $solicitudes -> estado = $request ->estado;
       $solicitudes -> fecha_recepcion = $request ->fecha_recepcion;
-      $solicitudes -> captura="Administrador";
+      $solicitudes -> captura=$user;
 
       if($solicitudes->save()){
 

@@ -18,7 +18,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\CicloEscolarRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class CicloEscolarController extends Controller
 {
     /**
@@ -26,6 +27,10 @@ class CicloEscolarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
 
@@ -58,7 +63,7 @@ class CicloEscolarController extends Controller
      */
     public function store(CicloEscolarRequest $formulario)
     {
-
+$user = Auth::user()->name;
         $validator = Validator::make(
         $formulario->all(),
         $formulario->rules(),
@@ -140,6 +145,7 @@ class CicloEscolarController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
       $ciclos = CicloEscolarModel::find($id);
       //asignamos nuevos valores
       $ciclos -> ciclo = $request ->ciclo;
@@ -166,10 +172,11 @@ class CicloEscolarController extends Controller
      */
     public function destroy($id)
     {
+      $user = Auth::user()->name;
 
       $ciclo=CicloEscolarModel::findOrFail($id);
       $ciclo->estado="INACTIVO";
-      $ciclo->capturo="ADMINISTRADOR";
+      $ciclo->capturo=$user;
       $ciclo->update();
         return redirect('ciclo_escolar');
     }

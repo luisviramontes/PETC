@@ -17,6 +17,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 
 class AltasEstController extends Controller
 {
@@ -25,34 +27,39 @@ class AltasEstController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
- public function index(request $request){
-     if($request)
-     {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    public function index(request $request){
+       if($request)
+       {
        // $aux=$request->get('searchText');
-      $query=trim($request->GET('searchText'));
+          $query=trim($request->GET('searchText'));
 
-      $contador= DB::table('altas_contrato')->join('captura','captura.id','=','altas_contrato.id_captura')->where('altas_contrato.estado','=','PENDIENTE')->where('captura.sostenimiento','=','ESTATAL')->count(); 
+          $contador= DB::table('altas_contrato')->join('captura','captura.id','=','altas_contrato.id_captura')->where('altas_contrato.estado','=','PENDIENTE')->where('captura.sostenimiento','=','ESTATAL')->count(); 
 
-      if ($query == ""){ 
-        $personal= DB::table('altas_contrato')->join('captura','captura.id','=','altas_contrato.id_captura')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','altas_contrato.id_ciclo')->select('captura.*','captura.id as idcaptura','altas_contrato.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc')->where('captura.sostenimiento','=','ESTATAL')->orderBy('altas_contrato.estado','desc')->whereNull('altas_contrato.id_baja')->paginate(30);
-
-
-         $personal2= DB::table('altas_contrato')->join('captura','captura.id','=','altas_contrato.id_captura')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','altas_contrato.id_ciclo')->join('captura as captura2','captura2.id','=','altas_contrato.id_baja')->select('captura.*','captura.id as idcaptura','altas_contrato.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc','captura2.nombre as nombre_baja','captura2.rfc as rfc_baja')->where('captura2.nombre','!=',' ')->where('captura.sostenimiento','=','ESTATAL')->orderBy('altas_contrato.estado','desc')->paginate(30);
+          if ($query == ""){ 
+            $personal= DB::table('altas_contrato')->join('captura','captura.id','=','altas_contrato.id_captura')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','altas_contrato.id_ciclo')->select('captura.*','captura.id as idcaptura','altas_contrato.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc')->where('captura.sostenimiento','=','ESTATAL')->orderBy('altas_contrato.estado','desc')->whereNull('altas_contrato.id_baja')->paginate(30);
 
 
-
-      }else{
-        $personal= DB::table('altas_contrato')->join('captura','captura.id','=','altas_contrato.id_captura')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','altas_contrato.id_ciclo')->select('captura.*','captura.id as idcaptura','altas_contrato.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc')->where('altas_contrato.id_baja','=','')->where('captura.rfc','LIKE','%'.$query.'%')->orwhere('captura.nombre','LIKE','%'.$query.'%')->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')->orderBy('altas_contrato.estado','desc')->where('captura.sostenimiento','=','ESTATAL')->whereNull('altas_contrato.id_baja')->paginate(30);
-
-         $personal2= DB::table('altas_contrato')->join('captura','captura.id','=','altas_contrato.id_captura')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','altas_contrato.id_ciclo')->join('captura as captura2','captura2.id','=','altas_contrato.id_baja')->select('captura.*','captura.id as idcaptura','altas_contrato.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc','captura2.nombre as nombre_baja','captura2.rfc as rfc_baja')->where('captura2.nombre','!=',' ')->where('captura.rfc','LIKE','%'.$query.'%')->orwhere('captura.nombre','LIKE','%'.$query.'%')->orwhere('captura2.nombre','LIKE','%'.$query.'%')->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')->orderBy('altas_contrato.estado','desc')->where('captura.sostenimiento','=','ESTATAL')->paginate(30);
+            $personal2= DB::table('altas_contrato')->join('captura','captura.id','=','altas_contrato.id_captura')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','altas_contrato.id_ciclo')->join('captura as captura2','captura2.id','=','altas_contrato.id_baja')->select('captura.*','captura.id as idcaptura','altas_contrato.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc','captura2.nombre as nombre_baja','captura2.rfc as rfc_baja')->where('captura2.nombre','!=',' ')->where('captura.sostenimiento','=','ESTATAL')->orderBy('altas_contrato.estado','desc')->paginate(30);
 
 
-      }    
 
-      return view('nomina.altas.estatal.index',["personal"=>$personal,"personal2"=>$personal2,"contador"=>$contador,"searchText"=>$query]);
+        }else{
+            $personal= DB::table('altas_contrato')->join('captura','captura.id','=','altas_contrato.id_captura')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','altas_contrato.id_ciclo')->select('captura.*','captura.id as idcaptura','altas_contrato.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc')->where('altas_contrato.id_baja','=','')->where('captura.rfc','LIKE','%'.$query.'%')->orwhere('captura.nombre','LIKE','%'.$query.'%')->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')->orderBy('altas_contrato.estado','desc')->where('captura.sostenimiento','=','ESTATAL')->whereNull('altas_contrato.id_baja')->paginate(30);
+
+            $personal2= DB::table('altas_contrato')->join('captura','captura.id','=','altas_contrato.id_captura')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','altas_contrato.id_ciclo')->join('captura as captura2','captura2.id','=','altas_contrato.id_baja')->select('captura.*','captura.id as idcaptura','altas_contrato.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc','captura2.nombre as nombre_baja','captura2.rfc as rfc_baja')->where('captura2.nombre','!=',' ')->where('captura.rfc','LIKE','%'.$query.'%')->orwhere('captura.nombre','LIKE','%'.$query.'%')->orwhere('captura2.nombre','LIKE','%'.$query.'%')->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')->orderBy('altas_contrato.estado','desc')->where('captura.sostenimiento','=','ESTATAL')->paginate(30);
+
+
+        }    
+
+        return view('nomina.altas.estatal.index',["personal"=>$personal,"personal2"=>$personal2,"contador"=>$contador,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
-  }}
+    }}
 
 
     /**
@@ -114,6 +121,8 @@ class AltasEstController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user()->name;
+
         $aux=$request->get('clave');
         $name = explode("_",$aux);
 
@@ -123,7 +132,7 @@ class AltasEstController extends Controller
         $datos->fecha_baja=$request->get('fechaf');
         $datos->documentacion_entregada=$request->get('doc');
         $datos->observaciones=$request->get('observaciones');
-        $datos->captura="ADMINISTRADOR";
+        $datos->captura=$user;
         $datos->estado="PENDIENTE";
         $datos->clave=$name[0];
         $datos->id_cct_etc=$request->get('cct');
@@ -131,7 +140,7 @@ class AltasEstController extends Controller
         $datos->id_ciclo=$request->get('ciclo_escolar');  
         $datos->update();
 
-         $tabla=CapturaModel::findOrFail($datos->id_captura);
+        $tabla=CapturaModel::findOrFail($datos->id_captura);
         $tabla->id_cct_etc=$request->get('cct');
         $tabla->clave=$name[0];
         $tabla->categoria=$request->get('puesto');
@@ -139,7 +148,7 @@ class AltasEstController extends Controller
         $tabla->fecha_termino=$request->get('fechaf');
         $tabla->documentacion_entregada=$request->get('doc');
         $tabla->observaciones=$request->get('observaciones');
-        $tabla->captura="ADMINISTRADOR";
+        $tabla->captura=$user;
         $tabla->id_ciclo=$request->get('ciclo_escolar'); 
         $tabla->tipo_movimiento=$datos->tipo_movimiento;
         $tabla->cct_2=$request->get('cct_2');
@@ -161,9 +170,10 @@ class AltasEstController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user()->name;
         $altas=AltasContratoModel::findOrFail($id);
         $altas->estado="PENDIENTE";
-        $altas->captura="ADMINISTRADOR";
+        $altas->captura=$user;
         $altas->update();
         return redirect('altasest');
         //
@@ -171,25 +181,26 @@ class AltasEstController extends Controller
 
     public function activar($id)
     { 
-      $altas=AltasContratoModel::findOrFail($id);
-      $altas->estado="RESUELTO";
-      $altas->captura="ADMINISTRADOR";
-      $altas->update();
-      return redirect('altasest');
+       $user = Auth::user()->name;
+       $altas=AltasContratoModel::findOrFail($id);
+       $altas->estado="RESUELTO";
+       $altas->captura=$user;
+       $altas->update();
+       return redirect('altasest');
         //
-  }
+   }
 
-  public function excel(Request $request)
-  {
-   Excel::create('ALTAS ESTATAL', function($excel) {
-       $excel->sheet('Excel sheet', function($sheet) {
-         $personal = AltasContratoModel::join('captura','captura.id','=','altas_contrato.id_captura')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('ciclo_escolar', 'ciclo_escolar.id', '=','altas_contrato.id_ciclo')->select('altas_contrato.id','captura.nombre','captura.rfc','captura.fecha_inicio','captura.fecha_termino','centro_trabajo.cct','centro_trabajo.nombre_escuela','captura.categoria','cat_puesto.cat_puesto','region.region','captura.sostenimiento','captura.telefono','captura.email','captura.num_escuelas','captura.observaciones','altas_contrato.estado','ciclo_escolar.ciclo')->where('altas_contrato.estado','=','PENDIENTE')->where('captura.sostenimiento','=','ESTATAL')->get();
-         $sheet->fromArray($personal);
-         $sheet->row(1,['ID','NOMBRE','RFC','FECHA DE INICIO','FECHA DE TERMINO','CCT','NOMBRE ESCUELA','CATEGORIA','CLAVE','REGION','SOSTENIMIENTO','TELEFONO','EMAIL','NUM DE ESCUELAS ETC','OBSERVACIONES','ESTADO ALTA','CICLO ESCOLAR']);
-         $sheet->setOrientation('landscape');
-     });
-   })->export('xls');
-}
+   public function excel(Request $request)
+   {
+     Excel::create('ALTAS ESTATAL', function($excel) {
+         $excel->sheet('Excel sheet', function($sheet) {
+           $personal = AltasContratoModel::join('captura','captura.id','=','altas_contrato.id_captura')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('ciclo_escolar', 'ciclo_escolar.id', '=','altas_contrato.id_ciclo')->select('altas_contrato.id','captura.nombre','captura.rfc','captura.fecha_inicio','captura.fecha_termino','centro_trabajo.cct','centro_trabajo.nombre_escuela','captura.categoria','cat_puesto.cat_puesto','region.region','captura.sostenimiento','captura.telefono','captura.email','captura.num_escuelas','captura.observaciones','altas_contrato.estado','ciclo_escolar.ciclo')->where('altas_contrato.estado','=','PENDIENTE')->where('captura.sostenimiento','=','ESTATAL')->get();
+           $sheet->fromArray($personal);
+           $sheet->row(1,['ID','NOMBRE','RFC','FECHA DE INICIO','FECHA DE TERMINO','CCT','NOMBRE ESCUELA','CATEGORIA','CLAVE','REGION','SOSTENIMIENTO','TELEFONO','EMAIL','NUM DE ESCUELAS ETC','OBSERVACIONES','ESTADO ALTA','CICLO ESCOLAR']);
+           $sheet->setOrientation('landscape');
+       });
+     })->export('xls');
+ }
 
 
 }

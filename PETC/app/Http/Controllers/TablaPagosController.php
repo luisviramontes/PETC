@@ -17,7 +17,8 @@ use PHPExcel_Worksheet_Drawing;
 use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class TablaPagosController extends Controller
 {
     /**
@@ -25,6 +26,10 @@ class TablaPagosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request)
     {
 
@@ -69,6 +74,7 @@ class TablaPagosController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user()->name;
         $tabla= new TablaPagosModel;
         $tabla->id_ciclo=$request->get('ciclo');
         $tabla2=CicloEscolarModel::findOrFail($tabla->id_ciclo);
@@ -85,7 +91,7 @@ class TablaPagosController extends Controller
         $tabla->pago_director=$request->get('pago_director');
         $tabla->pago_docente=$request->get('pago_docente');
         $tabla->pago_intendente=$request->get('pago_intendente');
-        $tabla->captura="ADMINISTRADOR";
+        $tabla->captura=$user;
         
         $tabla->save();
         return Redirect::to('tabla_pagos');
@@ -143,6 +149,7 @@ print_r($tabla_2->ciclo);
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user()->name;
         $pago=TablaPagosModel::findOrFail($id);
         $pago->id_ciclo=$request->get('ciclo');
         $tabla2=CicloEscolarModel::findOrFail($pago->id_ciclo);
@@ -159,7 +166,7 @@ print_r($tabla_2->ciclo);
         $pago->pago_director=$request->get('pago_director');
         $pago->pago_docente=$request->get('pago_docente');
         $pago->pago_intendente=$request->get('pago_intendente');
-        $pago->captura="ADMINISTRADOR";
+        $pago->captura=$user;
         $pago->update();
         return Redirect::to('tabla_pagos');
         //
@@ -173,6 +180,7 @@ print_r($tabla_2->ciclo);
      */
     public function destroy($id)
     {
+        $user = Auth::user()->name;
      $pago=TablaPagosModel::findOrFail($id);
      $pago->delete();
      return Redirect::to('tabla_pagos');

@@ -20,7 +20,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\CentroTrabajoRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class CentroTrabajoController extends Controller
 {
     /**
@@ -28,6 +29,10 @@ class CentroTrabajoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request)
     {  
         if($request)
@@ -41,7 +46,7 @@ class CentroTrabajoController extends Controller
            ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos', 
             'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores', 
             'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes', 
-            'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')->where('nombre_escuela','LIKE','%'.$query.'%')->orwhere('cct','LIKE','%'.$query.'%')->orwhere('localidades.nom_loc','LIKE','%'.$query.'%')->orwhere('municipios.municipio','LIKE','%'.$query.'%')->where('centro_trabajo.estado','=','ACTIVO')->paginate(10);
+            'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')->where('nombre_escuela','LIKE','%'.$query.'%')->orwhere('cct','LIKE','%'.$query.'%')->orwhere('localidades.nom_loc','LIKE','%'.$query.'%')->orwhere('municipios.municipio','LIKE','%'.$query.'%')->orwhere('centro_trabajo.domicilio','LIKE','%'.$query.'%')->where('centro_trabajo.estado','=','ACTIVO')->paginate(10);
            return view('nomina.centro_trabajo.index',["centro"=>$centro,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
@@ -69,6 +74,7 @@ class CentroTrabajoController extends Controller
      */
     public function store(CentroTrabajoRequest $formulario)
     {
+      $user = Auth::user()->name;
         $validator = Validator::make(
             $formulario->all(), 
             $formulario->rules(),
@@ -87,7 +93,7 @@ class CentroTrabajoController extends Controller
             $datos->id_localidades=$formulario->get('localidad');
             $datos->id_municipios=$formulario->get('municipio');
             $datos->id_region=$formulario->get('region');
-            $datos->captura="ADMINISTRADOR";
+            $datos->captura=$user;
             $datos->telefono=$formulario->get('telefono');
             $datos->email=$formulario->get('email');
             $datos->ciclo_escolar=$formulario->get('ciclo');
@@ -112,7 +118,7 @@ class CentroTrabajoController extends Controller
             $datos2->total_intendentes=$formulario->get('intendente');
             $datos2->id_centro_trabajo=$ultimo;
             $datos2->fecha_ingreso=$formulario->get('ingreso');
-            $datos2->captura="ADMINISTRADOR";
+            $datos2->captura=$user;
             $datos2->save();
             return Redirect::to('centro_trabajo');
 }       //
@@ -165,6 +171,7 @@ class CentroTrabajoController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
         $datos=CentroTrabajoModel::findOrFail($id);
 
         $datos->cct=$request->get('cct');
@@ -173,7 +180,7 @@ class CentroTrabajoController extends Controller
         $datos->id_localidades=$request->get('localidad');
         $datos->id_municipios=$request->get('municipio');
         $datos->id_region=$request->get('region');
-        $datos->captura="ADMINISTRADOR";
+        $datos->captura=$user;
         $datos->telefono=$request->get('telefono');
         $datos->email=$request->get('email');
         $datos->ciclo_escolar=$request->get('ciclo');
@@ -199,7 +206,7 @@ class CentroTrabajoController extends Controller
         $datos2->total_intendentes=$request->get('intendente');
         $datos2->id_centro_trabajo=$id;
         $datos2->fecha_ingreso=$request->get('ingreso');
-        $datos2->captura="ADMINISTRADOR";
+        $datos2->captura=$user;
         $datos2->update();
         return Redirect::to('centro_trabajo');
         //
@@ -213,9 +220,10 @@ class CentroTrabajoController extends Controller
      */
     public function destroy($id)
     {
+      $user = Auth::user()->name;
        $datos=CentroTrabajoModel::findOrFail($id);
        $datos->estado="INACTIVO";
-       $datos->captura="ADMINISTRADOR";
+       $datos->captura=$user;
        $datos2->update();
        return Redirect::to('centro_trabajo');
         //

@@ -26,6 +26,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\CapturaRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 
 class CapturaController extends Controller
 { 
@@ -34,6 +36,10 @@ class CapturaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request)
     {
 
@@ -73,6 +79,7 @@ class CapturaController extends Controller
      */
     public function store(Request $request)
     { 
+      $user = Auth::user()->name;
      $tabla= new CapturaModel;
      $tabla->nombre=$request->get('nombre');
      $tabla->rfc=$request->get('rfc_input');
@@ -103,7 +110,7 @@ class CapturaController extends Controller
      $tabla->cct_2=$request->get('cct_2'); 
      $tabla->documentacion_entregada=$request->get('doc');
      $tabla->observaciones=$request->get('observaciones');
-     $tabla->captura="ADMINISTRADOR";
+     $tabla->captura=$user;
      $tabla->estado="ACTIVO";
      $tabla->id_ciclo=$request->get('ciclo_escolar'); 
      $tabla->tipo_movimiento=$request->get('movimiento');
@@ -121,7 +128,7 @@ class CapturaController extends Controller
       $Direcor_CCT->fecha_baja=$request->get('fechaf');
       $Direcor_CCT->documentacion_entregada=$request->get('doc');
       $Direcor_CCT->documentacion_entregada=$request->get('doc');
-      $Direcor_CCT->captura="ADMINISTRADOR";
+      $Direcor_CCT->captura=$user;
       $Direcor_CCT->estado="ACTIVO";
       $Direcor_CCT->id_ciclo=$request->get('ciclo_escolar');
       $Direcor_CCT->id_cct_etc=$request->get('cct');
@@ -137,7 +144,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct'); 
@@ -152,7 +159,7 @@ class CapturaController extends Controller
       $datos2->fecha_baja=$request->get('fechaf');
       $datos2->documentacion_entregada=$request->get('doc');
       $datos2->observaciones=$request->get('observaciones');
-      $datos2->captura="ADMINISTRADOR";
+      $datos2->captura=$user;
       $datos2->estado="PENDIENTE";
       $datos2->id_ciclo=$request->get('ciclo_escolar'); 
       $datos2->save();
@@ -161,7 +168,7 @@ class CapturaController extends Controller
       $baja->documentacion_entregada=$request->get('doc');
       $baja->tipo_movimiento="BAJA";
       $baja->estado="INACTIVO";
-      $baja->captura="ADMINISTRADOR";
+      $baja->captura=$user;
       $baja->update();
 
 
@@ -172,7 +179,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct');
@@ -187,7 +194,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct');
@@ -242,6 +249,7 @@ class CapturaController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
      $tabla=CapturaModel::findOrFail($id);
      $tabla->nombre=$request->get('nombre');
      $tabla->rfc=$request->get('rfc_input');
@@ -276,7 +284,7 @@ class CapturaController extends Controller
      $tabla->cct_2=$request->get('cct_2');
      $tabla->documentacion_entregada=$request->get('doc');
      $tabla->observaciones=$request->get('observaciones');
-     $tabla->captura="ADMINISTRADOR";
+     $tabla->captura=$user;
      $tabla->estado="ACTIVO";
      $tabla->id_ciclo=$request->get('ciclo_escolar'); 
      $tabla->tipo_movimiento=$request->get('movimiento');
@@ -292,7 +300,7 @@ class CapturaController extends Controller
       $Direcor_CCT->fecha_inicio=$request->get('fechai');
       $Direcor_CCT->fecha_baja=$request->get('fechaf');
       $Direcor_CCT->documentacion_entregada=$request->get('doc');
-      $Direcor_CCT->captura="ADMINISTRADOR";
+      $Direcor_CCT->captura=$user;
       $Direcor_CCT->estado="ACTIVO";
       $Direcor_CCT->id_ciclo=$request->get('ciclo_escolar');
       $Direcor_CCT->id_cct_etc=$request->get('cct');
@@ -308,7 +316,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct');
@@ -324,7 +332,7 @@ class CapturaController extends Controller
       $datos2->documentacion_entregada=$request->get('doc');
       $datos2->observaciones=$request->get('observaciones');
       $datos2->id_ciclo=$request->get('ciclo_escolar'); 
-      $datos2->captura="ADMINISTRADOR";
+      $datos2->captura=$user;
       $datos2->estado="PENDIENTE";
       $datos2->save();     
       $baja=CapturaModel::findOrFail($datos2->id_captura);
@@ -332,7 +340,7 @@ class CapturaController extends Controller
       $baja->documentacion_entregada=$request->get('doc');
       $baja->tipo_movimiento="BAJA";
       $baja->estado="INACTIVO";
-      $baja->captura="ADMINISTRADOR";
+      $baja->captura=$user;
       $baja->update();
 
 
@@ -343,7 +351,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct');
@@ -358,7 +366,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct');
@@ -375,7 +383,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct');
@@ -397,7 +405,7 @@ class CapturaController extends Controller
 
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->id_ciclo=$request->get('ciclo_escolar'); 
       $datos->save();
@@ -413,7 +421,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->id_cct_etc=$request->get('cct');
       $datos->id_ciclo=$request->get('ciclo_escolar'); 
@@ -442,11 +450,12 @@ class CapturaController extends Controller
      */
     public function destroy(Request $request,$id)
     {
+      $user = Auth::user()->name;
 
       $tabla=CapturaModel::findOrFail($id);
       $tabla->fecha_termino=$request->get('fecha'.$id);
       $tabla->estado= "INACTIVO";
-      $tabla->captura="ADMINISTRADOR";
+      $tabla->captura=$user;
 
       $datos2= new BajasContratoModel;
 
@@ -460,7 +469,7 @@ class CapturaController extends Controller
       $datos2->documentacion_entregada=$request->get('doc');
       $datos2->observaciones=$request->get('observaciones'.$id);
       $datos2->id_ciclo=$tabla->id_ciclo; 
-      $datos2->captura="ADMINISTRADOR";
+      $datos2->captura=$user;
       $datos2->estado="PENDIENTE";
       $datos2->save();
       $tabla->update();
@@ -532,6 +541,7 @@ class CapturaController extends Controller
     }
 
     public function guardar_contrato(Request $request,$id){
+      $user = Auth::user()->name;
      $tabla=CapturaModel::findOrFail($id);
 
      $aux=$request->get('clave');
@@ -559,7 +569,7 @@ class CapturaController extends Controller
      $tabla->cct_2=$request->get('cct_2');
      $tabla->documentacion_entregada=$request->get('doc');
      $tabla->observaciones=$request->get('observaciones');
-     $tabla->captura="ADMINISTRADOR";
+     $tabla->captura=$user;
      $tabla->estado="ACTIVO";
      $tabla->id_ciclo=$request->get('ciclo_escolar'); 
      $tabla->tipo_movimiento=$request->get('movimiento');
@@ -577,7 +587,7 @@ class CapturaController extends Controller
       $Direcor_CCT->fecha_baja=$request->get('fechaf');
       $Direcor_CCT->documentacion_entregada=$request->get('doc');
       $Direcor_CCT->documentacion_entregada=$request->get('doc');
-      $Direcor_CCT->captura="ADMINISTRADOR";
+      $Direcor_CCT->captura=$user;
       $Direcor_CCT->estado="ACTIVO";
       $Direcor_CCT->id_ciclo=$request->get('ciclo_escolar');
       $Direcor_CCT->id_cct_etc=$request->get('cct');
@@ -593,7 +603,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct');
@@ -609,7 +619,7 @@ class CapturaController extends Controller
       $datos2->documentacion_entregada=$request->get('doc');
       $datos2->observaciones=$request->get('observaciones');
       $datos2->id_ciclo=$request->get('ciclo_escolar'); 
-      $datos2->captura="ADMINISTRADOR";
+      $datos2->captura=$user;
       $datos2->estado="PENDIENTE";
       $datos2->save();
       $baja=CapturaModel::findOrFail($datos2->id_captura);
@@ -617,7 +627,7 @@ class CapturaController extends Controller
       $baja->documentacion_entregada=$request->get('doc');
       $baja->tipo_movimiento="BAJA";
       $baja->estado="INACTIVO";
-      $baja->captura="ADMINISTRADOR";
+      $baja->captura=$user;
       $baja->update();
 
     }elseif ($mov == "INICIO") {
@@ -627,7 +637,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct');
@@ -642,7 +652,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct');
@@ -658,7 +668,7 @@ class CapturaController extends Controller
       $datos->fecha_baja=$request->get('fechaf');
       $datos->documentacion_entregada=$request->get('doc');
       $datos->observaciones=$request->get('observaciones');
-      $datos->captura="ADMINISTRADOR";
+      $datos->captura=$user;
       $datos->estado="PENDIENTE";
       $datos->clave=$name[0];
       $datos->id_cct_etc=$request->get('cct');

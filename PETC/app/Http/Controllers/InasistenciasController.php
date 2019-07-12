@@ -23,7 +23,8 @@ use PHPExcel_Worksheet_Drawing;
 use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 
 class InasistenciasController extends Controller
 {
@@ -32,6 +33,10 @@ class InasistenciasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request,$id){ 
       if($request)
       {
@@ -142,6 +147,7 @@ class InasistenciasController extends Controller
      */
     public function store(Request $request)
     {
+      $user = Auth::user()->name;
 
       $inasistencias=$request->get('inasistencias');
       $first = head($inasistencias);
@@ -165,7 +171,7 @@ class InasistenciasController extends Controller
         $tabla->dia=$name2[2];
         $tabla->estado="PENDIENTE";
         $tabla->observaciones=$request->get('observaciones');
-        $tabla->captura="ADMINISTRADOR";
+        $tabla->captura=$user;
         $tabla->save();
             # code...
       }
@@ -178,7 +184,7 @@ class InasistenciasController extends Controller
       $tabla2->id_ciclo=$tabla->id_ciclo;
       $tabla2->estado="ACTIVO";
       $tabla2->observaciones=$request->get('observaciones');
-      $tabla2->captura="ADMINISTRADOR";
+      $tabla2->captura=$user;
       $tabla2->save();
       return Redirect::to('inasistencias2/1'); 
         //
@@ -232,6 +238,7 @@ class InasistenciasController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
 
       $inasistencias=$request->get('inasistencias');
       $first = head($inasistencias);
@@ -263,7 +270,7 @@ class InasistenciasController extends Controller
         $inasistencias->dia=$name2[2];
         $inasistencias->estado="PENDIENTE";
         $inasistencias->observaciones=$request->get('observaciones');
-        $inasistencias->captura="ADMINISTRADOR";
+        $inasistencias->captura=$user;
 
         if($i == 0){
           $inasistencias->update();
@@ -283,9 +290,10 @@ class InasistenciasController extends Controller
      */
     public function destroy(Request $request,$id)
     {
+      $user = Auth::user()->name;
       $tabla=InasistenciasModel::findOrFail($id);
       $tabla->estado= "APLICADA";
-      $tabla->captura="ADMINISTRADOR";
+      $tabla->captura=$user;
       $tabla->fecha_aplica=$request->get('qna'.$id);
       $tabla->update();
 

@@ -18,6 +18,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\RechazosFederalRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class RechazosFederalController extends Controller
 {
     /**
@@ -25,6 +27,10 @@ class RechazosFederalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
       if($request)

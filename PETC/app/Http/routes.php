@@ -10,6 +10,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', ['as' =>'auth/login', 'uses' => 'Auth\AuthController@postLogin']);
+Route::get('auth/logout', ['as' => 'auth/logout', 'uses' => 'Auth\AuthController@getLogout']);
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', ['as' => 'auth/register', 'uses' => 'Auth\AuthController@postRegister']);
+
 
 Route::get('/', function () {
 	return view('welcome');
@@ -257,9 +266,30 @@ Route::get('ver_datospersonal/{id}', array('as'=> '/ver_datospersonal','uses'=>'
 //RECLAMOS
 
 Route::resource('reclamos', 'ReclamosController');
+Route::get('reclamos2/{id}', 'ReclamosController@index');
 Route::get('valida_reclamos/{dia}/{mes}/{year}/','ReclamosController@valida_reclamos');
 Route::get('calcular_reclamo/{dias}/{categoria}/{ciclo}','ReclamosController@calcular_reclamo');
 Route::get('buscar_qnas/{ciclo}', 'ReclamosController@buscar_qnas');
+Route::get('descargar-reclamos/{id}', 'ReclamosController@excel')->name('nomina.reclamos.excel');
+Route::post('activar_reclamo/{id}', 'ReclamosController@activar');
+Route::get('ver_reclamos', array('as'=> '/ver_reclamos','uses'=>'ReclamosController@ver_reclamos'));
+Route::get('busca_dias_reclamo/{ciclo}','ReclamosController@busca_dias_reclamo');
+Route::get('busca_dias_reclamo_region/{region}/{ciclo}','ReclamosController@busca_dias_reclamo_region');
+Route::get('pdf_reclamos/{ciclo}', array('as'=> '/pdf_reclamos','uses'=>'ReclamosController@invoice'));
+
+
+
+//DIRECTORIO EXTERNO
+Route::resource('directorio_externo', 'DirectorioExternoController');
+Route::get('descargar-directorio-externo', 'DirectorioExternoController@excel')->name('nomina.directorio_externo.excel');
+Route::get('pdf_directorio_externo', array('as'=> '/pdf_directorio_externo','uses'=>'DirectorioExternoController@invoice'));
+
+//DIRECTORIO INTERNO
+Route::resource('directorio_interno', 'DirectorioInternoController');
+Route::get('descargar-directorio-interno', 'DirectorioInternoController@excel')->name('nomina.directorio_interno.excel');
+Route::get('pdf_directorio_externo', array('as'=> '/pdf_directorio_externo','uses'=>'DirectorioInternoController@invoice'));
+
+
 
 
 //OFICIOS EMITIDOS
