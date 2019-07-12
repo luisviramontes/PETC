@@ -39,10 +39,10 @@
 						</div>
 						<div class="col-md-4">
 							<div class="btn-group pull-right">
-								<div class="actions"> 
+								<div class="actions">
 								</div>
 							</div>
-						</div>    
+						</div>
 					</div>
 				</div><!--header-->
 
@@ -67,12 +67,12 @@
 											<div id="form-step-0" role="form" data-toggle="validator">
 												<h3 class="h3titulo">Informacion de los Reclamos</h3>
 
-												
+
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Empleado <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 														<select name="personal" id="personal" class="form-control select2" onchange="cambia_reclamos();"  required>
-															@foreach($captura as $personal) 
+															@foreach($captura as $personal)
 															<option value="{{$personal->id}}_{{$personal->rfc}}_{{$personal->nombre}}_{{$personal->categoria}}_{{$personal->cct}}_{{$personal->nombre_escuela}}_{{$personal->fecha_inicio}}_{{$personal->fecha_termino}}">
 																{{$personal->nombre}}
 															</option>
@@ -82,7 +82,7 @@
 														<div class="help-block with-errors"></div>
 							<!--	<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
 						--></div>
-					</div> 
+					</div>
 
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Escuela: <strog class="theme_color">*</strog></label>
@@ -137,14 +137,14 @@
 						<span id="errorUnidad" style="color:#FF0000;"></span>
 					</div>
 
-					
+
 
 
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Ciclo Escolar: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
-							<select name="ciclo_escolar" id="ciclo_escolar" onchange="buscar_qnas();" class="form-control select2" ">
-								@foreach($ciclos as $ciclo) 
+							<select name="ciclo_escolar" id="ciclo_escolar" onchange="buscar_qnas();" class="form-control select2" >
+								@foreach($ciclos as $ciclo)
 								<option value='{{$ciclo->ciclo}}'>
 									{{$ciclo->ciclo}}
 								</option>
@@ -154,17 +154,17 @@
 						</div>
 					</div>
 
-					
-					
+
+
 
 					<div class="col-sm-3">
-						<div class="form-group"> 
+						<div class="form-group">
 							<button type="button" id="btn_add" onclick="llenado();" class="btn btn-primary">Agregar</button>
 						</div>
 					</div>
 
 
-					<div class="form-group"  class="table-responsive"> 
+					<div class="form-group"  class="table-responsive">
 						<table id="detalles" name="detalles[]" value="" class="table table-responsive-xl table-bordered">
 							<thead style="background-color:#A9D0F5">
 								<th>Opciones</th>
@@ -193,18 +193,18 @@
 
 
 						<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
-							<div class="form-group"> 
+							<div class="form-group">
 								<label  for="subtotal">Total </label>
 								<input name="subtotal" id="subtotal" type="number" value="0"  maxlength="5" class="form-control"  readonly/>
-							</div>    
+							</div>
 						</div>
 
 						<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
-							<div class="form-group"> 
+							<div class="form-group">
 								<label for="total">Total de Elementos </label>
 								<input name="totale" id="totale" type="number"  class="form-control"  readonly/>
-							</div>    
-						</div>  
+							</div>
+						</div>
 
 
 
@@ -252,8 +252,8 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Dirigido Para: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
-							<select name="dirigido_a" id="dirigido_a"  class="form-control select" ">
-								@foreach($dirigido as $dirigido2) 
+							<select name="dirigido_a" id="dirigido_a"  class="form-control select2">
+								@foreach($dirigido as $dirigido2)
 								@if($dirigido2->id == 63)
 								<option value='{{$dirigido2->puesto}}_{{$dirigido2->nombre_c}}_{{$dirigido2->id}}_{{$dirigido2->lic}}_{{$dirigido2->a_n}}' selected>
 									{{$dirigido2->lic}}. {{$dirigido2->nombre_c}}.-{{$dirigido2->puesto}}
@@ -273,7 +273,7 @@
 						<label class="col-sm-3 control-label">Con Vo.Bo: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<select name="vo" id="vo"  class="form-control select" ">
-								@foreach($dirigido as $dirigido3) 
+								@foreach($dirigido as $dirigido3)
 								@if($dirigido3->id == 19)
 								<option value='{{$dirigido3->puesto}}_{{$dirigido3->nombre_c}}_{{$dirigido3->id}}_{{$dirigido3->lic}}' selected>
 									{{$dirigido3->lic}}. {{$dirigido3->nombre_c}}.-{{$dirigido3->puesto}}
@@ -291,20 +291,20 @@
 
 
 					<div class="col-sm-3">
-						<div class="form-group"> 
+						<div class="form-group">
 							<button type="button" id="btn_add" onclick="agregar2();" class="btn btn-primary">Agregar</button>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-6">
-							<div class="form-group"  class="table-responsive"> 
+							<div class="form-group"  class="table-responsive">
 								<table id="detalles2" name="detalles2[]" value="" class="table table-responsive-xl table-bordered">
 									<thead style="background-color:#A9D0F5">
 										<th>Opciones</th>
 										<th>N°</th>
 										<th>Lic</th>
-										<th>Nombre</th>			
-										<th>Puesto </th>									
+										<th>Nombre</th>
+										<th>Puesto </th>
 
 									</thead>
 									<tfoot>
@@ -324,7 +324,7 @@
 						<label class="col-sm-3 control-label">C.c.p: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
 							<select name="ccp" id="ccp"  class="form-control select" ">
-								@foreach($dirigido as $dirigido4) 
+								@foreach($dirigido as $dirigido4)
 								@if($dirigido4->id == 63)
 								<option value='{{$dirigido4->puesto}}_{{$dirigido4->nombre_c}}_{{$dirigido4->id}}_{{$dirigido4->lic}}_{{$dirigido4->a_n}}' selected>
 									{{$dirigido4->lic}}. {{$dirigido4->nombre_c}}.-{{$dirigido4->puesto}}
@@ -341,20 +341,20 @@
 					</div>
 
 					<div class="col-sm-3">
-						<div class="form-group"> 
+						<div class="form-group">
 							<button type="button" id="btn_add" onclick="agregar3();" class="btn btn-primary">Agregar</button>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="col-sm-6">
-							<div class="form-group"  class="table-responsive"> 
+							<div class="form-group"  class="table-responsive">
 								<table id="detalles3" name="detalles3[]" value="" class="table table-responsive-xl table-bordered">
 									<thead style="background-color:#A9D0F5">
 										<th>Opciones</th>
 										<th>N°</th>
 										<th>Lic</th>
-										<th>Nombre</th>										
+										<th>Nombre</th>
 										<th>Puesto </th>
 										<th>A_N</th>
 
@@ -421,8 +421,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Genero Oficio: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="genero" id="genero"  class="form-control select" ">
-									@foreach($genero as $genero) 
+								<select name="genero" id="genero"  class="form-control select2" >
+									@foreach($genero as $genero)
 									<option value='{{$genero->abrebiatura}}_{{$genero->id}}'>
 										{{$genero->nombre}}
 									</option>
@@ -436,8 +436,8 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Se Solicita Pago para Qna: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="pagos" id="pagos"  class="form-control select" ">
-									
+								<select name="pagos" id="pagos"  class="form-control select2">
+
 								</select>
 
 							</div>
@@ -463,7 +463,7 @@
 			</div><!--step-2-->
 
 		</div>
-	</div>  <!--smartwizard-->            
+	</div>  <!--smartwizard-->
 </form>
 </div><!--/form-horizontal-->
 </div><!--/porlets-content-->
@@ -528,7 +528,7 @@
           	if(stepNumber == 0){
           		var r = document.getElementById("totale").value;
           		if(r < 1){
-          			return false; 
+          			return false;
           		}
 
           	}else if (stepNumber == 1){
@@ -536,7 +536,7 @@
 
 
           	}else if (stepNumber == 2){
-          		
+
           	}
 
           	var elmErr = elmForm.children('.has-error');

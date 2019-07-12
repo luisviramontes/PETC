@@ -15,7 +15,7 @@ class OficiosRecibidos extends Migration
         Schema::create('OficiosRecibidos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('num_oficio')->unique();
-            $table->string('nombre_oficio')->unique();
+            $table->string('nombre_oficio')->unique()->nullable();
             $table->integer('id_dirigido')->unsigned()->nullable();
             $table->foreign('id_dirigido')->references('id')->on('DirectorioExterno');
 

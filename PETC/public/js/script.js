@@ -1685,7 +1685,7 @@ function recorre2(valor) {
    if (z == 1){
     var j = table.rows[r].cells[c].innerHTML;
 
-    if (valor == j ){             
+    if (valor == j ){
       var r = 1;
       return(r);
     }else{
@@ -1811,7 +1811,7 @@ for (var r = 1, n = table.rows.length-1; r < n; r++) {
 }
 }
 
-//tabla3 
+//tabla3
 var arreglo_c = [];
 var table = document.getElementById('detalles3');
 for (var r = 1, n = table.rows.length-1; r < n; r++) {
@@ -1889,7 +1889,7 @@ var tabla = document.getElementById("detalles2");
    for (var r = 1, n = table.rows.length-1; r < n; r++) {
     for (var c = 1, m = table.rows[r].cells.length; c < m; c++) {
       var j = table.rows[r].cells[1].innerHTML;
-      if (valor == j ){             
+      if (valor == j ){
         var r = 1;
         return(r);
       }
@@ -1953,7 +1953,7 @@ var tabla = document.getElementById("detalles3");
    for (var r = 1, n = table.rows.length-1; r < n; r++) {
     for (var c = 1, m = table.rows[r].cells.length; c < m; c++) {
       var j = table.rows[r].cells[1].innerHTML;
-      if (valor == j ){             
+      if (valor == j ){
         var r = 1;
         return(r);
       }
@@ -1976,6 +1976,7 @@ function buscar_qnas(){
     var ciclo = document.getElementById('ciclo_escolar').value;
 
     var route = "http://localhost:8000/buscar_qnas/"+ciclo;
+
     $.get(route,function(res){
       for (var p = 0 ; p < res.length; p++) {
         var x = document.getElementById("pagos");
@@ -1983,6 +1984,7 @@ function buscar_qnas(){
         option.text = res[p].qna ;
         option.value = res[p].qna;
         x.add(option, x[p])
+
       }
     });
 

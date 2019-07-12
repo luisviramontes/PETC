@@ -50,6 +50,12 @@ Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nom
 Route::get('pdf_catpuesto/{id}', array('as'=> '/pdf_catpuesto','uses'=>'CatPuestoController@invoice'));
 /////////////////////////////////////////////////////////////
 
+//////////////////Cuentas///////////////////////////////
+Route::resource('cuentas', 'CuentasController');
+Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
+Route::get('pdf_catpuesto/{id}', array('as'=> '/pdf_catpuesto','uses'=>'CatPuestoController@invoice'));
+/////////////////////////////////////////////////////////////
+
 ///////////////////ciclo escolar///////////////////////////
 Route::resource('ciclo_escolar', 'CicloEscolarController');
 Route::get('descargar-ciclo-escolar', 'CicloEscolarController@excel')->name('nomina.ciclo_escolar.excel');
@@ -253,7 +259,7 @@ Route::get('ver_datospersonal/{id}', array('as'=> '/ver_datospersonal','uses'=>'
 //Route::post('activarrfc', 'PersonalController@activar');
 //Route::get('pdf_tablapagos/{id}', array('as'=> '/pdf_tablapagos','uses'=>'TablaPagosController@invoice'));
 
- 
+
 //RECLAMOS
 
 Route::resource('reclamos', 'ReclamosController');
@@ -263,7 +269,8 @@ Route::get('buscar_qnas/{ciclo}', 'ReclamosController@buscar_qnas');
 
 
 //OFICIOS EMITIDOS
-Route::get('buscar_oficio/{oficio}/{ciclo}', 'OficiosEmitidosController@buscar_oficio'); 
+Route::get('buscar_oficio/{oficio}/{ciclo}', 'OficiosEmitidosController@buscar_oficio');
+Route::get('busca_oficio/{oficio}/{ciclo}', 'OficiosEmitidosController@busca_oficio');
 
 ///TABLA DE PAGOS
 Route::resource('tabla_pagos', 'TablaPagosController');

@@ -7,17 +7,7 @@ use Illuminate\Http\Request;
 use petc\Http\Requests;
 use petc\Http\Controllers\Controller;
 
-use petc\OficiosEmitidosModel;
-
-use DB;
-
-use Maatwebsite\Excel\Facades\Excel;
-use PHPExcel_Worksheet_Drawing;
-use Validator;
-use \Milon\Barcode\DNS1D;
-use \Milon\Barcode\DNS2D;
-
-class OficiosEmitidosController extends Controller
+class CuentasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +16,18 @@ class OficiosEmitidosController extends Controller
      */
     public function index()
     {
-        //
+      if($request)
+      {
+       $query=trim($request->GET('searchText'));
+       $fortalecimientos = DB::table('fortalecimiento')
+       ->join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
+       ->select('fortalecimiento.id as id','fortalecimiento.*','centro_trabajo.cct as cct')
+       ->where('cct','LIKE','%'.$query.'%')
+       ->orwhere('monto_forta','LIKE','%'.$query.'%')
+       ->paginate(10);
+
+      return view('nomina.fortalecimiento.index',["fortalecimientos"=>$fortalecimientos,"searchText"=>$query]);
+
     }
 
     /**
@@ -94,17 +95,4 @@ class OficiosEmitidosController extends Controller
     {
         //
     }
-
-    public function buscar_oficio($oficio,$ciclo_aux)
-    {
-        $ciclo=DB::table('ciclo_escolar')->where('ciclo','=',$ciclo_aux)->first();
-       $oficio= OficiosEmitidosModel::
-       select('id')
-       ->where('id_ciclo','=',$ciclo->id)->where('num_oficio','=',$oficio)
-       ->get();
-       return response()->json(
-        $oficio);
-        //
-   }
-
 }

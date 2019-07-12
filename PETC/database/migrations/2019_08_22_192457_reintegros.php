@@ -20,13 +20,15 @@ class Reintegros extends Migration
             $table->foreign('id_centro_trabajo')->references('id')->on('centro_trabajo');
             $table->integer('id_directorio_regional')->unsigned();
             $table->foreign('id_directorio_regional')->references('id')->on('directorio_regional');
-            $table->integer('id_ciclo_escolar')->unsigned();
-            $table->foreign('id_ciclo_escolar')->references('id')->on('ciclo_escolar');
+            $table->integer('id_ciclo')->unsigned();
+            $table->foreign('id_ciclo')->references('id')->on('ciclo_escolar');
             $table->integer('id_region')->unsigned();
             $table->foreign('id_region')->references('id')->on('region');
+            $table->integer('id_oficio')->unsigned();
+            $table->foreign('id_oficio')->references('id')->on('OficiosEmitidos');
             $table->integer('num_dias');
             $table->integer('total');
-            $table->string('n_oficio');
+            $table->string('oficio');
             $table->string('motivo');
             $table->string('estado');
             $table->string('captura');
