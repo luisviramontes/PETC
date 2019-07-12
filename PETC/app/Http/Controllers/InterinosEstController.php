@@ -14,7 +14,8 @@ use Validator;
 
 use petc\Http\Requests;
 use petc\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class InterinosEstController extends Controller
 {
     /**
@@ -22,6 +23,10 @@ class InterinosEstController extends Controller
      *
      * @return \Illuminate\Http\Response
      */ 
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
   public function index(request $request){
      if($request)
      {
@@ -44,9 +49,10 @@ class InterinosEstController extends Controller
 
         public function activar($id)
     { 
+        $user = Auth::user()->name;
       $captura=CapturaModel::findOrFail($id);
       $captura->pagos_registrados="1";
-      $captura->captura="ADMINISTRADOR";
+      $captura->captura=$user;
       $captura->update();
       return redirect('interinosest');
         //

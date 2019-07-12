@@ -932,6 +932,12 @@ function enviar_ciclo4(){
   location.href="http://localhost:8000/verInformacionCentro/"+z+"/"+x;
 }
 
+function enviar_ciclo5(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var z =document.getElementById('searchText').value;
+
+  location.href="/reclamos2/"+x+"?searchText="+z;
+}
 
 
 ///dir regional//
@@ -2007,3 +2013,130 @@ function buscar_qnas(){
     }
   });
   }
+<<<<<<< HEAD
+=======
+
+  function busca_dias_reclamo(){
+    document.getElementById("detalles").deleteRow(1);
+
+    var ciclo = document.getElementById('ciclo_escolar').value;
+    document.getElementById('generar').href="http://localhost:8000/pdf_reclamos/"+ciclo;
+    var route = "http://localhost:8000/busca_dias_reclamo/"+ciclo;
+
+  document.getElementById('excel_reclamos').href="http://localhost:8000/descargar-reclamos/"+ciclo;
+    var director= 0;
+    var docente = 0;
+    var intendente = 0;
+    var dias = 0;
+    var total = 0;
+    var pendiente = 0;
+    var resuelto = 0 ;
+
+    $.get(route,function(res){
+      if(res.length > 0){
+        for (var i =0; res.length > i; i++) {
+          if(res[i].estado == "PENDIENTE"){
+            pendiente = pendiente +1;
+
+          }else{
+            resuelto = resuelto +1;
+          }
+          dias = dias + res[i].total_dias;
+          total= parseInt(total) + parseInt(res[i].total_reclamo);
+
+
+          if(res[i].categoria == "DIRECTOR"){
+            director=director+1;           
+          }else if(res[i].categoria == "DOCENTE" || res[i].categoria == "USAER" || res[i].categoria == "EDUCACION FISICA"){
+            docente=docente+1;
+          }else{
+            intendente= intendente+1;
+          }
+        }
+      }
+      var tabla = document.getElementById("detalles");
+      var row = tabla.insertRow(1);
+      row.style.backgroundColor = "white";
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+      var cell6 = row.insertCell(5);
+      var cell7 = row.insertCell(6);
+      var cell8 = row.insertCell(7);
+      cell1.innerHTML = res.length;
+      cell2.innerHTML = director;
+      cell3.innerHTML = docente;
+      cell4.innerHTML =  intendente;
+      cell5.innerHTML = dias;
+      cell6.innerHTML = total;
+      cell7.innerHTML = resuelto;
+      cell8.innerHTML = pendiente  ;
+    });
+
+  }
+
+
+  function busca_dias_reclamo_region(){
+     document.getElementById("detalles2").deleteRow(1);
+
+    var ciclo = document.getElementById('ciclo_escolar').value;
+    var region = document.getElementById('region').value;
+
+    var route = "http://localhost:8000/busca_dias_reclamo_region/"+region+"/"+ciclo;
+    var director= 0;
+    var docente = 0;
+    var intendente = 0;
+    var dias = 0;
+    var total = 0;
+    var pendiente = 0;
+    var resuelto = 0 ;
+
+    $.get(route,function(res){
+      if(res.length > 0){
+        for (var i =0; res.length > i; i++) {
+          if(res[i].estado == "PENDIENTE"){
+            pendiente = pendiente +1;
+
+          }else{
+            resuelto = resuelto +1;
+          }
+          dias = dias + res[i].total_dias;
+          total= parseInt(total) + parseInt(res[i].total_reclamo);
+
+
+          if(res[i].categoria == "DIRECTOR"){
+            director=director+1;           
+          }else if(res[i].categoria == "DOCENTE" || res[i].categoria == "USAER" || res[i].categoria == "EDUCACION FISICA"){
+            docente=docente+1;
+          }else{
+            intendente= intendente+1;
+          }
+        }
+      }
+      var tabla = document.getElementById("detalles2");
+      var row = tabla.insertRow(1);
+      row.style.backgroundColor = "white";
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+      var cell6 = row.insertCell(5);
+      var cell7 = row.insertCell(6);
+      var cell8 = row.insertCell(7);
+      cell1.innerHTML = res.length;
+      cell2.innerHTML = director;
+      cell3.innerHTML = docente;
+      cell4.innerHTML =  intendente;
+      cell5.innerHTML = dias;
+      cell6.innerHTML = total;
+      cell7.innerHTML = resuelto;
+      cell8.innerHTML = pendiente  ;
+    });
+
+  }
+
+    //tabla.setAttribute("id", id2);
+>>>>>>> 9c9af5198d19d946fcef619ab79400fc8712ce44

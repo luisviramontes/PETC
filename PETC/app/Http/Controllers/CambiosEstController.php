@@ -18,7 +18,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D; 
 
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class CambiosEstController extends Controller
 {
     /**
@@ -26,6 +27,10 @@ class CambiosEstController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request){
         if($request)
         {
@@ -105,6 +110,7 @@ class CambiosEstController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
         $aux=$request->get('clave');
         $name = explode("_",$aux);
 
@@ -118,7 +124,7 @@ class CambiosEstController extends Controller
 
         $datos->documentacion_entregada=$request->get('doc');
         $datos->observaciones=$request->get('observaciones');
-        $datos->captura="ADMINISTRADOR";
+        $datos->captura=$user;
         $datos->estado="PENDIENTE";
         $datos->id_ciclo=$request->get('ciclo_escolar'); 
         $datos->update();
@@ -131,7 +137,7 @@ class CambiosEstController extends Controller
         $tabla->fecha_termino=$request->get('fechaf');
         $tabla->documentacion_entregada=$request->get('doc');
         $tabla->observaciones=$request->get('observaciones');
-        $tabla->captura="ADMINISTRADOR";
+        $tabla->captura=$user;
         $tabla->id_ciclo=$request->get('ciclo_escolar'); 
         $tabla->tipo_movimiento="CAMBIOCCT";
         $tabla->cct_2=$request->get('cct_2');
@@ -152,9 +158,10 @@ class CambiosEstController extends Controller
      */
     public function destroy($id)
     {
+      $user = Auth::user()->name;
          $altas=CambiosCctModel::findOrFail($id);
       $altas->estado="PENDIENTE";
-      $altas->captura="ADMINISTRADOR";
+      $altas->captura=$user;
       $altas->update();
       return redirect('cambios_cct_est');
         //
@@ -162,9 +169,10 @@ class CambiosEstController extends Controller
 
     public function activar($id)
     { 
+      $user = Auth::user()->name;
       $altas=CambiosCctModel::findOrFail($id);
       $altas->estado="RESUELTO";
-      $altas->captura="ADMINISTRADOR";
+      $altas->captura=$user;
       $altas->update();
       return redirect('cambios_cct_est');
         //

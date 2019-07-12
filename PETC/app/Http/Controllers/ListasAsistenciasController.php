@@ -17,7 +17,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\ListaAsistenciasRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class ListasAsistenciasController extends Controller
 {
     /**
@@ -25,6 +26,13 @@ class ListasAsistenciasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request)
     {
       if($request)
@@ -80,6 +88,7 @@ class ListasAsistenciasController extends Controller
      */
     public function store(Request $request)
     {
+      $user = Auth::user()->name;
 
 
       $lista= new ListasAsistenciaModel;
@@ -91,7 +100,7 @@ class ListasAsistenciasController extends Controller
       $lista -> mes = $request ->mes;
       $lista -> estado = "ACTIVO";
       $lista -> observaciones = $request ->observaciones;
-      $lista -> captura="Administrador";
+      $lista -> captura=$user;
 
       if($lista->save()){
 
@@ -158,6 +167,7 @@ class ListasAsistenciasController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
 
       $listas = ListasAsistenciaModel::find($id);
 
@@ -169,7 +179,7 @@ class ListasAsistenciasController extends Controller
       $listas -> mes = $request ->mes;
       $listas -> estado = "ACTIVO";
       $listas -> observaciones = $request ->observaciones;
-      $listas -> captura="ADMINISTRADOR";
+      $listas -> captura=$user;
 
       if($listas->save()){
 
@@ -188,9 +198,10 @@ class ListasAsistenciasController extends Controller
      */
     public function destroy($id)
     {
+      $user = Auth::user()->name;
       $lista=ListasAsistenciaModel::findOrFail($id);
       $lista->estado="INACTIVO";
-      $lista->captura="ADMINISTRADOR";
+      $lista->captura=$user;
       $lista->update();
         return redirect('listas_asistencias');
     }

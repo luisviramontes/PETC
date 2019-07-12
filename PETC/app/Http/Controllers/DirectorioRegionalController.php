@@ -16,7 +16,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\DirectorioRegionalRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 
 class DirectorioRegionalController extends Controller
 {
@@ -25,6 +26,10 @@ class DirectorioRegionalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
       if($request)
@@ -69,6 +74,7 @@ class DirectorioRegionalController extends Controller
      */
     public function store(DirectorioRegionalRequest $formulario)
     {
+      $user = Auth::user()->name;
       $validator = Validator::make(
         $formulario->all(),
         $formulario->rules(),
@@ -92,7 +98,7 @@ class DirectorioRegionalController extends Controller
         $directorio -> ext_reg_1=$formulario ->ext_reg_1;
         $directorio -> ext_reg_2=$formulario ->ext_reg_2;
         $directorio -> estado="ACTIVO";
-        $directorio -> captura="ADMINISTRADOR";
+        $directorio -> captura=$user;
 
 
 
@@ -158,6 +164,7 @@ class DirectorioRegionalController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
 
       $directorio = DirectorioRegionalModel::find($id);
         //asignamos nuevos valores
@@ -174,7 +181,7 @@ class DirectorioRegionalController extends Controller
       $directorio -> ext_reg_1=$request ->ext_reg_1;
       $directorio -> ext_reg_2=$request ->ext_reg_2;
       $directorio -> estado="ACTIVO";
-      $directorio -> captura="ADMINISTRADOR";
+      $directorio -> captura=$user;
         //guardar
       if($directorio->save()){
 
@@ -193,9 +200,10 @@ class DirectorioRegionalController extends Controller
      */
     public function destroy($id)
     {
+      $user = Auth::user()->name;
       $directorio=DirectorioRegionalModel::findOrFail($id);
       $directorio->estado="INACTIVO";
-      $directorio->captura="ADMINISTRADOR";
+      $directorio->captura=$user;
       $directorio->update();
       return redirect('directorio_regional');
     }

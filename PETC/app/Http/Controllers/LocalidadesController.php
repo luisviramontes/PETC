@@ -16,7 +16,8 @@ use PHPExcel_Worksheet_Drawing;
 use Validator; 
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class LocalidadesController extends Controller
 {
     /**
@@ -24,6 +25,10 @@ class LocalidadesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request)
     {   
       if($request)
@@ -57,6 +62,7 @@ class LocalidadesController extends Controller
      */
     public function store(Request $request)
     {
+      $user = Auth::user()->name;
         $datos= new LocalidadesModel;
         $datos->id_municipio=$request->get('municipio');
         $datos->nom_loc=$request->get('localidad');
@@ -67,7 +73,7 @@ class LocalidadesController extends Controller
         $datos->pobmas=$request->get('pobmas');
         $datos->pobfem=$request->get('pobfem');
         $datos->estado="ACTIVO";
-        $datos->captura="ADMINISTRADOR";
+        $datos->captura=$user;
         $datos->save();
         return Redirect::to('localidades');
         //
@@ -112,6 +118,7 @@ class LocalidadesController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
        $datos=LocalidadesModel::findOrFail($id);
        $datos->id_municipio=$request->get('municipio');
        $datos->nom_loc=$request->get('localidad');
@@ -122,7 +129,7 @@ class LocalidadesController extends Controller
        $datos->pobmas=$request->get('pobmas');
        $datos->pobfem=$request->get('pobfem');
        $datos->estado="ACTIVO";
-       $datos->captura="ADMINISTRADOR";
+       $datos->captura=$user;
        $datos->update();
        return Redirect::to('localidades');
         //
@@ -136,9 +143,10 @@ class LocalidadesController extends Controller
      */
     public function destroy($id)
     {
+      $user = Auth::user()->name;
         $datos=LocalidadesModel::findOrFail($id);
         $datos->estado="INACTIVO";
-        $datos->captura="ADMINISTRADOR";
+        $datos->captura=$user;
         $datos->update();
         return Redirect::to('localidades');
         //

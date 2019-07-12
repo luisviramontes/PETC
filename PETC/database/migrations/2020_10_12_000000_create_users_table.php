@@ -17,8 +17,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->integer('id_usuario')->unsigned()->nullable();
+            $table->foreign('id_usuario')->references('id')->on('directoriointerno');
+            $table->string('tipo_usuario')->nullable();
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

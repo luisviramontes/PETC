@@ -16,7 +16,8 @@ use PHPExcel_Worksheet_Drawing;
 use Validator; 
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class MunicipiosController extends Controller
 {
     /**
@@ -24,6 +25,10 @@ class MunicipiosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request)
     {   
       if($request)
@@ -57,6 +62,7 @@ class MunicipiosController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user()->name;
         $datos= new MunicipiosModel;
         $datos->id_region=$request->get('region');
         $datos->municipio=$request->get('municipio');
@@ -65,7 +71,7 @@ class MunicipiosController extends Controller
         $datos->poblacion=$request->get('poblacion');
         $datos->area_km=$request->get('area');
         $datos->estado="ACTIVO";
-        $datos->capturo="ADMINISTRADOR";
+        $datos->capturo=$user;
         $datos->save();
         return Redirect::to('municipios');
         //
@@ -106,6 +112,7 @@ class MunicipiosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user()->name;
      $municipio=MunicipiosModel::findOrFail($id);
      $municipio->id_region=$request->get('region');
      $municipio->municipio=$request->get('municipio');
@@ -114,7 +121,7 @@ class MunicipiosController extends Controller
      $municipio->poblacion=$request->get('poblacion');
      $municipio->area_km=$request->get('area');
      $municipio->estado="ACTIVO";
-     $municipio->capturo="ADMINISTRADOR";
+     $municipio->capturo=$user;
      $municipio->update();
      return Redirect::to('municipios');
         //
@@ -128,9 +135,10 @@ class MunicipiosController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user()->name;
      $municipio=MunicipiosModel::findOrFail($id);
      $municipio->estado="INACTIVO";
-     $municipio->capturo="ADMINISTRADOR";
+     $municipio->capturo=$user;
      $municipio->update();
      return Redirect::to('municipios');
         //

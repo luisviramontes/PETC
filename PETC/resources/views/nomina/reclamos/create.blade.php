@@ -391,7 +391,7 @@
 							</div>
 						</div>
 
-							<div class="form-group">
+						<div class="form-group">
 							<label class="col-sm-3 control-label">N° Oficio: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
 								<input name="oficio" type="text" id="oficio"  value="SA/DFE/DHA/ETC.-/2019" class="form-control" required onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  />
@@ -443,7 +443,7 @@
 							</div>
 						</div>
 
-							<div class="form-group">
+						<div class="form-group">
 							<label class="col-sm-3 control-label">Fecha del Oficio: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
 								<input name="fecha" type="date" id="fecha"   class="form-control" required />
@@ -532,7 +532,18 @@
           		}
 
           	}else if (stepNumber == 1){
+          		var vo =document.getElementById("detalles2").rows
+          		var cp =document.getElementById("detalles3").rows
 
+          		if(vo.length < 3){
+          			swal("Alerta!", "No hay Elementos Agregados, Como Vo.Bo!", "error");
+          			return false;
+          		}
+
+          		if(cp.length < 3){
+          			swal("Alerta!", "No hay Elementos Agregados, Como C.c.p!", "error");
+          			return false;
+          		}
 
 
           	}else if (stepNumber == 2){

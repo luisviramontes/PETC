@@ -17,7 +17,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\TablaDePagosRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class TabuladorPagosController extends Controller
 {
     /**
@@ -25,6 +26,10 @@ class TabuladorPagosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(request $request)
     {
        $ciclos=DB::table('ciclo_escolar')->get();
@@ -63,7 +68,8 @@ class TabuladorPagosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(TablaDePagosRequest $formulario)
-    {         
+    {        
+    $user = Auth::user()->name; 
         $validator = Validator::make(
             $formulario->all(), 
             $formulario->rules(),
@@ -79,7 +85,7 @@ class TabuladorPagosController extends Controller
             $tabla->pago_director=$formulario->get('pago_director');
             $tabla->pago_docente=$formulario->get('pago_docente');
             $tabla->pago_intendente=$formulario->get('pago_intendente');
-            $tabla->capturo="ADMINISTRADOR";
+            $tabla->capturo=$user;
             $tabla->ciclo=$formulario->get('ciclo');
             $tabla->save();
             return Redirect::to('tabulador_pagos');
@@ -122,11 +128,12 @@ class TabuladorPagosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user()->name;
       $pago=TabuladorPagosModel::findOrFail($id);
       $pago->pago_director=$request->get('pago_director');
       $pago->pago_docente=$request->get('pago_docente');
       $pago->pago_intendente=$request->get('pago_intendente');
-      $pago->capturo="ADMINISTRADOR";
+      $pago->capturo=$user;
       $pago->ciclo=$request->get('ciclo');
       $pago->update();
       return Redirect::to('tabulador_pagos');
@@ -141,6 +148,7 @@ class TabuladorPagosController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user()->name;
        $pago=TabuladorPagosModel::findOrFail($id);
        $pago->delete();
        return Redirect::to('tabulador_pagos');

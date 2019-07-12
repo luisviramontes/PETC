@@ -15,7 +15,8 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\NominaCapturadaRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class NominaCapturadaController extends Controller
 {
     /**
@@ -23,6 +24,10 @@ class NominaCapturadaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
       if($request)
@@ -61,6 +66,7 @@ class NominaCapturadaController extends Controller
      */
     public function store(NominaCapturadaRequest $formulario)
     {
+      $user = Auth::user()->name;
       $validator = Validator::make(
       $formulario->all(),
       $formulario->rules(),
@@ -74,7 +80,7 @@ class NominaCapturadaController extends Controller
         $nomina -> sostenimiento = $formulario ->sostenimiento;
         $nomina -> estado ="ACTIVO";
         $nomina -> tipo = $formulario ->tipo;
-        $nomina ->  captura="ADMINISTRADOR";
+        $nomina ->  captura=$user;
 
 
 
@@ -222,12 +228,13 @@ class NominaCapturadaController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
         $nomina = NominaCapturadaModel::findOrFail($id);
         $nomina -> qna = $request ->qna;
         $nomina -> sostenimiento = $request ->sostenimiento;
         $nomina -> estado ="ACTIVO";
         $nomina -> tipo = $request ->tipo;
-        $nomina -> captura="ADMINISTRADOR";
+        $nomina -> captura=$user;
 
 
 
@@ -334,9 +341,10 @@ class NominaCapturadaController extends Controller
      */
     public function destroy(Request $request, $id )
     {
+      $user = Auth::user()->name;
       $nomina=NominaCapturadaModel::findOrFail($id);
       $nomina->estado="INACTIVO";
-      $nomina->captura="ADMINISTRADOR";
+      $nomina->captura=$user;
       $nomina->update();
 
       $qna =  $nomina->qna;
