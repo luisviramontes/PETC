@@ -177,7 +177,7 @@
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Nivel: <strog class="theme_color">*</strog></label>
 											<div class="col-sm-6">
-												<select name="nivel" class="form-control" required>  
+												<select name="nivel" id="nivel" class="form-control" required>  
 													@if($centros->nivel == "PREESCOLAR")
 													<option value="PREESCOLAR" selected>
 														PREESCOLAR                
@@ -220,7 +220,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Fecha de Ingreso al PETC: <strog class="theme_color">*</strog></label>
 										<div class="col-sm-6">
-											<input name="ingreso" id="ingreso" value="{{$centros->fecha_ingreso}}" type="date"  required  />
+											<input name="ingreso" id="ingreso" value="{{$centros->fecha_ingreso}}" type="text"  required  />
 										</div>
 									</div>
 
@@ -492,7 +492,7 @@
           if(stepNumber == 0){
           	var a = document.getElementById('cct').value;
           	var c = a.length;
-          	var nivel = String(document.getElementById('nivel').value);
+          	var nivel = document.getElementById('nivel').value;
 
 
           	if(c < 10 || c > 10){

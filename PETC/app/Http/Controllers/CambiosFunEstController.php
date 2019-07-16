@@ -31,6 +31,11 @@ class CambiosFunEstController extends Controller
         $this->middleware('auth');
     }
     public function index(request $request){
+        $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       if($request)
       {
        // $aux=$request->get('searchText');
@@ -49,7 +54,7 @@ class CambiosFunEstController extends Controller
        return view('nomina.cambios.cambios_funcion.estatal.index',["personal"=>$personal,"contador"=>$contador,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
-     }}
+     }}}
 
     /**
      * Show the form for creating a new resource.
@@ -91,6 +96,11 @@ class CambiosFunEstController extends Controller
      */
     public function edit($id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
 
       $claves=DB::table('cat_puesto')->get();
       $cct=DB::table('centro_trabajo')->get();
@@ -100,7 +110,7 @@ class CambiosFunEstController extends Controller
 
       return view('nomina.cambios.cambios_funcion.estatal.edit', ['claves'=> $claves,'cct'=>$cct,'ciclos'=>$ciclos,'personal'=>$personal]);
         //
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -111,6 +121,11 @@ class CambiosFunEstController extends Controller
      */
     public function update(Request $request, $id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
      $aux=$request->get('clave');
      $name = explode("_",$aux);
@@ -149,7 +164,7 @@ class CambiosFunEstController extends Controller
 
      return redirect('cambios_funcion_est');
         //
-   }
+   }}
     /**
      * Remove the specified resource from storage.
      *

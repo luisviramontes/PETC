@@ -36,31 +36,27 @@
 					<form action="{{route('listas_asistencias.store')}}" method="post" class="form-horizontal row-border" parsley-validate novalidate  files="true" enctype="multipart/form-data" accept-charset="UTF-8">
 						{{csrf_field()}}
 
+
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Clave Centro de Trabajo <strog class="theme_color">*</strog></label>
+							<label class="col-sm-3 control-label">Seleccione Ciclo Escolar: <strog class="theme_color"></strog></label>
 							<div class="col-sm-6">
-								<select name="cct" id="cct" class="form-control select2" onchange="claves(this);valida_cct()"  required>
-									<option selected>
-										Selecciona una opción
+								<select name="ciclo_escolar" id="ciclo_escolar" onchange="busca_dias_reclamo();busca_dias_reclamo_region();" class="form-control select2" ">
+									@foreach($ciclos as $ciclo)	
+									@if($ciclo->id == 2)
+                                    <option value='{{$ciclo->id}}' selected>
+										{{$ciclo->ciclo}}
 									</option>
-									@foreach($cct as $cct)
-									<option value="{{$cct->cct}}_{{$cct->nombre_escuela}}_{{$cct->id}}">
-										{{$cct->cct}}
+									@else			
+									<option value='{{$ciclo->id}}' >
+										{{$ciclo->ciclo}}
 									</option>
+									@endif						
 									@endforeach
 								</select>
-								<div class="help-block with-errors"></div>
-								<div class="text-danger" id='error_cct'>{{$errors->formulario->first('cct')}}</div>
+
 							</div>
 						</div>
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Escuela: <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<input name="escuela" id="escuela" disabled type="text"   class="form-control" required value="{{Input::old('escuelas')}}" />
-							</div>
-						</div>
-
+						
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Mes <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
@@ -99,7 +95,7 @@
 										Octubre
 									</option>
 									<option value="Noviembre">
-									Noviembre
+										Noviembre
 									</option>
 									<option value="Diciembre">
 										Diciembre
@@ -109,6 +105,47 @@
 								<div class="text-danger" id='error_mes'>{{$errors->formulario->first('mes')}}</div>
 							</div>
 						</div><!--/form-group-->
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Seleccione Región: <strog class="theme_color"></strog></label>
+							<div class="col-sm-6">
+								<select name="region" id="region" onchange="busca_dias_reclamo_region();" class="form-control select2" ">
+									@foreach($regiones as $region)				
+									<option value='{{$region->id}}' >
+										{{$region->region}} {{$region->sostenimiento}}
+									</option>						
+									@endforeach
+								</select>
+
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Clave Centro de Trabajo <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<select name="cct" id="cct" class="form-control select2" onchange="claves(this);valida_cct()"  required>
+									<option selected>
+										Selecciona una opción
+									</option>
+									@foreach($cct as $cct)
+									<option value="{{$cct->cct}}_{{$cct->nombre_escuela}}_{{$cct->id}}">
+										{{$cct->cct}}
+									</option>
+									@endforeach 
+								</select>
+								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_cct'>{{$errors->formulario->first('cct')}}</div>
+							</div> 
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Escuela: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="escuela" id="escuela" disabled type="text"   class="form-control" required value="{{Input::old('escuelas')}}" />
+							</div>
+						</div>
+
 
 
 
@@ -152,10 +189,10 @@
 	</div><!--/row-->
 </div><!--/container clear_both padding_fix-->
 <script type="text/javascript">
-			window.onload=function(){
-				claves();
-				valida_cct();
-			}
+	window.onload=function(){
+		claves();
+		valida_cct();
+	}
 </script>
 
 @endsection

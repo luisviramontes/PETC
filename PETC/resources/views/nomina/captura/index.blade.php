@@ -20,7 +20,7 @@
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
 							<div class="actions"> </div>
-							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Empleados PETC </strong></h2>
+							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Empleados PETC </strong></h2> 
 							@include('nomina.captura.search')
 						</div>
 						<div class="col-md-5">
@@ -221,7 +221,7 @@
 															</tr>
 														</tr>
 													</tfoot>
-													{!! $personal->render() !!}
+											
 												</table>
 
 											</div><!--/table-responsive-->

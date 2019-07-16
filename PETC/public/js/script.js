@@ -24,7 +24,7 @@ function soloLetras(e){
     return false;
   }
 }
-
+ 
 
 function soloNumeros(e){
   key = e.keyCode || e.which;
@@ -846,7 +846,7 @@ function valida_nomina(){
 
       }
     }else if(x != ""){
-
+ $("#modal-delete-2").modal();
       document.getElementById('submit').disabled=false;
   //valida_file();
 }
@@ -937,6 +937,11 @@ function enviar_ciclo5(){
   var z =document.getElementById('searchText').value;
 
   location.href="/reclamos2/"+x+"?searchText="+z;
+}
+
+function enviar_ciclo6(){
+    var x =document.getElementById('ciclo_escolar').value;
+  location.href="/nomina_federal/"+x;
 }
 
 
@@ -2136,5 +2141,148 @@ function buscar_qnas(){
     });
 
   }
+
+    function busca_listas_ciclo(){
+    document.getElementById("detalles").deleteRow(1);
+
+    var ciclo = document.getElementById('ciclo_escolar').value;
+
+    document.getElementById('invoice').href="http://localhost:8000/pdf_listasasistencias/"+ciclo;
+
+
+    var route = "http://localhost:8000/busca_listas/"+ciclo;
+  document.getElementById('excel_reclamos').href="http://localhost:8000/descargar-listas-ciclo/"+ciclo;
+
+    var pendiente = 0;
+    var resuelto = 0 ;
+
+    $.get(route,function(res){
+      if(res.length > 0){
+        for (var i =0; res.length > i; i++) {
+          if(res[i].estado == "PENDIENTE"){
+            pendiente = pendiente +1;
+
+          }else{
+            resuelto = resuelto +1;
+          }
+          
+
+
+        }
+      }
+      var tabla = document.getElementById("detalles");
+      var row = tabla.insertRow(1);
+      row.style.backgroundColor = "white";
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      cell1.innerHTML = res.length;
+      cell2.innerHTML = resuelto;
+      cell3.innerHTML = pendiente;
+     
+    });
+
+  }
+
+  function busca_listas_region(){
+    document.getElementById("detalles2").deleteRow(1);
+
+    var ciclo = document.getElementById('ciclo_escolar').value;
+    var region = document.getElementById('region').value;
+
+    var route = "http://localhost:8000/busca_listas_region/"+ciclo+"/"+region;
+    var pendiente = 0;
+    var resuelto = 0 ;
+
+    $.get(route,function(res){
+      if(res.length > 0){
+        for (var i =0; res.length > i; i++) {
+          if(res[i].estado == "PENDIENTE"){
+            pendiente = pendiente +1;
+
+          }else{
+            resuelto = resuelto +1;
+          }
+
+        }
+      }
+      var tabla = document.getElementById("detalles2");
+      var row = tabla.insertRow(1);
+      row.style.backgroundColor = "white";
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      
+      cell1.innerHTML = res.length;
+      cell2.innerHTML = resuelto;
+      cell3.innerHTML = pendiente;
+     
+    });
+
+  }
+
+
+  function busca_listas_mes(){
+    document.getElementById("detalles3").deleteRow(1);
+
+    var ciclo = document.getElementById('ciclo_escolar').value;
+    var region = document.getElementById('region').value;
+    var mes = document.getElementById('mes').value;
+
+    var route = "http://localhost:8000/busca_listas_mes/"+ciclo+"/"+region+"/"+mes;
+    var pendiente = 0;
+    var resuelto = 0 ;
+
+    $.get(route,function(res){
+      if(res.length > 0){
+        for (var i =0; res.length > i; i++) {
+          if(res[i].estado == "PENDIENTE"){
+            pendiente = pendiente +1;
+
+          }else{
+            resuelto = resuelto +1;
+          }
+
+        }
+      }
+      var tabla = document.getElementById("detalles3");
+      var row = tabla.insertRow(1);
+      row.style.backgroundColor = "white";
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      
+      cell1.innerHTML = res.length;
+      cell2.innerHTML = resuelto;
+      cell3.innerHTML = pendiente;
+     
+    });
+
+  }
+
+function buscar_qnas_pagos(){
+    var x = document.getElementById('qna');
+  if (x.length > 0){
+    for (var i = 0; i < x.length; i++) {
+      x.remove(i);
+    }}
+    
+
+  var x= document.getElementById('ciclo_escolar').value;
+   var route = "http://localhost:8000/buscar_qnas_pagos/"+x+"/";
+
+    $.get(route,function(res){
+      if(res.length > 0){
+        for (var i =0; res.length > i; i++) {
+
+ var x = document.getElementById("qna");
+        var option = document.createElement("option");
+        option.text = res[i].qna ;
+        option.value = res[i].qna;
+        x.add(option, x[i])
+        }
+      }
+
+    });}
 
     //tabla.setAttribute("id", id2);

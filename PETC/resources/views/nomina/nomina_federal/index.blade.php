@@ -23,17 +23,23 @@
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Nominas Federales</strong></h2>
 								@include('nomina.nomina_federal.search')
 
-						</div>
+						
+
+						</div> 
 						<div class="col-md-5">
 							<div class="btn-group pull-right">
 								<b>
 
 
 									<div class="btn-group" style="margin-right: 10px;">
-								<!--		<a class="btn btn-sm btn-success tooltips" href="{{ route('fortalecimiento.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Fortalecimiento"> <i class="fa fa-plus"></i> Registrar </a>
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.fortalecimiento.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-								 		<a class="btn btn-primary btn-sm" href="{{URL::action('FortalecimientoController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
-                  -->
+									<div class="btn-group" style="margin-right: 10px;">
+										<a class="btn btn-sm btn-success tooltips" href="{{ route('nomina_capturada.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Nomina"> <i class="fa fa-plus"></i> Registrar </a>
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.nomina_capturada.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+								 		<a class="btn btn-primary btn-sm" href="{{URL::action('NominaCapturadaController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+
+
+
+									</div>
 									</div>
 
 								</a>

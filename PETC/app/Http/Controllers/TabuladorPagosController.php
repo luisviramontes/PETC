@@ -32,6 +32,11 @@ class TabuladorPagosController extends Controller
     }
     public function index(request $request)
     {
+        $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
        $ciclos=DB::table('ciclo_escolar')->get();
        if($request)
        {
@@ -46,7 +51,7 @@ class TabuladorPagosController extends Controller
        $tabla_pagos= DB::table('tabulador_pagos')->where('ciclo','LIKE','%'.$query.'%')->paginate(4);
        return view('nomina.tabulador_pagos.index',["tabla_pagos"=>$tabla_pagos,"searchText"=>$query,'ciclos'=> $ciclos,"tabla_2"=>$tabla_2]);
         //
-   }}
+   }}}
 
     /**
      * Show the form for creating a new resource.
@@ -55,11 +60,16 @@ class TabuladorPagosController extends Controller
      */
     public function create()
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $ciclos=DB::table('ciclo_escolar')->get();
 
         return view('nomina.tabulador_pagos.create', ['ciclos'=> $ciclos]);
         //
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -68,7 +78,12 @@ class TabuladorPagosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(TablaDePagosRequest $formulario)
-    {        
+    { 
+            $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{       
     $user = Auth::user()->name; 
         $validator = Validator::make(
             $formulario->all(), 
@@ -92,7 +107,7 @@ class TabuladorPagosController extends Controller
         //
         }
     }
-}
+}}
 
     /**
      * Display the specified resource.
@@ -113,11 +128,16 @@ class TabuladorPagosController extends Controller
      */
     public function edit($id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $ciclos=DB::table('ciclo_escolar')->get();
         $pago=TabuladorPagosModel::findOrFail($id);
         return view("nomina.tabulador_pagos.edit",["pago"=>$pago,"ciclos"=>$ciclos]);
         //
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -128,6 +148,11 @@ class TabuladorPagosController extends Controller
      */
     public function update(Request $request, $id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
       $pago=TabuladorPagosModel::findOrFail($id);
       $pago->pago_director=$request->get('pago_director');
@@ -138,7 +163,7 @@ class TabuladorPagosController extends Controller
       $pago->update();
       return Redirect::to('tabulador_pagos');
         //
-  }
+  }}
 
     /**
      * Remove the specified resource from storage.
@@ -148,13 +173,18 @@ class TabuladorPagosController extends Controller
      */
     public function destroy($id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
        $pago=TabuladorPagosModel::findOrFail($id);
        $pago->delete();
        return Redirect::to('tabulador_pagos');
 
         //
-   }
+   }}
 
    public function invoice($id){ 
     $tabla_2= DB::table('tabulador_pagos')->where('ciclo','=',$id)->first();

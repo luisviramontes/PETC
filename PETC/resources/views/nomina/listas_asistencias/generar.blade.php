@@ -165,8 +165,16 @@
 							</div>
 						</div><!--/form-group-->
 
+						
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Observaciones: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="observaciones" type="text"   class="form-control" required value="{{Input::old('observaciones')}}" />
+							</div>
+						</div>
 
 
+ 
 					<div class="form-group">
 						<div class="col-sm-offset-7 col-sm-5">
 							<button id="submit3" target="_blank" class="btn btn-primary">Generar</button>

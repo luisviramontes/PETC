@@ -34,6 +34,11 @@ class AltasFedController extends Controller
 
 
     public function index(request $request){
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
      if($request)
      {
        // $aux=$request->get('searchText');
@@ -60,7 +65,7 @@ class AltasFedController extends Controller
 
       return view('nomina.altas.federal.index',["personal"=>$personal,"contador"=>$contador,"searchText"=>$query,"personal2"=>$personal2]);
       //print_r($personal);
-    }}
+    }}}
 
 
     /**
@@ -70,6 +75,11 @@ class AltasFedController extends Controller
      */
     public function create()
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $claves=DB::table('cat_puesto')->get();
       $cct=DB::table('centro_trabajo')->get();
       $ciclos=DB::table('ciclo_escolar')->get();
@@ -78,7 +88,7 @@ class AltasFedController extends Controller
       return view('nomina.altas.federal.create', ['claves'=> $claves,'cct'=>$cct,'ciclos'=>$ciclos,'captura'=>$captura]);
         //
         //
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -110,6 +120,12 @@ class AltasFedController extends Controller
      */
     public function edit($id)
     { 
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
+
       $claves=DB::table('cat_puesto')->get();
       $cct=DB::table('centro_trabajo')->get();
       $ciclos=DB::table('ciclo_escolar')->get();
@@ -119,7 +135,7 @@ class AltasFedController extends Controller
       return view('nomina.altas.federal.edit', ['claves'=> $claves,'cct'=>$cct,'ciclos'=>$ciclos,'personal'=>$personal]);
 
         //
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -177,6 +193,11 @@ class AltasFedController extends Controller
      */
     public function destroy($id)
     { 
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $altas=AltasContratoModel::findOrFail($id);
       $altas->estado="PENDIENTE";
@@ -184,10 +205,15 @@ class AltasFedController extends Controller
       $altas->update();
       return redirect('altasfed');
         //
-    }
+    }}
 
     public function activar($id)
     { 
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $altas=AltasContratoModel::findOrFail($id);
       $altas->estado="RESUELTO";
@@ -195,7 +221,7 @@ class AltasFedController extends Controller
       $altas->update();
       return redirect('altasfed');
         //
-    }
+    }}
 
     public function excel(Request $request)
     {

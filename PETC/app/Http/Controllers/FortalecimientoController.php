@@ -35,6 +35,11 @@ class FortalecimientoController extends Controller
     }
     public function index(Request $request)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
 
       if($request)
       {
@@ -49,7 +54,7 @@ class FortalecimientoController extends Controller
       return view('nomina.fortalecimiento.index',["fortalecimientos"=>$fortalecimientos,"searchText"=>$query]);
 
       }    //
-    }
+    }}
 
     /**
      * Show the form for creating a new resource.
@@ -58,10 +63,15 @@ class FortalecimientoController extends Controller
      */
     public function create()
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $cct= DB::table('centro_trabajo')->get();
       $ciclos= DB::table('ciclo_escolar')->get();
       return view("nomina.fortalecimiento.create",["ciclos"=>$ciclos,"cct"=>$cct]);
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -71,6 +81,11 @@ class FortalecimientoController extends Controller
      */
     public function store(Request $request)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
         $fortalecimientos = new FortalecimientoModel;
         $fortalecimientos -> id_cct = $request ->id_cct;
@@ -88,7 +103,7 @@ class FortalecimientoController extends Controller
         return view('fortalecimiento.index');
         }
 
-    }
+    }}
 
     public function invoice($id){
         $fortalecimientos = DB::table('fortalecimiento')
@@ -128,11 +143,16 @@ class FortalecimientoController extends Controller
 
     public function edit($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $fortalecimientos = FortalecimientoModel::find($id);
       $cct= DB::table('centro_trabajo')->get();
       $ciclos= DB::table('ciclo_escolar')->get();
       return view("nomina.fortalecimiento.edit",["fortalecimientos"=>$fortalecimientos,"cct"=>$cct,"ciclos"=>$ciclos]);
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -143,6 +163,11 @@ class FortalecimientoController extends Controller
      */
     public function update(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $fortalecimientos = FortalecimientoModel::find($id);
       $fortalecimientos -> id_cct = $request ->id_cct;
@@ -159,7 +184,7 @@ class FortalecimientoController extends Controller
       }else {
       return view('fortalecimiento.index');
       }
-    }
+    }}
 
     /**
      * Remove the specified resource from storage.
@@ -169,13 +194,18 @@ class FortalecimientoController extends Controller
      */
     public function destroy($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $fortalecimiento=FortalecimientoModel::findOrFail($id);
       $fortalecimiento->estado="INACTIVO";
       $fortalecimiento->captura=$user;
       $fortalecimiento->update();
         return redirect('fortalecimiento');
-    }
+    }}
 
     ////////////exel////////////////
 

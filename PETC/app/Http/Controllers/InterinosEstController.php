@@ -28,6 +28,11 @@ class InterinosEstController extends Controller
         $this->middleware('auth');
     }
   public function index(request $request){
+    $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
      if($request)
      {
        // $aux=$request->get('searchText');
@@ -45,10 +50,15 @@ class InterinosEstController extends Controller
 
   return view('nomina.interinos.estatal.index',["personal"=>$personal,"contador"=>$contador,"searchText"=>$query]);
 
-}}
+}}}
 
         public function activar($id)
     { 
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
       $captura=CapturaModel::findOrFail($id);
       $captura->pagos_registrados="1";
@@ -56,7 +66,7 @@ class InterinosEstController extends Controller
       $captura->update();
       return redirect('interinosest');
         //
-    }
+    }}
 
 
         public function excel(Request $request)

@@ -32,6 +32,11 @@ class DirectorioRegionalController extends Controller
     }
     public function index(Request $request)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       if($request)
       {
        $query=trim($request->GET('searchText'));
@@ -45,7 +50,7 @@ class DirectorioRegionalController extends Controller
      }
      return view('nomina.directorio_regional.index',['directorio_regional' => $directorio_regional]);
 
-   }
+   }}
 
 
 
@@ -61,10 +66,15 @@ class DirectorioRegionalController extends Controller
      */
     public function create()
     { 
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
      $region=DB::table('region')->get();
 
      return view("nomina.directorio_regional.create", ['region'=> $region]);
-   }
+   }}
 
     /**
      * Store a newly created resource in storage.
@@ -74,6 +84,11 @@ class DirectorioRegionalController extends Controller
      */
     public function store(DirectorioRegionalRequest $formulario)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $validator = Validator::make(
         $formulario->all(),
@@ -113,7 +128,7 @@ class DirectorioRegionalController extends Controller
         }
 
       }
-    }
+    }}
 
     //convertir y descargar pdf
 
@@ -149,11 +164,16 @@ class DirectorioRegionalController extends Controller
      */
     public function edit($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
      $region=DB::table('region')->get();
      $directorio = DirectorioRegionalModel::find($id);
      return view("nomina.directorio_regional.edit",["directorio"=>$directorio,"region"=>$region]);
         //
-   }
+   }}
 
     /**
      * Update the specified resource in storage.
@@ -164,6 +184,11 @@ class DirectorioRegionalController extends Controller
      */
     public function update(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
 
       $directorio = DirectorioRegionalModel::find($id);
@@ -190,7 +215,7 @@ class DirectorioRegionalController extends Controller
       }else {
         return view('director_regional.index');
       }
-    }
+    }}
 
     /**
      * Remove the specified resource from storage.
@@ -200,13 +225,18 @@ class DirectorioRegionalController extends Controller
      */
     public function destroy($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $directorio=DirectorioRegionalModel::findOrFail($id);
       $directorio->estado="INACTIVO";
       $directorio->captura=$user;
       $directorio->update();
       return redirect('directorio_regional');
-    }
+    }}
 
     ////////////exel////////////////
 

@@ -186,8 +186,8 @@
 																<option value="{{$ct->id}}" >
 																	{{$ct->cct}}
 																</option>
-															
-															
+
+
 																@endforeach
 															</select>
 															<div class="help-block with-errors"></div>
@@ -216,9 +216,16 @@
 													<div class="col-sm-6">
 														<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2" ">
 															@foreach($ciclos as $ciclo)
+															@if($ciclo->id == 2)
+															<option value='{{$ciclo->id}}' selected>
+																{{$ciclo->ciclo}}
+															</option>
+															@else
 															<option value='{{$ciclo->id}}'>
 																{{$ciclo->ciclo}}
 															</option>
+															@endif
+
 															@endforeach
 														</select>
 
@@ -286,7 +293,7 @@
 													<label class="col-sm-3 control-label">Fecha de Inicio de Labores: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 
-														<input type="date" name="fechai" id="fechai" value="" class="form-control mask"  onchange="verifica_fecha()" required>
+														<input type="date" name="fechai" id="fechai" value="2019-08-26" class="form-control mask"  onchange="verifica_fecha()" required>
 													</div>
 												</div>
 
@@ -294,7 +301,7 @@
 													<label class="col-sm-3 control-label">Fecha de Termino de Labores: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 
-														<input type="date" name="fechaf" id="fechaf" value="" class="form-control mask"  onchange="verifica_fecha()" required >
+														<input type="date" name="fechaf" id="fechaf" class="form-control mask" value="2020-07-06"  onchange="verifica_fecha()" required >
 													</div>
 													<div class="text-danger" id='error_fecha'>{{$errors->formulario->first('error_fecha')}}</div>
 												</div>

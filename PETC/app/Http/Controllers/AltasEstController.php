@@ -33,6 +33,11 @@ class AltasEstController extends Controller
         $this->middleware('auth');
     }
     public function index(request $request){
+        $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
        if($request)
        {
        // $aux=$request->get('searchText');
@@ -59,7 +64,7 @@ class AltasEstController extends Controller
         return view('nomina.altas.estatal.index',["personal"=>$personal,"personal2"=>$personal2,"contador"=>$contador,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
-    }}
+    }}}
 
 
     /**
@@ -102,6 +107,11 @@ class AltasEstController extends Controller
      */
     public function edit($id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $claves=DB::table('cat_puesto')->get();
       $cct=DB::table('centro_trabajo')->get();
       $ciclos=DB::table('ciclo_escolar')->get();
@@ -110,7 +120,7 @@ class AltasEstController extends Controller
 
       return view('nomina.altas.estatal.edit', ['claves'=> $claves,'cct'=>$cct,'ciclos'=>$ciclos,'personal'=>$personal]);
         //
-  }
+  }}
 
     /**
      * Update the specified resource in storage.
@@ -170,6 +180,11 @@ class AltasEstController extends Controller
      */
     public function destroy($id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
         $altas=AltasContratoModel::findOrFail($id);
         $altas->estado="PENDIENTE";
@@ -177,7 +192,7 @@ class AltasEstController extends Controller
         $altas->update();
         return redirect('altasest');
         //
-    }
+    }}
 
     public function activar($id)
     { 

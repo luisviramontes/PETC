@@ -32,6 +32,11 @@ class CatPuestoController extends Controller
     }
     public function index(request $request)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
     //  $categorias = CatPuestoModel::orderBy('id', 'DESC')
                           //  ->paginate(24);
 
@@ -48,7 +53,7 @@ if($request)
 }
         return view('nomina.cat_puesto.index',["categorias"=>$categorias, "searchText"=>$query]);
         //
-    }
+    }}
 
     /**
      * Show the form for creating a new resource.
@@ -57,8 +62,13 @@ if($request)
      */
     public function create()
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
           return view("nomina.cat_puesto.create");
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -68,6 +78,11 @@ if($request)
      */
     public function store(Request $request)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $categorias= new CatPuestoModel;
       $categorias -> cv_ur = $request ->cv_ur;
@@ -88,7 +103,7 @@ if($request)
       }else {
       return view('cat_puesto.index');
       }
-    }
+    }}
 
     //convertir y descargar pdf
 
@@ -126,9 +141,14 @@ if($request)
      */
     public function edit($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $categorias = CatPuestoModel::find($id);
       return view("nomina.cat_puesto.edit",["categorias"=>$categorias]);
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -139,6 +159,11 @@ if($request)
      */
     public function update(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $categorias = CatPuestoModel::find($id);
       //asignamos nuevos valores
@@ -160,7 +185,7 @@ if($request)
       }else {
       return view('cat_puesto.index');
       }
-    }
+    }}
 
     /**
      * Remove the specified resource from storage.
@@ -170,13 +195,18 @@ if($request)
      */
     public function destroy($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $categoria=CatPuestoModel::findOrFail($id);
       $categoria->estado="INACTIVO";
       $categoria->captura=$user;
       $categoria->update();
         return redirect('cat_puesto');
-    }
+    }}
 
     ////////////exel////////////////
 

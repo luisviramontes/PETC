@@ -32,6 +32,11 @@ class DirectorioInternoController extends Controller
     }
     public function index(request $request)
     { 
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
      if($request)
      {
       $query=trim($request->GET('searchText')); 
@@ -41,7 +46,7 @@ class DirectorioInternoController extends Controller
       return view('nomina.directorio_interno.index',["personal"=>$personal,"searchText"=>$query]);
   }
         //
-}
+}}
 
     /**
      * Show the form for creating a new resource.
@@ -50,9 +55,14 @@ class DirectorioInternoController extends Controller
      */
     public function create()
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       return view('nomina.directorio_interno.create');
         //
-  }
+  }}
 
     /**
      * Store a newly created resource in storage.
@@ -62,6 +72,11 @@ class DirectorioInternoController extends Controller
      */
     public function store(Request $request)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
         $tabla= new DirectorioInternoModel;
         $tabla->nombre=$request->get('nombre');
@@ -92,7 +107,7 @@ class DirectorioInternoController extends Controller
         $tabla->save();
         return Redirect::to('directorio_interno'); 
         //
-    }
+    }}
 
     /**
      * Display the specified resource.
@@ -113,11 +128,16 @@ class DirectorioInternoController extends Controller
      */
     public function edit($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
        $personal=DirectorioInternoModel::findOrFail($id);
 
        return view('nomina.directorio_interno.edit', ['personal'=>$personal]);
         //
-   }
+   }}
 
     /**
      * Update the specified resource in storage.
@@ -128,6 +148,11 @@ class DirectorioInternoController extends Controller
      */
     public function update(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $tabla=DirectorioInternoModel::findOrFail($id);
       $tabla->nombre=$request->get('nombre');
@@ -158,7 +183,7 @@ class DirectorioInternoController extends Controller
     $tabla->update();
     return Redirect::to('directorio_interno'); 
         //
-}
+}}
 
     /**
      * Remove the specified resource from storage.
@@ -168,6 +193,11 @@ class DirectorioInternoController extends Controller
      */
     public function destroy(Request $request,$id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
         $personal=DirectorioInternoModel::findOrFail($id);
         $personal->estado="INACTIVO";
@@ -177,7 +207,7 @@ class DirectorioInternoController extends Controller
         $personal->update();
         return Redirect::to('directorio_interno'); 
         //
-    }
+    }}
 
         public function excel(Request $request)
     {

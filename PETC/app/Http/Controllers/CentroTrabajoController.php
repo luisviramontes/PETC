@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use petc\Http\Requests;
-use Illuminate\Support\Facades\Auth;
 
 use petc\Http\Controllers\Controller;
 use petc\CentroTrabajoModel;
@@ -35,6 +34,11 @@ class CentroTrabajoController extends Controller
     }
     public function index(request $request)
     {  
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         if($request)
         {
            $query=trim($request->GET('searchText'));
@@ -50,7 +54,7 @@ class CentroTrabajoController extends Controller
            return view('nomina.centro_trabajo.index',["centro"=>$centro,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
-       }} 
+       }} }
     /**
      * Show the form for creating a new resource.
      *
@@ -58,13 +62,18 @@ class CentroTrabajoController extends Controller
      */
     public function create()
     { 
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $region=DB::table('region')->get();
         $localidades=DB::table('localidades')->where('estado','=','ACTIVO')->get();
         $municipios=DB::table('municipios')->where('estado','=','ACTIVO')->get();
         $ciclos=DB::table('ciclo_escolar')->get();
         return view('nomina.centro_trabajo.create', ['ciclos'=> $ciclos,'localidades'=>$localidades,'municipios'=>$municipios,'region'=>$region]);
         //
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -74,6 +83,11 @@ class CentroTrabajoController extends Controller
      */
     public function store(CentroTrabajoRequest $formulario)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
         $validator = Validator::make(
             $formulario->all(), 
@@ -122,7 +136,7 @@ class CentroTrabajoController extends Controller
             $datos2->save();
             return Redirect::to('centro_trabajo');
 }       //
-}}
+}}}
 
     /**
      * Display the specified resource.
@@ -143,6 +157,11 @@ class CentroTrabajoController extends Controller
      */
     public function edit($id)
     { 
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $region=DB::table('region')->get();
         $localidades=DB::table('localidades')->where('estado','=','ACTIVO')->get();
         $municipios=DB::table('municipios')->where('estado','=','ACTIVO')->get();
@@ -160,7 +179,7 @@ class CentroTrabajoController extends Controller
 
         return view('nomina.centro_trabajo.edit', ['ciclos'=> $ciclos,'localidades'=>$localidades,'municipios'=>$municipios,'centros'=>$centros,'region'=>$region]);
         //
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -171,6 +190,11 @@ class CentroTrabajoController extends Controller
      */
     public function update(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
         $datos=CentroTrabajoModel::findOrFail($id);
 
@@ -210,7 +234,7 @@ class CentroTrabajoController extends Controller
         $datos2->update();
         return Redirect::to('centro_trabajo');
         //
-    }
+    }}
 
     /**
      * Remove the specified resource from storage.
@@ -220,6 +244,11 @@ class CentroTrabajoController extends Controller
      */
     public function destroy($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
        $datos=CentroTrabajoModel::findOrFail($id);
        $datos->estado="INACTIVO";
@@ -227,7 +256,7 @@ class CentroTrabajoController extends Controller
        $datos2->update();
        return Redirect::to('centro_trabajo');
         //
-   }
+   }}
 
    public function invoice(){
 

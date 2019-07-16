@@ -33,6 +33,11 @@ class SolicitudesController extends Controller
     }
     public function index(Request $request)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       if($request)
       {
        $query=trim($request->GET('searchText'));
@@ -49,7 +54,7 @@ class SolicitudesController extends Controller
 
         return view('nomina.solicitudes.index',["solicitudes"=>$solicitudes,"searchText"=>$query]);
     }
-  }
+  }}
 
     /**
      * Show the form for creating a new resource.
@@ -58,10 +63,15 @@ class SolicitudesController extends Controller
      */
     public function create()
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $municipios=DB::table('municipios')->get();
       $localidades= DB::table('localidades')->get();
       return view("nomina.solicitudes.create",["municipios"=>$municipios,"localidades"=>$localidades]);
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -71,6 +81,11 @@ class SolicitudesController extends Controller
      */
     public function store(Request $request)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $solicitudes= new SolicitudesModel;
       $solicitudes -> entrego_acta = $request ->entrego_acta;
@@ -99,7 +114,7 @@ class SolicitudesController extends Controller
       }else {
       return view('solicitudes.index');
       }
-    }
+    }}
 
     //convertir y descargar pdf
 

@@ -27,6 +27,11 @@ class InterinosFedController extends Controller
         $this->middleware('auth');
     }
     public function index(request $request){
+        $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
      if($request)
      {
        // $aux=$request->get('searchText');
@@ -40,7 +45,7 @@ class InterinosFedController extends Controller
     }else{
       $personal= DB::table('captura')->join('cat_puesto','cat_puesto.id','=','captura.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')->select('captura.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc')->where('captura.pagos_registrados','=','0')->where('captura.sostenimiento','=','FEDERAL')->where('captura.estado','=','ACTIVO')->where('captura.rfc','LIKE','%'.$query.'%')->orwhere('captura.nombre','LIKE','%'.$query.'%')->orwhere('centro_trabajo.nombre_escuela','LIKE','%'.$query.'%')->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')->paginate(30);
 
-  }
+  }}
 
   return view('nomina.interinos.federal.index',["personal"=>$personal,"contador"=>$contador,"searchText"=>$query]);
 
@@ -114,6 +119,11 @@ class InterinosFedController extends Controller
 
         public function activar($id)
     { 
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
       $captura=CapturaModel::findOrFail($id);
       $captura->pagos_registrados="1";
@@ -121,7 +131,7 @@ class InterinosFedController extends Controller
       $captura->update();
       return redirect('interinosfed');
         //
-    }
+    }}
 
     public function excel(Request $request)
     {

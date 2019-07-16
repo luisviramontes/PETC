@@ -35,6 +35,11 @@ class ReclamosController extends Controller
     }
     public function index(request $request,$id) 
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       if($request)
       {
        // $aux=$request->get('searchText');
@@ -54,7 +59,7 @@ class ReclamosController extends Controller
 
 
 
-    }
+    }}
 
     /**
      * Show the form for creating a new resource.
@@ -63,6 +68,11 @@ class ReclamosController extends Controller
      */
     public function create() 
     { 
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $pagos=DB::table('tabla_pagos')->get();
       $genero=DB::table('directoriointerno')->where('estado','=','ACTIVO')->get();
       $dirigido=DB::table('directorioexterno')->where('estado','=','ACTIVO')->get();
@@ -70,7 +80,7 @@ class ReclamosController extends Controller
       $captura=DB::table('captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->where('captura.estado','=','ACTIVO')->where('captura.pagos_registrados','=','0')->select('captura.id','captura.rfc','captura.fecha_inicio','captura.fecha_termino','captura.nombre','captura.categoria','centro_trabajo.nombre_escuela','centro_trabajo.cct')->get();
       return view('nomina.reclamos.create', ['dirigido'=>$dirigido,'captura'=> $captura,'ciclos'=>$ciclos,'genero'=>$genero,'pagos'=>$pagos]);
         //
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -80,6 +90,11 @@ class ReclamosController extends Controller
      */
     public function store(Request $request)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $date = $request->get('fecha');
       $ciclo_aux=$request->get('ciclo_escolar');
@@ -191,7 +206,7 @@ class ReclamosController extends Controller
       $pdf->loadHTML($view);
       return $pdf->stream('invoice.pdf');
         //
-    }
+    }}
 
     /**
      * Display the specified resource.
@@ -212,6 +227,11 @@ class ReclamosController extends Controller
      */
     public function edit($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $pagos=DB::table('tabla_pagos')->get();
       $genero=DB::table('directoriointerno')->where('estado','=','ACTIVO')->get();
       $dirigido=DB::table('directorioexterno')->where('estado','=','ACTIVO')->get();
@@ -226,7 +246,7 @@ class ReclamosController extends Controller
       $captura2=DB::table('captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->where('captura.estado','=','ACTIVO')->where('captura.pagos_registrados','=','0')->select('captura.id','captura.rfc','captura.fecha_inicio','captura.fecha_termino','captura.nombre','captura.categoria','centro_trabajo.nombre_escuela','centro_trabajo.cct')->where('captura.id','=',$id_rec->id_captura)->first();
       return view('nomina.reclamos.edit', ['captura2'=>$captura2,'reclamo'=>$reclamo,'pagos'=> $pagos,'genero'=>$genero,'ciclos'=>$ciclos,'dirigido'=>$dirigido,'captura'=>$captura]);
         //
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -237,6 +257,11 @@ class ReclamosController extends Controller
      */
     public function update(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       //QUIEN ELABORO EL OFICIO
       $genero_aux=$request->get('genero');
@@ -291,7 +316,7 @@ class ReclamosController extends Controller
 
 
         //
-    }
+    }}
 
     /**
      * Remove the specified resource from storage.
@@ -301,6 +326,11 @@ class ReclamosController extends Controller
      */
     public function destroy($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
      $reclamos = ReclamosModel::find($id);
      $reclamos->estado='PENDIENTE';
@@ -308,7 +338,7 @@ class ReclamosController extends Controller
      return Redirect::to('reclamos2/1'); 
 
         //
-   }
+   }}
 
    public function valida_reclamos($dia, $mes, $year){
 
@@ -408,13 +438,18 @@ class ReclamosController extends Controller
  }
 
  public function activar($id){
+          $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
   $user = Auth::user()->name;
    $reclamos = ReclamosModel::find($id);
    $reclamos->estado='APLICADO';
    $reclamos->update();
    return Redirect::to('reclamos2/1'); 
 
- }
+ }}
 
  public function ver_reclamos(){
   $ciclos=DB::table('ciclo_escolar')->get();
