@@ -50,6 +50,8 @@ Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nom
 Route::get('pdf_catpuesto/{id}', array('as'=> '/pdf_catpuesto','uses'=>'CatPuestoController@invoice'));
 Route::get('traerpersonal/{cct}','ReintegrosController@traerpersonal');
 Route::get('traerdire/{dire}','ReintegrosController@traerdire');
+Route::get('cuenta/{nombre}','ReintegrosController@cuenta');
+Route::get('banco/{banco}','ReintegrosController@banco');
 /////////////////////////////////////////////////////////////
 
 
@@ -61,8 +63,8 @@ Route::get('pdf_catpuesto/{id}', array('as'=> '/pdf_catpuesto','uses'=>'CatPuest
 
 //////////////////Cuentas///////////////////////////////
 Route::resource('cuentas', 'CuentasController');
-Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
-Route::get('pdf_catpuesto/{id}', array('as'=> '/pdf_catpuesto','uses'=>'CatPuestoController@invoice'));
+Route::get('descargar-cuentas', 'CuentasController@excel')->name('nomina.cuentas.excel');
+Route::get('pdf_cuentas/{id}', array('as'=> '/pdf_cuentas','uses'=>'CuentasController@invoice'));
 /////////////////////////////////////////////////////////////
 
 ///////////////////ciclo escolar///////////////////////////

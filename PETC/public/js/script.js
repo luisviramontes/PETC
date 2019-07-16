@@ -2013,8 +2013,7 @@ function buscar_qnas(){
     }
   });
   }
-<<<<<<< HEAD
-=======
+
 
   function busca_dias_reclamo(){
     document.getElementById("detalles").deleteRow(1);
@@ -2046,7 +2045,7 @@ function buscar_qnas(){
 
 
           if(res[i].categoria == "DIRECTOR"){
-            director=director+1;           
+            director=director+1;
           }else if(res[i].categoria == "DOCENTE" || res[i].categoria == "USAER" || res[i].categoria == "EDUCACION FISICA"){
             docente=docente+1;
           }else{
@@ -2107,7 +2106,7 @@ function buscar_qnas(){
 
 
           if(res[i].categoria == "DIRECTOR"){
-            director=director+1;           
+            director=director+1;
           }else if(res[i].categoria == "DOCENTE" || res[i].categoria == "USAER" || res[i].categoria == "EDUCACION FISICA"){
             docente=docente+1;
           }else{
@@ -2139,4 +2138,3 @@ function buscar_qnas(){
   }
 
     //tabla.setAttribute("id", id2);
->>>>>>> 9c9af5198d19d946fcef619ab79400fc8712ce44

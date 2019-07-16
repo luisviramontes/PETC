@@ -53,7 +53,7 @@
 					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered" id="hidden-table-info">
 						<thead>
 							<tr>
-								<th>Nombre</th>
+								<th>Nombre del Banco</th>
 								<th>Operacion</th>
 								<th>Descripcion</th>
 								<th>Estado</th>

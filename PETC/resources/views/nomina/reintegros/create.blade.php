@@ -89,7 +89,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Categoría: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="categoria" id="categoria" disabled type="text"   class="form-control" required value="{{Input::old('categoria')}}" />
+								<input name="categoria" id="categoria" readonly type="text"   class="form-control" required value="{{Input::old('categoria')}}" />
 							</div>
 						</div>
 
@@ -100,17 +100,15 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Director Regional <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select  name="id_directorio_regional" id="id_directorio_regional" onchange="valida_dire();" class="form-control select2" required>
-									<option selected>
-										Selecciona una opción
-									</option>
+								<select  name="id_directorio_regional" readonly id="id_directorio_regional" onchange="valida_dire();" class="form-control select2" required>
+
 
 
 								</select>
 								<div class="help-block with-errors"></div>
 								<div class="text-danger" id='error_director_regional'>{{$errors->formulario->first('director_regional')}}</div>
 							</div>
-						</div><!--/form-group-->
+						</div>
 
 						<div class="form-group" style="display: none">
 							<label class="col-sm-3 control-label">Sostenimiento: <strog class="theme_color">*</strog></label>
@@ -122,7 +120,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ciclo Escolar: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="ciclo_escolar" id="ciclo_escolar" onchange="buscar_qnas();valida_ciclore();" class="form-control select2" >
+								<select name="ciclo_escolar" id="ciclo_escolar" onchange="valida_ciclore();" class="form-control select2" >
 									<option selected>
 										Selecciona una opción
 									</option>
@@ -139,19 +137,28 @@
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Total de Dias Habiles: <strog class="theme_color">*</strog></label>
+							<label class="col-sm-3 control-label">Total de Dias: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="num_dias" id="num_dias" onchange="calcula();" onkeypress="return soloNumeros(event)" type="text"   class="form-control" required value="{{Input::old('num_dias')}}" />
+								<input name="num_dias" id="num_dias" onchange="calcula();" onkeypress="return soloNumeros(event);" onkeyup="" type="text"   class="form-control" required value="{{Input::old('num_dias')}}" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Total de Reclamo: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="total" id="total"  type="text" disabled  class="form-control" required value="{{Input::old('total')}}" />
-								<span id="texto"></span>
+								<input name="total" id="total" type="text" readonly class="form-control" required value="{{Input::old('total')}}" />
+
 							</div>
 							<span id="errorUnidad" style="color:#FF0000;"></span>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Total texto: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="total_text" id="total_text"  type="text" readonly  class="form-control" required value="{{Input::old('total_text')}}" />
+
+							</div>
+
 						</div>
 
 
@@ -184,73 +191,63 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Dirigido Para: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="dirigido_a" id="dirigido_a"  class="form-control select">
-									@foreach($dirigido as $dirigido2)
-									@if($dirigido2->id == 63)
-									<option value='{{$dirigido2->puesto}}_{{$dirigido2->nombre_c}}_{{$dirigido2->id}}_{{$dirigido2->lic}}_{{$dirigido2->a_n}}' selected>
-										{{$dirigido2->lic}}. {{$dirigido2->nombre_c}}.-{{$dirigido2->puesto}}
-									</option>
-									@else
-									<option value='{{$dirigido2->puesto}}_{{$dirigido2->nombre_c}}_{{$dirigido2->id}}_{{$dirigido2->lic}}_{{$dirigido2->lic}}_{{$dirigido2->a_n}}'>
-										{{$dirigido2->lic}}. {{$dirigido2->nombre_c}}.-{{$dirigido2->puesto}}
-									</option>
-									@endif
-									@endforeach
-								</select>
+								<input name="dirigido_a" id="dirigido_a" readonly type="text"  class="form-control" required value="{{Input::old('dirigido_a')}}" />
+
 
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Con Vo.Bo: <strog class="theme_color">*</strog></label>
+							<label class="col-sm-3 control-label">Nombre de la Cuenta: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="vo" id="vo"  class="form-control select">
-									@foreach($dirigido as $dirigido3)
-									@if($dirigido3->id == 19)
-									<option value='{{$dirigido3->puesto}}_{{$dirigido3->nombre_c}}_{{$dirigido3->id}}_{{$dirigido3->lic}}' selected>
-										{{$dirigido3->lic}}. {{$dirigido3->nombre_c}}.-{{$dirigido3->puesto}}
+								<select name="id_cuenta" id="id_cuenta" onchange="cuenta();cuentabanco();" class="form-control" select2 >
+									<option selected>
+										Selecciona una opción
 									</option>
-									@else
-									<option value='{{$dirigido3->puesto}}_{{$dirigido3->nombre_c}}_{{$dirigido3->id}}_{{$dirigido3->lic}}'>
-										{{$dirigido3->lic}}. {{$dirigido3->nombre_c}}.-{{$dirigido3->puesto}}
+
+									@foreach($cuentas as $cuenta)
+									<option value='{{$cuenta->id}}_{{$cuenta->nombre}}_{{$cuenta->num_cuenta}}_{{$cuenta->clave_in}}_{{$cuenta->secretaria}}'>
+										{{$cuenta->nombre}}
 									</option>
-									@endif
 									@endforeach
 								</select>
-
+								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_cuenta'>{{$errors->formulario->first('cuenta')}}</div>
 							</div>
 						</div>
 
-
-						<div class="col-sm-3">
-							<div class="form-group">
-								<button type="button" id="btn_add" onclick="agregar2();" class="btn btn-primary">Agregar</button>
-							</div>
-						</div>
 						<div class="form-group">
+							<label class="col-sm-3 control-label">Num Cuenta: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<div class="form-group"  class="table-responsive">
-									<table id="detalles2" name="detalles2[]" value="" class="table table-responsive-xl table-bordered">
-										<thead style="background-color:#A9D0F5">
-											<th>Opciones</th>
-											<th>N°</th>
-											<th>Lic</th>
-											<th>Nombre</th>
-											<th>Puesto </th>
-
-										</thead>
-										<tfoot>
-											<td style="display:none;"></td>
-											<td style="display:none;"></td>
-											<td style="display:none;"></td>
-											<td style="display:none;"></td>
-											<td style="display:none;"></td>
-
-										</tfoot>
-									</table>
-								</div>
+								<input name="num_cuenta" id="num_cuenta" readonly type="text"  class="form-control" required value="{{Input::old('num_cuenta')}}" />
 							</div>
 						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Clave Interbancaria: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="clave_in" id="clave_in" readonly type="text"  class="form-control" required value="{{Input::old('clave_in')}}" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Secretaria: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<input name="secretaria" id="secretaria" readonly type="text"  class="form-control" required value="{{Input::old('secretaria')}}" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Banco: <strog class="theme_color">*</strog></label>
+							<div class="col-sm-6">
+								<select name="id_banco" id="id_banco" readonly class="form-control" >
+
+
+
+								</select>
+							</div>
+						</div>
+
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">C.c.p: <strog class="theme_color">*</strog></label>
@@ -334,7 +331,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Motivo: <strog class="theme_color">*</strog></label>
 								<div class="col-sm-6">
-									<textarea  name="motivo" type="text" id="motivo" class="form-control" required vonKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" rows="10" cols="30"> debido a una diferencia de pago en varias quincenas, ya que por distintas situaciones no se encontraron activos en el sistema de nómina de la Secretaria de Educación (SIPETC)</textarea>
+									<textarea  name="motivo" type="text" id="motivo" class="form-control" required vonKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" rows="10" cols="30">debido a que... Escriba el motivo del reintegro.</textarea>
 								</div>
 							</div>
 
@@ -370,18 +367,6 @@
 							</div>
 
 							<br> <br>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Se Solicita Pago para Qna: <strog class="theme_color">*</strog></label>
-								<div class="col-sm-6">
-									<select name="pagos" id="pagos"    class="form-control select2">
-										<option selected>
-											Selecciona una opción
-										</option>
-
-									</select>
-
-								</div>
-							</div>
 
 								<div class="form-group">
 								<label class="col-sm-3 control-label">Fecha del Oficio: <strog class="theme_color">*</strog></label>
@@ -422,17 +407,33 @@
 				valida_nom();
 				valida_ciclore();
 				valida_gen();
-				cambia_reclamos();
-				buscar_qnas();
+
+
 
 
 }
 
 /////////NUMEROS A LETRAS////////////////////////////////////
+function numero() {
+	// Obtener valor que hay en el input
+	let valor = document.getElementById('total').value;
+	var texto = document.getElementById('total_text');
+	// Simple validación
 
-document.getElementById("total").addEventListener("keyup",function(e){
-document.getElementById("texto").innerHTML=NumeroALetras(this.value);
-});
+
+	// Obtener la representación
+	let letras = numeroALetras(valor, {
+		plural: "PESOS",
+		singular: "PESO",
+		centPlural: "CENTAVOS",
+		centSingular: "CENTAVO"
+	});
+
+	// Y a la salida ponerle el resultado
+	document.getElementById('total_text').value=letras;
+	console.log(document.getElementById('total_text').value);
+	console.log(document.getElementById('total').value);
+}
 
 
 var numeroALetras = (function() {
@@ -615,7 +616,7 @@ function valida_cctre() {
 		if( document.getElementById('id_centro_trabajo').value == "Selecciona una opción"){
 		//	swal("ERROR!","Selecciona tipo se puesto","error");
 			document.getElementById('id_captura').disabled=true;
-			document.getElementById('id_directorio_regional').disabled=true;
+
 			document.getElementById('ciclo_escolar').disabled=true;
 			document.getElementById('num_dias').disabled=true;
 			document.getElementById('genero').disabled=true;
@@ -635,7 +636,7 @@ function valida_nom() {
 				document.getElementById("error_nombre").innerHTML = "Seleccione una opción.";
 				return false
 			}else if(document.getElementById('id_captura').value != "Selecciona una opción"){
-				document.getElementById('id_directorio_regional').disabled=false;
+				document.getElementById('ciclo_escolar').disabled=false;
 				document.getElementById("error_nombre").innerHTML = "Proceda con la captura. 😀";
 			}
 }
@@ -650,7 +651,7 @@ function valida_dire() {
 				document.getElementById("error_director_regional").innerHTML = "Seleccione una opción.";
 				return false
 			}else if(document.getElementById('id_directorio_regional').value != "Selecciona una opción"){
-				document.getElementById('ciclo_escolar').disabled=false;
+
 
 				document.getElementById("error_director_regional").innerHTML = "Proceda con la captura. 😀";
 			}
@@ -696,7 +697,8 @@ function calcula(){
   var route = "http://localhost:8000/calcular_reclamo/"+dias+"/"+categoria+"/"+ciclo;
   $.get(route,function(res){
     document.getElementById('total').value = res;
-  });
+		numero();
+	});
 
 }
 
@@ -726,6 +728,7 @@ $.get(route,function(res){
 }
 
 
+
 function direc(){
 
 var dire = document.getElementById("id_reg").value;
@@ -748,12 +751,59 @@ $.get(route,function(res){
     }
   }
 
-});
+ });
 
 }
 
+function cuenta() {
+      var select2 = document.getElementById("id_cuenta");
+      var selectedOption2 = select2.selectedIndex;
+     	var cantidadtotal = select2.value;
+     	limite = "9",
+      separador = "_",
+      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+     	cct=arregloDeSubCadenas[0];
+     	num_cuenta=arregloDeSubCadenas[2];
+			clave_in=arregloDeSubCadenas[3];
+			secretaria=arregloDeSubCadenas[4];
+		//	id_banco=arregloDeSubCadenas[5];
+     	document.getElementById('num_cuenta').value=num_cuenta;
+			document.getElementById('clave_in').value=clave_in;
+			document.getElementById('secretaria').value=secretaria;
+		//	document.getElementById('id_banco').value=id_banco;
+}
 
 
+function cuentabanco(){
+
+
+	var select2 = document.getElementById("id_cuenta");
+	var selectedOption2 = select2.selectedIndex;
+	var cantidadtotal = select2.value;
+	limite = "9",
+	separador = "_",
+	arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+	banco=arregloDeSubCadenas[0];
+
+var route = "http://localhost:8000/banco/"+banco;
+
+$.get(route,function(res){
+  if(res.length > 0){
+
+    for (var i = 0; i < res.length; i++) {
+      if(res[i].estado =="ACTIVO"){
+        var x = document.getElementById("id_banco");
+        var option = document.createElement("option");
+        option.text = res[i].nombre_banco;
+        option.value = res[i].nombre_banco +"_"+res[i].id;
+				x.add(option, x[i]);
+      }
+    }
+  }
+
+ });
+
+}
 
 
 function nombre_clave() {
@@ -763,10 +813,11 @@ function nombre_clave() {
      	limite = "9",
       separador = "_",
       arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-     	cct=arregloDeSubCadenas[0];
+     	cct=arregloDeSubCadenas[3];
+
      	categoria=arregloDeSubCadenas[1];
      	document.getElementById('categoria').value=categoria;
-
+			document.getElementById('dirigido_a').value=cct;
 }
 
 function nombre_sos() {
