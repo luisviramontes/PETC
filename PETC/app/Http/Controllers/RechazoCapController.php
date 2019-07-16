@@ -34,6 +34,11 @@ class RechazoCapController extends Controller
     }
     public function index(Request $request)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       if($request)
       {
        $query=trim($request->GET('searchText'));
@@ -49,7 +54,7 @@ class RechazoCapController extends Controller
 
 
       return view('nomina.cap_rechazo.index',["cap_rechazo" => $cap_rechazo,"searchText"=>$query]);
-    }
+    }}
 
     /**
      * Show the form for creating a new resource.
@@ -57,10 +62,16 @@ class RechazoCapController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {      $quincena= DB::table('tabla_pagos')->get();
+    {    
+            $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
+        $quincena= DB::table('tabla_pagos')->get();
 
           return view("nomina.cap_rechazo.create",["quincena"=>$quincena]);
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -70,6 +81,11 @@ class RechazoCapController extends Controller
      */
     public function store(Request $request)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $rechazo = new RechazoCapModel;
       $rechazo -> qna = $request ->qna;
@@ -146,7 +162,7 @@ class RechazoCapController extends Controller
       }else {
       return false;
       }
-    }
+    }}
 
     public function invoice($id){
         $rechazo= DB::table('cap_rechazo')->get();
@@ -181,11 +197,16 @@ class RechazoCapController extends Controller
      */
     public function edit($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $rechazo=RechazoCapModel::findOrFail($id);
         $quincena= DB::table('tabla_pagos')->get();
 
         return view("nomina.cap_rechazo.edit",[ "rechazo"=>$rechazo,"quincena"=>$quincena]);
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -196,6 +217,11 @@ class RechazoCapController extends Controller
      */
     public function update(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $rechazo=RechazoCapModel::findOrFail($id);
 
         $rechazo -> qna = $request ->qna;
@@ -272,7 +298,7 @@ class RechazoCapController extends Controller
         }else {
         return false;
         }
-    }
+    }}
     /////////////////////////////////////////////////////////////////////////////////////////////
 
     public function validar_quincena($qna,$sostenimiento,$tipo)
@@ -309,6 +335,11 @@ class RechazoCapController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $rechazo=RechazoCapModel::findOrFail($id);
       $rechazo->estado="INACTIVO";
       $rechazo->captura=$user;
@@ -326,7 +357,7 @@ class RechazoCapController extends Controller
       }
       $rechazo->update();
       return redirect('cap_rechazo');
-    }
+    }}
 
     ////////////exel////////////////
 

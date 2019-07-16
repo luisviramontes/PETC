@@ -32,11 +32,19 @@ class NominaEstatalController extends Controller
     }
     public function index(Request $request)
     {
+        $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
 
+      }else{
+ 
       if($request)
       {
+        $ciclos=DB::table('ciclo_escolar')->get();
        $query=trim($request->GET('searchText'));
+       $query2=trim($request->GET('ciclo_escolar'));
        $nomina_estatal = DB::table('nomina_estatal')
+       ->where('ciclo_escolar','=',$query2)
        ->where('RFC','LIKE','%'.$query.'%')
        ->orwhere('nombre','LIKE','%'.$query.'%')
        ->orwhere('num_empleado','LIKE','%'.$query.'%')
@@ -49,10 +57,10 @@ class NominaEstatalController extends Controller
       }
 
 
-      return view('nomina.nomina_estatal.index',["nomina_estatal" => $nomina_estatal,"searchText"=>$query]);
+      return view('nomina.nomina_estatal.index',["nomina_estatal" => $nomina_estatal,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
 
         //
-    }
+    }}
 
     /**
      * Show the form for creating a new resource.
@@ -72,9 +80,14 @@ class NominaEstatalController extends Controller
      */
     public function store(Request $request)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $nomina_estatal = new NominaEstatalModel;
 
-    }
+    }}
 
     //importar Excel a la BD
 
@@ -124,10 +137,15 @@ class NominaEstatalController extends Controller
      */
     public function destroy($qna_pago)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
 
       NominaEstatalModel::where('qna_pago', $qna_pago)->delete();
 
 
       return redirect('/nomina_estatal');
-    }
+    }}
 }

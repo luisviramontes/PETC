@@ -31,6 +31,11 @@ class MunicipiosController extends Controller
     }
     public function index(request $request)
     {   
+        $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       if($request)
       {
          $query=trim($request->GET('searchText'));
@@ -40,7 +45,7 @@ class MunicipiosController extends Controller
          return view('nomina.region.municipios.index',["dato"=>$dato,"searchText"=>$query]);
         //
      }
- }
+ }}
 
     /**
      * Show the form for creating a new resource.
@@ -49,10 +54,15 @@ class MunicipiosController extends Controller
      */
     public function create()
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $region= DB::table('region')->get();
         return view('nomina.region.municipios.create',["region"=>$region]);
         //
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -62,6 +72,11 @@ class MunicipiosController extends Controller
      */
     public function store(Request $request)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
         $datos= new MunicipiosModel;
         $datos->id_region=$request->get('region');
@@ -75,7 +90,7 @@ class MunicipiosController extends Controller
         $datos->save();
         return Redirect::to('municipios');
         //
-    }
+    }}
 
     /**
      * Display the specified resource.
@@ -96,12 +111,17 @@ class MunicipiosController extends Controller
      */
     public function edit($id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $region= DB::table('region')->get();
         $municipio=MunicipiosModel::findOrFail($id);
         return view("nomina.region.municipios.edit",["municipio"=>$municipio,"region"=>$region]);
 
         //
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -112,6 +132,11 @@ class MunicipiosController extends Controller
      */
     public function update(Request $request, $id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
      $municipio=MunicipiosModel::findOrFail($id);
      $municipio->id_region=$request->get('region');
@@ -125,7 +150,7 @@ class MunicipiosController extends Controller
      $municipio->update();
      return Redirect::to('municipios');
         //
- }
+ }}
 
     /**
      * Remove the specified resource from storage.
@@ -135,6 +160,11 @@ class MunicipiosController extends Controller
      */
     public function destroy($id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
      $municipio=MunicipiosModel::findOrFail($id);
      $municipio->estado="INACTIVO";
@@ -142,7 +172,7 @@ class MunicipiosController extends Controller
      $municipio->update();
      return Redirect::to('municipios');
         //
- }
+ }}
 
  public function invoice()
  {

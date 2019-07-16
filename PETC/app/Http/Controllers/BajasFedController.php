@@ -31,6 +31,11 @@ class BajasFedController extends Controller
         $this->middleware('auth');
     }
     public function index(request $request){
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
      if($request)
      {
        // $aux=$request->get('searchText');  
@@ -55,7 +60,7 @@ class BajasFedController extends Controller
       return view('nomina.bajas.federal.index',["personal"=>$personal,"personal2"=>$personal2,"contador"=>$contador,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
-    }}
+    }}}
     /**
      * Show the form for creating a new resource.
      *
@@ -96,6 +101,11 @@ class BajasFedController extends Controller
      */
     public function edit($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $claves=DB::table('cat_puesto')->get();
       $cct=DB::table('centro_trabajo')->get();
       $ciclos=DB::table('ciclo_escolar')->get();
@@ -104,7 +114,7 @@ class BajasFedController extends Controller
 
       return view('nomina.bajas.federal.edit', ['claves'=> $claves,'cct'=>$cct,'ciclos'=>$ciclos,'personal'=>$personal]);
         //
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -115,6 +125,11 @@ class BajasFedController extends Controller
      */
     public function update(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
      // $aux=$request->get('clave');
       //$name = explode("_",$aux);
@@ -149,7 +164,7 @@ class BajasFedController extends Controller
 
       return redirect('bajasfed');
         //
-    }
+    }}
 
     /**
      * Remove the specified resource from storage.
@@ -159,6 +174,11 @@ class BajasFedController extends Controller
      */
     public function destroy($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $bajas=BajasContratoModel::findOrFail($id);
       $bajas->estado="PENDIENTE";
@@ -166,10 +186,15 @@ class BajasFedController extends Controller
       $bajas->update();
       return redirect('bajasfed');
         //
-    }
+    }}
 
     public function activar($id)
     { 
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $bajas=BajasContratoModel::findOrFail($id);
       $bajas->estado="RESUELTO";
@@ -177,7 +202,7 @@ class BajasFedController extends Controller
       $bajas->update();
       return redirect('bajasfed');
         //
-    }
+    }}
 
     public function excel(Request $request)
     {

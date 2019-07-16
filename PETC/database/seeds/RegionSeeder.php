@@ -167,7 +167,8 @@ class RegionSeeder extends Seeder
 
                 DB::table('region')->insert([
             'region' => '12', 
-            'sostenimiento' => 'ESTATAL', 
+            'sostenimiento' => 'ESTATAL',
+            'estado' => 'ACTIVO', 
             'capturo' => 'ADMINISTRADOR' 
             ]);
 

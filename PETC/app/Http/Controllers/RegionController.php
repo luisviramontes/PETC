@@ -34,6 +34,11 @@ class RegionController extends Controller
     }
     public function index(request $request)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       ///////////////////buscar////////////////////////7
       if($request)
       {
@@ -44,7 +49,7 @@ class RegionController extends Controller
        ->paginate(24);
       }
        return view('nomina.region.index',["regiones"=>$regiones ,"searchText"=>$query]);
-    }
+    }}
 
     /**
      * Show the form for creating a new resource.
@@ -53,8 +58,13 @@ class RegionController extends Controller
      */
     public function create()
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         return view("nomina.region.create");
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -64,6 +74,11 @@ class RegionController extends Controller
      */
     public function store(RegionRequest $formulario)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $validator = Validator::make(
       $formulario->all(),
@@ -88,7 +103,7 @@ class RegionController extends Controller
       return view('region.index');
       }
     }
-  }
+  }}
 
     //convertir y descargar pdf
 
@@ -127,9 +142,14 @@ class RegionController extends Controller
      */
     public function edit($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $regiones = RegionModel::find($id);
       return view("nomina.region.edit",["regiones"=>$regiones]);
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -140,6 +160,11 @@ class RegionController extends Controller
      */
     public function update(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $regiones = RegionModel::find($id);
       //asignamos nuevos valores
@@ -155,7 +180,7 @@ class RegionController extends Controller
       }else {
       return view('region.index');
       }
-    }
+    }}
 
     /**
      * Remove the specified resource from storage.
@@ -165,13 +190,18 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $region=RegionModel::findOrFail($id);
       $region->estado="INACTIVO";
       $region->capturo=$user;
       $region->update();
         return redirect('region');
-    }
+    }}
 
     ////////////exel////////////////
 

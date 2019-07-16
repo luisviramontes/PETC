@@ -33,6 +33,11 @@ class RechazosEstController extends Controller
     }
     public function index(Request $request)
     {
+        $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       if($request)
       {
        $query=trim($request->GET('searchText'));
@@ -48,7 +53,7 @@ class RechazosEstController extends Controller
 
       return view('nomina.rechazos_est.index',["rechazos"=>$rechazos,"searchText"=>$query]);
     }
-    }
+    }}
 
     /**
      * Show the form for creating a new resource.

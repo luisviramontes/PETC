@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('tipo_usuario')->nullable();
             $table->rememberToken();
             $table->timestamps(); 
-        });
+        }); 
     }
 
     /**

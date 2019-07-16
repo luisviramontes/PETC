@@ -32,6 +32,11 @@ class TablaPagosController extends Controller
     }
     public function index(request $request)
     {
+        $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
 
      $ciclos=DB::table('ciclo_escolar')->get();
 
@@ -51,7 +56,7 @@ class TablaPagosController extends Controller
      return view('nomina.tabla_pagos.index',["tabla_pagos"=>$tabla_pagos,"searchText"=>$query,'ciclos'=> $ciclos,"tabla_2"=>$tabla_2]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
- }}
+ }}}
 
     /**
      * Show the form for creating a new resource.
@@ -60,11 +65,16 @@ class TablaPagosController extends Controller
      */
     public function create()
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $ciclos=DB::table('ciclo_escolar')->get();
 
         return view('nomina.tabla_pagos.create', ['ciclos'=> $ciclos]);
         //
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -74,6 +84,11 @@ class TablaPagosController extends Controller
      */
     public function store(Request $request)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
         $tabla= new TablaPagosModel;
         $tabla->id_ciclo=$request->get('ciclo');
@@ -97,7 +112,7 @@ class TablaPagosController extends Controller
         return Redirect::to('tabla_pagos');
 
         //
-    }
+    }}
 
     public function invoice($id){
         $tabla_2= DB::table('tabla_pagos')->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')->where('id_ciclo','=',$id)->first();
@@ -134,11 +149,16 @@ print_r($tabla_2->ciclo);
      */
     public function edit($id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $ciclos=DB::table('ciclo_escolar')->get();
         $pago=TablaPagosModel::findOrFail($id);
         return view("nomina.tabla_pagos.edit",["pago"=>$pago,"ciclos"=>$ciclos]);
         //
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -149,6 +169,11 @@ print_r($tabla_2->ciclo);
      */
     public function update(Request $request, $id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
         $pago=TablaPagosModel::findOrFail($id);
         $pago->id_ciclo=$request->get('ciclo');
@@ -170,7 +195,7 @@ print_r($tabla_2->ciclo);
         $pago->update();
         return Redirect::to('tabla_pagos');
         //
-    }
+    }}
 
     /**
      * Remove the specified resource from storage.
@@ -180,13 +205,18 @@ print_r($tabla_2->ciclo);
      */
     public function destroy($id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
      $pago=TablaPagosModel::findOrFail($id);
      $pago->delete();
      return Redirect::to('tabla_pagos');
 
         //
- }
+ }}
 
 
  public function excel(Request $request)

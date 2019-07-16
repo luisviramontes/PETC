@@ -27,6 +27,11 @@ class DirectorCentroController extends Controller
     }
     public function index(request $request)
     {
+        $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
 
        if($request)
        {
@@ -39,7 +44,7 @@ class DirectorCentroController extends Controller
           return view('nomina.director_centro.index',["personal"=>$personal,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
-      }}
+      }}}
     /**
      * Show the form for creating a new resource.
      *

@@ -135,12 +135,13 @@
 
       <div class="left_nav_slidebar">
         <ul >
-          <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> NOMINAS<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> NOMINA<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
 
 
             <ul  >
-              <li> <a href="{{url('provedores')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Federal</b> </a> </li>
-              <li> <a href="{{url('empresas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Estatal</b> </a> </li>               
+              <li> <a href="{{url('nomina_federal')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Federal</b> </a> </li>
+              <li> <a href="{{url('nomina_estatal')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Estatal</b> </a> </li> 
+              <li> <a href="{{url('nomina_capturada')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Nominas Capturadas</b> </a> </li>              
 
             </ul>
           </li>
@@ -152,6 +153,7 @@
               <li> <a href="{{url('bajasfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bajas</b> </a> </li>
               <li> <a href="{{url('cambios_cct_fed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios CTE</b> </a> </li>
               <li> <a href="{{url('cambios_funcion_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios de Función</b> </a> </li>
+              <li> <a href="{{url('rechazos_fed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Rechazos</b> </a> </li>
               
             </ul>
 
@@ -164,22 +166,16 @@
               <li> <a href="{{url('bajasest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bajas</b> </a> </li>
               <li> <a href="{{url('cambios_cct_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios CTE</b> </a> </li>
               <li> <a href="{{url('cambios_funcion_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios de Función</b> </a> </li>
+               <li> <a href="{{url('rechazos_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Rechazos</b> </a> </li>
             </ul>
 
 
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-users"></i>USAER/E.FISICA <span class="plus"><i class="fa fa-plus"></i></span></a>
-            <ul>
-              <li> <a href="{{url('empleados')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Empleados</b> </a> </li>
-              <li> <a href="{{url('rol')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Roles Empleados</b> </a> </li>
-              <li> <a href="{{url('contratos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Contratos</b> </a> </li>
-            </ul>
+
 
           </li>
           <li> <a href="javascript:void(0);"> <i class="fa fa-truck icon"></i> CAPTURA <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
-              <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
-              <li> <a href="{{url('mantenimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mantenimientos</b> </a> </li>                
+              <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>                        
             </ul>
 
 
@@ -188,16 +184,19 @@
             <ul>
               <li> <a href="{{url('centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Centros de Trabajo</b> </a> </li>
               <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>
+              <li> <a href="{{url('municipios')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Municipios</b> </a> </li>
+              <li> <a href="{{url('localidades')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Localidades</b> </a> </li>
             </ul>
           </li>
 
 
           <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> DIRECTORIO <span class="plus"><i class="fa fa-plus"></i></span></a>
             <ul>
+            <li> <a href="{{url('region')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Regiónes</b> </a> </li>
               <li> <a href="{{url('directorio_regional')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio Regional</b> </a> </li>
-              <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>
-              <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio  SEDUZAC</b> </a> </li>
-              <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio Interno PETC</b> </a> </li>
+              <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>              
+              <li> <a href="{{url('directorio_externo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio SEDUZAC</b> </a> </li>
+              <li> <a href="{{url('directorio_interno')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio PETC</b> </a> </li>
 
 
 
@@ -226,8 +225,9 @@
             </ul>
           </li>
 
-          <li> <a href="javascript:void(0);"> <i class="fa fa-shopping-cart"></i> TABLA DE PAGOS <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <li> <a href="javascript:void(0);"> <i class="fa fa-shopping-cart"></i>PAGOS <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
+             <li> <a href="{{url('ciclo_escolar')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ciclo Escolar</b> </a> </li>
               <li> <a href="{{url('tabla_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tabla de Pagos</b> </a> </li>
             </ul>
             <ul>
@@ -254,7 +254,20 @@
 
           <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> SOLICITUDES DE INGRESO <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
-              <li> <a href="{{url('')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Fumigaciones</b> </a> </li>
+              <li> <a href="{{url('solicitudes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
+            </ul>
+          </li>
+
+          <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Oficios <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('solicitudes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recibidos</b> </a> </li>
+                 <li> <a href="{{url('solicitudes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Emitidos</b> </a> </li>
+            </ul>
+          </li>
+
+          <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Bancos <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('cuentas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Fumigaciones</b> </a> </li>
             </ul>
           </li>
 

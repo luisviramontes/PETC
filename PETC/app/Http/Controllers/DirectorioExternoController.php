@@ -34,6 +34,11 @@ class DirectorioExternoController extends Controller
     }
     public function index(request $request)
     { 
+        $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
      if($request)
      {
       $query=trim($request->GET('searchText')); 
@@ -43,7 +48,7 @@ class DirectorioExternoController extends Controller
       return view('nomina.directorio_externo.index',["personal"=>$personal,"searchText"=>$query]);
   }
         //
-}
+}}
 
     /**
      * Show the form for creating a new resource.
@@ -52,9 +57,14 @@ class DirectorioExternoController extends Controller
      */
     public function create()
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       return view('nomina.directorio_externo.create');
         //
-  }
+  }}
 
     /**
      * Store a newly created resource in storage.

@@ -34,6 +34,11 @@ class BancosController extends Controller
     }
     public function index(Request $request)
     {
+        $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       if($request)
       {
        $query=trim($request->GET('searchText'));
@@ -46,7 +51,7 @@ class BancosController extends Controller
 
       return view('nomina.bancos.index',["bancos"=>$bancos,"searchText"=>$query]);
     }
-  }
+  }}
 
     /**
      * Show the form for creating a new resource.
@@ -55,9 +60,14 @@ class BancosController extends Controller
      */
     public function create()
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       return view("nomina.bancos.create");
 
-    }
+    }}
 
     /**
      * Store a newly created resource in storage.
@@ -67,6 +77,11 @@ class BancosController extends Controller
      */
     public function store(Request $request)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
         $banco = new BancosModel;
         $banco -> nombre_banco = $request ->nombre_banco;
@@ -81,7 +96,7 @@ class BancosController extends Controller
         }else {
         return false;
         }
-    }
+    }}
 
     public function invoice($id){
         $bancos= DB::table('bancos')->get();
@@ -119,9 +134,14 @@ class BancosController extends Controller
      */
     public function edit($id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $bancos = BancosModel::find($id);
       return view("nomina.bancos.edit",["bancos"=>$bancos]);
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -132,6 +152,11 @@ class BancosController extends Controller
      */
     public function update(Request $request, $id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
         $banco = BancosModel::find($id);
         $banco -> nombre_banco = $request ->nombre_banco;
@@ -146,7 +171,7 @@ class BancosController extends Controller
         }else {
         return false;
         }
-    }
+    }}
 
     /**
      * Remove the specified resource from storage.
@@ -156,13 +181,18 @@ class BancosController extends Controller
      */
     public function destroy($id)
     {
+                $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $user = Auth::user()->name;
       $banco=BancosModel::findOrFail($id);
       $banco->estado="INACTIVO";
       $banco->captura=$user;
       $banco->update();
         return redirect('bancos');
-    }
+    }}
 
     ////////////exel////////////////
 

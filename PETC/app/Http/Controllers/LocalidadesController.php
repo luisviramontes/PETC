@@ -31,6 +31,11 @@ class LocalidadesController extends Controller
     }
     public function index(request $request)
     {   
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       if($request)
       {
        $query=trim($request->GET('searchText'));
@@ -40,7 +45,7 @@ class LocalidadesController extends Controller
        return view('nomina.region.municipios.localidades.index',["dato"=>$dato,"searchText"=>$query]);
         //
    }
-}
+}}
 
     /**
      * Show the form for creating a new resource.
@@ -49,10 +54,15 @@ class LocalidadesController extends Controller
      */
     public function create()
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $municipios= DB::table('municipios')->where('estado','=','ACTIVO')->get();
       return view('nomina.region.municipios.localidades.create',["municipios"=>$municipios]);
         //
-  }
+  }}
 
     /**
      * Store a newly created resource in storage.
@@ -62,6 +72,11 @@ class LocalidadesController extends Controller
      */
     public function store(Request $request)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
         $datos= new LocalidadesModel;
         $datos->id_municipio=$request->get('municipio');
@@ -77,7 +92,7 @@ class LocalidadesController extends Controller
         $datos->save();
         return Redirect::to('localidades');
         //
-    }
+    }}
 
     /**
      * Display the specified resource.
@@ -98,6 +113,11 @@ class LocalidadesController extends Controller
      */
     public function edit($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         $dato2 = DB::table('localidades')
         ->select('localidades.nom_loc')->where('localidades.id','=',$id)->first();
 
@@ -107,7 +127,7 @@ class LocalidadesController extends Controller
         //
 
         //
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -118,6 +138,11 @@ class LocalidadesController extends Controller
      */
     public function update(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
        $datos=LocalidadesModel::findOrFail($id);
        $datos->id_municipio=$request->get('municipio');
@@ -133,7 +158,7 @@ class LocalidadesController extends Controller
        $datos->update();
        return Redirect::to('localidades');
         //
-   }
+   }}
 
     /**
      * Remove the specified resource from storage.
@@ -143,6 +168,11 @@ class LocalidadesController extends Controller
      */
     public function destroy($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
         $datos=LocalidadesModel::findOrFail($id);
         $datos->estado="INACTIVO";
@@ -150,7 +180,7 @@ class LocalidadesController extends Controller
         $datos->update();
         return Redirect::to('localidades');
         //
-    }
+    }}
 
     public function excel()
     {

@@ -32,6 +32,11 @@ class CambiosEstController extends Controller
         $this->middleware('auth');
     }
     public function index(request $request){
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
         if($request)
         {
        // $aux=$request->get('searchText');
@@ -50,7 +55,7 @@ class CambiosEstController extends Controller
           return view('nomina.cambios.cambios_cct.estatal.index',["personal"=>$personal,"contador"=>$contador,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
-      }}
+      }}}
     /**
      * Show the form for creating a new resource.
      *
@@ -91,6 +96,11 @@ class CambiosEstController extends Controller
      */
     public function edit($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $claves=DB::table('cat_puesto')->get();
       $cct=DB::table('centro_trabajo')->get();
       $ciclos=DB::table('ciclo_escolar')->get();
@@ -99,7 +109,7 @@ class CambiosEstController extends Controller
 
       return view('nomina.cambios.cambios_cct.estatal.edit', ['claves'=> $claves,'cct'=>$cct,'ciclos'=>$ciclos,'personal'=>$personal]);
         //
-  }
+  }}
 
     /**
      * Update the specified resource in storage.
@@ -110,6 +120,11 @@ class CambiosEstController extends Controller
      */
     public function update(Request $request, $id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
         $aux=$request->get('clave');
         $name = explode("_",$aux);
@@ -148,7 +163,7 @@ class CambiosEstController extends Controller
 
         return redirect('cambios_cct_est');
         //
-    }
+    }}
 
     /**
      * Remove the specified resource from storage.
@@ -158,6 +173,11 @@ class CambiosEstController extends Controller
      */
     public function destroy($id)
     {
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
          $altas=CambiosCctModel::findOrFail($id);
       $altas->estado="PENDIENTE";
@@ -165,10 +185,15 @@ class CambiosEstController extends Controller
       $altas->update();
       return redirect('cambios_cct_est');
         //
-    }
+    }}
 
     public function activar($id)
     { 
+              $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
       $user = Auth::user()->name;
       $altas=CambiosCctModel::findOrFail($id);
       $altas->estado="RESUELTO";
@@ -176,7 +201,7 @@ class CambiosEstController extends Controller
       $altas->update();
       return redirect('cambios_cct_est');
         //
-  }
+  }}
 
   public function excel(Request $request)
   {

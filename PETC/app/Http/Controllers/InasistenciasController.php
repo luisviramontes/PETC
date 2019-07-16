@@ -33,11 +33,16 @@ class InasistenciasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-        public function __construct()
+    public function __construct()
     {
-        $this->middleware('auth');
+      $this->middleware('auth');
     }
     public function index(request $request,$id){ 
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
       if($request)
       {
        // $aux=$request->get('searchText');
@@ -55,7 +60,7 @@ class InasistenciasController extends Controller
         return view('nomina.inasistencias.index',["qnas"=>$qnas,"personal"=>$personal,"contador"=>$contador,"searchText"=>$query,"ciclos"=>$ciclos,"id"=>$id]);
 
         //
-      }
+      }}
 
     /**
      * Show the form for creating a new resource.
@@ -64,6 +69,11 @@ class InasistenciasController extends Controller
      */
     public function create()
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
       $claves=DB::table('cat_puesto')->get();
       $cct=DB::table('centro_trabajo')->get();
       $captura=DB::table('captura')->get();
@@ -72,7 +82,7 @@ class InasistenciasController extends Controller
       return view('nomina.inasistencias.create', ['claves'=> $claves,'cct'=>$cct,'ciclos'=>$ciclos]);
 
         //
-    }
+    }}
 
     public function validarLista($cct,$mes,$ciclo){ 
       $ciclo=DB::table('ciclo_escolar')->where('ciclo','=',$ciclo)->first();
@@ -147,6 +157,11 @@ class InasistenciasController extends Controller
      */
     public function store(Request $request)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
       $user = Auth::user()->name;
 
       $inasistencias=$request->get('inasistencias');
@@ -189,7 +204,7 @@ class InasistenciasController extends Controller
       return Redirect::to('inasistencias2/1'); 
         //
 
-    }
+    }}
 
     /**
      * Display the specified resource.
@@ -210,6 +225,11 @@ class InasistenciasController extends Controller
      */ 
     public function edit($id)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
       $claves=DB::table('cat_puesto')->get();
       $cct=DB::table('centro_trabajo')->get();
       $ciclos=DB::table('ciclo_escolar')->get();
@@ -227,7 +247,7 @@ class InasistenciasController extends Controller
 
       return view('nomina.inasistencias.edit', ['claves'=> $claves,'cct'=>$cct,'ciclos'=>$ciclos,'personal'=>$personal]);
         //
-    }
+    }}
 
     /**
      * Update the specified resource in storage.
@@ -238,6 +258,11 @@ class InasistenciasController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
       $user = Auth::user()->name;
 
       $inasistencias=$request->get('inasistencias');
@@ -280,7 +305,7 @@ class InasistenciasController extends Controller
 
 
         //
-      } return Redirect::to('inasistencias2/1');}
+      } return Redirect::to('inasistencias2/1');}}
 
     /**
      * Remove the specified resource from storage.
@@ -290,6 +315,11 @@ class InasistenciasController extends Controller
      */
     public function destroy(Request $request,$id)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
       $user = Auth::user()->name;
       $tabla=InasistenciasModel::findOrFail($id);
       $tabla->estado= "APLICADA";
@@ -300,17 +330,22 @@ class InasistenciasController extends Controller
       return Redirect::to('inasistencias2/1'); 
 
         //
-    }
+    }}
 
     public function inactivar($id)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
       $tabla=InasistenciasModel::findOrFail($id);
       $tabla->delete();
 
       return Redirect::to('inasistencias2/1'); 
 
         //
-    }
+    }}
 
     public function verInformacion($id,$ciclo)
     {
@@ -384,7 +419,7 @@ class InasistenciasController extends Controller
        });
      })->export('xls');
    }
- 
+
    public function generar_listas()
    {
     $cct=DB::table('centro_trabajo')->get();
@@ -396,8 +431,12 @@ class InasistenciasController extends Controller
   }
 
   public function generar_pdf_listas(Request $request){
+     $user = Auth::user()->name;
+
     $mes=$request->get('mes');
     $ciclo_aux=$request->get('ciclo_escolar');
+    $ciclo=DB::table('ciclo_escolar')->where('ciclo','=',$ciclo_aux)->first();
+
     $todos=$request->get('option1');
     $region=$request->get('region');
     $escuelas=$request->get('option2');
@@ -405,6 +444,19 @@ class InasistenciasController extends Controller
 
     if ($todos == "1") {
       $centros= CentroTrabajoModel::join('centro_trabajo.id','directorio_regional','directorio_regional.id_region','=','centro_trabajo.id_region')->join('director_cct','director_cct.id_cct_etc','=','centro_trabajo.id')->join('captura','captura.id','=','director_cct.id_captura')->select('captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','directorio_regional.director_regional','directorio_regional.nombre_enlace')->where('centro_trabajo.estado','=','ACTIVO')->orderBy('centro_trabajo.id','desc')->get();
+      $cuenta_centro=count($centros);
+      for ($i=0; $i < $cuenta_centro; $i++) { 
+
+      $lista= new ListasAsistenciaModel;
+      $lista ->id_centro_trabajo = $centros[$i]->id;
+      $lista ->mes = $mes;
+      $lista ->estado = "PENDIENTE";
+      $lista ->observaciones = $request ->observaciones;
+      $lista ->captura=$user;
+      $lista ->id_ciclo=$ciclo->id;
+      $lista->save();
+        # code...
+      }
 
       $captura=CapturaModel::select('captura.nombre','captura.rfc','captura.categoria','captura.id_cct_etc')->where('estado','=','ACTIVO')->orderBy('id_cct_etc','desc')->get();
       # code...
@@ -414,11 +466,39 @@ class InasistenciasController extends Controller
 
         $captura=CapturaModel::join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->select('captura.nombre','captura.rfc','captura.categoria','captura.id_cct_etc')->where('centro_trabajo.id_region','=',$region)->where('captura.estado','=','ACTIVO')->orderBy('centro_trabajo.id','desc')->get();
 
+         $cuenta_centro=count($centros);
+      for ($i=0; $i < $cuenta_centro; $i++) { 
+
+      $lista= new ListasAsistenciaModel;
+      $lista ->id_centro_trabajo = $centros[$i]->id;
+      $lista ->mes = $mes;
+      $lista ->estado = "PENDIENTE";
+      $lista ->observaciones = $request ->observaciones;
+      $lista ->captura=$user;
+      $lista ->id_ciclo=$ciclo->id;
+      $lista->save();
+        # code...
+      }
+
         
       }else{
        $centros= CentroTrabajoModel::join('directorio_regional','directorio_regional.id_region','=','centro_trabajo.id_region')->join('director_cct','director_cct.id_cct_etc','=','centro_trabajo.id')->join('captura','captura.id','=','director_cct.id_captura')->select('centro_trabajo.id','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','directorio_regional.director_regional','directorio_regional.nombre_enlace')->where('centro_trabajo.estado','=','ACTIVO')->where('centro_trabajo.id','=',$cct)->orderBy('centro_trabajo.id','desc')->get();
 
        $captura=CapturaModel::join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->select('captura.nombre','captura.rfc','captura.categoria','captura.id_cct_etc')->where('centro_trabajo.id','=',$cct)->where('captura.estado','=','ACTIVO')->orderBy('centro_trabajo.id','desc')->get();
+
+        $cuenta_centro=count($centros);
+      for ($i=0; $i < $cuenta_centro; $i++) { 
+
+      $lista= new ListasAsistenciaModel;
+      $lista ->id_centro_trabajo = $centros[$i]->id;
+      $lista ->mes = $mes;
+      $lista ->estado = "PENDIENTE";
+      $lista ->observaciones = $request ->observaciones;
+      $lista ->captura=$user;
+      $lista ->id_ciclo=$ciclo->id;
+      $lista->save();
+        # code...
+      }
 
      }
    }

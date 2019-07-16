@@ -235,6 +235,13 @@ Route::get('pdf_fortalecimiento/{id}', array('as'=> '/pdf_fortalecimiento','uses
 Route::resource('listas_asistencias', 'ListasAsistenciasController');
 Route::get('descargar-listas-asistencias', 'ListasAsistenciasController@excel')->name('nomina.listas_asistencias.excel');
 Route::get('pdf_listasasistencias/{id}', array('as'=> '/pdf_listasasistencias','uses'=>'ListasAsistenciasController@invoice'));
+Route::get('ver_listas', array('as'=> '/ver_listas','uses'=>'ListasAsistenciasController@ver_listas'));
+Route::get('busca_listas/{ciclo}','ListasAsistenciasController@busca_listas');
+Route::get('busca_listas_region/{ciclo}/{region}','ListasAsistenciasController@busca_listas_region');
+Route::get('busca_listas_mes/{ciclo}/{region}/{mes}','ListasAsistenciasController@busca_listas_mes');
+Route::get('descargar-listas-ciclo/{id}', 'ListasAsistenciasController@excel2')->name('nomina.reclamos.excel2');
+
+
 
 //////////////////nomina estatal////////////////////////////////
 Route::resource('nomina_estatal', 'NominaEstatalController');
@@ -247,6 +254,8 @@ Route::get('descargar-nominas-capturadas', 'NominaCapturadaController@excel')->n
 Route::get('pdf_nomina_capturada/{id}', array('as'=> '/pdf_nomina_capturada','uses'=>'NominaCapturadaController@invoice'));
 Route::get('validar_nomina/{qna}/{sostenimiento}/{tipo}','NominaCapturadaController@validar_nomina');
 Route::get('validar_quincenaIna/{qna}/{sostenimiento}/{tipo}','NominaCapturadaController@validar_quincenaIna');
+Route::get('buscar_qnas_pagos/{ciclo}/','NominaCapturadaController@buscar_qnas_pagos');
+
 
 ////////////////////////////////////////////////////////////////
 
