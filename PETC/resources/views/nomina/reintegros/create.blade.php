@@ -681,7 +681,7 @@ function valida_gen() {
 			}else if(document.getElementById('genero').value != "Selecciona una opción"){
 
 					document.getElementById('submit').disabled=false;
-				
+
 			}
 
 }
@@ -813,7 +813,7 @@ function nombre_clave() {
      	limite = "9",
       separador = "_",
       arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-     	cct=arregloDeSubCadenas[3];
+     	cct=arregloDeSubCadenas[0];
 
      	categoria=arregloDeSubCadenas[1];
      	document.getElementById('categoria').value=categoria;

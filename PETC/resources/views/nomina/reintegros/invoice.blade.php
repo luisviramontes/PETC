@@ -29,7 +29,7 @@
 
 		<div>
 			<h2>
-				Por este conducto le envío un cordial saludo y a su vez solicito dela manera más atenta el reintegro por la cantidad de {{$nametot[0]}} ( {{$nametotex[0]}} ), debido a que el docente no estuvo laborando {{$num_d}} por motivos de {{$motivo}},dicho reintegro se deberá de efectuar en el departamento de pagos de esta dependencia
+				Por este conducto le envío un cordial saludo y a su vez solicito dela manera más atenta el reintegro por la cantidad de {{$nametot[0]}} ( {{$nametotex[0]}} ), debido a que el docente no estuvo laborando {{$num_d}} días por motivos de {{$motivo}},dicho reintegro se deberá de efectuar en el departamento de pagos de esta dependencia
 				<br> <br>
 				Comentándole que este reintegro se efectuara a la Cuenta: {{$namecue[2]}} Clabe: {{$namecue[3]}} Banco: {{$nameban[0]}} Nombre: {{$namecue[4]}} para que con este quede usted absuelto de cualquier responsabilidad.
 				<br> <br>
