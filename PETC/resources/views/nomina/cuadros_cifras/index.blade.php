@@ -20,8 +20,8 @@
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
 							<div class="actions"> </div>
-							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Cuadro de Cifras {{$tabla_2->ciclo}}</strong></h2>
-							@include('nomina.cuadro_cifras.search')
+							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Cuadro de Cifras Ciclo</strong></h2>
+							@include('nomina.cuadros_cifras.search')
 						</div>
 						<div class="col-md-5"> 
 							<div class="btn-group pull-right">
@@ -33,7 +33,7 @@
 
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.tabla_pagos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
 
-										<a class="btn btn-primary btn-sm" href="{{URL::action('TablaPagosController@invoice',$tabla_2->id_ciclo)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
+										<a class="btn btn-primary btn-sm" href="{{URL::action('TablaPagosController@invoice',2)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
 
 										<a  class="btn btn-sm btn btn-info" href="{{route('nomina.tabulador_pagos.calculadora_pagos')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Calculadora de Pagos"> <i class="fa fa-plus"></i> Calculadora de Pagos </a> 
 
@@ -55,7 +55,7 @@
 							<tr>
 								<th>Quincena </th>
 								<th>Categoria</th>
-								<th>Total </th>
+								<th>Total Registros </th>
 								<th>Total Percepciones </th>
 								<th>Total Deducciones </th>
 								<th>Total Liquido </th>
@@ -66,48 +66,46 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($tabla_pagos  as $tabla_pago)
+							@foreach($cuadro  as $cuadro)
 							<tr class="gradeA">
-								<td>{{$tabla_pago->qna}} </td>
-								<td>{{$tabla_pago->dias}} </td>
-								<td>${{$tabla_pago->pago_director}}.00 </td>
-								<td>${{$tabla_pago->pago_docente}}.00 </td>
-								<td>${{$tabla_pago->pago_intendente}}.00 </td>
-								<th>{{$tabla_pago->ciclo}} </th>
-								<td>{{$tabla_pago->captura}} </td>
-								<td>{{$tabla_pago->updated_at}} </td>
+								<td>{{$cuadro->qna}} </td>
+								<td>{{$cuadro->categoria}} </td>
+								<td>{{$cuadro->total_reclamos}}</td>
+								<td>$ <?php echo  number_format($cuadro->total_liquido) ?> </td>
+								<td>$ <?php echo  number_format($cuadro->total_percepciones) ?></td>
+								<td>$ <?php echo  number_format($cuadro->total_deducciones) ?></td>
+								<th>{{$cuadro->ciclo}} </th>
+								<td>{{$cuadro->captura}} </td>						
 								<td> 
 									<center>
-										<a href="{{URL::action('TablaPagosController@edit',$tabla_pago->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
+										<a href="{{URL::action('TablaPagosController@edit',$cuadro->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
 									</center>
 								</td>
 								<td>
 									<center>
-										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$tabla_pago->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$cuadro->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 									</td>
 								</td>
 							</tr>
-                            @include('nomina.tabla_pagos.modal')
+                            @include('nomina.cuadros_cifras.modal')
 							@endforeach
 						</tbody>
 						<tfoot>
 							<tr>
 								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
+								<th>Categoria</th>
+								<th>Total </th>
+								<th>Total Percepciones </th>
+								<th>Total Deducciones </th>
+								<th>Total Liquido </th>
+								<th>Ciclo Escolar </th>
 								<th>Capturo </th>
-								<th>Modificado</th>
-
-
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
 						</tfoot>
 					</table>
-					{!! $tabla_pagos->render() !!}
+				
 				</div><!--/table-responsive-->
 			</div><!--/porlets-content-->
 		</div><!--/block-web-->

@@ -75,7 +75,7 @@ Route::get('pdf_cicloescolar/{id}', array('as'=> '/pdf_cicloescolar','uses'=>'Ci
 Route::resource('region', 'RegionController');
 Route::get('descargar-region', 'RegionController@excel')->name('nomina.region.excel');
 Route::get('pdf_region/{id}', array('as'=> '/pdf_region','uses'=>'RegionController@invoice'));
-///////////////////////////////////////////////////
+/////////////////////////////////////////////////// 
 
 //////////////////////RchazosCAP///////////////////////7
 Route::resource('cap_rechazo', 'RechazoCapController');
@@ -264,6 +264,10 @@ Route::resource('nomina_federal', 'NominaFederalController');
 Route::post('importExcel', 'NominaFederalController@importExcel');
 Route::get('pdf_bancos/{id}', array('as'=> '/pdf_bancos','uses'=>'BancosController@invoice'));
 ////////////////////////////////////////////////////////////////
+
+////CUADROS CIFRAS///////////
+Route::resource('cuadros_cifras', 'CuadroCifrasController');
+
 
 ////////////BANCOS////////////////////////////////////////////////7
 Route::resource('bancos', 'BancosController');

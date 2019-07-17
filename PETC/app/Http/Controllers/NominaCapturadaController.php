@@ -386,7 +386,7 @@ class NominaCapturadaController extends Controller
            # code...
       $total_intendente_fed= $total_intendente_fed+1;
       $total_dedu_intendente_fed=$total_dedu_intendente_fed + $value->ded;
-      $total_liqui_docente_fed=$total_liqui_docente_fed + $value->neto;
+      $total_liqui_intendente_fed=$total_liqui_intendente_fed + $value->neto;
       $total_perce_intendente_fed=$total_perce_intendente_fed + $value->perc;
            # code...
     }
