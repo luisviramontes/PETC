@@ -24,7 +24,7 @@ function soloLetras(e){
     return false;
   }
 }
- 
+
 
 function soloNumeros(e){
   key = e.keyCode || e.which;
@@ -1419,7 +1419,7 @@ function valida_puesto() {
    return false
  }else{
    document.getElementById('submit').disabled=false;
-   document.getElementById("error_tipo_puesto").innerHTML = "Proceda con la captura. 😀";
+
  }
 }
 
@@ -1432,7 +1432,7 @@ function valida_sostenimiento() {
         return false
       }else{
         document.getElementById('submit').disabled=false;
-        document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
+
       }
     }
 
@@ -1446,17 +1446,16 @@ function valida_sostenimiento() {
 
         }else if(document.getElementById('region').value != "Selecciona una opción" && document.getElementById('sostenimiento').value != "Selecciona una opción"){
           document.getElementById('submit').disabled=false;
-          document.getElementById("error_region").innerHTML = "Proceda con la captura. 😀";
-          document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
+
 
         }else if (document.getElementById('region').value != "Selecciona una opción" && document.getElementById('sostenimiento').value == "Selecciona una opción") {
           document.getElementById('submit').disabled=true;
-          document.getElementById("error_region").innerHTML = "Proceda con la captura. 😀";
+
           document.getElementById("error_sostenimiento").innerHTML = "No se ha seleccionado ninguna opción.";
         }else if (document.getElementById('region').value == "Selecciona una opción" && document.getElementById('sostenimiento').value != "Selecciona una opción") {
           document.getElementById('submit').disabled=true;
           document.getElementById("error_region").innerHTML = "No se ha seleccionado ninguna opción.";
-          document.getElementById("error_sostenimiento").innerHTML = "Proceda con la captura. 😀";
+
         }
       }
 
@@ -1470,17 +1469,16 @@ function valida_sostenimiento() {
 
            }else if(document.getElementById('cct').value != "Selecciona una opción" && document.getElementById('mes').value != "Selecciona una opción"){
             document.getElementById('submit').disabled=false;
-            document.getElementById("error_cct").innerHTML = "Proceda con la captura. 😀";
-            document.getElementById("error_mes").innerHTML = "Proceda con la captura. 😀";
+
 
           }else if (document.getElementById('cct').value != "Selecciona una opción" && document.getElementById('mes').value == "Selecciona una opción") {
            document.getElementById('submit').disabled=true;
-           document.getElementById("error_cct").innerHTML = "Proceda con la captura. 😀";
+
            document.getElementById("error_mes").innerHTML = "No se ha seleccionado ninguna opción.";
          }else if (document.getElementById('cct').value == "Selecciona una opción" && document.getElementById('mes').value != "Selecciona una opción") {
            document.getElementById('submit').disabled=true;
            document.getElementById("error_cct").innerHTML = "No se ha seleccionado ninguna opción.";
-           document.getElementById("error_mes").innerHTML = "Proceda con la captura. 😀";
+          
          }
        }
 
@@ -2165,7 +2163,7 @@ function buscar_qnas(){
           }else{
             resuelto = resuelto +1;
           }
-          
+
 
 
         }
@@ -2179,7 +2177,7 @@ function buscar_qnas(){
       cell1.innerHTML = res.length;
       cell2.innerHTML = resuelto;
       cell3.innerHTML = pendiente;
-     
+
     });
 
   }
@@ -2212,11 +2210,11 @@ function buscar_qnas(){
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
       var cell3 = row.insertCell(2);
-      
+
       cell1.innerHTML = res.length;
       cell2.innerHTML = resuelto;
       cell3.innerHTML = pendiente;
-     
+
     });
 
   }
@@ -2251,11 +2249,11 @@ function buscar_qnas(){
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
       var cell3 = row.insertCell(2);
-      
+
       cell1.innerHTML = res.length;
       cell2.innerHTML = resuelto;
       cell3.innerHTML = pendiente;
-     
+
     });
 
   }
@@ -2266,7 +2264,7 @@ function buscar_qnas_pagos(){
     for (var i = 0; i < x.length; i++) {
       x.remove(i);
     }}
-    
+
 
   var x= document.getElementById('ciclo_escolar').value;
    var route = "http://localhost:8000/buscar_qnas_pagos/"+x+"/";

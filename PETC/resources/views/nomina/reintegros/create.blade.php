@@ -625,7 +625,7 @@ function valida_cctre() {
 			return false
 		}else if(document.getElementById('id_centro_trabajo').value != "Selecciona una opción"){
 			document.getElementById('id_captura').disabled=false;
-			document.getElementById("error_cct").innerHTML = "Proceda con la captura. 😀";
+
 		}
 }
 
@@ -637,7 +637,7 @@ function valida_nom() {
 				return false
 			}else if(document.getElementById('id_captura').value != "Selecciona una opción"){
 				document.getElementById('ciclo_escolar').disabled=false;
-				document.getElementById("error_nombre").innerHTML = "Proceda con la captura. 😀";
+
 			}
 }
 
@@ -653,7 +653,7 @@ function valida_dire() {
 			}else if(document.getElementById('id_directorio_regional').value != "Selecciona una opción"){
 
 
-				document.getElementById("error_director_regional").innerHTML = "Proceda con la captura. 😀";
+
 			}
 }
 
@@ -667,7 +667,7 @@ function valida_ciclore() {
 				document.getElementById('num_dias').disabled=false;
 					document.getElementById('genero').disabled=false;
 
-				document.getElementById("error_ciclo_escolar").innerHTML = "Proceda con la captura. 😀";
+
 			}
 
 }
@@ -681,7 +681,7 @@ function valida_gen() {
 			}else if(document.getElementById('genero').value != "Selecciona una opción"){
 
 					document.getElementById('submit').disabled=false;
-				document.getElementById("error_genero").innerHTML = "Proceda con la captura. 😀";
+				
 			}
 
 }

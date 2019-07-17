@@ -42,17 +42,17 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Seleccione Ciclo Escolar: <strog class="theme_color"></strog></label>
 							<div class="col-sm-6">
-								<select name="ciclo_escolar" id="ciclo_escolar"  onchange="buscar_qnas_pagos();" class="form-control select2" ">
-									@foreach($ciclos as $ciclo)	
+								<select name="ciclo_escolar" id="ciclo_escolar"  onchange="buscar_qnas_pagos();" class="form-control select2">
+									@foreach($ciclos as $ciclo)
 									@if($ciclo->id == 2)
 									<option value='{{$ciclo->id}}' selected>
 										{{$ciclo->ciclo}}
 									</option>
-									@else			
+									@else
 									<option value='{{$ciclo->id}}' >
 										{{$ciclo->ciclo}}
 									</option>
-									@endif						
+									@endif
 									@endforeach
 								</select>
 
@@ -67,7 +67,7 @@
 									<option selected>
 										Selecciona una opción
 									</option>
-									
+
 								</select>
 								<div class="help-block with-errors"></div>
 								<div class="text-danger" id='error_qna'>{{$errors->formulario->first('qna')}}</div>
@@ -202,7 +202,7 @@
 		return false
 	}else if(document.getElementById('qna').value != "Selecciona una opción"){
 		document.getElementById('sostenimiento').disabled=false;
-		document.getElementById("error_qna").innerHTML = "Proceda con la captura. 😀";
+
 	}
 }
 
@@ -214,7 +214,7 @@ function valida_sos() {
 			return false
 		}else if(document.getElementById('sostenimiento').value != "Selecciona una opción"){
 			document.getElementById('tipo').disabled=false;
-			document.getElementById("error_sos").innerHTML = "Proceda con la captura. 😀";
+
 		}
 	}
 
@@ -227,7 +227,7 @@ function valida_sos() {
 				return false
 			}else if(document.getElementById('tipo').value != "Selecciona una opción"){
 				document.getElementById('file').disabled=false;
-				document.getElementById("error_tipo").innerHTML = "Proceda con la captura. 😀";
+
 			}
 		}
 
@@ -249,7 +249,7 @@ function valida_sos() {
 						return false;
 					}
 					document.getElementById('submit').disabled=false;
-					document.getElementById("error_file").innerHTML = "Proceda con la captura. 😀";
+				
 				}
 
 			}

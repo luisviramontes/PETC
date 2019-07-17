@@ -129,7 +129,7 @@ function validar_banco() {
 
 	 		 }else if(document.getElementById('id_banco').value != "Selecciona una opción"){
 	 					document.getElementById('submit').disabled=false;
-	 					 document.getElementById("error_id_banco").innerHTML = "Proceda con la captura. 😀";
+	 					
 
 	 		 }
 }
