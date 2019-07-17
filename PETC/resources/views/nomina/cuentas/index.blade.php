@@ -33,10 +33,10 @@
 
 
 									<div class="btn-group" style="margin-right: 10px;">
-									<!--	<a class="btn btn-sm btn-success tooltips" href="{{ route('bancos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Nomina"> <i class="fa fa-plus"></i> Registrar </a>
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.bancos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-										<a class="btn btn-primary btn-sm" href="{{URL::action('BancosController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
-								-->
+										<a class="btn btn-sm btn-success tooltips" href="{{ route('cuentas.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Cuenta"> <i class="fa fa-plus"></i> Registrar </a>
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.cuentas.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+										<a class="btn btn-primary btn-sm" href="{{URL::action('CuentasController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+
 
 
 									</div>
@@ -53,7 +53,7 @@
 					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered" id="hidden-table-info">
 						<thead>
 							<tr>
-								<th>Nombre</th>
+								<th>Nombre de la Cuenta</th>
 								<th>Cuenta</th>
 								<th>Clave Inter.</th>
 								<th>Secretaria</th>
@@ -66,29 +66,30 @@
 							</tr>
 						</thead>
 						<tbody>
-						@foreach($bancos  as $banco)
-						@if ($banco->estado == "ACTIVO")
+						@foreach($cuentas  as $cuenta)
+						@if ($cuenta->estado == "ACTIVO")
 							<tr class="gradeX">
-
-								<td style="background-color:#DBFFC2;">{{$banco->nombre_banco}} </td>
-								<td style="background-color:#DBFFC2;">{{$banco->operacion}}</td>
-								<td style="background-color:#DBFFC2;">{{$banco->descripcion}}</td>
-								<td style="background-color:#DBFFC2;">{{$banco->estado}}</td>
-								<td style="background-color:#DBFFC2;">{{$banco->created_at}}</td>
-								<td style="background-color:#DBFFC2;">{{$banco->captura}}</td>
+								<td style="background-color:#DBFFC2;">{{$cuenta->nombre}} </td>
+								<td style="background-color:#DBFFC2;">{{$cuenta->num_cuenta}} </td>
+								<td style="background-color:#DBFFC2;">{{$cuenta->clave_in}} </td>
+								<td style="background-color:#DBFFC2;">{{$cuenta->secretaria}} </td>
+								<td style="background-color:#DBFFC2;">{{$cuenta->nombre_banco}} </td>
+								<td style="background-color:#DBFFC2;">{{$cuenta->created_at}}</td>
+								<td style="background-color:#DBFFC2;">{{$cuenta->estado}}</td>
+								<td style="background-color:#DBFFC2;">{{$cuenta->captura}}</td>
 
 
 
 								<td style="background-color:#DBFFC2;">
 									<center>
-										<a href="{{URL::action('BancosController@edit',$banco->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+										<a href="{{URL::action('CuentasController@edit',$cuenta->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 
 									</center>
 								</td>
 
 								<td style="background-color:#DBFFC2;">
 									<center>
-										<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$banco->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+										<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$cuenta->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 
 									</center>
 									</td>
@@ -97,32 +98,34 @@
 							@else
 							<tr class="gradeX">
 
-								<td style="background-color:#FFE4E1;">{{$banco->nombre_banco}} </td>
-								<td style="background-color:#FFE4E1;">{{$banco->operacion}}</td>
-								<td style="background-color:#FFE4E1;">{{$banco->descripcion}}</td>
-								<td style="background-color:#FFE4E1;">{{$banco->estado}}</td>
-								<td style="background-color:#FFE4E1;">{{$banco->created_at}}</td>
-								<td style="background-color:#FFE4E1;">{{$banco->captura}}</td>
+								<td style="background-color:#FFE4E1;">{{$cuenta->nombre}} </td>
+								<td style="background-color:#FFE4E1;">{{$cuenta->num_cuenta}} </td>
+								<td style="background-color:#FFE4E1;">{{$cuenta->clave_in}} </td>
+								<td style="background-color:#FFE4E1;">{{$cuenta->secretaria}} </td>
+								<td style="background-color:#FFE4E1;">{{$cuenta->nombre_banco}} </td>
+								<td style="background-color:#FFE4E1;">{{$cuenta->created_at}}</td>
+								<td style="background-color:#FFE4E1;">{{$cuenta->estado}}</td>
+								<td style="background-color:#FFE4E1;">{{$cuenta->captura}}</td>
 
 
 
 								<td style="background-color:#FFE4E1;">
 									<center>
-										<a href="{{URL::action('BancosController@edit',$banco->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+										<a href="{{URL::action('CuentasController@edit',$cuenta->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 
 									</center>
 								</td>
 
 								<td style="background-color:#FFE4E1;">
 									<center>
-										<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$banco->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+										<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$cuenta->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 
 									</center>
 									</td>
 								</td>
 							</tr>
 							@endif
-							@include('nomina.bancos.modal')
+							@include('nomina.cuentas.modal')
 					@endforeach
 						</tbody>
 						<!--<tfoot>

@@ -52,7 +52,6 @@
 								<th>Categoría</th>
 								<th>Número de días</th>
 								<th>Director Regional</th>
-								<th>Sostenimiento</th>
 								<th>No. Oficio</th>
 								<th>Motivo</th>
 								<th>Total</th>
@@ -77,8 +76,7 @@
 								<td style="background-color:#DBFFC2;">{{$reintegro->categoria}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->num_dias}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->director_regional}} </td>
-								<td style="background-color:#DBFFC2;">{{$reintegro->sostenimiento}} </td>
-								<td style="background-color:#DBFFC2;">{{$reintegro->n_oficio}} </td>
+								<td style="background-color:#DBFFC2;">{{$reintegro->oficio}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->motivo}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->total}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->captura}} </td>
@@ -146,7 +144,7 @@
 								</td>
 							</tr>
 							@endif
-							@include('nomina.reintegros.modal')
+
 
 							@endforeach
 						</tbody>
