@@ -232,6 +232,23 @@ Route::get('descargar-fortalecimiento', 'FortalecimientoController@excel')->name
 Route::get('pdf_fortalecimiento/{id}', array('as'=> '/pdf_fortalecimiento','uses'=>'FortalecimientoController@invoice'));
 ////////////////////////////////////////////////////////////////////7
 
+///////TARJETAS DE FORTALECIMIENTO
+Route::resource('tarjetas_fortalecimiento', 'TarjetasFortalecimientoController');
+Route::get('descargar-tarjetas_fortalecimiento/{id}', 'TarjetasFortalecimientoController@excel')->name('nomina.tarjetas_fortalecimiento.excel');
+Route::get('pdf-tarjetas_fortalecimiento/{id}', array('as'=> '/pdf-tarjetas_fortalecimiento','uses'=>'TarjetasFortalecimientoController@invoice'));
+Route::get('traer_escuelasforta/{ciclo}','TarjetasFortalecimientoController@traer_escuelasforta');
+Route::get('traer_montos_forta/{cct}','TarjetasFortalecimientoController@traer_montos_forta');
+Route::get('generar_cartas', 'TarjetasFortalecimientoController@generar_cartas');
+Route::post('generar_pdf_cartas/','TarjetasFortalecimientoController@generar_pdf_cartas')->name('nomina.tarjetas_fortalecimiento.generar_pdf_cartas');
+
+
+
+Route::resource('/tarjetas_forta','TarjetasFortalecimientoController@tarjetas_forta');
+Route::resource('/importar_cartas','TarjetasFortalecimientoController@importar_cartas');
+Route::resource('detalle_tarjetas', 'TarjetasFortalecimientoController@detalle_tarjetas');
+//////
+
+
 ////////////listas de asisrencias////////////////
 
 Route::resource('listas_asistencias', 'ListasAsistenciasController');
@@ -269,6 +286,15 @@ Route::get('pdf_bancos/{id}', array('as'=> '/pdf_bancos','uses'=>'BancosControll
 
 ////CUADROS CIFRAS///////////
 Route::resource('cuadros_cifras', 'CuadroCifrasController');
+Route::get('descargar-cuadros-cifras/{id}', 'CuadroCifrasController@excel')->name('nomina.cuadros-cifras.excel');
+Route::get('pdf-cuadros-cifras/{id}', array('as'=> '/pdf-cuadros-cifras','uses'=>'CuadroCifrasController@invoice'));
+
+
+//PAGOS IMPROCEDENTES 
+Route::resource('pagos_improcedentes', 'PagosImprocedentesController');
+Route::get('descargar-pagos-improcedentes/{id}', 'PagosImprocedentesController@excel')->name('nomina.pagos-improcedentes.excel');
+Route::get('pdf-pagos-improcedentes/{id}', array('as'=> '/pdf-pagos-improcedentes','uses'=>'PagosImprocedentesController@invoice'));
+Route::post('activarpagos_improcedentes/{id}', 'PagosImprocedentesController@activar');
 
 
 ////////////BANCOS////////////////////////////////////////////////7

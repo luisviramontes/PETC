@@ -16,7 +16,7 @@ class Fortalecimiento extends Migration
             $table->increments('id');
             $table->integer('id_cct')->unsigned();
             $table->foreign('id_cct')->references('id')->on('centro_trabajo');
-            $table->string('monto_forta');
+            $table->double('monto_forta');
             $table->string('ciclo_escolar');
             $table->string('estado');
             $table->string('observaciones')->nullable();

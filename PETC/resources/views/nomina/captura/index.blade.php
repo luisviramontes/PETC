@@ -99,15 +99,17 @@
 										<td style="background-color: #DBFFC2;" >{{$datos->captura}} </td>	
 										<td style="background-color: #DBFFC2;" >{{$datos->estado}} </td>
 										@if($datos->pagos_registrados == "1")
-										<td style="background-color: #18F306;">✔</td>
+										<td style="background-color: #C5E1A5;">✔</td>
 										@else
-										<td style="background-color: #E74C3C;">X</td>
+										<td style="background-color: #F1948A  
+;">X</td>
 										@endif
 
 										@if($datos->qna_actual == "1")
-										<td style="background-color: #18F306;">✔</td>
+										<td style="background-color: #C5E1A5;">✔</td>
 										@else
-										<td style="background-color: #E74C3C;">X</td>
+										<td style="background-color: #F1948A  
+;">X</td>
 										@endif
 
 
@@ -148,15 +150,17 @@
 														<td style="background-color: #FFE4E1;" >{{$datos->captura}} </td>	
 														<td style="background-color: #FFE4E1;" >{{$datos->estado}} </td>
 														@if($datos->pagos_registrados == "1")
-														<td style="background-color: #18F306;">✔</td>
+														<td style="background-color: #C5E1A5;">✔</td>
 														@else
-														<td style="background-color: #E74C3C;">X</td>
+														<td style="background-color: #F1948A  
+;">X</td>
 														@endif
 
 														@if($datos->qna_actual == "1")
-														<td style="background-color: #18F306;">✔</td>
+														<td style="background-color: #C5E1A5;">✔</td>
 														@else
-														<td style="background-color: #E74C3C;">X</td>
+														<td style="background-color: #F1948A  
+;">X</td>
 														@endif
 
 

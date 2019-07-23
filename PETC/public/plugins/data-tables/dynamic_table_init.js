@@ -1071,29 +1071,29 @@ $(document).ready(function() {
 
 function fnFormatDetails8 ( oTable, nTr )
 {
-   var aData = oTable.fnGetData( nTr );
-   var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-   sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de la Fumigación</strong></td><td> </td></tr>';
+ var aData = oTable.fnGetData( nTr );
+ var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+ sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de la Fumigación</strong></td><td> </td></tr>';
 
-   sOut += '<tr><td><strong>N° Fumigación:</strong></td><td>'+aData[1]+' </td></tr>';
-   sOut += '<tr><td><strong>Fecha de Inicio:</strong></td><td>'+aData[2]+' </td></tr>';
-   sOut += '<tr><td><strong>Hora Inicial:</strong></td><td>'+aData[3]+' </td></tr>';
-   sOut += '<tr><td><strong>Fecha de Termino:</strong></td><td>'+aData[4]+' </td></tr>';
-   sOut += '<tr><td><strong>Hora de Termino:</strong></td><td>'+aData[5]+' </td></tr>';
-   sOut += '<tr><td><strong>Agroquimicos Aplicados:</strong></td><td>'+aData[6]+' </td></tr>';
-   sOut += '<tr><td><strong>Cantidad Aplicada:</strong></td><td>'+aData[7]+' </td></tr>';
-   sOut += '<tr><td><strong>Destino:</strong></td><td>'+aData[8]+' </td></tr>';
-   sOut += '<tr><td><strong>Almacén :</strong></td><td>'+aData[9]+' </td></tr>';
-   sOut += '<tr><td><strong>Producto :</strong></td><td>'+aData[10]+' </td></tr>';
-   sOut += '<tr><td><strong>Fumigador :</strong></td><td>'+aData[11]+' </td></tr>';
-   sOut += '<tr><td><strong>Estado :</strong></td><td>'+aData[12]+' </td></tr>';
-   sOut += '<tr><td><strong>Plaga que Combate :</strong></td><td>'+aData[13]+' </td></tr>';
-   sOut += '<tr><td><strong>Observaciones :</strong></td><td>'+aData[14]+' </td></tr>';
+ sOut += '<tr><td><strong>N° Fumigación:</strong></td><td>'+aData[1]+' </td></tr>';
+ sOut += '<tr><td><strong>Fecha de Inicio:</strong></td><td>'+aData[2]+' </td></tr>';
+ sOut += '<tr><td><strong>Hora Inicial:</strong></td><td>'+aData[3]+' </td></tr>';
+ sOut += '<tr><td><strong>Fecha de Termino:</strong></td><td>'+aData[4]+' </td></tr>';
+ sOut += '<tr><td><strong>Hora de Termino:</strong></td><td>'+aData[5]+' </td></tr>';
+ sOut += '<tr><td><strong>Agroquimicos Aplicados:</strong></td><td>'+aData[6]+' </td></tr>';
+ sOut += '<tr><td><strong>Cantidad Aplicada:</strong></td><td>'+aData[7]+' </td></tr>';
+ sOut += '<tr><td><strong>Destino:</strong></td><td>'+aData[8]+' </td></tr>';
+ sOut += '<tr><td><strong>Almacén :</strong></td><td>'+aData[9]+' </td></tr>';
+ sOut += '<tr><td><strong>Producto :</strong></td><td>'+aData[10]+' </td></tr>';
+ sOut += '<tr><td><strong>Fumigador :</strong></td><td>'+aData[11]+' </td></tr>';
+ sOut += '<tr><td><strong>Estado :</strong></td><td>'+aData[12]+' </td></tr>';
+ sOut += '<tr><td><strong>Plaga que Combate :</strong></td><td>'+aData[13]+' </td></tr>';
+ sOut += '<tr><td><strong>Observaciones :</strong></td><td>'+aData[14]+' </td></tr>';
 
 
-   sOut += '</table>';
+ sOut += '</table>';
 
-   return sOut;
+ return sOut;
 }
 
 $(document).ready(function() {
@@ -1959,3 +1959,178 @@ $(document).ready(function() {
  } );
 
 
+function fnFormatDetails17 ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos Personales</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Nombre :</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>RFC:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Región:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[12]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos del Pago</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Qna Inicial:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Qna final:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>Qna Pago:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Percepciòn:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Deducciòn:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Neto:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Numèro de Cheque:</strong></td><td>'+aData[7]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Observaciónes</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[13]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de Captura</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[14]+' </td></tr>';
+    sOut += '<tr><td><strong>Actualización:</strong></td><td>'+aData[15]+' </td></tr>';
+
+
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table17').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info17 thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info17 tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info17').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info17 tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails17(oTable, nTr), 'details' );
+        }
+    } );
+ } );
+
+
+function fnFormatDetails18 ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de la Escuela</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>CCT :</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de la Escuela:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>Región:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Sostenimiento:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Domicilio:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>Telefono:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Email:</strong></td><td>'+aData[7]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos del Recurso de Fortalecimiento</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Monto:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[10]+' </td></tr>';
+        sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[17]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de la Tarjeta</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>N° de Tarjeta:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>TSL:</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>Producto:</strong></td><td>'+aData[13]+' </td></tr>';
+    sOut += '<tr><td><strong>Empresa:</strong></td><td>'+aData[14]+' </td></tr>';
+    sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[15]+' </td></tr>';
+    sOut += '<tr><td><strong>Captura:</strong></td><td>'+aData[16]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de Captura</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Actualización:</strong></td><td>'+aData[18]+' </td></tr>';
+
+
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table18').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info18 thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info18 tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info18').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info18 tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails18(oTable, nTr), 'details' );
+        }
+    } );
+ } );
