@@ -269,6 +269,12 @@
 							</div>
 						</div>
 
+						<div class="form-group">
+							<div class="col-sm-6">
+								<input  id="c_copia" value="" name="c_copia[]" type="hidden"   class="form-control"  />
+							</div>
+						</div>
+
 						<div class="col-sm-3">
 							<div class="form-group">
 								<button type="button" id="btn_add" onclick="agregar3();" class="btn btn-primary">Agregar</button>
@@ -331,7 +337,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Motivo: <strog class="theme_color">*</strog></label>
 								<div class="col-sm-6">
-									<textarea  name="motivo" type="text" id="motivo" class="form-control" required vonKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" rows="10" cols="30">debido a que... Escriba el motivo del reintegro.</textarea>
+									<textarea  name="motivo" type="text" id="motivo" class="form-control" required vonKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" placeholder="debido a que... Escriba el motivo del reintegro." rows="10" cols="30"></textarea>
 								</div>
 							</div>
 
@@ -380,7 +386,7 @@
 
 							<div class="form-group">
 								<div class="col-sm-offset-7 col-sm-5">
-									<button type="submit" id="submit" disabled="true" class="btn btn-primary">Guardar</button>
+									<button type="submit" id="submit" onclick="return guardar_reintegro();" disabled="true" class="btn btn-primary">Guardar</button>
 									<a href="{{url('/reintegros')}}" class="btn btn-default"> Cancelar</a>
 								</div>
 							</div><!--/form-group-->
@@ -408,207 +414,7 @@
 				valida_ciclore();
 				valida_gen();
 
-
-
-
 }
-
-/////////NUMEROS A LETRAS////////////////////////////////////
-function numero() {
-	// Obtener valor que hay en el input
-	let valor = document.getElementById('total').value;
-	var texto = document.getElementById('total_text');
-	// Simple validación
-
-
-	// Obtener la representación
-	let letras = numeroALetras(valor, {
-		plural: "PESOS",
-		singular: "PESO",
-		centPlural: "CENTAVOS",
-		centSingular: "CENTAVO"
-	});
-
-	// Y a la salida ponerle el resultado
-	document.getElementById('total_text').value=letras;
-	console.log(document.getElementById('total_text').value);
-	console.log(document.getElementById('total').value);
-}
-
-
-var numeroALetras = (function() {
-
-// Código basado en https://gist.github.com/alfchee/e563340276f89b22042a
-    function Unidades(num){
-
-        switch(num)
-        {
-            case 1: return 'UN';
-            case 2: return 'DOS';
-            case 3: return 'TRES';
-            case 4: return 'CUATRO';
-            case 5: return 'CINCO';
-            case 6: return 'SEIS';
-            case 7: return 'SIETE';
-            case 8: return 'OCHO';
-            case 9: return 'NUEVE';
-        }
-
-        return '';
-    }//Unidades()
-
-    function Decenas(num){
-
-        let decena = Math.floor(num/10);
-        let unidad = num - (decena * 10);
-
-        switch(decena)
-        {
-            case 1:
-                switch(unidad)
-                {
-                    case 0: return 'DIEZ';
-                    case 1: return 'ONCE';
-                    case 2: return 'DOCE';
-                    case 3: return 'TRECE';
-                    case 4: return 'CATORCE';
-                    case 5: return 'QUINCE';
-                    default: return 'DIECI' + Unidades(unidad);
-                }
-            case 2:
-                switch(unidad)
-                {
-                    case 0: return 'VEINTE';
-                    default: return 'VEINTI' + Unidades(unidad);
-                }
-            case 3: return DecenasY('TREINTA', unidad);
-            case 4: return DecenasY('CUARENTA', unidad);
-            case 5: return DecenasY('CINCUENTA', unidad);
-            case 6: return DecenasY('SESENTA', unidad);
-            case 7: return DecenasY('SETENTA', unidad);
-            case 8: return DecenasY('OCHENTA', unidad);
-            case 9: return DecenasY('NOVENTA', unidad);
-            case 0: return Unidades(unidad);
-        }
-    }//Unidades()
-
-    function DecenasY(strSin, numUnidades) {
-        if (numUnidades > 0)
-            return strSin + ' Y ' + Unidades(numUnidades)
-
-        return strSin;
-    }//DecenasY()
-
-    function Centenas(num) {
-        let centenas = Math.floor(num / 100);
-        let decenas = num - (centenas * 100);
-
-        switch(centenas)
-        {
-            case 1:
-                if (decenas > 0)
-                    return 'CIENTO ' + Decenas(decenas);
-                return 'CIEN';
-            case 2: return 'DOSCIENTOS ' + Decenas(decenas);
-            case 3: return 'TRESCIENTOS ' + Decenas(decenas);
-            case 4: return 'CUATROCIENTOS ' + Decenas(decenas);
-            case 5: return 'QUINIENTOS ' + Decenas(decenas);
-            case 6: return 'SEISCIENTOS ' + Decenas(decenas);
-            case 7: return 'SETECIENTOS ' + Decenas(decenas);
-            case 8: return 'OCHOCIENTOS ' + Decenas(decenas);
-            case 9: return 'NOVECIENTOS ' + Decenas(decenas);
-        }
-
-        return Decenas(decenas);
-    }//Centenas()
-
-    function Seccion(num, divisor, strSingular, strPlural) {
-        let cientos = Math.floor(num / divisor)
-        let resto = num - (cientos * divisor)
-
-        let letras = '';
-
-        if (cientos > 0)
-            if (cientos > 1)
-                letras = Centenas(cientos) + ' ' + strPlural;
-            else
-                letras = strSingular;
-
-        if (resto > 0)
-            letras += '';
-
-        return letras;
-    }//Seccion()
-
-    function Miles(num) {
-        let divisor = 1000;
-        let cientos = Math.floor(num / divisor)
-        let resto = num - (cientos * divisor)
-
-        let strMiles = Seccion(num, divisor, 'UN MIL', 'MIL');
-        let strCentenas = Centenas(resto);
-
-        if(strMiles == '')
-            return strCentenas;
-
-        return strMiles + ' ' + strCentenas;
-    }//Miles()
-
-    function Millones(num) {
-        let divisor = 1000000;
-        let cientos = Math.floor(num / divisor)
-        let resto = num - (cientos * divisor)
-
-        let strMillones = Seccion(num, divisor, 'UN MILLON DE', 'MILLONES DE');
-        let strMiles = Miles(resto);
-
-        if(strMillones == '')
-            return strMiles;
-
-        return strMillones + ' ' + strMiles;
-    }//Millones()
-
-    return function NumeroALetras(num, currency) {
-        currency = currency || {};
-        let data = {
-            numero: num,
-            enteros: Math.floor(num),
-            centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-            letrasCentavos: '',
-            letrasMonedaPlural: currency.plural || 'PESOS ',//'PESOS', 'Dólares', 'Bolívares', 'etcs'
-            letrasMonedaSingular: currency.singular || 'PESO', //'PESO', 'Dólar', 'Bolivar', 'etc'
-            letrasMonedaCentavoPlural: currency.centPlural || 'CENTAVOS',
-            letrasMonedaCentavoSingular: currency.centSingular || 'CENTAVO'
-        };
-
-        if (data.centavos > 0) {
-            data.letrasCentavos = 'CON ' + (function () {
-                    if (data.centavos == 1)
-                        return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoSingular;
-                    else
-                        return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoPlural;
-                })();
-        };
-
-        if(data.enteros == 0)
-            return 'CERO ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
-        if (data.enteros == 1)
-            return Millones(data.enteros) + ' ' + data.letrasMonedaSingular + ' ' + data.letrasCentavos;
-        else
-            return Millones(data.enteros) + ' ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
-    };
-
-})();
-
-// Modo de uso: 500,34 USD
-numeroALetras(200.58, {
-  plural: 'Pesos',
-  singular: 'Pesos',
-  centPlural: 'centavos',
-  centSingular: 'centavo'
-});
-
-///////////////////////////////////////////////////////////
 
 
 
@@ -688,171 +494,6 @@ function valida_gen() {
 
 
 
-function calcula(){
-  var dias = document.getElementById('num_dias').value;
-  var categoria = document.getElementById('categoria').value;
-  var monto = document.getElementById('total').value;
-  var ciclo = document.getElementById('ciclo_escolar').value;
-
-  var route = "http://localhost:8000/calcular_reclamo/"+dias+"/"+categoria+"/"+ciclo;
-  $.get(route,function(res){
-    document.getElementById('total').value = res;
-		numero();
-	});
-
-}
-
-
-
-function cctescuela(){
-var cct = document.getElementById("id_centro_trabajo").value;
-
-var route = "http://localhost:8000/traerpersonal/"+cct;
-
-$.get(route,function(res){
-  if(res.length > 0){
-    for (var i = 0; i < res.length; i++) {
-      if(res[i].estado =="ACTIVO"){
-        var x = document.getElementById("id_captura");
-        var option = document.createElement("option");
-        option.text = res[i].nombre;
-        option.value = res[i].nombre +"_"+res[i].categoria +"_"+res[i].sostenimiento +"_"+res[i].id;
-
-				x.add(option, x[i]);
-
-      }
-    }
-  }
-
-});
-}
-
-
-
-function direc(){
-
-var dire = document.getElementById("id_reg").value;
-
-var route = "http://localhost:8000/traerdire/"+dire;
-
-$.get(route,function(res){
-  if(res.length > 0){
-
-    for (var i = 0; i < res.length; i++) {
-      if(res[i].estado =="ACTIVO"){
-        var x = document.getElementById("id_directorio_regional");
-        var option = document.createElement("option");
-        option.text = res[i].director_regional;
-        option.value = res[i].director_regional +"_"+res[i].id;
-
-				x.add(option, x[i]);
-
-      }
-    }
-  }
-
- });
-
-}
-
-function cuenta() {
-      var select2 = document.getElementById("id_cuenta");
-      var selectedOption2 = select2.selectedIndex;
-     	var cantidadtotal = select2.value;
-     	limite = "9",
-      separador = "_",
-      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-     	cct=arregloDeSubCadenas[0];
-     	num_cuenta=arregloDeSubCadenas[2];
-			clave_in=arregloDeSubCadenas[3];
-			secretaria=arregloDeSubCadenas[4];
-		//	id_banco=arregloDeSubCadenas[5];
-     	document.getElementById('num_cuenta').value=num_cuenta;
-			document.getElementById('clave_in').value=clave_in;
-			document.getElementById('secretaria').value=secretaria;
-		//	document.getElementById('id_banco').value=id_banco;
-}
-
-
-function cuentabanco(){
-
-
-	var select2 = document.getElementById("id_cuenta");
-	var selectedOption2 = select2.selectedIndex;
-	var cantidadtotal = select2.value;
-	limite = "9",
-	separador = "_",
-	arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-	banco=arregloDeSubCadenas[0];
-
-var route = "http://localhost:8000/banco/"+banco;
-
-$.get(route,function(res){
-  if(res.length > 0){
-
-    for (var i = 0; i < res.length; i++) {
-      if(res[i].estado =="ACTIVO"){
-        var x = document.getElementById("id_banco");
-        var option = document.createElement("option");
-        option.text = res[i].nombre_banco;
-        option.value = res[i].nombre_banco +"_"+res[i].id;
-				x.add(option, x[i]);
-      }
-    }
-  }
-
- });
-
-}
-
-
-function nombre_clave() {
-      var select2 = document.getElementById("id_captura");
-      var selectedOption2 = select2.selectedIndex;
-     	var cantidadtotal = select2.value;
-     	limite = "9",
-      separador = "_",
-      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-     	cct=arregloDeSubCadenas[0];
-
-     	categoria=arregloDeSubCadenas[1];
-     	document.getElementById('categoria').value=categoria;
-			document.getElementById('dirigido_a').value=cct;
-}
-
-function nombre_sos() {
-      var select2 = document.getElementById("id_captura");
-      var selectedOption2 = select2.selectedIndex;
-     	var cantidadtotal = select2.value;
-     	limite = "9",
-      separador = "_",
-      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-     	cct=arregloDeSubCadenas[0];
-			sostenimiento=arregloDeSubCadenas[2];
-     	id_reg=arregloDeSubCadenas[3];
-     	document.getElementById('id_reg').value=id_reg;
-
-}
-
-function num_ofi(){
-	var ciclo = document.getElementById('ciclo_escolar').value;
-	var x= document.getElementById('oficio_aux').value;
-	var route = "http://localhost:8000/buscar_oficio/"+x+"/"+ciclo;
-
-	$.get(route,function(res){
-		if(res.length > 0){
-		 swal("Alerta!", "Este Oficio Ya se ha Registrado Anteriormente!", "error");
-		 document.getElementById('submit').disabled= true;
-		 return false;
-	 }else{
-		var fecha = new Date();
-		var ano = fecha.getFullYear();
-		document.getElementById('oficio').value = "SA/DFE/DHA/ETC.-"+x+"/"+ano;
-		document.getElementById('submit').disabled= false;
-
-	}
-});
-}
 
 	$(document).ready(function(){
         // Toolbar extra buttons

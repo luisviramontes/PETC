@@ -21,8 +21,8 @@
 						<div class="col-sm-7">
 							<div class="actions"> </div>
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Reintegros</strong></h2>
-								<!--	@include('nomina.region.search')
-		-->	</div>
+									@include('nomina.reintegros.search')
+								</div>
 						<div class="col-md-5">
 							<div class="btn-group pull-right">
 								<b>
@@ -30,8 +30,8 @@
 									<div class="btn-group" style="margin-right: 10px;">
 											<a class="btn btn-sm btn-success tooltips" href="{{ route('reintegros.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Region"> <i class="fa fa-plus"></i> Registrar </a>
 										<!--	<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.region.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-											<a class="btn btn-primary btn-sm" href="{{URL::action('RegionController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
-                    -->
+										-->	<a class="btn btn-primary btn-sm" href="{{URL::action('ReintegrosController@invoice2','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+
 									</div>
 
 								</a>
@@ -55,8 +55,8 @@
 								<th>No. Oficio</th>
 								<th>Motivo</th>
 								<th>Total</th>
-								<th>Capturo</th>
-								<th>Estado</th>
+								<th style="display:none">Capturo</th>
+								<th style="display:none">Estado</th>
                 <th>Fecha de Registro</th>
 
 
@@ -79,15 +79,9 @@
 								<td style="background-color:#DBFFC2;">{{$reintegro->oficio}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->motivo}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->total}} </td>
-								<td style="background-color:#DBFFC2;">{{$reintegro->captura}} </td>
-								<td style="background-color:#DBFFC2;">{{$reintegro->estado}} </td>
+								<td style="display:none">{{$reintegro->captura}} </td>
+								<td style="display: none">{{$reintegro->estado}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->created_at}} </td>
-
-								<td style="display:none;">{{$reintegro->num_dias}} </td>
-
-
-
-
 
 
 
@@ -114,18 +108,17 @@
 							<tr class="gradeX">
 
 
-						<td style="background-color:#FFE4E1;">{{$reintegro->cct}} </td>
-					 	<td style="background-color:FFE4E1;">{{$reintegro->nombre}} </td>
-
-						<td style="display:none;">{{$reintegro->num_dias}} </td>
-					 	<td style="background-color:#FFE4E1;">{{$reintegro->director_regional}} </td>
-
-					 	<td style="display:none;">{{$reintegro->n_oficio}} </td>
-					 	<td style="background-color:#FFE4E1;">{{$reintegro->motivo}} </td>
-						<td style="background-color:#FFE4E1;">{{$reintegro->total}} </td>
-						<td style="display:none;">{{$reintegro->captura}} </td>
-						<td style="background-color:#FFE4E1;">{{$reintegro->estado}}</td>
-						<td style="background-color:#FFE4E1;">{{$reintegro->created_at}} </td>
+								<td style="background-color:#FFE4E1;">{{$reintegro->cct}} </td>
+								<td style="background-color:#FFE4E1;">{{$reintegro->nombre}} </td>
+								<td style="background-color:#FFE4E1;">{{$reintegro->categoria}} </td>
+								<td style="background-color:#FFE4E1;">{{$reintegro->num_dias}} </td>
+								<td style="background-color:#FFE4E1;">{{$reintegro->director_regional}} </td>
+								<td style="background-color:#FFE4E1;">{{$reintegro->oficio}} </td>
+								<td style="background-color:#FFE4E1;">{{$reintegro->motivo}} </td>
+								<td style="background-color:#FFE4E1;">{{$reintegro->total}} </td>
+								<td style="display:none">{{$reintegro->captura}} </td>
+								<td style="display: none">{{$reintegro->estado}} </td>
+								<td style="background-color:#FFE4E1;">{{$reintegro->created_at}} </td>
 
 
 
@@ -144,7 +137,7 @@
 								</td>
 							</tr>
 							@endif
-
+								@include('nomina.reintegros.modal')
 
 							@endforeach
 						</tbody>

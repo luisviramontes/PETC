@@ -25,6 +25,10 @@
 						<div class="col-md-4">
 							<div class="btn-group pull-right">
 								<div class="actions">
+										<span class="badge badge-info">Subir Fortalecimientos</span>
+										<a class="btn btn-sm btn-success tooltips" data-original-title="Subir Fortalecimientos Excel" data-target="#modal-delete" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-plus"></i></a>
+
+										@include('nomina.fortalecimiento.modale')
 								</div>
 							</div>
 						</div>
@@ -57,7 +61,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Monto Fortalecimiento: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="monto_forta"  id="monto_forta" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="{{Input::old('monto_forta')}}" />
+								<input name="monto_forta"  id="monto_forta" type="text" onkeypress="return soloNumeros(event)"   class="form-control" required value="{{Input::old('monto_forta')}}" />
 							</div>
 						</div>
 
@@ -69,7 +73,7 @@
 										Selecciona una opción
 									</option>
 									@foreach($ciclos as $ciclo)
-									<option value="{{$ciclo->ciclo}}">
+									<option value="{{$ciclo->id}}">
 										{{$ciclo->ciclo}}
 									</option>
 									@endforeach
@@ -87,6 +91,8 @@
 								<input name="observaciones"  id="observaciones" type="text"    class="form-control" required value="{{Input::old('observaciones')}}" />
 							</div>
 						</div>
+
+
 
 
 
@@ -134,7 +140,7 @@ function validar_cct() {
 
 		 }else if(document.getElementById('cct').value != "Selecciona una opción"){
 			 			document.getElementById('ciclo_escolar').disabled=false;
-
+						document.getElementById("error_cct").innerHTML = "";
 
 		 }
 	 }
@@ -148,7 +154,7 @@ function validar_ciclo() {
 
 	 		 }else if(document.getElementById('ciclo_escolar').value != "Selecciona una opción"){
 	 					document.getElementById('submit').disabled=false;
-	 					
+						document.getElementById("error_ciclo_escolar").innerHTML = "";
 
 	 		 }
 }

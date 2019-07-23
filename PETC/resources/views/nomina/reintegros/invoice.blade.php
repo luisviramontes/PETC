@@ -50,7 +50,19 @@
 			<br> <br>
 
 			<div><h4>
-
+				@for($z=0;$z < $cuenta_copia; $z++)
+				C.c.p. {{$name6[$z+1]}}. {{$name6[$z+2]}} - {{$name6[$z+3]}}- Para su Conocimiento<br>
+					<?php
+				$z=$z+4;
+				?>
+				@endfor
+				<br> <br>
+				@for($z=1;$z <= $cuenta_copia_t; $z++)
+				@if($name6[$z*5-1] !=  null)
+				{{$name6[$z*5-1]}}/
+				@endif
+				@endfor
+				
 				{{$genero}}
 			</h4></div>
 

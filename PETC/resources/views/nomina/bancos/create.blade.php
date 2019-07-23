@@ -133,7 +133,7 @@ function valida_desc() {
 			return false
 		}else if(document.getElementById('descripcion').value != "Selecciona una opción"){
 					document.getElementById('submit').disabled=false;
-					document.getElementById("error_desc").innerHTML = "Proceda con la captura. 😀";
+					document.getElementById("error_desc").innerHTML = "";
 		}
 	}
 </script>

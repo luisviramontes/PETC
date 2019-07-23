@@ -21,6 +21,8 @@ use PHPExcel_Worksheet_Drawing;
 use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 use petc\Http\Requests\ReintegrosRequest;
 
 
@@ -31,6 +33,11 @@ class ReintegrosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+       public function __construct()
+       {
+           $this->middleware('auth');
+       }
+
     public function index(Request $request)
     {
       if($request)
@@ -107,7 +114,7 @@ class ReintegrosController extends Controller
      */
     public function store(Request $request)
     {
-
+      $user = Auth::user()->name;
       $ofico_emite= new OficiosEmitidosModel;
       $date = $request->get('fecha');
       $ciclo_aux=$request->get('ciclo_escolar');
@@ -139,10 +146,11 @@ class ReintegrosController extends Controller
 
 
         //CCP
-        $copia_aux = $request->get('ccp');
-        $name6 = explode(",",$copia_aux);
-        $cuenta_copia= count($name6);
-        $cuenta_copia_t=$cuenta_copia/5;
+       $copia_aux = $request->get('c_copia');
+       $first6 = head($copia_aux);
+       $name6 = explode(",",$first6);
+       $cuenta_copia= count($name6);
+       $cuenta_copia_t=$cuenta_copia/5;
 
 
 
@@ -162,7 +170,7 @@ class ReintegrosController extends Controller
        $ofico_emite->id_elabora=$id_genero;
        $ofico_emite->observaciones=$observaciones;
        $ofico_emite->estado="PENDIENTE";
-       $ofico_emite->captura="ADMINISTRADOR";
+       $ofico_emite->captura=$user;
        $ofico_emite->id_ciclo=$ciclo->id;
        $ofico_emite->save();
        $ultimo = OficiosEmitidosModel::orderBy('id', 'desc')->first()->id;
@@ -191,7 +199,7 @@ class ReintegrosController extends Controller
       $id_cue=$request->get('id_cuenta'); //cuenta
       $namecue=explode("_",$id_cue);
       $reintegros -> id_cuenta = $namecue[0];
-    
+
 
       $id_ban=$request->get('id_banco'); //banco
       $nameban=explode("_",$id_ban);
@@ -216,11 +224,11 @@ class ReintegrosController extends Controller
 
       $reintegros->id_oficio=$ultimo;
 
-      $reintegros->motivo=$motivo;
+      $reintegros-> motivo=$motivo;
 
       $reintegros -> estado = "ACTIVO";
 
-      $reintegros -> captura = "ADMINISTRADOR";
+      $reintegros -> captura =$user;
 
       if($reintegros->save()){
 
@@ -285,7 +293,37 @@ class ReintegrosController extends Controller
      */
     public function edit($id)
     {
-        //
+
+      $genero=DB::table('directoriointerno')->where('estado','=','ACTIVO')->get();
+      $dirigido=DB::table('directorioexterno')->where('estado','=','ACTIVO')->get();
+
+      $id_rein=DB::table('reintegros')->where('id','=',$id)->first();
+
+      $reintegros=ReintegrosModel::join('oficiosemitidos','oficiosemitidos.id','=','reintegros.id_oficio')
+      ->select('reintegros.*','oficiosemitidos.id_elabora','oficiosemitidos.salida','oficiosemitidos.num_oficio','oficiosemitidos.observaciones')
+      ->where('reintegros.id','=',$id)
+      ->first();
+
+
+      $cct= DB::table('centro_trabajo')->get();
+      $captura= DB::table('captura')->get();
+      $directorio_regional=DB::table('directorio_regional')->get();
+      $tabla= DB::table('tabulador_pagos')->get();
+      $ciclos=DB::table('ciclo_escolar')->get();
+      $cuentas=DB::table('cuentas')->get();
+      return view("nomina.reintegros.edit",
+      [
+      "id_rein"=>$id_rein,
+      "reintegros"=>$reintegros,
+      'ciclos'=>$ciclos,
+      "genero"=>$genero,
+      "dirigido"=>$dirigido,
+      "directorio_regional"=>$directorio_regional,
+      "captura"=>$captura,
+      "cct"=>$cct,
+      "tabla"=>$tabla,
+      "cuentas"=>$cuentas
+      ]);
     }
 
     /**
@@ -297,7 +335,93 @@ class ReintegrosController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $user = Auth::user()->name;
+      //QUIEN ELABORO EL OFICIO
+      $genero_aux=$request->get('genero');
+        //$first = head($genero_aux);
+      $name = explode("_",$genero_aux);
+      $genero=$name[0];
+      $id_genero=$name[1];
+
+              //A QUIEN VA DIRIGIDO EL OFICIO
+      $dirigido_aux=$request->get('');
+
+
+      $motivo=$request->get('motivo');
+      $observaciones=$request->get('observaciones');
+
+      $ciclo_aux=$request->get('ciclo_escolar');
         //
+      $ciclo=DB::table('ciclo_escolar')->where('ciclo','=',$ciclo_aux)->first();
+
+      $reintegros=ReintegrosModel::findOrFail($id);
+      $id_oficio_aux=$reintegros->id_oficio;
+      $oficio=OficiosEmitidosModel::findOrFail($id_oficio_aux);
+      $oficio->num_oficio=$request->get('oficio_aux');
+      $oficio->id_dirigido=$dirigido_aux;
+      $oficio->asunto="Solicitud de Pago";
+      $oficio->referencia="Nomina PETC";
+      $oficio->salida=$request->get('fecha');
+      $oficio->id_elabora=$id_genero;
+      $oficio->observaciones=$request->get('observaciones');
+      $oficio->estado="PENDIENTE";
+      $oficio->captura=$user;
+      $oficio->id_ciclo=$ciclo->id;
+      $oficio->update();
+
+
+      $id_cap=$request->get('id_captura');
+      //$first=head($id_cct);
+      $namecap=explode("_",$id_cap);
+      $reintegros -> id_captura = $namecap[3]; //captura
+
+      $id_ct=$request->get('id_centro_trabajo');
+      $reintegros -> id_centro_trabajo = $id_ct; //cct
+
+      $id_dir=$request->get('id_directorio_regional');
+      $namedir=explode("_",$id_dir);
+      $reintegros -> id_directorio_regional = $namedir[1]; //dir reg
+
+      $id_cic=$request->get('id_ciclo'); //ciclo
+      $reintegros -> id_ciclo = $id_cic;
+
+      $id_cue=$request->get('id_cuenta'); //cuenta
+      $namecue=explode("_",$id_cue);
+      $reintegros -> id_cuenta = $namecue[0];
+
+
+      $id_ban=$request->get('id_banco'); //banco
+      $nameban=explode("_",$id_ban);
+      $reintegros -> id_banco = $nameban[1];
+
+
+      $reintegros->id_ciclo=$ciclo->id; //ciclo
+
+      $num_d=$request->get('num_dias'); //numdias
+      $reintegros -> num_dias = $num_d;
+
+      $id_tot=$request->get('total'); //total
+      $nametot=explode("_",$id_tot);
+      $reintegros -> total = $nametot[0];
+
+
+      $id_totex=$request->get('total_text');
+      $nametotex=explode("_",$id_totex);
+      $reintegros -> total_text = $nametotex[0];
+
+      $reintegros -> oficio = $request ->oficio;
+
+      $reintegros->id_oficio=$oficio->id;
+
+      $reintegros-> motivo=$motivo;
+
+      $reintegros -> estado = "PENDIENTE";
+
+      $reintegros -> captura =$user;
+
+      $reintegros->update();
+
+      return Redirect::to('reintegros');
     }
 
     /**
@@ -308,8 +432,48 @@ class ReintegrosController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+      }else{
+      $reintegros=ReintegrosModel::findOrFail($id);
+      $reintegros->estado="INACTIVO";
+      $reintegros->captura="ADMINISTRADOR";
+      $reintegros->update();
+        return redirect('reintegros');
     }
+  }
+
+    public function invoice2($id){
+      $reintegro=ReintegrosModel::join('captura','reintegros.id_captura', '=', 'captura.id' ) //nombre, sostenimiento, categoria
+      ->join('centro_trabajo','reintegros.id_centro_trabajo', '=', 'centro_trabajo.id' ) //cct
+      ->join('directorio_regional','reintegros.id_directorio_regional', '=', 'directorio_regional.id' ) //director_regional,sostenimiento
+      ->join('cuentas','reintegros.id_cuenta', '=', 'cuentas.id' ) //cuentas
+      ->join('bancos','reintegros.id_banco', '=', 'bancos.id' ) //bancos
+      //->join('oficiosemitidos','oficiosemitidos.id_oficio', '=', 'oficiosemitidos.id')
+
+
+
+      ->select('captura.categoria','captura.nombre'
+      ,'centro_trabajo.cct'
+      ,'reintegros.*'
+      ,'directorio_regional.director_regional'
+      ,'cuentas.nombre','cuentas.num_cuenta','cuentas.clave_in','cuentas.secretaria'
+      ,'bancos.nombre_banco')
+      //,'oficiosemitidos.num_oficio','oficiosemitidos.asunto','oficiosemitidos.referencia','oficiosemitidos.salida','oficiosemitidos.observaciones')
+      ->get();
+
+      $view =  \View::make('nomina.reintegros.invoice2', compact('cuenta_copia_t','cuenta_copia','name6'
+      ,'dirigido_puesto','dirigido_nombrec','dirigido_aux'
+      ,'cuenta','motivo','date','oficio'
+      ,'genero','reintegro','namecap','id_ct','namedir','id_cic','namecue','nameban','ciclo','num_d','id_tot','nametot','nameban','nametotex','ultimo'))->render();
+        //->setPaper($customPaper, 'landscape');
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+      return $pdf->stream('invoice2.pdf');
+    }
+
 
 public function traerpersonal(Request $request,$cct)
       {

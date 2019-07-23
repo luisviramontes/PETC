@@ -47,7 +47,7 @@ Route::get('services', function () {
 //////////////////reintegros///////////////////////////////
 Route::resource('reintegros', 'ReintegrosController');
 Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
-Route::get('pdf_catpuesto/{id}', array('as'=> '/pdf_catpuesto','uses'=>'CatPuestoController@invoice'));
+Route::get('pdf_reintegros/{id}', array('as'=> '/pdf_reintegros','uses'=>'ReintegrosController@invoice2'));
 Route::get('traerpersonal/{cct}','ReintegrosController@traerpersonal');
 Route::get('traerdire/{dire}','ReintegrosController@traerdire');
 Route::get('cuenta/{nombre}','ReintegrosController@cuenta');
@@ -77,7 +77,7 @@ Route::get('pdf_cicloescolar/{id}', array('as'=> '/pdf_cicloescolar','uses'=>'Ci
 Route::resource('region', 'RegionController');
 Route::get('descargar-region', 'RegionController@excel')->name('nomina.region.excel');
 Route::get('pdf_region/{id}', array('as'=> '/pdf_region','uses'=>'RegionController@invoice'));
-/////////////////////////////////////////////////// 
+///////////////////////////////////////////////////
 
 //////////////////////RchazosCAP///////////////////////7
 Route::resource('cap_rechazo', 'RechazoCapController');
@@ -120,6 +120,9 @@ Route::get('validarpersonal/{rfc}', 'CapturaController@validarRFC');
 Route::get('extender_contrato/{id}', 'CapturaController@extender_contrato');
 Route::post('guardar_contrato/{id}', 'CapturaController@guardar_contrato')->name('nomina.captura.guardar_contrato');
 Route::get('pdf_captura/{id}/{ciclo}', array('as'=> '/pdf_captura','uses'=>'CapturaController@invoice'));
+Route::get('ver_capturas', array('as'=> '/ver_capturas','uses'=>'CapturaController@ver_capturas'));
+Route::get('busca_dias_captura/{ciclo}','CapturaController@busca_dias_captura');
+Route::get('busca_dias_captura_region/{region}/{ciclo}','CapturaController@busca_dias_captura_region');
 
 
 //ALTAS FEDERALES
@@ -229,6 +232,7 @@ Route::resource('extencion_contrato', 'ExtencionContratoController');
 ///////////////////////Fortalecimiento///////////////////////////7
 Route::resource('fortalecimiento', 'FortalecimientoController');
 Route::get('descargar-fortalecimiento', 'FortalecimientoController@excel')->name('nomina.fortalecimiento.excel');
+Route::post('subirforta', 'FortalecimientoController@subir');
 Route::get('pdf_fortalecimiento/{id}', array('as'=> '/pdf_fortalecimiento','uses'=>'FortalecimientoController@invoice'));
 ////////////////////////////////////////////////////////////////////7
 
@@ -297,6 +301,7 @@ Route::get('ver_reclamos', array('as'=> '/ver_reclamos','uses'=>'ReclamosControl
 Route::get('busca_dias_reclamo/{ciclo}','ReclamosController@busca_dias_reclamo');
 Route::get('busca_dias_reclamo_region/{region}/{ciclo}','ReclamosController@busca_dias_reclamo_region');
 Route::get('pdf_reclamos/{ciclo}', array('as'=> '/pdf_reclamos','uses'=>'ReclamosController@invoice'));
+Route::get('descargar-capturas/{id}', 'CapturaController@excel')->name('nomina.reclamos.excel');
 
 
 

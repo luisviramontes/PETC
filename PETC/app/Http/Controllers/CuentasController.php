@@ -10,6 +10,7 @@ use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use petc\Http\Controllers\Controller;
 
 class CuentasController extends Controller
@@ -45,7 +46,7 @@ class CuentasController extends Controller
     }
 }
 
-    }}
+    }
 
 
     /**

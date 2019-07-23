@@ -73,7 +73,7 @@
 								<td style="background-color:#DBFFC2;" >{{$ciclo->estado}}</td>
 								<td style="background-color:#DBFFC2;" >{{$ciclo->capturo}}</td>
 								<!-- //////////////////////////////////////////////////////////////////// -->
-									@if ($ciclo->estado == "INACTIVO")
+
 
 
 								<td style="background-color:#DBFFC2;">
@@ -82,15 +82,7 @@
 
 									</center>
 								</td>
-									@else
-									<td style="background-color:#DBFFC2;">
-									<center>
 
-											<h4><span class="label label-warning">Inactivar para editar</span></h4>
-
-									</center>
-								</td>
-									@endif
 									<!-- //////////////////////////////////////////////////////////////////// -->
 
 
@@ -116,7 +108,6 @@
 
 								<td>{{$ciclo->capturo}}</td>
 								<!-- //////////////////////////////////////////////////////////////////// -->
-									@if ($ciclo->estado == "INACTIVO")
 
 
 								<td>
@@ -125,18 +116,8 @@
 
 									</center>
 								</td>
-									@else <td>
-									<center>
 
-											<h4><span class="label label-warning">Inactivar para editar</span></h4>
-
-									</center>
-								</td>
-									@endif
-									<!-- //////////////////////////////////////////////////////////////////// -->
-
-
-								<td>
+									<td>
 									<center>
 										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$ciclo->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 

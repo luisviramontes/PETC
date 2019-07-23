@@ -46,10 +46,11 @@ class FortalecimientoController extends Controller
        $query=trim($request->GET('searchText'));
        $fortalecimientos = DB::table('fortalecimiento')
        ->join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
-       ->select('fortalecimiento.id as id','fortalecimiento.*','centro_trabajo.cct as cct')
+       ->join('ciclo_escolar', 'fortalecimiento.id_ciclo', '=','ciclo_escolar.id')
+       ->select('fortalecimiento.id as id','fortalecimiento.*','centro_trabajo.cct as cct','ciclo_escolar.ciclo')
        ->where('cct','LIKE','%'.$query.'%')
        ->orwhere('monto_forta','LIKE','%'.$query.'%')
-       ->paginate(10);
+       ->paginate(915);
 
       return view('nomina.fortalecimiento.index',["fortalecimientos"=>$fortalecimientos,"searchText"=>$query]);
 
@@ -68,10 +69,84 @@ class FortalecimientoController extends Controller
        return view('permisos');
 
       }else{
+      $fortalecimiento = DB::table('fortalecimiento')->get();
       $cct= DB::table('centro_trabajo')->get();
       $ciclos= DB::table('ciclo_escolar')->get();
-      return view("nomina.fortalecimiento.create",["ciclos"=>$ciclos,"cct"=>$cct]);
-    }}
+      return view("nomina.fortalecimiento.create",["ciclos"=>$ciclos,"cct"=>$cct,"fortalecimiento"=>$fortalecimiento]);
+    }
+  }
+
+  public function subir(Request $request)
+  {
+    $tipo_usuario = Auth::user()->tipo_usuario;
+    if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+     return view('permisos');
+
+    }else{
+
+
+
+
+      /////////////////////////////
+
+      $path = $request->file->getRealPath();
+      $data = Excel::load($path)->get();
+
+
+          foreach ($data as $key => $value) {
+
+
+            $id_cct=DB::table('centro_trabajo')->where('cct','=',$value->cct)->first()->id;
+            $id_ciclo=DB::table('ciclo_escolar')->where('ciclo','=',$value->ciclo)->first()->id;
+            $monto = $value->monto_forta;
+
+            $obser = $value->observaciones;
+            $user = Auth::user()->name;
+
+
+            $arr[] = [
+              'id_cct' => $value=$id_cct,
+              'monto_forta' => $value=$monto,
+              'id_ciclo' => $value=$id_ciclo,
+              'estado' => $value="ACTIVO",
+              'observaciones' => $value=$obser,
+              'captura' => $value=$user,
+              'created_at' => $request->created_at,
+
+            ];
+
+
+            /*
+                $forta = new FortalecimientoModel;
+                $forta->id_cct = $value=$id_cct;
+                $forta->monto_forta = $value=$monto;
+                $forta->id_ciclo = $value=$id_ciclo;
+                $forta->estado = $value="ACTIVO";
+                $forta->observaciones = $value=$obser;
+                $forta->captura = $value=$user;
+                $forta->created_at = $request->created_at;
+                if($forta->save()){
+
+                  return redirect('/fortalecimiento');
+
+                }else {
+                return false;
+                }
+
+                */
+          }
+
+          if(!empty($arr)){
+              DB::table('fortalecimiento')->insert($arr);
+              return redirect('fortalecimiento');
+          }
+
+
+        ///////////////////////////////////////////////77
+
+
+  }
+}
 
     /**
      * Store a newly created resource in storage.
@@ -90,7 +165,7 @@ class FortalecimientoController extends Controller
         $fortalecimientos = new FortalecimientoModel;
         $fortalecimientos -> id_cct = $request ->id_cct;
         $fortalecimientos -> monto_forta = $request ->monto_forta;
-        $fortalecimientos -> ciclo_escolar = $request ->ciclo_escolar;
+        $fortalecimientos -> id_ciclo = $request ->id_ciclo;
         $fortalecimientos -> estado = "ACTIVO";
         $fortalecimientos -> observaciones = $request ->observaciones;
         $fortalecimientos -> captura=$user;

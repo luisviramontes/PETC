@@ -15,12 +15,12 @@
 <div class="container clear_both padding_fix">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="block-web"> 
+			<div class="block-web">
 				<div class="header">
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
 							<div class="actions"> </div>
-							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Empleados PETC </strong></h2> 
+							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Empleados PETC </strong></h2>
 							@include('nomina.captura.search')
 						</div>
 						<div class="col-md-5">
@@ -31,10 +31,11 @@
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('captura.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Empleado"> <i class="fa fa-plus"></i> Registrar </a>
 
 
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.captura.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>  										
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.captura.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+										<a class="btn btn-primary btn-sm"  href="{{URL::action('CapturaController@ver_capturas')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Capturas</a>
 
 
-									</div>								
+									</div>
 								</b>
 							</div>
 						</div>
@@ -44,7 +45,7 @@
 				<div class="porlets-content" >
 					<div class="table-responsive">
 						<table cellpadding="0" cellspacing="0" border="0"  class="display table table-bordered " id="hidden-table-info9" >
-							<thead>   
+							<thead>
 								<tr>
 									<th>Región</th>
 									<th>RFC </th>
@@ -66,37 +67,37 @@
 									<th>Qna Act</th>
 									<th style="display:none;" >Ciclo</th>
 									<th style="display:none;" >Localidad </th>
-									<th style="display:none;" >Municipio </th>							
-									<th style="display:none;" >Dias Trabajados </th>					
+									<th style="display:none;" >Municipio </th>
+									<th style="display:none;" >Dias Trabajados </th>
 									<th>Ver Datos</th>
 									<th style="display:none;" >Fecha de Actualización</th>
 									<th>Modificar</th>
-									<th>Desactivar</th>		
+									<th>Desactivar</th>
 									<th style="display:none;" >Nombre de Escuela</th>
-									<th style="display:none;" >Tipo de Movimiento</th>							
-									
-									
+									<th style="display:none;" >Tipo de Movimiento</th>
+
+
 								</tr>
 							</thead>
 							<tbody>
 								@foreach($personal  as $datos)
-								@if ($datos->estado == "ACTIVO")     
-								<tr class="gradeX">									
+								@if ($datos->estado == "ACTIVO")
+								<tr class="gradeX">
 									<td style="background-color: #DBFFC2;">{{$datos->region}} {{$datos->sostenimiento}} </td>
 									<td style="background-color: #DBFFC2;">{{$datos->rfc}} </td>
 									<td style="background-color: #DBFFC2;">{{$datos->nombre}} </td>
 									<td style="display:none;" >{{$datos->telefono}}</td>
 									<td style="display:none;" >{{$datos->email}} </td>
-									<td style="background-color: #DBFFC2;" >{{$datos->cct}} </td>	
-									<th style="display:none;" >{{$datos->sostenimiento}} </td>	
-										<td style="background-color: #DBFFC2;" >{{$datos->cat_puesto}} </td>	
-										<td style="background-color: #DBFFC2;" >{{$datos->categoria}} </td>	
+									<td style="background-color: #DBFFC2;" >{{$datos->cct}} </td>
+									<th style="display:none;" >{{$datos->sostenimiento}} </td>
+										<td style="background-color: #DBFFC2;" >{{$datos->cat_puesto}} </td>
+										<td style="background-color: #DBFFC2;" >{{$datos->categoria}} </td>
 										<td style="background-color: #DBFFC2;">{{$datos->fecha_inicio}} </td>
 										<td style="background-color: #DBFFC2;">{{$datos->fecha_termino}} <a href="{{URL::action('CapturaController@extender_contrato',$datos->id)}}" class="btn btn-primary btn -sm" role="button"><i class="fa fa-plus"></i></a></td>
-										<td style="display:none;" >{{$datos->documentacion_entregada}} </td>	
-										<td style="display:none;" >{{$datos->observaciones}} </td>	
-										<td style="display:none;" >{{$datos->cct_2}} </td>	
-										<td style="background-color: #DBFFC2;" >{{$datos->captura}} </td>	
+										<td style="display:none;" >{{$datos->documentacion_entregada}} </td>
+										<td style="display:none;" >{{$datos->observaciones}} </td>
+										<td style="display:none;" >{{$datos->cct_2}} </td>
+										<td style="background-color: #DBFFC2;" >{{$datos->captura}} </td>
 										<td style="background-color: #DBFFC2;" >{{$datos->estado}} </td>
 										@if($datos->pagos_registrados == "1")
 										<td style="background-color: #18F306;">✔</td>
@@ -111,41 +112,41 @@
 										@endif
 
 
-										<th style="display:none;" >{{$datos->ciclo}} </td>	
-											<td style="display:none;" >{{$datos->nom_loc}} </td>							
-											<td style="display:none;" >{{$datos->municipio}} </td>							
+										<th style="display:none;" >{{$datos->ciclo}} </td>
+											<td style="display:none;" >{{$datos->nom_loc}} </td>
+											<td style="display:none;" >{{$datos->municipio}} </td>
 											<td style="display:none;" >{{$datos->dias_trabajados}} </td>
 
 											<td style="background-color: #DBFFC2;">
 												<a href="{{URL::action('CapturaController@verInformacion',$datos->id.'/1')}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>    </td>
 												<td style="display:none;" >{{$datos->updated_at}} </td>
 
-												<td style="background-color: #DBFFC2;"> 
-													<a href="{{URL::action('CapturaController@edit',$datos->id)}}" class="btn btn-primary btn -sm" role="button"><i class="fa fa-edit"></i></a>  
+												<td style="background-color: #DBFFC2;">
+													<a href="{{URL::action('CapturaController@edit',$datos->id)}}" class="btn btn-primary btn -sm" role="button"><i class="fa fa-edit"></i></a>
 												</td>
 												<td style="background-color: #DBFFC2;">
 													<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$datos->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></
 												</td>
-												<td style="display:none;" >{{$datos->nombre_escuela}} </td>	
+												<td style="display:none;" >{{$datos->nombre_escuela}} </td>
 												<td style="display:none;" >{{$datos->tipo_movimiento}} </td>
-												
+
 												@else
-												<tr class="gradeX">									
+												<tr class="gradeX">
 													<td style="background-color: #FFE4E1;">{{$datos->region}} {{$datos->sostenimiento}}</td>
 													<td style="background-color: #FFE4E1;">{{$datos->rfc}} </td>
 													<td style="background-color: #FFE4E1;">{{$datos->nombre}} </td>
 													<td style="display:none;" >{{$datos->telefono}}</td>
 													<td style="display:none;" >{{$datos->email}} </td>
-													<td style="background-color: #FFE4E1;" >{{$datos->cct}} </td>	
-													<th style="display:none;" >{{$datos->sostenimiento}} </td>	
-														<td style="background-color: #FFE4E1;" >{{$datos->cat_puesto}} </td>	
-														<td style="background-color: #FFE4E1;" >{{$datos->categoria}} </td>	
+													<td style="background-color: #FFE4E1;" >{{$datos->cct}} </td>
+													<th style="display:none;" >{{$datos->sostenimiento}} </td>
+														<td style="background-color: #FFE4E1;" >{{$datos->cat_puesto}} </td>
+														<td style="background-color: #FFE4E1;" >{{$datos->categoria}} </td>
 														<td style="background-color: #FFE4E1;">{{$datos->fecha_inicio}} </td>
 														<td style="background-color: #FFE4E1;">{{$datos->fecha_termino}} </td>
-														<td style="display:none;" >{{$datos->documentacion_entregada}} </td>	
-														<td style="display:none;" >{{$datos->observaciones}} </td>	
-														<td style="display:none;" >{{$datos->cct_2}} </td>	
-														<td style="background-color: #FFE4E1;" >{{$datos->captura}} </td>	
+														<td style="display:none;" >{{$datos->documentacion_entregada}} </td>
+														<td style="display:none;" >{{$datos->observaciones}} </td>
+														<td style="display:none;" >{{$datos->cct_2}} </td>
+														<td style="background-color: #FFE4E1;" >{{$datos->captura}} </td>
 														<td style="background-color: #FFE4E1;" >{{$datos->estado}} </td>
 														@if($datos->pagos_registrados == "1")
 														<td style="background-color: #18F306;">✔</td>
@@ -160,9 +161,9 @@
 														@endif
 
 
-														<th style="display:none;" >{{$datos->ciclo}} </td>	
-															<td style="display:none;" >{{$datos->nom_loc}} </td>							
-															<td style="display:none;" >{{$datos->municipio}} </td>							
+														<th style="display:none;" >{{$datos->ciclo}} </td>
+															<td style="display:none;" >{{$datos->nom_loc}} </td>
+															<td style="display:none;" >{{$datos->municipio}} </td>
 															<td style="display:none;" >{{$datos->dias_trabajados}} </td>
 
 
@@ -171,8 +172,8 @@
 																<a href="{{URL::action('CapturaController@verInformacion',$datos->id.'/1')}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>    </td>
 																<td style="display:none;" >{{$datos->updated_at}} </td>
 
-																<td style="background-color: #FFE4E1;"> 
-																	<a href="{{URL::action('CapturaController@edit',$datos->id)}}" class="btn btn-primary btn -sm" role="button"><i class="fa fa-edit"></i></a>  
+																<td style="background-color: #FFE4E1;">
+																	<a href="{{URL::action('CapturaController@edit',$datos->id)}}" class="btn btn-primary btn -sm" role="button"><i class="fa fa-edit"></i></a>
 																</td>
 																<td style="background-color: #FFE4E1;">
 																	</
@@ -183,13 +184,13 @@
 																@endif
 																@include('nomina.captura.modal')
 
-															</tr>														
+															</tr>
 
 															@endforeach
 														</tbody>
 														<tfoot>
 															<tr>
-																<th></th> 
+																<th></th>
 																<th>Región</th>
 																<th>RFC </th>
 																<th>Nombre del Empleado</th>
@@ -210,8 +211,8 @@
 																<th>Qna Act</th>
 																<th style="display:none;" >Ciclo</th>
 																<th style="display:none;" >Localidad </th>
-																<th style="display:none;" >Municipio </th>							
-																<th style="display:none;" >Dias Trabajados </th>					
+																<th style="display:none;" >Municipio </th>
+																<th style="display:none;" >Dias Trabajados </th>
 																<th>Ver Datos</th>
 																<th style="display:none;" >Fecha de Actualización</th>
 																<th>Modificar</th>
@@ -221,7 +222,7 @@
 															</tr>
 														</tr>
 													</tfoot>
-											
+
 												</table>
 
 											</div><!--/table-responsive-->

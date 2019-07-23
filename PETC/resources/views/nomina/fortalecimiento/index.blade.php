@@ -44,7 +44,7 @@
 
 			<div class="porlets-content">
 				<div class="table-responsive">
-					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered" id="dynamic-table">
+					<table cellpadding="0" cellpadding="0" border="0"  class="display table table-bordered" id="hidden-table-info_forta">
 						<thead>
 							<tr>
 
@@ -69,7 +69,7 @@
 
 								<td style="background-color:#DBFFC2;">{{$fortalecimiento->cct}} </td>
 								<td style="background-color:#DBFFC2;">{{$fortalecimiento->monto_forta}} </td>
-								<td style="background-color:#DBFFC2;">{{$fortalecimiento->ciclo_escolar}} </td>
+								<td style="background-color:#DBFFC2;">{{$fortalecimiento->ciclo}} </td>
 								<td style="background-color:#DBFFC2;">{{$fortalecimiento->estado}} </td>
                 <td style="background-color:#DBFFC2;">{{$fortalecimiento->observaciones}}</td>
                 <td style="background-color:#DBFFC2;">{{$fortalecimiento->captura}}</td>
@@ -99,7 +99,7 @@
 
 								<td style="background-color:#FFE4E1;">{{$fortalecimiento->cct}} </td>
 								<td style="background-color:#FFE4E1;">{{$fortalecimiento->monto_forta}} </td>
-								<td style="background-color:#FFE4E1;">{{$fortalecimiento->ciclo_escolar}} </td>
+								<td style="background-color:#FFE4E1;">{{$fortalecimiento->ciclo}} </td>
 								<td style="background-color:#FFE4E1;">{{$fortalecimiento->estado}} </td>
 								<td style="background-color:#FFE4E1;">{{$fortalecimiento->observaciones}}</td>
 								<td style="background-color:#FFE4E1;">{{$fortalecimiento->captura}}</td>
@@ -120,6 +120,7 @@
 								@endif
 						@include('nomina.fortalecimiento.modal')
 							@endforeach
+
 						</tbody>
 						<!--<tfoot>
 							<tr>

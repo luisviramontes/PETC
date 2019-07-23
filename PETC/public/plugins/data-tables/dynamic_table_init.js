@@ -1,5 +1,85 @@
 
 
+///////////Fortalecimineots////////////////////7
+
+function fnFormatDetails_FORTA ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+
+    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>MONTO FORTALECIMIENTO:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>CICLO ESCOLAR:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>ESTADO:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>OBSERVACIONES:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>CAPTURA:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>FECHA DE REGISTRO:</strong></td><td>'+aData[7]+' </td></tr>';
+
+
+
+
+
+
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table12').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info_forta thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info_forta tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info_forta').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info_forta tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails_FORTA(oTable, nTr), 'details' );
+        }
+    } );
+ } );
+
+//////////////////////////////////////////////7
+
 
 ///////////Reintegros////////////////////7
 
@@ -8,19 +88,17 @@ function fnFormatDetails_rein ( oTable, nTr )
     var aData = oTable.fnGetData( nTr );
     var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
 
-    sOut += '<tr><td><strong>nombre:</strong></td><td>'+aData[1]+' </td></tr>';
-    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[2]+' </td></tr>';
-    sOut += '<tr><td><strong>Escuela:</strong></td><td>'+aData[3]+' </td></tr>';
-    sOut += '<tr><td><strong>Director Regional:</strong></td><td>'+aData[4]+' </td></tr>';
-    sOut += '<tr><td><strong>Sostenimiento Director Regional:</strong></td><td>'+aData[5]+' </td></tr>';
-    sOut += '<tr><td><strong>Número de días:</strong></td><td>'+aData[6]+' </td></tr>';
-    sOut += '<tr><td><strong>Categoría:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>Categoria:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Número de días:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Director Regional:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>Número de oficio:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Motivo:</strong></td><td>'+aData[7]+' </td></tr>';
     sOut += '<tr><td><strong>Total Reintegro:</strong></td><td>'+aData[8]+' </td></tr>';
-    sOut += '<tr><td><strong>Número de oficio:</strong></td><td>'+aData[9]+' </td></tr>';
-    sOut += '<tr><td><strong>Motivo:</strong></td><td>'+aData[10]+' </td></tr>';
-    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[11]+' </td></tr>';
-    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[12]+' </td></tr>';
-    sOut += '<tr><td><strong>Fecha de Registro:</strong></td><td>'+aData[13]+' </td></tr>';
+    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Registro:</strong></td><td>'+aData[11]+' </td></tr>';
 
 
 
@@ -1168,7 +1246,7 @@ function fnFormatDetails9 ( oTable, nTr )
     sOut += '<tr><td><strong>Municipio</strong></td><td>'+aData[21]+' </td></tr>';
 
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de la Ultima Modificación</strong></td><td> </td></tr>';
-    sOut += '<tr><td><strong>Tipo de Movimiento</strong></td><td>'+aData[28]+' </td></tr>'; 
+    sOut += '<tr><td><strong>Tipo de Movimiento</strong></td><td>'+aData[28]+' </td></tr>';
     sOut += '<tr><td><strong>Ciclo Escolar</strong></td><td>'+aData[19]+' </td></tr>';
     sOut += '<tr><td><strong>Llega a Cubrir A:</strong></td><td>'+aData[30]+' </td></tr>';
     sOut += '<tr><td><strong>RFC de a Quien Cubre:</strong></td><td>'+aData[31]+' </td></tr>';
@@ -1281,7 +1359,7 @@ function fnFormatDetails10 ( oTable, nTr )
     sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[12]+' </td></tr>';
     sOut += '<tr><td><strong>CCT 2:</strong></td><td>'+aData[13]+' </td></tr>';
     sOut += '<tr><td><strong>Dias Trabajados</strong></td><td>'+aData[21]+' </td></tr>';
-    
+
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de Captura</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>Capturado Por:</strong></td><td>'+aData[14]+' </td></tr>';
     sOut += '<tr><td><strong>Fecha de Modificacion</strong></td><td>'+aData[23]+' </td></tr>';
@@ -1389,7 +1467,7 @@ function fnFormatDetails11 ( oTable, nTr )
     sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[14]+' </td></tr>';
     sOut += '<tr><td><strong>CCT 2:</strong></td><td>'+aData[15]+' </td></tr>';
     sOut += '<tr><td><strong>Dias Trabajados</strong></td><td>'+aData[28]+' </td></tr>';
-    
+
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de Captura</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>Capturado Por:</strong></td><td>'+aData[16]+' </td></tr>';
     sOut += '<tr><td><strong>Fecha de Modificacion</strong></td><td>'+aData[30]+' </td></tr>';
@@ -1495,7 +1573,7 @@ function fnFormatDetails12 ( oTable, nTr )
     sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[15]+' </td></tr>';
     sOut += '<tr><td><strong>CCT 2:</strong></td><td>'+aData[16]+' </td></tr>';
     sOut += '<tr><td><strong>Dias Trabajados</strong></td><td>'+aData[23]+' </td></tr>';
-    
+
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de Captura</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>Capturado Por:</strong></td><td>'+aData[16]+' </td></tr>';
     sOut += '<tr><td><strong>Fecha de Modificacion</strong></td><td>'+aData[25]+' </td></tr>';
@@ -1603,7 +1681,7 @@ function fnFormatDetails13 ( oTable, nTr )
     sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[16]+' </td></tr>';
     sOut += '<tr><td><strong>CCT 2:</strong></td><td>'+aData[17]+' </td></tr>';
     sOut += '<tr><td><strong>Dias Trabajados</strong></td><td>'+aData[25]+' </td></tr>';
-    
+
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de Captura</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>Capturado Por:</strong></td><td>'+aData[18]+' </td></tr>';
     sOut += '<tr><td><strong>Fecha de Modificacion</strong></td><td>'+aData[27]+' </td></tr>';
@@ -1712,7 +1790,7 @@ function fnFormatDetails14 ( oTable, nTr )
     sOut += '<tr><td><strong>Fecha de Baja :</strong></td><td>'+aData[33]+' </td></tr>';
     sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[34]+' </td></tr>';
     sOut += '<tr><td><strong>Dias Trabajados</strong></td><td>'+aData[23]+' </td></tr>';
-    
+
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de Captura</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>Capturado Por:</strong></td><td>'+aData[18]+' </td></tr>';
     sOut += '<tr><td><strong>Fecha de Modificacion</strong></td><td>'+aData[25]+' </td></tr>';
@@ -1957,5 +2035,3 @@ $(document).ready(function() {
         }
     } );
  } );
-
-

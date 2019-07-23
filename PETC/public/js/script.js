@@ -529,6 +529,7 @@ function valida_file(){
     swal("ERROR!","No se ha seleccionado ninguna Nomina.","error");
     //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
     return false
+
   }else{
 
   }
@@ -1419,7 +1420,7 @@ function valida_puesto() {
    return false
  }else{
    document.getElementById('submit').disabled=false;
-
+   document.getElementById("error_tipo_puesto").innerHTML = "";
  }
 }
 
@@ -1432,9 +1433,9 @@ function valida_sostenimiento() {
         return false
       }else{
         document.getElementById('submit').disabled=false;
-
+        document.getElementById("error_sostenimiento").innerHTML = "";
       }
-    }
+}
 
     function valida_region() {
      if( document.getElementById('region').value == "Selecciona una opción" && document.getElementById('sostenimiento').value == "Selecciona una opción" ){
@@ -1446,16 +1447,17 @@ function valida_sostenimiento() {
 
         }else if(document.getElementById('region').value != "Selecciona una opción" && document.getElementById('sostenimiento').value != "Selecciona una opción"){
           document.getElementById('submit').disabled=false;
-
+          document.getElementById("error_region").innerHTML = "";
+          document.getElementById("error_sostenimiento").innerHTML = "";
 
         }else if (document.getElementById('region').value != "Selecciona una opción" && document.getElementById('sostenimiento').value == "Selecciona una opción") {
           document.getElementById('submit').disabled=true;
-
+          document.getElementById("error_region").innerHTML = "";
           document.getElementById("error_sostenimiento").innerHTML = "No se ha seleccionado ninguna opción.";
         }else if (document.getElementById('region').value == "Selecciona una opción" && document.getElementById('sostenimiento').value != "Selecciona una opción") {
           document.getElementById('submit').disabled=true;
           document.getElementById("error_region").innerHTML = "No se ha seleccionado ninguna opción.";
-
+          document.getElementById("error_sostenimiento").innerHTML = "";
         }
       }
 
@@ -1469,16 +1471,19 @@ function valida_sostenimiento() {
 
            }else if(document.getElementById('cct').value != "Selecciona una opción" && document.getElementById('mes').value != "Selecciona una opción"){
             document.getElementById('submit').disabled=false;
-
+            document.getElementById("error_cct").innerHTML = "";
+            document.getElementById("error_mes").innerHTML = "";
 
           }else if (document.getElementById('cct').value != "Selecciona una opción" && document.getElementById('mes').value == "Selecciona una opción") {
            document.getElementById('submit').disabled=true;
+           document.getElementById("error_cct").innerHTML = "";
+           document.getElementById("error_mes").innerHTML = "No se ha seleccionado ninguna opción.";
 
            document.getElementById("error_mes").innerHTML = "No se ha seleccionado ninguna opción.";
          }else if (document.getElementById('cct').value == "Selecciona una opción" && document.getElementById('mes').value != "Selecciona una opción") {
            document.getElementById('submit').disabled=true;
            document.getElementById("error_cct").innerHTML = "No se ha seleccionado ninguna opción.";
-          
+           document.getElementById("error_mes").innerHTML = "";
          }
        }
 
@@ -2284,3 +2289,577 @@ function buscar_qnas_pagos(){
     });}
 
     //tabla.setAttribute("id", id2);
+
+////////NUMEROS A LETRAS////////////////////////////////////
+function numero() {
+    	// Obtener valor que hay en el input
+    	let valor = document.getElementById('total').value;
+    	var texto = document.getElementById('total_text');
+    	// Simple validación
+
+
+    	// Obtener la representación
+    	let letras = numeroALetras(valor, {
+    		plural: "PESOS",
+    		singular: "PESO",
+    		centPlural: "CENTAVOS",
+    		centSingular: "CENTAVO"
+    	});
+
+    	// Y a la salida ponerle el resultado
+    	document.getElementById('total_text').value=letras;
+    	console.log(document.getElementById('total_text').value);
+    	console.log(document.getElementById('total').value);
+    }
+
+
+    var numeroALetras = (function() {
+
+    // Código basado en https://gist.github.com/alfchee/e563340276f89b22042a
+        function Unidades(num){
+
+            switch(num)
+            {
+                case 1: return 'UN';
+                case 2: return 'DOS';
+                case 3: return 'TRES';
+                case 4: return 'CUATRO';
+                case 5: return 'CINCO';
+                case 6: return 'SEIS';
+                case 7: return 'SIETE';
+                case 8: return 'OCHO';
+                case 9: return 'NUEVE';
+            }
+
+            return '';
+        }//Unidades()
+
+        function Decenas(num){
+
+            let decena = Math.floor(num/10);
+            let unidad = num - (decena * 10);
+
+            switch(decena)
+            {
+                case 1:
+                    switch(unidad)
+                    {
+                        case 0: return 'DIEZ';
+                        case 1: return 'ONCE';
+                        case 2: return 'DOCE';
+                        case 3: return 'TRECE';
+                        case 4: return 'CATORCE';
+                        case 5: return 'QUINCE';
+                        default: return 'DIECI' + Unidades(unidad);
+                    }
+                case 2:
+                    switch(unidad)
+                    {
+                        case 0: return 'VEINTE';
+                        default: return 'VEINTI' + Unidades(unidad);
+                    }
+                case 3: return DecenasY('TREINTA', unidad);
+                case 4: return DecenasY('CUARENTA', unidad);
+                case 5: return DecenasY('CINCUENTA', unidad);
+                case 6: return DecenasY('SESENTA', unidad);
+                case 7: return DecenasY('SETENTA', unidad);
+                case 8: return DecenasY('OCHENTA', unidad);
+                case 9: return DecenasY('NOVENTA', unidad);
+                case 0: return Unidades(unidad);
+            }
+        }//Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + ' Y ' + Unidades(numUnidades)
+
+            return strSin;
+        }//DecenasY()
+
+        function Centenas(num) {
+            let centenas = Math.floor(num / 100);
+            let decenas = num - (centenas * 100);
+
+            switch(centenas)
+            {
+                case 1:
+                    if (decenas > 0)
+                        return 'CIENTO ' + Decenas(decenas);
+                    return 'CIEN';
+                case 2: return 'DOSCIENTOS ' + Decenas(decenas);
+                case 3: return 'TRESCIENTOS ' + Decenas(decenas);
+                case 4: return 'CUATROCIENTOS ' + Decenas(decenas);
+                case 5: return 'QUINIENTOS ' + Decenas(decenas);
+                case 6: return 'SEISCIENTOS ' + Decenas(decenas);
+                case 7: return 'SETECIENTOS ' + Decenas(decenas);
+                case 8: return 'OCHOCIENTOS ' + Decenas(decenas);
+                case 9: return 'NOVECIENTOS ' + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        }//Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            let cientos = Math.floor(num / divisor)
+            let resto = num - (cientos * divisor)
+
+            let letras = '';
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + ' ' + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += '';
+
+            return letras;
+        }//Seccion()
+
+        function Miles(num) {
+            let divisor = 1000;
+            let cientos = Math.floor(num / divisor)
+            let resto = num - (cientos * divisor)
+
+            let strMiles = Seccion(num, divisor, 'UN MIL', 'MIL');
+            let strCentenas = Centenas(resto);
+
+            if(strMiles == '')
+                return strCentenas;
+
+            return strMiles + ' ' + strCentenas;
+        }//Miles()
+
+        function Millones(num) {
+            let divisor = 1000000;
+            let cientos = Math.floor(num / divisor)
+            let resto = num - (cientos * divisor)
+
+            let strMillones = Seccion(num, divisor, 'UN MILLON DE', 'MILLONES DE');
+            let strMiles = Miles(resto);
+
+            if(strMillones == '')
+                return strMiles;
+
+            return strMillones + ' ' + strMiles;
+        }//Millones()
+
+        return function NumeroALetras(num, currency) {
+            currency = currency || {};
+            let data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: '',
+                letrasMonedaPlural: currency.plural || 'PESOS ',//'PESOS', 'Dólares', 'Bolívares', 'etcs'
+                letrasMonedaSingular: currency.singular || 'PESO', //'PESO', 'Dólar', 'Bolivar', 'etc'
+                letrasMonedaCentavoPlural: currency.centPlural || 'CENTAVOS',
+                letrasMonedaCentavoSingular: currency.centSingular || 'CENTAVO'
+            };
+
+            if (data.centavos > 0) {
+                data.letrasCentavos = 'CON ' + (function () {
+                        if (data.centavos == 1)
+                            return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoSingular;
+                        else
+                            return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoPlural;
+                    })();
+            };
+
+            if(data.enteros == 0)
+                return 'CERO ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + ' ' + data.letrasMonedaSingular + ' ' + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + ' ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
+        };
+
+    })();
+
+    // Modo de uso: 500,34 USD
+    numeroALetras(200.58, {
+      plural: 'Pesos',
+      singular: 'Pesos',
+      centPlural: 'centavos',
+      centSingular: 'centavo'
+    });
+
+///////////////////////////////////////////////////////////
+
+function guardar_reintegro(){
+var z = 1
+var arreglo_c = [];
+var table = document.getElementById('detalles3');
+for (var r = 1, n = table.rows.length-1; r < n; r++) {
+  for (var c = 1, m = table.rows[r].cells.length; c < m; c++) {
+   if (z == 1){
+    arreglo_c.push(table.rows[r].cells[c].innerHTML);
+    z ++;
+  }
+
+  else if(z == 2){
+   arreglo_c.push(table.rows[r].cells[c].innerHTML);
+   z ++;
+ }else if(z == 3){
+   arreglo_c.push(table.rows[r].cells[c].innerHTML);
+   z ++;
+ }else if(z == 4){
+   arreglo_c.push(table.rows[r].cells[c].innerHTML);
+   z ++;
+ }else{
+  arreglo_c.push(table.rows[r].cells[c].innerHTML);
+  document.getElementById("c_copia").value=arreglo_c;
+  z = 1;
+
+	}
+	}
+	}
+}
+
+function direc(){
+
+var dire = document.getElementById("id_reg").value;
+
+var route = "http://localhost:8000/traerdire/"+dire;
+
+$.get(route,function(res){
+  if(res.length > 0){
+
+    for (var i = 0; i < res.length; i++) {
+      if(res[i].estado =="ACTIVO"){
+        var x = document.getElementById("id_directorio_regional");
+        var option = document.createElement("option");
+        option.text = res[i].director_regional;
+        option.value = res[i].director_regional +"_"+res[i].id;
+
+				x.add(option, x[i]);
+
+      }
+    }
+  }
+
+ });
+
+}
+
+function cuenta() {
+      var select2 = document.getElementById("id_cuenta");
+      var selectedOption2 = select2.selectedIndex;
+     	var cantidadtotal = select2.value;
+     	limite = "9",
+      separador = "_",
+      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+     	cct=arregloDeSubCadenas[0];
+     	num_cuenta=arregloDeSubCadenas[2];
+			clave_in=arregloDeSubCadenas[3];
+			secretaria=arregloDeSubCadenas[4];
+		//	id_banco=arregloDeSubCadenas[5];
+     	document.getElementById('num_cuenta').value=num_cuenta;
+			document.getElementById('clave_in').value=clave_in;
+			document.getElementById('secretaria').value=secretaria;
+		//	document.getElementById('id_banco').value=id_banco;
+}
+
+
+function cuentabanco(){
+
+
+	var select2 = document.getElementById("id_cuenta");
+	var selectedOption2 = select2.selectedIndex;
+	var cantidadtotal = select2.value;
+	limite = "9",
+	separador = "_",
+	arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+	banco=arregloDeSubCadenas[0];
+
+var route = "http://localhost:8000/banco/"+banco;
+
+$.get(route,function(res){
+  if(res.length > 0){
+
+    for (var i = 0; i < res.length; i++) {
+      if(res[i].estado =="ACTIVO"){
+        var x = document.getElementById("id_banco");
+        var option = document.createElement("option");
+        option.text = res[i].nombre_banco;
+        option.value = res[i].nombre_banco +"_"+res[i].id;
+				x.add(option, x[i]);
+      }
+    }
+  }
+
+ });
+
+}
+
+
+function nombre_clave() {
+      var select2 = document.getElementById("id_captura");
+      var selectedOption2 = select2.selectedIndex;
+     	var cantidadtotal = select2.value;
+     	limite = "9",
+      separador = "_",
+      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+     	cct=arregloDeSubCadenas[0];
+
+     	categoria=arregloDeSubCadenas[1];
+     	document.getElementById('categoria').value=categoria;
+			document.getElementById('dirigido_a').value=cct;
+}
+
+function nombre_sos() {
+      var select2 = document.getElementById("id_captura");
+      var selectedOption2 = select2.selectedIndex;
+     	var cantidadtotal = select2.value;
+     	limite = "9",
+      separador = "_",
+      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+     	cct=arregloDeSubCadenas[0];
+			sostenimiento=arregloDeSubCadenas[2];
+     	id_reg=arregloDeSubCadenas[3];
+     	document.getElementById('id_reg').value=id_reg;
+
+}
+
+function num_ofi(){
+	var ciclo = document.getElementById('ciclo_escolar').value;
+	var x= document.getElementById('oficio_aux').value;
+	var route = "http://localhost:8000/buscar_oficio/"+x+"/"+ciclo;
+
+	$.get(route,function(res){
+		if(res.length > 0){
+		 swal("Alerta!", "Este Oficio Ya se ha Registrado Anteriormente!", "error");
+		 document.getElementById('submit').disabled= true;
+		 return false;
+	 }else{
+		var fecha = new Date();
+		var ano = fecha.getFullYear();
+		document.getElementById('oficio').value = "SA/DFE/DHA/ETC.-"+x+"/"+ano;
+		document.getElementById('submit').disabled= false;
+
+	}
+});
+}
+
+function cctescuela(){
+var cct = document.getElementById("id_centro_trabajo").value;
+
+var route = "http://localhost:8000/traerpersonal/"+cct;
+
+$.get(route,function(res){
+  if(res.length > 0){
+    for (var i = 0; i < res.length; i++) {
+      if(res[i].estado =="ACTIVO"){
+        var x = document.getElementById("id_captura");
+        var option = document.createElement("option");
+        option.text = res[i].nombre;
+        option.value = res[i].nombre +"_"+res[i].categoria +"_"+res[i].sostenimiento +"_"+res[i].id;
+
+				x.add(option, x[i]);
+
+      }
+    }
+  }
+
+});
+}
+
+function calcula(){
+  var dias = document.getElementById('num_dias').value;
+  var categoria = document.getElementById('categoria').value;
+  var monto = document.getElementById('total').value;
+  var ciclo = document.getElementById('ciclo_escolar').value;
+
+  var route = "http://localhost:8000/calcular_reclamo/"+dias+"/"+categoria+"/"+ciclo;
+  $.get(route,function(res){
+    document.getElementById('total').value = res;
+		numero();
+	});
+
+}
+
+
+function validar_quincenaIna(){
+  var qna= document.getElementById("qna").value;
+  var sostenimiento= document.getElementById("sostenimiento").value;
+  var tipo= document.getElementById("tipo").value;
+  var route = "http://localhost:8000/validar_quincenaIna/"+qna+"/"+sostenimiento+"/"+tipo;
+  var fileInput = document.getElementById('file');
+  var filePath = fileInput.value;
+
+
+  $.get(route,function(res){
+
+    if(res.length > 0 ){
+
+      for (var i=0; i < res.length; i++){
+        if(res[i].estado=="INACTIVO"){
+
+          document.getElementById('submit').disabled=true;
+          swal("ERROR!","La Quincena << "+qna+" >> <<"+sostenimiento+">> que intenta registrar está en un estado <<INACTIVO>>, <<ACTIVAR>> y seguir con el registro.","error");
+             //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
+             fileInput.value = '';
+             return false;
+         }
+
+     }
+
+ }
+
+});
+   //
+}
+
+function valida_file_cargar(){
+  var fileInput = document.getElementById('file');
+  var filePath = fileInput.value;
+  var allowedExtensions = /(.csv|.csv)$/i;
+
+  if( document.getElementById("file").files.length == 0 ){
+
+      //swal("ERROR!","No se ha seleccionado ninguna Nomina.","error");
+      document.getElementById("error_file").innerHTML = "Carga tu nomina.";
+      return false
+    }else{
+
+      if(!allowedExtensions.exec(filePath)){
+        swal("WARNING!",'Solo es permitido subir archivos con extención ".csv y .xlsx" o de tipo Excel verifique sus datos',"warning");
+        fileInput.value = '';
+        return false;
+      }
+      document.getElementById('submit').disabled=false;
+
+    }
+
+}
+
+
+function busca_dias_captura(){
+  document.getElementById("detalles").deleteRow(1);
+
+  var ciclo = document.getElementById('ciclo_escolar').value;
+  document.getElementById('generar').href="http://localhost:8000/pdf_captura/"+ciclo;
+  var route = "http://localhost:8000/busca_dias_captura/"+ciclo;
+
+document.getElementById('excel_capturas').href="http://localhost:8000/descargar-capturas/"+ciclo;
+  var director= 0;
+  var docente = 0;
+  var intendente = 0;
+  var activo = 0;
+  var estatal = 0;
+  var federal = 0;
+
+  $.get(route,function(res){
+     console.log(res.length);
+    if(res.length > 0){
+      for (var i =0; res.length > i; i++) {
+        if(res[i].estado == "ACTIVO"){
+          activo = activo +1;
+
+        }
+
+
+        if(res[i].categoria == "DIRECTOR"){
+          director=director+1;
+        }else if(res[i].categoria == "DOCENTE" || res[i].categoria == "USAER" || res[i].categoria == "EDUCACION FISICA"){
+          docente=docente+1;
+        }else{
+          intendente= intendente+1;
+        }
+
+        if(res[i].sostenimiento == "ESTATAL"){
+          estatal=estatal+1;
+        }else if(res[i].sostenimiento == "FEDERAL"){
+          federal=federal+1;
+        }
+
+      }
+    }
+    var tabla = document.getElementById("detalles");
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "white";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+
+    cell1.innerHTML = res.length;
+    cell2.innerHTML = director;
+    cell3.innerHTML = docente;
+    cell4.innerHTML =  intendente;
+    cell5.innerHTML =  estatal;
+    cell6.innerHTML =  federal;
+
+
+
+  });
+
+
+}
+
+function busca_dias_captura_region(){
+  document.getElementById("detalles2").deleteRow(1);
+
+ var ciclo = document.getElementById('ciclo_escolar').value;
+ var region = document.getElementById('region').value;
+
+ var route = "http://localhost:8000/busca_dias_captura_region/"+region+"/"+ciclo;
+ var director= 0;
+ var docente = 0;
+ var intendente = 0;
+ var activo = 0;
+ var recibidos = 0;
+ var pendientes = 0;
+
+
+ $.get(route,function(res){
+
+   if(res.length > 0){
+     for (var i =0; res.length > i; i++) {
+       if(res[i].estado == "ACTIVO"){
+         activo = activo +1;
+
+       }
+
+
+       if(res[i].categoria == "DIRECTOR"){
+         director=director+1;
+       }else if(res[i].categoria == "DOCENTE" || res[i].categoria == "USAER" || res[i].categoria == "EDUCACION FISICA"){
+         docente=docente+1;
+       }else{
+         intendente= intendente+1;
+       }
+
+       if(res[i].qna_actual != 0){
+         recibidos=recibidos+1;
+       }else if(res[i].qna_actual == 0){
+         pendientes=pendientes+1;
+       }
+
+
+     }
+   }
+   var tabla = document.getElementById("detalles2");
+   var row = tabla.insertRow(1);
+   row.style.backgroundColor = "white";
+   var cell1 = row.insertCell(0);
+   var cell2 = row.insertCell(1);
+   var cell3 = row.insertCell(2);
+   var cell4 = row.insertCell(3);
+   var cell5 = row.insertCell(4);
+   var cell6 = row.insertCell(5);
+
+   cell1.innerHTML = res.length;
+   cell2.innerHTML = director;
+   cell3.innerHTML = docente;
+   cell4.innerHTML =  intendente;
+   cell5.innerHTML = recibidos;
+   cell6.innerHTML =  pendientes;
+
+ });
+
+
+}

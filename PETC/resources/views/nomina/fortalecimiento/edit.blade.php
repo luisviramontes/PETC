@@ -123,7 +123,7 @@ function validar_cct() {
 
 		 }else if(document.getElementById('cct').value != "Selecciona una opción"){
 			 			document.getElementById('ciclo_escolar').disabled=false;
-
+						 document.getElementById("error_cct").innerHTML = "";
 
 		 }
 	 }
@@ -137,7 +137,7 @@ function validar_ciclo() {
 
 	 		 }else if(document.getElementById('ciclo_escolar').value != "Selecciona una opción"){
 	 					document.getElementById('submit').disabled=false;
-	 					 
+	 					 document.getElementById("error_ciclo_escolar").innerHTML = ""; 	
 
 	 		 }
 }

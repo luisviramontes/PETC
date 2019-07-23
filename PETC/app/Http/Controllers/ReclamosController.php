@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection as Collection;
 class ReclamosController extends Controller
 {
-    /** 
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -33,7 +33,7 @@ class ReclamosController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index(request $request,$id) 
+    public function index(request $request,$id)
     {
       $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
@@ -46,9 +46,9 @@ class ReclamosController extends Controller
         $query=trim($request->GET('searchText'));
         $ciclos=DB::table('ciclo_escolar')->get();
 
-        $contador= DB::table('reclamos')->where('reclamos.estado','=','PENDIENTE')->where('reclamos.id_ciclo','=',$id)->count(); 
+        $contador= DB::table('reclamos')->where('reclamos.estado','=','PENDIENTE')->where('reclamos.id_ciclo','=',$id)->count();
 
-        if ($query == ""){ 
+        if ($query == ""){
          $reclamos=ReclamosModel::join('captura','captura.id','=','reclamos.id_captura')->join('cat_puesto','cat_puesto.id','=','captura.clave')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','reclamos.id_ciclo')->select('cat_puesto.cat_puesto','captura.observaciones as cobservaciones','ciclo_escolar.ciclo','captura.tipo_movimiento','captura.fecha_inicio as fecha_icaptura','captura.fecha_termino as fecha_tcaptura','captura.sostenimiento','region.region','municipios.municipio','localidades.nom_loc','captura.categoria','captura.nombre','captura.rfc','centro_trabajo.cct','centro_trabajo.nombre_escuela','reclamos.*')->where('reclamos.id_ciclo','=',$id)->paginate(30);
        }else{
         $reclamos=ReclamosModel::join('captura','captura.id','=','reclamos.id_captura')->join('cat_puesto','cat_puesto.id','=','captura.clave')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','reclamos.id_ciclo')->select('cat_puesto.cat_puesto','captura.observaciones as cobservaciones','ciclo_escolar.ciclo','captura.tipo_movimiento','captura.fecha_inicio as fecha_icaptura','captura.fecha_termino as fecha_tcaptura','captura.sostenimiento','region.region','municipios.municipio','localidades.nom_loc','captura.categoria','captura.nombre','captura.rfc','centro_trabajo.cct','centro_trabajo.nombre_escuela','reclamos.*')->where('reclamos.id_ciclo','=',$id)->orderBy('reclamos.estado','desc')->where('captura.rfc','LIKE','%'.$query.'%')->orwhere('captura.nombre','LIKE','%'.$query.'%')->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')->paginate(30);
@@ -66,8 +66,8 @@ class ReclamosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() 
-    { 
+    public function create()
+    {
               $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
@@ -146,7 +146,7 @@ class ReclamosController extends Controller
        $name6 = explode(",",$first6);
        $cuenta_copia= count($name6);
        $cuenta_copia_t=$cuenta_copia/5;
-       
+
 
 
        $ciclo=DB::table('ciclo_escolar')->where('ciclo','=',$ciclo_aux)->first();
@@ -173,7 +173,7 @@ class ReclamosController extends Controller
 
 
        for ($i=0; $i < $elementos ; $i++) {
-        $reclamo = new ReclamosModel; 
+        $reclamo = new ReclamosModel;
         $reclamo->id_captura=$name[$x];
         $x=$x+1;
 
@@ -240,7 +240,7 @@ class ReclamosController extends Controller
       $id_rec=DB::table('reclamos')->where('id','=',$id)->first();
 
       $reclamo=ReclamosModel::join('oficiosemitidos','oficiosemitidos.id','=','reclamos.id_oficio')->select('reclamos.*','oficiosemitidos.id_elabora','oficiosemitidos.salida','oficiosemitidos.num_oficio')->where('reclamos.id','=',$id)->first();
-      
+
       $captura=DB::table('captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->where('captura.estado','=','ACTIVO')->where('captura.pagos_registrados','=','0')->select('captura.id','captura.rfc','captura.fecha_inicio','captura.fecha_termino','captura.nombre','captura.categoria','centro_trabajo.nombre_escuela','centro_trabajo.cct')->where('captura.id','=',$id_rec->id_captura)->get();
 
       $captura2=DB::table('captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->where('captura.estado','=','ACTIVO')->where('captura.pagos_registrados','=','0')->select('captura.id','captura.rfc','captura.fecha_inicio','captura.fecha_termino','captura.nombre','captura.categoria','centro_trabajo.nombre_escuela','centro_trabajo.cct')->where('captura.id','=',$id_rec->id_captura)->first();
@@ -335,7 +335,7 @@ class ReclamosController extends Controller
      $reclamos = ReclamosModel::find($id);
      $reclamos->estado='PENDIENTE';
      $reclamos->update();
-     return Redirect::to('reclamos2/1'); 
+     return Redirect::to('reclamos2/1');
 
         //
    }}
@@ -374,36 +374,36 @@ class ReclamosController extends Controller
     $dia= DiasMesModel::
     select('id','tipo_dia')
     ->where('dia','=',$dia)->where('mes','=',$mes_aux)->where('año','=',$year)->where('tipo_dia','=','HABIL')
-    ->get(); 
+    ->get();
 
     return response()->json(
       $dia->toArray());
   }
 
 
-  public function calcular_reclamo($dias, $categoria, $ciclo){ 
+  public function calcular_reclamo($dias, $categoria, $ciclo){
 
     if($categoria == "DOCENTE"){
-      $monto=TabuladorPagosModel::select('pago_docente')->where('ciclo','=',$ciclo)->first(); 
+      $monto=TabuladorPagosModel::select('pago_docente')->where('ciclo','=',$ciclo)->first();
       $monto2= $monto->pago_docente * $dias;
 
     }elseif($categoria == "DIRECTOR"){
-      $monto=TabuladorPagosModel::select('pago_director')->where('ciclo','=',$ciclo)->first(); 
+      $monto=TabuladorPagosModel::select('pago_director')->where('ciclo','=',$ciclo)->first();
       $monto2= $monto->pago_director * $dias;
 
 
     }elseif($categoria == "INTENDENTE"){
-      $monto=TabuladorPagosModel::select('pago_intendente')->where('ciclo','=',$ciclo)->first(); 
+      $monto=TabuladorPagosModel::select('pago_intendente')->where('ciclo','=',$ciclo)->first();
       $monto2= $monto->pago_intendente * $dias;
 
 
     }elseif($categoria == "USAER"){
-      $monto=TabuladorPagosModel::select('pago_docente')->where('ciclo','=',$ciclo)->first(); 
+      $monto=TabuladorPagosModel::select('pago_docente')->where('ciclo','=',$ciclo)->first();
       $monto2= $monto->pago_docente * $dias;
 
 
     }elseif($categoria == "EDUCACION FISICA"){
-      $monto=TabuladorPagosModel::select('pago_docente')->where('ciclo','=',$ciclo)->first(); 
+      $monto=TabuladorPagosModel::select('pago_docente')->where('ciclo','=',$ciclo)->first();
       $monto2= $monto->pago_docente * $dias;
 
     }
@@ -419,7 +419,7 @@ class ReclamosController extends Controller
     $qnas= TablaPagosModel::
     select('qna')
     ->where('id_ciclo','=',$ciclo->id)
-    ->get(); 
+    ->get();
     return response()->json(
       $qnas);
   }
@@ -447,7 +447,7 @@ class ReclamosController extends Controller
    $reclamos = ReclamosModel::find($id);
    $reclamos->estado='APLICADO';
    $reclamos->update();
-   return Redirect::to('reclamos2/1'); 
+   return Redirect::to('reclamos2/1');
 
  }}
 
@@ -460,7 +460,7 @@ class ReclamosController extends Controller
 }
 
 public function busca_dias_reclamo($ciclo){
-  $reclamos=DB::table('reclamos')->join('captura','captura.id','=','reclamos.id_captura')->where('reclamos.id_ciclo','=',$ciclo)->select('reclamos.total_dias','reclamos.total_reclamo','reclamos.estado','captura.categoria')->get();
+  $reclamos=DB::table('reclamos')->join('captura','captura.id','=','reclamos.id_captura')->where('reclamos.id_ciclo','=',$ciclo)->select('reclamos.total_dias','reclamos.total_reclamo','reclamos.estado','captura.categoria','captura.sostenimiento')->get();
   return response()->json(
     $reclamos);
 
@@ -468,10 +468,10 @@ public function busca_dias_reclamo($ciclo){
 
 public function busca_dias_reclamo_region($region,$ciclo){
   if ($region == "todas") {
-    $reclamos=DB::table('reclamos')->join('captura','captura.id','=','reclamos.id_captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->join('region','region.id','=','centro_trabajo.id_region')->where('reclamos.id_ciclo','=',$ciclo)->select('region.region','region.sostenimiento','reclamos.total_dias','reclamos.total_reclamo','reclamos.estado','captura.categoria')->get();
+    $reclamos=DB::table('reclamos')->join('captura','captura.id','=','reclamos.id_captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->join('region','region.id','=','centro_trabajo.id_region')->where('reclamos.id_ciclo','=',$ciclo)->select('region.region','region.sostenimiento','reclamos.total_dias','reclamos.total_reclamo','reclamos.estado','captura.categoria','captura.pagos_registrados','captura.qna_actual')->get();
       # code...
   }else{
-    $reclamos=DB::table('reclamos')->join('captura','captura.id','=','reclamos.id_captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->join('region','region.id','=','centro_trabajo.id_region')->where('centro_trabajo.id_region','=',$region)->where('reclamos.id_ciclo','=',$ciclo)->select('region.region','region.sostenimiento','reclamos.total_dias','reclamos.total_reclamo','reclamos.estado','captura.categoria')->get();
+    $reclamos=DB::table('reclamos')->join('captura','captura.id','=','reclamos.id_captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->join('region','region.id','=','centro_trabajo.id_region')->where('centro_trabajo.id_region','=',$region)->where('reclamos.id_ciclo','=',$ciclo)->select('region.region','region.sostenimiento','reclamos.total_dias','reclamos.total_reclamo','reclamos.estado','captura.categoria','captura.pagos_registrados','captura.qna_actual')->get();
   }
   return response()->json(
     $reclamos);
@@ -507,7 +507,7 @@ public function invoice($ciclo){
   ->select(DB::raw('COUNT(reclamos.estado) as reclamos_pendientes'),
     'captura.categoria')->first();
 
-  for ($i=1; $i <= 26 ; $i++) { 
+  for ($i=1; $i <= 26 ; $i++) {
 
 
 

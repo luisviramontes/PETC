@@ -41,7 +41,7 @@
 							<label class="col-sm-3 control-label">Quincena <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
 								<select name="qna" id="qna" class="form-control select2" value="{{Input::old('qna')}}"  onchange="validar_quincenaExis();valida_qna()" required>
-									
+
 									@foreach($quincena as $quincena)
 									<option value="{{$quincena->qna}}">
 										{{$quincena->qna}}
@@ -179,7 +179,7 @@
 				return false
 			}else if(document.getElementById('qna').value != "Selecciona una opción"){
 				document.getElementById('sostenimiento').disabled=false;
-				document.getElementById("error_qna").innerHTML = "Proceda con la captura. 😀";
+				document.getElementById("error_qna").innerHTML = "";
 			}
 		}
 
@@ -193,7 +193,7 @@
 					return false
 				}else if(document.getElementById('sostenimiento').value != "Selecciona una opción"){
 							document.getElementById('tipo').disabled=false;
-							document.getElementById("error_sos").innerHTML = "Proceda con la captura. 😀";
+							document.getElementById("error_sos").innerHTML = "";
 				}
 			}
 
@@ -206,7 +206,7 @@
 						return false
 					}else if(document.getElementById('tipo').value != "Selecciona una opción"){
 								document.getElementById('file').disabled=false;
-								document.getElementById("error_tipo").innerHTML = "Proceda con la captura. 😀";
+								document.getElementById("error_tipo").innerHTML = "";
 					}
 				}
 
@@ -231,7 +231,7 @@
 				 return false;
 					}
 						document.getElementById('submit').disabled=false;
-						document.getElementById("error_file").innerHTML = "Proceda con la captura. 😀";
+						document.getElementById("error_file").innerHTML = "";
 					}
 
 				}
