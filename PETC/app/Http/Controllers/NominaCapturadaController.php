@@ -81,7 +81,7 @@ class NominaCapturadaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(NominaCapturadaRequest $formulario)
-    {
+    { 
 
       $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
@@ -150,7 +150,7 @@ class NominaCapturadaController extends Controller
            $captura->update();
                    # code...
          }
-
+ 
 
 
 
@@ -175,7 +175,7 @@ class NominaCapturadaController extends Controller
           $est->ciclo_escolar = $value->ciclo_escolar;
           $est->captura = $user;
           $est->save();
-          
+           
           $id_captura= DB::table('captura')->where('rfc','=',$value->rfc)->first();
           if ($id_captura == null) {
            $letra=substr($value->cat_puesto,0,1);
@@ -270,7 +270,7 @@ class NominaCapturadaController extends Controller
     $tabla3->save();
 
 
-            ///////////////////////////////////////////////77
+            ///////////////////////////////////////////////SI ES FEDERAL
   }else{
        $total_director_fed=0;
        $total_dedu_director_fed=0;
@@ -361,6 +361,9 @@ class NominaCapturadaController extends Controller
       $improcedente->neto= $value->neto;
       $improcedente->id_ciclo=$id_ciclo;
       $improcedente->captura=$user;
+      $improcedente->observaciones="NO SE ENCUENTRA ACTIVO EN LA CAPTURA DE PETC";
+      $improcedente->captura="PENDIENTE";
+
       $improcedente->save();
 
             # code...
@@ -438,7 +441,7 @@ $tabla6->save();
 
 
 
-if($nomina->save()){
+if($nomina->save()){ 
 
 
   return redirect('nomina_capturada');

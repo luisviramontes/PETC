@@ -84,7 +84,6 @@ class TabuladorPagosController extends Controller
        return view('permisos');
 
       }else{       
-    $user = Auth::user()->name; 
         $validator = Validator::make(
             $formulario->all(), 
             $formulario->rules(),
@@ -95,6 +94,7 @@ class TabuladorPagosController extends Controller
               return response()->json(["valid" => true], 200);
           }
           else{ 
+             $user = Auth::user()->name; 
             $tabla= new TabuladorPagosModel;
 
             $tabla->pago_director=$formulario->get('pago_director');

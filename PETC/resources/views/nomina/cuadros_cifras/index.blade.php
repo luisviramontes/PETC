@@ -7,7 +7,7 @@
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
-			<li ><a style="color: #808080" href="{{url('/tabla_pagos')}}">Inicio</a></li>
+			<li ><a style="color: #808080" href="{{url('/cuadros_cifras')}}">Inicio</a></li>
 			<li class="active">Cuadro de Cifras</a></li>
 		</ol>
 	</div>
@@ -28,12 +28,11 @@
 								<b>
 
 									<div class="btn-group" style="margin-right: 10px;">
-										<a class="btn btn-sm btn-success tooltips" href="{{ route('tabla_pagos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Pago Qna"> <i class="fa fa-plus"></i> Registrar </a>
 
 
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.tabla_pagos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.cuadros-cifras.excel',1)}}"  id="excel" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
 
-										<a class="btn btn-primary btn-sm" href="{{URL::action('TablaPagosController@invoice',2)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
+										<a class="btn btn-primary btn-sm"  id="invoice" href="{{URL::action('CuadroCifrasController@invoice',2)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" target="_blank" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
 
 										<a  class="btn btn-sm btn btn-info" href="{{route('nomina.tabulador_pagos.calculadora_pagos')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Calculadora de Pagos"> <i class="fa fa-plus"></i> Calculadora de Pagos </a> 
 
@@ -78,7 +77,7 @@
 								<td>{{$cuadro->captura}} </td>						
 								<td> 
 									<center>
-										<a href="{{URL::action('TablaPagosController@edit',$cuadro->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
+										<a href="{{URL::action('CuadroCifrasController@edit',$cuadro->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
 									</center>
 								</td>
 								<td>
@@ -112,4 +111,21 @@
 	</div><!--/col-md-12-->
 </div><!--/row-->
 </div>
-@stop
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+	window.onload=function(){
+		  var x =document.getElementById('ciclo_escolar2').value;
+           document.getElementById('excel').href="/descargar-cuadros-cifras/"+x; 
+      document.getElementById('invoice').href="/pdf-cuadros-cifras/"+x; 
+    
+	}
+
+	function cambia_ruta(){
+		 var x =document.getElementById('ciclo_escolar2').value;
+           document.getElementById('excel').href="/descargar-cuadros-cifras/"+x; 
+           document.getElementById('invoice').href="/pdf-cuadros-cifras/"+x; 
+	}
+
+
+</script>
+@endsection

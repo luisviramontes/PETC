@@ -118,7 +118,6 @@ class TablaPagosController extends Controller
         $tabla_2= DB::table('tabla_pagos')->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')->where('id_ciclo','=',$id)->first();
         $tabla= DB::table('tabla_pagos')->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')->where('id_ciclo','=',$id)->get();
 
-print_r($tabla_2->ciclo);
         $pago= DB::table('tabulador_pagos')->where('ciclo','=',$tabla_2->ciclo)->first();
          //$material   = AlmacenMaterial:: findOrFail($id);
         $date = date('Y-m-d');

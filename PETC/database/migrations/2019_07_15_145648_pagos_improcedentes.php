@@ -24,9 +24,12 @@ class PagosImprocedentes extends Migration
             $table->double('perc');
             $table->double('ded');
             $table->double('neto');
-           $table->integer('id_ciclo')->unsigned()->nullable();
+            $table->string('observaciones')->nullable();
+            $table->string('estado');
+            $table->integer('id_ciclo')->unsigned()->nullable();
             $table->foreign('id_ciclo')->references('id')->on('ciclo_escolar');
             $table->string('captura');
+
             $table->timestamps();
         });
     }

@@ -20,12 +20,12 @@
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
 							<div class="actions"> </div>
-
+							
 							<h4 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Historial de Reclamos :</strong></h4>
+							
 
 
-
-						</div>
+						</div>						
 						<div class="btn-group pull-right">
 							<b>
 								<div class="btn-group" style="margin-right: 10px;">
@@ -37,30 +37,30 @@
 
 									<a class="btn btn-primary btn-sm" id="generar" href="{{URL::action('ReclamosController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip"  target="_blank" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
-
-
+								
+									
 								</div>
 
 							</a>
-
+							
 						</b>
 					</div>
 
 				</div>
 			</div>
-
+			
 
 <h5 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Por Ciclo Escolar :</strong></h5>
 			<br> <br>
-
+			
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Seleccione Ciclo Escolar: <strog class="theme_color"></strog></label>
 				<div class="col-sm-6">
-					<select name="ciclo_escolar" id="ciclo_escolar" onchange="busca_dias_reclamo();busca_dias_reclamo_region();" class="form-control select2">
-						@foreach($ciclos as $ciclo)
-						<option value='{{$ciclo->id}}'>
+					<select name="ciclo_escolar" id="ciclo_escolar" onchange="busca_dias_reclamo();busca_dias_reclamo_region();" class="form-control select2" ">
+						@foreach($ciclos as $ciclo)				
+						<option value='{{$ciclo->id}}' >
 							{{$ciclo->ciclo}}
-						</option>
+						</option>						
 						@endforeach
 					</select>
 
@@ -68,7 +68,7 @@
 			</div>
 			<br> <br>
 
-			<div class="form-group"  class="table-responsive">
+			<div class="form-group"  class="table-responsive"> 
 				<table id="detalles" name="detalles[]" value="" class="table table-responsive-xl table-bordered">
 					<thead style="background-color:#A9D0F5">
 						<th>N° Reclamos</th>
@@ -87,20 +87,16 @@
 						<td style="display:none;"></td>
 						<td style="display:none;"></td>
 						<td style="display:none;"></td>
-						<td style="display:none;"></td>
+						<td style="display:none;"></td>	
 							<td style="display:none;"></td>
-						<td style="display:none;"></td>
+						<td style="display:none;"></td>								
 					</tfoot>
 				</table>
 
 
+			
 
-<<<<<<< HEAD
-
-			<a class="btn btn-sm btn-warning tooltips" id="excel_reclamos" href="{{ route('nomina.reclamos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-=======
 			<a class="btn btn-sm btn-warning tooltips" id="excel_reclamos" href="{{ route('nomina.reclamos.excel',2)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
->>>>>>> 97f3e9f35842dcd46398b4f8e11f951adeb20ace
 
 </div>
 <br> <br>
@@ -109,18 +105,18 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Seleccione Región: <strog class="theme_color"></strog></label>
 				<div class="col-sm-6">
-					<select name="region" id="region" onchange="busca_dias_reclamo_region();" class="form-control select2">
-						@foreach($regiones as $region)
+					<select name="region" id="region" onchange="busca_dias_reclamo_region();" class="form-control select2" ">
+						@foreach($regiones as $region)				
 						<option value='{{$region->id}}' >
 							{{$region->region}} {{$region->sostenimiento}}
-						</option>
+						</option>						
 						@endforeach
 					</select>
 
 				</div>
 			</div>
 <br> <br>
-			<div class="form-group"  class="table-responsive">
+			<div class="form-group"  class="table-responsive"> 
 				<table id="detalles2" name="detalles2[]" value="" class="table table-responsive-xl table-bordered">
 					<thead style="background-color:#A9D0F5">
 						<th>N° Reclamos</th>
@@ -139,19 +135,19 @@
 						<td style="display:none;"></td>
 						<td style="display:none;"></td>
 						<td style="display:none;"></td>
+						<td style="display:none;"></td>	
 						<td style="display:none;"></td>
-						<td style="display:none;"></td>
-						<td style="display:none;"></td>
+						<td style="display:none;"></td>								
 					</tfoot>
 				</table>
 
 
+				
 
 
 
 
-
-
+			
 
 
 		</div><!--/porlets-content-->

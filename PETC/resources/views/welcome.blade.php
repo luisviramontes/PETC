@@ -140,12 +140,12 @@
 					<div class="single-cat-widget">
 						<div class="content relative">
 							<div class="overlay overlay-bg"></div>
-							<a href="#" target="_blank">
+							<a href="/captura" target="_blank">
 								<div class="thumb">
 									<img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget1.jpg" alt="">
 								</div>
-								<div class="content-details">
-									<h4 class="content-title mx-auto text-uppercase">Nomina y Sistemas</h4>
+								<div class="content-details" >
+									<h4 class="content-title mx-auto text-uppercase" >Nomina y Sistemas</h4>
 									<span></span>
 									<p></p>
 								</div>

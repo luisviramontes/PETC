@@ -252,7 +252,7 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Dirigido Para: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
-							<select name="dirigido_a" id="dirigido_a"  class="form-control select2">
+							<select name="dirigido_a" id="dirigido_a"  class="form-control select">
 								@foreach($dirigido as $dirigido2)
 								@if($dirigido2->id == 63)
 								<option value='{{$dirigido2->puesto}}_{{$dirigido2->nombre_c}}_{{$dirigido2->id}}_{{$dirigido2->lic}}_{{$dirigido2->a_n}}' selected>
@@ -421,7 +421,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Genero Oficio: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="genero" id="genero"  class="form-control select2" >
+								<select name="genero" id="genero"  class="form-control select" >
 									@foreach($genero as $genero)
 									<option value='{{$genero->abrebiatura}}_{{$genero->id}}'>
 										{{$genero->nombre}}

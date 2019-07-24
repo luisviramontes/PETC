@@ -77,7 +77,7 @@ class ReclamosController extends Controller
       $genero=DB::table('directoriointerno')->where('estado','=','ACTIVO')->get();
       $dirigido=DB::table('directorioexterno')->where('estado','=','ACTIVO')->get();
       $ciclos=DB::table('ciclo_escolar')->get();
-      $captura=DB::table('captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->where('captura.estado','=','ACTIVO')->where('captura.pagos_registrados','=','0')->select('captura.id','captura.rfc','captura.fecha_inicio','captura.fecha_termino','captura.nombre','captura.categoria','centro_trabajo.nombre_escuela','centro_trabajo.cct')->get();
+      $captura=DB::table('captura')->where('captura.estado','=','ACTIVO')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->where('captura.qna_actual','=','0')->select('captura.id','captura.rfc','captura.fecha_inicio','captura.fecha_termino','captura.nombre','captura.categoria','centro_trabajo.nombre_escuela','centro_trabajo.cct')->get();
       return view('nomina.reclamos.create', ['dirigido'=>$dirigido,'captura'=> $captura,'ciclos'=>$ciclos,'genero'=>$genero,'pagos'=>$pagos]);
         //
     }}
@@ -158,6 +158,7 @@ class ReclamosController extends Controller
 
        $ofico_emite= new OficiosEmitidosModel;
        $ofico_emite->num_oficio=$oficio_aux;
+       $oficio->nombre_oficio=$request->get('oficio');
        $ofico_emite->id_dirigido=$id_dirigido;
        $ofico_emite->asunto="Solicitud de Pago";
        $ofico_emite->referencia="Nomina PETC";
@@ -287,6 +288,7 @@ class ReclamosController extends Controller
       $id_oficio_aux=$reclamo->id_oficio;
       $oficio=OficiosEmitidosModel::findOrFail($id_oficio_aux);
       $oficio->num_oficio=$request->get('oficio_aux');
+      $oficio->nombre_oficio=$request->get('oficio');
       $oficio->id_dirigido=$id_dirigido;
       $oficio->asunto="Solicitud de Pago";
       $oficio->referencia="Nomina PETC";
