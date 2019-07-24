@@ -952,23 +952,23 @@ function enviar_ciclo6(){
 
 function enviar_ciclo7(){
   var x =document.getElementById('ciclo_escolar2').value;
-  document.getElementById('excel').href="descargar-cuadros-cifras/"+x; 
+  document.getElementById('excel').href="descargar-cuadros-cifras/"+x;
   location.href="/cuadros_cifras/?ciclo_escolar2="+x;
 }
 
 function enviar_ciclo8(){
 var x =document.getElementById('ciclo_escolar2').value;
 var y =document.getElementById('searchText').value;
-                document.getElementById('excel').href="/descargar-pagos-improcedentes/"+x; 
-                document.getElementById('invoice').href="/pdf-pagos-improcedentes/"+x; 
+                document.getElementById('excel').href="/descargar-pagos-improcedentes/"+x;
+                document.getElementById('invoice').href="/pdf-pagos-improcedentes/"+x;
   location.href="/pagos_improcedentes?searchText="+y+"&ciclo_escolar2="+x;
 }
 
 function enviar_ciclo9(){
 var x =document.getElementById('ciclo_escolar2').value;
 var y =document.getElementById('searchText').value;
-           document.getElementById('excel').href="/descargar-tarjetas_fortalecimiento/"+x; 
-           document.getElementById('invoice').href="/pdf-tarjetas_fortalecimiento/"+x; 
+           document.getElementById('excel').href="/descargar-tarjetas_fortalecimiento/"+x;
+           document.getElementById('invoice').href="/pdf-tarjetas_fortalecimiento/"+x;
   location.href="/tarjetas_fortalecimiento?searchText="+y+"&ciclo_escolar2="+x;
 }
 
@@ -1509,11 +1509,11 @@ function valida_sostenimiento() {
          }else if (document.getElementById('cct').value == "Selecciona una opción" && document.getElementById('mes').value != "Selecciona una opción") {
            document.getElementById('submit').disabled=true;
            document.getElementById("error_cct").innerHTML = "No se ha seleccionado ninguna opción.";
-<<<<<<< HEAD
-           document.getElementById("error_mes").innerHTML = "";
-=======
 
->>>>>>> 97f3e9f35842dcd46398b4f8e11f951adeb20ace
+           document.getElementById("error_mes").innerHTML = "";
+
+
+
          }
        }
 
@@ -2325,7 +2325,7 @@ function buscar_qnas_pagos(){
 
       var aux = perc-ded;
       if(aux != liq){
-      
+
        swal("Alerta!", "Montos Incorrectos, el Liquido Tiene que Ser Igual que la Percepción menos la Deducción!", "error");
     return false;
 
