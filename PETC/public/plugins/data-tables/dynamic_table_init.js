@@ -2035,8 +2035,6 @@ $(document).ready(function() {
         }
     } );
  } );
-<<<<<<< HEAD
-=======
 
 
 function fnFormatDetails17 ( oTable, nTr )
@@ -2214,4 +2212,3 @@ $(document).ready(function() {
         }
     } );
  } );
->>>>>>> 97f3e9f35842dcd46398b4f8e11f951adeb20ace

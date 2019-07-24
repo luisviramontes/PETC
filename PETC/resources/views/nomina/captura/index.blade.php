@@ -103,14 +103,14 @@
 										<td style="background-color: #C5E1A5;">✔</td>
 										@else
 										<td style="background-color: #F1948A  
-;">X</td>
+										;">X</td>
 										@endif
 
 										@if($datos->qna_actual == "1")
 										<td style="background-color: #C5E1A5;">✔</td>
 										@else
 										<td style="background-color: #F1948A  
-;">X</td>
+										;">X</td>
 										@endif
 
 
@@ -154,14 +154,14 @@
 														<td style="background-color: #C5E1A5;">✔</td>
 														@else
 														<td style="background-color: #F1948A  
-;">X</td>
+														;">X</td>
 														@endif
 
 														@if($datos->qna_actual == "1")
 														<td style="background-color: #C5E1A5;">✔</td>
 														@else
 														<td style="background-color: #F1948A  
-;">X</td>
+														;">X</td>
 														@endif
 
 

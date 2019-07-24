@@ -2359,10 +2359,6 @@ function buscar_qnas_pagos(){
    });
    }
 
-   function traer_montos_forta(){
-    var x = document.getElementById('cct').value;
-
-<<<<<<< HEAD
     //tabla.setAttribute("id", id2);
 
 ////////NUMEROS A LETRAS////////////////////////////////////
@@ -2938,7 +2934,9 @@ function busca_dias_captura_region(){
 
 
 }
-=======
+
+
+   function traer_montos_forta(){
     var route = "http://localhost:8000/traer_montos_forta/"+x+"/";
       $.get(route,function(res){
       if(res.length > 0){
@@ -2949,4 +2947,3 @@ function busca_dias_captura_region(){
 
    });
    }
->>>>>>> 97f3e9f35842dcd46398b4f8e11f951adeb20ace
