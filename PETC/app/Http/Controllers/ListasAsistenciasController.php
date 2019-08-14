@@ -42,6 +42,8 @@ class ListasAsistenciasController extends Controller
       if($request)
       {
        $query=trim($request->GET('searchText'));
+       $ciclos=DB::table('ciclo_escolar')->get();
+       $query2=trim($request->GET('ciclo_escolar'));
        $listas = DB::table('listas_de_asistencias')
        ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
        ->select('centro_trabajo.id_region as id_region' )
@@ -55,9 +57,10 @@ class ListasAsistenciasController extends Controller
        ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
        ->orwhere('ciclo_escolar.ciclo','LIKE','%'.$query.'%')
        ->orwhere('region.region','LIKE','%'.$query.'%')
+       ->where('ciclo_escolar','=',$query2)
        ->paginate(24);
        //print_r($listas);
-      return view('nomina.listas_asistencias.index',["listas"=>$listas,"searchText"=>$query]);
+      return view('nomina.listas_asistencias.index',["listas"=>$listas,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
       // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
       //
 

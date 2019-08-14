@@ -9,13 +9,13 @@ use petc\Http\Requests;
 
 use petc\Http\Controllers\Controller;
 use petc\CentroTrabajoModel;
-use petc\DatosCentroTrabajoModel; 
+use petc\DatosCentroTrabajoModel;
 
 use Dompdf\Dompdf;
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
 use PHPExcel_Worksheet_Drawing;
-use Validator; 
+use Validator;
 use \Milon\Barcode\DNS1D;
 use \Milon\Barcode\DNS2D;
 use petc\Http\Requests\CentroTrabajoRequest;
@@ -33,7 +33,7 @@ class CentroTrabajoController extends Controller
       $this->middleware('auth');
     }
     public function index(request $request)
-    {  
+    {
       $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
@@ -41,17 +41,27 @@ class CentroTrabajoController extends Controller
      }else{
       if($request)
       {
+       $ciclos=DB::table('ciclo_escolar')->get();
+       $query2=trim($request->GET('ciclo_escolar'));
        $query=trim($request->GET('searchText'));
        $centro = DB::table('centro_trabajo')
        ->join('datos_centro_trabajo', 'centro_trabajo.id', '=','datos_centro_trabajo.id_centro_trabajo')
        ->join('region', 'centro_trabajo.id_region', '=','region.id')
        ->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
-       ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id') 
-       ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos', 
-        'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores', 
-        'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes', 
-        'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')->where('nombre_escuela','LIKE','%'.$query.'%')->orwhere('cct','LIKE','%'.$query.'%')->orwhere('localidades.nom_loc','LIKE','%'.$query.'%')->orwhere('municipios.municipio','LIKE','%'.$query.'%')->orwhere('centro_trabajo.domicilio','LIKE','%'.$query.'%')->where('centro_trabajo.estado','=','ACTIVO')->paginate(10);
-       return view('nomina.centro_trabajo.index',["centro"=>$centro,"searchText"=>$query]);
+       ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')
+       ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos',
+        'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores',
+        'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes',
+        'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')
+
+        ->where('nombre_escuela','LIKE','%'.$query.'%')
+        ->where('ciclo_escolar','=',$query2)
+        ->orwhere('cct','LIKE','%'.$query.'%')
+        ->orwhere('localidades.nom_loc','LIKE','%'.$query.'%')
+        ->orwhere('municipios.municipio','LIKE','%'.$query.'%')
+        ->orwhere('centro_trabajo.domicilio','LIKE','%'.$query.'%')
+        ->where('centro_trabajo.estado','=','ACTIVO')->paginate(10);
+       return view('nomina.centro_trabajo.index',["centro"=>$centro,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
      }} }
@@ -61,7 +71,7 @@ class CentroTrabajoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
+    {
       $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
@@ -90,7 +100,7 @@ class CentroTrabajoController extends Controller
      }else{
       $user = Auth::user()->name;
       $validator = Validator::make(
-        $formulario->all(), 
+        $formulario->all(),
         $formulario->rules(),
         $formulario->messages());
       if ($validator->valid()){
@@ -98,7 +108,7 @@ class CentroTrabajoController extends Controller
         if ($formulario->ajax()){
           return response()->json(["valid" => true], 200);
         }
-        else{ 
+        else{
           $datos= new CentroTrabajoModel;
           $datos2= new DatosCentroTrabajoModel;
           $datos->cct=$formulario->get('cct');
@@ -156,7 +166,7 @@ class CentroTrabajoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    { 
+    {
       $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
@@ -171,10 +181,10 @@ class CentroTrabajoController extends Controller
       ->join('datos_centro_trabajo', 'centro_trabajo.id', '=','datos_centro_trabajo.id_centro_trabajo')
       ->join('region', 'centro_trabajo.id_region', '=','region.id')
       ->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
-      ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id') 
-      ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.*','municipios.*','datos_centro_trabajo.id as id_datos_centro','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos', 
-        'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores', 
-        'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes', 
+      ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')
+      ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.*','municipios.*','datos_centro_trabajo.id as id_datos_centro','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos',
+        'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores',
+        'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes',
         'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')->where('centro_trabajo.id','=',$id)->first();
 
       return view('nomina.centro_trabajo.edit', ['ciclos'=> $ciclos,'localidades'=>$localidades,'municipios'=>$municipios,'centros'=>$centros,'region'=>$region]);
@@ -268,10 +278,10 @@ class CentroTrabajoController extends Controller
      ->join('datos_centro_trabajo', 'centro_trabajo.id', '=','datos_centro_trabajo.id_centro_trabajo')
      ->join('region', 'centro_trabajo.id_region', '=','region.id')
      ->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
-     ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id') 
-     ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.*','municipios.*','datos_centro_trabajo.id as id_datos_centro','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos', 
-      'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores', 
-      'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes', 
+     ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')
+     ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.*','municipios.*','datos_centro_trabajo.id as id_datos_centro','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos',
+      'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores',
+      'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes',
       'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')->where('centro_trabajo.estado','=','ACTIVO')->take(200)->get();
          //$material   = AlmacenMaterial:: findOrFail($id);
 
@@ -298,10 +308,10 @@ class CentroTrabajoController extends Controller
      ->join('datos_centro_trabajo', 'centro_trabajo.id', '=','datos_centro_trabajo.id_centro_trabajo')
      ->join('region', 'centro_trabajo.id_region', '=','region.id')
      ->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
-     ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id') 
-     ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos', 
-      'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores', 
-      'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes', 
+     ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')
+     ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos',
+      'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores',
+      'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes',
       'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')->where('centro_trabajo.id','=',$id_cct)->first();
        // print_r($materiales);
      $view =  \View::make('nomina.centro_trabajo.invoice_centro', compact('centro','date','nombre_ciclo','nombre'))->render();
@@ -318,7 +328,7 @@ class CentroTrabajoController extends Controller
      $nombre=DB::table('centro_trabajo')->join('datos_centro_trabajo', 'centro_trabajo.id', '=','datos_centro_trabajo.id_centro_trabajo')
      ->join('region', 'centro_trabajo.id_region', '=','region.id')
      ->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
-     ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id') 
+     ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')
      ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')->where('centro_trabajo.id','=',$id_cct)->first();
 
 
@@ -344,10 +354,10 @@ class CentroTrabajoController extends Controller
         $tabla = CentroTrabajoModel::join('datos_centro_trabajo', 'centro_trabajo.id', '=','datos_centro_trabajo.id_centro_trabajo')
         ->join('region', 'centro_trabajo.id_region', '=','region.id')
         ->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
-        ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id') 
-        ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','centro_trabajo.domicilio','centro_trabajo.telefono','centro_trabajo.email','centro_trabajo.ciclo_escolar','centro_trabajo.alimentacion','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos', 
-          'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores', 
-          'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes', 
+        ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')
+        ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','centro_trabajo.domicilio','centro_trabajo.telefono','centro_trabajo.email','centro_trabajo.ciclo_escolar','centro_trabajo.alimentacion','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos',
+          'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores',
+          'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes',
           'datos_centro_trabajo.fecha_ingreso','datos_centro_trabajo.captura')->where('centro_trabajo.estado','=','ACTIVO')->get();
         $sheet->fromArray($tabla);
         $sheet->row(1,['CCT','NOMBRE ESCUELA','DOMICILIO','TELEFONO' ,'EMAIL','CICLO ESCOLAR','ALIMENTACION','REGION','SOSTENIMIENTO','NOMBRE LOCALIDAD','MUNICIPIO','TOTAL ALUMNOS','TOTAL NIÑAS','TOTAL NIÑOS','TOTAL GRUPOS','TOTAL GRADOS','TOTAL DIRECTOR','TOTAL DOCENTES','TOTAL E.FISICA','TOTAL USAER','TOTAL ARTISTICA','TOTAL INTENDENTES','FECHA DE INGRESO AL PETC','CAPTURO']);
@@ -370,10 +380,10 @@ class CentroTrabajoController extends Controller
     ->join('datos_centro_trabajo', 'centro_trabajo.id', '=','datos_centro_trabajo.id_centro_trabajo')
     ->join('region', 'centro_trabajo.id_region', '=','region.id')
     ->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
-    ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id') 
-    ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos', 
-      'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores', 
-      'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes', 
+    ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')
+    ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos',
+      'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores',
+      'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes',
       'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')->where('centro_trabajo.id','=',$id_cct)->first();
 
     $inasistencias= DB::table('inasistencias')->join('captura','captura.id','=','inasistencias.id_captura')->select('inasistencias.*','captura.rfc','captura.nombre','captura.categoria')->where('inasistencias.id_ciclo','=',$ciclo)->where('inasistencias.id_cct_etc','=',$id_cct)->get();
@@ -392,11 +402,11 @@ class CentroTrabajoController extends Controller
 
 
 
-    $ciclos=DB::table('ciclo_escolar')->get();       
+    $ciclos=DB::table('ciclo_escolar')->get();
     $id_ciclo=$ciclo;
     return view('nomina.centro_trabajo.verinformacion', ['personal'=> $personal,'centro'=>$centro,'ciclos'=>$ciclos,'id_ciclo'=>$id_ciclo,'total_ina'=>$total_ina,'nombre'=>$nombre,'nombre_ciclo'=>$nombre_ciclo,'alta_1'=>$alta_1,'alta_2'=>$alta_2,'baja_1'=>$baja_1,'baja_2'=>$baja_2,'cambio_cct'=>$cambio_cct,'cambio_funcion'=>$cambio_funcion]);
 
-  } 
+  }
 
   public function ver_centros_trabajo(){
    $total=DB::table('centro_trabajo')->where('estado','=',"ACTIVO")->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();

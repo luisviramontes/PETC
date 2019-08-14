@@ -93,12 +93,13 @@ function fnFormatDetails_rein ( oTable, nTr )
     sOut += '<tr><td><strong>Categoria:</strong></td><td>'+aData[3]+' </td></tr>';
     sOut += '<tr><td><strong>Número de días:</strong></td><td>'+aData[4]+' </td></tr>';
     sOut += '<tr><td><strong>Director Regional:</strong></td><td>'+aData[5]+' </td></tr>';
-    sOut += '<tr><td><strong>Número de oficio:</strong></td><td>'+aData[6]+' </td></tr>';
-    sOut += '<tr><td><strong>Motivo:</strong></td><td>'+aData[7]+' </td></tr>';
-    sOut += '<tr><td><strong>Total Reintegro:</strong></td><td>'+aData[8]+' </td></tr>';
-    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[9]+' </td></tr>';
-    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[10]+' </td></tr>';
-    sOut += '<tr><td><strong>Fecha de Registro:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Número de oficio:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>Motivo:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Reintegro:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Registro:</strong></td><td>'+aData[12]+' </td></tr>';
 
 
 

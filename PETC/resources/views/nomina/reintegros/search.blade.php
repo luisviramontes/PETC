@@ -12,4 +12,24 @@
 		</span>
 	</div>
 </div>
+
+<div class="form-group">
+				<label class="col-sm-3 control-label">Seleccione Ciclo Escolar : <strog class="theme_color"></strog></label>
+				<div class="col-sm-6">
+					<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2" onchange="enviar_ciclo_reintegros()"  >
+						@foreach($ciclos as $ciclo)
+						@if($ciclo->ciclo == $ciclo_escolar)
+						<option value='{{$ciclo->ciclo}}' selected>
+							{{$ciclo->ciclo}}
+						</option>
+						@else
+						<option value='{{$ciclo->ciclo}}'>
+							{{$ciclo->ciclo}}
+						</option>
+						@endif
+						@endforeach
+					</select>
+
+				</div>
+</div>
 {!! Form::close() !!}
