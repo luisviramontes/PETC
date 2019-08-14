@@ -187,6 +187,7 @@
             <li> <a href="javascript:void(0);"> <i class="fa fa-shopping-cart"></i> ESCUELAS <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
                 <li> <a href="{{url('centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Centros de Trabajo</b> </a> </li>
+                 <li> <a href="{{url('ver_centros_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Informe de CTE</b> </a> </li>
                 <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>
                 <li> <a href="{{url('municipios')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Municipios</b> </a> </li>
                 <li> <a href="{{url('localidades')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Localidades</b> </a> </li>

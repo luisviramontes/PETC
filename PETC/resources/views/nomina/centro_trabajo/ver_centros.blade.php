@@ -35,8 +35,8 @@
 				<div class="porlets-content container clear_both padding_fix">
 
 
-					
-					<br><br>
+					<h4 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Total de Escuelas </b> </u> </strong></h4>
+					<br>
 
 					<div class="porlets-content">
 						<div class="table-responsive">
@@ -53,15 +53,15 @@
 									</tr>
 								</thead>
 								<tbody> 
-								<tr>							
-									<td>{{$total->total_registros}}</td>
-									<td>{{$total_pre->total_registros}}</td>
-									<td>{{$total_pre_a->total_registros}}</td>
-									<td>{{$total_prim->total_registros}}</td>
-									<td>{{$total_prim_a->total_registros}}</td>
-									<td>{{$total_sec->total_registros}}</td>
-									<td>{{$total_sec_a->total_registros}}</td>
-								</tr>          																							              
+									<tr>							
+										<td>{{$total->total_registros}}</td>
+										<td>{{$total_pre->total_registros}}</td>
+										<td>{{$total_pre_a->total_registros}}</td>
+										<td>{{$total_prim->total_registros}}</td>
+										<td>{{$total_prim_a->total_registros}}</td>
+										<td>{{$total_sec->total_registros}}</td>
+										<td>{{$total_sec_a->total_registros}}</td>
+									</tr>          																							              
 								</tbody>
 
 							</table>
@@ -97,43 +97,10 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Alimentación: <strog class="theme_color"></strog></label>
-						<div class="col-sm-3">
-							<select name="region" id="region" onchange="calculo_nomina_region();" class="form-control select2">
-								<option value='1' selected>
-									Todas las Escuelas									
-								</option>
-								<option value='2' >
-									Escuelas Con Alimentación									
-								</option>																
-							</select>
 
-						</div>
-					</div>
 
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Nivel: <strog class="theme_color"></strog></label>
-						<div class="col-sm-3">
-							<select name="region" id="region" onchange="calculo_nomina_region();" class="form-control select2">
-								<option value='1' selected>
-									Todas las Escuelas									
-								</option>
-								<option value='2' >
-									PREESCOLAR									
-								</option>	
-								<option value='3' >
-									PRIMARIA									
-								</option>	
-								<option value='4' >
-									SECUNDARIA									
-								</option>																
-							</select>
 
-						</div>
-					</div>
-
-<br><br><br><br><br>
+					<br><br><br>
 
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Seleccione Opción: <strog class="theme_color"></strog></label>
@@ -148,34 +115,61 @@
 
 					<div class="porlets-content">
 						<div class="table-responsive">
-							<table  id="detalles2" class="display table table-bordered table-striped" >
+							<table  class="display table table-bordered table-striped" id="dynamic-table2">
 								<thead>
 									<tr>
-										<th>Total de Dias </th> 
-										<th>Categoria </th> 
-										<th>Total Personal </th>										
-										<th>Monto Total </th> 										         
+										<th>Total de Escuelas </th>
+										<th>Preescolares </th>
+										<th>Preescolares Alimentación </th>  
+										<th>Primarias </th>
+										<th>Primarias Alimentación </th>   
+										<th>TeleSecundarias </th>	
+										<th>TeleSecundarias Alimentación </th>   																												         
 									</tr>
 								</thead>
-								<tbody>           
+								<tbody> 
 
-									<tr class="gradeA">
+								</tbody>
 
-									</tbody>
+							</table>
 
-								</table>
-
-							</div><!--/porlets-content-->
-						</div><!--/block-web-->
-
-
+						</div><!--/porlets-content-->
 					</div><!--/block-web-->
-				</div><!--/col-md-12-->
-			</div><!--/row-->
-		</div>
-		<script type="text/javascript">
-			window.onload = function() {
-				calculo_nomina();
+<br><br><br>
+					<h4 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Escuelas </b> </u> </strong></h4>
+
+					<div class="porlets-content">
+						<div class="table-responsive">
+							<table  class="display table table-bordered table-striped" id="dynamic-table3">
+								<thead>
+									<tr>
+										<th>C.C.T </th>
+										<th>Nombre de Escuela </th>
+										<th>Nivel </th>  
+										<th>Alimentación </th>
+										<th>Teléfono </th>
+										<th>Domicilio </th>
+										<th>Localidad </th>
+										<th>Municipio </th>								         
+									</tr>
+								</thead>
+								<tbody> 
+
+								</tbody>
+
+							</table>
+
+						</div><!--/porlets-content-->
+					</div><!--/block-web-->
+
+
+				</div><!--/block-web-->
+			</div><!--/col-md-12-->
+		</div><!--/row-->
+	</div>
+	<script type="text/javascript">
+		window.onload = function() {
+			//	calculo_nomina();
 				//calculo_qna_nominas();
 				//calculo_nomina_region();
 			}
