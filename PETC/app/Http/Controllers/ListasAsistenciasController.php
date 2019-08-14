@@ -9,6 +9,7 @@ use petc\Http\Requests;
 use petc\Http\Controllers\Controller;
 
 use petc\ListasAsistenciaModel;
+use petc\CentroTrabajoModel;
 
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -29,7 +30,7 @@ class ListasAsistenciasController extends Controller
         public function __construct()
     {
         $this->middleware('auth');
-    }  
+    }
 
     public function index(request $request)
     {
@@ -45,13 +46,14 @@ class ListasAsistenciasController extends Controller
        ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
        ->select('centro_trabajo.id_region as id_region' )
        ->join('region','centro_trabajo.id_region', '=' ,'region.id')
-     //->join('centro_trabajo','listas_de_asistencias.id', '=','centro_trabajo.id')
+       ->join('ciclo_escolar','listas_de_asistencias.id_ciclo', '=','ciclo_escolar.id')
 
        ->select('listas_de_asistencias.id as id','listas_de_asistencias.id_centro_trabajo','listas_de_asistencias.mes'
        ,'listas_de_asistencias.estado','listas_de_asistencias.observaciones','listas_de_asistencias.captura',
-       'centro_trabajo.nombre_escuela','centro_trabajo.cct','region.region')
+       'centro_trabajo.nombre_escuela','centro_trabajo.cct','region.region','region.sostenimiento','ciclo_escolar.ciclo','listas_de_asistencias.created_at')
        ->where('nombre_escuela','LIKE','%'.$query.'%')
-       ->orwhere('cct','LIKE','%'.$query.'%')
+       ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
+       ->orwhere('ciclo_escolar.ciclo','LIKE','%'.$query.'%')
        ->orwhere('region.region','LIKE','%'.$query.'%')
        ->paginate(24);
        //print_r($listas);
@@ -113,6 +115,7 @@ class ListasAsistenciasController extends Controller
       //$first=head($id_cct);
       $name=explode("_",$id_cct);
       $lista -> id_centro_trabajo = $name[2];
+      $lista -> id_ciclo =$request ->ciclo_escolar;
       $lista -> mes = $request ->mes;
       $lista -> estado = "ACTIVO";
       $lista -> observaciones = $request ->observaciones;
@@ -270,7 +273,7 @@ class ListasAsistenciasController extends Controller
 
    $lista= ListasAsistenciaModel::select('id','estado')
    ->where('id_ciclo','=',$ciclo)
-   ->get(); 
+   ->get();
 
    return response()->json(
     $lista->toArray());
@@ -281,7 +284,7 @@ class ListasAsistenciasController extends Controller
 
    $lista= ListasAsistenciaModel::join('centro_trabajo','centro_trabajo.id','=','listas_de_asistencias.id_centro_trabajo')->select('listas_de_asistencias.id','listas_de_asistencias.estado')
    ->where('listas_de_asistencias.id_ciclo','=',$ciclo)->where('centro_trabajo.id_region','=',$region)
-   ->get(); 
+   ->get();
 
    return response()->json(
     $lista->toArray());
@@ -292,7 +295,7 @@ class ListasAsistenciasController extends Controller
 
    $lista= ListasAsistenciaModel::join('centro_trabajo','centro_trabajo.id','=','listas_de_asistencias.id_centro_trabajo')->select('listas_de_asistencias.id','listas_de_asistencias.estado')
    ->where('listas_de_asistencias.id_ciclo','=',$ciclo)->where('centro_trabajo.id_region','=',$region)->where('listas_de_asistencias.mes','=',$mes)
-   ->get(); 
+   ->get();
 
    return response()->json(
     $lista->toArray());
@@ -316,6 +319,37 @@ class ListasAsistenciasController extends Controller
          });
      })->export('xls');
  }
+
+ public function escuelas(Request $request,$esc)
+   {
+     $escuelas= CentroTrabajoModel::select('id','nombre_escuela','cct', 'estado')
+     ->where('id_region','=',$esc)->where('estado','=','ACTIVO')
+     ->get();
+
+     return response()->json(
+       $escuelas->toArray());
+}
+
+public function busca_listas_esc($region,$cct){
+  if ($region == "todas") {
+    $listas=DB::table('listas_de_asistencias')
+    ->join('centro_trabajo','centro_trabajo.id','=','listas_de_asistencias.id_centro_trabajo')
+    ->where('listas_de_asistencias.id_centro_trabajo','=',$cct)
+    ->where('listas_de_asistencias.estado','=',"ACTIVO")
+    ->select('listas_de_asistencias.mes','listas_de_asistencias.estado','centro_trabajo.nombre_escuela')->get();
+      # code...
+  }else{
+    $listas=DB::table('listas_de_asistencias')
+    ->join('centro_trabajo','centro_trabajo.id','=','listas_de_asistencias.id_centro_trabajo')
+    ->where('centro_trabajo.id_region','=',$region)
+    ->where('listas_de_asistencias.id_centro_trabajo','=',$cct)
+    ->where('listas_de_asistencias.estado','=',"ACTIVO")
+    ->select('listas_de_asistencias.mes','listas_de_asistencias.estado','centro_trabajo.nombre_escuela')->get();
+  }
+  return response()->json(
+    $listas);
+
+}
 
 
 }

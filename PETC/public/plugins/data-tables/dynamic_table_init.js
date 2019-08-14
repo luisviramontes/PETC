@@ -354,20 +354,22 @@ function fnFormatDetails_soli ( oTable, nTr )
     sOut += '<tr><td><strong>Entrego Acta:</strong></td><td>'+aData[1]+' </td></tr>';
     sOut += '<tr><td><strong>Solicitud Incorporacion:</strong></td><td>'+aData[2]+' </td></tr>';
     sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[3]+' </td></tr>';
-    sOut += '<tr><td><strong>Nombre Escuela:</strong></td><td>'+aData[4]+' </td></tr>';
-    sOut += '<tr><td><strong>Municipio:</strong></td><td>'+aData[5]+' </td></tr>';
-    sOut += '<tr><td><strong>Localidad:</strong></td><td>'+aData[6]+' </td></tr>';
-    sOut += '<tr><td><strong>Domicilio:</strong></td><td>'+aData[7]+' </td></tr>';
-    sOut += '<tr><td><strong>Nivel:</strong></td><td>'+aData[8]+' </td></tr>';
-    sOut += '<tr><td><strong>PNPSVD:</strong></td><td>'+aData[9]+' </td></tr>';
-    sOut += '<tr><td><strong>CNH:</strong></td><td>'+aData[10]+' </td></tr>';
-    sOut += '<tr><td><strong>Carta Compromiso:</strong></td><td>'+aData[11]+' </td></tr>';
-    sOut += '<tr><td><strong>Acta Constitutiva:</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre Escuela:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>Municipio:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Localidad:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>Domicilio:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Nivel:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>PNPSVD:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>CNH:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Carta Compromiso:</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>Acta Constitutiva:</strong></td><td>'+aData[13]+' </td></tr>';
     sOut += '<tr><td><strong>Acta CPS:</strong></td><td>'+aData[13]+' </td></tr>';
-    sOut += '<tr><td><strong>Acta CTCS:</strong></td><td>'+aData[14]+' </td></tr>';
-    sOut += '<tr><td><strong>Tramite Estado:</strong></td><td>'+aData[15]+' </td></tr>';
-    sOut += '<tr><td><strong>Fecha de Recepcion:</strong></td><td>'+aData[16]+' </td></tr>';
-    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[17]+' </td></tr>';
+    sOut += '<tr><td><strong>Acta CTCS:</strong></td><td>'+aData[15]+' </td></tr>';
+    sOut += '<tr><td><strong>Tramite Estado:</strong></td><td>'+aData[16]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Recepcion:</strong></td><td>'+aData[17]+' </td></tr>';
+    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[18]+' </td></tr>';
+    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[19]+' </td></tr>';
 
 
 

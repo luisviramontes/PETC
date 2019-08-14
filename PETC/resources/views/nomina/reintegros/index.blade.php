@@ -31,7 +31,7 @@
 											<a class="btn btn-sm btn-success tooltips" href="{{ route('reintegros.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Region"> <i class="fa fa-plus"></i> Registrar </a>
 										<!--	<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.region.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
 										-->	<a class="btn btn-primary btn-sm" href="{{URL::action('ReintegrosController@invoice2','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
-
+													<a class="btn btn-primary btn-sm"  href="{{URL::action('ReintegrosController@ver_reintegros')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de Reintegros"> <i class="fa fa-eye"></i> Ver Reintegros</a>
 									</div>
 
 								</a>

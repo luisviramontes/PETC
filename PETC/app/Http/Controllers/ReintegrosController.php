@@ -460,9 +460,9 @@ class ReintegrosController extends Controller
       ,'reintegros.*'
       ,'directorio_regional.director_regional'
       ,'cuentas.nombre','cuentas.num_cuenta','cuentas.clave_in','cuentas.secretaria'
-      ,'bancos.nombre_banco')
+      ,'bancos.nombre_banco')->where('reintegros.id_ciclo','=',$id)->get();
       //,'oficiosemitidos.num_oficio','oficiosemitidos.asunto','oficiosemitidos.referencia','oficiosemitidos.salida','oficiosemitidos.observaciones')
-      ->get();
+
 
       $view =  \View::make('nomina.reintegros.invoice2', compact('cuenta_copia_t','cuenta_copia','name6'
       ,'dirigido_puesto','dirigido_nombrec','dirigido_aux'
@@ -473,6 +473,43 @@ class ReintegrosController extends Controller
       $pdf->loadHTML($view);
       return $pdf->stream('invoice2.pdf');
     }
+
+
+    ////////////exel////////////////
+
+    public function excel(Request $request, $aux)
+    {
+
+     Excel::create('reintegros', function($excel) use($aux) {
+         $excel->sheet('Excel sheet', function($sheet) use($aux) {
+
+            $tabla = ReintegrosModel::join('captura','reintegros.id_captura', '=', 'captura.id' ) //nombre, sostenimiento, categoria
+            ->join('centro_trabajo','reintegros.id_centro_trabajo', '=', 'centro_trabajo.id' ) //cct
+            ->join('directorio_regional','reintegros.id_directorio_regional', '=', 'directorio_regional.id' ) //director_regional,sostenimiento
+            ->join('cuentas','reintegros.id_cuenta', '=', 'cuentas.id' ) //cuentas
+            ->join('bancos','reintegros.id_banco', '=', 'bancos.id' ) //bancos
+            ->join('ciclo_escolar','reintegros.id_ciclo', '=', 'ciclo_escolar.id' ) //bancos
+
+            ->select(
+            'centro_trabajo.cct'
+            ,'captura.nombre','captura.categoria'
+            ,'directorio_regional.director_regional'
+            ,'reintegros.num_dias'
+            ,'reintegros.oficio'
+            ,'reintegros.motivo'
+            ,'reintegros.total'
+            ,'ciclo_escolar.ciclo'
+            ,'reintegros.created_at')
+           ->where('reintegros.id_ciclo','=',$aux)
+           ->get();
+
+             $sheet->fromArray($tabla);
+             $sheet->row(1,['CCT','NOMBRE','CATEGORIA','DIRECTOR REGIONAL','NUM_DIAS','NO OFICIO','MOTIVO','TOTAL','CICLO ESCOLAR','FECHA DE REGISTRO']);
+             $sheet->setOrientation('landscape');
+         });
+     })->export('xls');
+   }
+
 
 
 public function traerpersonal(Request $request,$cct)
@@ -514,6 +551,53 @@ public function banco(Request $request,$banco)
 
     return response()->json(
       $bancos->toArray());
+}
+
+
+
+public function ver_reintegros(){
+    $ciclos=DB::table('ciclo_escolar')->get();
+    $regiones=DB::table('region')->where('estado','=','ACTIVO')->get();
+    $escuelas=DB::table('centro_trabajo')->get();
+    return view('nomina.reintegros.ver_reintegros', ['ciclos'=>$ciclos,'regiones'=>$regiones,'escuelas'=>$escuelas,]);
+
+}
+
+public function busca_rein($ciclo){
+
+ $fortalecimiento=DB::table('reintegros')
+ ->where('reintegros.id_ciclo','=',$ciclo)
+ ->where('reintegros.estado','=',"ACTIVO")
+ ->join('centro_trabajo', 'reintegros.id_centro_trabajo', '=','centro_trabajo.id')
+ ->join('region', 'centro_trabajo.id_region', '=','region.id')
+ ->select('reintegros.estado','centro_trabajo.cct','reintegros.total','region.sostenimiento')
+ ->get();
+ return response()->json(
+   $fortalecimiento);
+
+}
+
+public function busca_rein_region($region,$ciclo){
+  if ($region == "todas") {
+    $reintegros=DB::table('reintegros')->join('centro_trabajo','centro_trabajo.id','=','reintegros.id_centro_trabajo')
+    ->join('region','region.id','=','centro_trabajo.id_region')
+    //->where('captura.id_cct_etc','=',$cct)
+    ->where('reintegros.id_ciclo','=',$ciclo)
+    ->where('reintegros.estado','=',"ACTIVO")
+    ->select('region.region','region.sostenimiento')->get();
+
+  }else{
+    $reintegros=DB::table('reintegros')->join('centro_trabajo','centro_trabajo.id','=','reintegros.id_centro_trabajo')
+    ->join('region','region.id','=','centro_trabajo.id_region')
+    ->where('centro_trabajo.id_region','=',$region)
+    ->where('reintegros.id_ciclo','=',$ciclo)
+    ->where('reintegros.estado','=',"ACTIVO")
+    //->where('captura.id_cct_etc','=',$cct)
+    ->select('region.region','region.sostenimiento','reintegros.total')->get();
+  }
+  return response()->json(
+    $reintegros);
+
 }
 
 

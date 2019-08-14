@@ -40,23 +40,23 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Seleccione Ciclo Escolar: <strog class="theme_color"></strog></label>
 							<div class="col-sm-6">
-								<select name="ciclo_escolar" id="ciclo_escolar" onchange="busca_dias_reclamo();busca_dias_reclamo_region();" class="form-control select2" ">
-									@foreach($ciclos as $ciclo)	
+								<select name="ciclo_escolar" id="ciclo_escolar" onchange="busca_dias_reclamo();busca_dias_reclamo_region();" class="form-control select2">
+									@foreach($ciclos as $ciclo)
 									@if($ciclo->id == 2)
                                     <option value='{{$ciclo->id}}' selected>
 										{{$ciclo->ciclo}}
 									</option>
-									@else			
+									@else
 									<option value='{{$ciclo->id}}' >
 										{{$ciclo->ciclo}}
 									</option>
-									@endif						
+									@endif
 									@endforeach
 								</select>
 
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Mes <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
@@ -109,11 +109,14 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Seleccione Región: <strog class="theme_color"></strog></label>
 							<div class="col-sm-6">
-								<select name="region" id="region" onchange="busca_dias_reclamo_region();" class="form-control select2" ">
-									@foreach($regiones as $region)				
+								<select name="region" id="region" onchange="escuelas();" class="form-control">
+									<option selected>
+										Selecciona una opción
+									</option>
+									@foreach($regiones as $region)
 									<option value='{{$region->id}}' >
 										{{$region->region}} {{$region->sostenimiento}}
-									</option>						
+									</option>
 									@endforeach
 								</select>
 
@@ -128,15 +131,11 @@
 									<option selected>
 										Selecciona una opción
 									</option>
-									@foreach($cct as $cct)
-									<option value="{{$cct->cct}}_{{$cct->nombre_escuela}}_{{$cct->id}}">
-										{{$cct->cct}}
-									</option>
-									@endforeach 
+
 								</select>
 								<div class="help-block with-errors"></div>
 								<div class="text-danger" id='error_cct'>{{$errors->formulario->first('cct')}}</div>
-							</div> 
+							</div>
 						</div>
 
 						<div class="form-group">
@@ -193,6 +192,35 @@
 		claves();
 		valida_cct();
 	}
+
+function escuelas(){
+
+	var esc = document.getElementById("region").value;
+
+	var route = "http://localhost:8000/escuelas/"+esc;
+
+
+	$.get(route,function(res){
+	  if(res.length > 0){
+
+	    for (var i = 0; i < res.length; i++) {
+	      if(res[i].estado =="ACTIVO"){
+	        var x = document.getElementById("cct");
+	        var option = document.createElement("option");
+	        option.text = res[i].cct +" "+ res[i].nombre_escuela;
+	        option.value = res[i].cct +"_"+ res[i].nombre_escuela +"_"+ res[i].id;
+
+					x.add(option, x[i]);
+
+	      }
+	    }
+	  }
+
+	 });
+
+	}
+
+
 </script>
 
 @endsection

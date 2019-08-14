@@ -38,8 +38,8 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Ciclo Escolar: <strog class="theme_color">*</strog></label>
 								<div class="col-sm-6">
-									<select name="ciclo_escolar" id="ciclo_escolar"  class="form-control select2" ">
-										@foreach($ciclos as $ciclo) 
+									<select name="ciclo_escolar" id="ciclo_escolar"  class="form-control select2">
+										@foreach($ciclos as $ciclo)
 										@if($ciclo->id == 2)
 										<option value='{{$ciclo->ciclo}}' selected>
 											{{$ciclo->ciclo}}
@@ -95,8 +95,8 @@
 						--></div>
 					</div>
 
-					
-					
+
+
 
 
 
@@ -107,14 +107,14 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Centro de Trabajo <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
-							<select name="cct" id="cct" class="form-control select" >								
+							<select name="cct" id="cct" class="form-control select" >
 							</select>
 							<div class="help-block with-errors"></div>
 							<!--	<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
 						--></div>
 					</div>
 
-					
+
 				</div>
 
 
@@ -165,7 +165,7 @@
 							</div>
 						</div><!--/form-group-->
 
-						
+
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Observaciones: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
@@ -174,13 +174,13 @@
 						</div>
 
 
- 
+
 					<div class="form-group">
 						<div class="col-sm-offset-7 col-sm-5">
 							<button id="submit3" target="_blank" class="btn btn-primary">Generar</button>
 							<a href="{{url('/listas_asistencias')}}" class="btn btn-default"> Cancelar</a>
 						</div>
-					</div><!--/form-group--> 
+					</div><!--/form-group-->
 
 
 					<!--	<div class="form-group">
@@ -192,7 +192,7 @@
 								<div class="help-block with-errors"></div>
 							</div>
 						</div>--><!--/form-group-->
-						
+
 
 
 
@@ -206,7 +206,7 @@
 	</div><!--/row-->
 </div><!--/container clear_both padding_fix-->
 <script type="text/javascript">
-	function cambia_valor(aux){	
+	function cambia_valor(aux){
 
 		if(aux == 1){
 			document.getElementById('div_region').style.display = 'none';
@@ -231,10 +231,10 @@
 				if(res.length > 0){
 					for (var i = 0; i < res.length; i++) {
 						var x = document.getElementById("cct");
-						var option = document.createElement("option");						      
+						var option = document.createElement("option");
 						option.text = res[i].cct +"-"+res[i].nombre_escuela;
 						option.value = res[i].id;
-						x.add(option, x[i])					
+						x.add(option, x[i])
 					}
 				}
 			});

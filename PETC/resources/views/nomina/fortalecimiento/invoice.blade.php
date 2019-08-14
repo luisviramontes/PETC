@@ -48,7 +48,7 @@
         <tr>
           <td>{{$fortalecimiento->cct}} </td>
           <td>{{$fortalecimiento->monto_forta}} </td>
-          <td>{{$fortalecimiento->ciclo_escolar}} </td>
+          <td>{{$fortalecimiento->ciclo}} </td>
           <td>{{$fortalecimiento->observaciones}}</td>
 
 
