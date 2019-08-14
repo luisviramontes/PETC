@@ -47,8 +47,10 @@ class FortalecimientoController extends Controller
        $fortalecimientos = DB::table('fortalecimiento')
        ->join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
        ->join('ciclo_escolar', 'fortalecimiento.id_ciclo', '=','ciclo_escolar.id')
-       ->select('fortalecimiento.id as id','fortalecimiento.*','centro_trabajo.cct as cct','ciclo_escolar.ciclo')
+       ->join('region', 'centro_trabajo.id_region', '=','region.id')
+       ->select('fortalecimiento.id as id','fortalecimiento.*','centro_trabajo.cct as cct','ciclo_escolar.ciclo','region.sostenimiento','region.region')
        ->where('cct','LIKE','%'.$query.'%')
+       ->where('region.sostenimiento','LIKE','%'.$query.'%')
        ->orwhere('monto_forta','LIKE','%'.$query.'%')
        ->paginate(915);
 
@@ -183,7 +185,9 @@ class FortalecimientoController extends Controller
     public function invoice($id){
         $fortalecimientos = DB::table('fortalecimiento')
         ->join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
-        ->select('fortalecimiento.id as id','fortalecimiento.*','centro_trabajo.cct as cct')->get();
+        ->join('ciclo_escolar', 'ciclo_escolar.id', '=','fortalecimiento.id_ciclo')
+        ->select('fortalecimiento.id as id','fortalecimiento.*','centro_trabajo.cct as cct','ciclo_escolar.ciclo as ciclo')
+        ->where('fortalecimiento.id_ciclo','=',$id)->get();
         //$centro_trabajo= DB::table('centro_trabajo')->where('cct','=',$id)->first();
          //$material   = AlmacenMaterial:: findOrFail($id);
         //$customPaper = array(0,0,567.00,283.80);
@@ -196,8 +200,28 @@ class FortalecimientoController extends Controller
         $pdf->loadHTML($view);
         return $pdf->stream('invoice');
     }
+/*
+    public function invoice1($id){
 
 
+
+      $personal= DB::table('captura')
+       ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+       ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
+      ->select('captura.*','ciclo_escolar.ciclo','centro_trabajo.cct')->where('captura.id_ciclo','=',$id)->get();
+
+      $date = date('Y-m-d');
+      $invoice = "2222";
+        //print_r($);
+      $view =  \View::make('nomina.captura.invoice1', compact('date', 'invoice','personal'))->render();
+        //->setPaper($customPaper, 'landscape');
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+      return $pdf->stream('invoice');
+
+
+    }
+*/
     /**
      * Display the specified resource.
      *
@@ -284,21 +308,70 @@ class FortalecimientoController extends Controller
 
     ////////////exel////////////////
 
-    public function excel(Request $request)
+    public function excel(Request $request, $aux)
     {
 
-     Excel::create('fortalecimiento', function($excel) {
-         $excel->sheet('Excel sheet', function($sheet) {
+     Excel::create('fortalecimiento', function($excel) use($aux) {
+         $excel->sheet('Excel sheet', function($sheet) use($aux) {
 
             $tabla = FortalecimientoModel::join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
-           ->select('centro_trabajo.cct','fortalecimiento.monto_forta','fortalecimiento.ciclo_escolar','fortalecimiento.estado'
-           ,'fortalecimiento.observaciones','fortalecimiento.captura')
+           ->join('ciclo_escolar', 'ciclo_escolar.id', '=','fortalecimiento.id_ciclo')
+           ->select('centro_trabajo.cct','fortalecimiento.monto_forta','ciclo_escolar.ciclo'
+           ,'fortalecimiento.observaciones')
+           ->where('id_ciclo','=',$aux)
            ->get();
+
              $sheet->fromArray($tabla);
-             $sheet->row(1,['CCT','MONTO FORTALECIMIENTO','CICLO ESCOLAR','ESTADO','OBSERVACIONES']);
+             $sheet->row(1,['CCT','MONTO FORTALECIMIENTO','CICLO ESCOLAR','OBSERVACIONES']);
              $sheet->setOrientation('landscape');
          });
      })->export('xls');
    }
+
+
+   public function ver_fortalecimiento(){
+    $ciclos=DB::table('ciclo_escolar')->get();
+    $regiones=DB::table('region')->where('estado','=','ACTIVO')->get();
+    $escuelas=DB::table('centro_trabajo')->get();
+    return view('nomina.fortalecimiento.ver_fortalecimiento', ['ciclos'=>$ciclos,'regiones'=>$regiones,'escuelas'=>$escuelas,]);
+
+  }
+
+  public function busca_forta($ciclo){
+
+   $fortalecimiento=DB::table('fortalecimiento')
+   ->where('fortalecimiento.id_ciclo','=',$ciclo)
+   ->where('fortalecimiento.estado','=',"ACTIVO")
+   ->join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
+   ->join('region', 'centro_trabajo.id_region', '=','region.id')
+   ->select('fortalecimiento.estado','centro_trabajo.cct','fortalecimiento.monto_forta','region.sostenimiento')
+   ->get();
+   return response()->json(
+     $fortalecimiento);
+
+  }
+
+  public function busca_forta_region($region,$ciclo){
+    if ($region == "todas") {
+      $captura=DB::table('fortalecimiento')->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')
+      ->join('region','region.id','=','centro_trabajo.id_region')
+      //->where('captura.id_cct_etc','=',$cct)
+      ->where('fortalecimiento.id_ciclo','=',$ciclo)
+      ->where('fortalecimiento.estado','=',"ACTIVO")
+      ->select('region.region','region.sostenimiento')->get();
+
+    }else{
+      $captura=DB::table('fortalecimiento')->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')
+      ->join('region','region.id','=','centro_trabajo.id_region')
+      ->where('centro_trabajo.id_region','=',$region)
+      ->where('fortalecimiento.id_ciclo','=',$ciclo)
+      ->where('fortalecimiento.estado','=',"ACTIVO")
+      //->where('captura.id_cct_etc','=',$cct)
+      ->select('region.region','region.sostenimiento','fortalecimiento.monto_forta')->get();
+    }
+    return response()->json(
+      $captura);
+
+  }
 
 }

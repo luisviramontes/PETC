@@ -29,8 +29,11 @@
 
 									<div class="btn-group" style="margin-right: 10px;">
 											<a class="btn btn-sm btn-success tooltips" href="{{ route('solicitudes.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Solicitud"> <i class="fa fa-plus"></i> Registrar </a>
-											<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.solicitudes.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-										<a class="btn btn-primary btn-sm" href="{{URL::action('SolicitudesController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+											<a class="btn btn-sm btn-danger tooltips" href="{{URL::action('CapturaController@index')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-times"></i> Salir</a>
+
+											<a class="btn btn-primary btn-sm" id="pdf_solicitudes" href="{{URL::action('SolicitudesController@invoice','2')}}" style="margin-right: 10px;" data-toggle="tooltip"  target="_blank" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+
+											<a class="btn btn-primary btn-sm"  href="{{URL::action('SolicitudesController@ver_solicitudes')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Solicitudes</a>
 
 									</div>
 
@@ -50,6 +53,7 @@
 								<th style="display:none;">Entrego Acta</th>
 								<th style="display:none;">Solicitud de Incorporacion</th>
 								<th>CCT</th>
+								<th>Ciclo Escolar</th>
 								<th>Nombre de la Escuela</th>
 								<th>Municipio</th>
 								<th>Localidad</th>
@@ -62,8 +66,9 @@
 								<th style="display:none;">Acta CPS</th>
 								<th style="display:none;">Acta CTCS</th>
 								<th>Tramite Estado</th>
-								<th>Fecha Recepcion</th>
+								<th style="display:none;">Fecha de Registro</th>
 								<th style="display:none;">Capturo</th>
+								<th>Estado</th>
 
 
 
@@ -73,34 +78,36 @@
 						</thead>
 						<tbody>
 						@foreach($solicitudes  as $solicitud)
+							@if ($solicitud->estado == "ACTIVO")
 							<tr class="gradeX">
 
 								<td style="display:none;">{{$solicitud->entrego_acta}} </td>
 								<td style="display:none;">{{$solicitud->solicitud_inco}} </td>
-								<td>{{$solicitud->cct}} </td>
-								<td>{{$solicitud->nombre_escuela}}</td>
-								<td>{{$solicitud->municipio}}</td>
-								<td>{{$solicitud->nom_loc}}</td>
-								<td>{{$solicitud->domicilio}}</td>
-								<td>{{$solicitud->nivel}}</td>
+								<td style="background-color:#DBFFC2;">{{$solicitud->cct}} </td>
+								<td style="background-color:#DBFFC2;">{{$solicitud->ciclo}} </td>
+								<td style="background-color:#DBFFC2;">{{$solicitud->nombre_escuela}}</td>
+								<td style="background-color:#DBFFC2;">{{$solicitud->municipio}}</td>
+								<td style="background-color:#DBFFC2;">{{$solicitud->nom_loc}}</td>
+								<td style="background-color:#DBFFC2;">{{$solicitud->domicilio}}</td>
+								<td style="background-color:#DBFFC2;">{{$solicitud->nivel}}</td>
 								<td style="display:none;">{{$solicitud->pnpsvd}}</td>
 								<td style="display:none;">{{$solicitud->cnh}}</td>
 								<td style="display:none;">{{$solicitud->carta_compromiso}}</td>
 								<td style="display:none;">{{$solicitud->acta_constitutiva_cte}}</td>
 								<td style="display:none;">{{$solicitud->acta_cps}}</td>
 								<td style="display:none;">{{$solicitud->acta_ctcs}}</td>
-								<td>{{$solicitud->tramite_estado}}</td>
-								<td>{{$solicitud->fecha_recepcion}}</td>
+								<td style="background-color:#DBFFC2;">{{$solicitud->tramite_estado}}</td>
+								<td style="display:none">{{$solicitud->fecha_recepcion}}</td>
 								<td style="display:none;">{{$solicitud->captura}}</td>
+								<td style="background-color:#DBFFC2;">{{$solicitud->estado}}</td>
 
-
-								<td>
+								<td style="background-color:#DBFFC2;">
 									<center>
 										<a href="{{URL::action('SolicitudesController@edit',$solicitud->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 
 									</center>
 								</td>
-								<td>
+								<td style="background-color:#DBFFC2;">
 									<center>
 										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$solicitud->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 
@@ -108,6 +115,45 @@
 									</td>
 								</td>
 							</tr>
+								@else
+
+								<tr class="gradeX">
+
+									<td style="display:none;">{{$solicitud->entrego_acta}} </td>
+									<td style="display:none;">{{$solicitud->solicitud_inco}} </td>
+									<td style="background-color:#FFE4E1;">{{$solicitud->cct}} </td>
+									<td style="background-color:#FFE4E1;">{{$solicitud->ciclo}} </td>
+									<td style="background-color:#FFE4E1;">{{$solicitud->nombre_escuela}}</td>
+									<td style="background-color:#FFE4E1;">{{$solicitud->municipio}}</td>
+									<td style="background-color:#FFE4E1;">{{$solicitud->nom_loc}}</td>
+									<td style="background-color:#FFE4E1;">{{$solicitud->domicilio}}</td>
+									<td style="background-color:#FFE4E1;">{{$solicitud->nivel}}</td>
+									<td style="display:none;">{{$solicitud->pnpsvd}}</td>
+									<td style="display:none;">{{$solicitud->cnh}}</td>
+									<td style="display:none;">{{$solicitud->carta_compromiso}}</td>
+									<td style="display:none;">{{$solicitud->acta_constitutiva_cte}}</td>
+									<td style="display:none;">{{$solicitud->acta_cps}}</td>
+									<td style="display:none;">{{$solicitud->acta_ctcs}}</td>
+									<td style="background-color:#FFE4E1;">{{$solicitud->tramite_estado}}</td>
+									<td style="display:none">{{$solicitud->fecha_recepcion}}</td>
+									<td style="display:none;">{{$solicitud->captura}}</td>
+									<td style="background-color:#FFE4E1;">{{$solicitud->estado}}</td>
+
+									<td style="background-color:#FFE4E1;">
+										<center>
+											<a href="{{URL::action('SolicitudesController@edit',$solicitud->id)}}" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+										</center>
+									</td>
+									<td style="background-color:#FFE4E1;">
+										<center>
+											<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$solicitud->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+
+										</center>
+										</td>
+									</td>
+								</tr>
+								@endif
 							@include('nomina.solicitudes.modal')
 							@endforeach
 						</tbody>

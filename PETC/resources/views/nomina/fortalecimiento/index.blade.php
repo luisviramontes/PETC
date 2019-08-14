@@ -30,8 +30,9 @@
 
 									<div class="btn-group" style="margin-right: 10px;">
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('fortalecimiento.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Fortalecimiento"> <i class="fa fa-plus"></i> Registrar </a>
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.fortalecimiento.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-								 		<a class="btn btn-primary btn-sm" href="{{URL::action('FortalecimientoController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+										<a class="btn btn-sm btn-warning tooltips" id="excel_fortalecimiento" href="{{ route('nomina.fortalecimiento.excel','2')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+								 		<a class="btn btn-primary btn-sm" id="pdf_fortalecimiento" href="{{URL::action('FortalecimientoController@invoice','2')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+										<a class="btn btn-primary btn-sm"  href="{{URL::action('FortalecimientoController@ver_fortalecimiento')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Capturas</a>
 
 									</div>
 
@@ -49,11 +50,13 @@
 							<tr>
 
 								<th>CCT </th>
+								<th>Sostenimiento</th>
 								<th>Monto Fortalecimiento</th>
 								<th>Ciclo Escolar</th>
 								<th>Estado</th>
                 <th>observaciones</th>
                 <th>captura</th>
+								<th style="display:none;" >Fecha de registro</th>
 
 
 
@@ -68,12 +71,13 @@
 							<tr class="gradeX">
 
 								<td style="background-color:#DBFFC2;">{{$fortalecimiento->cct}} </td>
+								<td style="background-color:#DBFFC2;">{{$fortalecimiento->region}} {{$fortalecimiento->sostenimiento}} </td>
 								<td style="background-color:#DBFFC2;">{{$fortalecimiento->monto_forta}} </td>
 								<td style="background-color:#DBFFC2;">{{$fortalecimiento->ciclo}} </td>
 								<td style="background-color:#DBFFC2;">{{$fortalecimiento->estado}} </td>
                 <td style="background-color:#DBFFC2;">{{$fortalecimiento->observaciones}}</td>
                 <td style="background-color:#DBFFC2;">{{$fortalecimiento->captura}}</td>
-
+								<th style="display:none;">{{$fortalecimiento->created_at}}</th>
 								<!-- //////////////////////////////////////////////////////////////////// -->
 
 
@@ -98,12 +102,13 @@
 								@else
 
 								<td style="background-color:#FFE4E1;">{{$fortalecimiento->cct}} </td>
+								<td style="background-color:#FFE4E1;">{{$fortalecimiento->region}} {{$fortalecimiento->sostenimiento}} </td>
 								<td style="background-color:#FFE4E1;">{{$fortalecimiento->monto_forta}} </td>
 								<td style="background-color:#FFE4E1;">{{$fortalecimiento->ciclo}} </td>
 								<td style="background-color:#FFE4E1;">{{$fortalecimiento->estado}} </td>
 								<td style="background-color:#FFE4E1;">{{$fortalecimiento->observaciones}}</td>
 								<td style="background-color:#FFE4E1;">{{$fortalecimiento->captura}}</td>
-
+								<th style="display:none;">{{$fortalecimiento->created_at}}</th>
 								<td style="background-color:#FFE4E1;">
 									<center>
 										<a href="{{URL::action('FortalecimientoController@edit',$fortalecimiento->id)}}" id="edit" onchange="" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>

@@ -59,7 +59,7 @@
           <td>{{$reintegro->categoria}}</td>
           <td>{{$reintegro->num_dias}}</td>
           <td>{{$reintegro->director_regional}}</td>
-          <td>{{$reintegro->num_oficio}}</td>
+          <td>{{$reintegro->oficio}}</td>
           <td>{{$reintegro->motivo}}</td>
           <td>{{$reintegro->total}}</td>
           <td>{{$reintegro->captura}}</td>

@@ -31,9 +31,9 @@
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('listas_asistencias.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Lista"> <i class="fa fa-plus"></i> Registrar </a>
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.listas_asistencias.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
 										<a class="btn btn-primary btn-sm" href="{{URL::action('ListasAsistenciasController@invoice','2')}}" style="margin-right: 10px;" data-toggle="tooltip" target="_blank" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
- 
-										<a class="btn btn-primary btn-sm" href="{{URL::action('InasistenciasController@generar_listas')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar Listas</a>
 
+										<a class="btn btn-primary btn-sm" href="{{URL::action('InasistenciasController@generar_listas')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar Listas</a>
+										<a class="btn btn-primary btn-sm"  href="{{URL::action('ListasAsistenciasController@ver_listas')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Listas</a>
 
 									</div>
 
@@ -51,11 +51,13 @@
 							<tr>
 								<th>Clave Centro Trabajo </th>
 								<th>Nombre de la Escuela </th>
+								<th>Ciclo Escolar</th>
 								<th>Region </th>
 								<th>Mes </th>
 								<th>Observaciones</th>
 								<th>Captura</th>
 								<th>Estado</th>
+								<th>Fecha de Registro</th>
 
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
@@ -67,11 +69,13 @@
 							<tr class="gradeX">
 								<td style= "background-color:#DBFFC2;">{{$lista->cct}} </td>
 								<td style= "background-color:#DBFFC2;">{{$lista->nombre_escuela}} </td>
-								<td style= "background-color:#DBFFC2;">{{$lista->region}}</td>
+								<td style= "background-color:#DBFFC2;">{{$lista->ciclo}} </td>
+								<td style= "background-color:#DBFFC2;">{{$lista->region}} {{$lista->sostenimiento}}</td>
 								<td style= "background-color:#DBFFC2;">{{$lista->mes}} </td>
 								<td style= "background-color:#DBFFC2;">{{$lista->observaciones}} </td>
 								<td style= "background-color:#DBFFC2;">{{$lista->captura}}</td>
 								<td style= "background-color:#DBFFC2;">{{$lista->estado}} </td>
+								<td style= "background-color:#DBFFC2;">{{$lista->created_at}} </td>
 
 
 								<td style="background-color:#DBFFC2;">
@@ -90,15 +94,17 @@
 							</td>
 						</tr>
 						@else
- 
+
 						<tr class="gradeX">
 							<td style= "background-color:#FFE4E1;">{{$lista->cct}} </td>
 							<td style= "background-color:#FFE4E1;">{{$lista->nombre_escuela}} </td>
-							<td style= "background-color:#FFE4E1;">{{$lista->region}}</td>
+							<td style= "background-color:#FFE4E1;">{{$lista->ciclo}} </td>
+							<td style= "background-color:#FFE4E1;">{{$lista->region}} {{$lista->sostenimiento}}</td>
 							<td style= "background-color:#FFE4E1;">{{$lista->mes}} </td>
 							<td style= "background-color:#FFE4E1;">{{$lista->observaciones}} </td>
 							<td style= "background-color:#FFE4E1;">{{$lista->captura}}</td>
 							<td style= "background-color:#FFE4E1;">{{$lista->estado}} </td>
+							<td style= "background-color:#FFE4E1;">{{$lista->created_at}} </td>
 							<td style="background-color:FFE4E12;">
 								<center>
 									<a href="{{URL::action('ListasAsistenciasController@edit',$lista->id)}}" id="edit" onchange="valida_edit()" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>

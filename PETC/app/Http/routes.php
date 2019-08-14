@@ -52,6 +52,13 @@ Route::get('traerpersonal/{cct}','ReintegrosController@traerpersonal');
 Route::get('traerdire/{dire}','ReintegrosController@traerdire');
 Route::get('cuenta/{nombre}','ReintegrosController@cuenta');
 Route::get('banco/{banco}','ReintegrosController@banco');
+Route::get('ver_reintegros', array('as'=> '/ver_reintegros','uses'=>'ReintegrosController@ver_reintegros'));
+Route::get('pdf_reintegros/{id}', array('as'=> '/pdf_reintegros','uses'=>'ReintegrosController@invoice2'));
+Route::get('busca_rein/{ciclo}','ReintegrosController@busca_rein');
+Route::get('busca_rein_region/{region}/{ciclo}','ReintegrosController@busca_rein_region');
+Route::get('descargar-reintegros/{ciclo}', 'ReintegrosController@excel')->name('nomina.reintegros.excel');
+
+
 /////////////////////////////////////////////////////////////
 
 
@@ -104,6 +111,10 @@ Route::get('pdf_rechazoest/{id}', array('as'=> '/pdf_rechazoest','uses'=>'Rechaz
 Route::resource('solicitudes','SolicitudesController');
 Route::get('descargar-solicitudes', 'SolicitudesController@excel')->name('nomina.solicitudes.excel');
 Route::get('pdf_solicitudes/{id}', array('as'=> '/pdf_solicitudes','uses'=>'SolicitudesController@invoice'));
+Route::get('ver_solicitudes', array('as'=> '/ver_solicitudes','uses'=>'SolicitudesController@ver_solicitudes'));
+Route::get('busca_solis/{ciclo}','SolicitudesController@busca_solis');
+Route::get('busca_solis_region/{region}/{ciclo}','SolicitudesController@busca_solis_region');
+Route::get('descargar-solicitudes/{ciclo}', 'SolicitudesController@excel')->name('nomina.solicitudes.excel');
 //////////////////////////////////////////////////////////////
 
 Route::resource('bajas_contrato', 'BajasContratoController');
@@ -123,6 +134,10 @@ Route::get('pdf_captura/{id}/{ciclo}', array('as'=> '/pdf_captura','uses'=>'Capt
 Route::get('ver_capturas', array('as'=> '/ver_capturas','uses'=>'CapturaController@ver_capturas'));
 Route::get('busca_dias_captura/{ciclo}','CapturaController@busca_dias_captura');
 Route::get('busca_dias_captura_region/{region}/{ciclo}','CapturaController@busca_dias_captura_region');
+Route::get('traerescuelas/{esc}','CapturaController@traerescuelas');
+Route::get('busca_captura_esc/{region}/{cct}','CapturaController@busca_captura_esc');
+Route::get('pdf_captura1/{id}', array('as'=> '/pdf_captura1','uses'=>'CapturaController@invoice1'));
+Route::get('descargar-listas-capturas/{ciclo}', 'CapturaController@excel2')->name('nomina.captura.excel2');
 
 
 //ALTAS FEDERALES
@@ -233,8 +248,11 @@ Route::resource('extencion_contrato', 'ExtencionContratoController');
 
 ///////////////////////Fortalecimiento///////////////////////////7
 Route::resource('fortalecimiento', 'FortalecimientoController');
-Route::get('descargar-fortalecimiento', 'FortalecimientoController@excel')->name('nomina.fortalecimiento.excel');
 Route::post('subirforta', 'FortalecimientoController@subir');
+Route::get('ver_fortalecimiento', array('as'=> '/ver_capturas','uses'=>'FortalecimientoController@ver_fortalecimiento'));
+Route::get('busca_forta/{ciclo}','FortalecimientoController@busca_forta');
+Route::get('busca_forta_region/{region}/{ciclo}','FortalecimientoController@busca_forta_region');
+Route::get('descargar-fortalecimiento/{ciclo}', 'FortalecimientoController@excel')->name('nomina.fortalecimiento.excel');
 Route::get('pdf_fortalecimiento/{id}', array('as'=> '/pdf_fortalecimiento','uses'=>'FortalecimientoController@invoice'));
 ////////////////////////////////////////////////////////////////////7
 
@@ -265,6 +283,8 @@ Route::get('busca_listas/{ciclo}','ListasAsistenciasController@busca_listas');
 Route::get('busca_listas_region/{ciclo}/{region}','ListasAsistenciasController@busca_listas_region');
 Route::get('busca_listas_mes/{ciclo}/{region}/{mes}','ListasAsistenciasController@busca_listas_mes');
 Route::get('descargar-listas-ciclo/{id}', 'ListasAsistenciasController@excel2')->name('nomina.reclamos.excel2');
+Route::get('escuelas/{esc}','ListasAsistenciasController@escuelas');
+Route::get('busca_listas_esc/{region}/{cct}','ListasAsistenciasController@busca_listas_esc');
 
 
 
@@ -301,7 +321,7 @@ Route::get('descargar-cuadros-cifras/{id}', 'CuadroCifrasController@excel')->nam
 Route::get('pdf-cuadros-cifras/{id}', array('as'=> '/pdf-cuadros-cifras','uses'=>'CuadroCifrasController@invoice'));
 
 
-//PAGOS IMPROCEDENTES 
+//PAGOS IMPROCEDENTES
 Route::resource('pagos_improcedentes', 'PagosImprocedentesController');
 Route::get('descargar-pagos-improcedentes/{id}', 'PagosImprocedentesController@excel')->name('nomina.pagos-improcedentes.excel');
 Route::get('pdf-pagos-improcedentes/{id}', array('as'=> '/pdf-pagos-improcedentes','uses'=>'PagosImprocedentesController@invoice'));
@@ -335,7 +355,7 @@ Route::get('busca_dias_reclamo/{ciclo}','ReclamosController@busca_dias_reclamo')
 Route::get('busca_dias_reclamo_region/{region}/{ciclo}','ReclamosController@busca_dias_reclamo_region');
 Route::get('pdf_reclamos/{ciclo}', array('as'=> '/pdf_reclamos','uses'=>'ReclamosController@invoice'));
 Route::get('descargar-capturas/{id}', 'CapturaController@excel')->name('nomina.reclamos.excel');
-
+Route::get('busca_captura_ciclo/{ciclo}','CapturaController@busca_captura_ciclo');
 
 
 //DIRECTORIO EXTERNO

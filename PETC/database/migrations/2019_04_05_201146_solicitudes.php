@@ -16,8 +16,11 @@ class Solicitudes extends Migration
             $table->increments('id');
             $table->string('entrego_acta');
             $table->string('solicitud_inco');
-            $table->string('cct');
             $table->string('nombre_escuela');
+            $table->integer('id_cct')->unsigned();
+            $table->foreign('id_cct')->references('id')->on('centro_trabajo');
+            $table->integer('id_ciclo')->unsigned();
+            $table->foreign('id_ciclo')->references('id')->on('ciclo_escolar');
             $table->integer('id_municipio')->unsigned();
             $table->foreign('id_municipio')->references('id')->on('municipios');
             $table->integer('id_localidad')->unsigned();

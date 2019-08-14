@@ -58,7 +58,11 @@
 											<div class="form-group">
 												<label class="col-sm-3 control-label">Nivel: <strog class="theme_color">*</strog></label>
 												<div class="col-sm-6">
-													<select name="nivel" id="nivel" value="{{$solicitudes->nivel}}" class="form-control" required>
+													<select name="nivel" id="nivel" onchange="soli_nivel();" class="form-control" required>
+														<option selected>
+																	Selecciona una opción
+														</option>
+
 														<option value="PREESCOLAR">
 															PREESCOLAR
 														</option>
@@ -70,21 +74,51 @@
 														</option>
 													</select>
 													<div class="help-block with-errors"></div>
+													<div class="text-danger" id='error_nivel'>{{$errors->formulario->first('nivel')}}</div>
 												</div>
 											</div><!--/form-group-->
 
 											<div class="form-group">
 												<label class="col-sm-3 control-label">CCT: <strog class="theme_color">*</strog></label>
 												<div class="col-sm-6">
-													<input name="cct"  type="text" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"   class="form-control valid" required value="{{$solicitudes->cct}}" />
+													<select name="cct" id="cct" class="form-control select2" onchange="soli_cct()" value="{{Input::old('cct')}}"  required>
+														<option selected>
+															Selecciona una opción
+														</option>
+														@foreach($cct as $cct)
+														<option value="{{$cct->id}}">
+															{{$cct->cct}}
+														</option>
+														@endforeach
+													</select>
 													<div class="help-block with-errors"></div>
 												</div>
-											</div>
+											</div> <!--/form-group-->
 
 											<div class="form-group">
-												<label class="col-sm-3 control-label">Municipio <strog class="theme_color">*</strog></label>
+												<label class="col-sm-3 control-label">Ciclo Escolar: <strog class="theme_color">*</strog></label>
 												<div class="col-sm-6">
-													<select name="municipio" class="form-control"  value="{{Input::old('municipio')}}"  required>
+													<select name="ciclo" id="ciclo" class="form-control select2" onchange="soli_ciclo()" value="{{Input::old('ciclo')}}"  required>
+														<option selected>
+														Selecciona una opción
+														</option>
+														@foreach($ciclo as $ciclo)
+														<option value="{{$ciclo->id}}">
+															{{$ciclo->ciclo}}
+														</option>
+														@endforeach
+													</select>
+													<div class="help-block with-errors"></div>
+												</div>
+											</div> <!--/form-group-->
+
+											<div class="form-group">
+												<label class="col-sm-3 control-label">Municipio: <strog class="theme_color">*</strog></label>
+												<div class="col-sm-6">
+													<select name="municipio" id="municipio" class="form-control select2" onchange="soli_mun()" value="{{Input::old('municipio')}}"  required>
+														<option selected>
+																	Selecciona una opción
+														</option>
 														@foreach($municipios as $municipio)
 														<option value="{{$municipio->id}}">
 															{{$municipio->municipio}}
@@ -98,7 +132,10 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Localidad <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="localidad" class="form-control"  value="{{Input::old('localidad')}}"  required>
+														<select name="localidad" id="localidad" class="form-control select2" onchange="soli_loc()" value="{{Input::old('localidad')}}"  required>
+															<option selected>
+																		Selecciona una opción
+															</option>
 															@foreach($localidades as $localidad )
 															<option value="{{$localidad->id}}">
 																{{$localidad->nom_loc}}
@@ -126,179 +163,192 @@
 										<div id="form-step-1" role="form" data-toggle="validator">
 											<h3 class="h3titulo">Entregas</h3>
 
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Entrego Acta <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<select name="entrego_acta" class="form-control" value="{{$solicitudes->entrego_acta}}" required>
-									<option value="Si">
-										Si
-									</option>
-									<option value="No">
-										No
-									</option>
+											<div class="form-group">
+												<label class="col-sm-3 control-label">Entrego Acta <strog class="theme_color">*</strog></label>
+												<div class="col-sm-6">
+													<select name="entrego_acta" id="acta" onchange="soli_acta()" class="form-control" required>
+														<option selected>
+																	Seleccione una opción
+														</option>
+														<option value="Si">
+															Si
+														</option>
+														<option value="No">
+															No
+														</option>
 
 
-								</select>
-								<div class="help-block with-errors"></div>
-							</div>
-						</div><!--/form-group-->
+													</select>
+													<div class="help-block with-errors"></div>
+												</div>
+											</div><!--/form-group-->
 
 
 
-						<div class="form-group">
-							<label class="col-sm-3 control-label">Solicitud Incorporacion <strog class="theme_color">*</strog></label>
-							<div class="col-sm-6">
-								<select name="solicitud_inco" class="form-control" value="{{$solicitudes->solicitud_inco}}" required>
-									<option value="Si">
-										Si
-									</option>
-									<option value="No">
-										No
-									</option>
+											<div class="form-group">
+												<label class="col-sm-3 control-label">Solicitud Incorporacion <strog class="theme_color">*</strog></label>
+												<div class="col-sm-6">
+													<select name="solicitud_inco" id="inco" onchange="soli_inco()" class="form-control" required>
+														<option selected>
+																	Seleccione una opción
+														</option>
+														<option value="Si">
+															Si
+														</option>
+														<option value="No">
+															No
+														</option>
 
 
-								</select>
-								<div class="help-block with-errors"></div>
-							</div>
-						</div><!--/form-group-->
+													</select>
+													<div class="help-block with-errors"></div>
+												</div>
+											</div><!--/form-group-->
 
-							</div>
+												</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label">PNPSVD <strog class="theme_color">*</strog></label>
-								<div class="col-sm-6">
-									<select name="pnpsvd" class="form-control" value="{{$solicitudes->pnpsvd}}" required>
-										<option value="Si">
-											Si
-										</option>
-										<option value="No">
-											No
-										</option>
-
-
-									</select>
-									<div class="help-block with-errors"></div>
-								</div>
-							</div><!--/form-group-->
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label">CNH <strog class="theme_color">*</strog></label>
-								<div class="col-sm-6">
-									<select name="cnh" class="form-control" value="{{$solicitudes->cnh}}" required>
-										<option value="Si">
-											Si
-										</option>
-										<option value="No">
-											No
-										</option>
+												<div class="form-group">
+													<label class="col-sm-3 control-label">PNPSVD <strog class="theme_color">*</strog></label>
+													<div class="col-sm-6">
+														<select name="pnpsvd" id="psv" class="form-control" onchange="soli_psv()" value="{{Input::old('pnpsvd')}}" required>
+															<option selected>
+																		Seleccione una opción
+															</option>
+															<option value="Si">
+																Si
+															</option>
+															<option value="No">
+																No
+															</option>
 
 
-									</select>
-									<div class="help-block with-errors"></div>
-								</div>
-							</div><!--/form-group-->
+														</select>
+														<div class="help-block with-errors"></div>
+													</div>
+												</div><!--/form-group-->
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Carta Compromiso <strog class="theme_color">*</strog></label>
-								<div class="col-sm-6">
-									<select name="carta_compromiso" class="form-control" value="{{$solicitudes->carta_compromiso}}" required>
-										<option value="Si">
-											Si
-										</option>
-										<option value="No">
-											No
-										</option>
-
-
-									</select>
-									<div class="help-block with-errors"></div>
-								</div>
-							</div><!--/form-group-->
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Acta Constitutiva <strog class="theme_color">*</strog></label>
-								<div class="col-sm-6">
-									<select name="acta_constitutiva_cte" class="form-control" value="{{$solicitudes->acta_constitutiva_cte}}" required>
-										<option value="Si">
-											Si
-										</option>
-										<option value="No">
-											No
-										</option>
+												<div class="form-group">
+													<label class="col-sm-3 control-label">CNH <strog class="theme_color">*</strog></label>
+													<div class="col-sm-6">
+														<select name="cnh" id="cnh" onchange="soli_cnh()" class="form-control" value="{{Input::old('cnh')}}" required>
+															<option selected>
+																		Seleccione una opción
+															</option>
+															<option value="Si">
+																Si
+															</option>
+															<option value="No">
+																No
+															</option>
 
 
-									</select>
-									<div class="help-block with-errors"></div>
-								</div>
-							</div><!--/form-group-->
+														</select>
+														<div class="help-block with-errors"></div>
+													</div>
+												</div><!--/form-group-->
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Acta CPS <strog class="theme_color">*</strog></label>
-								<div class="col-sm-6">
-									<select name="acta_cps" class="form-control" value="{{Input::old('acta_cps')}}" required>
-										<option value="Si">
-											Si
-										</option>
-										<option value="No">
-											No
-										</option>
-
-
-									</select>
-									<div class="help-block with-errors"></div>
-								</div>
-							</div><!--/form-group-->
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Acta CTCS <strog class="theme_color">*</strog></label>
-								<div class="col-sm-6">
-									<select name="acta_ctcs" class="form-control" value="{{$solicitudes->acta_ctcs}}" required>
-										<option value="Si">
-											Si
-										</option>
-										<option value="No">
-											No
-										</option>
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Carta Compromiso <strog class="theme_color">*</strog></label>
+													<div class="col-sm-6">
+														<select name="carta_compromiso" id="carta" onchange="soli_carta()" class="form-control" value="{{Input::old('carta_compromiso')}}" required>
+															<option selected>
+																		Seleccione una opción
+															</option>
+															<option value="Si">
+																Si
+															</option>
+															<option value="No">
+																No
+															</option>
 
 
-									</select>
-									<div class="help-block with-errors"></div>
-								</div>
-							</div><!--/form-group-->
+														</select>
+														<div class="help-block with-errors"></div>
+													</div>
+												</div><!--/form-group-->
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Tramite Estado <strog class="theme_color">*</strog></label>
-								<div class="col-sm-6">
-									<select name="tramite_estado" class="form-control" value="{{$solicitudes->tramite_estado}}" required>
-										<option value="En Tramite">
-											En Tramite
-										</option>
-										<option value="Resuelto">
-											Resuelto
-										</option>
-
-
-									</select>
-									<div class="help-block with-errors"></div>
-								</div>
-							</div><!--/form-group-->
-
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Estado <strog class="theme_color">*</strog></label>
-								<div class="col-sm-6">
-									<select name="estado" class="form-control" value="{{$solicitudes->estado}}" required>
-										<option value="ACTIVO">
-											ACTIVO
-										</option>
-										<option value="INACTIVO">
-											INACTIVO
-										</option>
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Acta Constitutiva <strog class="theme_color">*</strog></label>
+													<div class="col-sm-6">
+														<select name="acta_constitutiva_cte" id="acta_cons" onchange="soli_acta_cons()" class="form-control" value="{{Input::old('acta_constitutiva_cte')}}" required>
+															<option selected>
+																		Seleccione una opción
+															</option>
+															<option value="Si">
+																Si
+															</option>
+															<option value="No">
+																No
+															</option>
 
 
-									</select>
-									<div class="help-block with-errors"></div>
-								</div>
-							</div><!--/form-group-->
+														</select>
+														<div class="help-block with-errors"></div>
+													</div>
+												</div><!--/form-group-->
+
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Acta CPS <strog class="theme_color">*</strog></label>
+													<div class="col-sm-6">
+														<select name="acta_cps" id="cps" onchange="soli_cps()" class="form-control" value="{{Input::old('acta_cps')}}" required>
+															<option selected>
+																		Seleccione una opción
+															</option>
+															<option value="Si">
+																Si
+															</option>
+															<option value="No">
+																No
+															</option>
+
+
+														</select>
+														<div class="help-block with-errors"></div>
+													</div>
+												</div><!--/form-group-->
+
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Acta CTCS <strog class="theme_color">*</strog></label>
+													<div class="col-sm-6">
+														<select name="acta_ctcs" id="ctcs" onchange="soli_ctcs()" class="form-control" value="{{Input::old('acta_ctcs')}}" required>
+															<option selected>
+																		Seleccione una opción
+															</option>
+															<option value="Si">
+																Si
+															</option>
+															<option value="No">
+																No
+															</option>
+
+
+														</select>
+														<div class="help-block with-errors"></div>
+													</div>
+												</div><!--/form-group-->
+
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Tramite Estado <strog class="theme_color">*</strog></label>
+													<div class="col-sm-6">
+														<select name="tramite_estado" id="tramite" onchange="soli_tramite()" class="form-control" value="{{Input::old('tramite_estado')}}" required>
+															<option selected>
+																		Seleccione una opción
+															</option>
+															<option value="En Tramite">
+																En Tramite
+															</option>
+															<option value="Resuelto">
+																Resuelto
+															</option>
+
+
+														</select>
+														<div class="help-block with-errors"></div>
+													</div>
+												</div><!--/form-group-->
+
+
+						
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Fecha de Recepción: <strog class="theme_color">*</strog></label>
@@ -324,7 +374,7 @@
 
 						<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button type="submit" id="submit" class="btn btn-primary">Guardar</button>
 								<a href="{{url('/solicitudes')}}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->
@@ -345,6 +395,13 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
+window.onload=function(){
+	soli_nivel();
+
+}
+
+
+
 	$(document).ready(function(){
         // Toolbar extra buttons
         var btnFinish = $('<button></button>').text('Finish')

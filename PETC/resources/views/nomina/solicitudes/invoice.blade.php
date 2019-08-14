@@ -3,15 +3,15 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>Solicitudes</title>
-  <link rel="stylesheet" href="css/plantilla.css" media="all" />
+  <link rel="stylesheet" href="css/plantilla_solicitudes.css" media="all" />
   <style media="screen">
-
-  </style>
+		@page { size: 30cm 29.7cm landscape; }
+	</style>
 </head>
 <body>
   <header class="clearfix">
     <div id="logo">
-      <img src="img/logopetc2.jpg"  width="700"  height="70"/>
+      <img src="img/logopetc3.jpg"  width="1200"  height="80"/>
 
 
 
@@ -39,10 +39,12 @@
         <tr>
           <th>CCT</th>
           <th>Nombre de la Escuela</th>
+          <th>Ciclo Escolar</th>
           <th>Municipio</th>
           <th>Localidad</th>
           <th>Domicilio</th>
           <th>Nivel</th>
+          <th>Estado de Tramite</th>
           <th>Fecha Recepcion</th>
 
 
@@ -54,10 +56,12 @@
         <tr>
           <td>{{$solicitud->cct}} </td>
           <td>{{$solicitud->nombre_escuela}}</td>
+          <td>{{$solicitud->ciclo}}</td>
           <td>{{$solicitud->municipio}}</td>
           <td>{{$solicitud->nom_loc}}</td>
           <td>{{$solicitud->domicilio}}</td>
           <td>{{$solicitud->nivel}}</td>
+          <td>{{$solicitud->tramite_estado}}</td>
           <td>{{$solicitud->fecha_recepcion}}</td>
 
 

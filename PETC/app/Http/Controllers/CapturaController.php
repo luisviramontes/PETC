@@ -505,32 +505,32 @@ class CapturaController extends Controller
      }
 
 
-      if($cat == "DIRECTOR" && $mov="INICIO" || $mov == "NUEVO"){
-        $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
-        $plan=PlanContasteNominaModel::findOrFail($id_plan);
-        $plan->total_directores=$plan->total_directores+1;
-        $plan->update();
-      }elseif($cat == "DOCENTE" || $cat == "USAER" || $cat == "EDUCACION FISICA" && $mov="INICIO" || $mov == "NUEVO"){
-       $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
-       $plan=PlanContasteNominaModel::findOrFail($id_plan);
-       $plan->total_docentes=$plan->total_docentes+1;
-       $plan->update();
-     }elseif($cat == "INTENDENTE" && $mov="INICIO" || $mov == "NUEVO"){
-       $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
-       $plan=PlanContasteNominaModel::findOrFail($id_plan);
-       $plan->total_intendentes=$plan->total_intendentes+1;
-       $plan->update();
+     if($cat == "DIRECTOR" && $mov="INICIO" || $mov == "NUEVO"){
+      $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
+      $plan=PlanContasteNominaModel::findOrFail($id_plan);
+      $plan->total_directores=$plan->total_directores+1;
+      $plan->update();
+    }elseif($cat == "DOCENTE" || $cat == "USAER" || $cat == "EDUCACION FISICA" && $mov="INICIO" || $mov == "NUEVO"){
+     $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
+     $plan=PlanContasteNominaModel::findOrFail($id_plan);
+     $plan->total_docentes=$plan->total_docentes+1;
+     $plan->update();
+   }elseif($cat == "INTENDENTE" && $mov="INICIO" || $mov == "NUEVO"){
+     $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
+     $plan=PlanContasteNominaModel::findOrFail($id_plan);
+     $plan->total_intendentes=$plan->total_intendentes+1;
+     $plan->update();
 
-     }
+   }
 
 
 
-     $tabla->update();
+   $tabla->update();
 
-     return Redirect::to('captura');
+   return Redirect::to('captura');
 
         //
-   }}
+ }}
 
     /**
      * Remove the specified resource from storage.
@@ -821,26 +821,82 @@ class CapturaController extends Controller
 
       $nombre_ciclo = DB::table('ciclo_escolar')->select('ciclo_escolar.ciclo')->where('ciclo_escolar.id','=',$ciclo)->first();
 
-      $personal= DB::table('captura')->join('cat_puesto','cat_puesto.id','=','captura.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')->select('captura.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc')->where('captura.id','=',$id)->first();
+      $personal= DB::table('captura')
+      ->join('cat_puesto','cat_puesto.id','=','captura.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+      ->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')
+      ->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
+      ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
+      ->select('captura.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc')
+      ->where('captura.id','=',$id)->first();
 
 
-      $altas=DB::table('altas_contrato')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->select('altas_contrato.*','centro_trabajo.cct','centro_trabajo.nombre_escuela','cat_puesto.cat_puesto')->where('altas_contrato.id_captura','=',$id)->where('altas_contrato.id_ciclo','=',$ciclo)->whereNull('altas_contrato.id_baja')->get();
+      $altas=DB::table('altas_contrato')
+      ->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')
+      ->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')
+      ->select('altas_contrato.*','centro_trabajo.cct','centro_trabajo.nombre_escuela','cat_puesto.cat_puesto')
+      ->where('altas_contrato.id_captura','=',$id)->where('altas_contrato.id_ciclo','=',$ciclo)
+      ->whereNull('altas_contrato.id_baja')->get();
 
-      $altas2= DB::table('altas_contrato')->join('captura','captura.id','=','altas_contrato.id_captura')->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')->join('captura as captura2','captura2.id','=','altas_contrato.id_baja')->select('altas_contrato.*','captura.id as idcaptura','captura.rfc','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','cat_puesto.cat_puesto','captura2.nombre as nombre_baja','captura2.rfc as rfc_baja')->where('captura2.nombre','!=',' ')->where('altas_contrato.id_captura','=',$id)->where('altas_contrato.id_ciclo','=',$ciclo)->whereNotNull('altas_contrato.id_baja')->paginate(30);
+      $altas2= DB::table('altas_contrato')
+      ->join('captura','captura.id','=','altas_contrato.id_captura')
+      ->join('cat_puesto','cat_puesto.id','=','altas_contrato.clave')
+      ->join('centro_trabajo', 'centro_trabajo.id', '=','altas_contrato.id_cct_etc')
+      ->join('captura as captura2','captura2.id','=','altas_contrato.id_baja')
+      ->select('altas_contrato.*','captura.id as idcaptura','captura.rfc','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','cat_puesto.cat_puesto','captura2.nombre as nombre_baja','captura2.rfc as rfc_baja')
+      ->where('captura2.nombre','!=',' ')->where('altas_contrato.id_captura','=',$id)
+      ->where('altas_contrato.id_ciclo','=',$ciclo)->whereNotNull('altas_contrato.id_baja')
+      ->paginate(30);
 
 
 
-      $bajas=DB::table('bajas_contrato')->join('captura','captura.id','=','bajas_contrato.id_alta')->join('centro_trabajo', 'centro_trabajo.id', '=','bajas_contrato.id_cct_etc')->select('bajas_contrato.*','captura.id','captura.rfc','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela')->where('bajas_contrato.id_captura','=',$id)->where('bajas_contrato.id_ciclo','=',$ciclo)->get();
-      $bajas2=DB::table('bajas_contrato')->join('captura','captura.id','=','bajas_contrato.id_alta')->join('centro_trabajo', 'centro_trabajo.id', '=','bajas_contrato.id_cct_etc')->join('captura as captura2','captura2.id','=','bajas_contrato.id_alta')->select('bajas_contrato.*','captura.id','captura.rfc','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','captura2.nombre as nombre_baja','captura2.rfc as rfc_baja')->where('bajas_contrato.id_captura','=',$id)->where('bajas_contrato.id_ciclo','=',$ciclo)->whereNotNull('bajas_contrato.id_alta')->get();
+      $bajas=DB::table('bajas_contrato')
+      ->join('captura','captura.id','=','bajas_contrato.id_alta')
+      ->join('centro_trabajo', 'centro_trabajo.id', '=','bajas_contrato.id_cct_etc')
+      ->select('bajas_contrato.*','captura.id','captura.rfc','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela')
+      ->where('bajas_contrato.id_captura','=',$id)->where('bajas_contrato.id_ciclo','=',$ciclo)->get();
 
-      $cambios=DB::table('cambios_cct')->join('captura','captura.id','=','cambios_cct.id_captura')->join('centro_trabajo as ct','ct.id','=','cambios_cct.id_cct_nuevo')->join('cat_puesto','cat_puesto.id','=','cambios_cct.clave')->join('centro_trabajo as ct2','ct2.id','=','cambios_cct.id_cct_anterior')->select('ct2.cct as anteriorcentro_cct','ct2.nombre_escuela as anteriorcentro_nombre_escuela','cat_puesto.cat_puesto','cambios_cct.*','ct.cct as nuevocentro_cct','ct.nombre_escuela as nuevocentro_nombre_escuela')->where('cambios_cct.id_captura','=',$id)->where('cambios_cct.id_ciclo','=',$ciclo)->get();
+      $bajas2=DB::table('bajas_contrato')
+      ->join('captura','captura.id','=','bajas_contrato.id_alta')
+      ->join('centro_trabajo', 'centro_trabajo.id', '=','bajas_contrato.id_cct_etc')
+      ->join('captura as captura2','captura2.id','=','bajas_contrato.id_alta')
+      ->select('bajas_contrato.*','captura.id','captura.rfc','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','captura2.nombre as nombre_baja','captura2.rfc as rfc_baja')
+      ->where('bajas_contrato.id_captura','=',$id)
+      ->where('bajas_contrato.id_ciclo','=',$ciclo)
+      ->whereNotNull('bajas_contrato.id_alta')
+      ->get();
 
-      $extenciones=DB::table('extencion_contrato')->join('captura','captura.id','=','extencion_contrato.id_captura')->join('cat_puesto as cat','cat.id','=','extencion_contrato.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','extencion_contrato.id_cct_etc')->select('extencion_contrato.*','captura.id as cap','captura.rfc','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','cat.cat_puesto')->where('extencion_contrato.id_captura','=',$id)->where('extencion_contrato.id_ciclo','=',$ciclo)->get();
+      $cambios=DB::table('cambios_cct')
+      ->join('captura','captura.id','=','cambios_cct.id_captura')
+      ->join('centro_trabajo as ct','ct.id','=','cambios_cct.id_cct_nuevo')
+      ->join('cat_puesto','cat_puesto.id','=','cambios_cct.clave')
+      ->join('centro_trabajo as ct2','ct2.id','=','cambios_cct.id_cct_anterior')
+      ->select('ct2.cct as anteriorcentro_cct','ct2.nombre_escuela as anteriorcentro_nombre_escuela','cat_puesto.cat_puesto','cambios_cct.*','ct.cct as nuevocentro_cct','ct.nombre_escuela as nuevocentro_nombre_escuela')
+      ->where('cambios_cct.id_captura','=',$id)
+      ->where('cambios_cct.id_ciclo','=',$ciclo)->get();
+
+      $extenciones=DB::table('extencion_contrato')
+      ->join('captura','captura.id','=','extencion_contrato.id_captura')
+      ->join('cat_puesto as cat','cat.id','=','extencion_contrato.clave')
+      ->join('centro_trabajo', 'centro_trabajo.id', '=','extencion_contrato.id_cct_etc')
+      ->select('extencion_contrato.*','captura.id as cap','captura.rfc','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','cat.cat_puesto')
+      ->where('extencion_contrato.id_captura','=',$id)
+      ->where('extencion_contrato.id_ciclo','=',$ciclo)->get();
 
 
-      $cambiosfun=DB::table('cambio_funcion')->join('captura','captura.id','=','cambio_funcion.id_captura')->join('centro_trabajo as ct','ct.id','=','cambio_funcion.id_cct_etc')->join('cat_puesto','cat_puesto.id','=','cambio_funcion.clave')->select('cat_puesto.cat_puesto','cambio_funcion.*','ct.nombre_escuela','ct.cct')->where('cambio_funcion.id_captura','=',$id)->where('cambio_funcion.id_ciclo','=',$ciclo)->get();
+      $cambiosfun=DB::table('cambio_funcion')
+      ->join('captura','captura.id','=','cambio_funcion.id_captura')
+      ->join('centro_trabajo as ct','ct.id','=','cambio_funcion.id_cct_etc')
+      ->join('cat_puesto','cat_puesto.id','=','cambio_funcion.clave')
+      ->select('cat_puesto.cat_puesto','cambio_funcion.*','ct.nombre_escuela','ct.cct')
+      ->where('cambio_funcion.id_captura','=',$id)
+      ->where('cambio_funcion.id_ciclo','=',$ciclo)->get();
 
-      $inasistencias= DB::table('inasistencias')->join('ciclo_escolar as ciclo_ina','ciclo_ina.id','=','inasistencias.id_ciclo')->join('centro_trabajo as centro_ina', 'centro_ina.id', '=','inasistencias.id_cct_etc')->select('inasistencias.*','inasistencias.observaciones as observaciones_ina','ciclo_ina.ciclo as ciclo_ina','centro_ina.nombre_escuela as nombre_escuela_ina','centro_ina.cct as cct_ina','inasistencias.estado as estado_ina')->where('inasistencias.id_captura','=',$id)->where('inasistencias.id_ciclo','=',$ciclo)->get();
+      $inasistencias= DB::table('inasistencias')
+      ->join('ciclo_escolar as ciclo_ina','ciclo_ina.id','=','inasistencias.id_ciclo')
+      ->join('centro_trabajo as centro_ina', 'centro_ina.id', '=','inasistencias.id_cct_etc')
+      ->select('inasistencias.*','inasistencias.observaciones as observaciones_ina','ciclo_ina.ciclo as ciclo_ina','centro_ina.nombre_escuela as nombre_escuela_ina','centro_ina.cct as cct_ina','inasistencias.estado as estado_ina')
+      ->where('inasistencias.id_captura','=',$id)
+      ->where('inasistencias.id_ciclo','=',$ciclo)->get();
 
       $date = date('Y-m-d');
       $invoice = "2222";
@@ -857,14 +913,20 @@ class CapturaController extends Controller
     public function ver_capturas(){
      $ciclos=DB::table('ciclo_escolar')->get();
      $regiones=DB::table('region')->where('estado','=','ACTIVO')->get();
-
-     return view('nomina.captura.ver_capturas', ['ciclos'=>$ciclos,'regiones'=>$regiones]);
+     $escuelas=DB::table('centro_trabajo')->get();
+     return view('nomina.captura.ver_capturas', ['ciclos'=>$ciclos,'regiones'=>$regiones,'escuelas'=>$escuelas,]);
 
    }
 
 
    public function busca_dias_captura($ciclo){
+
      $captura=DB::table('captura')->where('captura.id_ciclo','=',$ciclo)->where('captura.estado','=','ACTIVO')->select('captura.categoria','captura.sostenimiento')->get();
+
+     $captura=DB::table('captura')
+     ->where('captura.id_ciclo','=',$ciclo)
+     ->where('captura.estado','=',"ACTIVO")
+     ->select('captura.categoria','captura.sostenimiento','captura.pagos_registrados','captura.qna_actual')->get();
      return response()->json(
        $captura);
 
@@ -874,20 +936,74 @@ class CapturaController extends Controller
      if ($region == "todas") {
        $captura=DB::table('captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')
        ->join('region','region.id','=','centro_trabajo.id_region')
+
        ->where('captura.id_ciclo','=',$ciclo)->where('captura.estado','=','ACTIVO')
+
+       //->where('captura.id_cct_etc','=',$cct)
+       ->where('captura.id_ciclo','=',$ciclo)
+       ->where('captura.estado','=',"ACTIVO")
        ->select('region.region','region.sostenimiento','reclamos.total_dias','reclamos.total_reclamo','reclamos.estado','captura.categoria','captura.pagos_registrados','captura.qna_actual')->get();
          # code...
      }else{
        $captura=DB::table('captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')
        ->join('region','region.id','=','centro_trabajo.id_region')
        ->where('centro_trabajo.id_region','=',$region)
+
        ->where('captura.id_ciclo','=',$ciclo)->where('captura.estado','=','ACTIVO')
        ->select('region.region','region.sostenimiento','captura.categoria','captura.pagos_registrados','captura.qna_actual')->get();
+
+       //->where('captura.id_ciclo','=',$ciclo)
+       //->where('captura.estado','=',"ACTIVO")
+       //->where('captura.id_cct_etc','=',$cct)
+       //->select('region.region','region.sostenimiento','captura.categoria','captura.pagos_registrados','captura.qna_actual','centro_trabajo.nombre_escuela')->get();
      }
      return response()->json(
        $captura);
 
    }
+
+   public function traerescuelas(Request $request,$esc)
+   {
+     $escuelas= CentroTrabajoModel::select('id','nombre_escuela','cct', 'estado')
+     ->where('id_region','=',$esc)->where('estado','=','ACTIVO')
+     ->get();
+
+     return response()->json(
+       $escuelas->toArray());
+   }
+
+   public function busca_captura_esc($region,$cct){
+     if ($region == "todas") {
+       $captura=DB::table('captura')
+       ->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')
+       ->where('captura.id_cct_etc','=',$cct)
+       ->where('captura.estado','=',"ACTIVO")
+       ->select('captura.categoria','captura.pagos_registrados','captura.qna_actual','centro_trabajo.nombre_escuela')->get();
+         # code...
+     }else{
+       $captura=DB::table('captura')
+       ->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')
+       ->where('centro_trabajo.id_region','=',$region)
+       ->where('captura.id_cct_etc','=',$cct)
+       ->where('captura.estado','=',"ACTIVO")
+       ->select('captura.categoria','captura.pagos_registrados','captura.qna_actual','centro_trabajo.nombre_escuela')->get();
+     }
+     return response()->json(
+       $captura);
+
+   }
+
+   public function busca_captura_ciclo($ciclo){
+
+
+     $captura= CapturaModel::select('id','estado')
+     ->where('id_ciclo','=',$ciclo)
+     ->get();
+
+     return response()->json(
+      $captura->toArray());
+   }
+
 
    public function excel(Request $request)
    {
@@ -916,5 +1032,55 @@ class CapturaController extends Controller
      })->export('xls');
    }
 
+
+
+
+
+   public function excel2(Request $request, $aux)
+   {
+
+     Excel::create('REGISTRO DE LISTAS DE ASISTENCIA', function($excel) use($aux) {
+       $excel->sheet('Excel sheet', function($sheet) use($aux) {
+         $tabla = CapturaModel::join('cat_puesto','cat_puesto.id','=','captura.clave')
+         ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+         ->join('region', 'region.id', '=','centro_trabajo.id_region')
+         ->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
+         ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
+         ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
+
+         ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','municipios.municipio','localidades.nom_loc'
+           ,'centro_trabajo.domicilio','region.region','region.sostenimiento'
+           ,'captura.nombre','captura.telefono','captura.email','captura.rfc'
+           ,'cat_puesto.cat_puesto'
+           ,'ciclo_escolar.ciclo')
+         ->where('id_ciclo','=',$aux)
+         ->get();
+         $sheet->fromArray($tabla);
+         $sheet->row(1,['CCT','NOMBRE ESCUELA','MUNICIPIO','LOCALIDAD' ,'DOMICILIO','REGION','SOSTENIMIENTO','NOMBRE','TELEFONO','EMAIL','RFC','CATEGORIA PUESTO','CICLO ESCOLAR']);
+         $sheet->setOrientation('landscape');
+       });
+     })->export('xls');
+   }
+
+   public function invoice1($id){
+
+
+
+     $personal= DB::table('captura')
+     ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+     ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
+     ->select('captura.*','ciclo_escolar.ciclo','centro_trabajo.cct')->where('captura.id_ciclo','=',$id)->get();
+
+     $date = date('Y-m-d');
+     $invoice = "2222";
+     //print_r($);
+     $view =  \View::make('nomina.captura.invoice1', compact('date', 'invoice','personal'))->render();
+     //->setPaper($customPaper, 'landscape');
+     $pdf = \App::make('dompdf.wrapper');
+     $pdf->loadHTML($view);
+     return $pdf->stream('invoice');
+
+
+   }
 
  }
