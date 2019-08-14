@@ -233,7 +233,7 @@ public function excel(Request $request, $aux)
 
  Excel::create('TARJETAS DE FORTALECIMIENTO', function($excel) use($aux) {
    $excel->sheet('Excel sheet', function($sheet) use($aux) {
-    $tarjeta=DB::table('tarjetasfortalecimiento')->join('fortalecimiento','fortalecimiento.id','=','tarjetasfortalecimiento.id_fortalecimiento')->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')->select('tarjetasfortalecimiento.*','fortalecimiento.monto_forta','fortalecimiento.id_ciclo','centro_trabajo.cct','centro_trabajo.nombre_escuela')->first();
+
 
 
     $tarjeta = TarjetasFortalecimientoModel::join('fortalecimiento','fortalecimiento.id','=','tarjetasfortalecimiento.id_fortalecimiento')->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')->join('ciclo_escolar','ciclo_escolar.id','=','fortalecimiento.id_ciclo')->join('region','region.id','=','centro_trabajo.id_region')->where('fortalecimiento.id_ciclo','=',$aux)->select('region.region','region.sostenimiento','centro_trabajo.cct','centro_trabajo.nombre_escuela','fortalecimiento.monto_forta','tarjetasfortalecimiento.num_tarjeta','ciclo_escolar.ciclo','centro_trabajo.alimentacion')->get();

@@ -9,7 +9,7 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
-*/
+*/ 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', ['as' =>'auth/login', 'uses' => 'Auth\AuthController@postLogin']);
@@ -210,7 +210,9 @@ Route::get('pdf_centros_trabajo', array('as'=> '/pdf_centros_trabajo','uses'=>'C
 Route::get('verInformacionCentro/{id}/{ciclo}', array('as'=> '/verInformacionCentro','uses'=>'CentroTrabajoController@verInformacion'));
 Route::get('pdf_centro_cct/{cct}/{ciclo}', array('as'=> '/pdf_centro_cct','uses'=>'CentroTrabajoController@invoice_centro_cct'));
 Route::get('pdf_plantilla_personal/{cct}/{ciclo}', array('as'=> '/pdf_plantilla_personal','uses'=>'CentroTrabajoController@invoice_plantilla'));
-
+Route::get('ver_centros_trabajo', array('as'=> '/ver_centros_trabajo','uses'=>'CentroTrabajoController@ver_centros_trabajo'));
+Route::get('ver_opciones/{id}/', array('as'=> '/ver_opciones','uses'=>'CentroTrabajoController@option'));
+Route::get('ver_centros_filtro/{op}/{id}', array('as'=> '/ver_centros_filtro','uses'=>'CentroTrabajoController@ver_centros_filtro'));
 
 //DIRECTOR->CENTRO DE TRABAJO
 Route::resource('director_centro_trabajo', 'DirectorCentroController');
@@ -266,6 +268,8 @@ Route::get('descargar-listas-ciclo/{id}', 'ListasAsistenciasController@excel2')-
 
 
 
+
+
 //////////////////nomina estatal////////////////////////////////
 Route::resource('nomina_estatal', 'NominaEstatalController');
 Route::post('importExcel', 'NominaEstatalController@importExcel');
@@ -278,6 +282,9 @@ Route::get('pdf_nomina_capturada/{id}', array('as'=> '/pdf_nomina_capturada','us
 Route::get('validar_nomina/{qna}/{sostenimiento}/{tipo}','NominaCapturadaController@validar_nomina');
 Route::get('validar_quincenaIna/{qna}/{sostenimiento}/{tipo}','NominaCapturadaController@validar_quincenaIna');
 Route::get('buscar_qnas_pagos/{ciclo}/','NominaCapturadaController@buscar_qnas_pagos');
+Route::get('ver_captura_qna/{qna}', array('as'=> '/ver_captura_qna','uses'=>'NominaCapturadaController@ver_captura_qna'));
+Route::get('pdf_reporte_qna/{qna}', array('as'=> '/pdf_reporte_qna','uses'=>'NominaCapturadaController@invoice2'));
+Route::get('descargar_reporte_qna/{qna}', 'NominaCapturadaController@excel2')->name('nomina.descargar_reporte_qna.excel2');
 
 
 ////////////////////////////////////////////////////////////////
@@ -372,3 +379,17 @@ Route::resource('localidades', 'LocalidadesController');
 Route::get('descargar-tabla-localidades', 'LocalidadesController@excel')->name('nomina.region.municipios.localidades.excel');
 Route::get('pdf_localidades', array('as'=> '/pdf_localidades','uses'=>'LocalidadesController@invoice'));
 Route::get('ver_localidades/{id}', array('as'=> '/ver_localidades','uses'=>'LocalidadesController@verInformacion'));
+
+
+//PLAN CONTRASTE
+Route::resource('plan_contraste', 'PlanContasteController');
+Route::get('descargar-plan_contraste/{ciclo}', 'PlanContasteController@excel')->name('nomina.plan_contraste.excel');
+Route::get('pdf-plan_contraste/{ciclo}', array('as'=> '/pdf-plan_contraste','uses'=>'PlanContasteController@invoice'));
+Route::get('ver_plan_c_n/{ciclo}', array('as'=> '/ver_plan_c_n','uses'=>'PlanContasteController@ver_plan'));
+Route::get('ver_plan_region/{ciclo}/{region}', array('as'=> '/ver_plan_region','uses'=>'PlanContasteController@ver_plan_region'));
+
+//CALCULO DE NOMINAS
+Route::resource('calculo_nomina', 'NominaCapturadaController@calculo_nomina');
+Route::get('buscar_qnas_activas/{ciclo}', 'NominaCapturadaController@buscar_qnas');
+Route::get('montos_qnas/{qna}', 'NominaCapturadaController@montos_qnas');
+Route::get('montos_qnas_region/{qna}/{region}/{ciclo}', 'NominaCapturadaController@montos_qnas_region');

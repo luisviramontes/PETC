@@ -16,7 +16,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="block-web"> 
-				<div class="header">
+				<div class="header"> 
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
 							<div class="actions"> </div>

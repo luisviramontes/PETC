@@ -30,12 +30,12 @@ class DatabaseSeeder extends Seeder
         $this->call(dia_mes_seeder::class);
 
         $this->call(TablaPagosSeeder::class);
-        //$this->call(CapturaSeeder::class);
-        //$this->call(Captura2Seeder::class);
-        //$this->call(Director_CCTSeeder::class);
+        $this->call(CapturaSeeder::class);
+        $this->call(Captura2Seeder::class);
+        $this->call(Director_CCTSeeder::class);
         $this->call(DirectorioSeeder::class);
         $this->call(DirectorioInternoSeeder::class);
-
+        $this->call(Plan_Contraste_NominaSeeder::class);
 
 
 

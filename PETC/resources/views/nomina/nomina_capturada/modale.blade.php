@@ -3,9 +3,9 @@
 		<div class="modal-content panel default blue_border horizontal_border_1">
 			<div class="modal-body">
 
-				<html>
+				<div align="center">
 				<head>
-					<meta name="viewport" content="width=device-width, initial-scale=1">
+					<meta name="viewport" content="width=device-width, initial-scale=1" alling="center">
 					<style>
 						.loader {
 							border: 16px solid #f3f3f3;
@@ -30,13 +30,14 @@
 					</style>
 				</head>
 				<body>
+					<div>
+						<h4 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong><u> <b> Subiendo el Archivo</b> </u> </strong></h4>
 
-					<h2>How To Create A Loader</h2>
-
-					<div class="loader"></div>
+						<div class="loader"></div>
+					</div>
 
 				</body>
-				</html>
+			</div>
 
 
 

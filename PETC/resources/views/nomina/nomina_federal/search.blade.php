@@ -9,7 +9,7 @@
 
 		</div>
 
-		 
+		  	<br> <br> 
 				<div class="form-group">
 								<label class="col-sm-3 control-label">Seleccione Ciclo Escolar : <strog class="theme_color"></strog></label>
 								<div class="col-sm-6">
@@ -29,6 +29,7 @@
 
 								</div>
 							</div>	
+							<br> <br> <br>
 							<span class="input-group-btn">
 			<button type="submit" id="buscar" class="btn btn-primary">Buscar</button>
 

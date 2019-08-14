@@ -15,6 +15,8 @@ class NominaCapturada extends Migration
         Schema::create('nomina_capturada', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('qna');
+            $table->integer('id_ciclo')->unsigned()->nullable();
+            $table->foreign('id_ciclo')->references('id')->on('ciclo_escolar');
             $table->string('sostenimiento');
             $table->string('estado');
             $table->string('tipo');

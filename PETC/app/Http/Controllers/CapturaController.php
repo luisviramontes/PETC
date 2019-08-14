@@ -17,6 +17,7 @@ use petc\RegionModel;
 use petc\CambiosCctModel;
 use petc\CambiosFuncionModel;
 use petc\Director_CCTModel;
+use petc\PlanContasteNominaModel;
 
 
 use DB;
@@ -46,7 +47,7 @@ class CapturaController extends Controller
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
 
        if($request)
        {
@@ -64,11 +65,11 @@ class CapturaController extends Controller
         ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
 
         ->select('captura.*','cat_puesto.cat_puesto'
-        ,'centro_trabajo.cct','centro_trabajo.nombre_escuela'
-        ,'ciclo_escolar.ciclo'
-        ,'region.region'
-        ,'municipios.municipio'
-        ,'localidades.nom_loc')
+          ,'centro_trabajo.cct','centro_trabajo.nombre_escuela'
+          ,'ciclo_escolar.ciclo'
+          ,'region.region'
+          ,'municipios.municipio'
+          ,'localidades.nom_loc')
 
         ->where('captura.nombre','LIKE','%'.$query.'%')
         ->orwhere('captura.rfc','LIKE','%'.$query.'%')
@@ -88,11 +89,11 @@ class CapturaController extends Controller
      */
     public function create()
     {
-              $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
       $claves=DB::table('cat_puesto')->get();
       $cct=DB::table('centro_trabajo')->get();
       $ciclos=DB::table('ciclo_escolar')->get();
@@ -109,11 +110,11 @@ class CapturaController extends Controller
      */
     public function store(Request $request)
     {
-              $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
       $user = Auth::user()->name;
       $tabla= new CapturaModel;
       $tabla->nombre=$request->get('nombre');
@@ -154,6 +155,8 @@ class CapturaController extends Controller
 
       $mov =$request->get('movimiento');
       $cat=$request->get('puesto');
+      $cct_aux=$request->get('cct');
+
       if($cat == "DIRECTOR"){
         $id_aux_cct=$request->get('cct');
         $id_aux=DB::table('Director_CCT')->where('id_cct_etc','=',$id_aux_cct)->first();
@@ -222,6 +225,9 @@ class CapturaController extends Controller
         $datos->id_ciclo=$request->get('ciclo_escolar');
         $datos->tipo_movimiento=$request->get('movimiento');
         $datos->save();
+
+
+
       }else if ($mov == "NUEVO"){
         $datos= new AltasContratoModel;
         $datos->id_captura=$ultimo;
@@ -240,9 +246,27 @@ class CapturaController extends Controller
 
       }
 
-      return Redirect::to('captura');
+      if($cat == "DIRECTOR" && $mov="INICIO" || $mov == "NUEVO"){
+        $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
+        $plan=PlanContasteNominaModel::findOrFail($id_plan);
+        $plan->total_directores=$plan->total_directores+1;
+        $plan->update();
+      }elseif($cat == "DOCENTE" || $cat == "USAER" || $cat == "EDUCACION FISICA" && $mov="INICIO" || $mov == "NUEVO"){
+       $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
+       $plan=PlanContasteNominaModel::findOrFail($id_plan);
+       $plan->total_docentes=$plan->total_docentes+1;
+       $plan->update();
+     }elseif($cat == "INTENDENTE" && $mov="INICIO" || $mov == "NUEVO"){
+       $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
+       $plan=PlanContasteNominaModel::findOrFail($id_plan);
+       $plan->total_intendentes=$plan->total_intendentes+1;
+       $plan->update();
+
+     }
+
+     //return Redirect::to('captura');
         //
-    }}
+   }}
 
     /**
      * Display the specified resource.
@@ -263,11 +287,11 @@ class CapturaController extends Controller
      */
     public function edit($id)
     {
-              $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
       $claves=DB::table('cat_puesto')->get();
       $cct=DB::table('centro_trabajo')->get();
       $ciclos=DB::table('ciclo_escolar')->get();
@@ -289,11 +313,11 @@ class CapturaController extends Controller
      */
     public function update(Request $request, $id)
     {
-              $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
       $user = Auth::user()->name;
       $tabla=CapturaModel::findOrFail($id);
       $tabla->nombre=$request->get('nombre');
@@ -325,7 +349,7 @@ class CapturaController extends Controller
      //$tabla->sostenimiento=$request->get('sostenimiento');
       $tabla->categoria=$request->get('puesto');
      //$tabla->pagos_registrados="0";
-      $tabla->qna_actual="0";
+      //$tabla->qna_actual="0";
       $tabla->cct_2=$request->get('cct_2');
       $tabla->documentacion_entregada=$request->get('doc');
       $tabla->observaciones=$request->get('observaciones');
@@ -336,6 +360,7 @@ class CapturaController extends Controller
 
       $mov =$request->get('movimiento');
       $cat=$request->get('puesto');
+      $cct_aux=$request->get('cct');
 
       if($cat == "DIRECTOR"){
         $id_aux_cct=$request->get('cct');
@@ -480,6 +505,26 @@ class CapturaController extends Controller
      }
 
 
+      if($cat == "DIRECTOR" && $mov="INICIO" || $mov == "NUEVO"){
+        $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
+        $plan=PlanContasteNominaModel::findOrFail($id_plan);
+        $plan->total_directores=$plan->total_directores+1;
+        $plan->update();
+      }elseif($cat == "DOCENTE" || $cat == "USAER" || $cat == "EDUCACION FISICA" && $mov="INICIO" || $mov == "NUEVO"){
+       $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
+       $plan=PlanContasteNominaModel::findOrFail($id_plan);
+       $plan->total_docentes=$plan->total_docentes+1;
+       $plan->update();
+     }elseif($cat == "INTENDENTE" && $mov="INICIO" || $mov == "NUEVO"){
+       $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$cct_aux)->first()->id;
+       $plan=PlanContasteNominaModel::findOrFail($id_plan);
+       $plan->total_intendentes=$plan->total_intendentes+1;
+       $plan->update();
+
+     }
+
+
+
      $tabla->update();
 
      return Redirect::to('captura');
@@ -495,11 +540,11 @@ class CapturaController extends Controller
      */
     public function destroy(Request $request,$id)
     {
-              $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
       $user = Auth::user()->name;
 
       $tabla=CapturaModel::findOrFail($id);
@@ -591,11 +636,11 @@ class CapturaController extends Controller
     }
 
     public function guardar_contrato(Request $request,$id){
-              $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
       $user = Auth::user()->name;
       $tabla=CapturaModel::findOrFail($id);
 
@@ -620,7 +665,7 @@ class CapturaController extends Controller
      //$tabla->sostenimiento=$request->get('sostenimiento');
       $tabla->categoria=$request->get('puesto');
      //$tabla->pagos_registrados="0";
-      $tabla->qna_actual="0";
+     // $tabla->qna_actual="0";
       $tabla->cct_2=$request->get('cct_2');
       $tabla->documentacion_entregada=$request->get('doc');
       $tabla->observaciones=$request->get('observaciones');
@@ -819,7 +864,7 @@ class CapturaController extends Controller
 
 
    public function busca_dias_captura($ciclo){
-     $captura=DB::table('captura')->where('captura.id_ciclo','=',$ciclo)->select('captura.categoria','captura.sostenimiento')->get();
+     $captura=DB::table('captura')->where('captura.id_ciclo','=',$ciclo)->where('captura.estado','=','ACTIVO')->select('captura.categoria','captura.sostenimiento')->get();
      return response()->json(
        $captura);
 
@@ -829,14 +874,14 @@ class CapturaController extends Controller
      if ($region == "todas") {
        $captura=DB::table('captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')
        ->join('region','region.id','=','centro_trabajo.id_region')
-       ->where('captura.id_ciclo','=',$ciclo)
+       ->where('captura.id_ciclo','=',$ciclo)->where('captura.estado','=','ACTIVO')
        ->select('region.region','region.sostenimiento','reclamos.total_dias','reclamos.total_reclamo','reclamos.estado','captura.categoria','captura.pagos_registrados','captura.qna_actual')->get();
          # code...
      }else{
        $captura=DB::table('captura')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')
        ->join('region','region.id','=','centro_trabajo.id_region')
        ->where('centro_trabajo.id_region','=',$region)
-       ->where('captura.id_ciclo','=',$ciclo)
+       ->where('captura.id_ciclo','=',$ciclo)->where('captura.estado','=','ACTIVO')
        ->select('region.region','region.sostenimiento','captura.categoria','captura.pagos_registrados','captura.qna_actual')->get();
      }
      return response()->json(
@@ -847,29 +892,29 @@ class CapturaController extends Controller
    public function excel(Request $request)
    {
 
-       Excel::create('excel', function($excel) {
-           $excel->sheet('Excel sheet', function($sheet) {
+     Excel::create('excel', function($excel) {
+       $excel->sheet('Excel sheet', function($sheet) {
                    //otra opción -> $products = Product::select('name')->get();
-               $tabla = CapturaModel::join('cat_puesto','cat_puesto.id','=','captura.clave')
-                 ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
-                 ->join('region', 'region.id', '=','centro_trabajo.id_region')
-                 ->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
-                 ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
-                 ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
+         $tabla = CapturaModel::join('cat_puesto','cat_puesto.id','=','captura.clave')
+         ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+         ->join('region', 'region.id', '=','centro_trabajo.id_region')
+         ->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
+         ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
+         ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
 
-                 ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','municipios.municipio','localidades.nom_loc'
-                 ,'centro_trabajo.domicilio','region.region','region.sostenimiento'
-                 ,'captura.nombre','captura.telefono','captura.email','captura.rfc'
-                 ,'cat_puesto.cat_puesto'
-                 ,'ciclo_escolar.ciclo'
-                 )
-                 ->get();
-               $sheet->fromArray($tabla);
-               $sheet->row(1,['CCT','NOMBRE ESCUELA','MUNICIPIO','LOCALIDAD' ,'DOMICILIO','REGION','SOSTENIMIENTO','NOMBRE','TELEFONO','EMAIL','RFC','CATEGORIA PUESTO','CICLO ESCOLAR']);
-               $sheet->setOrientation('landscape');
-           });
-       })->export('xls');
+         ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','municipios.municipio','localidades.nom_loc'
+           ,'centro_trabajo.domicilio','region.region','region.sostenimiento'
+           ,'captura.nombre','captura.telefono','captura.email','captura.rfc'
+           ,'cat_puesto.cat_puesto'
+           ,'ciclo_escolar.ciclo'
+           )
+         ->get();
+         $sheet->fromArray($tabla);
+         $sheet->row(1,['CCT','NOMBRE ESCUELA','MUNICIPIO','LOCALIDAD' ,'DOMICILIO','REGION','SOSTENIMIENTO','NOMBRE','TELEFONO','EMAIL','RFC','CATEGORIA PUESTO','CICLO ESCOLAR']);
+         $sheet->setOrientation('landscape');
+       });
+     })->export('xls');
    }
 
 
-  }
+ }

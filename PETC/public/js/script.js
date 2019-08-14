@@ -829,11 +829,11 @@ function valida_nomina(){
   var filePath = fileInput.value;
   var aux=0;
 
-     if (sostenimiento=="FEDERAL"){
-document.getElementById('src').src="/img/ejemplos/nf.png";
-     }else{
-document.getElementById('src').src="/img/ejemplos/ne.png";
-     }
+  if (sostenimiento=="FEDERAL"){
+    document.getElementById('src').src="/img/ejemplos/nf.png";
+  }else{
+    document.getElementById('src').src="/img/ejemplos/ne.png";
+  }
 
   $.get(route,function(res){
 
@@ -957,19 +957,27 @@ function enviar_ciclo7(){
 }
 
 function enviar_ciclo8(){
-var x =document.getElementById('ciclo_escolar2').value;
-var y =document.getElementById('searchText').value;
-                document.getElementById('excel').href="/descargar-pagos-improcedentes/"+x;
-                document.getElementById('invoice').href="/pdf-pagos-improcedentes/"+x;
+  var x =document.getElementById('ciclo_escolar2').value;
+  var y =document.getElementById('searchText').value;
+  document.getElementById('excel').href="/descargar-pagos-improcedentes/"+x;
+  document.getElementById('invoice').href="/pdf-pagos-improcedentes/"+x;
   location.href="/pagos_improcedentes?searchText="+y+"&ciclo_escolar2="+x;
 }
 
 function enviar_ciclo9(){
-var x =document.getElementById('ciclo_escolar2').value;
-var y =document.getElementById('searchText').value;
-           document.getElementById('excel').href="/descargar-tarjetas_fortalecimiento/"+x;
-           document.getElementById('invoice').href="/pdf-tarjetas_fortalecimiento/"+x;
+  var x =document.getElementById('ciclo_escolar2').value;
+  var y =document.getElementById('searchText').value;
+  document.getElementById('excel').href="/descargar-tarjetas_fortalecimiento/"+x;
+  document.getElementById('invoice').href="/pdf-tarjetas_fortalecimiento/"+x;
   location.href="/tarjetas_fortalecimiento?searchText="+y+"&ciclo_escolar2="+x;
+}
+
+function enviar_ciclo10(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var y =document.getElementById('searchText').value;
+ // document.getElementById('excel').href="nomina.nomina_capturada.excel";
+ document.getElementById('invoice').href="/pdf_nomina_capturada/"+x;
+ location.href="/nomina_capturada?searchText="+y+"&ciclo_escolar="+x;
 }
 
 ///dir regional//
@@ -1461,7 +1469,7 @@ function valida_sostenimiento() {
         document.getElementById('submit').disabled=false;
         document.getElementById("error_sostenimiento").innerHTML = "";
       }
-}
+    }
 
     function valida_region() {
      if( document.getElementById('region').value == "Selecciona una opción" && document.getElementById('sostenimiento').value == "Selecciona una opción" ){
@@ -1579,15 +1587,15 @@ function valida_sostenimiento() {
 
          swal("WARNING!","Los rechazos correspondientes a la quincena <<"+qna+">> <<"+sostenimiento+">> ya han sido registrados anteriormente.","warning");
    				 			             //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
-                             return false;
-                           }
+                              return false;
+                            }
 
-                         }
+                          }
 
-                       }else{
-                        document.getElementById('file').disabled=false;
-                      }
-                    });
+                        }else{
+                          document.getElementById('file').disabled=false;
+                        }
+                      });
 }
 
 function cambia_reclamos(){
@@ -1771,8 +1779,6 @@ function eliminarFila(value) {
   var r = menos.length;
   document.getElementById("totale").value= r - 2;
   var sub= document.getElementById("subtotal").value;
-  alert(cantidadanueva);
-  alert(sub);
   document.getElementById("subtotal").value= sub - cantidadanueva;
  // limpiar();
 }
@@ -2327,7 +2333,7 @@ function buscar_qnas_pagos(){
       if(aux != liq){
 
        swal("Alerta!", "Montos Incorrectos, el Liquido Tiene que Ser Igual que la Percepción menos la Deducción!", "error");
-    return false;
+       return false;
 
      }
 
@@ -2335,29 +2341,29 @@ function buscar_qnas_pagos(){
 
    function traer_escuelasforta(){
 
-      var x = document.getElementById('cct');
-  if (x.length > 0){
-    for (var i = 0; i < x.length; i++) {
-      x.remove(i);
-    }}
+    var x = document.getElementById('cct');
+    if (x.length > 0){
+      for (var i = 0; i < x.length; i++) {
+        x.remove(i);
+      }}
 
 
-    var x = document.getElementById('ciclo_escolar').value;
+      var x = document.getElementById('ciclo_escolar').value;
 
-    var route = "http://localhost:8000/traer_escuelasforta/"+x+"/";
+      var route = "http://localhost:8000/traer_escuelasforta/"+x+"/";
       $.get(route,function(res){
-      if(res.length > 0){
-        for (var i =0; res.length > i; i++) {
-         var x = document.getElementById("cct");
-         var option = document.createElement("option");
-         option.text = res[i].cct +" - "+ res[i].nombre_escuela ;
-         option.value = res[i].id;
-         x.add(option, x[i])
+        if(res.length > 0){
+          for (var i =0; res.length > i; i++) {
+           var x = document.getElementById("cct");
+           var option = document.createElement("option");
+           option.text = res[i].cct +" - "+ res[i].nombre_escuela +" "+res[i].id_centro ;
+           option.value = res[i].id_centro;
+           x.add(option, x[i])
+         }
        }
-     }
 
-   });
-   }
+     });
+    }
 
     //tabla.setAttribute("id", id2);
 
@@ -2387,166 +2393,166 @@ function numero() {
     var numeroALetras = (function() {
 
     // Código basado en https://gist.github.com/alfchee/e563340276f89b22042a
-        function Unidades(num){
+    function Unidades(num){
 
-            switch(num)
-            {
-                case 1: return 'UN';
-                case 2: return 'DOS';
-                case 3: return 'TRES';
-                case 4: return 'CUATRO';
-                case 5: return 'CINCO';
-                case 6: return 'SEIS';
-                case 7: return 'SIETE';
-                case 8: return 'OCHO';
-                case 9: return 'NUEVE';
-            }
+      switch(num)
+      {
+        case 1: return 'UN';
+        case 2: return 'DOS';
+        case 3: return 'TRES';
+        case 4: return 'CUATRO';
+        case 5: return 'CINCO';
+        case 6: return 'SEIS';
+        case 7: return 'SIETE';
+        case 8: return 'OCHO';
+        case 9: return 'NUEVE';
+      }
 
-            return '';
+      return '';
         }//Unidades()
 
         function Decenas(num){
 
-            let decena = Math.floor(num/10);
-            let unidad = num - (decena * 10);
+          let decena = Math.floor(num/10);
+          let unidad = num - (decena * 10);
 
-            switch(decena)
+          switch(decena)
+          {
+            case 1:
+            switch(unidad)
             {
-                case 1:
-                    switch(unidad)
-                    {
-                        case 0: return 'DIEZ';
-                        case 1: return 'ONCE';
-                        case 2: return 'DOCE';
-                        case 3: return 'TRECE';
-                        case 4: return 'CATORCE';
-                        case 5: return 'QUINCE';
-                        default: return 'DIECI' + Unidades(unidad);
-                    }
-                case 2:
-                    switch(unidad)
-                    {
-                        case 0: return 'VEINTE';
-                        default: return 'VEINTI' + Unidades(unidad);
-                    }
-                case 3: return DecenasY('TREINTA', unidad);
-                case 4: return DecenasY('CUARENTA', unidad);
-                case 5: return DecenasY('CINCUENTA', unidad);
-                case 6: return DecenasY('SESENTA', unidad);
-                case 7: return DecenasY('SETENTA', unidad);
-                case 8: return DecenasY('OCHENTA', unidad);
-                case 9: return DecenasY('NOVENTA', unidad);
-                case 0: return Unidades(unidad);
+              case 0: return 'DIEZ';
+              case 1: return 'ONCE';
+              case 2: return 'DOCE';
+              case 3: return 'TRECE';
+              case 4: return 'CATORCE';
+              case 5: return 'QUINCE';
+              default: return 'DIECI' + Unidades(unidad);
             }
+            case 2:
+            switch(unidad)
+            {
+              case 0: return 'VEINTE';
+              default: return 'VEINTI' + Unidades(unidad);
+            }
+            case 3: return DecenasY('TREINTA', unidad);
+            case 4: return DecenasY('CUARENTA', unidad);
+            case 5: return DecenasY('CINCUENTA', unidad);
+            case 6: return DecenasY('SESENTA', unidad);
+            case 7: return DecenasY('SETENTA', unidad);
+            case 8: return DecenasY('OCHENTA', unidad);
+            case 9: return DecenasY('NOVENTA', unidad);
+            case 0: return Unidades(unidad);
+          }
         }//Unidades()
 
         function DecenasY(strSin, numUnidades) {
-            if (numUnidades > 0)
-                return strSin + ' Y ' + Unidades(numUnidades)
+          if (numUnidades > 0)
+            return strSin + ' Y ' + Unidades(numUnidades)
 
-            return strSin;
+          return strSin;
         }//DecenasY()
 
         function Centenas(num) {
-            let centenas = Math.floor(num / 100);
-            let decenas = num - (centenas * 100);
+          let centenas = Math.floor(num / 100);
+          let decenas = num - (centenas * 100);
 
-            switch(centenas)
-            {
-                case 1:
-                    if (decenas > 0)
-                        return 'CIENTO ' + Decenas(decenas);
-                    return 'CIEN';
-                case 2: return 'DOSCIENTOS ' + Decenas(decenas);
-                case 3: return 'TRESCIENTOS ' + Decenas(decenas);
-                case 4: return 'CUATROCIENTOS ' + Decenas(decenas);
-                case 5: return 'QUINIENTOS ' + Decenas(decenas);
-                case 6: return 'SEISCIENTOS ' + Decenas(decenas);
-                case 7: return 'SETECIENTOS ' + Decenas(decenas);
-                case 8: return 'OCHOCIENTOS ' + Decenas(decenas);
-                case 9: return 'NOVECIENTOS ' + Decenas(decenas);
-            }
+          switch(centenas)
+          {
+            case 1:
+            if (decenas > 0)
+              return 'CIENTO ' + Decenas(decenas);
+            return 'CIEN';
+            case 2: return 'DOSCIENTOS ' + Decenas(decenas);
+            case 3: return 'TRESCIENTOS ' + Decenas(decenas);
+            case 4: return 'CUATROCIENTOS ' + Decenas(decenas);
+            case 5: return 'QUINIENTOS ' + Decenas(decenas);
+            case 6: return 'SEISCIENTOS ' + Decenas(decenas);
+            case 7: return 'SETECIENTOS ' + Decenas(decenas);
+            case 8: return 'OCHOCIENTOS ' + Decenas(decenas);
+            case 9: return 'NOVECIENTOS ' + Decenas(decenas);
+          }
 
-            return Decenas(decenas);
+          return Decenas(decenas);
         }//Centenas()
 
         function Seccion(num, divisor, strSingular, strPlural) {
-            let cientos = Math.floor(num / divisor)
-            let resto = num - (cientos * divisor)
+          let cientos = Math.floor(num / divisor)
+          let resto = num - (cientos * divisor)
 
-            let letras = '';
+          let letras = '';
 
-            if (cientos > 0)
-                if (cientos > 1)
-                    letras = Centenas(cientos) + ' ' + strPlural;
-                else
-                    letras = strSingular;
+          if (cientos > 0)
+            if (cientos > 1)
+              letras = Centenas(cientos) + ' ' + strPlural;
+            else
+              letras = strSingular;
 
             if (resto > 0)
-                letras += '';
+              letras += '';
 
             return letras;
         }//Seccion()
 
         function Miles(num) {
-            let divisor = 1000;
-            let cientos = Math.floor(num / divisor)
-            let resto = num - (cientos * divisor)
+          let divisor = 1000;
+          let cientos = Math.floor(num / divisor)
+          let resto = num - (cientos * divisor)
 
-            let strMiles = Seccion(num, divisor, 'UN MIL', 'MIL');
-            let strCentenas = Centenas(resto);
+          let strMiles = Seccion(num, divisor, 'UN MIL', 'MIL');
+          let strCentenas = Centenas(resto);
 
-            if(strMiles == '')
-                return strCentenas;
+          if(strMiles == '')
+            return strCentenas;
 
-            return strMiles + ' ' + strCentenas;
+          return strMiles + ' ' + strCentenas;
         }//Miles()
 
         function Millones(num) {
-            let divisor = 1000000;
-            let cientos = Math.floor(num / divisor)
-            let resto = num - (cientos * divisor)
+          let divisor = 1000000;
+          let cientos = Math.floor(num / divisor)
+          let resto = num - (cientos * divisor)
 
-            let strMillones = Seccion(num, divisor, 'UN MILLON DE', 'MILLONES DE');
-            let strMiles = Miles(resto);
+          let strMillones = Seccion(num, divisor, 'UN MILLON DE', 'MILLONES DE');
+          let strMiles = Miles(resto);
 
-            if(strMillones == '')
-                return strMiles;
+          if(strMillones == '')
+            return strMiles;
 
-            return strMillones + ' ' + strMiles;
+          return strMillones + ' ' + strMiles;
         }//Millones()
 
         return function NumeroALetras(num, currency) {
-            currency = currency || {};
-            let data = {
-                numero: num,
-                enteros: Math.floor(num),
-                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
-                letrasCentavos: '',
+          currency = currency || {};
+          let data = {
+            numero: num,
+            enteros: Math.floor(num),
+            centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+            letrasCentavos: '',
                 letrasMonedaPlural: currency.plural || 'PESOS ',//'PESOS', 'Dólares', 'Bolívares', 'etcs'
                 letrasMonedaSingular: currency.singular || 'PESO', //'PESO', 'Dólar', 'Bolivar', 'etc'
                 letrasMonedaCentavoPlural: currency.centPlural || 'CENTAVOS',
                 letrasMonedaCentavoSingular: currency.centSingular || 'CENTAVO'
-            };
+              };
 
-            if (data.centavos > 0) {
+              if (data.centavos > 0) {
                 data.letrasCentavos = 'CON ' + (function () {
-                        if (data.centavos == 1)
-                            return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoSingular;
-                        else
-                            return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoPlural;
-                    })();
+                  if (data.centavos == 1)
+                    return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoSingular;
+                  else
+                    return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoPlural;
+                })();
+              };
+
+              if(data.enteros == 0)
+                return 'CERO ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
+              if (data.enteros == 1)
+                return Millones(data.enteros) + ' ' + data.letrasMonedaSingular + ' ' + data.letrasCentavos;
+              else
+                return Millones(data.enteros) + ' ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
             };
 
-            if(data.enteros == 0)
-                return 'CERO ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
-            if (data.enteros == 1)
-                return Millones(data.enteros) + ' ' + data.letrasMonedaSingular + ' ' + data.letrasCentavos;
-            else
-                return Millones(data.enteros) + ' ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
-        };
-
-    })();
+          })();
 
     // Modo de uso: 500,34 USD
     numeroALetras(200.58, {
@@ -2559,137 +2565,137 @@ function numero() {
 ///////////////////////////////////////////////////////////
 
 function guardar_reintegro(){
-var z = 1
-var arreglo_c = [];
-var table = document.getElementById('detalles3');
-for (var r = 1, n = table.rows.length-1; r < n; r++) {
-  for (var c = 1, m = table.rows[r].cells.length; c < m; c++) {
-   if (z == 1){
+  var z = 1
+  var arreglo_c = [];
+  var table = document.getElementById('detalles3');
+  for (var r = 1, n = table.rows.length-1; r < n; r++) {
+    for (var c = 1, m = table.rows[r].cells.length; c < m; c++) {
+     if (z == 1){
+      arreglo_c.push(table.rows[r].cells[c].innerHTML);
+      z ++;
+    }
+
+    else if(z == 2){
+     arreglo_c.push(table.rows[r].cells[c].innerHTML);
+     z ++;
+   }else if(z == 3){
+     arreglo_c.push(table.rows[r].cells[c].innerHTML);
+     z ++;
+   }else if(z == 4){
+     arreglo_c.push(table.rows[r].cells[c].innerHTML);
+     z ++;
+   }else{
     arreglo_c.push(table.rows[r].cells[c].innerHTML);
-    z ++;
+    document.getElementById("c_copia").value=arreglo_c;
+    z = 1;
+
   }
-
-  else if(z == 2){
-   arreglo_c.push(table.rows[r].cells[c].innerHTML);
-   z ++;
- }else if(z == 3){
-   arreglo_c.push(table.rows[r].cells[c].innerHTML);
-   z ++;
- }else if(z == 4){
-   arreglo_c.push(table.rows[r].cells[c].innerHTML);
-   z ++;
- }else{
-  arreglo_c.push(table.rows[r].cells[c].innerHTML);
-  document.getElementById("c_copia").value=arreglo_c;
-  z = 1;
-
-	}
-	}
-	}
+}
+}
 }
 
 function direc(){
 
-var dire = document.getElementById("id_reg").value;
+  var dire = document.getElementById("id_reg").value;
 
-var route = "http://localhost:8000/traerdire/"+dire;
+  var route = "http://localhost:8000/traerdire/"+dire;
 
-$.get(route,function(res){
-  if(res.length > 0){
+  $.get(route,function(res){
+    if(res.length > 0){
 
-    for (var i = 0; i < res.length; i++) {
-      if(res[i].estado =="ACTIVO"){
-        var x = document.getElementById("id_directorio_regional");
-        var option = document.createElement("option");
-        option.text = res[i].director_regional;
-        option.value = res[i].director_regional +"_"+res[i].id;
+      for (var i = 0; i < res.length; i++) {
+        if(res[i].estado =="ACTIVO"){
+          var x = document.getElementById("id_directorio_regional");
+          var option = document.createElement("option");
+          option.text = res[i].director_regional;
+          option.value = res[i].director_regional +"_"+res[i].id;
 
-				x.add(option, x[i]);
+          x.add(option, x[i]);
 
+        }
       }
     }
-  }
 
- });
+  });
 
 }
 
 function cuenta() {
-      var select2 = document.getElementById("id_cuenta");
-      var selectedOption2 = select2.selectedIndex;
-     	var cantidadtotal = select2.value;
-     	limite = "9",
-      separador = "_",
-      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-     	cct=arregloDeSubCadenas[0];
-     	num_cuenta=arregloDeSubCadenas[2];
-			clave_in=arregloDeSubCadenas[3];
-			secretaria=arregloDeSubCadenas[4];
+  var select2 = document.getElementById("id_cuenta");
+  var selectedOption2 = select2.selectedIndex;
+  var cantidadtotal = select2.value;
+  limite = "9",
+  separador = "_",
+  arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+  cct=arregloDeSubCadenas[0];
+  num_cuenta=arregloDeSubCadenas[2];
+  clave_in=arregloDeSubCadenas[3];
+  secretaria=arregloDeSubCadenas[4];
 		//	id_banco=arregloDeSubCadenas[5];
-     	document.getElementById('num_cuenta').value=num_cuenta;
-			document.getElementById('clave_in').value=clave_in;
-			document.getElementById('secretaria').value=secretaria;
+    document.getElementById('num_cuenta').value=num_cuenta;
+    document.getElementById('clave_in').value=clave_in;
+    document.getElementById('secretaria').value=secretaria;
 		//	document.getElementById('id_banco').value=id_banco;
-}
-
-
-function cuentabanco(){
-
-
-	var select2 = document.getElementById("id_cuenta");
-	var selectedOption2 = select2.selectedIndex;
-	var cantidadtotal = select2.value;
-	limite = "9",
-	separador = "_",
-	arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-	banco=arregloDeSubCadenas[0];
-
-var route = "http://localhost:8000/banco/"+banco;
-
-$.get(route,function(res){
-  if(res.length > 0){
-
-    for (var i = 0; i < res.length; i++) {
-      if(res[i].estado =="ACTIVO"){
-        var x = document.getElementById("id_banco");
-        var option = document.createElement("option");
-        option.text = res[i].nombre_banco;
-        option.value = res[i].nombre_banco +"_"+res[i].id;
-				x.add(option, x[i]);
-      }
-    }
   }
 
- });
 
-}
+  function cuentabanco(){
 
 
-function nombre_clave() {
-      var select2 = document.getElementById("id_captura");
-      var selectedOption2 = select2.selectedIndex;
-     	var cantidadtotal = select2.value;
-     	limite = "9",
-      separador = "_",
-      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-     	cct=arregloDeSubCadenas[0];
+   var select2 = document.getElementById("id_cuenta");
+   var selectedOption2 = select2.selectedIndex;
+   var cantidadtotal = select2.value;
+   limite = "9",
+   separador = "_",
+   arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+   banco=arregloDeSubCadenas[0];
 
-     	categoria=arregloDeSubCadenas[1];
-     	document.getElementById('categoria').value=categoria;
-			document.getElementById('dirigido_a').value=cct;
+   var route = "http://localhost:8000/banco/"+banco;
+
+   $.get(route,function(res){
+    if(res.length > 0){
+
+      for (var i = 0; i < res.length; i++) {
+        if(res[i].estado =="ACTIVO"){
+          var x = document.getElementById("id_banco");
+          var option = document.createElement("option");
+          option.text = res[i].nombre_banco;
+          option.value = res[i].nombre_banco +"_"+res[i].id;
+          x.add(option, x[i]);
+        }
+      }
+    }
+
+  });
+
+ }
+
+
+ function nombre_clave() {
+  var select2 = document.getElementById("id_captura");
+  var selectedOption2 = select2.selectedIndex;
+  var cantidadtotal = select2.value;
+  limite = "9",
+  separador = "_",
+  arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+  cct=arregloDeSubCadenas[0];
+
+  categoria=arregloDeSubCadenas[1];
+  document.getElementById('categoria').value=categoria;
+  document.getElementById('dirigido_a').value=cct;
 }
 
 function nombre_sos() {
-      var select2 = document.getElementById("id_captura");
-      var selectedOption2 = select2.selectedIndex;
-     	var cantidadtotal = select2.value;
-     	limite = "9",
-      separador = "_",
-      arregloDeSubCadenas = cantidadtotal.split(separador, limite);
-     	cct=arregloDeSubCadenas[0];
-			sostenimiento=arregloDeSubCadenas[2];
-     	id_reg=arregloDeSubCadenas[3];
-     	document.getElementById('id_reg').value=id_reg;
+  var select2 = document.getElementById("id_captura");
+  var selectedOption2 = select2.selectedIndex;
+  var cantidadtotal = select2.value;
+  limite = "9",
+  separador = "_",
+  arregloDeSubCadenas = cantidadtotal.split(separador, limite);
+  cct=arregloDeSubCadenas[0];
+  sostenimiento=arregloDeSubCadenas[2];
+  id_reg=arregloDeSubCadenas[3];
+  document.getElementById('id_reg').value=id_reg;
 
 }
 
@@ -2700,40 +2706,40 @@ function num_ofi(){
 
 	$.get(route,function(res){
 		if(res.length > 0){
-		 swal("Alerta!", "Este Oficio Ya se ha Registrado Anteriormente!", "error");
-		 document.getElementById('submit').disabled= true;
-		 return false;
-	 }else{
-		var fecha = new Date();
-		var ano = fecha.getFullYear();
-		document.getElementById('oficio').value = "SA/DFE/DHA/ETC.-"+x+"/"+ano;
-		document.getElementById('submit').disabled= false;
+     swal("Alerta!", "Este Oficio Ya se ha Registrado Anteriormente!", "error");
+     document.getElementById('submit').disabled= true;
+     return false;
+   }else{
+    var fecha = new Date();
+    var ano = fecha.getFullYear();
+    document.getElementById('oficio').value = "SA/DFE/DHA/ETC.-"+x+"/"+ano;
+    document.getElementById('submit').disabled= false;
 
-	}
+  }
 });
 }
 
 function cctescuela(){
-var cct = document.getElementById("id_centro_trabajo").value;
+  var cct = document.getElementById("id_centro_trabajo").value;
 
-var route = "http://localhost:8000/traerpersonal/"+cct;
+  var route = "http://localhost:8000/traerpersonal/"+cct;
 
-$.get(route,function(res){
-  if(res.length > 0){
-    for (var i = 0; i < res.length; i++) {
-      if(res[i].estado =="ACTIVO"){
-        var x = document.getElementById("id_captura");
-        var option = document.createElement("option");
-        option.text = res[i].nombre;
-        option.value = res[i].nombre +"_"+res[i].categoria +"_"+res[i].sostenimiento +"_"+res[i].id;
+  $.get(route,function(res){
+    if(res.length > 0){
+      for (var i = 0; i < res.length; i++) {
+        if(res[i].estado =="ACTIVO"){
+          var x = document.getElementById("id_captura");
+          var option = document.createElement("option");
+          option.text = res[i].nombre;
+          option.value = res[i].nombre +"_"+res[i].categoria +"_"+res[i].sostenimiento +"_"+res[i].id;
 
-				x.add(option, x[i]);
+          x.add(option, x[i]);
 
+        }
       }
     }
-  }
 
-});
+  });
 }
 
 function calcula(){
@@ -2745,8 +2751,8 @@ function calcula(){
   var route = "http://localhost:8000/calcular_reclamo/"+dias+"/"+categoria+"/"+ciclo;
   $.get(route,function(res){
     document.getElementById('total').value = res;
-		numero();
-	});
+    numero();
+  });
 
 }
 
@@ -2772,17 +2778,17 @@ function validar_quincenaIna(){
              //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
              fileInput.value = '';
              return false;
+           }
+
          }
 
-     }
+       }
 
+     });
+   //
  }
 
-});
-   //
-}
-
-function valida_file_cargar(){
+ function valida_file_cargar(){
   var fileInput = document.getElementById('file');
   var filePath = fileInput.value;
   var allowedExtensions = /(.csv|.csv)$/i;
@@ -2803,27 +2809,27 @@ function valida_file_cargar(){
 
     }
 
-}
+  }
 
 
-function busca_dias_captura(){
-  document.getElementById("detalles").deleteRow(1);
+  function busca_dias_captura(){
+    document.getElementById("detalles").deleteRow(1);
 
-  var ciclo = document.getElementById('ciclo_escolar').value;
-  document.getElementById('generar').href="http://localhost:8000/pdf_captura/"+ciclo;
-  var route = "http://localhost:8000/busca_dias_captura/"+ciclo;
+    var ciclo = document.getElementById('ciclo_escolar').value;
+    document.getElementById('generar').href="http://localhost:8000/pdf_captura/"+ciclo;
+    var route = "http://localhost:8000/busca_dias_captura/"+ciclo;
 
-document.getElementById('excel_capturas').href="http://localhost:8000/descargar-capturas/"+ciclo;
-  var director= 0;
-  var docente = 0;
-  var intendente = 0;
-  var activo = 0;
-  var estatal = 0;
-  var federal = 0;
+    document.getElementById('excel_capturas').href="http://localhost:8000/descargar-capturas/"+ciclo;
+    var director= 0;
+    var docente = 0;
+    var intendente = 0;
+    var activo = 0;
+    var estatal = 0;
+    var federal = 0;
 
-  $.get(route,function(res){
+    $.get(route,function(res){
      console.log(res.length);
-    if(res.length > 0){
+     if(res.length > 0){
       for (var i =0; res.length > i; i++) {
         if(res[i].estado == "ACTIVO"){
           activo = activo +1;
@@ -2869,81 +2875,446 @@ document.getElementById('excel_capturas').href="http://localhost:8000/descargar-
   });
 
 
-}
+  }
 
-function busca_dias_captura_region(){
-  document.getElementById("detalles2").deleteRow(1);
+  function busca_dias_captura_region(){
+    document.getElementById("detalles2").deleteRow(1);
 
- var ciclo = document.getElementById('ciclo_escolar').value;
- var region = document.getElementById('region').value;
+    var ciclo = document.getElementById('ciclo_escolar').value;
+    var region = document.getElementById('region').value;
 
- var route = "http://localhost:8000/busca_dias_captura_region/"+region+"/"+ciclo;
- var director= 0;
- var docente = 0;
- var intendente = 0;
- var activo = 0;
- var recibidos = 0;
- var pendientes = 0;
-
-
- $.get(route,function(res){
-
-   if(res.length > 0){
-     for (var i =0; res.length > i; i++) {
-       if(res[i].estado == "ACTIVO"){
-         activo = activo +1;
-
-       }
+    var route = "http://localhost:8000/busca_dias_captura_region/"+region+"/"+ciclo;
+    var director= 0;
+    var docente = 0;
+    var intendente = 0;
+    var activo = 0;
+    var recibidos = 0;
+    var pendientes = 0;
 
 
-       if(res[i].categoria == "DIRECTOR"){
-         director=director+1;
-       }else if(res[i].categoria == "DOCENTE" || res[i].categoria == "USAER" || res[i].categoria == "EDUCACION FISICA"){
-         docente=docente+1;
-       }else{
-         intendente= intendente+1;
-       }
+    $.get(route,function(res){
 
-       if(res[i].qna_actual != 0){
-         recibidos=recibidos+1;
-       }else if(res[i].qna_actual == 0){
-         pendientes=pendientes+1;
-       }
+     if(res.length > 0){
+       for (var i =0; res.length > i; i++) {
+         if(res[i].estado == "ACTIVO"){
+           activo = activo +1;
+
+         }
 
 
-     }
-   }
-   var tabla = document.getElementById("detalles2");
-   var row = tabla.insertRow(1);
-   row.style.backgroundColor = "white";
-   var cell1 = row.insertCell(0);
-   var cell2 = row.insertCell(1);
-   var cell3 = row.insertCell(2);
-   var cell4 = row.insertCell(3);
-   var cell5 = row.insertCell(4);
-   var cell6 = row.insertCell(5);
+         if(res[i].categoria == "DIRECTOR"){
+           director=director+1;
+         }else if(res[i].categoria == "DOCENTE" || res[i].categoria == "USAER" || res[i].categoria == "EDUCACION FISICA"){
+           docente=docente+1;
+         }else{
+           intendente= intendente+1;
+         }
 
-   cell1.innerHTML = res.length;
-   cell2.innerHTML = director;
-   cell3.innerHTML = docente;
-   cell4.innerHTML =  intendente;
-   cell5.innerHTML = recibidos;
-   cell6.innerHTML =  pendientes;
-
- });
+         if(res[i].qna_actual != 0){
+           recibidos=recibidos+1;
+         }else if(res[i].qna_actual == 0){
+           pendientes=pendientes+1;
+         }
 
 
-}
-
-
-   function traer_montos_forta(){
-    var route = "http://localhost:8000/traer_montos_forta/"+x+"/";
-      $.get(route,function(res){
-      if(res.length > 0){
-        for (var i =0; res.length > i; i++) {
-         document.getElementById("monto_forta").value = res[i].monto_forta;
        }
      }
+     var tabla = document.getElementById("detalles2");
+     var row = tabla.insertRow(1);
+     row.style.backgroundColor = "white";
+     var cell1 = row.insertCell(0);
+     var cell2 = row.insertCell(1);
+     var cell3 = row.insertCell(2);
+     var cell4 = row.insertCell(3);
+     var cell5 = row.insertCell(4);
+     var cell6 = row.insertCell(5);
+
+     cell1.innerHTML = res.length;
+     cell2.innerHTML = director;
+     cell3.innerHTML = docente;
+     cell4.innerHTML =  intendente;
+     cell5.innerHTML = recibidos;
+     cell6.innerHTML =  pendientes;
 
    });
+
+
+  }
+
+
+  function traer_montos_forta(){
+   var x = document.getElementById('cct').value;
+   var route = "http://localhost:8000/traer_montos_forta/"+x+"/";
+   $.get(route,function(res){
+
+    if(res.length > 0){ 
+      for (var i =0; res.length > i; i++) {
+       document.getElementById("monto_forta").value = res[i].monto_forta;
+     }
    }
+
+ });
+ }
+
+ function ver_plan_region(ciclo){
+
+  var c = document.getElementById('detalles2').rows;
+  if (c.length == 6){
+    for (var i = 1; i < 5; i++) {
+      document.getElementById("detalles2").deleteRow(1);
+    }
+  }
+
+
+  var x = document.getElementById('region').value;
+  var route = "http://localhost:8000/ver_plan_region/"+ciclo+"/"+x+"/";
+  $.get(route,function(res){
+
+
+    var tabla = document.getElementById("detalles2");
+
+
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+
+    cell1.innerHTML = "Total";
+    cell2.innerHTML = res[3];
+    cell3.innerHTML = "$"+ new Intl.NumberFormat().format(res[7]);
+    cell4.innerHTML = "$"+ new Intl.NumberFormat().format(res[11]);
+    cell5.innerHTML = "$"+ new Intl.NumberFormat().format(res[15]);
+
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+
+    cell1.innerHTML = "Intendentes";
+    cell2.innerHTML = new Intl.NumberFormat().format(res[2].total_intendente);
+    cell3.innerHTML = "$"+ new Intl.NumberFormat().format(res[6].total_perce_inte);
+    cell4.innerHTML = "$"+ new Intl.NumberFormat().format(res[10].total_dedu_inte);
+    cell5.innerHTML = "$"+ new Intl.NumberFormat().format(res[14]);
+
+
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+
+    cell1.innerHTML = "Docentes";
+    cell2.innerHTML = res[1].total_docente;
+    cell3.innerHTML = "$"+ new Intl.NumberFormat().format(res[5].total_perce_doce);
+    cell4.innerHTML = "$"+new Intl.NumberFormat().format(res[9].total_dedu_doce);
+    cell5.innerHTML = "$"+new Intl.NumberFormat().format(res[13]);
+
+
+    var row = tabla.insertRow(1);
+    row.parentNode.style.backgroundColor = "rgb(219, 255, 194)";
+    //row.style.backgroundColor = "#DBFFC";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+
+    cell1.innerHTML = "Directores";
+    cell2.innerHTML = res[0].total_director;
+    cell3.innerHTML = "$"+ new Intl.NumberFormat().format(res[4].total_perce_dire);
+    cell4.innerHTML = "$"+ new Intl.NumberFormat().format(res[8].total_dedu_dire);
+    cell5.innerHTML = "$"+ new Intl.NumberFormat().format(res[12]);
+
+
+
+
+
+  });
+}
+
+function calculo_nomina(callback){
+
+  limpiar_input_select('qna');
+
+  var ciclo = document.getElementById('ciclo_escolar2').value;
+
+  var route = "http://localhost:8000/buscar_qnas_activas/"+ciclo;  
+
+  $.get(route,function(res){
+    for (var p = 0 ; p < res.length; p++) {
+      var x = document.getElementById("qna");
+      var option = document.createElement("option");
+      option.text = res[p].qna ;
+      option.value = res[p].id;
+      x.add(option, x[p])
+    }
+  });
+
+  setTimeout(function(){calculo_qna_nominas()},500);
+}
+
+function limpiar_input_select(id){
+  document.getElementById(id).innerHTML = "";
+
+}
+
+
+function calculo_qna_nominas(callback){ 
+  var c = document.getElementById("dynamic-table").rows.length;
+  for (var i = 1; i < c; i++) {
+    document.getElementById("dynamic-table").deleteRow(1);
+  }
+
+  var qna = document.getElementById('qna');
+
+  var route = "http://localhost:8000/montos_qnas/"+qna.value;
+  $.get(route,function(res){
+
+    pago_dire=res[0].pago_director;
+    pago_doce=res[0].pago_docente;
+    pago_inte=res[0].pago_intendente;
+
+    dire=res[1].total_registros;
+    doce=res[2].total_registros;
+    inte=res[3].total_registros;
+    total= dire+doce+inte;
+
+
+
+    total_dire=dire * pago_dire;
+    total_doce=doce * pago_doce;
+    total_inte=inte * pago_inte;
+    total_monto=total_dire+total_doce+total_inte;
+
+    var tabla = document.getElementById("dynamic-table"); 
+    var row = tabla.insertRow(1);
+    //row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    cell1.innerHTML = "Total Dias: "+res[0].dias;
+    cell2.innerHTML = "Total Personal";
+    cell3.innerHTML = new Intl.NumberFormat().format(total);
+    cell4.innerHTML = "$"+ new Intl.NumberFormat().format(total_monto);  
+
+
+    var tabla = document.getElementById("dynamic-table"); 
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+
+
+    cell1.innerHTML = res[0].dias;
+    cell2.innerHTML = "DIRECTOR";
+    cell3.innerHTML = new Intl.NumberFormat().format(dire);
+    cell4.innerHTML = "$"+ new Intl.NumberFormat().format(total_dire);  
+
+    var tabla = document.getElementById("dynamic-table"); 
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    cell1.innerHTML = res[0].dias;
+    cell2.innerHTML = "DOCENTE";
+    cell3.innerHTML = new Intl.NumberFormat().format(doce);
+    cell4.innerHTML = "$"+ new Intl.NumberFormat().format(total_doce);  
+
+    var tabla = document.getElementById("dynamic-table"); 
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    cell1.innerHTML = res[0].dias;
+    cell2.innerHTML = "INTENDENTE";
+    cell3.innerHTML = new Intl.NumberFormat().format(inte);
+    cell4.innerHTML = "$"+ new Intl.NumberFormat().format(total_inte);  
+
+
+
+
+
+  });
+  setTimeout(function(){calculo_nomina_region()},500);
+
+}
+
+function calculo_nomina_region(){
+  var c = document.getElementById("detalles2").rows.length;
+  for (var i = 1; i < c; i++) {
+    document.getElementById("detalles2").deleteRow(1);
+  }
+
+  var qna = document.getElementById('qna');
+  var region = document.getElementById('region').value;
+  var ciclo = document.getElementById('ciclo_escolar2').value;
+
+  var route = "http://localhost:8000/montos_qnas_region/"+qna.value+"/"+region+"/"+ciclo;
+  $.get(route,function(res){
+
+    pago_dire=res[0].pago_director;
+    pago_doce=res[0].pago_docente;
+    pago_inte=res[0].pago_intendente;
+
+    dire=res[1].total_registros;
+    doce=res[2].total_registros;
+    inte=res[3].total_registros;
+    total= dire+doce+inte;
+
+
+
+    total_dire=dire * pago_dire;
+    total_doce=doce * pago_doce;
+    total_inte=inte * pago_inte;
+    total_monto=total_dire+total_doce+total_inte;
+
+    var tabla = document.getElementById("detalles2"); 
+    var row = tabla.insertRow(1);
+    //row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    cell1.innerHTML = "Total Dias: "+res[0].dias;
+    cell2.innerHTML = "Total Personal";
+    cell3.innerHTML = new Intl.NumberFormat().format(total);
+    cell4.innerHTML = "$"+ new Intl.NumberFormat().format(total_monto);  
+
+
+    var tabla = document.getElementById("detalles2"); 
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+
+
+    cell1.innerHTML = res[0].dias;
+    cell2.innerHTML = "DIRECTOR";
+    cell3.innerHTML = new Intl.NumberFormat().format(dire);
+    cell4.innerHTML = "$"+ new Intl.NumberFormat().format(total_dire);  
+
+    var tabla = document.getElementById("detalles2"); 
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    cell1.innerHTML = res[0].dias;
+    cell2.innerHTML = "DOCENTE";
+    cell3.innerHTML = new Intl.NumberFormat().format(doce);
+    cell4.innerHTML = "$"+ new Intl.NumberFormat().format(total_doce);  
+
+    var tabla = document.getElementById("detalles2"); 
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    cell1.innerHTML = res[0].dias;
+    cell2.innerHTML = "INTENDENTE";
+    cell3.innerHTML = new Intl.NumberFormat().format(inte);
+    cell4.innerHTML = "$"+ new Intl.NumberFormat().format(total_inte);  
+
+
+
+
+
+  });
+}
+
+function filtro_centros(){
+  limpiar_input_select('option2');
+  var x = document.getElementById('option1').value;
+  var route = "http://localhost:8000/ver_opciones/"+x+"/";
+  $.get(route,function(res){
+    var z = res[1];
+    for (var p = 0 ; p < res[0].length; p++) {
+      var x = document.getElementById("option2");
+      var option = document.createElement("option");   
+      if (z == 2){
+        option.text = res[0][p].region + " "+ res[0][p].sostenimiento ;
+        option.value = res[0][p].id;      
+
+      }else if(z == 3){
+        option.text = res[0][p].municipio ;
+        option.value = res[0][p].id;      
+
+      }else if (z == 4){
+        option.text = res[0][p].nom_loc +" - "+res[0][p].municipio;
+        option.value = res[0][p].id;      
+
+      }else if (z == 5){
+        option.text = res[0][p].fecha_ingreso;
+        option.value = res[0][p].id;      
+
+      }
+      x.add(option, x[p])
+    }
+
+
+  });
+
+
+}
+
+
+function filtro_centros(){
+  limpiar_input_select('option2');
+  var x = document.getElementById('option1').value;
+  var route = "http://localhost:8000/ver_opciones/"+x+"/";
+  $.get(route,function(res){
+    var z = res[1];
+    for (var p = 0 ; p < res[0].length; p++) {
+      var x = document.getElementById("option2");
+      var option = document.createElement("option");   
+      if (z == 2){
+        option.text = res[0][p].region + " "+ res[0][p].sostenimiento ;
+        option.value = res[0][p].id;      
+
+      }else if(z == 3){
+        option.text = res[0][p].municipio ;
+        option.value = res[0][p].id;      
+
+      }else if (z == 4){
+        option.text = res[0][p].nom_loc +" - "+res[0][p].municipio;
+        option.value = res[0][p].id;      
+
+      }else if (z == 5){
+        option.text = res[0][p].fecha_ingreso;
+        option.value = res[0][p].id;      
+
+      }
+      x.add(option, x[p])
+    }
+
+
+  });
+
+
+}
+
+function ver_centros_filtro(){
+ var x = document.getElementById('option1').value;
+ var y = document.getElementById('option2').value;
+ var route = "http://localhost:8000/ver_centros_filtro/"+x+"/"+y;
+ 
+}

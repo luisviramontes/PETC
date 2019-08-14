@@ -158,11 +158,12 @@
 													</tfoot>
 
 												</table>
+													
 											</div><!--/table-responsive-->
 										</div><!--/porlets-content-->
 									</div><!--/block-web-->
 								</div><!--/col-md-12-->
-							</div><!--/row-->
+							</div><!--/row--> 
 						</div>
 						<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 						<script type="text/javascript">

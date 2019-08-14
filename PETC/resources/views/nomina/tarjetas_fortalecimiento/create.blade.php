@@ -56,7 +56,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">CCT <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="cct" id="cct" onchange="traer_montos_forta()" class="form-control select2"  value="{{Input::old('id_cct')}}"  required>
+								<select name="cct" id="cct" onchange="traer_montos_forta();" class="form-control select2" required>
 														
 								</select>
 								<div class="help-block with-errors"></div>
@@ -67,7 +67,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Monto Fortalecimiento: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="monto_forta" disabled="" id="monto_forta" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="{{Input::old('monto_forta')}}" />
+								<input name="monto_forta"  id="monto_forta" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="{{Input::old('monto_forta')}}" />
 							</div>
 						</div>
 

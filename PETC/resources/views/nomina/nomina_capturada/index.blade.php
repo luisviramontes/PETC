@@ -24,9 +24,9 @@
 							<div class="actions"> </div>
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Nominas Capturadas</strong></h2>
 							<br>
-								@include('nomina.nomina_capturada.search')
+							@include('nomina.nomina_capturada.search')
 
-						</div>
+						</div> 
 						<div class="col-md-5">
 							<div class="btn-group pull-right">
 								<b>
@@ -34,8 +34,8 @@
 
 									<div class="btn-group" style="margin-right: 10px;">
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('nomina_capturada.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Nomina"> <i class="fa fa-plus"></i> Registrar </a>
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.nomina_capturada.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-								 		<a class="btn btn-primary btn-sm" href="{{URL::action('NominaCapturadaController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.nomina_capturada.excel')}}" id="excel" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+										<a class="btn btn-primary btn-sm" href="{{URL::action('NominaCapturadaController@invoice','2')}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
 
 
@@ -62,12 +62,12 @@
 								<th>Fecha de Captura</th>
 								<th>Captura</th>
 
-              	<td><center><b>Editar</b></center></td>
+								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
 						</thead>
 						<tbody>
-						@foreach($nomina_capturada  as $nominac)
+							@foreach($nomina_capturada  as $nominac)
 							@if ($nominac->estado == "ACTIVO")
 							<tr class="gradeX">
 
@@ -76,11 +76,8 @@
 								<td style="background-color:#DBFFC2;">{{$nominac->tipo}}</td>
 								<td style="background-color:#DBFFC2;">{{$nominac->estado}}</td>
 								<td style="background-color:#DBFFC2;">
-									@if ($nominac->sostenimiento == "FEDERAL")
-									<a href="{{ action('NominaFederalController@index') }}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
-									@else
-									<a href="{{ action('NominaEstatalController@index') }}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
-									@endif
+									<a href="{{URL::action('NominaCapturadaController@ver_captura_qna',$nominac->qna)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
+									
 								</td>
 								<td style="background-color:#DBFFC2;">{{$nominac->created_at}}</td>
 								<td style="background-color:#DBFFC2;">{{$nominac->captura}}</td>
@@ -97,69 +94,65 @@
 									</center>
 								</td>
 								@else <td style="background-color:#DBFFC2;">
-									<center>
+								<center>
 
-											<h4><span class="label label-warning">Inactivar para editar</span></h4>
+									<h4><span class="label label-warning">Inactivar para editar</span></h4>
 
-									</center>
-								</td>
-								@endif
-								<td style="background-color:#DBFFC2;">
-									<center>
-										<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$nominac->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
-
-									</center>
-									</td>
-								</td>
-							</tr>
-							@else
-							<tr class="gradeX">
-
-								<td style="background-color:#FFE4E1;">{{$nominac->qna}} </td>
-								<td style="background-color:#FFE4E1;">{{$nominac->sostenimiento}}</td>
-								<td style="background-color:#FFE4E1;">{{$nominac->tipo}}</td>
-								<td style="background-color:#FFE4E1;">{{$nominac->estado}}</td>
-								<td style="background-color:#FFE4E1;">
-									@if ($nominac->sostenimiento == "FEDERAL")
-									<a href="{{ action('NominaFederalController@index') }}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
-									@else
-									<a href="{{ action('NominaEstatalController@index') }}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
-									@endif
-								</td>
-								<td style="background-color:#FFE4E1;">{{$nominac->created_at}}</td>
-								<td style="background-color:#FFE4E1;">{{$nominac->captura}}</td>
-
-
-
-								@if ($nominac->estado == "INACTIVO")
-
-
-								<td style="background-color:#FFE4E1;">
-									<center>
-										<a href="{{URL::action('NominaCapturadaController@edit',$nominac->id)}}" id="edit" onchange="valida_edit()" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
-
-									</center>
-								</td>
-								@else <td style="background-color:#FFE4E1;">
-									<center>
-
-											<h4><span class="label label-warning">Inactivar para editar</span></h4>
-
-									</center>
-								</td>
-								@endif
-								<td style="background-color:#FFE4E1;">
-									<center>
-										<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$nominac->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
-
-									</center>
-									</td>
-								</td>
-							</tr>
+								</center>
+							</td>
 							@endif
-							@include('nomina.nomina_capturada.modal')
-					@endforeach
-						</tbody>
+							<td style="background-color:#DBFFC2;">
+								<center>
+									<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$nominac->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+
+								</center>
+							</td>
+						</td>
+					</tr>
+					@else
+					<tr class="gradeX">
+
+						<td style="background-color:#FFE4E1;">{{$nominac->qna}} </td>
+						<td style="background-color:#FFE4E1;">{{$nominac->sostenimiento}}</td>
+						<td style="background-color:#FFE4E1;">{{$nominac->tipo}}</td>
+						<td style="background-color:#FFE4E1;">{{$nominac->estado}}</td>
+						<td style="background-color:#FFE4E1;">
+							<a href="{{URL::action('NominaCapturadaController@ver_captura_qna',$nominac->qna)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>
+						</td>
+						<td style="background-color:#FFE4E1;">{{$nominac->created_at}}</td>
+						<td style="background-color:#FFE4E1;">{{$nominac->captura}}</td>
+
+
+
+						@if ($nominac->estado == "INACTIVO")
+
+
+						<td style="background-color:#FFE4E1;">
+							<center>
+								<a href="{{URL::action('NominaCapturadaController@edit',$nominac->id)}}" id="edit" onchange="valida_edit()" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
+
+							</center>
+						</td>
+						@else <td style="background-color:#FFE4E1;">
+						<center>
+
+							<h4><span class="label label-warning">Inactivar para editar</span></h4>
+
+						</center>
+					</td>
+					@endif
+					<td style="background-color:#FFE4E1;">
+						<center>
+							<a class="btn btn-danger btn-sm" id="delete" data-target="#modal-delete-{{$nominac->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
+
+						</center>
+					</td>
+				</td>
+			</tr>
+			@endif
+			@include('nomina.nomina_capturada.modal')
+			@endforeach
+		</tbody>
 						<!--<tfoot>
 							<tr>
                 <th></th>
@@ -186,13 +179,29 @@
 </div><!--/row-->
 </div>
 <script type="text/javascript">
+
+
+	function cambia_ruta(){
+		var x =document.getElementById('ciclo_escolar').value;
+		var y =document.getElementById('searchText').value;
+ // document.getElementById('excel').href="nomina.nomina_capturada.excel";
+ document.getElementById('invoice').href="/pdf_nomina_capturada/"+x;
+// location.href="/nomina_capturada?searchText="+y+"&ciclo_escolar="+x;
+}
+
+ 
 window.onload = function() {
+	var x =document.getElementById('ciclo_escolar').value;
+		var y =document.getElementById('searchText').value;
+ // document.getElementById('excel').href="nomina.nomina_capturada.excel";
+ document.getElementById('invoice').href="/pdf_nomina_capturada/"+x;
+ //location.href="/nomina_capturada?searchText="+y+"&ciclo_escolar="+x;
 
 	//valida_edit();
 
 
 
-function valida_edit(){
+	function valida_edit(){
 
 		var estado= document.getElementById("estado").value;
 
@@ -202,26 +211,26 @@ function valida_edit(){
 
 		$.get(route,function(res){
 
-				if(res.length > 0 ){
-					for (var i=0; i < res.length; i++){
-						if(res[i].estado != "ACTIVO"){
+			if(res.length > 0 ){
+				for (var i=0; i < res.length; i++){
+					if(res[i].estado != "ACTIVO"){
 
 
-							document.getElementById('edit').disabled=false;
+						document.getElementById('edit').disabled=false;
 
 						//	document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
-							return false
-						}
-
+						return false
 					}
-				}else{
-					swal("ERROR!","Inactiva esta quincena para poder editar","error");
 
-						document.getElementById('edit').disabled=true;
-		//valida_file();
 				}
+			}else{
+				swal("ERROR!","Inactiva esta quincena para poder editar","error");
 
-		});
+				document.getElementById('edit').disabled=true;
+		//valida_file();
+	}
+
+});
 	//	valida_file();
 
 

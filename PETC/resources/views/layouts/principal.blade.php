@@ -142,8 +142,10 @@
                 <li> <a href="{{url('nomina_federal')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Federal</b> </a> </li>
                 <li> <a href="{{url('nomina_estatal')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Estatal</b> </a> </li> 
                 <li> <a href="{{url('nomina_capturada')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Nominas Capturadas</b> </a> </li>
-                <li> <a href="{{url('cuadros_cifras')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadro Cifras</b> </a> </li>
-                <li> <a href="{{url('pagos_improcedentes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pagos Improcedentes</b> </a> </li>                   
+                <li> <a href="{{url('cuadros_cifras?ciclo_escolar2=2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadro Cifras</b> </a> </li>
+                <li> <a href="{{url('pagos_improcedentes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pagos Improcedentes</b> </a> </li>
+                 <li> <a href="{{url('plan_contraste')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Plan Contraste</b> </a> </li> 
+                 <li> <a href="{{url('calculo_nomina')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Calculo de Nomina</b> </a> </li>                        
 
               </ul>
             </li>

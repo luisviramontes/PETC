@@ -21,7 +21,7 @@
 						<div class="col-sm-7">
 							<div class="actions"> </div>
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Nominas Estatales</strong></h2>
-								@include('nomina.nomina_estatal.search')
+							@include('nomina.nomina_estatal.search')
 
 						</div>
 						<div class="col-md-5">
@@ -29,10 +29,10 @@
 								<b>
 
 
-										<div class="btn-group" style="margin-right: 10px;">
+									<div class="btn-group" style="margin-right: 10px;">
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('nomina_capturada.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Nomina"> <i class="fa fa-plus"></i> Registrar </a>
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.nomina_capturada.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-								 		<a class="btn btn-primary btn-sm" href="{{URL::action('NominaCapturadaController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+										<a class="btn btn-primary btn-sm" href="{{URL::action('NominaCapturadaController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
 
 
@@ -55,52 +55,52 @@
 								<th>Num Cheque</th>
 								<th>Num Empleado</th>
 								<th>RFC</th>
-                <th>Nombre</th>
-                <th>CVE</th>
-                <th style="display:none;">Plaza</th>
-                <th style="display:none;" >Contrato</th>
-                <th style="display:none;" >CCT</th>
-                <th style="display:none;">Region</th>
-                <th style="display:none;">PERC</th>
-                <th style="display:none;">DED</th>
-                <th style="display:none;">Neto</th>
-                <th>Qna Ini</th>
-                <th>Qna Fin</th>
-                <th>Qna Pago</th>
-                <th>Ciclo Escolar</th>
+								<th>Nombre</th>
+								<th>CVE</th>
+								<th style="display:none;">Plaza</th>
+								<th style="display:none;" >Contrato</th>
+								<th style="display:none;" >CCT</th>
+								<th style="display:none;">Region</th>
+								<th style="display:none;">PERC</th>
+								<th style="display:none;">DED</th>
+								<th style="display:none;">Neto</th>
+								<th>Qna Ini</th>
+								<th>Qna Fin</th>
+								<th>Qna Pago</th>
+								<th>Ciclo Escolar</th>
 								<th>Fecha de registro</th>	
-                <th style="display:none;">Captura</th>
+								<th style="display:none;">Captura</th>
 
 
 
 
 
-							<!--	<td><center><b>Borrar</b></center></td>-->
+								<!--	<td><center><b>Borrar</b></center></td>-->
 							</tr>
 						</thead>
 						<tbody>
-						@foreach($nomina_estatal  as $nomina)
+							@foreach($nomina_estatal  as $nomina)
 							<tr class="gradeX">
 
 								<td>{{$nomina->bco}} </td>
 								<td>{{$nomina->num_cheque}} </td>
 								<td>{{$nomina->num_empleado}} </td>
 								<td>{{$nomina->rfc}} </td>
-                <td>{{$nomina->nombre}}</td>
-                <td>{{$nomina->cve}}</td>
-                <td style="display:none;">{{$nomina->plaza}}</td>
-                <td style="display:none;">{{$nomina->contrato}}</td>
-                <td style="display:none;">{{$nomina->cct}}</td>
-                <td style="display:none;">{{$nomina->region}}</td>
-                <td style="display:none;">{{$nomina->perc}}</td>
-                <td style="display:none;">{{$nomina->ded}}</td>
-                <td style="display:none;">{{$nomina->neto}}</td>
-                <td>{{$nomina->qna_ini}}</td>
-                <td>{{$nomina->qna_fin}}</td>
-                <td>{{$nomina->qna_pago}}</td>
-                <td>{{$nomina->ciclo_escolar}}</td>
+								<td>{{$nomina->nombre}}</td>
+								<td>{{$nomina->cve}}</td>
+								<td style="display:none;">{{$nomina->plaza}}</td>
+								<td style="display:none;">{{$nomina->contrato}}</td>
+								<td style="display:none;">{{$nomina->cct}}</td>
+								<td style="display:none;">{{$nomina->region}}</td>
+								<td style="display:none;">$ <?php echo  number_format($nomina->perc) ?></td>
+								<td style="display:none;">$ <?php echo  number_format($nomina->ded) ?></td>
+								<td style="display:none;">$ <?php echo  number_format($nomina->neto) ?> </td>
+								<td>{{$nomina->qna_ini}}</td>
+								<td>{{$nomina->qna_fin}}</td>
+								<td>{{$nomina->qna_pago}}</td>
+								<td>{{$nomina->ciclo_escolar}}</td>
 								<td>{{$nomina->created_at}}</td>
-                <td style="display:none;">{{$nomina->captura}}</td>
+								<td style="display:none;">{{$nomina->captura}}</td>
 
 
 
@@ -109,11 +109,11 @@
 										<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$nomina->qna_pago}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></center>
 									</center>
 								</td> -->
-								</td>
-							</tr>
-					@include('nomina.nomina_estatal.modal')
+							</td>
+						</tr>
+						@include('nomina.nomina_estatal.modal')
 						@endforeach
-						</tbody>
+					</tbody>
 						<!--<tfoot>
 							<tr>
                 <th></th>
