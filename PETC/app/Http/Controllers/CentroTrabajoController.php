@@ -443,6 +443,9 @@ public function ver_centros_filtro($op,$id){
  if ($op==2){
    $total=DB::table('centro_trabajo')->where('id_region','=',$id)->where('estado','=',"ACTIVO")->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
+   $esc =DB::table('centro_trabajo')->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
+       ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')->where('centro_trabajo.id_region','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','centro_trabajo.alimentacion','centro_trabajo.nivel','centro_trabajo.telefono','centro_trabajo.domicilio','localidades.nom_loc','municipios.municipio')->orderby('nivel','DESC')->get();
+
    $total_prim=DB::table('centro_trabajo')->where('id_region','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PRIMARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
    $total_prim_a=DB::table('centro_trabajo')->where('id_region','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PRIMARIA')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
@@ -456,54 +459,66 @@ public function ver_centros_filtro($op,$id){
    $total_sec_a=DB::table('centro_trabajo')->where('id_region','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','SECUNDARIA')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
  }elseif($op==3){
-      $total=DB::table('centro_trabajo')->where('id_municipio','=',$id)->where('estado','=',"ACTIVO")->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+  $total=DB::table('centro_trabajo')->where('id_municipios','=',$id)->where('estado','=',"ACTIVO")->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_prim=DB::table('centro_trabajo')->where('id_municipio','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PRIMARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+  $esc =DB::table('centro_trabajo')->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
+       ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')->where('centro_trabajo.id_municipios','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','centro_trabajo.alimentacion','centro_trabajo.nivel','centro_trabajo.telefono','centro_trabajo.domicilio','localidades.nom_loc','municipios.municipio')->orderby('nivel','DESC')->get();
 
-   $total_prim_a=DB::table('centro_trabajo')->where('id_municipio','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PRIMARIA')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+  $total_prim=DB::table('centro_trabajo')->where('id_municipios','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PRIMARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_pre=DB::table('centro_trabajo')->where('id_municipio','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PREESCOLAR')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+  $total_prim_a=DB::table('centro_trabajo')->where('id_municipios','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PRIMARIA')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_pre_a=DB::table('centro_trabajo')->where('id_municipio','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PREESCOLAR')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+  $total_pre=DB::table('centro_trabajo')->where('id_municipios','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PREESCOLAR')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_sec=DB::table('centro_trabajo')->where('id_municipio','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','SECUNDARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+  $total_pre_a=DB::table('centro_trabajo')->where('id_municipios','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PREESCOLAR')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_sec_a=DB::table('centro_trabajo')->where('id_municipio','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','SECUNDARIA')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+  $total_sec=DB::table('centro_trabajo')->where('id_municipios','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','SECUNDARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
- }elseif($op ==4){
-   $total=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+  $total_sec_a=DB::table('centro_trabajo')->where('id_municipios','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','SECUNDARIA')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_prim=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PRIMARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+}elseif($op ==4){
+ $total=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_prim_a=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PRIMARIA')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+   $esc =DB::table('centro_trabajo')->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
+       ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')->where('centro_trabajo.id_localidades','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','centro_trabajo.alimentacion','centro_trabajo.nivel','centro_trabajo.telefono','centro_trabajo.domicilio','localidades.nom_loc','municipios.municipio')->orderby('nivel','DESC')->get();
 
-   $total_pre=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PREESCOLAR')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+ $total_prim=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PRIMARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_pre_a=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PREESCOLAR')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+ $total_prim_a=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PRIMARIA')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_sec=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','SECUNDARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+ $total_pre=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PREESCOLAR')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_sec_a=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','SECUNDARIA')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+ $total_pre_a=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','PREESCOLAR')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
- }elseif($op ==5){
-   $res= DB::table('datos_centro_trabajo')->orderby('fecha_ingreso','DESC')->distinct()->get(['fecha_ingreso']);
+ $total_sec=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','SECUNDARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total=DB::table('centro_trabajo')->join('datos_centro_trabajo','datos_centro_trabajo.id_centro_trabajo','=','centro_trabajo.id')->where('datos_centro_trabajo.id_localidades','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+ $total_sec_a=DB::table('centro_trabajo')->where('id_localidades','=',$id)->where('estado','=',"ACTIVO")->where('nivel','=','SECUNDARIA')->where('alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_prim=DB::table('centro_trabajo')->where('centro_trabajo.id_localidades','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('centro_trabajo.nivel','=','PRIMARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+}elseif($op ==5){
 
-   $total_prim_a=DB::table('centro_trabajo')->where('centro_trabajo.id_localidades','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('centro_trabajo.nivel','=','PRIMARIA')->where('centro_trabajo.alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+ $total=DB::table('centro_trabajo')->join('datos_centro_trabajo','datos_centro_trabajo.id_centro_trabajo','=','centro_trabajo.id')->where('datos_centro_trabajo.fecha_ingreso','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_pre=DB::table('centro_trabajo')->where('centro_trabajo.id_localidades','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('centro_trabajo.nivel','=','PREESCOLAR')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+  $esc =DB::table('centro_trabajo')->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
+       ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')->join('datos_centro_trabajo','datos_centro_trabajo.id_centro_trabajo','=','centro_trabajo.id')->where('datos_centro_trabajo.fecha_ingreso','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','centro_trabajo.alimentacion','centro_trabajo.nivel','centro_trabajo.telefono','centro_trabajo.domicilio','localidades.nom_loc','municipios.municipio')->orderby('centro_trabajo.nivel','DESC')->get();
 
-   $total_pre_a=DB::table('centro_trabajo')->where('centro_trabajo.id_localidades','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('centro_trabajo.nivel','=','PREESCOLAR')->where('centro_trabajo.alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+ $total_prim=DB::table('centro_trabajo')->join('datos_centro_trabajo','datos_centro_trabajo.id_centro_trabajo','=','centro_trabajo.id')->where('datos_centro_trabajo.fecha_ingreso','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('centro_trabajo.nivel','=','PRIMARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_sec=DB::table('centro_trabajo')->where('centro_trabajo.id_localidades','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('nivel','=','SECUNDARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+ $total_prim_a=DB::table('centro_trabajo')->join('datos_centro_trabajo','datos_centro_trabajo.id_centro_trabajo','=','centro_trabajo.id')->where('datos_centro_trabajo.fecha_ingreso','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('centro_trabajo.nivel','=','PRIMARIA')->where('centro_trabajo.alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
-   $total_sec_a=DB::table('centro_trabajo')->where('centro_trabajo.id_localidades','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('centro_trabajo.nivel','=','SECUNDARIA')->where('centro_trabajo.alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+ $total_pre=DB::table('centro_trabajo')->join('datos_centro_trabajo','datos_centro_trabajo.id_centro_trabajo','=','centro_trabajo.id')->where('datos_centro_trabajo.fecha_ingreso','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('centro_trabajo.nivel','=','PREESCOLAR')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+
+ $total_pre_a=DB::table('centro_trabajo')->join('datos_centro_trabajo','datos_centro_trabajo.id_centro_trabajo','=','centro_trabajo.id')->where('datos_centro_trabajo.fecha_ingreso','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('centro_trabajo.nivel','=','PREESCOLAR')->where('centro_trabajo.alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+
+ $total_sec=DB::table('centro_trabajo')->join('datos_centro_trabajo','datos_centro_trabajo.id_centro_trabajo','=','centro_trabajo.id')->where('datos_centro_trabajo.fecha_ingreso','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('nivel','=','SECUNDARIA')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
+
+ $total_sec_a=DB::table('centro_trabajo')->join('datos_centro_trabajo','datos_centro_trabajo.id_centro_trabajo','=','centro_trabajo.id')->where('datos_centro_trabajo.fecha_ingreso','=',$id)->where('centro_trabajo.estado','=',"ACTIVO")->where('centro_trabajo.nivel','=','SECUNDARIA')->where('centro_trabajo.alimentacion','=','SI')->select(DB::raw('COUNT(centro_trabajo.nivel) as total_registros'))->first();
 
 
- }
+}
+
+return response()->json([$total,$total_prim,$total_prim_a,$total_pre,$total_pre_a,$total_sec,$total_sec_a,$esc]);
+
+
 
 }
 

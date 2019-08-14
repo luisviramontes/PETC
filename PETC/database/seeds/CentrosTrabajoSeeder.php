@@ -10,7 +10,7 @@ class CentrosTrabajoSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    { 
     	DB::table('centro_trabajo')->insert(['cct' => '32DPR0080R','nombre_escuela' => 'FRANCISCO I. MADERO','domicilio' => 'ACATITA DE AMECA SN','id_region' => '25','id_localidades' => '3843','id_municipios' => '049','captura' => 'ADMINISTRADOR','telefono' => '4921602949','email' => 'FLORES.RAUDEL@YAHOO.COM.MX','ciclo_escolar' => '2018-2019','entrego_carta' => 'SI','alimentacion' => 'SI','tipo_organizacion' => 'Completa','nivel' => 'PRIMARIA','estado' => 'ACTIVO','created_at' => '0000-00-00 00:00:00','updated_at' => '0000-00-00 00:00:00']);
     	DB::table('centro_trabajo')->insert(['cct' => '32DPR0776Y','nombre_escuela' => 'RICARDO FLORES MAGON','domicilio' => 'ADJUNTAS DEL PEÑASCO SN','id_region' => '1','id_localidades' => '1089','id_municipios' => '013','captura' => 'ADMINISTRADOR','telefono' => '3331864576','email' => 'ISR1978@HOTMAIL.COM','ciclo_escolar' => '2018-2019','entrego_carta' => 'SI','alimentacion' => 'NO','tipo_organizacion' => 'Completa','nivel' => 'PRIMARIA','estado' => 'ACTIVO','created_at' => '0000-00-00 00:00:00','updated_at' => '0000-00-00 00:00:00']);
     	DB::table('centro_trabajo')->insert(['cct' => '32DPR0393S','nombre_escuela' => 'JULIAN GUERRERO','domicilio' => '9 DE MAYO, AGUAGORDA 221','id_region' => '17','id_localidades' => '4317','id_municipios' => '052','captura' => 'ADMINISTRADOR','telefono' => '4371036202','email' => 'CRISTINACORNEJO72@HOTMAIL.COM','ciclo_escolar' => '2018-2019','entrego_carta' => 'SI','alimentacion' => 'SI','tipo_organizacion' => 'Completa','nivel' => 'PRIMARIA','estado' => 'ACTIVO','created_at' => '0000-00-00 00:00:00','updated_at' => '0000-00-00 00:00:00']);

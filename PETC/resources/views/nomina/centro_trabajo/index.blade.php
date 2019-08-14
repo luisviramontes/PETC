@@ -33,7 +33,9 @@
 
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.centro_trabajo.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
 
-										<a class="btn btn-primary btn-sm" href="{{URL::action('CentroTrabajoController@invoice' )}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 										
+										<a class="btn btn-primary btn-sm" href="{{URL::action('CentroTrabajoController@invoice' )}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+
+										<a class="btn btn-primary btn-sm"  href="{{URL::action('CentroTrabajoController@ver_centros_trabajo')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-eye"></i> Ver Informe</a>								
 
 
 									</div>								
