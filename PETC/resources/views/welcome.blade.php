@@ -55,18 +55,19 @@
 									Acerca del PETC
 								</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="projects.html">¿Que es El PETC?</a>
-									<a class="dropdown-item" href="projects.html">Reglas de Operacion</a>
-									<a class="dropdown-item" href="projects.html">Convenio Marco</a>
-									<a class="dropdown-item" href="projects.html">Lineamientos Estatales</a>
-									<a class="dropdown-item" href="projects.html">Lineamientos Preescolar</a>
-									<a class="dropdown-item" href="projects.html">Lineamientos Telesecundaria</a>
+									<a class="dropdown-item" >¿Que es El PETC?</a>
+									<a class="dropdown-item" href="/img/documentos/RO2019.pdf" target="_blank">Reglas de Operacion</a>
+									<a class="dropdown-item" href="/img/documentos/CM2019.pdf" target="_blank">Convenio Marco</a>
+									<a class="dropdown-item" href="/img/documentos/RG2019.pdf" target="_blank" >Criterios Para El Ejercicio de Los Rubros De Gasto </a>
+									<a class="dropdown-item" href="/img/documentos/LPRE2018.pdf" target="_blank"">Lineamientos Preescolar</a>
+									<a class="dropdown-item" href="/img/documentos/LIPRI2018.pdf" target="_blank">Lineamientos Primaria</a>
+									<a class="dropdown-item" href="/img/documentos/LITEL2018.pdf" target="_blank">Lineamientos Telesecundaria</a>
 									<a class="dropdown-item" href="projects.html">Tipos de Apoyo</a>
 								</div>
 							</li>
-							<li><a href="services">Normatividad</a></li>
+							<li><a href="normatividad">Normatividad</a></li>
 							<li class="dropdown">
-								<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+								<a class="dropdown-toggle" href="normatividad" id="navbardrop" data-toggle="dropdown">
 									Áreas
 								</a>
 								<div class="dropdown-menu">

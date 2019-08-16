@@ -52,7 +52,7 @@
 								<tr>
 									<th>CCT </th>
 									<th>Nombre de la Escuela</th>
-									<<th style="display:none;" >Municipio </th>
+									<th style="display:none;" >Municipio </th>
 									<th style="display:none;" >Localidad </th>
 									<th style="display:none;" >Domicilio </th>
 									<th>Región </th>

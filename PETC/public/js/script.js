@@ -980,6 +980,15 @@ function enviar_ciclo10(){
  location.href="/nomina_capturada?searchText="+y+"&ciclo_escolar="+x;
 }
 
+function enviar_ciclo11(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var y =document.getElementById('searchText').value;
+  document.getElementById('excel').href="/descargar-oficios-emitidos/"+x; 
+
+  location.href="/oficiosemitidos?searchText="+y+"&ciclo_escolar="+x;
+}
+
+
 ///dir regional//
 function maxlengthtelefonos() {
 	if( document.getElementById("telefono").value.length > 9 ){
@@ -2054,6 +2063,33 @@ function buscar_qnas(){
       var ano = fecha.getFullYear();
       document.getElementById('oficio').value = "SA/DFE/DHA/ETC.-"+x+"/"+ano;
       document.getElementById('submit8').disabled= false;
+    }
+  });
+  }
+
+  function num_oficio_id(){
+    var ciclo = document.getElementById('ciclo_escolar').value;
+    var x= document.getElementById('oficio_aux').value;
+    var route = "http://localhost:8000/buscar_oficio2/"+x+"/"+ciclo;
+    $.get(route,function(res){
+      if(res.length > 0){
+       swal("Alerta!", "Este Oficio Ya se ha Registrado Anteriormente!", "error");
+       document.getElementById("error-nofici").innerHTML = "Este Oficio Ya se ha Registrado Anteriormente!";
+       document.getElementById("error-nofici").value = "1";
+       document.getElementById("correcto_oficio").innerHTML = "";
+       document.getElementById("correcto_oficio").value = "0";
+       document.getElementById('submit8').disabled= true;
+       return false;
+     }else{
+      var fecha = new Date();
+      var ano = fecha.getFullYear();
+      document.getElementById('oficio').value = "SA/DFE/DHA/ETC.-"+x+"/"+ano;
+      document.getElementById('submit8').disabled= false;
+      document.getElementById("error-nofici").innerHTML = "";
+      document.getElementById("error-nofici").value = "0";
+      document.getElementById("correcto_oficio").innerHTML = "Número De Oficio Disponible!";
+      document.getElementById("correcto_oficio").value = "1";
+
     }
   });
   }
@@ -3951,7 +3987,7 @@ function soli_nivel() {
 
 
     });
- setTimeout(function(){ver_centros_filtro()},4000);
+    setTimeout(function(){ver_centros_filtro()},4000);
 
   }
 
@@ -3964,68 +4000,81 @@ function soli_nivel() {
     var z = document.getElementById("dynamic-table2").rows.length;
 
     if (z > 1){
-  document.getElementById("dynamic-table2").deleteRow(1);
+      document.getElementById("dynamic-table2").deleteRow(1);
 
       var c = document.getElementById("dynamic-table3").rows.length;
-    for (var i = 1; i < c; i++) {
-      document.getElementById("dynamic-table3").deleteRow(1);
-    }
+      for (var i = 1; i < c; i++) {
+        document.getElementById("dynamic-table3").deleteRow(1);
+      }
 
     }
-   var x = document.getElementById('option1').value;
-   var y = document.getElementById('option2').value;
-   var route = "http://localhost:8000/ver_centros_filtro/"+x+"/"+y;
-   $.get(route,function(res){
-    if (res.length > 0){
+    var x = document.getElementById('option1').value;
+    var y = document.getElementById('option2').value;
+    var route = "http://localhost:8000/ver_centros_filtro/"+x+"/"+y;
+    $.get(route,function(res){
+      if (res.length > 0){
 
-      var tabla = document.getElementById("dynamic-table2"); 
-      var row = tabla.insertRow(1);
-      row.style.backgroundColor = "rgb(219, 255, 194)";
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      var cell3 = row.insertCell(2);
-      var cell4 = row.insertCell(3);
-      var cell5 = row.insertCell(4);
-      var cell6 = row.insertCell(5);
-      var cell7 = row.insertCell(6);
-   
-      cell1.innerHTML = res[0].total_registros;
-      cell2.innerHTML = res[3].total_registros;
-      cell3.innerHTML = new Intl.NumberFormat().format(res[4].total_registros);
-      cell4.innerHTML =  new Intl.NumberFormat().format(res[1].total_registros);  
-      cell5.innerHTML =  new Intl.NumberFormat().format(res[2].total_registros);  
-      cell6.innerHTML =  new Intl.NumberFormat().format(res[5].total_registros);  
-      cell7.innerHTML =  new Intl.NumberFormat().format(res[6].total_registros);  
+        var tabla = document.getElementById("dynamic-table2"); 
+        var row = tabla.insertRow(1);
+        row.style.backgroundColor = "rgb(219, 255, 194)";
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+        var cell7 = row.insertCell(6);
 
-         for (var p = 0 ; p < res[7].length; p++) {
-        var tabla = document.getElementById("dynamic-table3"); 
-      var row = tabla.insertRow(1);
-      row.style.backgroundColor = "rgb(219, 255, 194)";
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      var cell3 = row.insertCell(2);
-      var cell4 = row.insertCell(3);
-      var cell5 = row.insertCell(4);
-      var cell6 = row.insertCell(5);
-      var cell7 = row.insertCell(6);
-      var cell8 = row.insertCell(7);
+        cell1.innerHTML = res[0].total_registros;
+        cell2.innerHTML = res[3].total_registros;
+        cell3.innerHTML = new Intl.NumberFormat().format(res[4].total_registros);
+        cell4.innerHTML =  new Intl.NumberFormat().format(res[1].total_registros);  
+        cell5.innerHTML =  new Intl.NumberFormat().format(res[2].total_registros);  
+        cell6.innerHTML =  new Intl.NumberFormat().format(res[5].total_registros);  
+        cell7.innerHTML =  new Intl.NumberFormat().format(res[6].total_registros);  
 
-   
-      cell1.innerHTML = res[7][p].cct;
-      cell2.innerHTML = res[7][p].nombre_escuela;
-      cell3.innerHTML = res[7][p].nivel;
-      cell4.innerHTML = res[7][p].alimentacion;
-      cell5.innerHTML = res[7][p].telefono;
-        cell6.innerHTML = res[7][p].domicilio;
-        cell7.innerHTML = res[7][p].nom_loc;
-        cell8.innerHTML = res[7][p].municipio;
-         }
-
-    }
-  });
-
- }
+        for (var p = 0 ; p < res[7].length; p++) {
+          var tabla = document.getElementById("dynamic-table3"); 
+          var row = tabla.insertRow(1);
+          row.style.backgroundColor = "rgb(219, 255, 194)";
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          var cell5 = row.insertCell(4);
+          var cell6 = row.insertCell(5);
+          var cell7 = row.insertCell(6);
+          var cell8 = row.insertCell(7);
 
 
+          cell1.innerHTML = res[7][p].cct;
+          cell2.innerHTML = res[7][p].nombre_escuela;
+          cell3.innerHTML = res[7][p].nivel;
+          cell4.innerHTML = res[7][p].alimentacion;
+          cell5.innerHTML = res[7][p].telefono;
+          cell6.innerHTML = res[7][p].domicilio;
+          cell7.innerHTML = res[7][p].nom_loc;
+          cell8.innerHTML = res[7][p].municipio;
+        }
+
+      }
+    });
+
+  }
 
 
+
+
+  function traer_num_oficio(){
+    var x = document.getElementById('ciclo_escolar').value;
+    var route = "http://localhost:8000/ultimo_oficio/"+x+"/";
+    $.get(route,function(res){
+      if (res =! ""){
+        alert(res[0]);
+          alert(res.value);
+          alert(res[0].ultimo);
+        document.getElementById('oficio_aux').value=res;
+
+      }
+    });
+  }

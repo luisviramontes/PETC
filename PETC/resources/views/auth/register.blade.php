@@ -43,7 +43,10 @@
                                     Financieros
                                 </option>
                                 <option value='4'>
-                                    Aacademico
+                                    Academico
+                                </option>
+                                  <option value='6'>
+                                    Administrativo
                                 </option>
                                 
                             </select>                        

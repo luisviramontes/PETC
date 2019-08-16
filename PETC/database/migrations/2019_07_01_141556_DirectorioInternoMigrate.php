@@ -19,7 +19,7 @@ class DirectorioInternoMigrate extends Migration
             $table->string('rfc')->nullable();
             $table->string('curp')->nullable();
             $table->date('fecha_nacimiento');
-            $table->integer('telefono')->nullable();
+            $table->string('telefono')->nullable();
             $table->string('email')->nullable();
             $table->string('domicilio')->nullable();
             $table->string('num_seguro')->nullable();

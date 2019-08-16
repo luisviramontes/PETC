@@ -1,4 +1,4 @@
-{!! Form::open(array('url'=>'/centro_trabajo','method' => 'GET','autocomplete'=>'off','role'=>'search')) !!}
+{!! Form::open(['route' => ['centro_trabajo.index'],'method' => 'GET','autocomplete'=>'off','role'=>'search']) !!}
 <div class="form-group">
 	<div class="input-group">
 		<input  type="text" name="searchText" id="searchText" value="" class="form-control" required>				
@@ -8,4 +8,5 @@
 
 		</span>
 	</div>
-</div>
+</div> 
+{!!form::close()!!}
