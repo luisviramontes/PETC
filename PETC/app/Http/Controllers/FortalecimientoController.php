@@ -43,18 +43,27 @@ class FortalecimientoController extends Controller
 
       if($request)
       {
+       $ciclos=DB::table('ciclo_escolar')->get();
+       $query2=trim($request->GET('ciclo_escolar'));
        $query=trim($request->GET('searchText'));
        $fortalecimientos = DB::table('fortalecimiento')
        ->join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
        ->join('ciclo_escolar', 'fortalecimiento.id_ciclo', '=','ciclo_escolar.id')
        ->join('region', 'centro_trabajo.id_region', '=','region.id')
-       ->select('fortalecimiento.id as id','fortalecimiento.*','centro_trabajo.cct as cct','ciclo_escolar.ciclo','region.sostenimiento','region.region')
+
+       ->select('fortalecimiento.id as id','fortalecimiento.*'
+       ,'centro_trabajo.cct as cct'
+       ,'ciclo_escolar.ciclo'
+       ,'region.sostenimiento'
+       ,'region.region')
+
        ->where('cct','LIKE','%'.$query.'%')
-       ->where('region.sostenimiento','LIKE','%'.$query.'%')
+       ->where('ciclo_escolar.ciclo','=',$query2)
+       ->orwhere('region.sostenimiento','LIKE','%'.$query.'%')
        ->orwhere('monto_forta','LIKE','%'.$query.'%')
        ->paginate(915);
 
-      return view('nomina.fortalecimiento.index',["fortalecimientos"=>$fortalecimientos,"searchText"=>$query]);
+      return view('nomina.fortalecimiento.index',["fortalecimientos"=>$fortalecimientos,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
 
       }    //
     }}

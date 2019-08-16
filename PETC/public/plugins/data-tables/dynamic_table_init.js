@@ -1,3 +1,88 @@
+///////////Localidades////////////////////7
+
+function fnFormatDetails_loca ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+
+    sOut += '<tr><td><strong>MUNICIPIO:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>LOCALIDAD:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>LONGITUD:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>LATITUD:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>ALTITUD:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>POBLACION TOTAL:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>POBLACION MASCULINA:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>POBLACION FEMENINA:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>CAPTURO:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>ESTADO:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>MODIFICADO:</strong></td><td>'+aData[11]+' </td></tr>';
+
+
+
+
+
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table20').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info_loca thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info_loca tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info_loca').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info_loca tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails_loca(oTable, nTr), 'details' );
+        }
+    } );
+ } );
+
+//////////////////////////////////////////////7
+
+
+
 
 
 ///////////Fortalecimineots////////////////////7
@@ -8,12 +93,13 @@ function fnFormatDetails_FORTA ( oTable, nTr )
     var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
 
     sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[1]+' </td></tr>';
-    sOut += '<tr><td><strong>MONTO FORTALECIMIENTO:</strong></td><td>'+aData[2]+' </td></tr>';
-    sOut += '<tr><td><strong>CICLO ESCOLAR:</strong></td><td>'+aData[3]+' </td></tr>';
-    sOut += '<tr><td><strong>ESTADO:</strong></td><td>'+aData[4]+' </td></tr>';
-    sOut += '<tr><td><strong>OBSERVACIONES:</strong></td><td>'+aData[5]+' </td></tr>';
-    sOut += '<tr><td><strong>CAPTURA:</strong></td><td>'+aData[6]+' </td></tr>';
-    sOut += '<tr><td><strong>FECHA DE REGISTRO:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>SOSTENIMIENTO:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>MONTO FORTALECIMIENTO:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>CICLO ESCOLAR:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>ESTADO:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>OBSERVACIONES:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>CAPTURA:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>FECHA DE REGISTRO:</strong></td><td>'+aData[8]+' </td></tr>';
 
 
 

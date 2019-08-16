@@ -36,11 +36,14 @@
 					<form action="{{route('directorio_regional.store')}}" method="post" class="form-horizontal row-border" parsley-validate novalidate  files="true" enctype="multipart/form-data" accept-charset="UTF-8">
 						{{csrf_field()}}
 
-											
+
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Región <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
-							<select name="region" id="region" class="form-control select"   >
+							<select name="region" id="region" onchange="dir_reg()" class="form-control select2"   >
+								<option selected>
+									Seleccione una opción
+								</option>
 								@foreach($region as $region)
 								<option value="{{$region->id}}">
 									{{$region->region}} {{$region->sostenimiento}}
@@ -49,21 +52,21 @@
 								@endforeach
 							</select>
 							<div class="help-block with-errors"></div>
-							<!--	<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('cct')}}</div>
-						--></div>
+								<div class="text-danger" id='error_region'>{{$errors->formulario->first('region')}}</div>
+							</div>
 					</div>
 
 
-						
 
 
-						
+
+
 
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre Enlace: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="nombre_enlace" id="nombre_enlace" type="text" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre_enlace')}}"/>
+								<input name="nombre_enlace" placeholder="Nombre Apellido Paterno Apellido Materno" id="nombre_enlace" type="text" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre_enlace')}}"/>
 							</div>
 						</div>
 
@@ -104,7 +107,7 @@
             <div class="form-group">
 							<label class="col-sm-3 control-label">Director Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="director_regional" type="text" id="director_regional" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('director_regional')}}" />
+								<input name="director_regional" placeholder="Nombre Apellido Paterno Apellido Materno" type="text" id="director_regional" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('director_regional')}}" />
 							</div>
 						</div>
 
@@ -120,7 +123,7 @@
             <div class="form-group">
 							<label class="col-sm-3 control-label">Financiero Regional: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="financiero_regional" type="text" id="financiero_regional" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('financiero_regional')}}" />
+								<input name="financiero_regional" placeholder="Nombre Apellido Paterno Apellido Materno" type="text" id="financiero_regional" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('financiero_regional')}}" />
 							</div>
 						</div>
 
@@ -180,37 +183,22 @@
 	</div><!--/row-->
 </div><!--/container clear_both padding_fix-->
 <script type="text/javascript">
-/*
-function maxlengthtelefonos() {
-	if( document.getElementById("telefono").value.length > 9 ){
+window.onload=function(){
+	dir_reg();
+	}
 
-    swal("ERROR!","Un numero telefonico se compone de 10 numeros, revisa tus datos","error");
-    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
-    return false
-  }
-}
+	function dir_reg() {
+	 if( document.getElementById('region').value == "Seleccione una opción"){
 
-function maxlengthtelefonosdir() {
-	if( document.getElementById("telefono_director").value.length > 9 ){
+		 document.getElementById('submit').disabled=true;
 
-    swal("ERROR!","Un numero telefonico se compone de 10 numeros, revisa tus datos","error");
-    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
-    return false
-  }
-}
-
-function maxlengthtelefonoreg() {
-	if( document.getElementById("telefono_regional").value.length > 9 ){
-
-    swal("ERROR!","Un numero telefonico se compone de 10 numeros, revisa tus datos","error");
-    //document.getElementById("error_nominacapturada").innerHTML = "No se ha seleccionado ninguna Nomina.";
-    return false
-  }
-} */
-
-window.onload = function() {
-//	valida_sostenimiento();
-//	valida_region();
-};
+					//  swal("ERROR!","Selecciona tipo se puesto","error");
+					document.getElementById("error_region").innerHTML = "Seleccione una opción.";
+					return false
+				}else{
+				 document.getElementById('submit').disabled=false;
+				 document.getElementById("error_region").innerHTML = "";
+			 }
+	 }
 </script>
 @endsection

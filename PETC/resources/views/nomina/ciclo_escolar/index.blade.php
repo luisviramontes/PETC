@@ -48,8 +48,8 @@
 						<thead>
 							<tr>
 
-								<th>Ciclo </th>
 								<th>Dias Habiles</th>
+								<th>Ciclo </th>
 								<th>Inicio Ciclo</th>
 								<th>Fin Ciclo</th>
 								<th>Estado</th>

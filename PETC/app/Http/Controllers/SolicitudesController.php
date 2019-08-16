@@ -40,6 +40,8 @@ class SolicitudesController extends Controller
       }else{
       if($request)
       {
+       $ciclos=DB::table('ciclo_escolar')->get();
+       $query2=trim($request->GET('ciclo_escolar'));
        $query=trim($request->GET('searchText'));
        $solicitudes = DB::table('solicitudes')
        ->join('municipios', 'solicitudes.id_municipio', '=','municipios.id')
@@ -50,6 +52,7 @@ class SolicitudesController extends Controller
 
        ->select('municipios.*','localidades.*','solicitudes.*','centro_trabajo.cct','ciclo_escolar.ciclo')
        ->where('solicitudes.nombre_escuela','LIKE','%'.$query.'%')
+       ->where('ciclo_escolar.ciclo','=',$query2)
        ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
        ->orwhere('localidades.nom_loc','LIKE','%'.$query.'%')
        ->orwhere('ciclo_escolar.ciclo','LIKE','%'.$query.'%')
@@ -57,7 +60,7 @@ class SolicitudesController extends Controller
 
 
 
-        return view('nomina.solicitudes.index',["solicitudes"=>$solicitudes,"searchText"=>$query]);
+        return view('nomina.solicitudes.index',["solicitudes"=>$solicitudes,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
     }
   }}
 

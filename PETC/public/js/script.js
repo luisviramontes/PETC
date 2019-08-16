@@ -1010,6 +1010,20 @@ function enviar_ciclo_reintegros(){
   location.href="/reintegros?ciclo_escolar="+x+"&searchText="+y;
 }
 
+function enviar_ciclo_fortas(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var y =document.getElementById('searchText').value;
+ document.getElementById('pdf_fortalecimiento').href="/pdf_fortalecimiento/"+x;
+  location.href="/fortalecimiento?ciclo_escolar="+x+"&searchText="+y;
+}
+
+function enviar_ciclo_solis(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var y =document.getElementById('searchText').value;
+ document.getElementById('pdf_solicitudes').href="/pdf_solicitudes/"+x;
+  location.href="/solicitudes?ciclo_escolar="+x+"&searchText="+y;
+}
+
 ///dir regional//
 function maxlengthtelefonos() {
 	if( document.getElementById("telefono").value.length > 9 ){
@@ -1018,6 +1032,8 @@ function maxlengthtelefonos() {
     return false
   }
 }
+
+
 
 function busca_personal(){
   var Table = document.getElementById("detalles");
@@ -3032,7 +3048,7 @@ function validar_quincenaIna(){
 
 
 
-  function escs(){
+function escs(){
 
     var esc = document.getElementById("region").value;
 
@@ -3060,7 +3076,8 @@ function validar_quincenaIna(){
   }
 
 
-  function busca_captura_esc(){
+function busca_captura_esc(){
+  console.log(route);
     document.getElementById("detalles3").deleteRow(1);
 
     var region = document.getElementById('region').value;
@@ -3102,7 +3119,7 @@ function validar_quincenaIna(){
 
        }
      }
-     var tabla = document.getElementById("detalles2");
+     var tabla = document.getElementById("detalles3");
      var row = tabla.insertRow(1);
      row.style.backgroundColor = "white";
      var cell1 = row.insertCell(0);
@@ -3122,7 +3139,7 @@ function validar_quincenaIna(){
    });
 
 
-  }
+}
 
   function busca_captura_ciclo(){
 
@@ -3777,7 +3794,7 @@ function calculo_qna_nominas(callback){
   for (var i = 1; i < c; i++) {
     document.getElementById("dynamic-table").deleteRow(1);
   }
-
+}
   function calculo_qna_nominas(callback){
     var c = document.getElementById("dynamic-table").rows.length;
     for (var i = 1; i < c; i++) {
@@ -3967,7 +3984,7 @@ function calculo_qna_nominas(callback){
 
   });
 
-  }
+}
 
 
 
@@ -3996,10 +4013,12 @@ function filtro_centros(){
       }else if (z == 5){
         option.text = res[0][p].fecha_ingreso;
         option.value = res[0][p].id;
-=======
->>>>>>> 4870bcc5a644cde2df1d64453506ac3a5c575d6e
+}
+}
 
-  function filtro_centros(callback){
+});
+}
+function filtro_centros(callback){
     limpiar_input_select('option2');
     var x = document.getElementById('option1').value;
     var route = "http://localhost:8000/ver_opciones/"+x+"/";
@@ -4032,16 +4051,16 @@ function filtro_centros(){
     });
  setTimeout(function(){ver_centros_filtro()},4000);
 
-  }
+}
 
 
 
 
 
 
-  function ver_centros_filtro(){
+function ver_centros_filtro(){
     var z = document.getElementById("dynamic-table2").rows.length;
-
+}
 
 function ver_centros_filtro(){
  var x = document.getElementById('option1').value;
@@ -4108,11 +4127,5 @@ function ver_centros_filtro(){
 
     }
   });
-
- }
-
-
-
->>>>>>> 4870bcc5a644cde2df1d64453506ac3a5c575d6e
 
 }

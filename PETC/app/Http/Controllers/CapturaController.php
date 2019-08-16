@@ -980,7 +980,7 @@ class CapturaController extends Controller
        ->where('captura.estado','=',"ACTIVO")
        ->select('captura.categoria','captura.pagos_registrados','captura.qna_actual','centro_trabajo.nombre_escuela')->get();
          # code...
-     }else{
+     }else{ 
        $captura=DB::table('captura')
        ->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')
        ->where('centro_trabajo.id_region','=',$region)

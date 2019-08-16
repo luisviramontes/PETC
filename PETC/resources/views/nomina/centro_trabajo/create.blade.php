@@ -39,10 +39,10 @@
 						</div>
 						<div class="col-md-4">
 							<div class="btn-group pull-right">
-								<div class="actions"> 
+								<div class="actions">
 								</div>
 							</div>
-						</div>    
+						</div>
 					</div>
 				</div><!--header-->
 
@@ -67,8 +67,8 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">CCT: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="cct" id="cct" type="text" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  class="form-control" required placeholder="Ingrese La Clave de Centro de Trabajo" maxlength="10" value="{{Input::old('cct')}}" /> 
-													</div>													
+														<input name="cct" id="cct" type="text" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  class="form-control" required placeholder="Ingrese La Clave de Centro de Trabajo" maxlength="10" value="{{Input::old('cct')}}" />
+													</div>
 												</div>
 												<div class="text-danger" id='error_cct'>{{$errors->formulario->first('cct')}}</div>
 
@@ -78,13 +78,16 @@
 														<input name="nombre" id="nombre" type="text"   class="form-control" required placeholder="Ingrese el Nombre de la Escuela" maxlength="40" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" value="{{Input::old('nombre')}}"  />
 														<div class="text-danger" id='error_nombre'>{{$errors->formulario->first('nombre')}}</div>
 													</div>
-													
+
 												</div>
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Región <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="region" class="form-control"  value="{{Input::old('region')}}"  required>
+														<select name="region" id="region" class="form-control select2" onchange="cen_reg();"  value="{{Input::old('region')}}"  required>
+															<option selected>
+																Seleccione una opción
+															</option>
 															@foreach($region as $dato)
 															<option value="{{$dato->id}}">
 																{{$dato->region}}-{{$dato->sostenimiento}}
@@ -92,15 +95,19 @@
 															@endforeach
 														</select>
 														<div class="help-block with-errors"></div>
+														<div class="text-danger" id='error_region'>{{$errors->formulario->first('region')}}</div>
 													</div>
 												</div><!--/form-group-->
 
-												
+
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Ciclo Escolar <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="ciclo" class="form-control"  value="{{Input::old('ciclo')}}"  required>
+														<select name="ciclo" id="ciclo" class="form-control"onchange="cen_ciclo()"  value="{{Input::old('ciclo')}}"  required>
+															<option selected>
+																Seleccione una opción
+															</option>
 															@foreach($ciclos as $ciclo)
 															<option value="{{$ciclo->ciclo}}">
 																{{$ciclo->ciclo}}
@@ -116,48 +123,60 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Entrego Carta Compromiso: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="carta_compromiso" class="form-control" required>  
+														<select name="carta_compromiso" id="carta_compromiso" onchange="cen_car()" class="form-control" required>
+															<option selected>
+																Seleccione una opción
+															</option>
 															<option value="Si">
-																Si                
+																Si
 															</option>
 															<option value="No">
-																No                 
-															</option>                         
+																No
+															</option>
 														</select>
 														<div class="help-block with-errors"></div>
+														<div class="text-danger" id='error_carta_compromiso'>{{$errors->formulario->first('carta_compromiso')}}</div>
 													</div>
 												</div><!--/form-group-->
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Alimentación: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="alimentacion" class="form-control" required>  
+														<select name="alimentacion" id="alimentacion" onchange="cen_ali()" class="form-control" required>
+															<option selected>
+																Seleccione una opción
+															</option>
 															<option value="SI">
-																SI                
+																SI
 															</option>
 															<option value="NO">
-																NO                 
-															</option>                         
+																NO
+															</option>
 														</select>
 														<div class="help-block with-errors"></div>
+														<div class="text-danger" id='error_alimentacion'>{{$errors->formulario->first('alimentacion')}}</div>
 													</div>
 												</div><!--/form-group-->
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Nivel: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="nivel" id="nivel" class="form-control" required>  
+														<select name="nivel" id="nivel" onchange="cen_niv()" class="form-control" required>
+															<option selected>
+																Seleccione una opción
+															</option>
 															<option value="PREESCOLAR">
-																PREESCOLAR                
+																PREESCOLAR
 															</option>
 															<option value="PRIMARIA">
-																PRIMARIA                 
+																PRIMARIA
 															</option>
 															<option value="TELESECUNDARIA">
-																TELESECUNDARIA                 
-															</option>                              
+																TELESECUNDARIA
+															</option>
 														</select>
 														<div class="help-block with-errors"></div>
+														<div class="text-danger" id='error_nivel'>{{$errors->formulario->first('nivel')}}</div>
 													</div>
 												</div><!--/form-group-->
 
@@ -184,7 +203,10 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Municipio <strog class="theme_color">*</strog></label>
 													<div class="col-sm-8">
-														<select name="municipio" class="form-control select2"   value="{{Input::old('municipio')}}"  required>
+														<select name="municipio" id="municipio" onchange="cen_muni()" class="form-control select2"   value="{{Input::old('municipio')}}"  required>
+															<option selected>
+																Seleccione una opción
+															</option>
 															@foreach($municipios as $municipio)
 															<option value="{{$municipio->id}}">
 																{{$municipio->municipio}}
@@ -192,14 +214,17 @@
 															@endforeach
 														</select>
 														<div class="help-block with-errors"></div>
-														<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('municipio')}}</div>
+														<div class="text-danger" id='error_municipio'>{{$errors->formulario->first('municipio')}}</div>
 													</div>
 												</div><!--/form-group-->
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Localidad <strog class="theme_color">*</strog></label>
 													<div class="col-sm-8">
-														<select name="localidad" class="form-control select2"   value="{{Input::old('localidad')}}"  required>
+														<select name="localidad" id="localidad" onchange="cen_loc()" class="form-control select2"   value="{{Input::old('localidad')}}"  required>
+															<option selected>
+																Seleccione una opción
+															</option>
 															@foreach($localidades as $localidad)
 															<option value="{{$localidad->id}}">
 																{{$localidad->nom_loc}}
@@ -207,7 +232,7 @@
 															@endforeach
 														</select>
 														<div class="help-block with-errors"></div>
-														<div class="text-danger" id='error_ciclo'>{{$errors->formulario->first('localidad')}}</div>
+														<div class="text-danger" id='error_localidad'>{{$errors->formulario->first('localidad')}}</div>
 													</div>
 												</div><!--/form-group-->
 
@@ -218,7 +243,7 @@
 													</div>
 												</div>
 
-												
+
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Teléfono: <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
@@ -245,7 +270,7 @@
 										<div class="user-profile-content">
 											<div id="form-step-2" role="form" data-toggle="validator">
 												<h3 class="h3titulo">Información</h3>
-												
+
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Total de Alumnos: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
@@ -334,7 +359,7 @@
 														<button onclick="return centros_verifica();"  id="submit2" class="btn btn-primary">Guardar</button>
 														<a href="{{url('/centro_trabajo')}}" class="btn btn-default"> Cancelar</a>
 													</div>
-												</div><!--/form-group--> 
+												</div><!--/form-group-->
 
 
 
@@ -350,7 +375,7 @@
 						</div><!--step-2-->
 
 					</div>
-				</div>  <!--smartwizard-->            
+				</div>  <!--smartwizard-->
 			</form>
 		</div><!--/form-horizontal-->
 	</div><!--/porlets-content-->
@@ -360,6 +385,118 @@
 </div><!--/container clear_both padding_fix-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
+window.onload=function(){
+	cen_reg();
+	cen_ciclo();
+	cen_car();
+	cen_ali();
+	cen_niv();
+	cen_muni();
+	cen_loc();
+}
+function cen_reg() {
+ if( document.getElementById('region').value == "Seleccione una opción"){
+
+   document.getElementById('ciclo').disabled=true;
+   document.getElementById('carta_compromiso').disabled=true;
+   document.getElementById('alimentacion').disabled=true;
+   document.getElementById('nivel').disabled=true;
+   document.getElementById('municipio').disabled=true;
+   document.getElementById('localidad').disabled=true;
+
+        //  swal("ERROR!","Selecciona tipo se puesto","error");
+        document.getElementById("error_region").innerHTML = "Seleccione una opción para desabilitar los campos.";
+        return false
+      }else{
+       document.getElementById('ciclo').disabled=false;
+       document.getElementById("error_region").innerHTML = "";
+     }
+   }
+
+	 function cen_ciclo() {
+	  if( document.getElementById('ciclo').value == "Seleccione una opción"){
+
+	    document.getElementById('carta_compromiso').disabled=true;
+
+	         //  swal("ERROR!","Selecciona tipo se puesto","error");
+	         document.getElementById("error_ciclo").innerHTML = "Seleccione una opción.";
+	         return false
+	       }else{
+	        document.getElementById('carta_compromiso').disabled=false;
+	        document.getElementById("error_ciclo").innerHTML = "";
+	      }
+	  }
+
+		function cen_car() {
+ 	  if( document.getElementById('carta_compromiso').value == "Seleccione una opción"){
+
+ 	    document.getElementById('alimentacion').disabled=true;
+
+ 	         //  swal("ERROR!","Selecciona tipo se puesto","error");
+ 	         document.getElementById("error_carta_compromiso").innerHTML = "Seleccione una opción.";
+ 	         return false
+ 	       }else{
+ 	        document.getElementById('alimentacion').disabled=false;
+ 	        document.getElementById("error_carta_compromiso").innerHTML = "";
+ 	      }
+ 	   }
+
+		 function cen_ali() {
+			 if( document.getElementById('alimentacion').value == "Seleccione una opción"){
+
+				 document.getElementById('nivel').disabled=true;
+
+							//  swal("ERROR!","Selecciona tipo se puesto","error");
+							document.getElementById("error_alimentacion").innerHTML = "Seleccione una opción.";
+							return false
+						}else{
+						 document.getElementById('nivel').disabled=false;
+						 document.getElementById("error_alimentacion").innerHTML = "";
+					 }
+			}
+
+			function cen_niv() {
+				if( document.getElementById('nivel').value == "Seleccione una opción"){
+
+					document.getElementById('municipio').disabled=true;
+
+							 //  swal("ERROR!","Selecciona tipo se puesto","error");
+							 document.getElementById("error_nivel").innerHTML = "Seleccione una opción.";
+							 return false
+						 }else{
+							document.getElementById('municipio').disabled=false;
+							document.getElementById("error_nivel").innerHTML = "";
+						}
+			 }
+
+			 function cen_muni() {
+				 if( document.getElementById('municipio').value == "Seleccione una opción"){
+
+					 document.getElementById('localidad').disabled=true;
+
+								//  swal("ERROR!","Selecciona tipo se puesto","error");
+								document.getElementById("error_municipio").innerHTML = "Seleccione una opción.";
+								return false
+							}else{
+							 document.getElementById('localidad').disabled=false;
+							 document.getElementById("error_municipio").innerHTML = "";
+						 }
+				}
+
+				function cen_loc() {
+					if( document.getElementById('localidad').value == "Seleccione una opción"){
+
+						document.getElementById('submit2').disabled=true;
+
+								 //  swal("ERROR!","Selecciona tipo se puesto","error");
+								 document.getElementById("error_localidad").innerHTML = "Seleccione una opción.";
+								 return false
+							 }else{
+								document.getElementById('submit2').disabled=false;
+								document.getElementById("error_localidad").innerHTML = "";
+							}
+				 }
+
 	$(document).ready(function(){
         // Toolbar extra buttons
         var btnFinish = $('<button></button>').text('Finish')

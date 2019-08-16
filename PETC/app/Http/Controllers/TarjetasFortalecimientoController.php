@@ -19,8 +19,8 @@ use PHPExcel_Worksheet_Drawing;
 use Validator;
 
 
-use Illuminate\Support\Facades\Auth; 
-use Illuminate\Support\Collection as Collection;  
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection as Collection;
 class TarjetasFortalecimientoController extends Controller
 {
     /**
@@ -34,7 +34,7 @@ class TarjetasFortalecimientoController extends Controller
     }
 
     public function index(Request $request)
-    {  
+    {
      $tipo_usuario = Auth::user()->tipo_usuario;
      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
@@ -43,21 +43,67 @@ class TarjetasFortalecimientoController extends Controller
       if($request)
       {
        // $aux=$request->get('searchText');
-       $query=trim($request->GET('searchText'));       
+       $query=trim($request->GET('searchText'));
        $query2=trim($request->GET('ciclo_escolar2'));
 
        $ciclos=DB::table('ciclo_escolar')->get();
 
        if($query == "" && $query2 == ""){
         $query2=2;
-        $tarjetas=DB::table('tarjetasfortalecimiento')->join('fortalecimiento','fortalecimiento.id','=','tarjetasfortalecimiento.id_fortalecimiento')->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')->join('ciclo_escolar','ciclo_escolar.id','=','fortalecimiento.id_ciclo')->join('region','region.id','=','centro_trabajo.id_region')->where('fortalecimiento.id_ciclo','=',$query2)->select('tarjetasfortalecimiento.*','ciclo_escolar.ciclo','fortalecimiento.monto_forta','fortalecimiento.observaciones as observaciones_forta ','fortalecimiento.captura as captura_forta ','centro_trabajo.cct','centro_trabajo.nombre_escuela','region.region','region.sostenimiento','centro_trabajo.domicilio','centro_trabajo.email','centro_trabajo.telefono')->paginate(40);
+        $tarjetas=DB::table('tarjetasfortalecimiento')
+        ->join('fortalecimiento','fortalecimiento.id','=','tarjetasfortalecimiento.id_fortalecimiento')
+        ->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')
+        ->join('ciclo_escolar','ciclo_escolar.id','=','fortalecimiento.id_ciclo')
+        ->join('region','region.id','=','centro_trabajo.id_region')
+
+        ->where('fortalecimiento.id_ciclo','=',$query2)
+
+        ->select('tarjetasfortalecimiento.*'
+        ,'ciclo_escolar.ciclo'
+        ,'fortalecimiento.monto_forta','fortalecimiento.observaciones as observaciones_forta ','fortalecimiento.captura as captura_forta '
+        ,'centro_trabajo.cct','centro_trabajo.nombre_escuela'
+        ,'region.region','region.sostenimiento'
+        ,'centro_trabajo.domicilio','centro_trabajo.email','centro_trabajo.telefono')
+        ->paginate(40);
 
 
       }elseif($query == "" && $query2 != ""){
-       $tarjetas=DB::table('tarjetasfortalecimiento')->join('fortalecimiento','fortalecimiento.id','=','tarjetasfortalecimiento.id_fortalecimiento')->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')->join('ciclo_escolar','ciclo_escolar.id','=','fortalecimiento.id_ciclo')->join('region','region.id','=','centro_trabajo.id_region')->where('fortalecimiento.id_ciclo','=',$query2)->select('tarjetasfortalecimiento.*','ciclo_escolar.ciclo','fortalecimiento.monto_forta','fortalecimiento.observaciones as observaciones_forta ','fortalecimiento.captura as captura_forta ','centro_trabajo.cct','centro_trabajo.nombre_escuela','region.region','region.sostenimiento','centro_trabajo.domicilio','centro_trabajo.email','centro_trabajo.telefono')->paginate(40);
+       $tarjetas=DB::table('tarjetasfortalecimiento')
+       ->join('fortalecimiento','fortalecimiento.id','=','tarjetasfortalecimiento.id_fortalecimiento')
+       ->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')
+       ->join('ciclo_escolar','ciclo_escolar.id','=','fortalecimiento.id_ciclo')
+       ->join('region','region.id','=','centro_trabajo.id_region')
+
+       ->where('fortalecimiento.id_ciclo','=',$query2)
+
+       ->select('tarjetasfortalecimiento.*'
+       ,'ciclo_escolar.ciclo'
+       ,'fortalecimiento.monto_forta'
+       ,'fortalecimiento.observaciones as observaciones_forta ','fortalecimiento.captura as captura_forta '
+       ,'centro_trabajo.cct','centro_trabajo.nombre_escuela'
+       ,'region.region','region.sostenimiento'
+       ,'centro_trabajo.domicilio','centro_trabajo.email','centro_trabajo.telefono')
+       ->paginate(40);
 
      }else{
-      $tarjetas=DB::table('tarjetasfortalecimiento')->join('fortalecimiento','fortalecimiento.id','=','tarjetasfortalecimiento.id_fortalecimiento')->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')->join('ciclo_escolar','ciclo_escolar.id','=','fortalecimiento.id_ciclo')->join('region','region.id','=','centro_trabajo.id_region')->where('fortalecimiento.id_ciclo','=',$query2)->where('centro_trabajo.cct','=',$query)->orwhere('tarjetasfortalecimiento.num_tarjeta','=',$query)->orwhere('centro_trabajo.nombre_escuela')->select('tarjetasfortalecimiento.*','ciclo_escolar.ciclo','fortalecimiento.monto_forta','fortalecimiento.observaciones as observaciones_forta ','fortalecimiento.captura as captura_forta ','centro_trabajo.cct','centro_trabajo.nombre_escuela','region.region','region.sostenimiento','centro_trabajo.domicilio','centro_trabajo.email','centro_trabajo.telefono')->paginate(40);
+      $tarjetas=DB::table('tarjetasfortalecimiento')
+      ->join('fortalecimiento','fortalecimiento.id','=','tarjetasfortalecimiento.id_fortalecimiento')
+      ->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')
+      ->join('ciclo_escolar','ciclo_escolar.id','=','fortalecimiento.id_ciclo')
+      ->join('region','region.id','=','centro_trabajo.id_region')
+
+      ->where('fortalecimiento.id_ciclo','=',$query2)
+      ->where('centro_trabajo.cct','=',$query)
+      ->orwhere('tarjetasfortalecimiento.num_tarjeta','=',$query)
+      ->orwhere('centro_trabajo.nombre_escuela')
+
+      ->select('tarjetasfortalecimiento.*'
+      ,'ciclo_escolar.ciclo'
+      ,'fortalecimiento.monto_forta','fortalecimiento.observaciones as observaciones_forta ','fortalecimiento.captura as captura_forta '
+      ,'centro_trabajo.cct','centro_trabajo.nombre_escuela'
+      ,'region.region','region.sostenimiento'
+      ,'centro_trabajo.domicilio','centro_trabajo.email','centro_trabajo.telefono')
+      ->paginate(40);
 
 
     }
@@ -101,7 +147,7 @@ class TarjetasFortalecimientoController extends Controller
        return view('permisos');
 
      }else{
-      $user = Auth::user()->name; 
+      $user = Auth::user()->name;
       $tarjeta = new TarjetasFortalecimientoModel;
       $tarjeta->id_fortalecimiento=$request->get('cct');
       $tarjeta->TSL=$request->get('tsl');
@@ -141,11 +187,11 @@ class TarjetasFortalecimientoController extends Controller
        return view('permisos');
 
      }else{
-        //$tarjeta = TarjetasFortalecimientoModel::findOrFail($id); 
+        //$tarjeta = TarjetasFortalecimientoModel::findOrFail($id);
       $ciclos=DB::table('ciclo_escolar')->get();
       $tarjeta=DB::table('tarjetasfortalecimiento')->join('fortalecimiento','fortalecimiento.id','=','tarjetasfortalecimiento.id_fortalecimiento')->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')->select('tarjetasfortalecimiento.*','fortalecimiento.monto_forta','fortalecimiento.id_ciclo','centro_trabajo.cct','centro_trabajo.nombre_escuela')->first();
 
-      return view('nomina.tarjetas_fortalecimiento.edit', ['tarjeta'=>$tarjeta,'ciclos'=>$ciclos]);    
+      return view('nomina.tarjetas_fortalecimiento.edit', ['tarjeta'=>$tarjeta,'ciclos'=>$ciclos]);
 
     }
         //
@@ -164,8 +210,8 @@ class TarjetasFortalecimientoController extends Controller
        return view('permisos');
 
      }else{
-       $user = Auth::user()->name; 
-       $tarjeta = TarjetasFortalecimientoModel::findOrFail($id);        
+       $user = Auth::user()->name;
+       $tarjeta = TarjetasFortalecimientoModel::findOrFail($id);
        $tarjeta->TSL=$request->get('tsl');
        $tarjeta->num_tarjeta=$request->get('num_tarjeta');
        $tarjeta->producto=$request->get('producto');
@@ -192,9 +238,9 @@ class TarjetasFortalecimientoController extends Controller
        return view('permisos');
 
      }else{
-      $tarjeta = TarjetasFortalecimientoModel::findOrFail($id);  
+      $tarjeta = TarjetasFortalecimientoModel::findOrFail($id);
       $tarjeta->delete();
-      return Redirect::to('tarjetas_fortalecimiento');   
+      return Redirect::to('tarjetas_fortalecimiento');
   }        //
 }
 
@@ -242,7 +288,7 @@ public function excel(Request $request, $aux)
     $sheet->setOrientation('landscape');
   });
  })->export('xls');
-} 
+}
 
 
 public function invoice($id){
@@ -270,7 +316,7 @@ public function generar_cartas()
   $ciclos=DB::table('ciclo_escolar')->get();
   $region=DB::table('region')->get();
 
-  return view('nomina.tarjetas_fortalecimiento.generar', ['ciclos'=>$ciclos,'region'=>$region]);  
+  return view('nomina.tarjetas_fortalecimiento.generar', ['ciclos'=>$ciclos,'region'=>$region]);
 
 }
 
@@ -282,7 +328,7 @@ public function generar_pdf_cartas(Request $request){
 
  }else{
   $user = Auth::user()->name;
-  $ciclo_aux=$request->get('ciclo_escolar'); 
+  $ciclo_aux=$request->get('ciclo_escolar');
   $name = explode("-",$ciclo_aux);
   $year01=$name[0];
   $year02=$name[1];
@@ -299,8 +345,8 @@ public function generar_pdf_cartas(Request $request){
 
 
   if ($todos == "1") {
-   $tarjeta = TarjetasFortalecimientoModel::join('fortalecimiento','fortalecimiento.id','=','tarjetasfortalecimiento.id_fortalecimiento')->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')->join('ciclo_escolar','ciclo_escolar.id','=','fortalecimiento.id_ciclo')->join('region','region.id','=','centro_trabajo.id_region')->where('fortalecimiento.id_ciclo','=',$ciclo_id)->select('region.region','region.sostenimiento','centro_trabajo.cct','centro_trabajo.nombre_escuela','fortalecimiento.monto_forta','tarjetasfortalecimiento.*','ciclo_escolar.ciclo','centro_trabajo.alimentacion')->get();                      
-           //   
+   $tarjeta = TarjetasFortalecimientoModel::join('fortalecimiento','fortalecimiento.id','=','tarjetasfortalecimiento.id_fortalecimiento')->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')->join('ciclo_escolar','ciclo_escolar.id','=','fortalecimiento.id_ciclo')->join('region','region.id','=','centro_trabajo.id_region')->where('fortalecimiento.id_ciclo','=',$ciclo_id)->select('region.region','region.sostenimiento','centro_trabajo.cct','centro_trabajo.nombre_escuela','fortalecimiento.monto_forta','tarjetasfortalecimiento.*','ciclo_escolar.ciclo','centro_trabajo.alimentacion')->get();
+           //
 
  }else{
   if($escuelas== "1"){
@@ -311,7 +357,7 @@ public function generar_pdf_cartas(Request $request){
 
   }
 
-}  
+}
 $date = date('Y-m-d');
 $invoice = "2222";
        // print_r($materiales);
@@ -516,7 +562,7 @@ public function importar_cartas(Request $request)
 
 
 
-   foreach ($data as $key => $value) {        
+   foreach ($data as $key => $value) {
     $cct=$value->cct;
     $fortalecimiento=DB::table('fortalecimiento')->join('centro_trabajo','centro_trabajo.id','=','fortalecimiento.id_cct')->where('centro_trabajo.cct','=',$cct)->select('fortalecimiento.id')->first();
 
@@ -544,7 +590,7 @@ public function importar_cartas(Request $request)
 
    }else{
     $data3=['cct'=>$cct,'num_tarjeta'=>$value->num_tarjeta,'motivo'=>"NO SE ENCUENTRA MONTO DE FORTALECIMIENTO REGISTRADO"];
-    array_push($rechazos, $data3);         
+    array_push($rechazos, $data3);
 
   }
 
@@ -555,16 +601,15 @@ public function importar_cartas(Request $request)
 
 
 
- return view('nomina.tarjetas_fortalecimiento.detalles', ['tarjetas_duplicadas'=>$tarjetas_duplicadas,'registrados'=>$registrados,'rechazos'=>$rechazos]);   
+ return view('nomina.tarjetas_fortalecimiento.detalles', ['tarjetas_duplicadas'=>$tarjetas_duplicadas,'registrados'=>$registrados,'rechazos'=>$rechazos]);
 
 }}
 
 public function tarjetas_forta(){
  $ciclos=DB::table('ciclo_escolar')->get();
 
- return view('nomina.tarjetas_fortalecimiento.importar', ['ciclos'=>$ciclos]);    
+ return view('nomina.tarjetas_fortalecimiento.importar', ['ciclos'=>$ciclos]);
 
 }
 
 }
-

@@ -39,10 +39,10 @@
 						</div>
 						<div class="col-md-4">
 							<div class="btn-group pull-right">
-								<div class="actions"> 
+								<div class="actions">
 								</div>
 							</div>
-						</div>    
+						</div>
 					</div>
 				</div><!--header-->
 
@@ -66,9 +66,9 @@
 										<div class="form-group">
 											<label class="col-sm-3 control-label">CCT: <strog class="theme_color">*</strog></label>
 											<div class="col-sm-6">
-												<input name="cct" id="cct" type="text" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  class="form-control" required placeholder="Ingrese La Clave de Centro de Trabajo" maxlength="10" value="{{$centros->cct}}" /> 
+												<input name="cct" id="cct" type="text" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  class="form-control" required placeholder="Ingrese La Clave de Centro de Trabajo" maxlength="10" value="{{$centros->cct}}" />
 											</div>
-											<div class="text-danger" id='error_cct'>{{$errors->formulario->first('cct')}}</div>													
+											<div class="text-danger" id='error_cct'>{{$errors->formulario->first('cct')}}</div>
 										</div>
 
 										<div class="form-group">
@@ -128,22 +128,22 @@
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Entrego Carta Compromiso: <strog class="theme_color">*</strog></label>
 											<div class="col-sm-6">
-												<select name="carta_compromiso" class="form-control" required>  
+												<select name="carta_compromiso" class="form-control" required>
 													@if($centros->entrego_carta == "SI")
 													<option value="SI" selected>
-														SI                
+														SI
 													</option>
 													<option value="NO">
-														NO                 
-													</option> 
+														NO
+													</option>
 													@else
 													<option value="SI" >
-														SI                
+														SI
 													</option>
 													<option value="NO" selected>
-														NO                 
-													</option> 
-													@endif                        
+														NO
+													</option>
+													@endif
 												</select>
 												<div class="help-block with-errors"></div>
 											</div>
@@ -152,23 +152,23 @@
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Alimentación: <strog class="theme_color">*</strog></label>
 											<div class="col-sm-6">
-												<select name="alimentacion" class="form-control" required>  
+												<select name="alimentacion" class="form-control" required>
 													@if($centros->alimentacion == "SI")
 													<option value="SI" selected>
-														SI                
+														SI
 													</option>
 													<option value="NO">
-														NO                 
-													</option> 
+														NO
+													</option>
 													@else
 													<option value="SI" >
-														SI                
+														SI
 													</option>
 													<option value="NO" selected>
-														NO                 
-													</option> 
+														NO
+													</option>
 
-													@endif                              
+													@endif
 												</select>
 												<div class="help-block with-errors"></div>
 											</div>
@@ -177,40 +177,40 @@
 										<div class="form-group">
 											<label class="col-sm-3 control-label">Nivel: <strog class="theme_color">*</strog></label>
 											<div class="col-sm-6">
-												<select name="nivel" id="nivel" class="form-control" required>  
+												<select name="nivel" id="nivel" class="form-control" required>
 													@if($centros->nivel == "PREESCOLAR")
 													<option value="PREESCOLAR" selected>
-														PREESCOLAR                
+														PREESCOLAR
 													</option>
 													<option value="PRIMARIA">
-														PRIMARIA                 
+														PRIMARIA
 													</option>
 													<option value="TELESECUNDARIA">
-														TELESECUNDARIA                 
-													</option>                              
+														TELESECUNDARIA
+													</option>
 												</select>
 												@elseif($centros->nivel == "PRIMARIA")
 												<option value="PREESCOLAR">
-													PREESCOLAR                
+													PREESCOLAR
 												</option>
 												<option value="PRIMARIA" selected>
-													PRIMARIA                 
+													PRIMARIA
 												</option>
 												<option value="TELESECUNDARIA">
-													TELESECUNDARIA                 
-												</option>  
+													TELESECUNDARIA
+												</option>
 												@else
 												<option value="PREESCOLAR">
-													PREESCOLAR                
+													PREESCOLAR
 												</option>
 												<option value="PRIMARIA" >
-													PRIMARIA                 
+													PRIMARIA
 												</option>
 												<option value="TELESECUNDARIA" selected>
-													TELESECUNDARIA                 
+													TELESECUNDARIA
 												</option>
 
-												@endif                            
+												@endif
 											</select>
 											<div class="help-block with-errors"></div>
 										</div>
@@ -396,7 +396,7 @@
 											<button onclick="return centros_verifica();"  id="submit3" class="btn btn-primary">Guardar</button>
 											<a href="{{url('/centro_trabajo')}}" class="btn btn-default"> Cancelar</a>
 										</div>
-									</div><!--/form-group--> 
+									</div><!--/form-group-->
 
 
 
@@ -412,7 +412,7 @@
 			</div><!--step-2-->
 
 		</div>
-	</div>  <!--smartwizard-->            
+	</div>  <!--smartwizard-->
 </form>
 </div><!--/form-horizontal-->
 </div><!--/porlets-content-->

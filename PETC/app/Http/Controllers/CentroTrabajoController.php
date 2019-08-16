@@ -9,6 +9,8 @@ use petc\Http\Requests;
 
 use petc\Http\Controllers\Controller;
 use petc\CentroTrabajoModel;
+use petc\CicloEscolarModel;
+
 use petc\DatosCentroTrabajoModel;
 
 use Dompdf\Dompdf;
@@ -41,7 +43,14 @@ class CentroTrabajoController extends Controller
      }else{
       if($request)
       {
-       $ciclos=DB::table('ciclo_escolar')->get();
+
+
+
+
+
+
+        $ciclos=DB::table('ciclo_escolar')->get();
+
        $query2=trim($request->GET('ciclo_escolar'));
        $query=trim($request->GET('searchText'));
        $centro = DB::table('centro_trabajo')
@@ -49,18 +58,28 @@ class CentroTrabajoController extends Controller
        ->join('region', 'centro_trabajo.id_region', '=','region.id')
        ->join('localidades', 'centro_trabajo.id_localidades', '=','localidades.id')
        ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')
+
+       ->where('ciclo_escolar','=',$query2)
+
        ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos',
         'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores',
         'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes',
         'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')
 
-        ->where('nombre_escuela','LIKE','%'.$query.'%')
-        ->where('ciclo_escolar','=',$query2)
         ->orwhere('cct','LIKE','%'.$query.'%')
         ->orwhere('localidades.nom_loc','LIKE','%'.$query.'%')
         ->orwhere('municipios.municipio','LIKE','%'.$query.'%')
         ->orwhere('centro_trabajo.domicilio','LIKE','%'.$query.'%')
-        ->where('centro_trabajo.estado','=','ACTIVO')->paginate(10);
+        ->where('centro_trabajo.estado','=','ACTIVO')
+        ->where('nombre_escuela','LIKE','%'.$query.'%')
+
+
+
+
+
+
+
+        ->paginate(10);
        return view('nomina.centro_trabajo.index',["centro"=>$centro,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //

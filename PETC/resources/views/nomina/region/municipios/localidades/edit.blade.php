@@ -38,7 +38,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Municipio <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="municipio" class="form-control select2" required>
+								<select name="municipio" id="municipio" class="form-control select2" required>
 									@foreach($municipios as $municipio)
 									@if($localidad->id_municipio == $municipio->id)
 									<option value="{{$municipio->id}}" selected>
@@ -60,53 +60,53 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre de la Localidad: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="localidad" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="{{$localidad->nom_loc}}" onchange="mayus(this)" />
+								<input name="localidad" id="localidad" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="{{$localidad->nom_loc}}" onchange="mayus(this)" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Longitud: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="longitud" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{$localidad->longitud}}"  max="100000" min="1" />
+								<input name="longitud" id="longitud" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{$localidad->longitud}}"  max="100000" min="1" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Latitud: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="latitud" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{$localidad->latitud}}"  max="100000" min="1" />
+								<input name="latitud" id="latitud" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{$localidad->latitud}}"  max="100000" min="1" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Altitud: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="altitud" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{$localidad->altitud}}" max="100000" min="1" />
+								<input name="altitud" id="altitud" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{$localidad->altitud}}" max="100000" min="1" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Poblacion Total: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="pobtot" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{$localidad->pobtot}}" max="100000" min="1" />
+								<input name="pobtot" id="pobtot" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{$localidad->pobtot}}" max="100000" min="1" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Poblacion Masculina: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="pobmas" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  value="{{$localidad->pobmas}}" max="100000" min="1" />
+								<input name="pobmas" id="pobmas" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  value="{{$localidad->pobmas}}" max="100000" min="1" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Poblacion Femenina: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="pobfem" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{$localidad->pobfem}}"  max="100000" min="1" />
+								<input name="pobfem" id="pobfem" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required value="{{$localidad->pobfem}}"  max="100000" min="1" />
 							</div>
 						</div>
 
-						
+
 
 
 

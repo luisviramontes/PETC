@@ -37,7 +37,10 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Región <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="region" class="form-control" required>
+								<select name="region" id="region" onchange="mun_reg();" class="form-control" required>
+									<option selected>
+										Seleccione una opción
+									</option>
 									@foreach($region as $regiones)
 									<option value="{{$regiones->id}}">
 										{{$regiones->region}}-{{$regiones->sostenimiento}}
@@ -45,6 +48,7 @@
 									@endforeach
 								</select>
 								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_region'>{{$errors->formulario->first('region')}}</div>
 							</div>
 						</div><!--/form-group-->
 
@@ -53,14 +57,14 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre del Municipio: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="municipio" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="" onchange="mayus(this)" />
+								<input name="municipio" id="municipio" placeholder="Escribe el nombre del municipio." type="text" onkeypress="return soloLetras(event)" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  class="form-control" required value="" onchange="mayus(this)" />
 							</div>
 						</div>
 
 												<div class="form-group">
 							<label class="col-sm-3 control-label">Cabecera Municipal: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="cabecera" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="" onchange="mayus(this)" />
+								<input name="cabecera" id="cabecera" placeholder="Escribe el nombre de la cabecera municipio." type="text" onkeypress="return soloLetras(event)" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" class="form-control" required value="" onchange="mayus(this)" />
 							</div>
 						</div>
 
@@ -74,16 +78,16 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Población: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="poblacion" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="" />
+								<input name="poblacion" id="poblacion" type="number" onkeypress="soloNumeros(event)" placeholder="Especifica la cantidad de la población."  class="form-control" required value="" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Área en KM: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="area" type="number"  onkeypress="soloNumeros(event)"  class="form-control" required value="" />
+								<input name="area" id="area" type="number"  onkeypress="soloNumeros(event)" placeholder="Especifica el area a Kilometros." class="form-control" required value="" />
 							</div>
-						</div>						
+						</div>
 
 
 
@@ -91,7 +95,7 @@
 
 						<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button type="submit" id="submit" class="btn btn-primary">Guardar</button>
 								<a href="{{url('/municipios')}}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->
@@ -103,4 +107,24 @@
 		</div><!--/col-md-12-->
 	</div><!--/row-->
 </div><!--/container clear_both padding_fix-->
+<script type="text/javascript">
+window.onload=function(){
+	mun_reg();
+	}
+
+	function mun_reg() {
+	 if( document.getElementById('region').value == "Seleccione una opción"){
+
+		 document.getElementById('submit').disabled=true;
+
+					//  swal("ERROR!","Selecciona tipo se puesto","error");
+					document.getElementById("error_region").innerHTML = "Seleccione una opción.";
+					return false
+				}else{
+				 document.getElementById('submit').disabled=false;
+				 document.getElementById("error_region").innerHTML = "";
+			 }
+	 }
+
+</script>
 @endsection

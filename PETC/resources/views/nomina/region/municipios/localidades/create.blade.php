@@ -37,7 +37,10 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Municipio <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="municipio" class="form-control select2" required>
+								<select name="municipio" id="municipio" onchange="loc_mun()" class="form-control select2" required>
+									<option selected>
+										Seleccione una opción
+									</option>
 									@foreach($municipios as $municipio)
 									<option value="{{$municipio->id}}">
 										{{$municipio->municipio}}
@@ -45,6 +48,7 @@
 									@endforeach
 								</select>
 								<div class="help-block with-errors"></div>
+								<div class="text-danger" id='error_municipio'>{{$errors->formulario->first('municipio')}}</div>
 							</div>
 						</div><!--/form-group-->
 
@@ -53,53 +57,53 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre de la Localidad: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="localidad" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="" onchange="mayus(this)" />
+								<input name="localidad" id="localidad" placeholder="Escribe el nombre de la Localidad." type="text" onkeypress="return soloLetras(event)" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" class="form-control" required value="" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Longitud: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="longitud" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
+								<input name="longitud" id="longitud" placeholder="Escribe la longitud de la Localidad." type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Latitud: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="latitud" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
+								<input name="latitud" id="latitud" placeholder="Escribe la latitud de la Localidad." type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Altitud: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="altitud" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
+								<input name="altitud" id="altitud" placeholder="Escribe la altitud de la Localidad." type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Poblacion Total: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="pobtot" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
+								<input name="pobtot" id="pobtot" placeholder="Escribe la poblacion total de la Localidad." type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Poblacion Masculina: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="pobmas" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
+								<input name="pobmas" type="text" id="pobmas" placeholder="Escribe la poblacion masculina de la Localidad." onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Poblacion Femenina: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="pobfem" type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
+								<input name="pobfem" id="pobfem" placeholder="Escribe la poblacion femenina de la Localidad." type="text" onkeypress="return soloNumeros(event)"  class="form-control" required  max="100000" min="1" />
 							</div>
 						</div>
 
-						
+
 
 
 
@@ -107,7 +111,7 @@
 
 						<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button type="submit" id="submit" class="btn btn-primary">Guardar</button>
 								<a href="{{url('/localidades')}}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->
@@ -119,4 +123,24 @@
 		</div><!--/col-md-12-->
 	</div><!--/row-->
 </div><!--/container clear_both padding_fix-->
+<script type="text/javascript">
+window.onload=function(){
+	loc_mun();
+	}
+
+	function loc_mun() {
+	 if( document.getElementById('municipio').value == "Seleccione una opción"){
+
+		 document.getElementById('submit').disabled=true;
+
+					//  swal("ERROR!","Selecciona tipo se puesto","error");
+					document.getElementById("error_municipio").innerHTML = "Seleccione una opción.";
+					return false
+				}else{
+				 document.getElementById('submit').disabled=false;
+				 document.getElementById("error_municipio").innerHTML = "";
+			 }
+	 }
+
+</script>
 @endsection

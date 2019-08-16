@@ -80,7 +80,7 @@
 								<td style="background-color:#DBFFC2;">{{$reintegro->ciclo}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->oficio}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->motivo}} </td>
-								<td style="background-color:#DBFFC2;">{{$reintegro->total}} </td>
+								<td style="background-color:#DBFFC2;">${{number_format($reintegro->total, 2)}} </td>
 								<td style="display:none">{{$reintegro->captura}} </td>
 								<td style="display: none">{{$reintegro->estado}} </td>
 								<td style="background-color:#DBFFC2;">{{$reintegro->created_at}} </td>
@@ -117,7 +117,7 @@
 								<td style="background-color:#FFE4E1;">{{$reintegro->director_regional}} </td>
 								<td style="background-color:#FFE4E1;">{{$reintegro->oficio}} </td>
 								<td style="background-color:#FFE4E1;">{{$reintegro->motivo}} </td>
-								<td style="background-color:#FFE4E1;">{{$reintegro->total}} </td>
+								<td style="background-color:#FFE4E1;">${{number_format($reintegro->total, 2)}} </td>
 								<td style="display:none">{{$reintegro->captura}} </td>
 								<td style="display: none">{{$reintegro->estado}} </td>
 								<td style="background-color:#FFE4E1;">{{$reintegro->created_at}} </td>
