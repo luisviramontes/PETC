@@ -68,7 +68,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Ciclo Escolar <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="ciclo_escolar" id="ciclo_escolar" onchange="validar_ciclo()" class="form-control"  value="{{Input::old('ciclo_escolar')}}"  required>
+								<select name="id_ciclo" id="id_ciclo" onchange="validar_ciclo()" class="form-control"  value="{{Input::old('id_ciclo')}}"  required>
 									<option selected>
 										Selecciona una opción
 									</option>
@@ -133,26 +133,26 @@ window.onload = function() {
 function validar_cct() {
 		 if( document.getElementById('cct').value == "Selecciona una opción" ){
 				document.getElementById('submit').disabled=true;
-				document.getElementById('ciclo_escolar').disabled=true;
+				document.getElementById('id_ciclo').disabled=true;
 		 //	swal("ERROR!","Selecciona tipo se puesto","error");
 			 document.getElementById("error_cct").innerHTML = "No se ha seleccionado ninguna opción.";
 			 return false
 
 		 }else if(document.getElementById('cct').value != "Selecciona una opción"){
-			 			document.getElementById('ciclo_escolar').disabled=false;
+			 			document.getElementById('id_ciclo').disabled=false;
 						document.getElementById("error_cct").innerHTML = "";
 
 		 }
 	 }
 
 function validar_ciclo() {
-	 		 if( document.getElementById('ciclo_escolar').value == "Selecciona una opción" ){
+	 		 if( document.getElementById('id_ciclo').value == "Selecciona una opción" ){
 
 	 		 //	swal("ERROR!","Selecciona tipo se puesto","error");
 	 			 document.getElementById("error_ciclo_escolar").innerHTML = "No se ha seleccionado ninguna opción.";
 	 			 return false
 
-	 		 }else if(document.getElementById('ciclo_escolar').value != "Selecciona una opción"){
+	 		 }else if(document.getElementById('id_ciclo').value != "Selecciona una opción"){
 	 					document.getElementById('submit').disabled=false;
 						document.getElementById("error_ciclo_escolar").innerHTML = "";
 

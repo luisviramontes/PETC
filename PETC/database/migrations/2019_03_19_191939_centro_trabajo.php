@@ -29,7 +29,7 @@ class CentroTrabajo extends Migration
             //$table->string('sostenimiento');
             $table->string('captura');
             //$table->foreign('id_director')->references('id_personal')->on('personal');
-            $table->integer('telefono')->nullable();
+            $table->string('telefono')->nullable();
             $table->string('email')->nullable();
             $table->string('ciclo_escolar');
             $table->string('entrego_carta');

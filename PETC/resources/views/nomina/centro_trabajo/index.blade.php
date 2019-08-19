@@ -36,7 +36,7 @@
 
 										<a class="btn btn-primary btn-sm" href="{{URL::action('CentroTrabajoController@invoice' )}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
-								
+
 
 										<a class="btn btn-primary btn-sm"  href="{{URL::action('CentroTrabajoController@ver_centros_trabajo')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-eye"></i> Ver Informe</a>
 
@@ -56,7 +56,7 @@
 								<tr>
 									<th>CCT </th>
 									<th>Nombre de la Escuela</th>
-									<<th style="display:none;" >Municipio </th>
+									<th style="display:none;" >Municipio </th>
 									<th style="display:none;" >Localidad </th>
 									<th style="display:none;" >Domicilio </th>
 									<th>Región </th>
@@ -171,4 +171,7 @@
 			</div><!--/col-md-12-->
 		</div><!--/row-->
 	</div>
+	<script type="text/javascript">
+
+	</script>
 	@endsection

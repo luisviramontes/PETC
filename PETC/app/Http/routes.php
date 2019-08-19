@@ -372,8 +372,18 @@ Route::get('pdf_directorio_externo', array('as'=> '/pdf_directorio_externo','use
 
 
 //OFICIOS EMITIDOS
+
+Route::resource('oficiosemitidos', 'OficiosEmitidosController');
+Route::get('descargar-oficios-emitidos/{id}', 'OficiosEmitidosController@excel')->name('administrativa.oficios-emitidos.excel');
+
+Route::post('oficioemitido_resuelto/{id}', 'OficiosEmitidosController@oficioemitido_resuelto');
 Route::get('buscar_oficio/{oficio}/{ciclo}', 'OficiosEmitidosController@buscar_oficio');
 Route::get('busca_oficio/{oficio}/{ciclo}', 'OficiosEmitidosController@busca_oficio');
+Route::get('buscar_oficio2/{oficio}/{ciclo}', 'OficiosEmitidosController@buscar_oficio2');
+Route::get('ultimo_oficio/{id}', 'OficiosEmitidosController@ultimo_oficio');
+
+
+Route::resource('subir_imagen_oficioe/{id}', 'OficiosEmitidosController@subir_imagen_oficioe');
 
 ///TABLA DE PAGOS
 Route::resource('tabla_pagos', 'TablaPagosController');

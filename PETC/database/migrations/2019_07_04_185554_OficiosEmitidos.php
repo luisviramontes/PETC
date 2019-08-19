@@ -24,14 +24,14 @@ class OficiosEmitidos extends Migration
             $table->string('referencia')->nullable();
             $table->date('salida');
             $table->integer('id_elabora')->unsigned()->nullable();
-            $table->foreign('id_elabora')->references('id')->on('directoriointerno');
+            $table->foreign('id_elabora')->references('id')->on('directoriointerno'); 
             $table->string('observaciones')->nullable();
             $table->string('archivo')->nullable();
             $table->string('estado');
             $table->string('captura');
             $table->integer('id_ciclo')->unsigned()->nullable();
             $table->foreign('id_ciclo')->references('id')->on('ciclo_escolar');
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

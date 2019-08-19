@@ -111,7 +111,7 @@ class TarjetasFortalecimientoController extends Controller
   }
 
 
-}
+  }
         //
 }
 

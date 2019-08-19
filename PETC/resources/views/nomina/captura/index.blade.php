@@ -32,7 +32,7 @@
 
 
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.captura.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-										<a class="btn btn-primary btn-sm"  href="{{URL::action('CapturaController@ver_capturas')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Capturas</a>
+										<a class="btn btn-primary btn-sm"  href="{{URL::action('CapturaController@ver_capturas')}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Capturas</a>
 
 
 									</div>
@@ -102,14 +102,14 @@
 										@if($datos->pagos_registrados == "1")
 										<td style="background-color: #C5E1A5;">✔</td>
 										@else
-										<td style="background-color: #F1948A  
+										<td style="background-color: #F1948A
 										;">X</td>
 										@endif
 
 										@if($datos->qna_actual == "1")
 										<td style="background-color: #C5E1A5;">✔</td>
 										@else
-										<td style="background-color: #F1948A  
+										<td style="background-color: #F1948A
 										;">X</td>
 										@endif
 
@@ -153,14 +153,14 @@
 														@if($datos->pagos_registrados == "1")
 														<td style="background-color: #C5E1A5;">✔</td>
 														@else
-														<td style="background-color: #F1948A  
+														<td style="background-color: #F1948A
 														;">X</td>
 														@endif
 
 														@if($datos->qna_actual == "1")
 														<td style="background-color: #C5E1A5;">✔</td>
 														@else
-														<td style="background-color: #F1948A  
+														<td style="background-color: #F1948A
 														;">X</td>
 														@endif
 
@@ -237,10 +237,20 @@
 						</div>
 						@include('nomina.personal.modalreactivar')
 						<script type="text/javascript">
+
 							window.onload=function() {
 								document.getElementById('searchText').focus();
 
+								var x =document.getElementById('ciclo_escolar').value;
+								document.getElementById('excel').href="/descargar-listas-asistencias/"+x;
+								document.getElementById('invoice').href="/pdf_listasasistencias/"+x;
 							}
+
+							function cambia_ruta_cap(){
+									 var x =document.getElementById('ciclo_escolar').value;
+												 document.getElementById('excel').href="/descargar-tabla-captura/"+x;
+												 document.getElementById('invoice').href="/pdf_captura/"+x;
+								}
 
 							var aux2 = [];
 							function cambia5(x){

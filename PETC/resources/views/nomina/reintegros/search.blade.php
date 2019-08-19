@@ -3,7 +3,7 @@
 	<div class="input-group">
 		<div class="form-group">
 			<div class="col-sm-10">
-				<input name="searchText" type="text" id="searchText" class="form-control" required value="" />
+				<input name="searchText" type="text" id="searchText" value="{{$searchText}}" class="form-control" required/>
 			</div>
 		</div>
 		<span class="input-group-btn">
@@ -18,12 +18,12 @@
 				<div class="col-sm-6">
 					<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2" onchange="enviar_ciclo_reintegros()"  >
 						@foreach($ciclos as $ciclo)
-						@if($ciclo->ciclo == $ciclo_escolar)
-						<option value='{{$ciclo->ciclo}}' selected>
+						@if($ciclo->id == $ciclo_escolar)
+						<option value='{{$ciclo->id}}' selected>
 							{{$ciclo->ciclo}}
 						</option>
 						@else
-						<option value='{{$ciclo->ciclo}}'>
+						<option value='{{$ciclo->id}}'>
 							{{$ciclo->ciclo}}
 						</option>
 						@endif

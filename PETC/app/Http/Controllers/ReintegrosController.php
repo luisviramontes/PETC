@@ -43,8 +43,11 @@ class ReintegrosController extends Controller
       if($request)
       {
        $query=trim($request->GET('searchText'));
-         $query2=trim($request->GET('ciclo_escolar'));
+       $query2=trim($request->GET('ciclo_escolar'));
        $ciclos=DB::table('ciclo_escolar')->get();
+
+       if($query == "" && $query2 == ""){
+       $query2=2;
        $reintegros = DB::table('reintegros')
        ->join('centro_trabajo','reintegros.id_centro_trabajo', '=', 'centro_trabajo.id' ) //cct
        ->join('captura','reintegros.id_captura', '=', 'captura.id' ) //nombre, sostenimiento, categoria
@@ -52,6 +55,9 @@ class ReintegrosController extends Controller
        ->join('cuentas','reintegros.id_cuenta', '=', 'cuentas.id' ) //cuentas
        ->join('bancos','reintegros.id_banco', '=', 'bancos.id' ) //bancos
        ->join('ciclo_escolar','reintegros.id_ciclo', '=', 'ciclo_escolar.id' ) //ciclo
+
+
+       ->where('reintegros.id_ciclo','=',$query2)
 
 
        ->select('reintegros.id as id','reintegros.id_centro_trabajo','reintegros.id_captura','reintegros.id_directorio_regional','reintegros.id_ciclo'
@@ -63,20 +69,69 @@ class ReintegrosController extends Controller
        ,'captura.nombre','captura.categoria'
        ,'directorio_regional.director_regional','directorio_regional.id_region'
        ,'ciclo_escolar.ciclo')
-
-       ->where('reintegros.total','LIKE','%'.$query.'%')
-      ->where('ciclo_escolar','=',$query2)
-       ->orwhere('reintegros.oficio','LIKE','%'.$query.'%')
-       ->orwhere('reintegros.motivo','LIKE','%'.$query.'%')
-       ->orwhere('reintegros.estado','LIKE','%'.$query.'%')
-       ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
-       ->orwhere('captura.nombre','LIKE','%'.$query.'%')
-       ->orwhere('bancos.nombre_banco','LIKE','%'.$query.'%')
-       ->orwhere('cuentas.nombre','LIKE','%'.$query.'%')
-       ->orwhere('cuentas.num_cuenta','LIKE','%'.$query.'%')
-       ->orwhere('cuentas.secretaria','LIKE','%'.$query.'%')
-       ->orwhere('directorio_regional.director_regional','LIKE','%'.$query.'%')
        ->paginate(24);
+
+     }elseif ($query == "" && $query2 != "") {
+       $reintegros = DB::table('reintegros')
+       ->join('centro_trabajo','reintegros.id_centro_trabajo', '=', 'centro_trabajo.id' ) //cct
+       ->join('captura','reintegros.id_captura', '=', 'captura.id' ) //nombre, sostenimiento, categoria
+       ->join('directorio_regional','reintegros.id_directorio_regional', '=', 'directorio_regional.id' ) //director_regional,sostenimiento
+       ->join('cuentas','reintegros.id_cuenta', '=', 'cuentas.id' ) //cuentas
+       ->join('bancos','reintegros.id_banco', '=', 'bancos.id' ) //bancos
+       ->join('ciclo_escolar','reintegros.id_ciclo', '=', 'ciclo_escolar.id' ) //ciclo
+
+
+       ->where('reintegros.id_ciclo','=',$query2)
+
+
+       ->select('reintegros.id as id','reintegros.id_centro_trabajo','reintegros.id_captura','reintegros.id_directorio_regional','reintegros.id_ciclo'
+       ,'reintegros.num_dias','reintegros.total','reintegros.oficio','reintegros.motivo','reintegros.estado'
+       ,'reintegros.captura','reintegros.created_at'
+       ,'centro_trabajo.cct'
+       ,'cuentas.nombre','cuentas.num_cuenta','cuentas.secretaria'
+       ,'bancos.nombre_banco'
+       ,'captura.nombre','captura.categoria'
+       ,'directorio_regional.director_regional','directorio_regional.id_region'
+       ,'ciclo_escolar.ciclo')
+       ->paginate(24);
+
+     }else {
+       $reintegros = DB::table('reintegros')
+       ->join('centro_trabajo','reintegros.id_centro_trabajo', '=', 'centro_trabajo.id' ) //cct
+       ->join('captura','reintegros.id_captura', '=', 'captura.id' ) //nombre, sostenimiento, categoria
+       ->join('directorio_regional','reintegros.id_directorio_regional', '=', 'directorio_regional.id' ) //director_regional,sostenimiento
+       ->join('cuentas','reintegros.id_cuenta', '=', 'cuentas.id' ) //cuentas
+       ->join('bancos','reintegros.id_banco', '=', 'bancos.id' ) //bancos
+       ->join('ciclo_escolar','reintegros.id_ciclo', '=', 'ciclo_escolar.id' ) //ciclo
+
+       ->select('reintegros.id as id','reintegros.id_centro_trabajo','reintegros.id_captura','reintegros.id_directorio_regional','reintegros.id_ciclo'
+       ,'reintegros.num_dias','reintegros.total','reintegros.oficio','reintegros.motivo','reintegros.estado'
+       ,'reintegros.captura','reintegros.created_at'
+       ,'centro_trabajo.cct'
+       ,'cuentas.nombre','cuentas.num_cuenta','cuentas.secretaria'
+       ,'bancos.nombre_banco'
+       ,'captura.nombre','captura.categoria'
+       ,'directorio_regional.director_regional','directorio_regional.id_region'
+       ,'ciclo_escolar.ciclo')
+
+
+
+      ->where('reintegros.total','LIKE','%'.$query.'%')
+      ->orwhere('reintegros.oficio','LIKE','%'.$query.'%')
+      ->orwhere('reintegros.motivo','LIKE','%'.$query.'%')
+      ->orwhere('reintegros.estado','LIKE','%'.$query.'%')
+      ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
+      ->orwhere('captura.nombre','LIKE','%'.$query.'%')
+      ->orwhere('bancos.nombre_banco','LIKE','%'.$query.'%')
+      ->orwhere('cuentas.nombre','LIKE','%'.$query.'%')
+      ->orwhere('cuentas.num_cuenta','LIKE','%'.$query.'%')
+      ->orwhere('cuentas.secretaria','LIKE','%'.$query.'%')
+      ->orwhere('directorio_regional.director_regional','LIKE','%'.$query.'%')
+      ->where('reintegros.id_ciclo','=',$query2)
+      ->paginate(24);
+     }
+
+
        //print_r($listas);
       return view('nomina.reintegros.index',["reintegros"=>$reintegros,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
 

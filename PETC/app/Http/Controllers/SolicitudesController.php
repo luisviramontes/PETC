@@ -40,9 +40,42 @@ class SolicitudesController extends Controller
       }else{
       if($request)
       {
-       $ciclos=DB::table('ciclo_escolar')->get();
        $query2=trim($request->GET('ciclo_escolar'));
        $query=trim($request->GET('searchText'));
+       $ciclos=DB::table('ciclo_escolar')->get();
+
+       if($query == "" && $query2 == ""){
+         $query2=2;
+       $solicitudes = DB::table('solicitudes')
+       ->join('municipios', 'solicitudes.id_municipio', '=','municipios.id')
+       ->join('localidades', 'solicitudes.id_localidad', '=','localidades.id')
+       ->join('centro_trabajo', 'solicitudes.id_cct', '=','centro_trabajo.id')
+       ->join('ciclo_escolar', 'solicitudes.id_ciclo', '=','ciclo_escolar.id')
+
+       ->where('solicitudes.id_ciclo','=',$query2)
+
+       ->select('municipios.*','localidades.*','solicitudes.*','centro_trabajo.cct','ciclo_escolar.ciclo')
+
+
+       ->paginate(10);
+
+
+
+
+     }elseif ($query == "" && $query2 != "") {
+       $solicitudes = DB::table('solicitudes')
+       ->join('municipios', 'solicitudes.id_municipio', '=','municipios.id')
+       ->join('localidades', 'solicitudes.id_localidad', '=','localidades.id')
+       ->join('centro_trabajo', 'solicitudes.id_cct', '=','centro_trabajo.id')
+       ->join('ciclo_escolar', 'solicitudes.id_ciclo', '=','ciclo_escolar.id')
+
+       ->where('solicitudes.id_ciclo','=',$query2)
+
+       ->select('municipios.*','localidades.*','solicitudes.*','centro_trabajo.cct','ciclo_escolar.ciclo')
+
+
+       ->paginate(10);
+     }else {
        $solicitudes = DB::table('solicitudes')
        ->join('municipios', 'solicitudes.id_municipio', '=','municipios.id')
        ->join('localidades', 'solicitudes.id_localidad', '=','localidades.id')
@@ -51,14 +84,16 @@ class SolicitudesController extends Controller
 
 
        ->select('municipios.*','localidades.*','solicitudes.*','centro_trabajo.cct','ciclo_escolar.ciclo')
+
+
        ->where('solicitudes.nombre_escuela','LIKE','%'.$query.'%')
-       ->where('ciclo_escolar.ciclo','=',$query2)
        ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
        ->orwhere('localidades.nom_loc','LIKE','%'.$query.'%')
        ->orwhere('ciclo_escolar.ciclo','LIKE','%'.$query.'%')
-       ->orwhere('municipios.municipio','LIKE','%'.$query.'%')->paginate(10);
-
-
+       ->orwhere('municipios.municipio','LIKE','%'.$query.'%')
+       ->where('solicitudes.id_ciclo','=',$query2)
+       ->paginate(10);
+     }
 
         return view('nomina.solicitudes.index',["solicitudes"=>$solicitudes,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
     }

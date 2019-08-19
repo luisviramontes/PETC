@@ -1,15 +1,16 @@
-{!! Form::open(array('url'=>'/centro_trabajo','method' => 'GET','autocomplete'=>'off','role'=>'search')) !!}
+{!! Form::open(['route' => ['centro_trabajo.index'],'method' => 'GET','autocomplete'=>'off','role'=>'search']) !!}
 <div class="form-group">
 	<div class="input-group">
-		<input  type="text" name="searchText" id="searchText" value="" class="form-control" >
+		<input  type="text" name="searchText" id="searchText" value="{{$searchText}}" class="form-control" >
 			</select>
 		<span class="input-group-btn">
 			<button type="submit" class="btn btn-primary">Buscar</button>
 
 		</span>
 	</div>
-</div>
 
+</div>
+ 
 <div class="form-group">
 						<label class="col-sm-3 control-label">Seleccione Ciclo Escolar : <strog class="theme_color"></strog></label>
 						<div class="col-sm-6">

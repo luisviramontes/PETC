@@ -14,8 +14,8 @@ class CicloEscolarSeeder extends Seeder
     	DB::table('ciclo_escolar')->insert([
     		'ciclo' => '2018-2019',
     		'dias_habiles' => '195',
-    		'inicio_ciclo' => '2018-20-08',
-    		'fin_ciclo' => '2019-8-07',
+    		'inicio_ciclo' => '2018-08-20',
+    		'fin_ciclo' => '2019-07-08',
         'estado' => 'ACTIVO',
     		'capturo' => 'ADMINISTRADOR',
     		'created_at' => '0000-00-00 00:00:00',
@@ -25,7 +25,7 @@ class CicloEscolarSeeder extends Seeder
                 DB::table('ciclo_escolar')->insert([
             'ciclo' => '2019-2020',
             'dias_habiles' => '195',
-            'inicio_ciclo' => '2019-26-08',
+            'inicio_ciclo' => '2019-08-26',
             'fin_ciclo' => '2020-07-06',
         'estado' => 'ACTIVO',
             'capturo' => 'ADMINISTRADOR',

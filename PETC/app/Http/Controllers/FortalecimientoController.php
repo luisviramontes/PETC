@@ -43,9 +43,46 @@ class FortalecimientoController extends Controller
 
       if($request)
       {
-       $ciclos=DB::table('ciclo_escolar')->get();
        $query2=trim($request->GET('ciclo_escolar'));
        $query=trim($request->GET('searchText'));
+       $ciclos=DB::table('ciclo_escolar')->get();
+
+       if($query == "" && $query2 == ""){
+         $query2=2;
+       $fortalecimientos = DB::table('fortalecimiento')
+       ->join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
+       ->join('ciclo_escolar', 'fortalecimiento.id_ciclo', '=','ciclo_escolar.id')
+       ->join('region', 'centro_trabajo.id_region', '=','region.id')
+
+
+       ->where('fortalecimiento.id_ciclo','=',$query2)
+
+
+       ->select('fortalecimiento.id as id','fortalecimiento.*'
+       ,'centro_trabajo.cct as cct'
+       ,'ciclo_escolar.ciclo'
+       ,'region.sostenimiento'
+       ,'region.region')
+
+       ->paginate(915);
+     }elseif ($query == "" && $query2 != "") {
+       $fortalecimientos = DB::table('fortalecimiento')
+       ->join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
+       ->join('ciclo_escolar', 'fortalecimiento.id_ciclo', '=','ciclo_escolar.id')
+       ->join('region', 'centro_trabajo.id_region', '=','region.id')
+
+
+       ->where('fortalecimiento.id_ciclo','=',$query2)
+
+
+       ->select('fortalecimiento.id as id','fortalecimiento.*'
+       ,'centro_trabajo.cct as cct'
+       ,'ciclo_escolar.ciclo'
+       ,'region.sostenimiento'
+       ,'region.region')
+
+       ->paginate(915);
+     }else {
        $fortalecimientos = DB::table('fortalecimiento')
        ->join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
        ->join('ciclo_escolar', 'fortalecimiento.id_ciclo', '=','ciclo_escolar.id')
@@ -57,11 +94,17 @@ class FortalecimientoController extends Controller
        ,'region.sostenimiento'
        ,'region.region')
 
-       ->where('cct','LIKE','%'.$query.'%')
-       ->where('ciclo_escolar.ciclo','=',$query2)
+       ->where('centro_trabajo.cct','LIKE','%'.$query.'%')
        ->orwhere('region.sostenimiento','LIKE','%'.$query.'%')
        ->orwhere('monto_forta','LIKE','%'.$query.'%')
+       ->where('fortalecimiento.id_ciclo','=',$query2)
+
        ->paginate(915);
+
+
+     }
+
+
 
       return view('nomina.fortalecimiento.index',["fortalecimientos"=>$fortalecimientos,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
 

@@ -1238,29 +1238,29 @@ $(document).ready(function() {
 
 function fnFormatDetails8 ( oTable, nTr )
 {
- var aData = oTable.fnGetData( nTr );
- var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
- sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de la Fumigación</strong></td><td> </td></tr>';
+   var aData = oTable.fnGetData( nTr );
+   var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+   sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Informacion de la Fumigación</strong></td><td> </td></tr>';
 
- sOut += '<tr><td><strong>N° Fumigación:</strong></td><td>'+aData[1]+' </td></tr>';
- sOut += '<tr><td><strong>Fecha de Inicio:</strong></td><td>'+aData[2]+' </td></tr>';
- sOut += '<tr><td><strong>Hora Inicial:</strong></td><td>'+aData[3]+' </td></tr>';
- sOut += '<tr><td><strong>Fecha de Termino:</strong></td><td>'+aData[4]+' </td></tr>';
- sOut += '<tr><td><strong>Hora de Termino:</strong></td><td>'+aData[5]+' </td></tr>';
- sOut += '<tr><td><strong>Agroquimicos Aplicados:</strong></td><td>'+aData[6]+' </td></tr>';
- sOut += '<tr><td><strong>Cantidad Aplicada:</strong></td><td>'+aData[7]+' </td></tr>';
- sOut += '<tr><td><strong>Destino:</strong></td><td>'+aData[8]+' </td></tr>';
- sOut += '<tr><td><strong>Almacén :</strong></td><td>'+aData[9]+' </td></tr>';
- sOut += '<tr><td><strong>Producto :</strong></td><td>'+aData[10]+' </td></tr>';
- sOut += '<tr><td><strong>Fumigador :</strong></td><td>'+aData[11]+' </td></tr>';
- sOut += '<tr><td><strong>Estado :</strong></td><td>'+aData[12]+' </td></tr>';
- sOut += '<tr><td><strong>Plaga que Combate :</strong></td><td>'+aData[13]+' </td></tr>';
- sOut += '<tr><td><strong>Observaciones :</strong></td><td>'+aData[14]+' </td></tr>';
+   sOut += '<tr><td><strong>N° Fumigación:</strong></td><td>'+aData[1]+' </td></tr>';
+   sOut += '<tr><td><strong>Fecha de Inicio:</strong></td><td>'+aData[2]+' </td></tr>';
+   sOut += '<tr><td><strong>Hora Inicial:</strong></td><td>'+aData[3]+' </td></tr>';
+   sOut += '<tr><td><strong>Fecha de Termino:</strong></td><td>'+aData[4]+' </td></tr>';
+   sOut += '<tr><td><strong>Hora de Termino:</strong></td><td>'+aData[5]+' </td></tr>';
+   sOut += '<tr><td><strong>Agroquimicos Aplicados:</strong></td><td>'+aData[6]+' </td></tr>';
+   sOut += '<tr><td><strong>Cantidad Aplicada:</strong></td><td>'+aData[7]+' </td></tr>';
+   sOut += '<tr><td><strong>Destino:</strong></td><td>'+aData[8]+' </td></tr>';
+   sOut += '<tr><td><strong>Almacén :</strong></td><td>'+aData[9]+' </td></tr>';
+   sOut += '<tr><td><strong>Producto :</strong></td><td>'+aData[10]+' </td></tr>';
+   sOut += '<tr><td><strong>Fumigador :</strong></td><td>'+aData[11]+' </td></tr>';
+   sOut += '<tr><td><strong>Estado :</strong></td><td>'+aData[12]+' </td></tr>';
+   sOut += '<tr><td><strong>Plaga que Combate :</strong></td><td>'+aData[13]+' </td></tr>';
+   sOut += '<tr><td><strong>Observaciones :</strong></td><td>'+aData[14]+' </td></tr>';
 
 
- sOut += '</table>';
+   sOut += '</table>';
 
- return sOut;
+   return sOut;
 }
 
 $(document).ready(function() {
@@ -2230,7 +2230,7 @@ function fnFormatDetails18 ( oTable, nTr )
     sOut += '<tr><td><strong>Monto:</strong></td><td>'+aData[8]+' </td></tr>';
     sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[9]+' </td></tr>';
     sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[10]+' </td></tr>';
-        sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[17]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[17]+' </td></tr>';
 
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de la Tarjeta</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>N° de Tarjeta:</strong></td><td>'+aData[11]+' </td></tr>';
@@ -2317,23 +2317,23 @@ function fnFormatDetails19 ( oTable, nTr )
     sOut += '<tr><td><strong>Email:</strong></td><td>'+aData[7]+' </td></tr>';
 
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos de la Captura</strong></td><td> </td></tr>';
-     sOut += '<tr><td><strong>Total Personal:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Personal:</strong></td><td>'+aData[8]+' </td></tr>';
     sOut += '<tr><td><strong>Total Directores:</strong></td><td>'+aData[9]+' </td></tr>';
     sOut += '<tr><td><strong>Total Docentes:</strong></td><td>'+aData[10]+' </td></tr>';
     sOut += '<tr><td><strong>Total Intendentes:</strong></td><td>'+aData[11]+' </td></tr>';
-        sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[21]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[21]+' </td></tr>';
 
     sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos Directores</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>Total Percepciónes Directores:</strong></td><td>'+aData[12]+' </td></tr>';
     sOut += '<tr><td><strong>Total Deducciones Directores:</strong></td><td>'+aData[15]+' </td></tr>';
-        sOut += '<tr><td><strong>Total Liquido Directores:</strong></td><td>'+aData[18]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Liquido Directores:</strong></td><td>'+aData[18]+' </td></tr>';
 
-   sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos Docentes</strong></td><td> </td></tr>';
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos Docentes</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>Total Percepciónes Docentes:</strong></td><td>'+aData[13]+' </td></tr>';
     sOut += '<tr><td><strong>Total Deducciones Docentes:</strong></td><td>'+aData[16]+' </td></tr>';
     sOut += '<tr><td><strong>Total Liquido Docentes:</strong></td><td>'+aData[19]+' </td></tr>';
 
-   sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos Intendentes</strong></td><td> </td></tr>';
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos Intendentes</strong></td><td> </td></tr>';
     sOut += '<tr><td><strong>Total Percepciónes Intendentes:</strong></td><td>'+aData[14]+' </td></tr>';
     sOut += '<tr><td><strong>Total Deducciones Intendentes:</strong></td><td>'+aData[17]+' </td></tr>';
     sOut += '<tr><td><strong>Total Liquido Intendentes:</strong></td><td>'+aData[20]+' </td></tr>';
@@ -2393,6 +2393,100 @@ $(document).ready(function() {
             /* Open this row */
             this.src = "plugins/advanced-datatable/images/details_close.png";
             oTable.fnOpen( nTr, fnFormatDetails19(oTable, nTr), 'details' );
+        }
+    } );
+ } );
+
+
+function fnFormatDetails20 ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos del Oficio</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Num Oficio :</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre Oficio:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>Dirigido Para:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Asunto:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Referencía:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Salida:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Observaciónes:</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>*PDF:</strong></td><td>'+aData[13]+' </td></tr>';
+    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[14]+' </td></tr>';
+      sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[15]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos/Dirigido</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Nombre:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Puesto:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>Dirección:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Correo:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Ext:</strong></td><td>'+aData[7]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos/Elaboro Oficio</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Nombre:</strong></td><td>'+aData[16]+' </td></tr>';
+    sOut += '<tr><td><strong>Puesto:</strong></td><td>'+aData[18]+' </td></tr>';
+    sOut += '<tr><td><strong>Área:</strong></td><td>'+aData[19]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>Datos Captura</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[22]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha de Modificación:</strong></td><td>'+aData[23]+' </td></tr>';
+
+
+
+
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table20').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info20 thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info20 tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info20').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info20 tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails20(oTable, nTr), 'details' );
         }
     } );
  } );
