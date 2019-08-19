@@ -193,7 +193,9 @@
 															<option value="ACADEMICA">ACADEMICA</option>
 															<option value="RECEPCION">RECEPCION</option>	
 															<option value="FINANCIERA">FINANCIERA</option>	
-															<option value="MATERIALES">MATERIALES</option>		
+															<option value="MATERIALES">MATERIALES</option>	
+															<option value="JURIDICA">JURIDICA</option>	
+															<option value="ADMINISTRATIVA">ADMINISTRATIVA</option>	
 														</select>
 													</div> 
 												</div>

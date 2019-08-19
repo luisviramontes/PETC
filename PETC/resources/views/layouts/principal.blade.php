@@ -269,14 +269,14 @@
 
           <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i>Oficios <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
-              <li> <a href="{{url('solicitudes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recibidos</b> </a> </li>
-              <li> <a href="{{url('solicitudes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Emitidos</b> </a> </li>
+              <li> <a href="{{url('oficiosrecibidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recibidos</b> </a> </li>
+              <li> <a href="{{url('oficiosemitidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Emitidos</b> </a> </li>
             </ul>
           </li>
 
           <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Bancos <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
-              <li> <a href="{{url('bancos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Fumigaciones</b> </a> </li>
+              <li> <a href="{{url('bancos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bancos</b> </a> </li>
             </ul>
           </li>
 

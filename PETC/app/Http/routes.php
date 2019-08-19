@@ -375,15 +375,34 @@ Route::get('pdf_directorio_externo', array('as'=> '/pdf_directorio_externo','use
 
 Route::resource('oficiosemitidos', 'OficiosEmitidosController');
 Route::get('descargar-oficios-emitidos/{id}', 'OficiosEmitidosController@excel')->name('administrativa.oficios-emitidos.excel');
-
+Route::get('descargar-oficios-emitidos-area/{id}/{area}', 'OficiosEmitidosController@excel2')->name('administrativa.oficios-emitidos-area.excel');
 Route::post('oficioemitido_resuelto/{id}', 'OficiosEmitidosController@oficioemitido_resuelto');
 Route::get('buscar_oficio/{oficio}/{ciclo}', 'OficiosEmitidosController@buscar_oficio');
 Route::get('busca_oficio/{oficio}/{ciclo}', 'OficiosEmitidosController@busca_oficio');
 Route::get('buscar_oficio2/{oficio}/{ciclo}', 'OficiosEmitidosController@buscar_oficio2');
 Route::get('ultimo_oficio/{id}', 'OficiosEmitidosController@ultimo_oficio');
+Route::get('buscar_oficio3/{oficio}/{id}', 'OficiosEmitidosController@buscar_oficio3');
+Route::get('ver_oficios_e', array('as'=> '/ver_oficios_e','uses'=>'OficiosEmitidosController@ver_oficios_e'));
+Route::get('ver_oficios_ciclo/{ciclo}/','OficiosEmitidosController@ver_oficios_ciclo');
+Route::get('ver_oficios_area/{ciclo}/{area}','OficiosEmitidosController@ver_oficios_area');
+Route::post('subir_imagen_oficioe/{id}', 'OficiosEmitidosController@subir_imagen_oficioe');
 
+//OFICIOS RECIBIDOS
 
-Route::resource('subir_imagen_oficioe/{id}', 'OficiosEmitidosController@subir_imagen_oficioe');
+Route::resource('oficiosrecibidos', 'OficiosRecibidosController');
+Route::get('descargar-oficios-recibidos/{id}', 'OficiosRecibidosController@excel')->name('administrativa.oficios-recibidos.excel');
+Route::get('descargar-oficios-recibidos-area/{id}/{area}', 'OficiosRecibidosController@excel2')->name('administrativa.oficios-recibidos-area.excel');
+Route::post('oficiorecibido_resuelto/{id}', 'OficiosRecibidosController@oficiorecibido_resuelto');
+Route::get('buscar_oficio_r/{oficio}/{ciclo}', 'OficiosRecibidosController@buscar_oficio');
+Route::get('busca_oficio_r/{oficio}/{ciclo}', 'OficiosRecibidosController@busca_oficio');
+Route::get('buscar_oficior2/{oficio}/{ciclo}', 'OficiosRecibidosController@buscar_oficio2');
+Route::get('ultimo_oficior/{id}', 'OficiosRecibidosController@ultimo_oficio');
+Route::get('buscar_oficior3/{oficio}/{id}', 'OficiosRecibidosController@buscar_oficio3');
+Route::get('ver_oficios_r', array('as'=> '/ver_oficios_e','uses'=>'OficiosRecibidosController@ver_oficios_e'));
+Route::get('ver_oficiosr_ciclo/{ciclo}/','OficiosRecibidosController@ver_oficios_ciclo');
+Route::get('ver_oficios_arear/{ciclo}/{area}','OficiosRecibidosController@ver_oficios_area');
+Route::post('subir_imagen_oficior/{id}', 'OficiosRecibidosController@subir_imagen_oficioe');
+
 
 ///TABLA DE PAGOS
 Route::resource('tabla_pagos', 'TablaPagosController');

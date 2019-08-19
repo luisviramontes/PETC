@@ -1596,15 +1596,15 @@ function valida_sostenimiento() {
 
          swal("WARNING!","Los rechazos correspondientes a la quincena <<"+qna+">> <<"+sostenimiento+">> ya han sido registrados anteriormente.","warning");
    				 			             //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
-                             return false;
-                           }
+                              return false;
+                            }
 
-                         }
+                          }
 
-                       }else{
-                        document.getElementById('file').disabled=false;
-                      }
-                    });
+                        }else{
+                          document.getElementById('file').disabled=false;
+                        }
+                      });
 }
 
 function cambia_reclamos(){
@@ -2093,6 +2093,9 @@ function buscar_qnas(){
     }
   });
   }
+
+
+
 
 
   function busca_dias_reclamo(){
@@ -4065,16 +4068,121 @@ function soli_nivel() {
 
 
 
-  function traer_num_oficio(){
+  function traer_num_oficio(callback){
     var x = document.getElementById('ciclo_escolar').value;
     var route = "http://localhost:8000/ultimo_oficio/"+x+"/";
     $.get(route,function(res){
-      if (res =! ""){
-        alert(res[0]);
-          alert(res.value);
-          alert(res[0].ultimo);
-        document.getElementById('oficio_aux').value=res;
+      var z= res;
+      if (z >= 1 || z < 9){
+        var w="00"+z;
 
+      }else if(z < 99  || z >= 10){
+       var w="0".z;
+
+     }else if(z >= 100 || z < 999){
+       var w=z;
+
+     }
+     document.getElementById('oficio_aux').value=w;
+
+   });
+    setTimeout(function(){num_oficio_id()},2000);
+  }
+
+  function oficios_emitidos(){
+    var c = document.getElementById("detalles").rows.length;
+    for (var i = 1; i < c; i++) {
+      document.getElementById("detalles").deleteRow(1);
+    }
+
+    var x = document.getElementById('ciclo_escolar').value;
+    var w = document.getElementById('area').value;
+    var z = 0;
+    var y= 0;
+    var total= 0;
+    
+    document.getElementById('excel').href="/descargar-oficios-emitidos/"+x; 
+     document.getElementById('excel2').href="/descargar-oficios-emitidos-area/"+x+"/"+w; 
+
+    var route = "http://localhost:8000/ver_oficios_ciclo/"+x+"/";
+    $.get(route,function(res){
+     total= res.length;
+     for (var p = 0 ; p < res.length; p++) {       
+       if(res[p].estado == "RESUELTO"){
+        z= z+1;
+      }else{
+        y = y+1;
       }
-    });
+    }
+    var tabla = document.getElementById("detalles"); 
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    cell1.innerHTML = total;
+    cell2.innerHTML = z;
+    cell3.innerHTML = y;
+
+  });
+
+  }
+
+  function oficios_emitidos_area(){
+    var c = document.getElementById("detalles2").rows.length;
+    for (var i = 1; i < c; i++) {
+      document.getElementById("detalles2").deleteRow(1);
+    }
+    var c = document.getElementById("detalles3").rows.length;
+    for (var i = 1; i < c; i++) {
+      document.getElementById("detalles3").deleteRow(1);
+    }
+
+    var x = document.getElementById('ciclo_escolar').value;
+    var w = document.getElementById('area').value;
+
+    var z = 0;
+    var y= 0;
+    var total= 0;
+    
+    var route = "http://localhost:8000/ver_oficios_area/"+x+"/"+w;
+    document.getElementById('excel2').href="/descargar-oficios-emitidos-area/"+x+"/"+w; 
+    $.get(route,function(res){
+     total= res.length;
+     for (var p = 0 ; p < res.length; p++) { 
+      var tabla = document.getElementById("detalles3"); 
+      var row = tabla.insertRow(1);
+      row.style.backgroundColor = "rgb(219, 255, 194)";
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+      var cell6 = row.insertCell(5);
+      cell1.innerHTML = res[p].num_oficio;
+      cell2.innerHTML = res[p].lic + " "+ res[p].nombre_c;
+      cell3.innerHTML = res[p].asunto;
+      cell4.innerHTML = res[p].salida;
+      cell5.innerHTML = res[p].estado;
+      cell6.innerHTML = res[p].nombre;
+
+
+      if(res[p].estado == "RESUELTO"){
+        z= z+1;
+      }else{
+        y = y+1;
+      }
+    }
+    var tabla = document.getElementById("detalles2"); 
+    var row = tabla.insertRow(1);
+    row.style.backgroundColor = "rgb(219, 255, 194)";
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    cell1.innerHTML = total;
+    cell2.innerHTML = z;
+    cell3.innerHTML = y;
+
+  });
+
   }
