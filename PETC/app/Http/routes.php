@@ -394,11 +394,10 @@ Route::get('descargar-oficios-recibidos/{id}', 'OficiosRecibidosController@excel
 Route::get('descargar-oficios-recibidos-area/{id}/{area}', 'OficiosRecibidosController@excel2')->name('administrativa.oficios-recibidos-area.excel');
 Route::post('oficiorecibido_resuelto/{id}', 'OficiosRecibidosController@oficiorecibido_resuelto');
 Route::get('buscar_oficio_r/{oficio}/{ciclo}', 'OficiosRecibidosController@buscar_oficio');
-Route::get('busca_oficio_r/{oficio}/{ciclo}', 'OficiosRecibidosController@busca_oficio');
 Route::get('buscar_oficior2/{oficio}/{ciclo}', 'OficiosRecibidosController@buscar_oficio2');
 Route::get('ultimo_oficior/{id}', 'OficiosRecibidosController@ultimo_oficio');
 Route::get('buscar_oficior3/{oficio}/{id}', 'OficiosRecibidosController@buscar_oficio3');
-Route::get('ver_oficios_r', array('as'=> '/ver_oficios_e','uses'=>'OficiosRecibidosController@ver_oficios_e'));
+Route::get('ver_oficios_r', array('as'=> '/ver_oficios_e','uses'=>'OficiosRecibidosController@ver_oficios_r'));
 Route::get('ver_oficiosr_ciclo/{ciclo}/','OficiosRecibidosController@ver_oficios_ciclo');
 Route::get('ver_oficios_arear/{ciclo}/{area}','OficiosRecibidosController@ver_oficios_area');
 Route::post('subir_imagen_oficior/{id}', 'OficiosRecibidosController@subir_imagen_oficioe');

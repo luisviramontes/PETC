@@ -2,10 +2,21 @@
 
 namespace petc\Http\Controllers;
 
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
-
 use petc\Http\Requests;
 use petc\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+
+use petc\OficiosRecibidosModel;
+
+use DB;
+
+use Maatwebsite\Excel\Facades\Excel;
+use PHPExcel_Worksheet_Drawing;
+use Validator;
+use \Milon\Barcode\DNS1D;
+use \Milon\Barcode\DNS2D;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection as Collection;
 class OficiosRecibidosController extends Controller
@@ -23,11 +34,11 @@ class OficiosRecibidosController extends Controller
     {
       $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario < "0" || $tipo_usuario > "6"){
-       return view('permisos');
+         return view('permisos');
 
-   }else{
-     if($request)
-     {
+     }else{
+       if($request)
+       {
         $query=trim($request->GET('searchText')); 
         $query2=trim($request->GET('ciclo_escolar'));
 
@@ -63,8 +74,19 @@ class OficiosRecibidosController extends Controller
      */
     public function create()
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario > '0'){
+       $ciclos=DB::table('ciclo_escolar')->get();
+       $genero=DB::table('directoriointerno')->where('estado','=','ACTIVO')->get();
+
+       return view('administrativa.oficios_recibidos.create',['ciclos'=>$ciclos,'genero'=>$genero]);
+
+   }else{
+     return view('permisos');
+
+
         //
-    }
+ }}
 
     /**
      * Store a newly created resource in storage.
@@ -74,8 +96,39 @@ class OficiosRecibidosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" && $tipo_usuario<>"5"){
+         return view('permisos');
+
+     }else{
+      $user = Auth::user()->name;
+      $ofico_emite= new OficiosRecibidosModel;
+      $ofico_emite->num_oficio=$request->get('oficio_aux');
+      $ofico_emite->nombre_oficio=$request->get('oficio');
+      $ofico_emite->remitente=$request->get('remitente');
+      $ofico_emite->asunto=$request->get('asunto');
+      $ofico_emite->referencia=$request->get('referencia');
+      $ofico_emite->fecha_entrada=$request->get('fecha_entrada');
+      $ofico_emite->id_contesta=$request->get('contesta');
+      $ofico_emite->observaciones=$request->get('observaciones');
+
+      if(Input::hasFile('archivo')){
+        $file=$request->file('archivo');
+        $file->move(public_path().'/img/oficiosrecibidos',$file->getClientoriginalName());
+        $ofico_emite->archivo=$file->getClientoriginalName();
     }
+
+
+    $ofico_emite->estado="PENDIENTE";
+    $ofico_emite->captura=$user;
+    $ofico_emite->id_ciclo=$request->get('ciclo_escolar');
+    $ofico_emite->save();
+    return Redirect::to('oficiosrecibidos');
+        //
+}
+
+        //
+}
 
     /**
      * Display the specified resource.
@@ -96,8 +149,20 @@ class OficiosRecibidosController extends Controller
      */
     public function edit($id)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" && $tipo_usuario<>"5"){
+       return view('permisos');
+
+   }else{
+
+    $oficios=OficiosRecibidosModel::findOrFail($id);
+    $ciclos=DB::table('ciclo_escolar')->get();
+    $genero=DB::table('directoriointerno')->where('estado','=','ACTIVO')->get();
+
+    return view('administrativa.oficios_recibidos.edit',['ciclos'=>$ciclos,'genero'=>$genero,'oficios'=>$oficios]);
+}
         //
-    }
+}
 
     /**
      * Update the specified resource in storage.
@@ -108,8 +173,38 @@ class OficiosRecibidosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tipo_usuario = Auth::user()->tipo_usuario;
+        if($tipo_usuario <> "2" && $tipo_usuario<>"5"){
+         return view('permisos');
+
+     }else{
+      $user = Auth::user()->name;
+      $ofico_emite = OficiosRecibidosModel::find($id);
+      $ofico_emite->num_oficio=$request->get('oficio_aux');
+      $ofico_emite->nombre_oficio=$request->get('oficio');
+      $ofico_emite->remitente=$request->get('remitente');
+      $ofico_emite->asunto=$request->get('asunto');
+      $ofico_emite->referencia=$request->get('referencia');
+      $ofico_emite->fecha_entrada=$request->get('fecha_entrada');
+      $ofico_emite->id_contesta=$request->get('contesta');
+      $ofico_emite->observaciones=$request->get('observaciones');
+
+      if(Input::hasFile('archivo'.$id)){
+        $file=$request->file('archivo'.$id);
+        $file->move(public_path().'/img/oficiosrecibidos',$file->getClientoriginalName());
+        $ofico_emite->archivo=$file->getClientoriginalName();
     }
+
+
+    $ofico_emite->estado="PENDIENTE";
+    $ofico_emite->captura=$user;
+    $ofico_emite->id_ciclo=$request->get('ciclo_escolar');
+    $ofico_emite->update();
+    return Redirect::to('oficiosrecibidos');
+        //
+}
+        //
+}
 
     /**
      * Remove the specified resource from storage.
@@ -121,4 +216,148 @@ class OficiosRecibidosController extends Controller
     {
         //
     }
+
+
+    public function buscar_oficio($oficio,$ciclo_aux)
+    {
+        $ciclo=DB::table('ciclo_escolar')->where('ciclo','=',$ciclo_aux)->first();
+        $oficio= OficiosRecibidosModel::
+        select('id')
+        ->where('id_ciclo','=',$ciclo->id)->where('num_oficio','=',$oficio)
+        ->get();
+        return response()->json(
+            $oficio);
+        //
+    }
+
+    public function buscar_oficio2($oficio,$id)
+    {
+        $oficio= OficiosRecibidosModel::
+        select('id')
+        ->where('id_ciclo','=',$id)->where('num_oficio','=',$oficio)
+        ->get();
+        return response()->json(
+            $oficio);
+        //
+    }
+
+    public function buscar_oficio3($oficio,$id)
+    {
+        $oficio_aux=OficiosRecibidosModel::findOrFail($id)->num_oficio;
+        $oficio= OficiosRecibidosModel::
+        select('id')->where('num_oficio','<>',$oficio_aux)->where('num_oficio','=',$oficio)
+        ->get();
+        return response()->json(
+            $oficio);
+        //
+    }
+
+    public function oficiorecibido_resuelto($id){
+     $tipo_usuario = Auth::user()->tipo_usuario;
+     if($tipo_usuario == "0" ){
+         return view('permisos');
+
+     }else{
+        $user = Auth::user()->name;
+        $tabla=OficiosRecibidosModel::findOrFail($id);
+        $tabla->estado="RESUELTO";
+        $tabla->captura=$user;
+        $tabla->update();
+        return Redirect::to('oficiosrecibidos');
+    }
+}
+
+public function subir_imagen_oficioe(Request $request,$id){
+  $tipo_usuario = Auth::user()->tipo_usuario;
+  if($tipo_usuario == "0" ){
+   return view('permisos');
+
+}else{
+    $user = Auth::user()->name;
+    $tabla=OficiosRecibidosModel::findOrFail($id);
+    if(Input::hasFile('archivo'.$id)){
+        $file=$request->file('archivo'.$id);
+        $file->move(public_path().'/img/oficiosrecibidos',$file->getClientoriginalName());
+        $tabla->archivo=$file->getClientoriginalName();
+    }
+    $tabla->captura=$user;
+    $tabla->update();
+
+    return Redirect::to('oficiosrecibidos');
+
+
+}}
+
+public function excel(Request $request, $aux)
+{
+
+ Excel::create('OFICIOS RECIBIDOS PETC', function($excel) use($aux) {
+   $excel->sheet('Excel sheet', function($sheet) use($aux) {
+
+
+
+    $tarjeta = OficiosRecibidosModel::join('directoriointerno','directoriointerno.id','=','oficiosrecibidos.id_contesta')->join('ciclo_escolar','ciclo_escolar.id','=','oficiosrecibidos.id_ciclo')->where('oficiosrecibidos.id_ciclo','=',$aux)->select('oficiosrecibidos.num_oficio','oficiosrecibidos.nombre_oficio','oficiosrecibidos.remitente','oficiosrecibidos.asunto','oficiosrecibidos.referencia','oficiosrecibidos.estado','oficiosrecibidos.fecha_entrada','directoriointerno.nombre','directoriointerno.area','directoriointerno.puesto','oficiosrecibidos.fecha_respuesta','oficiosrecibidos.observaciones','ciclo_escolar.ciclo')->get();
+    $sheet->fromArray($tarjeta);
+    $sheet->row(1,['N° OFICIO','NOMBRE OFICIO','REMITENTE','ASUNTO','REFERENCIA','ESTADO','FECHA RECEPCION','RESPONDE','AREA','PUESTO','FECHA DE RESPUESTA','OBSERVACIONES','CICLO ESCOLAR']);
+    $sheet->setOrientation('landscape');
+});
+})->export('xls');
+}
+
+public function ultimo_oficio($ciclo){
+    $existe=DB::table('oficiosrecibidos')->where('id_ciclo','=',$ciclo)->get();
+    $aux=count($existe);
+
+    if($aux > 0){
+       $oficio= OficiosRecibidosModel::orderBy('num_oficio','desc')->where('id_ciclo','=',$ciclo)->first()->id;
+       $ultimo=$oficio+1;
+
+   }else{
+    $ultimo = 001;  
+}
+return response()->json(
+    $ultimo);
+
+}
+
+public function ver_oficios_r(){
+  $ciclos=DB::table('ciclo_escolar')->get();
+
+  return view('administrativa.oficios_recibidos.ver_oficios', ['ciclos'=>$ciclos]);
+}
+
+public function ver_oficios_ciclo($ciclo){
+    $oficio= OficiosRecibidosModel::
+    select('id','num_oficio','estado')->where('id_ciclo','=',$ciclo)
+    ->get();
+    return response()->json(
+        $oficio);
+
+}
+
+public function ver_oficios_area($ciclo,$area){
+    $oficio= OficiosRecibidosModel::join('directoriointerno','directoriointerno.id','=','oficiosemitidos.id_contesta')->where('oficiosemitidos.id_ciclo','=',$ciclo)->where('directoriointerno.area','=',$area)->
+    select('oficiosemitidos.id','oficiosemitidos.num_oficio','oficiosemitidos.estado','directoriointerno.nombre','oficiosemitidos.salida','oficiosemitidos.asunto','oficiosemitidos.referencia')
+    ->get();
+    return response()->json(
+        $oficio);
+}
+
+public function excel2(Request $request, $aux,$area)
+{
+
+ Excel::create('OFICIOS RECIBIDOS PETC POR AREA', function($excel) use($aux,$area) {
+   $excel->sheet('Excel sheet', function($sheet) use($aux,$area) {
+
+
+      $tarjeta = OficiosRecibidosModel::join('directoriointerno','directoriointerno.id','=','oficiosrecibidos.id_contesta')->join('ciclo_escolar','ciclo_escolar.id','=','oficiosrecibidos.id_ciclo')->where('directoriointerno.area','=',$area)->where('oficiosrecibidos.id_ciclo','=',$aux)->select('oficiosrecibidos.num_oficio','oficiosrecibidos.nombre_oficio','oficiosrecibidos.remitente','oficiosrecibidos.asunto','oficiosrecibidos.referencia','oficiosrecibidos.estado','oficiosrecibidos.fecha_entrada','directoriointerno.nombre','directoriointerno.area','directoriointerno.puesto','oficiosrecibidos.fecha_respuesta','oficiosrecibidos.observaciones','ciclo_escolar.ciclo')->get();
+
+      $sheet->fromArray($tarjeta);
+      $sheet->row(1,['N° OFICIO','NOMBRE OFICIO','REMITENTE','ASUNTO','REFERENCIA','ESTADO','FECHA RECEPCION','RESPONDE','AREA','PUESTO','FECHA DE RESPUESTA','OBSERVACIONES','CICLO ESCOLAR']);
+      $sheet->setOrientation('landscape');
+  });
+})->export('xls');
+}
+
+
 }

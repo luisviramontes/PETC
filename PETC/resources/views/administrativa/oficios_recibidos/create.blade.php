@@ -13,13 +13,13 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
-		<h1>Registro de Oficios</h1>
+		<h1>Registro de Oficios Recibidos</h1>
 		<h2 class="active"></h2>
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
-			<li><a style="color: #808080" href="{{url('oficiosemitidos')}}">Inicio</a></li>
-			<li><a style="color: #808080" href="{{url('oficiosemitidos')}}">Oficios E</a></li>
+			<li><a style="color: #808080" href="{{url('oficiosrecibidos')}}">Inicio</a></li>
+			<li><a style="color: #808080" href="{{url('oficiosrecibidos')}}">Oficios Recibidos</a></li>
 			<li class="active"></li>
 		</ol>
 	</div>
@@ -49,7 +49,7 @@
 
 				<div class="porlets-content">
 					<div  class="form-horizontal row-border" > <!--acomodo-->
-						<form class="" id="myForm" action="{{route('oficiosemitidos.store')}}" method="post" role="form" enctype="multipart/form-data" parsley-validate novalidate data-toggle="validator">
+						<form class="" id="myForm" action="{{route('oficiosrecibidos.store')}}" method="post" role="form" enctype="multipart/form-data" parsley-validate novalidate data-toggle="validator">
 							{{csrf_field()}}
 							<div id="smartwizard">
 								<ul>
@@ -107,6 +107,14 @@
 													</div>
 												</div>
 
+
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Remitente: <strog class="theme_color">*</strog></label>
+													<div class="col-sm-6">
+														<input name="remitente" id="remitente" type="text" onkeypress="return soloLetras(event)"  class="form-control" required    onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+													</div>
+												</div>
+
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Asunto: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
@@ -135,10 +143,10 @@
 
 
 												<div class="form-group">
-													<label class="col-sm-3 control-label">Fecha de Salida: <strog class="theme_color">*</strog></label>
+													<label class="col-sm-3 control-label">Fecha de Recepción: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 
-														<input type="date" name="fechas" id="fechas"  class="form-control mask"   required>
+														<input type="date" name="fecha_entrada" id="fecha_entrada"  class="form-control mask"   required>
 													</div>
 												</div>
 
@@ -150,12 +158,12 @@
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-3 control-label">Genero Oficio: <strog class="theme_color">*</strog></label>
+													<label class="col-sm-3 control-label">Contesta Oficio: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="genero" id="genero"  class="form-control select" >
+														<select name="contesta" id="contesta"  class="form-control select" >
 															@foreach($genero as $genero)
 															<option value='{{$genero->id}}'>
-																{{$genero->nombre}}
+																{{$genero->area}} - {{$genero->nombre}}
 															</option>
 															@endforeach
 														</select>
@@ -180,26 +188,14 @@
 
 
 													
-													<div class="form-group">
-														<label class="col-sm-3 control-label">Dirigido Para: <strog class="theme_color">*</strog></label>
-														<div class="col-sm-6">
-															<select name="dirigido_a" id="dirigido_a"  class="form-control select">
-																@foreach($dirigido as $dirigido2)
-																@if($dirigido2->id == 63)
-																<option value='{{$dirigido2->id}}' selected>
-																	{{$dirigido2->lic}}. {{$dirigido2->nombre_c}}.-{{$dirigido2->puesto}}
-																</option>
-																@else
-																<option value='{{$dirigido2->id}}'>
-																	{{$dirigido2->lic}}. {{$dirigido2->nombre_c}}.-{{$dirigido2->puesto}}
-																</option>
-																@endif
-																@endforeach
-															</select>
+														<div class="form-group">
+									<label class="col-sm-3 control-label">Archivo: <strog class="theme_color"></strog></label>
+									<div class="col-sm-6">
+										<input name="archivo" id="archivo" type="file"  accept=".pdf,.jpg, .jpeg, .png" />
+									</div>
+								</div> 
 
-														</div>
-													</div>
-
+													
 
 
 

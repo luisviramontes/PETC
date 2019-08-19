@@ -29,12 +29,12 @@
 								<b>
 
 									<div class="btn-group" style="margin-right: 10px;">
-										<a class="btn btn-sm btn-success tooltips" href="{{ route('oficiosemitidos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Empleado"> <i class="fa fa-plus"></i> Registrar </a>
+										<a class="btn btn-sm btn-success tooltips" href="{{ route('oficiosrecibidos.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Empleado"> <i class="fa fa-plus"></i> Registrar </a>
 
 
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('administrativa.oficios-emitidos.excel',$ciclo_escolar)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" id="excel" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>  
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('administrativa.oficios-recibidos.excel',$ciclo_escolar)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" id="excel" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>  
 
-										<a class="btn btn-primary btn-sm"  href="{{URL::action('OficiosEmitidosController@ver_oficios_e')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-eye"></i> Ver Oficios</a>
+										<a class="btn btn-primary btn-sm"  href="{{URL::action('OficiosRecibidosController@ver_oficios_r')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-eye"></i> Ver Oficios</a>
 										
 
 
@@ -52,23 +52,19 @@
 								<tr>
 									<th>N° Oficio</th>
 									<th style="display:none;" >Nom Oficio</th>
-									<th>Dirigido Para </th>
-									<th>Dirección</th>
-									<th>Puesto Dirigido</th>
-									<th style="display:none;" >Lic Dirigido</th>
-									<th style="display:none;" >Ext </th>
-									<th style="display:none;" >Correo </th>	
+									<th>Remitente </th>								
 									<th>Asunto</th>
 									<th style="display:none;" >Referencia </th>
-									<th>Fecha de Salida </th>
+									<th>Fecha de Recepción </th>									
+									<th>Contesta Oficio </th>
+									<th style="display:none;" >Lic Contesta </th>
+									<th style="display:none;" >Puesto </th>						
+									<th>Área</th>	
+									<th>Fecha de Respuesta </th>
 									<th style="display:none;" >Observaciónes </th>
 									<th>*PDF</th>
 									<th>Estado</th>
-									<th style="display:none;" >Ciclo Escolar</th>
-									<th>Elaboro Oficio</th>						
-									<th style="display:none;" >Lic elaboro </th>
-									<th style="display:none;" >Puesto </th>						
-									<th>Área</th>	
+									<th style="display:none;" >Ciclo Escolar</th>											
 									<th>Modificar</th>
 									<th>Resuelto</th>
 									<th style="display:none;" >Capturo </th>	
@@ -81,146 +77,138 @@
 								<tr class="gradeX">
 									<td style="background-color: #DBFFC2;">{{$oficios->num_oficio}} </td>
 									<td style="display:none;" >{{$oficios->nombre_oficio}} </td>
-									<td style="background-color: #DBFFC2;" >{{$oficios->licext}} {{$oficios->nombre_c}} </td>
-									<td style="background-color: #DBFFC2;" >{{$oficios->direccion}}</td>
-									<td style="background-color: #DBFFC2;" >{{$oficios->puestoext}}</td>
-									<td style="display:none;" >{{$oficios->licext}} </td>			
-									<td style="display:none;" >{{$oficios->ext}} </td>
-									<td style="display:none;" >{{$oficios->correo}} </td>	
+									<td style="background-color: #DBFFC2;" >{{$oficios->remitente}}</td>
 									<td style="background-color: #DBFFC2;" >{{$oficios->asunto}} </td>
 									<td style="display:none;" >{{$oficios->referencia}} </td>				
-									<td style="background-color: #DBFFC2;" >{{$oficios->salida}} </td>
-									<td style="display:none;" >{{$oficios->observaciones}} </td>
-									<td style="background-color: #DBFFC2;">
-									@if(($oficios->archivo)!="")
-									<a href="/img/oficiosemitidos/{{$oficios->archivo}}"  target="_blank" class="btn btn-info btn-lg">
-									<span class="glyphicon glyphicon-picture"> </span>Ver
-									</a>
-									@else									
-
-									<a class="btn btn-info btn-lg" data-target="#modal-delete3-{{$oficios->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="glyphicon glyphicon-picture"></i>Subir</a>
-
-									@endif
-									</td>
-									<td style="background-color: #DBFFC2;">{{$oficios->estado}} </td>
-									<td style="display:none;" >{{$oficios->ciclo}} </td>
+									<td style="background-color: #DBFFC2;" >{{$oficios->fecha_entrada}} </td>
 									<td style="background-color: #DBFFC2;"> {{$oficios->lic}} {{$oficios->nombre}} </td>
 									<td style="display:none;" >{{$oficios->lic}} </td>
 									<td style="display:none;" >{{$oficios->puesto}} </td>
 									<td style="background-color: #DBFFC2;">{{$oficios->area}} </td>
+									<td style="background-color: #DBFFC2;" >{{$oficios->fecha_respuesta}} </td>
+									<td style="display:none;" >{{$oficios->observaciones}} </td>
+									<td style="background-color: #DBFFC2;">
+										@if(($oficios->archivo)!="")
+										<a href="/img/oficiosrecibidos/{{$oficios->archivo}}"  target="_blank" class="btn btn-info btn-lg">
+											<span class="glyphicon glyphicon-picture"> </span>Ver
+										</a>
+										@else									
+
+										<a class="btn btn-info btn-lg" data-target="#modal-delete3-{{$oficios->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="glyphicon glyphicon-picture"></i>Subir</a>
+
+										@endif
+									</td>
+									<td style="background-color: #DBFFC2;">{{$oficios->estado}} </td>
+									<td style="display:none;" >{{$oficios->ciclo}} </td>
+									
 
 									<td style="background-color: #DBFFC2;"> 
-										<a href="{{URL::action('OficiosEmitidosController@edit',$oficios->id)}}" class="btn btn-primary btn -sm" role="button"><i class="fa fa-edit"></i></a>  
+										<a href="{{URL::action('OficiosRecibidosController@edit',$oficios->id)}}" class="btn btn-primary btn -sm" role="button"><i class="fa fa-edit"></i></a>  
 									</td>
 									<td style="background-color: #DBFFC2;">
-										</td>
-										<td style="display:none;" >{{$oficios->captura}} </td>	
-										<td style="display:none;" >{{$oficios->updated_at}} </td>
-
-
-									</tr>
-									@else
-									<tr class="gradeX">		
-
-										<td style="background-color: #FFE4E1;">{{$oficios->num_oficio}} </td>
-										<td style="display:none;" >{{$oficios->nombre_oficio}} </td>
-										<td style="background-color: #FFE4E1;" >{{$oficios->licext}} {{$oficios->nombre_c}} </td>
-										<td style="background-color: #FFE4E1;" >{{$oficios->direccion}}</td>
-										<td style="background-color: #FFE4E1;" >{{$oficios->puestoext}}</td>
-										<td style="display:none;" >{{$oficios->licext}} </td>			
-										<td style="display:none;" >{{$oficios->ext}} </td>
-										<td style="display:none;" >{{$oficios->correo}} </td>	
-										<td style="background-color: #FFE4E1;" >{{$oficios->asunto}} </td>
-										<td style="display:none;" >{{$oficios->referencia}} </td>				
-										<td style="background-color: #FFE4E1;" >{{$oficios->salida}} </td>
-										<td style="display:none;" >{{$oficios->observaciones}} </td>
-										<td style="background-color: #FFE4E1;">
-									@if(($oficios->archivo)!="")
-									<a href="/img/oficiosemitidos/{{$oficios->archivo}}"  target="_blank" class="btn btn-info btn-lg">
-									<span class="glyphicon glyphicon-picture"> </span>Ver
-									</a>
-									@else									
-
-									<a class="btn btn-info btn-lg" data-target="#modal-delete3-{{$oficios->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="glyphicon glyphicon-picture"></i>Subir</a>
-
-									@endif
 									</td>
-										<td style="background-color: #FFE4E1;">{{$oficios->estado}} </td>
-										<td style="display:none;" >{{$oficios->ciclo}} </td>
-										<td style="background-color: #FFE4E1;">{{$oficios->lic}}  {{$oficios->nombre}} </td>
-										<td style="display:none;" >{{$oficios->lic}} </td>
-										<td style="display:none;" >{{$oficios->puesto}} </td>
-										<td style="background-color: #FFE4E1;">{{$oficios->area}} </td>
-
-										<td style="background-color: #FFE4E1;"> 
-											<a href="{{URL::action('OficiosEmitidosController@edit',$oficios->id)}}" class="btn btn-primary btn -sm" role="button"><i class="fa fa-edit"></i></a>  
-										</td>
-										<td style="background-color: #FFE4E1;">
-											<a class="btn btn-sm btn-success tooltips" data-target="#modal-delete-{{$oficios->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="glyphicon glyphicon-ok"></i></a></</td>
-											<td style="display:none;" >{{$oficios->captura}} </td>	
-											<td style="display:none;" >{{$oficios->updated_at}} </td>
-										</tr>
-										@endif															
-
-										
-										@include('administrativa.oficios_emitidos.modal')
-										@include('administrativa.oficios_emitidos.subir')
-										@endforeach
-
-									</tbody>
-									<tfoot>
-										<tr>
-											<th></th>
-											<th>N° Oficio</th>
-											<th style="display:none;" >Nom Oficio</th>
-											<th>Dirigido Para </th>
-											<th>Dirección</th>
-											<th>Puesto Dirigido</th>
-											<th style="display:none;" >Lic Dirigido</th>
-											<th style="display:none;" >Ext </th>
-											<th style="display:none;" >Correo </th>	
-											<th>Asunto</th>
-											<th style="display:none;" >Referencia </th>
-											<th>Fecha de Salida </th>
-											<th style="display:none;" >Observaciónes </th>
-											<th>*PDF</th>
-											<th>Estado</th>
-											<th style="display:none;" >Ciclo Escolar</th>
-											<th>Elaboro Oficio</th>						
-											<th style="display:none;" >Lic elaboro </th>
-											<th style="display:none;" >Puesto </th>						
-											<th>Área</th>	
-											<th>Modificar</th>
-											<th>Resuelto</th>
-											<th style="display:none;" >Capturo </th>	
-											<th style="display:none;" >Fecha </th>	
-										</tr>
-									</tfoot>
-
-								</table>
-
-							</div><!--/table-responsive-->
-						</div><!--/porlets-content-->
-					</div><!--/block-web-->
-				</div><!--/col-md-12-->
-			</div><!--/row-->
-		</div>
+									<td style="display:none;" >{{$oficios->captura}} </td>	
+									<td style="display:none;" >{{$oficios->updated_at}} </td>
 
 
-<script type="text/javascript">
-	window.onload=function(){
-		  var x =document.getElementById('ciclo_escolar').value;
-           document.getElementById('excel').href="/descargar-oficios-emitidos/"+x; 
+								</tr>
+								@else 
+								<tr class="gradeX">		
+
+									<td style="background-color: #FFE4E1;">{{$oficios->num_oficio}} </td>
+									<td style="display:none;" >{{$oficios->nombre_oficio}} </td>
+									<td style="background-color: #FFE4E1;" >{{$oficios->remitente}}</td>
+									<td style="background-color: #FFE4E1;" >{{$oficios->asunto}} </td>
+									<td style="display:none;" >{{$oficios->referencia}} </td>				
+									<td style="background-color: #FFE4E1;" >{{$oficios->fecha_entrada}} </td>
+									<td style="background-color: #FFE4E1;"> {{$oficios->lic}} {{$oficios->nombre}} </td>
+									<td style="display:none;" >{{$oficios->lic}} </td>
+									<td style="display:none;" >{{$oficios->puesto}} </td>
+									<td style="background-color: #FFE4E1;">{{$oficios->area}} </td>
+									<td style="background-color: #FFE4E1;" >{{$oficios->fecha_respuesta}} </td>
+									<td style="display:none;" >{{$oficios->observaciones}} </td>
+									<td style="background-color: #FFE4E1;">
+										@if(($oficios->archivo)!="")
+										<a href="/img/oficiosrecibidos/{{$oficios->archivo}}"  target="_blank" class="btn btn-info btn-lg">
+											<span class="glyphicon glyphicon-picture"> </span>Ver
+										</a>
+										@else									
+
+										<a class="btn btn-info btn-lg" data-target="#modal-delete3-{{$oficios->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="glyphicon glyphicon-picture"></i>Subir</a>
+
+										@endif
+									</td>
+									<td style="background-color: #FFE4E1;">{{$oficios->estado}} </td>
+									<td style="display:none;" >{{$oficios->ciclo}} </td>
+									
+
+									<td style="background-color: #FFE4E1;"> 
+										<a href="{{URL::action('OficiosRecibidosController@edit',$oficios->id)}}" class="btn btn-primary btn -sm" role="button"><i class="fa fa-edit"></i></a>  
+									</td>
+									<td style="background-color: #FFE4E1;">
+									</td>
+									<td style="display:none;" >{{$oficios->captura}} </td>	
+									<td style="display:none;" >{{$oficios->updated_at}} </td>
+
+
+								</tr>
+									@endif															
+
+
+									@include('administrativa.oficios_recibidos.modal')
+									@include('administrativa.oficios_recibidos.subir')
+									@endforeach
+
+								</tbody>
+								<tfoot>
+									<tr>
+										<th></th>
+										<th>N° Oficio</th>
+										<th style="display:none;" >Nom Oficio</th>
+										<th>Remitente </th>								
+										<th>Asunto</th>
+										<th style="display:none;" >Referencia </th>
+										<th>Fecha de Recepción </th>									
+										<th>Contesta Oficio </th>
+										<th style="display:none;" >Lic Contesta </th>
+										<th style="display:none;" >Puesto </th>						
+										<th>Área</th>	
+										<th>Fecha de Respuesta </th>
+										<th style="display:none;" >Observaciónes </th>
+										<th>*PDF</th>
+										<th>Estado</th>
+										<th style="display:none;" >Ciclo Escolar</th>											
+										<th>Modificar</th>
+										<th>Resuelto</th>
+										<th style="display:none;" >Capturo </th>	
+										<th style="display:none;" >Fecha </th>	
+									</tr>
+								</tfoot>
+
+							</table>
+
+						</div><!--/table-responsive-->
+					</div><!--/porlets-content-->
+				</div><!--/block-web-->
+			</div><!--/col-md-12-->
+		</div><!--/row-->
+	</div>
+
+
+	<script type="text/javascript">
+		window.onload=function(){
+			var x =document.getElementById('ciclo_escolar').value;
+			document.getElementById('excel').href="/descargar-oficios-recibidos/"+x; 
       //document.getElementById('invoice').href="/pdf-cuadros-cifras/"+x; 
-    
-	}
 
-	function cambia_ruta_oe(){
-		 var x =document.getElementById('ciclo_escolar').value;
-           document.getElementById('excel').href="/descargar-oficios-emitidos/"+x; 
+  }
+
+  function cambia_ruta_oe(){
+  	var x =document.getElementById('ciclo_escolar').value;
+  	document.getElementById('excel').href="/descargar-oficios-recibidos/"+x; 
           // document.getElementById('invoice').href="/pdf-cuadros-cifras/"+x; 
-	}
+      }
 
 
-</script>
-		@endsection
+  </script>
+  @endsection
