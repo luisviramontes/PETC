@@ -41,38 +41,42 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">LIC;<strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="lic" id="lic" class="form-control select2" required> 
+								<select name="lic" id="lic" onchange="direx_lic()" class="form-control select2" required>
+									<option selected>
+										Seleccione una opción
+									</option>
 									<option value="Mtro" >Mtro</option>
-									<option value="Mtra" selected>Mtra </option>
+									<option value="Mtra" >Mtra </option>
 									<option value="Dra">Dra</option>
 									<option value="Dr">Dr</option>
-									<option value="Ing">Ing</option>	
+									<option value="Ing">Ing</option>
 									<option value="Lic">Lic</option>
 									<option value="Prof">Prof</option>
-									<option value="Profa">Profa</option>				
+									<option value="Profa">Profa</option>
 								</select>
-								
-							</div> 
+								<div class="help-block with-errors"></div>
+									<div class="text-danger" id='error_lic'>{{$errors->formulario->first('lic')}}</div>
+							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="nombre" id="nombre" type="text" onchange="cambia_nombre();" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+								<input name="nombre" id="nombre" placeholder="Nombre" type="text" onchange="cambia_nombre();" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Apellido Paterno: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="paterno" id="paterno" type="text" onchange="cambia_nombre();" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+								<input name="paterno" id="paterno" placeholder="Apellido Paternor" type="text" onchange="cambia_nombre();" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Apellido Materno: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="materno" id="materno" type="text" onchange="cambia_nombre();" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+								<input name="materno" id="materno" type="text" placeholder="Apellido Materno " onchange="cambia_nombre();" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 							</div>
 						</div>
 
@@ -88,14 +92,14 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Puesto: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="puesto" id="puesto" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+								<input name="puesto" id="puesto" type="text" placeholder="Escribe el Puesto" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Dirección: <strog class="theme_color">*</strog></label>
+							<label class="col-sm-3 control-label">Departamento: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="direccion" id="direccion" type="text" onchange="cambia_direccion();" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+								<input name="direccion" id="direccion" placeholder="Escribe el Departamento" type="text" onchange="cambia_direccion();" onkeypress="return soloLetras(event)"  class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 							</div>
 						</div>
 
@@ -112,18 +116,18 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Extención: <strog class="theme_color"></strog></label>
 							<div class="col-sm-6">
-								<input name="ext" id="ext" type="text"   onkeypress="soloNumeros(event)" class="form-control"  value="{{Input::old('ext')}}" />
+								<input name="ext" id="ext" type="text" placeholder="xxxx"   onkeypress="soloNumeros(event)" class="form-control"  value="{{Input::old('ext')}}" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Email: <strog class="theme_color"></strog></label>
 							<div class="col-sm-6">
-								<input name="email" id="email" type="text"   class="form-control"  value="{{Input::old('email')}}" />
+								<input name="email" id="email" type="text" placeholder="usuario@correo.com"  class="form-control"  value="{{Input::old('email')}}" />
 							</div>
 						</div>
 
-						
+
 
 
 
@@ -156,6 +160,23 @@
 	</div><!--/row-->
 </div><!--/container clear_both padding_fix-->
 <script type="text/javascript">
+window.onload = function() {
+	direx_lic();
+};
+
+function direx_lic() {
+ if( document.getElementById('lic').value == "Seleccione una opción"){
+
+	 document.getElementById('submit').disabled=true;
+
+				//  swal("ERROR!","Selecciona tipo se puesto","error");
+				document.getElementById("error_lic").innerHTML = "Seleccione una opción.";
+				return false
+			}else{
+			 document.getElementById('submit').disabled=false;
+			 document.getElementById("error_lic").innerHTML = "";
+		 }
+ }
 
 	function cambia_nombre(){
 		var nombre = document.getElementById('nombre').value;
@@ -192,9 +213,7 @@
 		document.getElementById('a_d').value=a_d;
 	}
 
-	window.onload = function() {
-		//valida_puesto();
-	};
+
 
 
 

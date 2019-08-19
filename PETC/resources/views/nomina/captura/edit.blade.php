@@ -39,10 +39,10 @@
 						</div>
 						<div class="col-md-4">
 							<div class="btn-group pull-right">
-								<div class="actions"> 
+								<div class="actions">
 								</div>
 							</div>
-						</div>    
+						</div>
 					</div>
 				</div><!--header-->
 
@@ -80,7 +80,7 @@
 														<input name="rfc_input" id="rfc_input" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" type="text"   class="form-control" required value="{{$personal->rfc}}"   oninput="validarInput(this);"  onchange="validarRFC();"  />
 														<div class="text-danger" id='error_rfc'>{{$errors->formulario->first('rfc_input')}}</div>
 													</div>
-													<pre id="resultado"></pre>						
+													<pre id="resultado"></pre>
 												</div>
 
 												<div class="form-group">
@@ -118,20 +118,20 @@
 											<div id="form-step-1" role="form" data-toggle="validator">
 												<h3 class="h3titulo">Información del Contrato</h3>
 
-												
+
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Tipo de Movimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="movimiento" id="movimiento" class="form-control select" onchange="captura_personal(this.value)" required> 
-												
-															@if($personal->tipo_movimiento == "NUEVO") 
+														<select name="movimiento" id="movimiento" class="form-control select" onchange="captura_personal(this.value)" required>
+
+															@if($personal->tipo_movimiento == "NUEVO")
 															<option value="INICIO" >DESDE INICIO DE CICLO</option>
 															<option value="NUEVO" selected>NUEVO RECURSO </option>
 															<option value="ALTA">ALTA</option>
 															<option value="REINCORPORACION" >REINCORPORACION</option>
 															<option value="CAMBIOCCT" >CAMBIO DE CCT</option>
-															<option value="CAMBIOFUNCION" >CAMBIO DE FUNCION</option>				
+															<option value="CAMBIOFUNCION" >CAMBIO DE FUNCION</option>
 															@elseif ($personal->tipo_movimiento == "INICIO")
 															<option value="INICIO" selected>DESDE INICIO DE CICLO</option>
 															<option value="NUEVO" >NUEVO RECURSO </option>
@@ -167,10 +167,10 @@
 															<option value="REINCORPORACION" >REINCORPORACION</option>
 															<option value="CAMBIOCCT" >CAMBIO DE CCT</option>
 															<option value="CAMBIOFUNCION" >CAMBIO DE FUNCION</option>
-															@endif																	
+															@endif
 														</select>
 														<div class="text-danger" id='error_movimiento'>{{$errors->formulario->first('error_movimiento')}}</div>
-													</div> 
+													</div>
 												</div>
 
 
@@ -193,12 +193,12 @@
 														<div class="text-danger" id='error_clave'>{{$errors->formulario->first('error_clave')}}</div>
 														<div class="help-block with-errors"></div>
 													</div>
-												</div><!--/form-group-->	
+												</div><!--/form-group-->
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Categoria;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="puesto" id="puesto" class="form-control select" onchange="cambia(this.value);captura_personal()" required> 
+														<select name="puesto" id="puesto" class="form-control select" onchange="cambia(this.value);captura_personal()" required>
 															@if($personal->categoria == 'DOCENTE')
 															<option value="DIRECTOR" >DIRECTOR</option>
 															<option value="DOCENTE" selected>DOCENTE </option>
@@ -232,7 +232,7 @@
 															@endif
 														</select>
 
-													</div> 
+													</div>
 												</div>
 
 
@@ -283,7 +283,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Sostenimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="sostenimiento" id="sostenimiento" class="form-control select" required> 
+														<select name="sostenimiento" id="sostenimiento" class="form-control select" required>
 															@if($personal->sostenimiento == "FEDERAL")
 															<option value="FEDERAL" selected>FEDERAL</option>
 															<option value="ESTATAL" >ESTATAL </option>
@@ -294,7 +294,7 @@
 
 														</select>
 
-													</div> 
+													</div>
 												</div>
 
 
@@ -302,7 +302,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Ciclo Escolar: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2" ">
+														<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2">
 															@foreach($ciclos as $ciclo)
 															@if($personal->id_ciclo == $ciclo->id)
 															<option value='{{$ciclo->id}}' selected>
@@ -327,7 +327,7 @@
 														<input type="checkbox" name="doc2" id="doc2" onchange="cambia5(this.id)" value="OFICIO">Ofició<br>
 														<input type="checkbox" name="doc3" id="doc3" onchange="cambia5(this.id)" value="TALON">Talón de Cheque<br>
 													</div>
-												</div><!--/form-group-->	
+												</div><!--/form-group-->
 
 												<div class="form-group" id="diasdiv" style='display:none;'>
 													<div class="form-group">
@@ -370,7 +370,7 @@
 													<div class="form-group">
 														<label class="col-sm-3 control-label">Nombre del Docente a Cubrir: <strog class="theme_color">*</strog></label>
 														<div class="col-sm-8">
-															<select name="docente_cubrir" class="form-control select" id="docente_cubrir"> 
+															<select name="docente_cubrir" class="form-control select" id="docente_cubrir">
 
 															</select>
 															<div class="help-block with-errors"></div>
@@ -390,7 +390,7 @@
 													<label class="col-sm-3 control-label">Fecha de Termino de Labores: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 
-														<input type="date" name="fechaf" id="fechaf" value="{{$personal->fecha_termino}}" class="form-control mask"  onchange="verifica_fecha()"" required >
+														<input type="date" name="fechaf" id="fechaf" value="{{$personal->fecha_termino}}" class="form-control mask"  onchange="verifica_fecha()" required >
 													</div>
 													<div class="text-danger" id='error_fecha'>{{$errors->formulario->first('error_fecha')}}</div>
 												</div>
@@ -399,7 +399,7 @@
 													<label class="col-sm-3 control-label">Observaciónes: <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
 														<input name="observaciones" id="observaciones" type="text" onkeypress="return soloLetras(event)"  class="form-control"  value="{{$personal->observaciones}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
-													</div> 
+													</div>
 												</div>
 
 												<div class="form-group">
@@ -407,24 +407,24 @@
 														<button id="submit3" onclick="return save();" class="btn btn-primary">Guardar</button>
 														<a href="{{url('/captura')}}" class="btn btn-default"> Cancelar</a>
 													</div>
-												</div><!--/form-group--> 
+												</div><!--/form-group-->
 
 
 												<div class="form-group">
 													<div class="col-sm-6">
-														<input  id="diassemana"  name="diassemana" type="hidden"  class="form-control""/>
+														<input  id="diassemana"  name="diassemana" type="hidden"  class="form-control"/>
 													</div>
 												</div>
 
 												<div class="form-group">
 													<div class="col-sm-6">
-														<input  id="doc"  name="doc" type="hidden"  class="form-control""/>
+														<input  id="doc"  name="doc" type="hidden"  class="form-control"/>
 													</div>
 												</div>
 
 												<div class="form-group">
 													<div class="col-sm-6">
-														<input  id="estado"  name="estado" value="{{$personal->estado}}" type="hidden"  class="form-control""/>
+														<input  id="estado"  name="estado" value="{{$personal->estado}}" type="hidden"  class="form-control"/>
 													</div>
 												</div>
 
@@ -439,7 +439,7 @@
 						</div><!--step-2-->
 
 					</div>
-				</div>  <!--smartwizard-->            
+				</div>  <!--smartwizard-->
 			</form>
 		</div><!--/form-horizontal-->
 	</div><!--/porlets-content-->
@@ -515,7 +515,7 @@
           		}
 
           	}else if (stepNumber == 2){
-          		
+
           	}
 
           	var elmErr = elmForm.children('.has-error');
@@ -580,7 +580,7 @@ function save(){
 	var c = document.getElementById('error_fecha').value;
 	var x = document.getElementById('error_clave').value;
 	var r = document.getElementById("error_rfc").value;
-	
+
 
 	if (z== 1 || c==1 || x==1 || r==1){
 		return false;
@@ -760,7 +760,7 @@ function cambia4(x){
 	document.getElementById('cct_etc3').style.required = false;
 
 }
-} 
+}
 
 
 </script>

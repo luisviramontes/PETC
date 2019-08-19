@@ -25,8 +25,8 @@
 
 
 
-						</div>
-						<div class="btn-group pull-right">
+							</div>
+							<div class="btn-group pull-right">
 							<b>
 								<div class="btn-group" style="margin-right: 10px;">
 									<a class="btn btn-sm btn-success tooltips" href="{{URL::action('CapturaController@create',[])}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Captura"> <i class="fa fa-plus"></i> Registrar </a>
@@ -43,127 +43,126 @@
 
 							</a>
 
-						</b>
-					</div>
-
-				</div>
-			</div>
+							</b>
+							</div>
+							</div>
 
 
-<h5 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Por Ciclo Escolar :</strong></h5>
-			<br> <br>
 
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Seleccione Ciclo Escolar: <strog class="theme_color"></strog></label>
-				<div class="col-sm-6">
-					<select name="ciclo_escolar" id="ciclo_escolar" onchange="busca_dias_captura();busca_dias_captura_region();" class="form-control select2">
-						@foreach($ciclos as $ciclo)
-						@if($ciclo->id == 2)
-						<option value='{{$ciclo->id}}' selected>
+							<h5 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Por Ciclo Escolar :</strong></h5>
+							<br> <br>
+
+							<div class="form-group">
+							<label class="col-sm-3 control-label">Seleccione Ciclo Escolar: <strog class="theme_color"></strog></label>
+							<div class="col-sm-6">
+							<select name="ciclo_escolar" id="ciclo_escolar" onchange="busca_dias_captura();busca_dias_captura_region();" class="form-control select2">
+							@foreach($ciclos as $ciclo)
+							@if($ciclo->id == 2)
+							<option value='{{$ciclo->id}}' selected>
 							{{$ciclo->ciclo}}
-						</option>
-						@else
-						<option value='{{$ciclo->id}}' >
+							</option>
+							@else
+							<option value='{{$ciclo->id}}' >
 							{{$ciclo->ciclo}}
-						</option>
-						@endif
-						@endforeach
-					</select>
+							</option>
+							@endif
+							@endforeach
+							</select>
 
-				</div>
-			</div>
+							</div>
+							</div>
 
-			<br> <br>
+							<br> <br>
 
-			<div class="form-group"  class="table-responsive">
-				<table id="detalles" name="detalles[]" value="" class="table table-responsive-xl table-bordered">
-					<thead style="background-color:#A9D0F5">
-						<th>N° Registros</th>
-						<th>Directores</th>
-						<th>Docentes</th>
-						<th>Intendentes </th>
-						<th>N° Estatales</th>
-						<th>N° Federales </th>
-						<th>Pagos Registrados</th>
-						<th>Pagos Pendientes </th>
-
-
-					</thead>
-					<tfoot>
-						<td style="display:none;"></td>
-						<td style="display:none;"></td>
-						<td style="display:none;"></td>
-						<td style="display:none;"></td>
-						<td style="display:none;"></td>
-						<td style="display:none;"></td>
-						<td style="display:none;"></td>
-						<td style="display:none;"></td>
-
-					</tfoot>
-				</table>
+							<div class="form-group"  class="table-responsive">
+							<table id="detalles" name="detalles[]" value="" class="table table-responsive-xl table-bordered">
+							<thead style="background-color:#A9D0F5">
+							<th>N° Registros</th>
+							<th>Directores</th>
+							<th>Docentes</th>
+							<th>Intendentes </th>
+							<th>N° Estatales</th>
+							<th>N° Federales </th>
+							<th>Pagos Registrados</th>
+							<th>Pagos Pendientes </th>
 
 
-			<a class="btn btn-sm btn-warning tooltips" id="excel_capturas" href="{{ route('nomina.captura.excel2',2)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+							</thead>
+							<tfoot>
+							<td style="display:none;"></td>
+							<td style="display:none;"></td>
+							<td style="display:none;"></td>
+							<td style="display:none;"></td>
+							<td style="display:none;"></td>
+							<td style="display:none;"></td>
+							<td style="display:none;"></td>
+							<td style="display:none;"></td>
 
-</div>
-<br> <br>
+							</tfoot>
+							</table>
 
 
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Seleccione Región: <strog class="theme_color"></strog></label>
-				<div class="col-sm-6">
-					<select name="region" id="region" onchange="busca_dias_captura_region();escs()" class="form-control select2">
-						<option selected>
+							<a class="btn btn-sm btn-warning tooltips" id="excel_capturas" href="{{ route('nomina.captura.excel2',2)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+
+							</div>
+							<br> <br>
+
+
+							<div class="form-group">
+							<label class="col-sm-3 control-label">Seleccione Región: <strog class="theme_color"></strog></label>
+							<div class="col-sm-6">
+							<select name="region" id="region" onchange="busca_dias_captura_region();escs()" class="form-control select2">
+							<option selected>
 							Selecione una opción
-						</option>
-						@foreach($regiones as $region)
-						<option value='{{$region->id}}' >
+							</option>
+							@foreach($regiones as $region)
+							<option value='{{$region->id}}' >
 							{{$region->region}} {{$region->sostenimiento}}
-						</option>
-						@endforeach
-					</select>
+							</option>
+							@endforeach
+							</select>
 
-				</div>
-			</div>
-<br> <br>
-			<div class="form-group"  class="table-responsive">
-				<table id="detalles2" name="detalles2[]" value="" class="table table-responsive-xl table-bordered">
-					<thead style="background-color:#A9D0F5">
-						<th>N° Registros</th>
-						<th>Directores</th>
-						<th>Docentes</th>
-						<th>Intendentes </th>
-						<th>Pagos Registrados</th>
-						<th>Pagos Pendientes </th>
-
-
-					</thead>
-					<tfoot>
-						<td style="display:none;"></td>
-						<td style="display:none;"></td>
-						<td style="display:none;"></td>
-						<td style="display:none;"></td>
+							</div>
+							</div>
+							<br> <br>
+							<div class="form-group"  class="table-responsive">
+							<table id="detalles2" name="detalles2[]" value="" class="table table-responsive-xl table-bordered">
+							<thead style="background-color:#A9D0F5">
+							<th>N° Registros</th>
+							<th>Directores</th>
+							<th>Docentes</th>
+							<th>Intendentes </th>
+							<th>Pagos Registrados</th>
+							<th>Pagos Pendientes </th>
 
 
-					</tfoot>
-				</table>
-			</div>
+							</thead>
+							<tfoot>
+							<td style="display:none;"></td>
+							<td style="display:none;"></td>
+							<td style="display:none;"></td>
+							<td style="display:none;"></td>
 
-	<br> <br>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Seleccione Escuela: <strog class="theme_color"></strog></label>
-				<div class="col-sm-6">
-					<select name="escuela" id="escuela" onchange="busca_captura_esc();" class="form-control select2">
-						<option selected>
+
+							</tfoot>
+							</table>
+							</div>
+
+							<br> <br>
+							<div class="form-group">
+							<label class="col-sm-3 control-label">Seleccione Escuela: <strog class="theme_color"></strog></label>
+							<div class="col-sm-6">
+							<select name="escuela" id="escuela" onchange="busca_captura_esc();" class="form-control select2">
+							<option selected>
 							Selecione una opción
-						</option>
+							</option>
 
-					</select>
+							</select>
 
-				</div>
-			</div>
-			<br> <br>
-						<div class="form-group"  class="table-responsive">
+							</div>
+							</div>
+							<br> <br>
+							<div class="form-group"  class="table-responsive">
 							<table id="detalles3" name="detalles3[]" value="" class="table table-responsive-xl table-bordered">
 								<thead style="background-color:#A9D0F5">
 									<th>N° Registros</th>
@@ -182,12 +181,7 @@
 
 								</tfoot>
 							</table>
-						</div>
-
-
-
-
-
+							</div>
 
 
 

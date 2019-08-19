@@ -1,9 +1,7 @@
 {!! Form::open(['route' => ['cuadros_cifras.index'],'method' => 'GET','autocomplete'=>'off','role'=>'search']) !!}
 <div class="form-group">
 	<div class="input-group">
-		<br><br>
 
-		 
 				<div class="form-group">
 								<label class="col-sm-3 control-label">Seleccione Ciclo Escolar : <strog class="theme_color"></strog></label>
 								<div class="col-sm-6">
@@ -22,11 +20,12 @@
 						 			</select>
 
 								</div>
-							</div>	
-							<span class="input-group-btn">
-			<button type="submit" id="buscar" class="btn btn-primary">Buscar</button>
+								<span class="input-group-btn">
+				<button type="submit" id="buscar" class="btn btn-primary">Buscar</button>
 
-		</span>
+			</span>
+							</div>
+
 	</div>
 </div>
 {!! Form::close() !!}

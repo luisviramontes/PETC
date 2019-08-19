@@ -3,12 +3,12 @@
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
 		<h1>Inicio</h1>
-		<h2 class="">Historial de Captura </h2>
+		<h2 class="">Historial de Fortalecimientos </h2>
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
 			<li ><a style="color: #808080" href="{{url('/captura')}}">Inicio</a></li>
-			<li class="active">Historial de Captura</a></li>
+			<li class="active">Historial de Fortalecimientos</a></li>
 		</ol>
 	</div>
 </div>
@@ -21,7 +21,7 @@
 						<div class="col-sm-7">
 							<div class="actions"> </div>
 
-							<h4 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Historial de Captura :</strong></h4>
+							<h4 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Historial de Fortalecimientos :</strong></h4>
 
 
 

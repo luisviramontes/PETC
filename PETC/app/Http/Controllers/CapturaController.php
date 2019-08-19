@@ -51,10 +51,12 @@ class CapturaController extends Controller
 
        if($request)
        {
-       // $aux=$request->get('searchText');
         $query=trim($request->GET('searchText'));
+        $query2=trim($request->GET('ciclo_escolar'));
+        $ciclos=DB::table('ciclo_escolar')->get();
 
-
+        if($query == "" && $query2 == ""){
+         $query2=2;
         $personal= DB::table('captura')
         ->join('cat_puesto','cat_puesto.id','=','captura.clave')
         ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
@@ -64,20 +66,69 @@ class CapturaController extends Controller
         ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
         ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
 
+
+        ->where('id_ciclo','=',$query2)
+
         ->select('captura.*','cat_puesto.cat_puesto'
           ,'centro_trabajo.cct','centro_trabajo.nombre_escuela'
           ,'ciclo_escolar.ciclo'
           ,'region.region'
           ,'municipios.municipio'
           ,'localidades.nom_loc')
+          ->paginate(40);
 
-        ->where('captura.nombre','LIKE','%'.$query.'%')
-        ->orwhere('captura.rfc','LIKE','%'.$query.'%')
-        ->orwhere('centro_trabajo.nombre_escuela','LIKE','%'.$query.'%')
-        ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
-        ->paginate(40);
+         }elseif ($query == "" && $query2 != "") {
+          $personal= DB::table('captura')
+          ->join('cat_puesto','cat_puesto.id','=','captura.clave')
+          ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+          ->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')
+          ->join('region', 'region.id', '=','centro_trabajo.id_region')
+          ->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
+          ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
+          ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
 
-        return view('nomina.captura.index',["personal"=>$personal,"searchText"=>$query]);
+
+          ->where('id_ciclo','=',$query2)
+
+          ->select('captura.*','cat_puesto.cat_puesto'
+            ,'centro_trabajo.cct','centro_trabajo.nombre_escuela'
+            ,'ciclo_escolar.ciclo'
+            ,'region.region'
+            ,'municipios.municipio'
+            ,'localidades.nom_loc')
+            ->paginate(40);
+
+        }else {
+          $personal= DB::table('captura')
+          ->join('cat_puesto','cat_puesto.id','=','captura.clave')
+          ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+          ->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')
+          ->join('region', 'region.id', '=','centro_trabajo.id_region')
+          ->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
+          ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
+          ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
+
+          ->where('captura.nombre','LIKE','%'.$query.'%')
+          ->orwhere('captura.rfc','LIKE','%'.$query.'%')
+          ->orwhere('centro_trabajo.nombre_escuela','LIKE','%'.$query.'%')
+          ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
+          ->where('id_ciclo','=',$query2)
+
+          ->select('captura.*','cat_puesto.cat_puesto'
+            ,'centro_trabajo.cct','centro_trabajo.nombre_escuela'
+            ,'ciclo_escolar.ciclo'
+            ,'region.region'
+            ,'municipios.municipio'
+            ,'localidades.nom_loc')
+
+          ->paginate(40);
+
+        }
+
+
+
+
+        return view('nomina.captura.index',["personal"=>$personal,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
       }}}

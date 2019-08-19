@@ -60,7 +60,7 @@
 											<div class="form-group">
 												<label class="col-sm-3 control-label">Nombre Escuela: <strog class="theme_color">*</strog></label>
 												<div class="col-sm-6">
-													<input name="nombre_escuela" id="nombre_escuela" type="text" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"   class="form-control valid" required value="{{Input::old('nombre_escuela')}}" />
+													<input name="nombre_escuela" id="nombre_escuela" placeholder="Nombre de la Escuela." type="text" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"   class="form-control valid" required value="{{Input::old('nombre_escuela')}}" />
 													<div class="help-block with-errors"></div>
 												</div>
 											</div>
@@ -159,7 +159,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Domicilio: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="domicilio" id="domicilio" type="text" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"   class="form-control valid" required value="{{Input::old('domicilio')}}" />
+														<input name="domicilio" id="domicilio" type="text" placeholder="Calle y número." onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"   class="form-control valid" required value="{{Input::old('domicilio')}}" />
 														<div class="help-block with-errors"></div>
 													</div>
 												</div>

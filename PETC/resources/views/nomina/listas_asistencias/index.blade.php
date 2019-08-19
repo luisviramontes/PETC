@@ -22,6 +22,7 @@
 							<div class="actions"> </div>
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Listas de Asistencias</strong></h2>
 							@include('nomina.listas_asistencias.search')
+							
 						</div>
 						<div class="col-md-5">
 							<div class="btn-group pull-right">
@@ -29,11 +30,11 @@
 
 									<div class="btn-group" style="margin-right: 10px;">
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('listas_asistencias.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Lista"> <i class="fa fa-plus"></i> Registrar </a>
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.listas_asistencias.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-										<a class="btn btn-primary btn-sm" href="{{URL::action('ListasAsistenciasController@invoice','2')}}" style="margin-right: 10px;" data-toggle="tooltip" target="_blank" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.listas_asistencias.excel')}}" id="excel" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+										<a class="btn btn-primary btn-sm" href="{{URL::action('ListasAsistenciasController@invoice','2')}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" target="_blank" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
 										<a class="btn btn-primary btn-sm" href="{{URL::action('InasistenciasController@generar_listas')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar Listas</a>
-										<a class="btn btn-primary btn-sm"  href="{{URL::action('ListasAsistenciasController@ver_listas')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Listas</a>
+										<a class="btn btn-primary btn-sm"  href="{{URL::action('ListasAsistenciasController@ver_listas')}}"   style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Listas</a>
 
 									</div>
 
@@ -148,4 +149,23 @@
 	</div><!--/col-md-12-->
 </div><!--/row-->
 </div>
+
+
+<script type="text/javascript">
+	window.onload=function(){
+		  var x =document.getElementById('ciclo_escolar').value;
+     	document.getElementById('excel').href="/descargar-listas-asistencias/"+x;
+      document.getElementById('invoice').href="/pdf_listasasistencias/"+x;
+
+	}
+
+	function cambia_ruta_lista(){
+		 var x =document.getElementById('ciclo_escolar').value;
+           document.getElementById('excel').href="/descargar-listas-asistencias/"+x;
+           document.getElementById('invoice').href="/pdf_listasasistencias/"+x;
+	}
+
+
+</script>
+
 @endsection

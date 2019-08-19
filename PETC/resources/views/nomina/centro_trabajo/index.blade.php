@@ -15,7 +15,7 @@
 <div class="container clear_both padding_fix">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="block-web"> 
+			<div class="block-web">
 				<div class="header">
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
@@ -31,14 +31,18 @@
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('centro_trabajo.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo CT"> <i class="fa fa-plus"></i> Registrar </a>
 
 
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.centro_trabajo.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
-
-										<a class="btn btn-primary btn-sm" href="{{URL::action('CentroTrabajoController@invoice' )}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
-
-										<a class="btn btn-primary btn-sm"  href="{{URL::action('CentroTrabajoController@ver_centros_trabajo')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-eye"></i> Ver Informe</a>								
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.centro_trabajo.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
 
 
-									</div>								
+										<a class="btn btn-primary btn-sm" href="{{URL::action('CentroTrabajoController@invoice' )}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+
+
+
+										<a class="btn btn-primary btn-sm"  href="{{URL::action('CentroTrabajoController@ver_centros_trabajo')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-eye"></i> Ver Informe</a>
+
+
+
+									</div>
 								</b>
 							</div>
 						</div>
@@ -79,7 +83,7 @@
 									<th style="display:none;" >Fecha Baja PETC</th>
 									<th>Ver Datos Completos&nbsp; &nbsp;</th>
 									<td><center><b>Editar</b></center></td>
-									<td><center><b>Borrar</b></center></td> 
+									<td><center><b>Borrar</b></center></td>
 								</tr>
 							</thead>
 							<tbody>
@@ -112,11 +116,11 @@
 									<td style="display:none;" >{{$datos->total_intendentes}} </td>
 									<td style="display:none;" >{{$datos->fecha_ingreso}} </td>
 									<td style="display:none;" >{{$datos->fecha_baja}} </td>
-									<td > 
+									<td >
 										<a href="{{URL::action('CentroTrabajoController@verInformacion',$datos->id.'/1')}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>    </td>
 
-										<td> 
-											<a href="{{URL::action('CentroTrabajoController@edit',$datos->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>  
+										<td>
+											<a href="{{URL::action('CentroTrabajoController@edit',$datos->id)}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 										</td>
 										<td>
 											<a class="btn btn-danger btn-sm" data-target="#modal-delete-{{$datos->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-eraser"></i></a></
@@ -127,7 +131,7 @@
 								</tbody>
 								<tfoot>
 									<tr>
-										<th></th> 
+										<th></th>
 										<th>CCT </th>
 										<th>Nombre de la Escuela</th>
 										<th style="display:none;" >Municipio </th>
@@ -167,4 +171,7 @@
 			</div><!--/col-md-12-->
 		</div><!--/row-->
 	</div>
+	<script type="text/javascript">
+
+	</script>
 	@endsection

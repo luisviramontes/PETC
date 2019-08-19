@@ -3,7 +3,7 @@
 	<div class="input-group">
 
 			<div class="col-sm-16">
-				<input name="searchText" id="searchText" type="text"   class="form-control" required />
+				<input name="searchText" id="searchText" type="text" value="{{$searchText}}"  class="form-control" required />
 			</div>
 
 
@@ -12,5 +12,25 @@
 
 		</span>
 	</div>
+</div>
+
+<div class="form-group">
+						<label class="col-sm-3 control-label">Seleccione Ciclo Escolar : <strog class="theme_color"></strog></label>
+						<div class="col-sm-6">
+							<select name="ciclo_escolarl" id="ciclo_escolarl" class="form-control select2" onchange="enviar_ciclo_listas();cambia_ruta_lista()" >
+								@foreach($ciclos as $ciclo)
+								@if($ciclo->id == $ciclo_escolarl)
+								<option value='{{$ciclo->id}}' selected>
+									{{$ciclo->ciclo}}
+								</option>
+								@else
+								<option value='{{$ciclo->id}}'>
+									{{$ciclo->ciclo}}
+								</option>
+								@endif
+								@endforeach
+							</select>
+
+						</div>
 </div>
 {!! Form::close() !!}

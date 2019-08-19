@@ -39,10 +39,10 @@
 						</div>
 						<div class="col-md-4">
 							<div class="btn-group pull-right">
-								<div class="actions"> 
+								<div class="actions">
 								</div>
 							</div>
-						</div>    
+						</div>
 					</div>
 				</div><!--header-->
 
@@ -77,7 +77,7 @@
 														<input name="rfc_input" id="rfc_input" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" type="text"   class="form-control" required value="{{Input::old('rfc_input')}}"   oninput="validarInput(this);"  onchange="validarRFC();"  />
 														<div class="text-danger" id='error_rfc' name="error_rfc" ></div>
 													</div>
-													<pre id="resultado"></pre>						
+													<pre id="resultado"></pre>
 												</div>
 
 												<div class="form-group">
@@ -115,18 +115,18 @@
 											<div id="form-step-1" role="form" data-toggle="validator">
 												<h3 class="h3titulo">Información del Contrato</h3>
 
-												
+
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Tipo de Movimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="movimiento" id="movimiento" class="form-control select" onchange="captura_personal(this.value)" required> 
+														<select name="movimiento" id="movimiento" class="form-control select" onchange="captura_personal(this.value)" required>
 															<option value="INICIO" >DESDE INICIO DE CICLO</option>
 															<option value="NUEVO" selected>NUEVO RECURSO </option>
-															<option value="ALTA">ALTA</option>				
+															<option value="ALTA">ALTA</option>
 														</select>
 														<div class="text-danger" id='error_movimiento'>{{$errors->formulario->first('error_movimiento')}}</div>
-													</div> 
+													</div>
 												</div>
 
 												<div class="form-group">
@@ -142,12 +142,12 @@
 														<div class="text-danger" id='error_clave'>{{$errors->formulario->first('error_clave')}}</div>
 														<div class="help-block with-errors"></div>
 													</div>
-												</div><!--/form-group-->	
+												</div><!--/form-group-->
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Categoria;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="puesto" id="puesto" class="form-control select" onchange="cambia(this.value);captura_personal()" required> 
+														<select name="puesto" id="puesto" class="form-control select" onchange="cambia(this.value);captura_personal()" required>
 
 															<option value="DIRECTOR" >DIRECTOR</option>
 															<option value="DOCENTE" selected>DOCENTE </option>
@@ -156,10 +156,10 @@
 															<option value="EDUCACION FISICA">EDUCACION FISICA</option>
 
 														</select>
-														
-													</div> 
+
+													</div>
 												</div>
-												
+
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">CCT <strog class="theme_color">*</strog></label>
@@ -182,7 +182,7 @@
 														<div class="col-sm-8">
 															<select name="cct_nuevo" id="cct_nuevo" class="form-control select2"   value="{{Input::old('cct')}}"  onchange="captura_personal()" >
 																@foreach($cct as $ct)
-																
+
 																<option value="{{$ct->id}}" >
 																	{{$ct->cct}}
 																</option>
@@ -200,21 +200,21 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Sostenimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="sostenimiento" id="sostenimiento" class="form-control select" required> 
+														<select name="sostenimiento" id="sostenimiento" class="form-control select" required>
 
 															<option value="FEDERAL" selected>FEDERAL</option>
 															<option value="ESTATAL" >ESTATAL </option>
 
 														</select>
-														
-													</div> 
+
+													</div>
 												</div>
 
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Ciclo Escolar: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2" ">
+														<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2">
 															@foreach($ciclos as $ciclo)
 															@if($ciclo->id == 2)
 															<option value='{{$ciclo->id}}' selected>
@@ -239,7 +239,7 @@
 														<input type="checkbox" name="doc2" id="doc2" onchange="cambia5(this.id)" value="OFICIO">Ofició<br>
 														<input type="checkbox" name="doc3" id="doc3" onchange="cambia5(this.id)" value="TALON">Talón de Cheque<br>
 													</div>
-												</div><!--/form-group-->				
+												</div><!--/form-group-->
 												<div class="form-group" id="diasdiv" style='display:none;'>
 													<div class="form-group">
 														<label class="col-sm-3 control-label">Dias Trabajados en este CT: <strog class="theme_color">*</strog></label>
@@ -281,7 +281,7 @@
 													<div class="form-group">
 														<label class="col-sm-3 control-label">Nombre del Docente a Cubrir: <strog class="theme_color">*</strog></label>
 														<div class="col-sm-8">
-															<select name="docente_cubrir" class="form-control select" id="docente_cubrir"> 
+															<select name="docente_cubrir" class="form-control select" id="docente_cubrir">
 
 															</select>
 															<div class="help-block with-errors"></div>
@@ -318,7 +318,7 @@
 														<button id="submit3"  onclick="return save();" class="btn btn-primary">Guardar</button>
 														<a href="{{url('/captura')}}" class="btn btn-default"> Cancelar</a>
 													</div>
-												</div><!--/form-group--> 
+												</div><!--/form-group-->
 
 
 												<div class="form-group">
@@ -344,7 +344,7 @@
 						</div><!--step-2-->
 
 					</div>
-				</div>  <!--smartwizard-->            
+				</div>  <!--smartwizard-->
 			</form>
 		</div><!--/form-horizontal-->
 	</div><!--/porlets-content-->
@@ -406,7 +406,7 @@
           	if(stepNumber == 0){
           		var r = document.getElementById("error_rfc").value;
           		if(r==1){
-          			return false; 
+          			return false;
           		}
 
           	}else if (stepNumber == 1){
@@ -419,7 +419,7 @@
           		}
 
           	}else if (stepNumber == 2){
-          		
+
           	}
 
           	var elmErr = elmForm.children('.has-error');
@@ -484,7 +484,7 @@ function save(){
 	var c = document.getElementById('error_fecha').value;
 	var x = document.getElementById('error_clave').value;
 	var r = document.getElementById("error_rfc").value;
-	
+
 
 	if (z== 1 || c==1 || x==1 || r==1){
 		return false;
@@ -570,7 +570,7 @@ function cambiacct(value) {
 	document.getElementById('cct_etc3').style.required = false;
 
 }
-} 
+}
 
 
 </script>

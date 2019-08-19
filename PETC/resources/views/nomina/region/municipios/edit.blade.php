@@ -46,8 +46,8 @@
 									<option value="{{$regiones->id}}">
 										{{$regiones->region}}-{{$regiones->sostenimiento}}
 									</option>
-									@endif             
-									@endforeach              
+									@endif
+									@endforeach
 								</select>
 								<div class="help-block with-errors"></div>
 							</div>
@@ -59,14 +59,14 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre del Municipio: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="municipio" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="{{$municipio->municipio}}" onchange="mayus(this)" />
+								<input name="municipio" id="municipio" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="{{$municipio->municipio}}" onchange="mayus(this)" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Cabecera Municipal: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="cabecera" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="{{$municipio->cabecera}}" onchange="mayus(this)" />
+								<input name="cabecera" id="cabecera" type="text" onkeypress="return soloLetras(event)"  class="form-control" required value="{{$municipio->cabecera}}" onchange="mayus(this)" />
 							</div>
 						</div>
 
@@ -80,16 +80,16 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Población: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="poblacion" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="{{$municipio->poblacion}}" />
+								<input name="poblacion" id="poblacion" type="number" onkeypress="soloNumeros(event)"   class="form-control" required value="{{$municipio->poblacion}}" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Área en KM: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="area" type="number"  onkeypress="soloNumeros(event)"  class="form-control" required value="{{$municipio->area_km}}" />
+								<input name="area" type="number" id="area"  onkeypress="soloNumeros(event)"  class="form-control" required value="{{$municipio->area_km}}" />
 							</div>
-						</div>						
+						</div>
 
 
 

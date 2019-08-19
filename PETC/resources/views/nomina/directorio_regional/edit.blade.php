@@ -44,7 +44,7 @@
 									@foreach($region as $region)
 									@if($region->id == $directorio->id_region)
 									<option value="{{$region->id}}" selected>
-										{{$region->region}} {{$region->sostenimiento}}								
+										{{$region->region}} {{$region->sostenimiento}}
 										@else
 										<option value="{{$region->id}}">
 											{{$region->region}} {{$region->sostenimiento}}
@@ -77,7 +77,7 @@
 		<div class="text-danger" id='error_telefono'>{{$errors->formulario->first('telefono')}}</div>
 	</div>
 </div>
-<
+
 
 
 <div class="form-group">
@@ -139,7 +139,7 @@
 		</div>
 
 
-	
+
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Telefono Regional: <strog class="theme_color">*</strog></label>
 				<div class="col-sm-6">
@@ -159,7 +159,7 @@
 						<div class="text-danger" id='error_ext_reg_1'>{{$errors->formulario->first('ext_reg_1')}}</div>
 					</div>
 				</div>
-			
+
 
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Extencion Regional 2: <strog class="theme_color">*</strog></label>
@@ -169,7 +169,7 @@
 							<div class="text-danger" id='error_ext_reg_2'>{{$errors->formulario->first('ext_reg_2')}}</div>
 						</div>
 					</div>
-		
+
 
 					<!--	<div class="form-group">
 							<label class="col-sm-3 control-label">Correo enlace <strog class="theme_color">*</strog></label>
