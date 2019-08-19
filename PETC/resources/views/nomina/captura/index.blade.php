@@ -31,7 +31,7 @@
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('captura.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Empleado"> <i class="fa fa-plus"></i> Registrar </a>
 
 
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.captura.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.captura.excel')}}" id="excel" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
 										<a class="btn btn-primary btn-sm"  href="{{URL::action('CapturaController@ver_capturas')}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Capturas</a>
 
 
