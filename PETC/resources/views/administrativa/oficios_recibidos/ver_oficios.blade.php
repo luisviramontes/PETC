@@ -3,11 +3,11 @@
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
 		<h1>Inicio</h1>
-		<h2 class="">Historial de Oficios Emitidos </h2>
+		<h2 class="">Historial de Oficios Recibidos </h2>
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
-			<li ><a style="color: #808080" href="{{url('/captura')}}">Inicio</a></li>
+			<li ><a style="color: #808080" href="{{url('/oficiosrecibidos')}}">Inicio</a></li>
 			<li class="active">Historial de Oficios Emitidos</a></li>
 		</ol>
 	</div>
@@ -21,7 +21,7 @@
 						<div class="col-sm-7">
 							<div class="actions"> </div>
 
-							<h4 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Historial de Oficios Emitidos :</strong></h4>
+							<h4 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Historial de Oficios Recibidos :</strong></h4>
 
 
 
@@ -29,11 +29,11 @@
 						<div class="btn-group pull-right">
 							<b>
 								<div class="btn-group" style="margin-right: 10px;">
-									<a class="btn btn-sm btn-success tooltips" href="{{URL::action('OficiosEmitidosController@create',[])}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Oficio de Reclamos"> <i class="fa fa-plus"></i> Registrar </a>
+									<a class="btn btn-sm btn-success tooltips" href="{{URL::action('OficiosRecibidosController@create',[])}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Oficio de Reclamos"> <i class="fa fa-plus"></i> Registrar </a>
 
 
 
-									<a class="btn btn-sm btn-danger tooltips" href="{{URL::action('OficiosEmitidosController@index')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-times"></i> Salir</a>
+									<a class="btn btn-sm btn-danger tooltips" href="{{URL::action('OficiosRecibidosController@index')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Cancelar"> <i class="fa fa-times"></i> Salir</a>
 
 
 
@@ -55,7 +55,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Seleccione Ciclo Escolar: <strog class="theme_color"></strog></label>
 				<div class="col-sm-6">
-					<select name="ciclo_escolar" id="ciclo_escolar" onchange="oficios_emitidos();oficios_emitidos_area();" class="form-control select2">
+					<select name="ciclo_escolar" id="ciclo_escolar" onchange="oficios_recibidos();oficios_recibidos_area();" class="form-control select2">
 						@foreach($ciclos as $ciclo)
 						@if($ciclo->id == 2)
 						<option value='{{$ciclo->id}}' selected>
@@ -99,7 +99,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Seleccione Área: <strog class="theme_color"></strog></label>
 				<div class="col-sm-6">
-					<select name="area" id="area" onchange="oficios_emitidos_area();" class="form-control select2">
+					<select name="area" id="area" onchange="oficios_recibidos_area();" class="form-control select2">
 						<option value="ALIMENTACION"  selected>ALIMENTACION</option>
 						<option value="NOMINA Y SISTEMAS">NOMINA Y SISTEMAS</option>
 						<option value="ACADEMICA">ACADEMICA</option>
@@ -139,11 +139,11 @@
 				<table id="detalles3" name="detalles3[]" value="" class="table table-responsive-xl table-bordered">
 					<thead style="background-color:#A9D0F5">
 						<th>N° Oficio</th>
-						<th>Dirigido</th>
+						<th>Remitente</th>
 						<th>Asunto</th>
 						<th>Fecha</th>
 						<th>Estado</th>
-						<th>Elaboro</th>
+						<th>Contesta</th>
 					</thead>
 					<tfoot>
 						<td style="display:none;"></td>
@@ -166,8 +166,8 @@
 <script type="text/javascript">
 	window.onload=function(callback){
 		
-		setTimeout(function(){oficios_emitidos()},1000);
-		setTimeout(function(){oficios_emitidos_area()},1000);
+		setTimeout(function(){oficios_recibidos()},1000);
+		setTimeout(function(){oficios_recibidos_area()},1000);
 		//busca_dias_reclamo();
 	}
 </script>

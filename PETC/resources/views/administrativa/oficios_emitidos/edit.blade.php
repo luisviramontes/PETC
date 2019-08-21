@@ -49,8 +49,9 @@
 
 				<div class="porlets-content">
 					<div  class="form-horizontal row-border" > <!--acomodo-->
-						<form class="" id="myForm" action="{{route('oficiosemitidos.store')}}" method="post" role="form" enctype="multipart/form-data" parsley-validate novalidate data-toggle="validator">
-							{{csrf_field()}}
+					<form action="{{url('/oficiosemitidos', [$oficios->id])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
+						{{csrf_field()}}
+						<input type="hidden" name="_method" value="PUT">
 							<div id="smartwizard">
 								<ul>
 									<li><a href="#step-1">Datos del Oficio</a></li>

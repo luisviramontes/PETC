@@ -169,7 +169,7 @@ class InasistenciasController extends Controller
       $name = explode(",",$first); 
       $x= count($name);
       for ($i=0; $i < $x ; $i++) { 
-        $tabla= new InasistenciasModel;
+        $tabla= new InasistenciasModel; 
             //$first2 = head($name[$i]);
         $name2 = explode("-",$name[$i]); 
             //print_r($name2[0]);   
@@ -200,8 +200,8 @@ class InasistenciasController extends Controller
       $tabla2->estado="ACTIVO";
       $tabla2->observaciones=$request->get('observaciones');
       $tabla2->captura=$user;
-      $tabla2->save();
-      return Redirect::to('inasistencias2/1'); 
+     // $tabla2->save();
+      return Redirect::to('inasistencias2/2'); 
         //
 
     }}
@@ -443,7 +443,7 @@ class InasistenciasController extends Controller
     $cct=$request->get('cct');
 
     if ($todos == "1") {
-      $centros= CentroTrabajoModel::join('centro_trabajo.id','directorio_regional','directorio_regional.id_region','=','centro_trabajo.id_region')->join('director_cct','director_cct.id_cct_etc','=','centro_trabajo.id')->join('captura','captura.id','=','director_cct.id_captura')->select('captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','directorio_regional.director_regional','directorio_regional.nombre_enlace')->where('centro_trabajo.estado','=','ACTIVO')->orderBy('centro_trabajo.id','desc')->get();
+      $centros= CentroTrabajoModel::join('directorio_regional','directorio_regional.id_region','=','centro_trabajo.id_region')->join('director_cct','director_cct.id_cct_etc','=','centro_trabajo.id')->join('captura','captura.id','=','director_cct.id_captura')->select('centro_trabajo.id','captura.nombre','centro_trabajo.cct','centro_trabajo.nombre_escuela','directorio_regional.director_regional','directorio_regional.nombre_enlace')->where('centro_trabajo.estado','=','ACTIVO')->orderBy('centro_trabajo.id','desc')->get();
       $cuenta_centro=count($centros);
       for ($i=0; $i < $cuenta_centro; $i++) { 
 
@@ -508,13 +508,19 @@ class InasistenciasController extends Controller
    $cuenta=count($centros);
    $cuenta_dias=count($dias);
    $captura_n=count($captura);
+   $pdf=$request->get('pdf');
 
-   $view =  \View::make('nomina.listas_asistencias.invoice_listas', compact('captura_n','captura','ciclo_aux','centros','dias','mes_aux','cuenta','cuenta_dias'))->render();
+   if($pdf == "SI"){
+     $view =  \View::make('nomina.listas_asistencias.invoice_listas', compact('captura_n','captura','ciclo_aux','centros','dias','mes_aux','cuenta','cuenta_dias'))->render();
         //->setPaper($customPaper, 'landscape');
    $pdf = \App::make('dompdf.wrapper');
    $pdf->loadHTML($view);
    return $pdf->stream('invoice_listas.pdf');
 
+   }else{
+    return Redirect::to('listas_asistencias'); 
+
+   }
 
 
  }

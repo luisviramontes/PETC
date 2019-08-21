@@ -211,6 +211,8 @@
             <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-pushpin"></i> LISTAS DE ASISTENCIA <span class="plus"><i class="fa fa-plus"></i></span></a>
               <ul>
                 <li> <a href="{{url('listas_asistencias')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Asistencia</b> </a> </li>
+                <li> <a href="{{url('recepcion_listas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recepción de Listas </b> </a> </li>
+                 <li> <a href="{{url('genera_listas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Generar Listas </b> </a> </li>
                 <li> <a href="{{url('inasistencias2/2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inasistencias</b> </a> </li>
                 <li> <a href="{{url('ver_listas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Listas</b> </a> </li>
               </ul>

@@ -165,11 +165,26 @@
 							</div>
 						</div><!--/form-group-->
 
+						<div class="form-group">
+								<label class="col-sm-3 control-label">Desea Generar Archivo *PDF <strog class="theme_color">*</strog></label>
+								<div class="col-sm-6">
+								<select  name="pdf" id="pdf" class="form-control select" >
+								<option value="SI">
+										SI
+									</option>
+									<option value="NO" selected>
+										NO
+									</option>		
+									</select>						
+								</div>
+							</div>
+
+
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Observaciones: <strog class="theme_color">*</strog></label>
+							<label class="col-sm-3 control-label">Observaciones: <strog class="theme_color"></strog></label>
 							<div class="col-sm-6">
-								<input name="observaciones" type="text"   class="form-control" required value="{{Input::old('observaciones')}}" />
+								<input name="observaciones" type="text"   class="form-control"  value="{{Input::old('observaciones')}}" />
 							</div>
 						</div>
 

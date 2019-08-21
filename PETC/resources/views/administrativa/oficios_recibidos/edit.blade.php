@@ -13,13 +13,13 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
-		<h1>Editar Oficio N°:</h1>
+		<h1>Editar Oficio Recibido {{$oficios->nombre_oficio}}</h1>
 		<h2 class="active"></h2>
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
-			<li><a style="color: #808080" href="{{url('oficiosemitidos')}}">Inicio</a></li>
-			<li><a style="color: #808080" href="{{url('oficiosemitidos')}}">Oficios E</a></li>
+			<li><a style="color: #808080" href="{{url('oficiosrecibidos')}}">Inicio</a></li>
+			<li><a style="color: #808080" href="{{url('oficiosrecibidos')}}">Oficios Recibidos</a></li>
 			<li class="active"></li>
 		</ol>
 	</div>
@@ -49,8 +49,9 @@
 
 				<div class="porlets-content">
 					<div  class="form-horizontal row-border" > <!--acomodo-->
-						<form class="" id="myForm" action="{{route('oficiosemitidos.store')}}" method="post" role="form" enctype="multipart/form-data" parsley-validate novalidate data-toggle="validator">
-							{{csrf_field()}}
+						<form action="{{url('/oficiosrecibidos', [$oficios->id])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
+						{{csrf_field()}}
+						<input type="hidden" name="_method" value="PUT">
 							<div id="smartwizard">
 								<ul>
 									<li><a href="#step-1">Datos del Oficio</a></li>
@@ -70,7 +71,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Ciclo Escolar: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="ciclo_escolar" onchange="traer_num_oficio();" id="ciclo_escolar"  class="form-control select2" >
+														<select name="ciclo_escolar"  id="ciclo_escolar"  class="form-control select2" >
 															@foreach($ciclos as $ciclo)
 															@if($ciclo->id == $oficios->id_ciclo)
 															<option value='{{$ciclo->id}}' selected>
@@ -93,9 +94,9 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">N° Oficio: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input onchange="num_oficio_id_edit();" maxlength="6" minlength="3" name="oficio_aux"  id="oficio_aux" value="{{$oficios->num_oficio}}" class="form-control" required />
+														<input maxlength="6" minlength="3" name="oficio_aux"  id="oficio_aux" class="form-control" value="{{$oficios->num_oficio}}" required />
 														<div class="text-danger" id='error-nofici' name="error-nofici" ></div>
-														<div class="text-success" id='correcto_oficio' name="correcto_oficio" ></div>
+														
 													</div>
 
 												</div>
@@ -103,21 +104,30 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Nom Oficio: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="oficio" type="text" id="oficio"   class="form-control" value="{{$oficios->nombre_oficio}}" required onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  />
+														<input name="oficio" type="text" id="oficio"  value="{{$oficios->nombre_oficio}}" class="form-control" required onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  />
+														<div class="text-success" id='correcto_oficio' name="correcto_oficio" ></div>
+													</div>
+												</div>
+
+
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Remitente: <strog class="theme_color">*</strog></label>
+													<div class="col-sm-6">
+														<input name="remitente" id="remitente" value="{{$oficios->remitente}}" type="text" onkeypress="return soloLetras(event)"  class="form-control" required    onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 													</div>
 												</div>
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Asunto: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="asunto" id="asunto" type="text" onkeypress="return soloLetras(event)"  value="{{$oficios->asunto}}" class="form-control" required    onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+														<input name="asunto" id="asunto" type="text" onkeypress="return soloLetras(event)" value="{{$oficios->asunto}}"  class="form-control" required    onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 													</div>
 												</div>
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Referencía: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="referencia" value="{{$oficios->referencia}}" id="referencia" type="text" onkeypress="return soloLetras(event)"  class="form-control" required    onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+														<input name="referencia" id="referencia" value="{{$oficios->referencia}}"  type="text" onkeypress="return soloLetras(event)"  class="form-control" required    onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 													</div>
 												</div>
 
@@ -135,32 +145,32 @@
 
 
 												<div class="form-group">
-													<label class="col-sm-3 control-label">Fecha de Salida: <strog class="theme_color">*</strog></label>
+													<label class="col-sm-3 control-label">Fecha de Recepción: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 
-														<input type="date" name="fechas" id="fechas"  value="{{$oficios->salida}}" class="form-control mask"   required>
+														<input type="date" name="fecha_entrada" value="{{$oficios->fecha_entrada}}"  id="fecha_entrada"  class="form-control mask"   required>
 													</div>
 												</div>
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Observaciones: <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
-														<input name="observaciones" type="text" id="observaciones"   class="form-control"  value="{{$oficios->observaciones}}"  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+														<input name="observaciones" type="text" id="observaciones"   class="form-control"   value="{{$oficios->observaciones}}" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-sm-3 control-label">Genero Oficio: <strog class="theme_color">*</strog></label>
+													<label class="col-sm-3 control-label">Contesta Oficio: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="genero" id="genero"  class="form-control select" >
+														<select name="contesta" id="contesta"  class="form-control select" >
 															@foreach($genero as $genero)
-															@if($genero->id == $oficios->id_elabora)
+															@if($genero->id == $oficios->id_contesta)
 															<option value='{{$genero->id}}' selected>
-																{{$genero->nombre}}
+																{{$genero->area}} - {{$genero->nombre}}
 															</option>
 															@else
 															<option value='{{$genero->id}}'>
-																{{$genero->nombre}}
+																{{$genero->area}} - {{$genero->nombre}}
 															</option>
 															@endif
 															@endforeach
@@ -187,32 +197,26 @@
 
 													
 													<div class="form-group">
-														<label class="col-sm-3 control-label">Dirigido Para: <strog class="theme_color">*</strog></label>
+														<label class="col-sm-3 control-label">Archivo: <strog class="theme_color"></strog></label>
 														<div class="col-sm-6">
-															<select name="dirigido_a" id="dirigido_a"  class="form-control select">
-																@foreach($dirigido as $dirigido2)
-																@if($dirigido2->id == $oficios->id_dirigido)
-																<option value='{{$dirigido2->id}}' selected>
-																	{{$dirigido2->lic}}. {{$dirigido2->nombre_c}}.-{{$dirigido2->puesto}}
-																</option>
-																@else
-																<option value='{{$dirigido2->id}}'>
-																	{{$dirigido2->lic}}. {{$dirigido2->nombre_c}}.-{{$dirigido2->puesto}}
-																</option>
-																@endif
-																@endforeach
-															</select>
 
+															<input name="archivo" id="archivo" type="file"  accept=".pdf,.jpg, .jpeg, .png" />
+															@if (($oficios->archivo)!="")
+															<a href="/img/oficiosrecibidos/{{$oficios->archivo}}"  target="_blank" class="btn btn-info btn-lg">
+																<span class="glyphicon glyphicon-picture"> </span>Ver
+															</a>
+															@endif
 														</div>
-													</div>
+													</div> 
 
+													
 
 
 
 													<div class="form-group">
 														<div class="col-sm-offset-7 col-sm-5">
 															<button type="submit"  id="submit8"   class="btn btn-primary">Guardar</button>
-															<a href="{{url('/oficiosemitidos')}}" class="btn btn-default"> Cancelar</a>
+															<a href="{{url('/oficiosrecibidos')}}" class="btn btn-default"> Cancelar</a>
 														</div>
 													</div><!--/form-group-->
 
@@ -231,39 +235,10 @@
 	</div><!--/container clear_both padding_fix-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		window.onload=function(){
-			num_oficio_id_edit();
+		window.onload=function(callback){
+			//setTimeout(function(){traer_num_oficio()},2000);
+
 		}
-
-		function num_oficio_id_edit(){
-			var ciclo = document.getElementById('ciclo_escolar').value;
-			var x= document.getElementById('oficio_aux').value;
-			var id =  "{{$oficios->id}}";
-			var route = "http://localhost:8000/buscar_oficio3/"+x+"/"+id;
-			$.get(route,function(res){
-				if(res.length > 0){
-					swal("Alerta!", "Este Oficio Ya se ha Registrado Anteriormente!", "error");
-					document.getElementById("error-nofici").innerHTML = "Este Oficio Ya se ha Registrado Anteriormente!";
-					document.getElementById("error-nofici").value = "1";
-					document.getElementById("correcto_oficio").innerHTML = "";
-					document.getElementById("correcto_oficio").value = "0";
-					document.getElementById('submit8').disabled= true;
-					return false;
-				}else{
-					var fecha = new Date();
-					var ano = fecha.getFullYear();
-					document.getElementById('oficio').value = "SA/DFE/DHA/ETC.-"+x+"/"+ano;
-					document.getElementById('submit8').disabled= false;
-					document.getElementById("error-nofici").innerHTML = "";
-					document.getElementById("error-nofici").value = "0";
-					document.getElementById("correcto_oficio").innerHTML = "Número De Oficio Disponible!";
-					document.getElementById("correcto_oficio").value = "1";
-
-				}
-			});
-		}
-
-
 		$(document).ready(function(){
         // Toolbar extra buttons
         var btnFinish = $('<button></button>').text('Finish')

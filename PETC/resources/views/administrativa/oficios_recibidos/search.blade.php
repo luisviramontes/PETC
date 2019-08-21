@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['oficiosemitidos.index'],'method' => 'GET','autocomplete'=>'off','role'=>'search']) !!}
+{!! Form::open(['route' => ['oficiosrecibidos.index'],'method' => 'GET','autocomplete'=>'off','role'=>'search']) !!}
 <div class="form-group">
 	<div class="input-group">
 		<div class="form-group">
@@ -13,7 +13,7 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Seleccione Ciclo Escolar : <strog class="theme_color"></strog></label>
 			<div class="col-sm-6">
-			<select name="ciclo_escolar" id="ciclo_escolar" onchange="cambia_ruta_oe();enviar_ciclo11();" class="form-control select2"  >
+			<select name="ciclo_escolar" id="ciclo_escolar" onchange="cambia_ruta_or();enviar_ciclo12();" class="form-control select2"  >
 					@foreach($ciclos as $ciclo)
 					@if($ciclo->id == $ciclo_escolar) 
 					<option value='{{$ciclo->id}}' selected>

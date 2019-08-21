@@ -119,7 +119,7 @@
 											<td style="display:none;" >{{$datos->dias_trabajados}} </td>
 
 											<td style="background-color: #DBFFC2;">
-												<a href="{{URL::action('CapturaController@verInformacion',$datos->id.'/1')}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>    </td>
+												<a href="{{URL::action('CapturaController@verInformacion',$datos->id.'/2')}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>    </td>
 												<td style="display:none;" >{{$datos->updated_at}} </td>
 
 												<td style="background-color: #DBFFC2;">
@@ -172,7 +172,7 @@
 
 
 															<td style="background-color: #FFE4E1;">
-																<a href="{{URL::action('CapturaController@verInformacion',$datos->id.'/1')}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>    </td>
+																<a href="{{URL::action('CapturaController@verInformacion',$datos->id.'/2')}}" class="btn btn-primary btn-sm" role="button"><i class="fa fa-eye"></i></a>    </td>
 																<td style="display:none;" >{{$datos->updated_at}} </td>
 
 																<td style="background-color: #FFE4E1;">

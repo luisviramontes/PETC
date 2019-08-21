@@ -70,7 +70,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Ciclo Escolar: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select name="ciclo_escolar" onchange="traer_num_oficio();" id="ciclo_escolar"  class="form-control select2" >
+														<select name="ciclo_escolar"  id="ciclo_escolar"  class="form-control select2" >
 															@foreach($ciclos as $ciclo)
 															@if($ciclo->id == 2)
 															<option value='{{$ciclo->id}}' selected>
@@ -93,7 +93,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">N° Oficio: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input onchange="num_oficio_id();" maxlength="6" minlength="3" name="oficio_aux"  id="oficio_aux" class="form-control" required />
+														<input maxlength="6" minlength="3" name="oficio_aux"  id="oficio_aux" class="form-control" required />
 														<div class="text-danger" id='error-nofici' name="error-nofici" ></div>
 														<div class="text-success" id='correcto_oficio' name="correcto_oficio" ></div>
 													</div>
@@ -104,6 +104,7 @@
 													<label class="col-sm-3 control-label">Nom Oficio: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 														<input name="oficio" type="text" id="oficio"  value="SA/DFE/DHA/ETC.-/2019" class="form-control" required onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  />
+														<div class="text-success" id='correcto_oficio' name="correcto_oficio" ></div>
 													</div>
 												</div>
 
@@ -202,7 +203,7 @@
 													<div class="form-group">
 														<div class="col-sm-offset-7 col-sm-5">
 															<button type="submit"  id="submit8"   class="btn btn-primary">Guardar</button>
-															<a href="{{url('/inasistencias2')}}" class="btn btn-default"> Cancelar</a>
+															<a href="{{url('/oficiosrecibidos')}}" class="btn btn-default"> Cancelar</a>
 														</div>
 													</div><!--/form-group-->
 
@@ -222,7 +223,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		window.onload=function(callback){
-			setTimeout(function(){traer_num_oficio()},2000);
+			//setTimeout(function(){traer_num_oficio()},2000);
 
 		}
 		$(document).ready(function(){
