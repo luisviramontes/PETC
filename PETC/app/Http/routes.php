@@ -285,6 +285,9 @@ Route::get('busca_listas_mes/{ciclo}/{region}/{mes}','ListasAsistenciasControlle
 Route::get('descargar-listas-ciclo/{id}', 'ListasAsistenciasController@excel2')->name('nomina.reclamos.excel2');
 Route::get('escuelas/{esc}','ListasAsistenciasController@escuelas');
 Route::get('busca_listas_esc/{region}/{cct}','ListasAsistenciasController@busca_listas_esc');
+Route::get('recepcion_listas','ListasAsistenciasController@recepcion_listas');
+Route::get('busca_listas_codigo/{codigo}/{mes}/{ciclo}','ListasAsistenciasController@busca_listas_codigo');
+Route::post('listas_codigo','ListasAsistenciasController@listas_codigo');
 
 
 
@@ -394,7 +397,6 @@ Route::get('descargar-oficios-recibidos/{id}', 'OficiosRecibidosController@excel
 Route::get('descargar-oficios-recibidos-area/{id}/{area}', 'OficiosRecibidosController@excel2')->name('administrativa.oficios-recibidos-area.excel');
 Route::post('oficiorecibido_resuelto/{id}', 'OficiosRecibidosController@oficiorecibido_resuelto');
 Route::get('buscar_oficio_r/{oficio}/{ciclo}', 'OficiosRecibidosController@buscar_oficio');
-Route::get('buscar_oficior2/{oficio}/{ciclo}', 'OficiosRecibidosController@buscar_oficio2');
 Route::get('ultimo_oficior/{id}', 'OficiosRecibidosController@ultimo_oficio');
 Route::get('buscar_oficior3/{oficio}/{id}', 'OficiosRecibidosController@buscar_oficio3');
 Route::get('ver_oficios_r', array('as'=> '/ver_oficios_e','uses'=>'OficiosRecibidosController@ver_oficios_r'));

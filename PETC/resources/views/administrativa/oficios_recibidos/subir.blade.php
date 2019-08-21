@@ -8,7 +8,7 @@
 							<h3 class="content-header theme_color">&nbsp;Subir Copia de Oficio</h3>
 						</div>
 						<div class="porlets-content" style="margin-bottom: -50px;">
-							<form  action="{{url('/subir_imagen_oficioe', [$oficios->id])}}" method="POST" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
+							<form  action="{{url('/subir_imagen_oficior', [$oficios->id])}}" method="POST" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
 								{{csrf_field()}}
 
 								<input type="hidden" value="{{$oficios->id}}">

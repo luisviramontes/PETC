@@ -27,9 +27,9 @@ class ListasAsistenciasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-        public function __construct()
+    public function __construct()
     {
-        $this->middleware('auth');
+      $this->middleware('auth');
     }
 
     public function index(request $request)
@@ -38,7 +38,7 @@ class ListasAsistenciasController extends Controller
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
       if($request)
       {
         $query=trim($request->GET('searchText'));
@@ -46,66 +46,66 @@ class ListasAsistenciasController extends Controller
 
         $ciclos=DB::table('ciclo_escolar')->get();
 
-      if($query == "" && $query2 == ""){
-        $query2=2;
-       $listas = DB::table('listas_de_asistencias')
-       ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
-       ->select('centro_trabajo.id_region as id_region' )
-       ->join('region','centro_trabajo.id_region', '=' ,'region.id')
-       ->join('ciclo_escolar','listas_de_asistencias.id_ciclo', '=','ciclo_escolar.id')
+        if($query == "" && $query2 == ""){
+          $query2=2;
+          $listas = DB::table('listas_de_asistencias')
+          ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
+          ->select('centro_trabajo.id_region as id_region' )
+          ->join('region','centro_trabajo.id_region', '=' ,'region.id')
+          ->join('ciclo_escolar','listas_de_asistencias.id_ciclo', '=','ciclo_escolar.id')
 
-        ->where('listas_de_asistencias.id_ciclo','=',$query2)
+          ->where('listas_de_asistencias.id_ciclo','=',$query2)
 
-       ->select('listas_de_asistencias.id as id','listas_de_asistencias.id_centro_trabajo','listas_de_asistencias.mes'
-       ,'listas_de_asistencias.estado','listas_de_asistencias.observaciones','listas_de_asistencias.captura',
-       'centro_trabajo.nombre_escuela','centro_trabajo.cct'
-       ,'region.region','region.sostenimiento'
-       ,'ciclo_escolar.ciclo'
-       ,'listas_de_asistencias.created_at')
-
-
-
-       ->paginate(24);
-     }elseif ($query == "" && $query2 != "") {
-       $listas = DB::table('listas_de_asistencias')
-       ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
-       ->select('centro_trabajo.id_region as id_region' )
-       ->join('region','centro_trabajo.id_region', '=' ,'region.id')
-       ->join('ciclo_escolar','listas_de_asistencias.id_ciclo', '=','ciclo_escolar.id')
-
-       ->where('listas_de_asistencias.id_ciclo','=',$query2)
-
-       ->select('listas_de_asistencias.id as id','listas_de_asistencias.id_centro_trabajo','listas_de_asistencias.mes'
-       ,'listas_de_asistencias.estado','listas_de_asistencias.observaciones','listas_de_asistencias.captura',
-       'centro_trabajo.nombre_escuela','centro_trabajo.cct'
-       ,'region.region','region.sostenimiento'
-       ,'ciclo_escolar.ciclo'
-       ,'listas_de_asistencias.created_at')
+          ->select('listas_de_asistencias.id as id','listas_de_asistencias.id_centro_trabajo','listas_de_asistencias.mes'
+           ,'listas_de_asistencias.estado','listas_de_asistencias.observaciones','listas_de_asistencias.captura',
+           'centro_trabajo.nombre_escuela','centro_trabajo.cct'
+           ,'region.region','region.sostenimiento'
+           ,'ciclo_escolar.ciclo'
+           ,'listas_de_asistencias.created_at','listas_de_asistencias.updated_at')
 
 
-       ->paginate(24);
-     }else {
-       $listas = DB::table('listas_de_asistencias')
-       ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
-       ->select('centro_trabajo.id_region as id_region' )
-       ->join('region','centro_trabajo.id_region', '=' ,'region.id')
-       ->join('ciclo_escolar','listas_de_asistencias.id_ciclo', '=','ciclo_escolar.id')
+
+          ->paginate(24);
+        }elseif ($query == "" && $query2 != "") {
+         $listas = DB::table('listas_de_asistencias')
+         ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
+         ->select('centro_trabajo.id_region as id_region' )
+         ->join('region','centro_trabajo.id_region', '=' ,'region.id')
+         ->join('ciclo_escolar','listas_de_asistencias.id_ciclo', '=','ciclo_escolar.id')
+
+         ->where('listas_de_asistencias.id_ciclo','=',$query2)
+
+         ->select('listas_de_asistencias.id as id','listas_de_asistencias.id_centro_trabajo','listas_de_asistencias.mes'
+           ,'listas_de_asistencias.estado','listas_de_asistencias.observaciones','listas_de_asistencias.captura',
+           'centro_trabajo.nombre_escuela','centro_trabajo.cct'
+           ,'region.region','region.sostenimiento'
+           ,'ciclo_escolar.ciclo'
+           ,'listas_de_asistencias.created_at','listas_de_asistencias.updated_at')
 
 
-       ->select('listas_de_asistencias.id as id','listas_de_asistencias.id_centro_trabajo','listas_de_asistencias.mes'
-       ,'listas_de_asistencias.estado','listas_de_asistencias.observaciones','listas_de_asistencias.captura',
-       'centro_trabajo.nombre_escuela','centro_trabajo.cct','region.region','region.sostenimiento','ciclo_escolar.ciclo','listas_de_asistencias.created_at')
+         ->paginate(24);
+       }else {
+         $listas = DB::table('listas_de_asistencias')
+         ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
+         ->select('centro_trabajo.id_region as id_region' )
+         ->join('region','centro_trabajo.id_region', '=' ,'region.id')
+         ->join('ciclo_escolar','listas_de_asistencias.id_ciclo', '=','ciclo_escolar.id')
 
-       ->where('nombre_escuela','LIKE','%'.$query.'%')
-       ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
-       ->orwhere('ciclo_escolar.ciclo','LIKE','%'.$query.'%')
-       ->orwhere('region.region','LIKE','%'.$query.'%')
-       ->where('listas_de_asistencias.id_ciclo','=',$query2)
 
-       ->paginate(24);
-     }
+         ->select('listas_de_asistencias.id as id','listas_de_asistencias.id_centro_trabajo','listas_de_asistencias.mes'
+           ,'listas_de_asistencias.estado','listas_de_asistencias.observaciones','listas_de_asistencias.captura',
+           'centro_trabajo.nombre_escuela','centro_trabajo.cct','region.region','region.sostenimiento','ciclo_escolar.ciclo','listas_de_asistencias.created_at','listas_de_asistencias.updated_at')
+
+         ->where('nombre_escuela','LIKE','%'.$query.'%')
+         ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
+         ->orwhere('ciclo_escolar.ciclo','LIKE','%'.$query.'%')
+         ->orwhere('region.region','LIKE','%'.$query.'%')
+         ->where('listas_de_asistencias.id_ciclo','=',$query2)
+
+         ->paginate(24);
+       }
        //print_r($listas);
-      return view('nomina.listas_asistencias.index',["listas"=>$listas,"searchText"=>$query,"ciclo_escolarl"=>$query2,"ciclos"=>$ciclos]);
+       return view('nomina.listas_asistencias.index',["listas"=>$listas,"searchText"=>$query,"ciclo_escolarl"=>$query2,"ciclos"=>$ciclos]);
       // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
       //
 
@@ -118,9 +118,9 @@ class ListasAsistenciasController extends Controller
       //return view('nomina.listas_asistencias.index',['listas'=>$listas]);
 
         //
-    }
-}
-}
+     }
+   }
+ }
     /**
      * Show the form for creating a new resource.
      *
@@ -128,19 +128,19 @@ class ListasAsistenciasController extends Controller
      */
     public function create()
     {
-              $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
        $ciclos=DB::table('ciclo_escolar')->get();
-      $escuelas=DB::table('centro_trabajo')->get();
-      $regiones=DB::table('region')->where('estado','=','ACTIVO')->get();
+       $escuelas=DB::table('centro_trabajo')->get();
+       $regiones=DB::table('region')->where('estado','=','ACTIVO')->get();
 
-      $cct= DB::table('centro_trabajo')->get();
-      return view("nomina.listas_asistencias.create",["escuelas"=>$escuelas,"cct"=>$cct,'ciclos'=>$ciclos,'regiones'=>$regiones]);
+       $cct= DB::table('centro_trabajo')->get();
+       return view("nomina.listas_asistencias.create",["escuelas"=>$escuelas,"cct"=>$cct,'ciclos'=>$ciclos,'regiones'=>$regiones]);
 
-    }}
+     }}
 
     /**
      * Store a newly created resource in storage.
@@ -150,11 +150,11 @@ class ListasAsistenciasController extends Controller
      */
     public function store(Request $request)
     {
-              $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
       $user = Auth::user()->name;
 
 
@@ -175,28 +175,28 @@ class ListasAsistenciasController extends Controller
         return redirect('/listas_asistencias');
 
       }else {
-      return view('listas_asistencias.create');
+        return view('listas_asistencias.create');
       }
     }}
 
     //convertir y descargar pdf
 
     public function invoice($id){
-        $listas= DB::table('listas_de_asistencias')
-        ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
-         ->join('region','centro_trabajo.id_region', '=' ,'region.id')
-        ->select('listas_de_asistencias.*','centro_trabajo.nombre_escuela','centro_trabajo.cct as cct','region.region')->where('listas_de_asistencias.id_ciclo','=',$id)->get();
+      $listas= DB::table('listas_de_asistencias')
+      ->join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id' )
+      ->join('region','centro_trabajo.id_region', '=' ,'region.id')
+      ->select('listas_de_asistencias.*','centro_trabajo.nombre_escuela','centro_trabajo.cct as cct','region.region')->where('listas_de_asistencias.id_ciclo','=',$id)->get();
         //$centro_trabajo= DB::table('centro_trabajo')->where('cct','=',$id)->first();
          //$material   = AlmacenMaterial:: findOrFail($id);
         //$customPaper = array(0,0,567.00,283.80);
 
-        $date = date('Y-m-d');
-        $invoice = "2222";
-        $view =  \View::make('nomina.listas_asistencias.invoice', compact('date', 'invoice','listas'))->render();
+      $date = date('Y-m-d');
+      $invoice = "2222";
+      $view =  \View::make('nomina.listas_asistencias.invoice', compact('date', 'invoice','listas'))->render();
         //->setPaper($customPaper, 'landscape');
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($view);
-        return $pdf->stream('invoice');
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+      return $pdf->stream('invoice');
     }
 
 
@@ -219,11 +219,11 @@ class ListasAsistenciasController extends Controller
      */
     public function edit($id)
     {
-              $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
       $listas = ListasAsistenciaModel::find($id);
       $escuelas=DB::table('centro_trabajo')->get();
       $cct= DB::table('centro_trabajo')->get();
@@ -239,11 +239,11 @@ class ListasAsistenciasController extends Controller
      */
     public function update(Request $request, $id)
     {
-              $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
       $user = Auth::user()->name;
 
       $listas = ListasAsistenciaModel::find($id);
@@ -263,7 +263,7 @@ class ListasAsistenciasController extends Controller
         return redirect('/listas_asistencias');
 
       }else {
-      return view('listas_asistencias.index');
+        return view('listas_asistencias.index');
       }
     }}
 
@@ -275,17 +275,17 @@ class ListasAsistenciasController extends Controller
      */
     public function destroy($id)
     {
-              $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
       $user = Auth::user()->name;
       $lista=ListasAsistenciaModel::findOrFail($id);
       $lista->estado="INACTIVO";
       $lista->captura=$user;
       $lista->update();
-        return redirect('listas_asistencias');
+      return redirect('listas_asistencias');
     }}
 
     ////////////exel////////////////
@@ -294,30 +294,30 @@ class ListasAsistenciasController extends Controller
     {
 
      Excel::create('listas_asistencias', function($excel) {
-         $excel->sheet('Excel sheet', function($sheet) {
+       $excel->sheet('Excel sheet', function($sheet) {
 
-             $tabla = ListasAsistenciaModel::join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id')
-              ->join('region','centro_trabajo.id_region', '=' ,'region.id')
-             ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','region.region','listas_de_asistencias.mes'
-             ,'listas_de_asistencias.observaciones','listas_de_asistencias.estado')
-             ->get();
-             $sheet->fromArray($tabla);
-             $sheet->row(1,['CCT','NOMBRE ESCUELA','REGION','MES','OBSERVACIONES','ESTADO']);
-             $sheet->setOrientation('landscape');
-         });
+         $tabla = ListasAsistenciaModel::join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id')
+         ->join('region','centro_trabajo.id_region', '=' ,'region.id')
+         ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','region.region','listas_de_asistencias.mes'
+           ,'listas_de_asistencias.observaciones','listas_de_asistencias.estado')
+         ->get();
+         $sheet->fromArray($tabla);
+         $sheet->row(1,['CCT','NOMBRE ESCUELA','REGION','MES','OBSERVACIONES','ESTADO']);
+         $sheet->setOrientation('landscape');
+       });
      })->export('xls');
- }
+   }
 
 
- public function ver_listas(){
-  $ciclos=DB::table('ciclo_escolar')->get();
-  $regiones=DB::table('region')->where('estado','=','ACTIVO')->get();
+   public function ver_listas(){
+    $ciclos=DB::table('ciclo_escolar')->get();
+    $regiones=DB::table('region')->where('estado','=','ACTIVO')->get();
 
-  return view('nomina.listas_asistencias.ver_listas', ['ciclos'=>$ciclos,'regiones'=>$regiones]);
+    return view('nomina.listas_asistencias.ver_listas', ['ciclos'=>$ciclos,'regiones'=>$regiones]);
 
-}
+  }
 
- public function busca_listas($ciclo){
+  public function busca_listas($ciclo){
 
 
    $lista= ListasAsistenciaModel::select('id','estado')
@@ -328,7 +328,7 @@ class ListasAsistenciasController extends Controller
     $lista->toArray());
  }
 
-  public function busca_listas_region($ciclo,$region){
+ public function busca_listas_region($ciclo,$region){
 
 
    $lista= ListasAsistenciaModel::join('centro_trabajo','centro_trabajo.id','=','listas_de_asistencias.id_centro_trabajo')->select('listas_de_asistencias.id','listas_de_asistencias.estado')
@@ -339,7 +339,7 @@ class ListasAsistenciasController extends Controller
     $lista->toArray());
  }
 
-   public function busca_listas_mes($ciclo,$region,$mes){
+ public function busca_listas_mes($ciclo,$region,$mes){
 
 
    $lista= ListasAsistenciaModel::join('centro_trabajo','centro_trabajo.id','=','listas_de_asistencias.id_centro_trabajo')->select('listas_de_asistencias.id','listas_de_asistencias.estado')
@@ -352,34 +352,34 @@ class ListasAsistenciasController extends Controller
  }
 
 
-   public function excel2(Request $request, $aux)
-  {
+ public function excel2(Request $request, $aux)
+ {
 
    Excel::create('REGISTRO DE LISTAS DE ASISTENCIA', function($excel) use($aux) {
      $excel->sheet('Excel sheet', function($sheet) use($aux) {
        $tabla = ListasAsistenciaModel::join('centro_trabajo','listas_de_asistencias.id_centro_trabajo', '=', 'centro_trabajo.id')
-              ->join('region','centro_trabajo.id_region', '=' ,'region.id')
-             ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','region.region','listas_de_asistencias.mes'
-             ,'listas_de_asistencias.observaciones','listas_de_asistencias.estado')
-             ->where('id_ciclo','=',$aux) ->get();
-             $sheet->fromArray($tabla);
-             $sheet->row(1,['CCT','NOMBRE ESCUELA','REGION','MES','OBSERVACIONES','ESTADO']);
-             $sheet->setOrientation('landscape');
-         });
-     })->export('xls');
+       ->join('region','centro_trabajo.id_region', '=' ,'region.id')
+       ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','region.region','listas_de_asistencias.mes'
+         ,'listas_de_asistencias.observaciones','listas_de_asistencias.estado')
+       ->where('id_ciclo','=',$aux) ->get();
+       $sheet->fromArray($tabla);
+       $sheet->row(1,['CCT','NOMBRE ESCUELA','REGION','MES','OBSERVACIONES','ESTADO']);
+       $sheet->setOrientation('landscape');
+     });
+   })->export('xls');
  }
 
  public function escuelas(Request $request,$esc)
-   {
-     $escuelas= CentroTrabajoModel::select('id','nombre_escuela','cct', 'estado')
-     ->where('id_region','=',$esc)->where('estado','=','ACTIVO')
-     ->get();
+ {
+   $escuelas= CentroTrabajoModel::select('id','nombre_escuela','cct', 'estado')
+   ->where('id_region','=',$esc)->where('estado','=','ACTIVO')
+   ->get();
 
-     return response()->json(
-       $escuelas->toArray());
-}
+   return response()->json(
+     $escuelas->toArray());
+ }
 
-public function busca_listas_esc($region,$cct){
+ public function busca_listas_esc($region,$cct){
   if ($region == "todas") {
     $listas=DB::table('listas_de_asistencias')
     ->join('centro_trabajo','centro_trabajo.id','=','listas_de_asistencias.id_centro_trabajo')
@@ -400,5 +400,57 @@ public function busca_listas_esc($region,$cct){
 
 }
 
+public function recepcion_listas()
+{
+  $tipo_usuario = Auth::user()->tipo_usuario;
+  if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+   return view('permisos');
+
+ }else{
+  $user = Auth::user()->name;
+  $cct=DB::table('centro_trabajo')->get();
+  $ciclos=DB::table('ciclo_escolar')->get();
+  $region=DB::table('region')->get();
+
+  return view('nomina.listas_asistencias.recepcion', ['cct'=>$cct,'ciclos'=>$ciclos,'region'=>$region]);  
+}
+}
+
+
+public function busca_listas_codigo($cct,$mes,$ciclo){
+  $listas=DB::table('listas_de_asistencias')
+  ->join('centro_trabajo','centro_trabajo.id','=','listas_de_asistencias.id_centro_trabajo')
+  ->join('ciclo_escolar','ciclo_escolar.id','=','listas_de_asistencias.id_ciclo')
+  ->where('centro_trabajo.cct','=',$cct)->where('listas_de_asistencias.mes','=',$mes)->where('ciclo_escolar.id','=',$ciclo)->select('listas_de_asistencias.id','listas_de_asistencias.mes','listas_de_asistencias.estado','centro_trabajo.nombre_escuela','centro_trabajo.cct','ciclo_escolar.ciclo')->get();
+
+
+
+  return response()->json(
+   $listas);
+
+}
+
+public function listas_codigo(Request $request){
+  $tipo_usuario = Auth::user()->tipo_usuario;
+  if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+   return view('permisos');
+
+ }else{
+  $user = Auth::user()->name;
+  $limite = $request->get('total');
+  $producto = $request->get('codigo2');
+  $first = head($producto);
+  $name = explode(",",$first);
+  for ($i=0; $i < $limite ; $i++) { 
+    $id=$name[$i];
+    $listas = ListasAsistenciaModel::find($id);
+    $listas->estado="ENTREGADA";
+    $listas->captura=$user;
+    $listas->update();
+    # code...
+  }
+}
+ return redirect('listas_asistencias');
+}
 
 }

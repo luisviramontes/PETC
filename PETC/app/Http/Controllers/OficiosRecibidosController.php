@@ -189,8 +189,8 @@ class OficiosRecibidosController extends Controller
       $ofico_emite->id_contesta=$request->get('contesta');
       $ofico_emite->observaciones=$request->get('observaciones');
 
-      if(Input::hasFile('archivo'.$id)){
-        $file=$request->file('archivo'.$id);
+      if(Input::hasFile('archivo')){
+        $file=$request->file('archivo');
         $file->move(public_path().'/img/oficiosrecibidos',$file->getClientoriginalName());
         $ofico_emite->archivo=$file->getClientoriginalName();
     }
@@ -218,28 +218,18 @@ class OficiosRecibidosController extends Controller
     }
 
 
-    public function buscar_oficio($oficio,$ciclo_aux)
+    public function buscar_oficio($oficio,$id_ciclo)
     {
-        $ciclo=DB::table('ciclo_escolar')->where('ciclo','=',$ciclo_aux)->first();
         $oficio= OficiosRecibidosModel::
         select('id')
-        ->where('id_ciclo','=',$ciclo->id)->where('num_oficio','=',$oficio)
+        ->where('id_ciclo','=',$id_ciclo)->where('nombre_oficio','=',$oficio)
         ->get();
         return response()->json(
             $oficio);
         //
     }
 
-    public function buscar_oficio2($oficio,$id)
-    {
-        $oficio= OficiosRecibidosModel::
-        select('id')
-        ->where('id_ciclo','=',$id)->where('num_oficio','=',$oficio)
-        ->get();
-        return response()->json(
-            $oficio);
-        //
-    }
+
 
     public function buscar_oficio3($oficio,$id)
     {
@@ -336,8 +326,8 @@ public function ver_oficios_ciclo($ciclo){
 }
 
 public function ver_oficios_area($ciclo,$area){
-    $oficio= OficiosRecibidosModel::join('directoriointerno','directoriointerno.id','=','oficiosemitidos.id_contesta')->where('oficiosemitidos.id_ciclo','=',$ciclo)->where('directoriointerno.area','=',$area)->
-    select('oficiosemitidos.id','oficiosemitidos.num_oficio','oficiosemitidos.estado','directoriointerno.nombre','oficiosemitidos.salida','oficiosemitidos.asunto','oficiosemitidos.referencia')
+    $oficio= OficiosRecibidosModel::join('directoriointerno','directoriointerno.id','=','oficiosrecibidos.id_contesta')->where('oficiosrecibidos.id_ciclo','=',$ciclo)->where('directoriointerno.area','=',$area)->
+    select('oficiosrecibidos.id','oficiosrecibidos.num_oficio','oficiosrecibidos.estado','directoriointerno.nombre','oficiosrecibidos.fecha_entrada','oficiosrecibidos.asunto','oficiosrecibidos.referencia','oficiosrecibidos.remitente')
     ->get();
     return response()->json(
         $oficio);

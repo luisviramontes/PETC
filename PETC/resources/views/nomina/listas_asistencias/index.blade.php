@@ -33,9 +33,8 @@
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.listas_asistencias.excel')}}" id="excel" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
 										<a class="btn btn-primary btn-sm" href="{{URL::action('ListasAsistenciasController@invoice','2')}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" target="_blank" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
-										<a class="btn btn-primary btn-sm" href="{{URL::action('InasistenciasController@generar_listas')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar Listas</a>
-										<a class="btn btn-primary btn-sm"  href="{{URL::action('ListasAsistenciasController@ver_listas')}}"   style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Listas</a>
-
+										
+									
 									</div>
 
 								</a>
@@ -59,6 +58,7 @@
 								<th>Captura</th>
 								<th>Estado</th>
 								<th>Fecha de Registro</th>
+								<th>Fecha de Entrega</th>
 
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
@@ -66,7 +66,7 @@
 						</thead>
 						<tbody>
 							@foreach($listas  as $lista)
-							@if ($lista->estado == "ACTIVO")
+							@if ($lista->estado == "ENTREGADA")
 							<tr class="gradeX">
 								<td style= "background-color:#DBFFC2;">{{$lista->cct}} </td>
 								<td style= "background-color:#DBFFC2;">{{$lista->nombre_escuela}} </td>
@@ -77,6 +77,7 @@
 								<td style= "background-color:#DBFFC2;">{{$lista->captura}}</td>
 								<td style= "background-color:#DBFFC2;">{{$lista->estado}} </td>
 								<td style= "background-color:#DBFFC2;">{{$lista->created_at}} </td>
+								<td style= "background-color:#DBFFC2;">{{$lista->updated_at}} </td>
 
 
 								<td style="background-color:#DBFFC2;">
@@ -106,7 +107,8 @@
 							<td style= "background-color:#FFE4E1;">{{$lista->captura}}</td>
 							<td style= "background-color:#FFE4E1;">{{$lista->estado}} </td>
 							<td style= "background-color:#FFE4E1;">{{$lista->created_at}} </td>
-							<td style="background-color:FFE4E12;">
+							<td style= "background-color:#FFE4E1;">{{$lista->updated_at}} </td>
+							<td style="background-color:#FFE4E1;">
 								<center>
 									<a href="{{URL::action('ListasAsistenciasController@edit',$lista->id)}}" id="edit" onchange="valida_edit()" title="Editar" class="btn btn-primary btn-sm" role="button"><i class="fa fa-edit"></i></a>
 

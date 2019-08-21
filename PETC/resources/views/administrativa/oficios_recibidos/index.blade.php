@@ -21,7 +21,7 @@
 						<div class="col-sm-7">
 							<div class="actions"> </div>
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>OFICIOS PENDIENTES: {{$contador}}</strong></h2>
-							@include('administrativa.oficios_emitidos.search')
+							@include('administrativa.oficios_recibidos.search')
 
 						</div>
 						<div class="col-md-5">
@@ -145,8 +145,8 @@
 									<td style="background-color: #FFE4E1;"> 
 										<a href="{{URL::action('OficiosRecibidosController@edit',$oficios->id)}}" class="btn btn-primary btn -sm" role="button"><i class="fa fa-edit"></i></a>  
 									</td>
-									<td style="background-color: #FFE4E1;">
-									</td>
+										<td style="background-color: #FFE4E1;">
+											<a class="btn btn-sm btn-success tooltips" data-target="#modal-delete-{{$oficios->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="glyphicon glyphicon-ok"></i></a></</td>
 									<td style="display:none;" >{{$oficios->captura}} </td>	
 									<td style="display:none;" >{{$oficios->updated_at}} </td>
 
@@ -203,7 +203,7 @@
 
   }
 
-  function cambia_ruta_oe(){
+  function cambia_ruta_or(){
   	var x =document.getElementById('ciclo_escolar').value;
   	document.getElementById('excel').href="/descargar-oficios-recibidos/"+x; 
           // document.getElementById('invoice').href="/pdf-cuadros-cifras/"+x; 

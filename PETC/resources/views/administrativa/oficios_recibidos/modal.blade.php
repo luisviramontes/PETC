@@ -8,7 +8,7 @@
 							<h3 class="content-header theme_color">&nbsp;Guardar Registro</h3>
 						</div>
 						<div class="porlets-content" style="margin-bottom: -50px;">
-							<form  action="{{url('/oficioemitido_resuelto', [$oficios->id])}}" method="POST" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
+							<form  action="{{url('/oficiorecibido_resuelto', [$oficios->id])}}" method="POST" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
 								{{csrf_field()}}
 								
 								<input type="hidden" value="{{$oficios->id}}">
@@ -16,7 +16,13 @@
 								<h4>¿Esta segúro que desea Aplicar Este Oficio como Resuelto PETC?</h4>
 								<br> <br>
 
+								<div class="form-group">
+								<label class="col-sm-3 control-label">Fecha de Respuesta: <strog class="theme_color">*</strog></label>
+									<div class="col-sm-6">
 
+										<input type="date" name="fecha_respuesta{{$oficios->id}}" id="fecha_respuesta{{$oficios->id}}"  class="form-control mask"   required>
+									</div>
+								</div>
 
 
 								<div class="form-group">

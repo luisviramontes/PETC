@@ -177,7 +177,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
 
-								<button type="submit" id="submit"   onclick="valida_nomina();validar_quincenaIna()" class="btn btn-primary">Guardar</button>
+								<button type="submit" id="submit"   onclick="modal_loading();valida_nomina();validar_quincenaIna()" class="btn btn-primary">Guardar</button>
 								<a href="{{url('/nomina_capturada')}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->
