@@ -2210,7 +2210,7 @@ function buscar_qnas(){
       cell3.innerHTML = docente;
       cell4.innerHTML =  intendente;
       cell5.innerHTML = dias;
-      cell6.innerHTML = total;
+      cell6.innerHTML = currencyFormat(total);
       cell7.innerHTML = resuelto;
       cell8.innerHTML = pendiente  ;
     });
@@ -2271,7 +2271,7 @@ function buscar_qnas(){
     cell3.innerHTML = docente;
     cell4.innerHTML =  intendente;
     cell5.innerHTML = dias;
-    cell6.innerHTML = total;
+    cell6.innerHTML = currencyFormat(total);
     cell7.innerHTML = resuelto;
     cell8.innerHTML = pendiente  ;
   });

@@ -127,23 +127,23 @@
 							@endforeach
 
 						</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
                 <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+								<th>CCT </th>
+								<th>Sostenimiento</th>
+								<th>Monto Fortalecimiento</th>
+								<th>Ciclo Escolar</th>
+								<th>Estado</th>
+								<th>observaciones</th>
+								<th>captura</th>
+								<th style="display:none;" >Fecha de registro</th>
 
 
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 
 				</div><!--/table-responsive-->
@@ -152,4 +152,19 @@
 	</div><!--/col-md-12-->
 </div><!--/row-->
 </div>
+<script type="text/javascript">
+window.onload=function() {
+	document.getElementById('searchText').focus();
+
+	var x =document.getElementById('ciclo_escolar').value;
+	document.getElementById('excel_fortalecimiento').href="/descargar-fortalecimiento/"+x;
+	document.getElementById('pdf_fortalecimiento').href="/pdf_fortalecimiento/"+x;
+}
+
+function cambia_ruta_forta(){
+	 var x =document.getElementById('ciclo_escolar').value;
+					document.getElementById('excel_fortalecimiento').href="/descargar-fortalecimiento/"+x;
+					document.getElementById('pdf_fortalecimiento').href="/pdf_fortalecimiento/"+x;
+}
+</script>
 @endsection

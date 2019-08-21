@@ -150,23 +150,30 @@
 							@include('nomina.directorio_regional.modal')
 							@endforeach
 						</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
-                <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+								<th></th>
+								<th>Region </th>
+								<th>Sostenimiento</th>
+								<th>Nombre Enlace </th>
+								<th>Telefono </th>
+								<th style="display:none;">Ext1 Enlace </th>
+								<th style="display:none;">Ext2 Enlace </th>
+								<th style="display:none;">Correo Enlace </th>
+								<th>Director Regional </th>
+								<th>Telefono Director </th>
+								<th>Financiero Regional </th>
+								<th style="display:none;">Telefono Regional </th>
+								<th style="display:none;">Extencion Regional 1 </th>
+								<th style="display:none;">Extencion Regional 2 </th>
+								<th>Estado </th>
+								<th style="display:none;">Captura </th>
 
 
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 				</div><!--/table-responsive-->
 			</div><!--/porlets-content-->

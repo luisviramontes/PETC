@@ -120,23 +120,18 @@
 
 							@endforeach
 						</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
-                <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+								<th>Region </th>
+								<th>Sostenimiento</th>
+								<th>Capturo</th>
+								<th>Estado</th>
 
 
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 					{!! $regiones->render() !!}
 				</div><!--/table-responsive-->

@@ -29,7 +29,7 @@
 						<div class="btn-group pull-right">
 							<b>
 								<div class="btn-group" style="margin-right: 10px;">
-									<a class="btn btn-sm btn-success tooltips" href="{{URL::action('InasistenciasController@create',[])}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Oficio de Reclamos"> <i class="fa fa-plus"></i> Registrar </a>
+									<a class="btn btn-sm btn-success tooltips" href="{{URL::action('InasistenciasController@create',[])}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Lista"> <i class="fa fa-plus"></i> Registrar </a>
 
 
 
@@ -97,6 +97,8 @@
 			</div>
 			<br> <br>
 
+			<h5 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Por Región:</strong></h5>
+			<br> <br>
 
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Seleccione Región: <strog class="theme_color"></strog></label>
@@ -204,12 +206,9 @@
 						</tfoot>
 					</table>
 
-
-
-
-
-
 				</div>
+
+					<br> <br>
 				<h5 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Por Escuela :</strong></h5>
 				<br><br>
 				<div class="form-group">

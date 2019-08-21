@@ -56,10 +56,15 @@ class CuentasController extends Controller
      */
     public function create()
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
         $bancos=DB::table('bancos')->get();
         return view("nomina.cuentas.create",["bancos"=>$bancos]);
-    }
-
+     }
+   }
     /**
      * Store a newly created resource in storage.
      *
@@ -68,6 +73,12 @@ class CuentasController extends Controller
      */
     public function store(Request $request)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
+      $user = Auth::user()->name;
       $cuenta= new CuentasModel;
       $cuenta-> nombre = $request ->nombre;
       $cuenta -> num_cuenta = $request ->num_cuenta;
@@ -75,7 +86,7 @@ class CuentasController extends Controller
       $cuenta -> secretaria = $request ->secretaria;
       $cuenta -> id_banco = $request ->id_banco;
       $cuenta -> estado="ACTIVO";
-      $cuenta -> captura="ADMINISTRADOR";
+      $cuenta -> captura=$user;
 
       if($cuenta->save()){
 
@@ -83,9 +94,9 @@ class CuentasController extends Controller
 
       }else {
         return false;
-      }
-
-    }
+       }
+     }
+   }
 
     //convertir y descargar pdf
 
@@ -124,11 +135,16 @@ class CuentasController extends Controller
      */
     public function edit($id)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
       $bancos=DB::table('bancos')->get();
       $cuentas = CuentasModel::find($id);
       return view("nomina.cuentas.edit",["cuentas"=>$cuentas,"bancos"=>$bancos]);
-    }
-
+      }
+     }
     /**
      * Update the specified resource in storage.
      *
@@ -138,6 +154,12 @@ class CuentasController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
+      $user = Auth::user()->name;
       $cuenta = CuentasModel::find($id);
       $cuenta-> nombre = $request ->nombre;
       $cuenta -> num_cuenta = $request ->num_cuenta;
@@ -145,7 +167,7 @@ class CuentasController extends Controller
       $cuenta -> secretaria = $request ->secretaria;
       $cuenta -> id_banco = $request ->id_banco;
       $cuenta -> estado = "ACTIVO";
-      $cuenta -> captura = "ADMINISTRADOR";
+      $cuenta -> captura = $user;
 
       if($cuenta->update()){
 
@@ -153,6 +175,7 @@ class CuentasController extends Controller
 
       }else {
         return false;
+        }
       }
     }
 
@@ -164,12 +187,19 @@ class CuentasController extends Controller
      */
     public function destroy($id)
     {
+      $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+       return view('permisos');
+
+     }else{
+      $user = Auth::user()->name;
       $cuenta=CuentasModel::findOrFail($id);
       $cuenta->estado="INACTIVO";
-      $cuenta->captura="ADMINISTRADOR";
+      $cuenta->captura=$user;
       $cuenta->update();
         return redirect('cuentas');
-    }
+     }
+   }
 
     ////////////exel////////////////
 

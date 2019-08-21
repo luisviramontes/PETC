@@ -58,9 +58,15 @@
 				<div class="col-sm-6">
 					<select name="ciclo_escolar" id="ciclo_escolar" onchange="busca_dias_reclamo();busca_dias_reclamo_region();" class="form-control select2">
 						@foreach($ciclos as $ciclo)
-						<option value='{{$ciclo->id}}'>
+						@if($ciclo->id == 2)
+						<option value='{{$ciclo->id}}' selected>
 							{{$ciclo->ciclo}}
 						</option>
+						@else
+						<option value='{{$ciclo->id}}' >
+							{{$ciclo->ciclo}}
+						</option>
+						@endif
 						@endforeach
 					</select>
 
@@ -95,7 +101,7 @@
 
 
 
-			<a class="btn btn-sm btn-warning tooltips" id="excel_reclamos" href="{{ route('nomina.reclamos.excel',2)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
+			<a class="btn btn-sm btn-warning tooltips" id="excel_reclamos" href="{{ route('nomina.reclamos.excel',2)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
 
 </div>
 <br> <br>
@@ -105,6 +111,9 @@
 				<label class="col-sm-3 control-label">Seleccione Región: <strog class="theme_color"></strog></label>
 				<div class="col-sm-6">
 					<select name="region" id="region" onchange="busca_dias_reclamo_region();" class="form-control select2">
+						<option selected>
+							Selecciona una opción
+						</option>
 						@foreach($regiones as $region)
 						<option value='{{$region->id}}' >
 							{{$region->region}} {{$region->sostenimiento}}

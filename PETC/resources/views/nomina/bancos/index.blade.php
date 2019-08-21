@@ -24,8 +24,8 @@
 							<div class="actions"> </div>
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Bancos</strong></h2>
 							<br>
-							<!--	@include('nomina.bancos.search')
-							-->
+								@include('nomina.bancos.search')
+
 						</div>
 						<div class="col-md-5">
 							<div class="btn-group pull-right">
@@ -123,23 +123,18 @@
 							@include('nomina.bancos.modal')
 					@endforeach
 						</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
-                <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
-
-
+								<th>Nombre del Banco</th>
+								<th>Operacion</th>
+								<th>Descripcion</th>
+								<th>Estado</th>
+								<th>Fecha de Registro</th>
+								<th>Capturo</th>
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 
 				</div><!--/table-responsive-->

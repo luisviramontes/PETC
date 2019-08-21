@@ -141,23 +141,25 @@
 							@include('nomina.cat_puesto.modal')
 							@endforeach
 						</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
                 <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+								<th>CV_UR </th>
+								<th>Entidad </th>
+								<th style="display:none;" >CCP </th>
+								<th>Nom_Prog </th>
+								<th>Categoria Puesto</th>
+								<th>Descripcion Puesto</th>
+								<th>Categoria</th>
+								<th>Tipo Puesto</th>
+								<td>Estado</td>
+								<th style="display:none;">Captura</th>
 
 
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 					{!! $categorias->render() !!}
 				</div><!--/table-responsive-->

@@ -130,23 +130,20 @@
 								  @include('nomina.ciclo_escolar.modal')
 							@endforeach
 						</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
-                <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+								<th>Dias Habiles</th>
+								<th>Ciclo </th>
+								<th>Inicio Ciclo</th>
+								<th>Fin Ciclo</th>
+								<th>Estado</th>
+								<th>Captura</th>
 
 
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 					{!! $ciclos->render() !!}
 				</div><!--/table-responsive-->

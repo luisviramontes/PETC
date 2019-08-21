@@ -91,23 +91,20 @@
 
 					@endforeach
 						</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
-                <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+								<th>Número Empleado</th>
+								<th>RFC</th>
+								<th>Nombre Empleado</th>
+								<th>PER</th>
+								<th>DED</th>
+								<th>Exp 6</th>
+								<th>Qna pago</th>
 
 
-								<td><center><b>Editar</b></center></td>
-								<td><center><b>Borrar</b></center></td>
+
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 
 				</div><!--/table-responsive-->

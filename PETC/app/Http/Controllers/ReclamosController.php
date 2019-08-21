@@ -158,7 +158,7 @@ class ReclamosController extends Controller
 
        $ofico_emite= new OficiosEmitidosModel;
        $ofico_emite->num_oficio=$oficio_aux;
-       $oficio->nombre_oficio=$request->get('oficio');
+       $ofico_emite->nombre_oficio=$request->get('oficio');
        $ofico_emite->id_dirigido=$id_dirigido;
        $ofico_emite->asunto="Solicitud de Pago";
        $ofico_emite->referencia="Nomina PETC";

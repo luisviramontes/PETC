@@ -22,7 +22,7 @@
 							<div class="actions"> </div>
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Listas de Asistencias</strong></h2>
 							@include('nomina.listas_asistencias.search')
-							
+
 						</div>
 						<div class="col-md-5">
 							<div class="btn-group pull-right">
@@ -124,23 +124,24 @@
 					@include('nomina.listas_asistencias.modal')
 					@endforeach
 				</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
-                <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+      
+								<th>Clave Centro Trabajo </th>
+								<th>Nombre de la Escuela </th>
+								<th>Ciclo Escolar</th>
+								<th>Region </th>
+								<th>Mes </th>
+								<th>Observaciones</th>
+								<th>Captura</th>
+								<th>Estado</th>
+								<th>Fecha de Registro</th>
 
 
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 					{!! $listas->render() !!}
 				</div><!--/table-responsive-->

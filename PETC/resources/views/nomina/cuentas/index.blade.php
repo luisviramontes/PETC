@@ -128,23 +128,22 @@
 							@include('nomina.cuentas.modal')
 					@endforeach
 						</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
-                <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+								<th>Nombre de la Cuenta</th>
+								<th>Cuenta</th>
+								<th>Clave Inter.</th>
+								<th>Secretaria</th>
+								<th>Banco</th>
+								<th>Fecha de Registro</th>
+								<th>Estado</th>
+								<th>Capturo</th>
 
 
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 
 				</div><!--/table-responsive-->

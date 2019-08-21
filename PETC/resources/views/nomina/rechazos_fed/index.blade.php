@@ -72,7 +72,7 @@
                 <td>{{$rechazo->curp}}</td>
                 <td>{{$rechazo->nombre}}</td>
 								<td>{{$rechazo->ct}}</td>
-								<td>{{$rechazo->importe}}</td>
+								<td>${{number_format($rechazo->importe,2)}}</td>
 								<td>{{$rechazo->qna_pago}}</td>
 
 								</td>
@@ -82,23 +82,21 @@
 					@include('nomina.rechazos_fed.modal')
         @endforeach
 						</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
-                <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+								<th>Número Cheque </th>
+								<th>UDC</th>
+								<th>RFC</th>
+								<th>CURP</th>
+                <th>Nombre</th>
+                <th>CT</th>
+								<th>importe</th>
+								<th>Qna pago</th>
 
 
-								<td><center><b>Editar</b></center></td>
-								<td><center><b>Borrar</b></center></td>
+
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 
 				</div><!--/table-responsive-->

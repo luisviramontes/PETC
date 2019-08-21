@@ -157,23 +157,34 @@
 							@include('nomina.solicitudes.modal')
 							@endforeach
 						</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
                 <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+								<th style="display:none;">Entrego Acta</th>
+								<th style="display:none;">Solicitud de Incorporacion</th>
+								<th>CCT</th>
+								<th>Ciclo Escolar</th>
+								<th>Nombre de la Escuela</th>
+								<th>Municipio</th>
+								<th>Localidad</th>
+								<th>Domicilio</th>
+								<th>Nivel</th>
+								<th style="display:none;">PNPSVD</th>
+								<th style="display:none;">CNH</th>
+								<th style="display:none;">Carta Compromiso</th>
+								<th style="display:none;">Acta Constitutiva</th>
+								<th style="display:none;">Acta CPS</th>
+								<th style="display:none;">Acta CTCS</th>
+								<th>Tramite Estado</th>
+								<th style="display:none;">Fecha de Registro</th>
+								<th style="display:none;">Capturo</th>
+								<th>Estado</th>
 
 
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 					{!! $solicitudes->render() !!}
 				</div><!--/table-responsive-->

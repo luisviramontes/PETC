@@ -143,23 +143,27 @@
 
 							@endforeach
 						</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
                 <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+								<th>CCT</th>
+								<th>Nombre</th>
+								<th>Categoría</th>
+								<th>Número de días</th>
+								<th>Director Regional</th>
+								<th>Ciclo Escolar</th>
+								<th>No. Oficio</th>
+								<th>Motivo</th>
+								<th>Total</th>
+								<th style="display:none">Capturo</th>
+								<th style="display:none">Estado</th>
+                <th>Fecha de Registro</th>
 
 
 								<td><center><b>Editar</b></center></td>
 								<td><center><b>Borrar</b></center></td>
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 					{!! $reintegros->render() !!}
 				</div><!--/table-responsive-->

@@ -62,7 +62,7 @@ class RechazoCapController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {    
+    {
             $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
@@ -222,6 +222,7 @@ class RechazoCapController extends Controller
        return view('permisos');
 
       }else{
+          $user = Auth::user()->name;
         $rechazo=RechazoCapModel::findOrFail($id);
 
         $rechazo -> qna = $request ->qna;
@@ -340,6 +341,7 @@ class RechazoCapController extends Controller
        return view('permisos');
 
       }else{
+      $user = Auth::user()->name;
       $rechazo=RechazoCapModel::findOrFail($id);
       $rechazo->estado="INACTIVO";
       $rechazo->captura=$user;

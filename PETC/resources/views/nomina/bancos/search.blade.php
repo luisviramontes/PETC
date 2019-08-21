@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['nomina_capturada.index'],'method' => 'GET','autocomplete'=>'off','role'=>'search']) !!}
+{!! Form::open(['route' => ['bancos.index'],'method' => 'GET','autocomplete'=>'off','role'=>'search']) !!}
 <div class="form-group">
 	<div class="input-group">
 		<div class="form-group">

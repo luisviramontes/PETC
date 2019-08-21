@@ -107,6 +107,8 @@
 							</div>
 							<br> <br>
 
+							<h5 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong>Por Region:</strong></h5>
+							<br> <br>
 
 							<div class="form-group">
 							<label class="col-sm-3 control-label">Seleccione Región: <strog class="theme_color"></strog></label>

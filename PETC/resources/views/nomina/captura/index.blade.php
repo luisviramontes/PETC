@@ -29,10 +29,9 @@
 
 									<div class="btn-group" style="margin-right: 10px;">
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('captura.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Empleado"> <i class="fa fa-plus"></i> Registrar </a>
-
-
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.captura.excel')}}" id="excel" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-										<a class="btn btn-primary btn-sm"  href="{{URL::action('CapturaController@ver_capturas')}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Capturas</a>
+										<a class="btn btn-primary btn-sm" href="{{URL::action('CapturaController@invoice1','2')}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" target="_blank" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+										<a class="btn btn-primary btn-sm"  href="{{URL::action('CapturaController@ver_capturas')}}"  style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Capturas</a>
 
 
 									</div>
@@ -242,14 +241,14 @@
 								document.getElementById('searchText').focus();
 
 								var x =document.getElementById('ciclo_escolar').value;
-								document.getElementById('excel').href="/descargar-listas-asistencias/"+x;
-								document.getElementById('invoice').href="/pdf_listasasistencias/"+x;
+								document.getElementById('excel').href="/descargar-listas-capturas/"+x;
+								document.getElementById('invoice').href="/pdf_captura1/"+x;
 							}
 
 							function cambia_ruta_cap(){
 									 var x =document.getElementById('ciclo_escolar').value;
-												 document.getElementById('excel').href="/descargar-tabla-captura/"+x;
-												 document.getElementById('invoice').href="/pdf_captura/"+x;
+												 document.getElementById('excel').href="/descargar-listas-capturas/"+x;
+												 document.getElementById('invoice').href="/pdf_captura1/"+x;
 								}
 
 							var aux2 = [];

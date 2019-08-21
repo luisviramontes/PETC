@@ -5,7 +5,7 @@
   <title>Rechazos Estatales</title>
   <link rel="stylesheet" href="css/plantilla.css" media="all" />
   <style media="screen">
-  
+
   </style>
 </head>
 <body>
@@ -57,7 +57,7 @@
           <td>{{$rechazo->ded}}</td>
           <td>{{$rechazo->exp_6}}</td>
           <td>{{$rechazo->qna_pago}}</td>
-          <td>{{$rechazo->created_at}}</td>
+          
 
 
 
