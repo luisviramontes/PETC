@@ -246,7 +246,7 @@ class DirectorioRegionalController extends Controller
      Excel::create('directorio_regional', function($excel) {
        $excel->sheet('Excel sheet', function($sheet) {
                  //otra opción -> $products = Product::select('name')->get();
-         $tabla = DirectorioRegionalModel::select('region','sostenimiento','nombre_enlace','telefono','ext1_enlace','ext2_enlace','correo_enlace','director_regional','telefono_director','financiero_regional','telefono_regional','ext_reg_1','ext_reg_2')
+         $tabla = DirectorioRegionalModel::join('region','region.id','=','directorio_regional.id_region')->select('region.region','region.sostenimiento','directorio_regional.nombre_enlace','directorio_regional.telefono','directorio_regional.ext1_enlace','directorio_regional.ext2_enlace','directorio_regional.correo_enlace','directorio_regional.director_regional','directorio_regional.telefono_director','directorio_regional.financiero_regional','directorio_regional.telefono_regional','directorio_regional.ext_reg_1','directorio_regional.ext_reg_2')
              //->where('directorio_regional')
          ->get();
          $sheet->fromArray($tabla);

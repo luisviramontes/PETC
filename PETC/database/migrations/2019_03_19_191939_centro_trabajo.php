@@ -37,6 +37,7 @@ class CentroTrabajo extends Migration
             $table->string('tipo_organizacion');
             $table->string('nivel');
             $table->string('estado');
+            $table->string('tipo');
             $table->timestamps();
         });
     }
