@@ -1090,19 +1090,19 @@ function busca_personal(){
   $.get(route,function(res){
 
     if(res.length <= 0 ){
-  
-        
-          document.getElementById('submit8').disabled=true;
-          swal("ERROR!","La Lista de Asistencia que Intenta Registrar No Se Encuentra Generada","error");
+
+
+      document.getElementById('submit8').disabled=true;
+      swal("ERROR!","La Lista de Asistencia que Intenta Registrar No Se Encuentra Generada","error");
           //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
           document.getElementById('submit8').disabled=false;
           return false
-    }else{
+        }else{
 
-      $.get(route3,function(res){
-        dias = parseInt(res.length);
-        if(res.length > 0 ){
-          var tabla = document.getElementById("detalles");
+          $.get(route3,function(res){
+            dias = parseInt(res.length);
+            if(res.length > 0 ){
+              var tabla = document.getElementById("detalles");
     //tabla.setAttribute("id", id2);
     var row = tabla.insertRow(0);
     var cell1 = row.insertCell(0);
@@ -1194,7 +1194,7 @@ function busca_personal(){
 
       });
 
-      document.getElementById('submit8').disabled=false;
+          document.getElementById('submit8').disabled=false;
   //valida_file();
 }
 
@@ -1662,15 +1662,15 @@ function valida_sostenimiento() {
 
          swal("WARNING!","Los rechazos correspondientes a la quincena <<"+qna+">> <<"+sostenimiento+">> ya han sido registrados anteriormente.","warning");
    				 			             //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
-                              return false;
-                            }
+                             return false;
+                           }
 
-                          }
+                         }
 
-                        }else{
-                          document.getElementById('file').disabled=false;
-                        }
-                      });
+                       }else{
+                        document.getElementById('file').disabled=false;
+                      }
+                    });
 }
 
 function cambia_reclamos(){
@@ -4048,35 +4048,7 @@ function soli_nivel() {
 
 
 
-  function filtro_centros(){
-    limpiar_input_select('option2');
-    var x = document.getElementById('option1').value;
-    var route = "http://localhost:8000/ver_opciones/"+x+"/";
-    $.get(route,function(res){
-      var z = res[1];
-      for (var p = 0 ; p < res[0].length; p++) {
-        var x = document.getElementById("option2");
-        var option = document.createElement("option");
-        if (z == 2){
-          option.text = res[0][p].region + " "+ res[0][p].sostenimiento ;
-          option.value = res[0][p].id;
 
-        }else if(z == 3){
-          option.text = res[0][p].municipio ;
-          option.value = res[0][p].id;
-
-        }else if (z == 4){
-          option.text = res[0][p].nom_loc +" - "+res[0][p].municipio;
-          option.value = res[0][p].id;
-
-        }else if (z == 5){
-          option.text = res[0][p].fecha_ingreso;
-          option.value = res[0][p].id;
-        }
-      }
-
-    });
-  }
 
   function filtro_centros(callback){
     limpiar_input_select('option2');
@@ -4118,31 +4090,31 @@ function soli_nivel() {
 
 
 
-  function ver_centros_filtro(){
-    var z = document.getElementById("dynamic-table2").rows.length;
-  }
+
 
   function ver_centros_filtro(){
+   var z = document.getElementById("dynamic-table2").rows.length;
    var x = document.getElementById('option1').value;
    var y = document.getElementById('option2').value;
    var route = "http://localhost:8000/ver_centros_filtro/"+x+"/"+y;
 
-   if (z > 1){
+   for (var i = 1; i < z; i++) {
     document.getElementById("dynamic-table2").deleteRow(1);
-
-    var c = document.getElementById("dynamic-table3").rows.length;
-    for (var i = 1; i < c; i++) {
-      document.getElementById("dynamic-table3").deleteRow(1);
-    }
-
   }
+
+
+  var c = document.getElementById("dynamic-table3").rows.length;
+  for (var i = 1; i < c; i++) {
+    document.getElementById("dynamic-table3").deleteRow(1);
+  }
+
+  
 
   var x = document.getElementById('option1').value;
   var y = document.getElementById('option2').value;
   var route = "http://localhost:8000/ver_centros_filtro/"+x+"/"+y;
   $.get(route,function(res){
     if (res.length > 0){
-
       var tabla = document.getElementById("dynamic-table2");
       var row = tabla.insertRow(1);
       row.style.backgroundColor = "rgb(219, 255, 194)";
@@ -4185,60 +4157,6 @@ function soli_nivel() {
         cell7.innerHTML = res[7][p].nom_loc;
         cell8.innerHTML = res[7][p].municipio;
       }
-
-      var x = document.getElementById('option1').value;
-      var y = document.getElementById('option2').value;
-      var route = "http://localhost:8000/ver_centros_filtro/"+x+"/"+y;
-      $.get(route,function(res){
-        if (res.length > 0){
-
-          var tabla = document.getElementById("dynamic-table2");
-          var row = tabla.insertRow(1);
-          row.style.backgroundColor = "rgb(219, 255, 194)";
-          var cell1 = row.insertCell(0);
-          var cell2 = row.insertCell(1);
-          var cell3 = row.insertCell(2);
-          var cell4 = row.insertCell(3);
-          var cell5 = row.insertCell(4);
-          var cell6 = row.insertCell(5);
-          var cell7 = row.insertCell(6);
-
-          cell1.innerHTML = res[0].total_registros;
-          cell2.innerHTML = res[3].total_registros;
-          cell3.innerHTML = new Intl.NumberFormat().format(res[4].total_registros);
-          cell4.innerHTML =  new Intl.NumberFormat().format(res[1].total_registros);
-          cell5.innerHTML =  new Intl.NumberFormat().format(res[2].total_registros);
-          cell6.innerHTML =  new Intl.NumberFormat().format(res[5].total_registros);
-          cell7.innerHTML =  new Intl.NumberFormat().format(res[6].total_registros);
-
-          for (var p = 0 ; p < res[7].length; p++) {
-            var tabla = document.getElementById("dynamic-table3");
-            var row = tabla.insertRow(1);
-            row.style.backgroundColor = "rgb(219, 255, 194)";
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            var cell4 = row.insertCell(3);
-            var cell5 = row.insertCell(4);
-            var cell6 = row.insertCell(5);
-            var cell7 = row.insertCell(6);
-            var cell8 = row.insertCell(7);
-
-
-            cell1.innerHTML = res[7][p].cct;
-            cell2.innerHTML = res[7][p].nombre_escuela;
-            cell3.innerHTML = res[7][p].nivel;
-            cell4.innerHTML = res[7][p].alimentacion;
-            cell5.innerHTML = res[7][p].telefono;
-            cell6.innerHTML = res[7][p].domicilio;
-            cell7.innerHTML = res[7][p].nom_loc;
-            cell8.innerHTML = res[7][p].municipio;
-          }
-
-        }
-      });
-
-
     }
 
   });

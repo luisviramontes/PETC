@@ -20,7 +20,7 @@
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
 							<div class="actions"> </div>
-							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Directorios</strong></h2>
+							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Tabla de Directorio Regional</strong></h2>
 								@include('nomina.directorio_regional.search')
 						</div>
 						<div class="col-md-5">
