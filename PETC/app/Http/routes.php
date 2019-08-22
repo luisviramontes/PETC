@@ -8,7 +8,7 @@
 | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
-| 
+|
 */
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -57,7 +57,6 @@ Route::get('pdf_reintegros/{id}', array('as'=> '/pdf_reintegros','uses'=>'Reinte
 Route::get('busca_rein/{ciclo}','ReintegrosController@busca_rein');
 Route::get('busca_rein_region/{region}/{ciclo}','ReintegrosController@busca_rein_region');
 Route::get('descargar-reintegros/{ciclo}', 'ReintegrosController@excel')->name('nomina.reintegros.excel');
-
 
 /////////////////////////////////////////////////////////////
 
@@ -138,6 +137,7 @@ Route::get('traerescuelas/{esc}','CapturaController@traerescuelas');
 Route::get('busca_captura_esc/{region}/{cct}','CapturaController@busca_captura_esc');
 Route::get('pdf_captura1/{id}', array('as'=> '/pdf_captura1','uses'=>'CapturaController@invoice1'));
 Route::get('descargar-listas-capturas/{ciclo}', 'CapturaController@excel2')->name('nomina.captura.excel2');
+Route::get('traersos/{cct}','CapturaController@traersos');
 
 
 //ALTAS FEDERALES

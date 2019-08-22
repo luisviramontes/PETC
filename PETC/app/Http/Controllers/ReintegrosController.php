@@ -497,9 +497,10 @@ class ReintegrosController extends Controller
        return view('permisos');
 
       }else{
+          $user = Auth::user()->name;
       $reintegros=ReintegrosModel::findOrFail($id);
       $reintegros->estado="INACTIVO";
-      $reintegros->captura="ADMINISTRADOR";
+      $reintegros->captura=$user;
       $reintegros->update();
         return redirect('reintegros');
     }

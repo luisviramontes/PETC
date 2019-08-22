@@ -164,7 +164,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">CCT <strog class="theme_color">*</strog></label>
 													<div class="col-sm-8">
-														<select name="cct" id="cct" class="form-control select2"   value="{{Input::old('cct')}}"  onchange="captura_personal()" required>
+														<select name="cct" id="cct" class="form-control select2"   value="{{Input::old('cct')}}"  onchange="captura_personal();tarersos()" required>
 															@foreach($cct as $ct)
 															<option value="{{$ct->id}}">
 																{{$ct->cct}}
@@ -202,8 +202,7 @@
 													<div class="col-sm-6">
 														<select name="sostenimiento" id="sostenimiento" class="form-control select" required>
 
-															<option value="FEDERAL" selected>FEDERAL</option>
-															<option value="ESTATAL" >ESTATAL </option>
+
 
 														</select>
 
@@ -572,6 +571,28 @@ function cambiacct(value) {
 }
 }
 
+function tarersos(){
+  var cct = document.getElementById("cct").value;
+
+  var route = "http://localhost:8000/traersos/"+cct;
+
+  $.get(route,function(res){
+    if(res.length > 0){
+      for (var i = 0; i < res.length; i++) {
+        if(res[i].estado =="ACTIVO"){
+          var x = document.getElementById("sostenimiento");
+          var option = document.createElement("option");
+          option.text = res[i].id_region;
+          option.value = res[i].id;
+
+          x.add(option, x[i]);
+
+        }
+      }
+    }
+
+  });
+}
 
 </script>
 @endsection

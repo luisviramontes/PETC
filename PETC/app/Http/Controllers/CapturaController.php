@@ -1055,6 +1055,17 @@ class CapturaController extends Controller
       $captura->toArray());
    }
 
+   public function traersos(Request $request,$cct)
+         {
+           $personal= CentroTrabajoModel::join('region','region.id','=','centro_trabajo.id_region')
+           ->select('id','cct','id_region', 'estado')
+           ->where('id','=',$cct)->where('estado','=','ACTIVO')
+           ->get();
+
+           return response()->json(
+             $personal->toArray());
+   }
+
 
    public function excel(Request $request)
    {
