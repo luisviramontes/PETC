@@ -121,8 +121,11 @@
 													<label class="col-sm-3 control-label">Tipo de Movimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 														<select name="movimiento" id="movimiento" class="form-control select" onchange="captura_personal(this.value)" required>
+															<option selected>
+																Selecciona una opción
+															</option>
 															<option value="INICIO" >DESDE INICIO DE CICLO</option>
-															<option value="NUEVO" selected>NUEVO RECURSO </option>
+															<option value="NUEVO">NUEVO RECURSO </option>
 															<option value="ALTA">ALTA</option>
 														</select>
 														<div class="text-danger" id='error_movimiento'>{{$errors->formulario->first('error_movimiento')}}</div>
@@ -133,6 +136,9 @@
 													<label class="col-sm-3 control-label">Clave <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 														<select name="clave" id="clave"  onchange="verifica_clave()" class="form-control select" required>
+															<option selected>
+																Selecciona una opción
+															</option>
 															@foreach($claves as $clave)
 															<option value="{{$clave->id}}_{{$clave->tipo_puesto}}">
 																{{$clave->cat_puesto}}: {{$clave->des_puesto}} - {{$clave->tipo_puesto}}
@@ -145,12 +151,15 @@
 												</div><!--/form-group-->
 
 												<div class="form-group">
-													<label class="col-sm-3 control-label">Categoria;<strog class="theme_color">*</strog></label>
+													<label class="col-sm-3 control-label">Categoria:<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 														<select name="puesto" id="puesto" class="form-control select" onchange="cambia(this.value);captura_personal()" required>
+															<option selected>
+																Selecciona una opción
+															</option>
 
 															<option value="DIRECTOR" >DIRECTOR</option>
-															<option value="DOCENTE" selected>DOCENTE </option>
+															<option value="DOCENTE">DOCENTE </option>
 															<option value="INTENDENTE">INTENDENTE</option>
 															<option value="USAER">USAER</option>
 															<option value="EDUCACION FISICA">EDUCACION FISICA</option>
@@ -164,7 +173,10 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">CCT <strog class="theme_color">*</strog></label>
 													<div class="col-sm-8">
-														<select name="cct" id="cct" class="form-control select2"   value="{{Input::old('cct')}}"  onchange="captura_personal();tarersos()" required>
+														<select name="cct" id="cct" class="form-control select2"   value="{{Input::old('cct')}}"  onchange="captura_personal();traersos()" required>
+															<option selected>
+																Selecciona una opción
+															</option>
 															@foreach($cct as $ct)
 															<option value="{{$ct->id}}">
 																{{$ct->cct}}
@@ -181,13 +193,11 @@
 														<label class="col-sm-3 control-label">CCT NUEVO <strog class="theme_color">*</strog></label>
 														<div class="col-sm-8">
 															<select name="cct_nuevo" id="cct_nuevo" class="form-control select2"   value="{{Input::old('cct')}}"  onchange="captura_personal()" >
-																@foreach($cct as $ct)
 
+																@foreach($cct as $ct)
 																<option value="{{$ct->id}}" >
 																	{{$ct->cct}}
 																</option>
-
-
 																@endforeach
 															</select>
 															<div class="help-block with-errors"></div>
@@ -201,7 +211,9 @@
 													<label class="col-sm-3 control-label">Sostenimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 														<select name="sostenimiento" id="sostenimiento" class="form-control select" required>
-
+															<option selected>
+																Selecciona una opción
+															</option>
 
 
 														</select>
@@ -571,27 +583,31 @@ function cambiacct(value) {
 }
 }
 
-function tarersos(){
+function traersos(){
   var cct = document.getElementById("cct").value;
 
   var route = "http://localhost:8000/traersos/"+cct;
+	$.get(route,function(res){
 
-  $.get(route,function(res){
-    if(res.length > 0){
-      for (var i = 0; i < res.length; i++) {
-        if(res[i].estado =="ACTIVO"){
-          var x = document.getElementById("sostenimiento");
-          var option = document.createElement("option");
-          option.text = res[i].id_region;
-          option.value = res[i].id;
+	    if(res.length > 0){
 
-          x.add(option, x[i]);
+	      for (var i = 0; i < res.length; i++) {
+	        if(res[i].estado =="ACTIVO"){
+						console.log('entro');
+	          var x = document.getElementById("sostenimiento");
+	          var option = document.createElement("option");
+	          option.text = res[i].sostenimiento+"-"+res[i].cct;
+	          option.value = res[i].sostenimiento ;
 
-        }
-      }
-    }
+	          x.add(option, x[i]);
 
-  });
+	        }
+	      }
+	    }
+
+	  });
+
+
 }
 
 </script>

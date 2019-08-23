@@ -1023,6 +1023,18 @@ class CapturaController extends Controller
        $escuelas->toArray());
    }
 
+   public function traersos($cct)
+         {
+           $sostenimiento=CentroTrabajoModel::join('region', 'region.id', '=','centro_trabajo.id_region')
+           ->where('centro_trabajo.id','=',$cct)
+           ->where('centro_trabajo.estado','=',"ACTIVO")
+           ->select('centro_trabajo.cct','region.sostenimiento','centro_trabajo.estado')
+           ->get();
+
+           return response()->json(
+             $sostenimiento->toArray());
+   }
+
    public function busca_captura_esc($region,$cct){
      if ($region == "todas") {
        $captura=DB::table('captura')
@@ -1055,16 +1067,6 @@ class CapturaController extends Controller
       $captura->toArray());
    }
 
-   public function traersos(Request $request,$cct)
-         {
-           $personal= CentroTrabajoModel::join('region','region.id','=','centro_trabajo.id_region')
-           ->select('id','cct','id_region', 'estado')
-           ->where('id','=',$cct)->where('estado','=','ACTIVO')
-           ->get();
-
-           return response()->json(
-             $personal->toArray());
-   }
 
 
    public function excel(Request $request)
