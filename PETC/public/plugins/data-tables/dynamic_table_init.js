@@ -2490,3 +2490,90 @@ $(document).ready(function() {
         }
     } );
  } );
+
+function fnFormatDetails21 ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+
+    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de la Escuela:</strong></td><td>'+aData[2]+' </td></tr>';
+    sOut += '<tr><td><strong>Municipio:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Localidad:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Domicilio:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>Región:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Sostenimiento:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>Teléfono:</strong></td><td>'+aData[8]+' </td></tr>';
+    sOut += '<tr><td><strong>Email:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Capturo:</strong></td><td>'+aData[10]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong>Alimentacion:</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>Modificado:</strong></td><td>'+aData[13]+' </td></tr>';
+    sOut += '<tr><td><strong>Total de Alumnos:</strong></td><td>'+aData[14]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Niñas:</strong></td><td>'+aData[15]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Niños:</strong></td><td>'+aData[16]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Grupos:</strong></td><td>'+aData[17]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Grados:</strong></td><td>'+aData[18]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Directores:</strong></td><td>'+aData[19]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Docentes:</strong></td><td>'+aData[20]+' </td></tr>';
+    sOut += '<tr><td><strong>Total E.Fisica:</strong></td><td>'+aData[21]+' </td></tr>';
+    sOut += '<tr><td><strong>Total USAER:</strong></td><td>'+aData[22]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Artistica :</strong></td><td>'+aData[23]+' </td></tr>';
+    sOut += '<tr><td><strong>Total Intendentes:</strong></td><td>'+aData[24]+' </td></tr>';
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table21').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info21 thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info21 tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info21').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info21 tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails21(oTable, nTr), 'details' );
+        }
+    } );
+ } );

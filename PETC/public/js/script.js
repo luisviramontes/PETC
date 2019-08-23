@@ -1055,6 +1055,28 @@ function enviar_ciclo12(){
   location.href="/oficiosrecibidos?searchText="+y+"&ciclo_escolar="+x;
 }
 
+function enviar_ciclo13(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var y =document.getElementById('searchText').value;
+
+  location.href="/nomina_federal?searchText="+y+"&ciclo_escolar="+x;
+}
+
+function enviar_ciclo14(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var y =document.getElementById('searchText').value;
+
+  location.href="/nomina_estatal?searchText="+y+"&ciclo_escolar="+x;
+}
+
+function enviar_ciclo15(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var y =document.getElementById('searchText').value;
+  document.getElementById('excel').href="/descargar-estadistica911/"+x; 
+
+  location.href="/estadistica911?searchText="+y+"&ciclo_escolar="+x;
+}
+
 
 
 ///dir regional//
