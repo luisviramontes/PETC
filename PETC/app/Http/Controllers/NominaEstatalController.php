@@ -26,23 +26,35 @@ class NominaEstatalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-        public function __construct()
+    public function __construct()
     {
-        $this->middleware('auth');
+      $this->middleware('auth');
     }
     public function index(Request $request)
     {
-        $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
-       return view('permisos');
+       return view('permisos'); 
 
-      }else{
- 
+     }else{
+
       if($request)
       {
-        $ciclos=DB::table('ciclo_escolar')->get();
+       $ciclos=DB::table('ciclo_escolar')->get();
        $query=trim($request->GET('searchText'));
        $query2=trim($request->GET('ciclo_escolar'));
+       if($query == "" && $query2 == ""){
+        $query2='2019-2020';
+        $nomina_estatal = DB::table('nomina_estatal')
+        ->where('ciclo_escolar','=',$query2)
+        ->paginate(24);
+
+      }elseif($query == "" && $query2 != ""){
+        $nomina_estatal = DB::table('nomina_estatal')
+        ->where('ciclo_escolar','=',$query2)
+        ->paginate(24);
+
+      }else{
        $nomina_estatal = DB::table('nomina_estatal')
        ->where('ciclo_escolar','=',$query2)
        ->where('RFC','LIKE','%'.$query.'%')
@@ -54,13 +66,15 @@ class NominaEstatalController extends Controller
        ->orwhere('qna_fin','LIKE','%'.$query.'%')
        ->orwhere('qna_pago','LIKE','%'.$query.'%')
        ->paginate(24);
-      }
+
+     }
+   }
 
 
-      return view('nomina.nomina_estatal.index',["nomina_estatal" => $nomina_estatal,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
+   return view('nomina.nomina_estatal.index',["nomina_estatal" => $nomina_estatal,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
 
         //
-    }}
+ }}
 
     /**
      * Show the form for creating a new resource.
@@ -80,12 +94,12 @@ class NominaEstatalController extends Controller
      */
     public function store(Request $request)
     {
-                $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
-        $nomina_estatal = new NominaEstatalModel;
+     }else{
+      $nomina_estatal = new NominaEstatalModel;
 
     }}
 
@@ -137,15 +151,15 @@ class NominaEstatalController extends Controller
      */
     public function destroy($qna_pago)
     {
-                $tipo_usuario = Auth::user()->tipo_usuario;
+      $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
 
-      }else{
+     }else{
 
       NominaEstatalModel::where('qna_pago', $qna_pago)->delete();
 
 
       return redirect('/nomina_estatal');
     }}
-}
+  }

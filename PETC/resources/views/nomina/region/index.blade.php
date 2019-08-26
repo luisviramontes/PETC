@@ -30,7 +30,7 @@
 									<div class="btn-group" style="margin-right: 10px;">
 											<a class="btn btn-sm btn-success tooltips" href="{{ route('region.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Region"> <i class="fa fa-plus"></i> Registrar </a>
 											<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.region.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-											<a class="btn btn-primary btn-sm" href="{{URL::action('RegionController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+											<a class="btn btn-primary btn-sm" href="{{URL::action('RegionController@invoice','2019-2020')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" target="_blank"  data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
 
 									</div>
 

@@ -54,7 +54,6 @@ class FortalecimientoController extends Controller
        ->join('ciclo_escolar', 'fortalecimiento.id_ciclo', '=','ciclo_escolar.id')
        ->join('region', 'centro_trabajo.id_region', '=','region.id')
 
-
        ->where('fortalecimiento.id_ciclo','=',$query2)
 
 
@@ -70,35 +69,27 @@ class FortalecimientoController extends Controller
        ->join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
        ->join('ciclo_escolar', 'fortalecimiento.id_ciclo', '=','ciclo_escolar.id')
        ->join('region', 'centro_trabajo.id_region', '=','region.id')
-
-
        ->where('fortalecimiento.id_ciclo','=',$query2)
-
-
        ->select('fortalecimiento.id as id','fortalecimiento.*'
        ,'centro_trabajo.cct as cct'
        ,'ciclo_escolar.ciclo'
        ,'region.sostenimiento'
        ,'region.region')
-
        ->paginate(915);
      }else {
        $fortalecimientos = DB::table('fortalecimiento')
        ->join('centro_trabajo', 'fortalecimiento.id_cct', '=','centro_trabajo.id')
        ->join('ciclo_escolar', 'fortalecimiento.id_ciclo', '=','ciclo_escolar.id')
        ->join('region', 'centro_trabajo.id_region', '=','region.id')
-
        ->select('fortalecimiento.id as id','fortalecimiento.*'
        ,'centro_trabajo.cct as cct'
        ,'ciclo_escolar.ciclo'
        ,'region.sostenimiento'
        ,'region.region')
-
        ->where('centro_trabajo.cct','LIKE','%'.$query.'%')
        ->orwhere('region.sostenimiento','LIKE','%'.$query.'%')
        ->orwhere('monto_forta','LIKE','%'.$query.'%')
        ->where('fortalecimiento.id_ciclo','=',$query2)
-
        ->paginate(915);
 
 

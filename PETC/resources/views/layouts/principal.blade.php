@@ -282,6 +282,12 @@
             </ul>
           </li>
 
+              <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Estadisticas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('estadistica911')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Estadistica 911</b> </a> </li>
+            </ul>
+          </li>
+
 
         </ul>
       </div>

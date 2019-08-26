@@ -443,3 +443,7 @@ Route::resource('calculo_nomina', 'NominaCapturadaController@calculo_nomina');
 Route::get('buscar_qnas_activas/{ciclo}', 'NominaCapturadaController@buscar_qnas');
 Route::get('montos_qnas/{qna}', 'NominaCapturadaController@montos_qnas');
 Route::get('montos_qnas_region/{qna}/{region}/{ciclo}', 'NominaCapturadaController@montos_qnas_region');
+
+//ESTADISTICA 911
+Route::resource('estadistica911', 'Estadistica911Controller');
+Route::get('descargar-estadistica911/{ciclo}', 'Estadistica911Controller@excel')->name('nomina.descargar-estadistica911.excel');

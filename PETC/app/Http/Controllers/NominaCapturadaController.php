@@ -178,8 +178,8 @@ class NominaCapturadaController extends Controller
          foreach ($data as $key => $value) {        
           $est= new NominaEstatalModel;
           $est->bco = $value->bco;
-          $$est->num_cheque = $value->num_cheque;
-          $estnum_empleado = $value->num_empleado;
+          $est->num_cheque = $value->num_cheque;
+          $est->num_empleado = $value->num_empleado;
           $est->rfc = $value->rfc;
           $est->nombre = $value->nombre;
           $est->cve = $value->cve;
