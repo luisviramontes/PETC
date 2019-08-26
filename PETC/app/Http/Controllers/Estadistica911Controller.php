@@ -128,57 +128,51 @@ class Estadistica911Controller extends Controller
      $data = Excel::load($path)->get();
 
      foreach ($data as $key => $value) {  
-        $est= new Estadistica911Model;
-        $cct = $value->cct;
         $ciclo = $value->ciclo_escolar;
-        $est->total_alumnos = $value->total_alumnos;
-        $est->total_ninas = $value->total_ninas;
-        $est->total_ninos = $value->total_ninos;
-        $est->total_grupos = $value->total_grupos;
-        $est->total_grados = $value->total_grados;
-        $est->total_directores = $value->total_directores;
-        $est->total_docentes = $value->total_docentes;
-        $est->total_fisica = $value->total_fisica;
-        $est->total_usaer = $value->total_usaer;
-        $est->total_artistica = $value->total_artistica;
-        $est->total_intendentes = $value->total_intendentes;
         $id_ciclo=DB::table('ciclo_escolar')->where('ciclo','=',$ciclo)->first()->id;
-        $id_centro=DB::table('centro_trabajo')->where('cct','=',$cct)->first()->id;
-        $est->id_centro_trabajo=$id_centro;       
-        $est->id_ciclo = $id_ciclo;
-        $est->captura = $user;
-        $est->save();   
     }
+
+    $estadistica=DB::table('estadistica911')->where('id_ciclo','=',$id_ciclo)->get();
+    $cuenta = count($estadistica);
+
+    for ($x=0; $x < $cuenta  ; $x++) {
+      $elimina = Estadistica911Model::findOrFail($estadistica[$x]->id);
+      $elimina->delete();
+  }
+
+
+  foreach ($data as $key => $value) {  
+    $est= new Estadistica911Model;
+    $cct = $value->cct;
+    $ciclo = $value->ciclo_escolar;
+    $est->total_alumnos = $value->total_alumnos;
+    $est->total_ninas = $value->total_ninas;
+    $est->total_ninos = $value->total_ninos;
+    $est->total_grupos = $value->total_grupos;
+    $est->total_grados = $value->total_grados;
+    $est->total_directores = $value->total_directores;
+    $est->total_docentes = $value->total_docentes;
+    $est->total_fisica = $value->total_fisica;
+    $est->total_usaer = $value->total_usaer;
+    $est->total_artistica = $value->total_artistica;
+    $est->total_intendentes = $value->total_intendentes;
+    $id_ciclo=DB::table('ciclo_escolar')->where('ciclo','=',$ciclo)->first()->id;
+    $id_centro=DB::table('centro_trabajo')->where('cct','=',$cct)->first()->id;
+    $est->id_centro_trabajo=$id_centro;       
+    $est->id_ciclo = $id_ciclo;
+    $est->captura = $user;
+    $est->save();   
+}
+  return Redirect::to('estadistica911');
 }
         //
 }
 
-public function verifica(){
-     $path = $request->file->getRealPath();
-     $data = Excel::load($path)->get();
-
-     foreach ($data as $key => $value) {  
-        $est= new Estadistica911Model;
-        $cct = $value->cct;
-        $ciclo = $value->ciclo_escolar;
-        $est->total_alumnos = $value->total_alumnos;
-        $est->total_ninas = $value->total_ninas;
-        $est->total_ninos = $value->total_ninos;
-        $est->total_grupos = $value->total_grupos;
-        $est->total_grados = $value->total_grados;
-        $est->total_directores = $value->total_directores;
-        $est->total_docentes = $value->total_docentes;
-        $est->total_fisica = $value->total_fisica;
-        $est->total_usaer = $value->total_usaer;
-        $est->total_artistica = $value->total_artistica;
-        $est->total_intendentes = $value->total_intendentes;
-        $id_ciclo=DB::table('ciclo_escolar')->where('ciclo','=',$ciclo)->first()->id;
-        $id_centro=DB::table('centro_trabajo')->where('cct','=',$cct)->first()->id;
-        $est->id_centro_trabajo=$id_centro;       
-        $est->id_ciclo = $id_ciclo;
-        $est->captura = $user;
-        $est->save();   
-    }
+public function verifica($ciclo){
+ 
+    $ciclos=DB::table('ciclo_escolar')->where('id','=',$ciclo)->get();
+return response()->json(
+  $ciclos);
 
 }
 

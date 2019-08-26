@@ -202,6 +202,10 @@
 													<div class="col-sm-6">
 														<select name="sostenimiento" id="sostenimiento" class="form-control select" required>
 
+															<option value="FEDERAL" selected>FEDERAL</option>
+
+															<option value="ESTATAL" >ESTATAL </option>
+
 
 
 														</select>

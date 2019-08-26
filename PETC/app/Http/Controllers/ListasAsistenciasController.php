@@ -42,7 +42,7 @@ class ListasAsistenciasController extends Controller
       if($request)
       {
         $query=trim($request->GET('searchText'));
-        $query2=trim($request->GET('ciclo_escolarl'));
+        $query2=trim($request->GET('ciclo_escolar'));
 
         $ciclos=DB::table('ciclo_escolar')->get();
 
@@ -105,7 +105,7 @@ class ListasAsistenciasController extends Controller
          ->paginate(24);
        }
        //print_r($listas);
-       return view('nomina.listas_asistencias.index',["listas"=>$listas,"searchText"=>$query,"ciclo_escolarl"=>$query2,"ciclos"=>$ciclos]);
+       return view('nomina.listas_asistencias.index',["listas"=>$listas,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
       // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
       //
 

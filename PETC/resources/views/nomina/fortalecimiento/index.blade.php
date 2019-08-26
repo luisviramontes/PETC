@@ -31,7 +31,7 @@
 									<div class="btn-group" style="margin-right: 10px;">
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('fortalecimiento.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Fortalecimiento"> <i class="fa fa-plus"></i> Registrar </a>
 										<a class="btn btn-sm btn-warning tooltips" id="excel_fortalecimiento" href="{{ route('nomina.fortalecimiento.excel','2')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-								 		<a class="btn btn-primary btn-sm" id="pdf_fortalecimiento" href="{{URL::action('FortalecimientoController@invoice','2')}}"  style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+								 		<a class="btn btn-primary btn-sm" id="pdf_fortalecimiento" href="{{URL::action('FortalecimientoController@invoice','2')}}"  style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom"  target="_blank" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 										<a class="btn btn-primary btn-sm"  href="{{URL::action('FortalecimientoController@ver_fortalecimiento')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver registro de capturas"> <i class="fa fa-eye"></i> Ver Capturas</a>
 
 									</div>

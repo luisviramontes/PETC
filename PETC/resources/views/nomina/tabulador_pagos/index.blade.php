@@ -33,7 +33,7 @@
 
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.tabulador_pagos.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
 
-										<a class="btn btn-primary btn-sm" href="{{URL::action('TabuladorPagosController@invoice',$tabla_2->ciclo)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
+										<a class="btn btn-primary btn-sm" href="{{URL::action('TabuladorPagosController@invoice',$tabla_2->ciclo)}}" target="_blank" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
 
 										<a  class="btn btn-sm btn btn-info" href="{{route('nomina.tabulador_pagos.calculadora_pagos')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Calculadora de Pagos"> <i class="fa fa-plus"></i> Calculadora de Pagos </a> 
 

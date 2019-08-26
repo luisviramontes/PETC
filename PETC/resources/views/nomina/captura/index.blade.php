@@ -16,7 +16,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="block-web">
-				<div class="header">
+				<div class="header"> 
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
 							<div class="actions"> </div>
@@ -240,13 +240,13 @@
 							window.onload=function() {
 								document.getElementById('searchText').focus();
 
-								var x =document.getElementById('ciclo_escolar').value;
+								var x =2;
 								document.getElementById('excel').href="/descargar-listas-capturas/"+x;
 								document.getElementById('invoice').href="/pdf_captura1/"+x;
 							}
 
 							function cambia_ruta_cap(){
-									 var x =document.getElementById('ciclo_escolar').value;
+									 var x =2;
 												 document.getElementById('excel').href="/descargar-listas-capturas/"+x;
 												 document.getElementById('invoice').href="/pdf_captura1/"+x;
 								}

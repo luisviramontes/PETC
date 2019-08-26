@@ -31,7 +31,7 @@
 									<div class="btn-group" style="margin-right: 10px;">
 											<a class="btn btn-sm btn-success tooltips" href="{{ route('ciclo_escolar.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Ciclo Escolar"> <i class="fa fa-plus"></i> Registrar </a>
 											<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.ciclo_escolar.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-											<a class="btn btn-primary btn-sm" href="{{URL::action('CicloEscolarController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+											<a class="btn btn-primary btn-sm" href="{{URL::action('CicloEscolarController@invoice','2018-2019')}}" style="margin-right: 10px;" target="_blank"  data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
 									</div>
 

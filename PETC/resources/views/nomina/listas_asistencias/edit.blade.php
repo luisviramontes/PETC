@@ -117,7 +117,7 @@
             <div class="form-group">
 							<label class="col-sm-3 control-label">Observaciones: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="observaciones" type="text"   class="form-control" required value="{{$listas->observaciones}}" />
+								<input name="observaciones" type="text"   class="form-control"  value="{{$listas->observaciones}}" />
 							</div>
 						</div>
 

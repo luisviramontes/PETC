@@ -279,6 +279,7 @@
           <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Bancos <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
               <li> <a href="{{url('bancos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bancos</b> </a> </li>
+               <li> <a href="{{url('cuentas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuentas</b> </a> </li>
             </ul>
           </li>
 

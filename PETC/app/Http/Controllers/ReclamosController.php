@@ -77,7 +77,7 @@ class ReclamosController extends Controller
       $genero=DB::table('directoriointerno')->where('estado','=','ACTIVO')->get();
       $dirigido=DB::table('directorioexterno')->where('estado','=','ACTIVO')->get();
       $ciclos=DB::table('ciclo_escolar')->get();
-      $captura=DB::table('captura')->where('captura.estado','=','ACTIVO')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->where('captura.qna_actual','=','0')->select('captura.id','captura.rfc','captura.fecha_inicio','captura.fecha_termino','captura.nombre','captura.categoria','centro_trabajo.nombre_escuela','centro_trabajo.cct')->get();
+      $captura=DB::table('captura')->where('captura.estado','=','ACTIVO')->join('centro_trabajo','centro_trabajo.id','=','captura.id_cct_etc')->select('captura.id','captura.rfc','captura.fecha_inicio','captura.fecha_termino','captura.nombre','captura.categoria','centro_trabajo.nombre_escuela','centro_trabajo.cct')->get();
       return view('nomina.reclamos.create', ['dirigido'=>$dirigido,'captura'=> $captura,'ciclos'=>$ciclos,'genero'=>$genero,'pagos'=>$pagos]);
         //
     }}
