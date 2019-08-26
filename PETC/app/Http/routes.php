@@ -386,8 +386,10 @@ Route::get('buscar_oficio2/{oficio}/{ciclo}', 'OficiosEmitidosController@buscar_
 Route::get('ultimo_oficio/{id}', 'OficiosEmitidosController@ultimo_oficio');
 Route::get('buscar_oficio3/{oficio}/{id}', 'OficiosEmitidosController@buscar_oficio3');
 Route::get('ver_oficios_e', array('as'=> '/ver_oficios_e','uses'=>'OficiosEmitidosController@ver_oficios_e'));
-Route::get('ver_oficios_ciclo/{ciclo}/','OficiosEmitidosController@ver_oficios_ciclo');
+Route::get('ver_oficios_ciclo/{ciclo}/','OficiosEmitidosController@ver_oficios_ciclo'); 
 Route::get('ver_oficios_area/{ciclo}/{area}','OficiosEmitidosController@ver_oficios_area');
+Route::get('ver_oficios_persona/','OficiosEmitidosController@ver_oficios_persona');
+Route::get('ver_oficios_personar/','OficiosEmitidosController@ver_oficios_personar');
 Route::post('subir_imagen_oficioe/{id}', 'OficiosEmitidosController@subir_imagen_oficioe');
 
 //OFICIOS RECIBIDOS

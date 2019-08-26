@@ -58,24 +58,24 @@
 								<th>Region </th>
 								<th>RFC</th>
 								<th>Nom Empeado</th>
-								<th>Entidad Federal</th>
-								<th>CT Clasif</th>
+								<th style="display:none;">Entidad Federal</th>
+								<th style="display:none;">CT Clasif</th>
 								<th style="display:none;">CT ID</th>
 								<th style="display:none;">CT Sec</th>
 								<th style="display:none;">CT Digito Ver</th>
-								<th>Cod Pago</th>
-								<th>Unidad</th>
+								<th style="display:none;">Cod Pago</th>
+								<th style="display:none;">Unidad</th>
 								<th style="display:none;">Subunidad</th>
 								<th style="display:none;">Cat Puesto</th>
-								<th>Horas</th>
+								<th style="display:none;">Horas</th>
 								<th style="display:none;">Cons Plaza</th>
 								<th>Qna Ini</th>
 								<th>Qna Fin</th>
 								<th>Qna Pago</th>
 								<th>Num Cheque</th>
-								<th style="display:none;">PERC</th>
-								<th style="display:none;">DED</th>
-								<th style="display:none;">Neto</th>
+								<th>PERC</th>
+								<th >DED</th>
+								<th>Neto</th>
 								<th style="display:none;">Ciclo escolar</th>
 								<th>Fecha de Registro</th>
 								<th style="display:none;">Captura</th>
@@ -90,24 +90,24 @@
 								<td>{{$nomina->region}} </td>
 								<td>{{$nomina->rfc}}</td>
 								<td>{{$nomina->nom_emp}}</td>
-								<td>{{$nomina->ent_fed}}</td>
-								<td>{{$nomina->ct_clasif}}</td>
+								<td style="display:none;">{{$nomina->ent_fed}}</td>
+								<td style="display:none;">{{$nomina->ct_clasif}}</td>
 								<td style="display:none;">{{$nomina->ct_id}}</td>
 								<td style="display:none;">{{$nomina->ct_sec}}</td>
 								<td style="display:none;">{{$nomina->ct_digito_ver}}</td>
-								<td>{{$nomina->cod_pago}}</td>
-								<td>{{$nomina->unidad}}</td>
+								<td style="display:none;">{{$nomina->cod_pago}}</td>
+								<td style="display:none;">{{$nomina->unidad}}</td>
 								<td style="display:none;">{{$nomina->subunidad}}</td>
 								<td style="display:none;">{{$nomina->cat_puesto}}</td>
-								<td>{{$nomina->horas}}</td>
+								<td style="display:none;">{{$nomina->horas}}</td>
 								<td style="display:none;">{{$nomina->cons_plaza}}</td>
 								<td>{{$nomina->qna_ini_01}}</td>
 								<td>{{$nomina->qna_fin_01}}</td>
 								<td>{{$nomina->qna_pago}}</td>
 								<td>{{$nomina->num_cheque}}</td>
-								<td style="display:none;">$ <?php echo  number_format($nomina->perc) ?></td>
-								<td style="display:none;">$ <?php echo  number_format($nomina->ded) ?></td>
-								<td style="display:none;"><b>$ <?php echo  number_format($nomina->neto) ?> </b></td>
+								<td >$ <?php echo  number_format($nomina->perc) ?></td>
+								<td >$ <?php echo  number_format($nomina->ded) ?></td>
+								<td ><b>$ <?php echo  number_format($nomina->neto) ?> </b></td>
 								<td style="display:none;">{{$nomina->ciclo_escolar}}</td>
 								<td>{{$nomina->created_at}}</td>
 								<td style="display:none;">{{$nomina->captura}}</td>

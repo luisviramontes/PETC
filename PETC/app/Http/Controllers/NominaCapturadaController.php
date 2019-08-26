@@ -107,18 +107,6 @@ class NominaCapturadaController extends Controller
 
      }else{
 
-       $total_director_est=0;
-       $total_docente_est=0;
-       $total_intendente_est=0;
-       $total_dedu_director_est=0;
-       $total_dedu_docente_est=0;
-       $total_dedu_intendente_est=0;
-       $total_liqui_director_est=0;
-       $total_liqui_docente_est=0;
-       $total_liqui_intendente_est=0;
-       $total_perce_director_est=0;
-       $total_perce_docente_est=0;
-       $total_perce_intendente_est=0;
 
        $improcedentes=array();
 
@@ -156,16 +144,28 @@ class NominaCapturadaController extends Controller
 
         $sostenimiento = $nomina->sostenimiento;
         if($sostenimiento  == "ESTATAL") {
+         $total_director_est=0;
+         $total_docente_est=0;
+         $total_intendente_est=0;
+         $total_dedu_director_est=0;
+         $total_dedu_docente_est=0;
+         $total_dedu_intendente_est=0;
+         $total_liqui_director_est=0;
+         $total_liqui_docente_est=0;
+         $total_liqui_intendente_est=0;
+         $total_perce_director_est=0;
+         $total_perce_docente_est=0;
+         $total_perce_intendente_est=0;
 
           /////////////////////////////
 
-          $path = $formulario->file->getRealPath();
-          $data = Excel::load($path)->get();
+         $path = $formulario->file->getRealPath();
+         $data = Excel::load($path)->get();
 
-          $id_captura= DB::table('captura')->where('sostenimiento','=','ESTATAL')->where('qna_actual','=',"1")->get();
-          $cuenta_captura=count($id_captura);
+         $id_captura= DB::table('captura')->where('sostenimiento','=','ESTATAL')->where('qna_actual','=',"1")->get();
+         $cuenta_captura=count($id_captura);
 
-          for ($i=0; $i < $cuenta_captura ; $i++) { 
+         for ($i=0; $i < $cuenta_captura ; $i++) { 
            $captura=CapturaModel::findOrFail($id_captura[$i]->id);
            $captura->qna_actual=0;
            $captura->update();
@@ -197,28 +197,32 @@ class NominaCapturadaController extends Controller
           $est->captura = $user;
           $est->save();
 
+          
+
           $id_captura= DB::table('captura')->where('rfc','=',$value->rfc)->where('estado','=','ACTIVO')->first();
           if ($id_captura == null) {
            $letra=substr($value->cat_puesto,0,1);
            if ($letra == "S") {
-            $total_intendente_fed= $total_intendente_fed+1;
-            $total_dedu_intendente_fed=$total_dedu_intendente_fed + $value->ded;
-            $total_liqui_docente_fed=$total_liqui_docente_fed + $value->neto;
-            $total_perce_intendente_fed=$total_perce_intendente_fed + $value->perc;
+            $total_intendente_est= $total_intendente_est+1;
+            $total_dedu_intendente_est=$total_dedu_intendente_est + $value->ded;
+            $total_liqui_intendente_est=$total_liqui_intendente_est + $value->neto;
+            $total_perce_intendente_est=$total_perce_intendente_est + $value->perc;
         # code...
           }else{
-            $total_docente_fed= $total_docente_fed+1;
-            $total_dedu_docente_fed=$total_dedu_docente_fed + $value->ded;
-            $total_liqui_docente_fed=$total_liqui_docente_fed + $value->neto;
-            $total_perce_docente_fed=$total_perce_docente_fed + $value->perc;
+            $total_docente_est= $total_docente_est+1;
+            $total_dedu_docente_est=$total_dedu_docente_est + $value->ded;
+            $total_liqui_docente_est=$total_liqui_docente_est + $value->neto;        
+            $total_perce_docente_est=$total_perce_docente_est + $value->perc;
 
           } 
+
+
           $improcedente= new PagosImprocedentesModel;
           $improcedente->region=$value->region;
-          $improcedente->nom_emp=$value->nom_emp;
+          $improcedente->nom_emp=$value->nombre;
           $improcedente->rfc=$value->rfc;
-          $improcedente->qna_ini= $value->qna_ini_01;
-          $improcedente->qna_fin=$value->qna_fin_01;
+          $improcedente->qna_ini= $value->qna_ini;
+          $improcedente->qna_fin=$value->qna_fin;
           $improcedente->qna_pago=$value->qna_pago;
           $improcedente->num_cheque=$value->num_cheque;
           $improcedente->perc= $value->perc;
