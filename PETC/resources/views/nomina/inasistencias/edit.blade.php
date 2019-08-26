@@ -577,7 +577,7 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Observaciones: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
-							<input name="observaciones" type="text" id="observaciones"   class="form-control" required value="{{$personal->observaciones}}" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+							<input name="observaciones" type="text" id="observaciones"   class="form-control"  value="{{$personal->observaciones}}" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 						</div>
 					</div>
 

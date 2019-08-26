@@ -447,3 +447,4 @@ Route::get('montos_qnas_region/{qna}/{region}/{ciclo}', 'NominaCapturadaControll
 //ESTADISTICA 911
 Route::resource('estadistica911', 'Estadistica911Controller');
 Route::get('descargar-estadistica911/{ciclo}', 'Estadistica911Controller@excel')->name('nomina.descargar-estadistica911.excel');
+Route::get('verifica_ciclo/{ciclo}', 'Estadistica911Controller@verifica');

@@ -33,7 +33,7 @@
 
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.region.municipios.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar Municipios"> <i class="fa fa-download"></i> Descargar Excel </a>
 
-										<a class="btn btn-primary btn-sm" href="{{URL::action('MunicipiosController@invoice')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+										<a class="btn btn-primary btn-sm" href="{{URL::action('MunicipiosController@invoice')}}" style="margin-right: 10px;" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
 									</div>
 

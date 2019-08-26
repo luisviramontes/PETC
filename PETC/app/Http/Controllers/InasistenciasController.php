@@ -305,7 +305,7 @@ class InasistenciasController extends Controller
 
 
         //
-      } return Redirect::to('inasistencias2/1');}}
+      } return Redirect::to('inasistencias2/2');}}
 
     /**
      * Remove the specified resource from storage.
@@ -327,7 +327,7 @@ class InasistenciasController extends Controller
       $tabla->fecha_aplica=$request->get('qna'.$id);
       $tabla->update();
 
-      return Redirect::to('inasistencias2/1'); 
+      return Redirect::to('inasistencias2/2'); 
 
         //
     }}
@@ -342,7 +342,7 @@ class InasistenciasController extends Controller
       $tabla=InasistenciasModel::findOrFail($id);
       $tabla->delete();
 
-      return Redirect::to('inasistencias2/1'); 
+      return Redirect::to('inasistencias2/2'); 
 
         //
     }}

@@ -1002,11 +1002,11 @@ function enviar_ciclo_director_centro(){
 }
 
 function enviar_ciclo_listas(){ //funcina
-  var x =document.getElementById('ciclo_escolarl').value;
+  var x =document.getElementById('ciclo_escolar').value;
   var y =document.getElementById('searchText').value;
   //document.getElementById('excel').href="/descargar-tarjetas_fortalecimiento/"+x;
   document.getElementById('invoice').href="/pdf_listasasistencias/"+x;
-  location.href="/listas_asistencias?searchText="+y+"&ciclo_escolarl="+x;
+  location.href="/listas_asistencias?searchText="+y+"&ciclo_escolar="+x;
 }
 
 function enviar_ciclo_cap(){ //funciona
@@ -2908,7 +2908,7 @@ function cctescuela(){
           var x = document.getElementById("id_captura");
           var option = document.createElement("option");
           option.text = res[i].nombre;
-          option.value = res[i].nombre +"_"+res[i].categoria +"_"+res[i].sostenimiento +"_"+res[i].id;
+          option.value = res[i].nombre +"_"+res[i].categoria +"_"+res[i].sostenimiento +"_"+res[i].id_cct_etc;
 
           x.add(option, x[i]);
 

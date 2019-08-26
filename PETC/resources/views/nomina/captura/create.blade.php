@@ -211,9 +211,16 @@
 													<label class="col-sm-3 control-label">Sostenimiento;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
 														<select name="sostenimiento" id="sostenimiento" class="form-control select" required>
+
 															<option selected>
 																Selecciona una opción
 															</option>
+
+															<option value="FEDERAL" selected>FEDERAL</option>
+
+															<option value="ESTATAL" >ESTATAL </option>
+
+
 
 
 														</select>

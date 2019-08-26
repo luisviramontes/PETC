@@ -293,7 +293,7 @@
 															@endif
 
 														</select>
-
+ 
 													</div>
 												</div>
 
@@ -350,7 +350,7 @@
 														<label class="col-sm-3 control-label">Número de Escuelas ETC: <strog class="theme_color">*</strog></label>
 														<div class="col-sm-2">
 
-															<input name="num_escuelas" type="number" class="form-control" value="{{$personal->num_escuelas}}" onchange="cambiacct(this.value)" required value="1" >
+															<input name="num_escuelas" type="number" class="form-control" value="{{$personal->num_escuelas}}" onchange="cambiacct(this.value)"  value="1" >
 														</div>
 													</div>
 												</div>

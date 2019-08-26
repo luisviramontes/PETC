@@ -42,7 +42,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Seleccione Ciclo Escolar: <strog class="theme_color"></strog></label>
 							<div class="col-sm-6">
-								<select name="ciclo_escolar" id="ciclo_escolar"  onchange="buscar_estadistica();" class="form-control select2">
+								<select name="ciclo_escolar" id="ciclo_escolar"  onchange="verifica();" class="form-control select2">
 									@foreach($ciclos as $ciclo)
 									@if($ciclo->id == 2)
 									<option value='{{$ciclo->id}}' selected>
@@ -65,7 +65,7 @@
 							<label class="col-sm-3 control-label">Subir Archivo: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
 
-								<input type="file" id="file" name="file" required=""  accept=".csv, .xlsx" >
+								<input type="file" id="file" name="file" required=""  onchange="verifica();" accept=".csv, .xlsx" >
 								<div class="text-danger" id='error_file'>{{$errors->formulario->first('file')}}</div>
 
 							</div>
@@ -100,7 +100,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
 
-								<button type="submit" id="submit"   onclick="modal_loading();" class="btn btn-primary">Guardar</button>
+								<button type="submit" id="submit"   onclick="return verifica();modal_loading();" class="btn btn-primary">Guardar</button>
 								<a href="{{url('/estadistica911')}" class="btn btn-default"> Cancelar</a>
 							</div>
 						</div><!--/form-group-->
@@ -118,7 +118,26 @@
 	}
 
 	function verifica(){
-		
+		var x = document.getElementById('ciclo_escolar').value;
+		var route3 = "http://localhost:8000/verifica_ciclo/"+x+"/";
+		$.get(route3,function(res){
+			if(res.length > 0 ){
+				swal({
+					title: "Esta Seguro?",
+					text: "Se Detecto que se Encuentra una Estadistica 911 Correspondiente al Mismo Ciclo Escolar, ¿Desea Remplazarla? !",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+						return true;
+					} else {
+						return false;
+					}
+				});
+			}
+		});
 	}
 </script>
 

@@ -50,13 +50,11 @@ class CapturaController extends Controller
      }else{
 
        if($request)
-       {
+       { 
         $query=trim($request->GET('searchText'));
-        $query2=trim($request->GET('ciclo_escolar'));
-        $ciclos=DB::table('ciclo_escolar')->get();
 
-        if($query == "" && $query2 == ""){
-         $query2=2;
+        if($query == "" ){
+  
         $personal= DB::table('captura')
         ->join('cat_puesto','cat_puesto.id','=','captura.clave')
         ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
@@ -65,10 +63,6 @@ class CapturaController extends Controller
         ->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
         ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
         ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
-
-
-        ->where('id_ciclo','=',$query2)
-
         ->select('captura.*','cat_puesto.cat_puesto'
           ,'centro_trabajo.cct','centro_trabajo.nombre_escuela'
           ,'ciclo_escolar.ciclo'
@@ -77,7 +71,7 @@ class CapturaController extends Controller
           ,'localidades.nom_loc')
           ->paginate(40);
 
-         }elseif ($query == "" && $query2 != "") {
+         }else {
           $personal= DB::table('captura')
           ->join('cat_puesto','cat_puesto.id','=','captura.clave')
           ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
@@ -86,41 +80,16 @@ class CapturaController extends Controller
           ->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
           ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
           ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
-
-
-          ->where('id_ciclo','=',$query2)
-
-          ->select('captura.*','cat_puesto.cat_puesto'
-            ,'centro_trabajo.cct','centro_trabajo.nombre_escuela'
-            ,'ciclo_escolar.ciclo'
-            ,'region.region'
-            ,'municipios.municipio'
-            ,'localidades.nom_loc')
-            ->paginate(40);
-
-        }else {
-          $personal= DB::table('captura')
-          ->join('cat_puesto','cat_puesto.id','=','captura.clave')
-          ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
-          ->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')
-          ->join('region', 'region.id', '=','centro_trabajo.id_region')
-          ->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
-          ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
-          ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
-
           ->where('captura.nombre','LIKE','%'.$query.'%')
           ->orwhere('captura.rfc','LIKE','%'.$query.'%')
           ->orwhere('centro_trabajo.nombre_escuela','LIKE','%'.$query.'%')
           ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
-          ->where('id_ciclo','=',$query2)
-
           ->select('captura.*','cat_puesto.cat_puesto'
             ,'centro_trabajo.cct','centro_trabajo.nombre_escuela'
             ,'ciclo_escolar.ciclo'
             ,'region.region'
             ,'municipios.municipio'
             ,'localidades.nom_loc')
-
           ->paginate(40);
 
         }
@@ -128,7 +97,7 @@ class CapturaController extends Controller
 
 
 
-        return view('nomina.captura.index',["personal"=>$personal,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
+        return view('nomina.captura.index',["personal"=>$personal,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
       }}}
@@ -1103,7 +1072,7 @@ class CapturaController extends Controller
    public function excel2(Request $request, $aux)
    {
 
-     Excel::create('REGISTRO DE LISTAS DE ASISTENCIA', function($excel) use($aux) {
+     Excel::create('REGISTRO DE CAPTURA', function($excel) use($aux) {
        $excel->sheet('Excel sheet', function($sheet) use($aux) {
          $tabla = CapturaModel::join('cat_puesto','cat_puesto.id','=','captura.clave')
          ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
@@ -1112,15 +1081,16 @@ class CapturaController extends Controller
          ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
          ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
 
-         ->select('centro_trabajo.cct','centro_trabajo.nombre_escuela','municipios.municipio','localidades.nom_loc'
-           ,'centro_trabajo.domicilio','region.region','region.sostenimiento'
-           ,'captura.nombre','captura.telefono','captura.email','captura.rfc'
+         ->select('captura.nombre','captura.telefono','captura.email','captura.rfc'
            ,'cat_puesto.cat_puesto'
-           ,'ciclo_escolar.ciclo')
+           ,'captura.categoria','ciclo_escolar.ciclo','centro_trabajo.cct','centro_trabajo.nombre_escuela','municipios.municipio','localidades.nom_loc'
+           ,'centro_trabajo.domicilio','region.region','region.sostenimiento','captura.pagos_registrados'
+           )
+         ->where('captura.estado','=','ACTIVO')
          ->where('id_ciclo','=',$aux)
          ->get();
          $sheet->fromArray($tabla);
-         $sheet->row(1,['CCT','NOMBRE ESCUELA','MUNICIPIO','LOCALIDAD' ,'DOMICILIO','REGION','SOSTENIMIENTO','NOMBRE','TELEFONO','EMAIL','RFC','CATEGORIA PUESTO','CICLO ESCOLAR']);
+         $sheet->row(1,['NOMBRE','TELEFONO','EMAIL','RFC','CATEGORIA PUESTO','CATEGORIA','CICLO ESCOLAR','CCT','NOMBRE ESCUELA','MUNICIPIO','LOCALIDAD' ,'DOMICILIO','REGION','SOSTENIMIENTO','PAGO GENERADO']);
          $sheet->setOrientation('landscape');
        });
      })->export('xls');

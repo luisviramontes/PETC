@@ -3,7 +3,7 @@
 	<div class="input-group">
 
 			<div class="col-sm-16">
-				<input name="searchText" id="searchText" type="text" value="{{$searchText}}"  class="form-control" required />
+				<input name="searchText" id="searchText" type="text" value="{{$searchText}}"  class="form-control" required  onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"/>
 			</div>
 
 
@@ -17,9 +17,9 @@
 <div class="form-group">
 						<label class="col-sm-3 control-label">Seleccione Ciclo Escolar : <strog class="theme_color"></strog></label>
 						<div class="col-sm-6">
-							<select name="ciclo_escolarl" id="ciclo_escolarl" class="form-control select2" onchange="enviar_ciclo_listas();cambia_ruta_lista()" >
+							<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2" onchange="enviar_ciclo_listas();cambia_ruta_lista()" >
 								@foreach($ciclos as $ciclo)
-								@if($ciclo->id == $ciclo_escolarl)
+								@if($ciclo->id == $ciclo_escolar)
 								<option value='{{$ciclo->id}}' selected>
 									{{$ciclo->ciclo}}
 								</option>

@@ -36,7 +36,7 @@
 
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('cap_rechazo.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Nomina"> <i class="fa fa-plus"></i> Registrar </a>
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.cap_rechazo.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-										<a class="btn btn-primary btn-sm" href="{{URL::action('RechazoCapController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+										<a class="btn btn-primary btn-sm" href="{{URL::action('RechazoCapController@invoice','2019-2020')}}" target="_blank"  style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
 
 									</div>

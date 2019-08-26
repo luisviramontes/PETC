@@ -576,7 +576,7 @@ class ReintegrosController extends Controller
 public function traerpersonal(Request $request,$cct)
       {
         $personal= CapturaModel::
-        select('id','categoria','nombre','sostenimiento', 'estado')
+        select('id','categoria','nombre','sostenimiento', 'estado','id_cct_etc')
         ->where('id_cct_etc','=',$cct)->where('estado','=','ACTIVO')
         ->get();
 

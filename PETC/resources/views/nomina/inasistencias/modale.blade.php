@@ -22,7 +22,7 @@
                   <div class="col-sm-8">
                     <select name="qna{{$datos->id}}" id="qna{{$datos->id}}" class="form-control select2" ">
                       @foreach($qnas as $qna) 
-                      <option value='{{$qna->id}}'>
+                      <option value='{{$qna->qna}}'>
                         {{$qna->qna}}
                       </option>
                       @endforeach
