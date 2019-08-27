@@ -8,6 +8,8 @@ use petc\Http\Requests;
 use petc\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use petc\DirectorioInternoModel;
+use petc\OficiosEmitidosModel;
+use petc\OficiosRecibidosModel;
 
 use DB;
 
@@ -129,7 +131,7 @@ class DirectorioInternoController extends Controller
     public function edit($id)
     {
               $tipo_usuario = Auth::user()->tipo_usuario;
-      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+      if($tipo_usuario <> "2" && $tipo_usuario<>"5"){
        return view('permisos');
 
       }else{
@@ -240,4 +242,45 @@ class DirectorioInternoController extends Controller
      $pdf->loadHTML($view);
      return $pdf->stream('invoice');
  }
+
+       public function perfil($id){
+       $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario < 0 || $tipo_usuario > 7){
+       return view('permisos');
+
+      }else{
+       $personal=DirectorioInternoModel::findOrFail($id);
+       $user = Auth::user()->id_usuario;
+       $oficioe= OficiosEmitidosModel::join('directoriointerno','directoriointerno.id','=','oficiosemitidos.id_elabora')->join('directorioexterno','directorioexterno.id','=','oficiosemitidos.id_dirigido')->where('directoriointerno.id','=',$user)->select('oficiosemitidos.*','directoriointerno.nombre','directoriointerno.lic','directorioexterno.nombre_c','directorioexterno.lic as licext');
+
+       $oficior= OficiosRecibidosModel::join('directoriointerno','directoriointerno.id','=','oficiosrecibidos.id_contesta')->where('directoriointerno.id','=',$user)->select('oficiosrecibidos.*','directoriointerno.nombre','directoriointerno.lic');
+
+       return view('perfil', ['personal'=>$personal,'oficioe'=>$oficioe,'oficior'=>$oficior]);
+        //
+   }
+
+ }
+
+
+        public function perfilactualiza($id){
+       $tipo_usuario = Auth::user()->tipo_usuario;
+      if($tipo_usuario < 0 || $tipo_usuario > 7){
+       return view('permisos');
+
+      }else{
+       $personal=DirectorioInternoModel::findOrFail($id);
+       $user = Auth::user()->id_usuario;
+       $oficioe= OficiosEmitidosModel::join('directoriointerno','directoriointerno.id','=','oficiosemitidos.id_elabora')->join('directorioexterno','directorioexterno.id','=','oficiosemitidos.id_dirigido')->where('directoriointerno.id','=',$user)->select('oficiosemitidos.*','directoriointerno.nombre','directoriointerno.lic','directorioexterno.nombre_c','directorioexterno.lic as licext');
+
+       $oficior= OficiosRecibidosModel::join('directoriointerno','directoriointerno.id','=','oficiosrecibidos.id_contesta')->where('directoriointerno.id','=',$user)->select('oficiosrecibidos.*','directoriointerno.nombre','directoriointerno.lic');
+
+       return view('perfil', ['personal'=>$personal,'oficioe'=>$oficioe,'oficior'=>$oficior]);
+        //
+   }
+
+ }
+
+
+
+
 }
