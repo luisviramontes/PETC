@@ -293,6 +293,13 @@
           </li>
 
 
+          <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Mapas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('mapas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mapas</b> </a> </li>
+            </ul>
+          </li>
+
+
         </ul>
       </div>
     </div>

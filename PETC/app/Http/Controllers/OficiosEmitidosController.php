@@ -348,13 +348,13 @@ public function excel2(Request $request, $aux,$area)
 
 
 public function ver_oficios_persona(){
- $user = Auth::user()->id;
+ $user = Auth::user()->id_usuario;
  $oficio= OficiosEmitidosModel::join('directoriointerno','directoriointerno.id','=','oficiosemitidos.id_elabora')->where('directoriointerno.id','=',$user)->select(DB::raw('COUNT(oficiosemitidos.id) as total'))->first();
  return $oficio->total;
 }
 
 public function ver_oficios_personar(){
- $user = Auth::user()->id;
+ $user = Auth::user()->id_usuario;
  $oficio= OficiosRecibidosModel::join('directoriointerno','directoriointerno.id','=','oficiosrecibidos.id_contesta')->where('directoriointerno.id','=',$user)->select(DB::raw('COUNT(oficiosrecibidos.id) as total'))->first();
 
  return $oficio->total;

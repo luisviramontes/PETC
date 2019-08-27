@@ -450,3 +450,6 @@ Route::get('montos_qnas_region/{qna}/{region}/{ciclo}', 'NominaCapturadaControll
 Route::resource('estadistica911', 'Estadistica911Controller');
 Route::get('descargar-estadistica911/{ciclo}', 'Estadistica911Controller@excel')->name('nomina.descargar-estadistica911.excel');
 Route::get('verifica_ciclo/{ciclo}', 'Estadistica911Controller@verifica');
+
+//MAPAS
+Route::get('gmaps', ['as'=>'gmaps','uses' => 'GmapsController@index']);
