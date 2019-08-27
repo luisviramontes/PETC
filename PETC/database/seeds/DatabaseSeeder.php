@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
 
         Model::unguard();
-/**
+
 
         $this->call(DirectorioExternoSeeder::class);
 
@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CatPuestoSeeder::class);
         $this->call(MunicipiosSeeder::class);
         $this->call(LocalidadesSeeder::class);
-        */
+        
         $this->call(CentrosTrabajoSeeder::class);
-        /**
+        
         $this->call(DatosCentroTrabajoSeeder::class);
         $this->call(dia_mes_seeder::class);
 
@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DirectorioSeeder::class);
    
         $this->call(DirectorioInternoSeeder::class);
-        $this->call(Plan_Contraste_NominaSeeder::class);*/
+        $this->call(Plan_Contraste_NominaSeeder::class);
 
 
 
