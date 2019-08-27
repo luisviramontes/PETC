@@ -862,7 +862,7 @@ function valida_nomina(){
 }
 
 function modal_loading(){
-  $("#modal-delete-2").modal(); 
+  $("#modal-delete-2").modal();
 }
 
 function limpiar_input(){
@@ -1002,11 +1002,11 @@ function enviar_ciclo_director_centro(){
 }
 
 function enviar_ciclo_listas(){ //funcina
-  var x =document.getElementById('ciclo_escolarl').value;
+  var x =document.getElementById('ciclo_escolar').value;
   var y =document.getElementById('searchText').value;
   //document.getElementById('excel').href="/descargar-tarjetas_fortalecimiento/"+x;
   document.getElementById('invoice').href="/pdf_listasasistencias/"+x;
-  location.href="/listas_asistencias?searchText="+y+"&ciclo_escolarl="+x;
+  location.href="/listas_asistencias?searchText="+y+"&ciclo_escolar="+x;
 }
 
 function enviar_ciclo_cap(){ //funciona
@@ -1050,7 +1050,7 @@ function enviar_ciclo11(){
 function enviar_ciclo12(){
   var x =document.getElementById('ciclo_escolar').value;
   var y =document.getElementById('searchText').value;
-  document.getElementById('excel').href="/descargar-oficios-recibidos/"+x; 
+  document.getElementById('excel').href="/descargar-oficios-recibidos/"+x;
 
   location.href="/oficiosrecibidos?searchText="+y+"&ciclo_escolar="+x;
 }
@@ -1072,7 +1072,7 @@ function enviar_ciclo14(){
 function enviar_ciclo15(){
   var x =document.getElementById('ciclo_escolar').value;
   var y =document.getElementById('searchText').value;
-  document.getElementById('excel').href="/descargar-estadistica911/"+x; 
+  document.getElementById('excel').href="/descargar-estadistica911/"+x;
 
   location.href="/estadistica911?searchText="+y+"&ciclo_escolar="+x;
 }
@@ -2787,13 +2787,14 @@ function direc(){
           option.value = res[i].director_regional +"_"+res[i].id;
 
           x.add(option, x[i]);
-
+          console.log("entro a directorio si");
         }
       }
     }
 
+    console.log(res);
   });
-
+    console.log(dire);
 }
 
 function cuenta() {
@@ -2907,11 +2908,12 @@ function cctescuela(){
           var x = document.getElementById("id_captura");
           var option = document.createElement("option");
           option.text = res[i].nombre;
-          option.value = res[i].nombre +"_"+res[i].categoria +"_"+res[i].sostenimiento +"_"+res[i].id;
+          option.value = res[i].nombre +"_"+res[i].categoria +"_"+res[i].sostenimiento +"_"+res[i].id_cct_etc;
 
           x.add(option, x[i]);
 
         }
+        console.log(x.value);
       }
     }
 
@@ -4130,7 +4132,7 @@ function soli_nivel() {
     document.getElementById("dynamic-table3").deleteRow(1);
   }
 
-  
+
 
   var x = document.getElementById('option1').value;
   var y = document.getElementById('option2').value;
@@ -4468,7 +4470,7 @@ function teclas(event) {
            var menos =document.getElementById("detalles").rows
            var r = menos.length;
            document.getElementById("total").value= r - 2;
-           
+
            document.getElementById('buscar').focus();
 
 
@@ -4479,10 +4481,10 @@ function teclas(event) {
       swal("Lista de Asistencia No Encontrada!", "Verifique el Codigo de Barras!", "error");
       document.getElementById('buscar').value="";
       document.getElementById('buscar').focus();
-      
+
      // break;
 
-   }    
+   }
  });
 
     return false;
@@ -4513,4 +4515,3 @@ function eliminarFilaLista(value) {
   document.getElementById("total").value= r - 2;
  // limpiar();
 }
-

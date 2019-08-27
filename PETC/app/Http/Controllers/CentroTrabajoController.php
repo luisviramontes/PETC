@@ -46,7 +46,16 @@ class CentroTrabajoController extends Controller
 
         $query=trim($request->GET('searchText'));
 
-     
+
+
+
+
+
+
+       $query=trim($request->GET('searchText'));
+
+
+
          $centro = DB::table('centro_trabajo')
          ->join('datos_centro_trabajo', 'centro_trabajo.id', '=','datos_centro_trabajo.id_centro_trabajo')
          ->join('region', 'centro_trabajo.id_region', '=','region.id')
@@ -54,18 +63,23 @@ class CentroTrabajoController extends Controller
          ->join('municipios', 'centro_trabajo.id_municipios', '=','municipios.id')
 
 
-         ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos',
+
+          ->select('centro_trabajo.*','region.region','region.sostenimiento','localidades.nom_loc','municipios.municipio','datos_centro_trabajo.total_alumnos','datos_centro_trabajo.total_ninas','datos_centro_trabajo.total_ninos',
            'datos_centro_trabajo.total_grupos', 'datos_centro_trabajo.total_grados','datos_centro_trabajo.total_directores',
            'datos_centro_trabajo.total_docentes', 'datos_centro_trabajo.total_fisica','datos_centro_trabajo.total_usaer','datos_centro_trabajo.total_artistica','datos_centro_trabajo.total_intendentes',
            'datos_centro_trabajo.fecha_ingreso', 'datos_centro_trabajo.fecha_baja','datos_centro_trabajo.captura')
-         ->where('centro_trabajo.cct','LIKE','%'.$query.'%')
-         ->orwhere('localidades.nom_loc','LIKE','%'.$query.'%')
-         ->orwhere('municipios.municipio','LIKE','%'.$query.'%')
-         ->orwhere('centro_trabajo.domicilio','LIKE','%'.$query.'%')
-         ->orwhere('centro_trabajo.estado','=','ACTIVO')
-         ->where('centro_trabajo.nombre_escuela','LIKE','%'.$query.'%')
-         ->paginate(10);
-       
+
+           ->orwhere('cct','LIKE','%'.$query.'%')
+           ->orwhere('localidades.nom_loc','LIKE','%'.$query.'%')
+           ->orwhere('municipios.municipio','LIKE','%'.$query.'%')
+           ->orwhere('centro_trabajo.domicilio','LIKE','%'.$query.'%')
+           ->where('centro_trabajo.estado','=','ACTIVO')
+           ->where('nombre_escuela','LIKE','%'.$query.'%')
+
+
+          ->paginate(10);
+
+
        return view('nomina.centro_trabajo.index',["centro"=>$centro,"searchText"=>$query]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //

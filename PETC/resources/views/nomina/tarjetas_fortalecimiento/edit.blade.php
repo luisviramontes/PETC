@@ -115,7 +115,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Observaciones: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="observaciones"  id="observaciones" type="text"    class="form-control" required value="{{$tarjeta->observaciones}}" />
+								<input name="observaciones"  id="observaciones" type="text"    class="form-control"  value="{{$tarjeta->observaciones}}" />
 							</div>
 						</div>
 

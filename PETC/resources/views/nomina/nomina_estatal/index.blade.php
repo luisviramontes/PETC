@@ -32,7 +32,7 @@
 									<div class="btn-group" style="margin-right: 10px;">
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('nomina_capturada.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nueva Nomina"> <i class="fa fa-plus"></i> Registrar </a>
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.nomina_capturada.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
-										<a class="btn btn-primary btn-sm" href="{{URL::action('NominaCapturadaController@invoice','2018-2019')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
+										<a class="btn btn-primary btn-sm" href="{{URL::action('NominaCapturadaController@invoice','2019-2020')}}" target="_blank"  style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
 
 
@@ -56,14 +56,14 @@
 								<th>Num Empleado</th>
 								<th>RFC</th>
 								<th>Nombre</th>
-								<th>CVE</th>
+								<th style="display:none;">CVE</th>
 								<th style="display:none;">Plaza</th>
 								<th style="display:none;" >Contrato</th>
 								<th style="display:none;" >CCT</th>
 								<th style="display:none;">Region</th>
-								<th style="display:none;">PERC</th>
-								<th style="display:none;">DED</th>
-								<th style="display:none;">Neto</th>
+								<th >PERC</th>
+								<th >DED</th>
+								<th >Neto</th>
 								<th>Qna Ini</th>
 								<th>Qna Fin</th>
 								<th>Qna Pago</th>
@@ -87,14 +87,14 @@
 								<td>{{$nomina->num_empleado}} </td>
 								<td>{{$nomina->rfc}} </td>
 								<td>{{$nomina->nombre}}</td>
-								<td>{{$nomina->cve}}</td>
+								<td style="display:none;">{{$nomina->cve}}</td>
 								<td style="display:none;">{{$nomina->plaza}}</td>
 								<td style="display:none;">{{$nomina->contrato}}</td>
 								<td style="display:none;">{{$nomina->cct}}</td>
 								<td style="display:none;">{{$nomina->region}}</td>
-								<td style="display:none;">$ <?php echo  number_format($nomina->perc) ?></td>
-								<td style="display:none;">$ <?php echo  number_format($nomina->ded) ?></td>
-								<td style="display:none;">$ <?php echo  number_format($nomina->neto) ?> </td>
+								<td >$ <?php echo  number_format($nomina->perc) ?></td>
+								<td >$ <?php echo  number_format($nomina->ded) ?></td>
+								<td >$ <?php echo  number_format($nomina->neto) ?> </td>
 								<td>{{$nomina->qna_ini}}</td>
 								<td>{{$nomina->qna_fin}}</td>
 								<td>{{$nomina->qna_pago}}</td>

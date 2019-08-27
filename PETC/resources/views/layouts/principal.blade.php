@@ -1,3 +1,5 @@
+
+@inject('metodo','petc\Http\Controllers\OficiosEmitidosController')
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -115,10 +117,11 @@
 
               <ul class="dropdown-menu">
                 <div class="top_pointer"></div>
-                <li> <a href="profile.html"><i class="fa fa-user"></i> Profile</a> </li>
-                <li> <a href="help.html"><i class="fa fa-question-circle"></i> Help</a> </li>
-                <li> <a href="settings.html"><i class="fa fa-cog"></i> Setting </a></li>
-                <li> <a href="{{route('auth/logout')}}""><i class="fa fa-power-off"></i> Logout</a> </li>
+                <li> <a href="profile.html"><i class="fa fa-user"></i> Perfil</a> </li>
+                <li> <a href="/oficiosemitidos"><i class="fa fa-warning"></i>{{$metodo->ver_oficios_persona()}} Oficios Emite</a>  </li>
+                <li> <a href="/oficiosrecibidos"><i class="fa fa-warning"></i>{{$metodo->ver_oficios_personar()}} Oficios Recibe</a>  </li>
+                <li> <a href="settings.html"><i class="fa fa-cog"></i> Ajustes </a></li>
+                <li> <a href="{{route('auth/logout')}}""><i class="fa fa-power-off"></i> Salir</a> </li>
               </ul>
               @endif 
             </div>
@@ -144,8 +147,8 @@
                 <li> <a href="{{url('nomina_capturada')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Nominas Capturadas</b> </a> </li>
                 <li> <a href="{{url('cuadros_cifras?ciclo_escolar2=2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadro Cifras</b> </a> </li>
                 <li> <a href="{{url('pagos_improcedentes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pagos Improcedentes</b> </a> </li>
-                 <li> <a href="{{url('plan_contraste')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Plan Contraste</b> </a> </li> 
-                 <li> <a href="{{url('calculo_nomina')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Calculo de Nomina</b> </a> </li>                        
+                <li> <a href="{{url('plan_contraste')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Plan Contraste</b> </a> </li> 
+                <li> <a href="{{url('calculo_nomina')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Calculo de Nomina</b> </a> </li>                        
 
               </ul>
             </li>
@@ -187,7 +190,7 @@
             <li> <a href="javascript:void(0);"> <i class="fa fa-home"></i> ESCUELAS <span class="plus"><i class="fa fa-plus"></i></span> </a>
               <ul>
                 <li> <a href="{{url('centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Centros de Trabajo</b> </a> </li>
-                 <li> <a href="{{url('ver_centros_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Informe de CTE</b> </a> </li>
+                <li> <a href="{{url('ver_centros_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Informe de CTE</b> </a> </li>
                 <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>
                 <li> <a href="{{url('municipios')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Municipios</b> </a> </li>
                 <li> <a href="{{url('localidades')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Localidades</b> </a> </li>
@@ -212,7 +215,7 @@
               <ul>
                 <li> <a href="{{url('listas_asistencias')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Asistencia</b> </a> </li>
                 <li> <a href="{{url('recepcion_listas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recepción de Listas </b> </a> </li>
-                 <li> <a href="{{url('genera_listas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Generar Listas </b> </a> </li>
+                <li> <a href="{{url('genera_listas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Generar Listas </b> </a> </li>
                 <li> <a href="{{url('inasistencias2/2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inasistencias</b> </a> </li>
                 <li> <a href="{{url('ver_listas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Listas</b> </a> </li>
               </ul>
@@ -251,8 +254,8 @@
             <ul>
               <li> <a href="{{url('fortalecimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recurso de Fortalecimeinto</b> </a> </li>
               <li> <a href="{{url('tarjetas_fortalecimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tarjetas de Fortalecimeinto</b> </a> </li>
-               <li> <a href="{{url('tarjetas_forta')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Importar Tarjetas</b> </a> </li>
-                <li> <a href="{{url('generar_cartas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cartas Compromiso</b> </a> </li>
+              <li> <a href="{{url('tarjetas_forta')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Importar Tarjetas</b> </a> </li>
+              <li> <a href="{{url('generar_cartas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cartas Compromiso</b> </a> </li>
             </ul>
           </li>
 
@@ -279,12 +282,20 @@
           <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Bancos <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
               <li> <a href="{{url('bancos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bancos</b> </a> </li>
+              <li> <a href="{{url('cuentas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuentas</b> </a> </li>
             </ul>
           </li>
 
-              <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Estadisticas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Estadisticas <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
               <li> <a href="{{url('estadistica911')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Estadistica 911</b> </a> </li>
+            </ul>
+          </li>
+
+
+          <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Mapas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('mapas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mapas</b> </a> </li>
             </ul>
           </li>
 

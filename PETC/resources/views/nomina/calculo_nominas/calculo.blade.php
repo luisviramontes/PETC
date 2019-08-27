@@ -39,10 +39,16 @@
 						<label class="col-sm-3 control-label">Seleccione Ciclo Escolar : <strog class="theme_color"></strog></label>
 						<div class="col-sm-3">
 							<select name="ciclo_escolar2" id="ciclo_escolar2" onchange="calculo_nomina();" class="form-control select2"  >
-								@foreach($ciclos as $ciclo)							
+								@foreach($ciclos as $ciclo)
+								@if($ciclo->id== 2)							
+								<option value='{{$ciclo->id}}' selected>
+									{{$ciclo->ciclo}}
+								</option>
+								@else
 								<option value='{{$ciclo->id}}'>
 									{{$ciclo->ciclo}}
-								</option>								
+								</option>
+								@endif								
 								@endforeach
 							</select>
 

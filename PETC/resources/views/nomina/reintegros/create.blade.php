@@ -62,7 +62,7 @@
 									</option>
 									@foreach($cct as $cct)
 									<option value="{{$cct->id}}">
-										{{$cct->cct}}
+										{{$cct->cct}} - {{	{{$cct->nombre}}}}
 									</option>
 								@endforeach
 								</select>
@@ -75,7 +75,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select  name="id_captura" id="id_captura"  onchange="nombre_clave();valida_nom();nombre_sos();direc()" class="form-control select2" required>
+								<select  name="id_captura" id="id_captura"  onchange="nombre_clave();valida_nom();nombre_sos();direc();" class="form-control select2" required>
 									<option selected>
 										Selecciona una opción
 									</option>
@@ -110,7 +110,7 @@
 							</div>
 						</div>
 
-						<div class="form-group" style="display: none">
+						<div class="form-group">
 							<label class="col-sm-3 control-label">Sostenimiento: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
 								<input name="id_reg" id="id_reg" disabled type="text"  class="form-control" required value="{{Input::old('id_reg')}}" />
@@ -348,7 +348,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Observaciones: <strog class="theme_color">*</strog></label>
 								<div class="col-sm-6">
-									<input name="observaciones" type="text" id="observaciones"   class="form-control" required value="{{Input::old('observaciones')}}" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+									<input name="observaciones" type="text" id="observaciones"   class="form-control"  value="{{Input::old('observaciones')}}" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 								</div>
 							</div>
 

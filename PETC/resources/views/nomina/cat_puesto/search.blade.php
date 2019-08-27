@@ -3,7 +3,7 @@
 	<div class="input-group">
 
 			<div class="col-sm-16">
-				<input name="searchText" id="searchText" type="text"   class="form-control" required />
+				<input name="searchText" id="searchText" type="text"   class="form-control" value="{{$searchText}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"/>
 			</div>
 
 
