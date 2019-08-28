@@ -56,14 +56,14 @@
 								<th>Num Empleado</th>
 								<th>RFC</th>
 								<th>Nombre</th>
-								<th>CVE</th>
+								<th style="display:none;">CVE</th>
 								<th style="display:none;">Plaza</th>
 								<th style="display:none;" >Contrato</th>
 								<th style="display:none;" >CCT</th>
 								<th style="display:none;">Region</th>
-								<th style="display:none;">PERC</th>
-								<th style="display:none;">DED</th>
-								<th style="display:none;">Neto</th>
+								<th >PERC</th>
+								<th >DED</th>
+								<th >Neto</th>
 								<th>Qna Ini</th>
 								<th>Qna Fin</th>
 								<th>Qna Pago</th>
@@ -87,14 +87,14 @@
 								<td>{{$nomina->num_empleado}} </td>
 								<td>{{$nomina->rfc}} </td>
 								<td>{{$nomina->nombre}}</td>
-								<td>{{$nomina->cve}}</td>
+								<td style="display:none;">{{$nomina->cve}}</td>
 								<td style="display:none;">{{$nomina->plaza}}</td>
 								<td style="display:none;">{{$nomina->contrato}}</td>
 								<td style="display:none;">{{$nomina->cct}}</td>
 								<td style="display:none;">{{$nomina->region}}</td>
-								<td style="display:none;">$ <?php echo  number_format($nomina->perc) ?></td>
-								<td style="display:none;">$ <?php echo  number_format($nomina->ded) ?></td>
-								<td style="display:none;">$ <?php echo  number_format($nomina->neto) ?> </td>
+								<td >$ <?php echo  number_format($nomina->perc) ?></td>
+								<td >$ <?php echo  number_format($nomina->ded) ?></td>
+								<td >$ <?php echo  number_format($nomina->neto) ?> </td>
 								<td>{{$nomina->qna_ini}}</td>
 								<td>{{$nomina->qna_fin}}</td>
 								<td>{{$nomina->qna_pago}}</td>

@@ -370,7 +370,8 @@ Route::get('pdf_directorio_externo', array('as'=> '/pdf_directorio_externo','use
 Route::resource('directorio_interno', 'DirectorioInternoController');
 Route::get('descargar-directorio-interno', 'DirectorioInternoController@excel')->name('nomina.directorio_interno.excel');
 Route::get('pdf_directorio_externo', array('as'=> '/pdf_directorio_externo','uses'=>'DirectorioInternoController@invoice'));
-
+Route::get('perfil/{id}', array('as'=> 'perfil/{id}','uses'=>'DirectorioInternoController@perfil'));
+Route::post('perfilactualiza/{id}', 'OficiosEmitidosController@oficioemitido_resuelto');
 
 
 
@@ -386,8 +387,10 @@ Route::get('buscar_oficio2/{oficio}/{ciclo}', 'OficiosEmitidosController@buscar_
 Route::get('ultimo_oficio/{id}', 'OficiosEmitidosController@ultimo_oficio');
 Route::get('buscar_oficio3/{oficio}/{id}', 'OficiosEmitidosController@buscar_oficio3');
 Route::get('ver_oficios_e', array('as'=> '/ver_oficios_e','uses'=>'OficiosEmitidosController@ver_oficios_e'));
-Route::get('ver_oficios_ciclo/{ciclo}/','OficiosEmitidosController@ver_oficios_ciclo');
+Route::get('ver_oficios_ciclo/{ciclo}/','OficiosEmitidosController@ver_oficios_ciclo'); 
 Route::get('ver_oficios_area/{ciclo}/{area}','OficiosEmitidosController@ver_oficios_area');
+Route::get('ver_oficios_persona/','OficiosEmitidosController@ver_oficios_persona');
+Route::get('ver_oficios_personar/','OficiosEmitidosController@ver_oficios_personar');
 Route::post('subir_imagen_oficioe/{id}', 'OficiosEmitidosController@subir_imagen_oficioe');
 
 //OFICIOS RECIBIDOS
@@ -448,3 +451,10 @@ Route::get('montos_qnas_region/{qna}/{region}/{ciclo}', 'NominaCapturadaControll
 Route::resource('estadistica911', 'Estadistica911Controller');
 Route::get('descargar-estadistica911/{ciclo}', 'Estadistica911Controller@excel')->name('nomina.descargar-estadistica911.excel');
 Route::get('verifica_ciclo/{ciclo}', 'Estadistica911Controller@verifica');
+
+//MAPAS
+Route::get('gmaps', ['as'=>'gmaps','uses' => 'GmapsController@index']);
+
+
+//CALENDARIO
+Route::get('calendario', ['as'=>'calendario','uses' => 'CalendarioController@index']);

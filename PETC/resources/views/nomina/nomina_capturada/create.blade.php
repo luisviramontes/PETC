@@ -191,8 +191,9 @@
 </div><!--/container clear_both padding_fix-->
 
 <script type="text/javascript">
-	window.onload = function() {
-		valida_qna();
+	window.onload = function(callback) {
+		setTimeout(function(){valida_qna()},1000); 
+		//valida_qna();
 		valida_sos();
 		valida_tipo();
 		valida_file_cargar();
