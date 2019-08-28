@@ -62,7 +62,7 @@
 									</option>
 									@foreach($cct as $cct)
 									<option value="{{$cct->id}}">
-										{{$cct->cct}} - {{	{{$cct->nombre}}}}
+										{{$cct->cct}} - {{$cct->nombre_escuela}}
 									</option>
 								@endforeach
 								</select>

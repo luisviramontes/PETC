@@ -8,6 +8,7 @@ use petc\Http\Requests;
 use petc\Http\Controllers\Controller;
 
 use DB;
+use petc\CentroTrabajoModel;
 use petc\CapturaModel;
 use petc\DirectorioRegionalModel;
 use petc\ReintegrosModel;
@@ -586,8 +587,12 @@ public function traerpersonal(Request $request,$cct)
 
 public function traerdire(Request $request,$dire)
   {
-    $director= DirectorioRegionalModel::select('id','director_regional', 'estado')
-    ->where('id_region','=',$dire)->where('estado','=','ACTIVO')
+    $director=DB::table('centro_trabajo')
+    ->where('centro_trabajo.id','=',$dire)
+    ->where('centro_trabajo.estado','=','ACTIVO')
+    ->join('region','centro_trabajo.id_region', '=', 'region.id' ) //director_regional,sostenimiento
+    ->join('directorio_regional','directorio_regional.id_region', '=', 'region.id' ) //director_regional,sostenimiento
+    ->select('directorio_regional.id','directorio_regional.director_regional', 'directorio_regional.estado')
     ->get();
 
     return response()->json(
