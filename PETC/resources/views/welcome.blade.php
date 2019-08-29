@@ -55,7 +55,7 @@
 									Acerca del PETC
 								</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" >¿Que es El PETC?</a>
+									<a class="dropdown-item" href="/img/documentos/RO2019.pdf" target="_blank">¿Que es El PETC?</a>
 									<a class="dropdown-item" href="/img/documentos/RO2019.pdf" target="_blank">Reglas de Operacion</a>
 									<a class="dropdown-item" href="/img/documentos/CM2019.pdf" target="_blank">Convenio Marco</a>
 									<a class="dropdown-item" href="/img/documentos/RG2019.pdf" target="_blank" >Criterios Para El Ejercicio de Los Rubros De Gasto </a>
