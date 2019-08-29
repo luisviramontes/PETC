@@ -141,7 +141,7 @@
 					<div class="single-cat-widget">
 						<div class="content relative">
 							<div class="overlay overlay-bg"></div>
-							<a href="/captura" target="_blank">
+							<a href="../captura" target="_blank">
 								<div class="thumb">
 									<img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget1.jpg" alt="">
 								</div>
@@ -319,7 +319,7 @@
 									<img class="image img-fluid" src="img/projects/p1.png" alt="">
 								</div>
 								<div class="middle">
-									<h4>Actividad hecha recientemente</h4>
+									<h4>Servicio de Alimentación</h4>
 									<div class="cat">Descripcion</div>
 								</div>
 								<a class="overlay" href="#"></a>
@@ -471,7 +471,7 @@
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 							</p>
-							<h4>Ing.David</h4>
+							<h4>Ing.David Garcia</h4>
 							<div class="bottom">
 								<p>Encargado del Área de Materiales</p>
 							</div>
@@ -490,44 +490,44 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Top Products</h4>
+					<h4>PETC</h4>
 					<ul>
-						<li><a href="#">Managed Website</a></li>
-						<li><a href="#">Manage Reputation</a></li>
-						<li><a href="#">Power Tools</a></li>
-						<li><a href="#">Marketing Service</a></li>
+						<li><a href="#">Busca Tu Escuela</a></li>
+						<li><a href="#">Quejas y Denuncias</a></li>
+						<li><a href="#">Historico del Programa</a></li>
+						<li><a href="#">Ayuda</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Quick Links</h4>
+					<h4>Propuesta Pedagógica</h4>
 					<ul>
-						<li><a href="#">Jobs</a></li>
-						<li><a href="#">Brand Assets</a></li>
-						<li><a href="#">Investor Relations</a></li>
-						<li><a href="#">Terms of Service</a></li>
+						<li><a href="#">Ficheros Didacticos</a></li>
+						<li><a href="#">Herramientas</a></li>
+						<li><a href="#">Guias</a></li>
+						<li><a href="#">Lineas de Trabajo</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Features</h4>
+					<h4>Areas</h4>
 					<ul>
-						<li><a href="#">Jobs</a></li>
-						<li><a href="#">Brand Assets</a></li>
-						<li><a href="#">Investor Relations</a></li>
-						<li><a href="#">Terms of Service</a></li>
+						<li><a href="#">Alimentación</a></li>
+						<li><a href="#">Nomina</a></li>
+						<li><a href="#">Materiales</a></li>
+						<li><a href="#">Academica</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Resources</h4>
+					<h4>Recursos</h4>
 					<ul>
-						<li><a href="#">Guides</a></li>
-						<li><a href="#">Research</a></li>
-						<li><a href="#">Experts</a></li>
-						<li><a href="#">Agencies</a></li>
+						<li><a href="#">Avisos</a></li>
+						<li><a href="#">Documentos</a></li>
+						<li><a href="#">Circulares</a></li>
+						<li><a href="#">Comunicados</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-4 col-md-6 single-footer-widget">
-					<h4>Newsletter</h4>
-					<p>You can trust us. we only send promo offers,</p>
+					<h4>Subscribete</h4>
+					<p>A todos los Eventos del PETC</p>
 					<div class="form-wrap" id="mc_embed_signup">
 						<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
 						method="get" class="form-inline">

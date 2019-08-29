@@ -43,7 +43,7 @@ Route::get('services', function () {
 });
 /////////////////////////////////////////////////////////////
 
-
+ 
 //////////////////reintegros///////////////////////////////
 Route::resource('reintegros', 'ReintegrosController');
 Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
@@ -313,8 +313,8 @@ Route::get('descargar_reporte_qna/{qna}', 'NominaCapturadaController@excel2')->n
 ////////////////////////////////////////////////////////////////
 
 ////////////////Nomina Federañ//////////////////////////7
-Route::resource('nomina_federal', 'NominaFederalController');
-Route::post('importExcel', 'NominaFederalController@importExcel');
+Route::resource('nomina_federal', 'NominafederalController');
+Route::post('importExcel', 'NominafederalController@importExcel');
 Route::get('pdf_bancos/{id}', array('as'=> '/pdf_bancos','uses'=>'BancosController@invoice'));
 ////////////////////////////////////////////////////////////////
 
