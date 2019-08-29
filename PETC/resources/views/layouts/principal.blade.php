@@ -117,7 +117,7 @@
 
               <ul class="dropdown-menu">
                 <div class="top_pointer"></div>
-                <li> <a href="profile.html"><i class="fa fa-user"></i> Perfil</a> </li>
+                <li> <a href="{{URL::action('DirectorioInternoController@perfil',Auth::user()->id_usuario )}}"><i class="fa fa-user"></i> Perfil</a> </li>
                 <li> <a href="/oficiosemitidos"><i class="fa fa-warning"></i>{{$metodo->ver_oficios_persona()}} Oficios Emite</a>  </li>
                 <li> <a href="/oficiosrecibidos"><i class="fa fa-warning"></i>{{$metodo->ver_oficios_personar()}} Oficios Recibe</a>  </li>
                 <li> <a href="settings.html"><i class="fa fa-cog"></i> Ajustes </a></li>
@@ -135,6 +135,7 @@
 
         <!--\\\\\\\left_nav start \\\\\\-->
 
+@if(Auth::user()->tipo_usuario == 2 || Auth::user()->tipo_usuario==5)
 
         <div class="left_nav_slidebar">
           <ul >
@@ -286,22 +287,28 @@
             </ul>
           </li>
 
-          <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Estadisticas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-th"></i> Estadisticas <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
               <li> <a href="{{url('estadistica911')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Estadistica 911</b> </a> </li>
             </ul>
           </li>
 
 
-          <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Mapas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-road"></i> Otros <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
-              <li> <a href="{{url('mapas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mapas</b> </a> </li>
-            </ul>
+              <li> <a href="{{url('gmaps')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mapas</b> </a> </li>  
+              <li> <a href="{{url('calendario')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Eventos</b> </a> </li>            
+            </ul>        
           </li>
+
+     
 
 
         </ul>
       </div>
+      @else
+
+      @endif
     </div>
     <!--\\\\\\\left_nav end \\\\\\-->
     <div class="contentpanel">

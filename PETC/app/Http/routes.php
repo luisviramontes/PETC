@@ -43,7 +43,7 @@ Route::get('services', function () {
 });
 /////////////////////////////////////////////////////////////
 
-
+ 
 //////////////////reintegros///////////////////////////////
 Route::resource('reintegros', 'ReintegrosController');
 Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
@@ -313,8 +313,8 @@ Route::get('descargar_reporte_qna/{qna}', 'NominaCapturadaController@excel2')->n
 ////////////////////////////////////////////////////////////////
 
 ////////////////Nomina Federañ//////////////////////////7
-Route::resource('nomina_federal', 'NominaFederalController');
-Route::post('importExcel', 'NominaFederalController@importExcel');
+Route::resource('nomina_federal', 'NominafederalController');
+Route::post('importExcel', 'NominafederalController@importExcel');
 Route::get('pdf_bancos/{id}', array('as'=> '/pdf_bancos','uses'=>'BancosController@invoice'));
 ////////////////////////////////////////////////////////////////
 
@@ -370,7 +370,8 @@ Route::get('pdf_directorio_externo', array('as'=> '/pdf_directorio_externo','use
 Route::resource('directorio_interno', 'DirectorioInternoController');
 Route::get('descargar-directorio-interno', 'DirectorioInternoController@excel')->name('nomina.directorio_interno.excel');
 Route::get('pdf_directorio_externo', array('as'=> '/pdf_directorio_externo','uses'=>'DirectorioInternoController@invoice'));
-
+Route::get('perfil/{id}', array('as'=> 'perfil/{id}','uses'=>'DirectorioInternoController@perfil'));
+Route::post('perfilactualiza/{id}', 'OficiosEmitidosController@oficioemitido_resuelto');
 
 
 
@@ -453,3 +454,7 @@ Route::get('verifica_ciclo/{ciclo}', 'Estadistica911Controller@verifica');
 
 //MAPAS
 Route::get('gmaps', ['as'=>'gmaps','uses' => 'GmapsController@index']);
+
+
+//CALENDARIO
+Route::get('calendario', ['as'=>'calendario','uses' => 'CalendarioController@index']);
