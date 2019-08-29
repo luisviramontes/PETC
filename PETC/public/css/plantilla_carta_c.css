@@ -1,0 +1,133 @@
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+    padding: 4px 0;
+}
+
+a {
+  color: #5D6975;
+  text-decoration: underline;
+}
+
+body {
+  position: relative;
+  width: 18.59cm;
+  height: 27.94cm;
+  color: #001028;
+  background: #FFFFFF;
+  font-family: Arial, sans-serif;
+  font-size: 7.3px;
+  font-family: Arial;
+    background-image:  url("Imagen5.png");
+  background-color: transparent;
+}
+
+
+
+
+
+header {
+  padding: 0px 0;
+  margin-bottom: 4px;
+}
+
+#logo {
+  text-align: left;
+  width: 100px;
+}
+
+
+
+h1 {
+font-family: sans-serif;
+  font-weight: normal;
+  font-size: 1.1em;
+    text-align : justify;
+    text-align : right; 
+}
+
+h2 {
+font-family: sans-serif;
+  font-size: 1.59em;
+  font-weight: normal;
+  text-align : justify;
+  margin: 0 0 8px 0;
+}
+
+h3 {
+font-family: sans-serif;
+  font-size: 1.69em;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 0 8px 0;
+}
+
+h4 {
+font-family: sans-serif;
+  font-size: 1.69em;
+
+}
+
+h5 {
+font-family: sans-serif;
+  font-size: 1.19em;
+    text-align: center;
+    color: #FF0000;
+
+}
+
+
+
+#project {
+}
+
+#project span {
+  color: #5D6975;
+  text-align: center;
+  width: 52px;
+  margin-right: 5px;
+  display: inline-block;
+font-family: sans-serif;
+  font-size: 1.69em;
+}
+
+#company {
+  float: right;
+  text-align: right;
+}
+
+#project div,
+#company div {
+  white-space: nowrap;
+    text-align-last:center;
+font-family: sans-serif;
+  font-size: 1.69em;
+}
+
+
+#project2 div,
+#company2 div {
+  white-space: nowrap;
+    text-align-last:center;
+font-family: sans-serif;
+  font-size: 1.59em;
+}
+
+#project3 div,
+#company3 div {
+  white-space: nowrap;
+    text-align-last:left;
+font-family: sans-serif;
+  font-size: 1.59em;
+}
+
+
+
+#notices .notice {
+  color: #5D6975;
+  font-size: 1.0em;
+    text-align-last:center;
+}
+
+

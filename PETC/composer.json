@@ -6,20 +6,27 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*"
-    },
+        "laravel/framework": "5.1.*",
+        "laravelcollective/html": "5.1.*",
+        "maatwebsite/excel": "~2.1.0",
+        "illuminate/html": "5.*",
+        "milon/barcode": "^5.3",
+        "nesbot/carbon": "^1.29",
+        "genealabs/phpgmaps": "~0.3.0"
+},
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1"
+        "phpspec/phpspec": "~2.1",
+        "barryvdh/laravel-dompdf": "~0.8.0"
     },
     "autoload": {
         "classmap": [
             "database"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "petc\\": "app/"
         }
     },
     "autoload-dev": {

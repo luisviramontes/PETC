@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace petc\Http\Controllers\Auth;
 
-use App\User;
+use petc\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use petc\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+
+    protected $redirectTo = '/captura';
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -33,7 +36,7 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
-    /**
+    /** 
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -45,6 +48,8 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+            'id_usuario' => 'required|max:3',
+            'tipo_usuario' => 'required',
         ]);
     }
 
@@ -60,6 +65,8 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+            'id_usuario'=>$data['id_usuario'],
+            'tipo_usuario'=>$data['tipo_usuario'],
+        ]); 
     }
 }
