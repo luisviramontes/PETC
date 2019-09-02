@@ -44,13 +44,10 @@ class DirectorCentroController extends Controller
           ->join('captura','captura.id','=','director_cct.id_captura')
           ->join('cat_puesto','cat_puesto.id','=','captura.clave')
           ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
-
-          ->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')
           ->join('region', 'region.id', '=','centro_trabajo.id_region')
           ->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
           ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
           ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
-
           ->select('captura.*',
           'cat_puesto.cat_puesto',
           'centro_trabajo.cct',
@@ -61,11 +58,11 @@ class DirectorCentroController extends Controller
           'localidades.nom_loc')
 
           ->where('captura.categoria','=','DIRECTOR')
-          ->where('ciclo_escolar','=',$query2)
+          ->where('centro_trabajo.cct','LIKE','%'.$query.'%')
           ->where('captura.nombre','LIKE','%'.$query.'%')
           ->orwhere('captura.rfc','LIKE','%'.$query.'%')
           ->orwhere('centro_trabajo.nombre_escuela','LIKE','%'.$query.'%')
-          ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
+          
           ->paginate(40);
 
           return view('nomina.director_centro.index',["personal"=>$personal,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);

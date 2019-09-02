@@ -87,37 +87,11 @@
 
 	<!-- Start About Area -->
 	<section class="about-area section-gap-bottom">
-		<div class="container">
-			<div class="row align-items-center justify-content-center">
-				<div class="col-lg-7 col-md-12 about-left">
-					<img class="img-fluid" src="img/completa.jpeg" alt="">
-				</div>
-				<div class="col-lg-5 col-md-12 about-right">
-					<div class="section-title text-left">
 
-						<h2>Programa Escuelas<br />de Tiempo Completo. </h2>
-					</div>
-					<div align="justify">
-						<p>
-							El Programa Escuelas de Tiempo Completo está destinado a lograr que los alumnos y
-							alumnas de las escuelas públicas de educación básica cuenten con ambientes que les
-						 permitan el logro de mejores aprendizajes y de un desarrollo integral mediante la ampliación y uso eficaz
-						 de la jornada escolar y de mecanismos de mejora en el aprendizaje que hagan un alto a la deserción educativa
-							y que favorezcan la retención escolar.
 
-						 En este servicio, el aprendizaje es el centro de acción del colectivo docente y se garantiza que el tiempo de la jornada
-						 escolar sea invertido de manera efectiva en la formación de los alumnos. Por ello, el programa ofrece materiales educativos
-						 adicionales pertinentes, que impulsan la renovación de los espacios físicos y el equipamiento de los planteles.
 
-						 El propósito principal de Escuelas de Tiempo Completo es construir de manera gradual, un nuevo modelo educativo de
-						 escuela pública mexicana, y ser un factor de innovación educativa que contribuya al aprovechamiento y uso efectivo de
-						 los materiales educativos y de la infraestructura de los planteles escolares.
-						</p>
-					</div>
 
-				</div>
-			</div>
-		</div>
+
 	</section>
 	<!-- End About Area -->
 

@@ -46,12 +46,11 @@
 					</div>
 				</div><!--header-->
 
-
+ 
 				<div class="porlets-content">
 					<div  class="form-horizontal row-border" > <!--acomodo-->
-						<form action="{{url('/directorio_interno', [$personal->id])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
+						<form action="{{url('/perfilactualiza', [$personal->id])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
 						{{csrf_field()}}
-						<input type="hidden" name="_method" value="PUT">
 							<div id="smartwizard">
 								<ul>
 									<li><a href="#step-1">Datos del Trabajador</a></li>
@@ -184,7 +183,7 @@
 									<div id="step-2" class="">
 										<div class="user-profile-content">
 											<div id="form-step-1" role="form" data-toggle="validator">
-												<h3 class="h3titulo">Historial de Oficios</h3>
+												<h3 class="h3titulo">Informacion de Oficios</h3>
 
 <label class="col-sm-3 control-label">Oficios Emitidos: <strog class="theme_color"></strog></label>
 

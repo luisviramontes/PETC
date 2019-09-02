@@ -123,7 +123,7 @@ Route::resource('cambios_cct', 'CambiosCctController');
 Route::resource('captura', 'CapturaController');
 Route::get('descargar-tabla-captura', 'CapturaController@excel')->name('nomina.captura.excel');
 Route::get('ver_datoscaptura/{id}/{ciclo}', array('as'=> '/ver_datoscaptura','uses'=>'CapturaController@verInformacion'));
-Route::get('validarcaptura/{cct}/{puesto}', 'CapturaController@validarCaptura');
+Route::get('validarcaptura/{cct}/{puesto}/{rfc}', 'CapturaController@validarCaptura');
 Route::post('activarrfc', 'CapturaController@activar');
 Route::get('validarnuevor/{cct}/{puesto}', 'CapturaController@validarNuevo');
 Route::get('validarpersonal/{rfc}', 'CapturaController@validarRFC');
@@ -371,7 +371,7 @@ Route::resource('directorio_interno', 'DirectorioInternoController');
 Route::get('descargar-directorio-interno', 'DirectorioInternoController@excel')->name('nomina.directorio_interno.excel');
 Route::get('pdf_directorio_externo', array('as'=> '/pdf_directorio_externo','uses'=>'DirectorioInternoController@invoice'));
 Route::get('perfil/{id}', array('as'=> 'perfil/{id}','uses'=>'DirectorioInternoController@perfil'));
-Route::post('perfilactualiza/{id}', 'OficiosEmitidosController@oficioemitido_resuelto');
+Route::post('perfilactualiza/{id}', 'DirectorioInternoController@actualiza_perfil');
 
 
 
@@ -458,3 +458,12 @@ Route::get('gmaps', ['as'=>'gmaps','uses' => 'GmapsController@index']);
 
 //CALENDARIO
 Route::get('calendario', ['as'=>'calendario','uses' => 'CalendarioController@index']);
+
+//QUEJAS Y DENUNCIAS
+Route::resource('quejas', 'QuejasController');
+Route::get('descargar-quejas/{ciclo}', 'QuejasController@excel')->name('administrativa.quejas.excel');
+Route::post('resolverqueja/{id}', 'QuejasController@resolverqueja');
+
+//CONSULTA PAGOS
+Route::resource('consulta_pagos', 'ConsultaPagosController');
+Route::get('pdf_comprobante/{rfc}/{ciclo}/{qna}/{sostenimiento}', array('as'=> '/pdf_comprobante','uses'=>'ConsultaPagosController@invoice')); 

@@ -2577,3 +2577,88 @@ $(document).ready(function() {
         }
     } );
  } );
+
+
+function fnFormatDetails22 ( oTable, nTr )
+{
+    var aData = oTable.fnGetData( nTr );
+    var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>DATOS DEL CTE</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>CCT:</strong></td><td>'+aData[1]+' </td></tr>';
+    sOut += '<tr><td><strong>Nombre de la Escuela:</strong></td><td>'+aData[2]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>DATOS DE IDENTIFICACIÓN DEL DENUNCIANTE</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Nombre:</strong></td><td>'+aData[6]+' </td></tr>';
+    sOut += '<tr><td><strong>Teléfono:</strong></td><td>'+aData[7]+' </td></tr>';
+    sOut += '<tr><td><strong>Ocupación:</strong></td><td>'+aData[8]+' </td></tr>';
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>SERVIDOR PÚBLICO CONTRA QUIEN SE PRESENTA LA QUEJA Ó DENUNCIA</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Nombre:</strong></td><td>'+aData[9]+' </td></tr>';
+    sOut += '<tr><td><strong>Puesto:</strong></td><td>'+aData[10]+' </td></tr>';
+
+
+    sOut += '<tr><td>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;<strong>MOTIVO DE LA QUEJA Ó DENUNCIA</strong></td><td> </td></tr>';
+    sOut += '<tr><td><strong>Motivo:</strong></td><td>'+aData[3]+' </td></tr>';
+    sOut += '<tr><td><strong>Descripción:</strong></td><td>'+aData[4]+' </td></tr>';
+    sOut += '<tr><td><strong>Fecha Denuncia:</strong></td><td>'+aData[5]+' </td></tr>';
+    sOut += '<tr><td><strong>Ciclo Escolar:</strong></td><td>'+aData[14]+' </td></tr>';
+    sOut += '<tr><td><strong>Estado:</strong></td><td>'+aData[12]+' </td></tr>';
+    sOut += '<tr><td><strong>Evidencia:</strong></td><td>'+aData[11]+' </td></tr>';
+    sOut += '<tr><td><strong><Capturo:</strong></td><td>'+aData[13]+' </td></tr>';
+    sOut += '</table>';
+
+    return sOut;
+}
+
+$(document).ready(function() {
+
+    $('#dynamic-table22').dataTable( {
+        "aaSorting": [[ 4, "desc" ]]
+    } );
+
+    /*
+     * Insert a 'details' column to the table
+     */
+     var nCloneTh = document.createElement( 'th' );
+     var nCloneTd = document.createElement( 'td' );
+     nCloneTd.innerHTML = '<img src="/plugins/advanced-datatable/images/details_open.png">';
+     nCloneTd.className = "center";
+
+     $('#hidden-table-info22 thead tr').each( function () {
+        this.insertBefore( nCloneTh, this.childNodes[0] );
+    } );
+
+     $('#hidden-table-info22 tbody tr').each( function () {
+        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+    } );
+
+    /*
+     * Initialse DataTables, with no sorting on the 'details' column
+     */
+     var oTable = $('#hidden-table-info22').dataTable( {
+        "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 0 ] }
+        ],
+        "aaSorting": [[1, 'asc']]
+    });
+
+    /* Add event listener for opening and closing details
+     * Note that the indicator for showing which row is open is not controlled by DataTables,
+     * rather it is done here
+     */
+     $('#hidden-table-info22 tbody td img').click(function () {
+        var nTr = $(this).parents('tr')[0];
+        if ( oTable.fnIsOpen(nTr) )
+        {
+            /* This row is already open - close it */
+            this.src = "/plugins/advanced-datatable/images/details_open.png";
+            oTable.fnClose( nTr );
+        }
+        else
+        {
+            /* Open this row */
+            this.src = "/plugins/advanced-datatable/images/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails22(oTable, nTr), 'details' );
+        }
+    } );
+ } );

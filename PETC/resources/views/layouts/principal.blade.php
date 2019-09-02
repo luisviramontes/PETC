@@ -135,6 +135,8 @@
 
         <!--\\\\\\\left_nav start \\\\\\-->
 
+ @if (Auth::guest())
+  @else
 @if(Auth::user()->tipo_usuario == 2 || Auth::user()->tipo_usuario==5)
 
         <div class="left_nav_slidebar">
@@ -309,6 +311,7 @@
       @else
 
       @endif
+      @endif 
     </div>
     <!--\\\\\\\left_nav end \\\\\\-->
     <div class="contentpanel">

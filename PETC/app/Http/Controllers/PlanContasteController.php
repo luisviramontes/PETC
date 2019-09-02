@@ -33,7 +33,7 @@ class PlanContasteController extends Controller
   public function index(Request $request)
   { 
      $tipo_usuario = Auth::user()->tipo_usuario;
-     if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+     if($tipo_usuario <> "2" && $tipo_usuario <>"5"){
        return view('permisos');
 
    }else{
@@ -115,7 +115,7 @@ class PlanContasteController extends Controller
     public function edit($id)
     {
      $tipo_usuario = Auth::user()->tipo_usuario;
-     if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+     if($tipo_usuario <> "2" && $tipo_usuario<>"5"){
        return view('permisos');
 
    }else{ 

@@ -55,7 +55,7 @@
 									Acerca del PETC
 								</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="/img/documentos/RO2019.pdf" target="_blank">¿Que es El PETC?</a>
+									<a class="dropdown-item" href="/about" target="_blank">¿Que es El PETC?</a>
 									<a class="dropdown-item" href="/img/documentos/RO2019.pdf" target="_blank">Reglas de Operacion</a>
 									<a class="dropdown-item" href="/img/documentos/CM2019.pdf" target="_blank">Convenio Marco</a>
 									<a class="dropdown-item" href="/img/documentos/RG2019.pdf" target="_blank" >Criterios Para El Ejercicio de Los Rubros De Gasto </a>
@@ -63,9 +63,21 @@
 									<a class="dropdown-item" href="/img/documentos/LIPRI2018.pdf" target="_blank">Lineamientos Primaria</a>
 									<a class="dropdown-item" href="/img/documentos/LITEL2018.pdf" target="_blank">Lineamientos Telesecundaria</a>
 									<a class="dropdown-item" href="projects.html">Tipos de Apoyo</a>
+									<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>
 								</div>
 							</li>
-							<li><a href="normatividad">Normatividad</a></li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" href="normatividad" id="navbardrop" data-toggle="dropdown">
+									Nomina 
+								</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="/consulta_pagos">Consulta Tus Pagos</a>
+									<a class="dropdown-item" href="projects.html">Lista de Asistencia</a>
+									<a class="dropdown-item" href="projects.html">Rechazos de Pago</a>
+									<a class="dropdown-item" href="projects.html">Alimentación</a>
+								</div>
+								</li>
+
 							<li class="dropdown">
 								<a class="dropdown-toggle" href="normatividad" id="navbardrop" data-toggle="dropdown">
 									Áreas
@@ -409,13 +421,13 @@
 				<div class="active-testimonial">
 					<div class="single-testimonial item d-flex flex-row">
 						<div class="thumb">
-							<img class="" src="img/testimonial/t1.png" alt="">
-						</div>
+								<img class="" src="img/personal_etc/cesar.jpeg" alt="">
+								</div>
 						<div class="desc">
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 							</p>
-							<h4>Prof.Antonio Reyes Carlos</h4>
+							<h4>Prof. César Pérez Hernández</h4> 
 							<div class="bottom">
 								<p>Coordinador Estatal del PETC</p>
 							</div>
@@ -423,7 +435,7 @@
 					</div>
 					<div class="single-testimonial item d-flex flex-row">
 						<div class="thumb">
-							<img class="" src="img/testimonial/t2.png" alt="">
+							<img class="" src="img/personal_etc/adriana.jpeg" alt="">
 						</div>
 						<div class="desc">
 							<p>
@@ -437,7 +449,7 @@
 					</div>
 					<div class="single-testimonial item d-flex flex-row">
 						<div class="thumb">
-							<img class="" src="img/testimonial/t3.png" alt="">
+							<img class="" src="img/personal_etc/sebas.jpeg" alt="">
 						</div>
 						<div class="desc">
 							<p>
@@ -493,7 +505,7 @@
 					<h4>PETC</h4>
 					<ul>
 						<li><a href="#">Busca Tu Escuela</a></li>
-						<li><a href="#">Quejas y Denuncias</a></li>
+						<li><a href="quejas/create">Quejas y Denuncias</a></li>
 						<li><a href="#">Historico del Programa</a></li>
 						<li><a href="#">Ayuda</a></li>
 					</ul>
@@ -548,7 +560,7 @@
 		<div class="row footer-bottom d-flex justify-content-between">
 			<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Sitio Elaborado por <a href="https://colorlib.com" target="_blank">ISC Luis Viramontes, ISC Daniel Pacheco</a>
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 			</p>
 			<div class="col-lg-4 col-sm-12 footer-social">

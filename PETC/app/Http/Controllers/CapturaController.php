@@ -284,7 +284,7 @@ class CapturaController extends Controller
 
      }
 
-     //return Redirect::to('captura');
+     return Redirect::to('captura');
         //
    }}
 
@@ -594,11 +594,11 @@ class CapturaController extends Controller
 
         //
     }}
-    public function validarCaptura(Request $request,$cct,$puesto)
+    public function validarCaptura(Request $request,$cct,$puesto,$rfc)
     {
       $personal= CapturaModel::
       select('id','rfc','nombre', 'estado')
-      ->where('id_cct_etc','=',$cct)->where('categoria','=',$puesto)->where('estado','=','ACTIVO')
+      ->where('id_cct_etc','=',$cct)->where('categoria','=',$puesto)->where('estado','=','ACTIVO')->where('rfc','<>',$rfc)
       ->get();
 
       return response()->json(

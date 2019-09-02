@@ -652,13 +652,15 @@ function validarInput(input) {
     var aux =document.getElementById('movimiento').value;
     var cct =document.getElementById('cct').value;
     var categoria=document.getElementById('puesto').value;
+    var rfc=document.getElementById('rfc_input').value;
 
     if(aux == "ALTA"){
      desabilita_cct_nuevo();
      document.getElementById('docente_cu').style.display = 'block';
      document.getElementById('docente_cubrir').required = true
  //   document.getElementById('docente_cubrir').style.display = 'none';
- var route = "http://localhost:8000/validarcaptura/"+cct+"/"+categoria;
+ //SE AGREGO EL RFC PARA EVITAR QUE TRAIGA EL MISMO DOCENTE QUE SE DA DE ALTA 01/09/2019 
+ var route = "http://localhost:8000/validarcaptura/"+cct+"/"+categoria+"/"+rfc;
 
  limpiar_input();
  verifica_clave();
@@ -725,6 +727,11 @@ function validarInput(input) {
   desabilita_cct_nuevo();
   verifica_personal(categoria,cct);
 
+}else if(aux == "BAJA"){
+  desabilita_docente();
+  verifica_clave();
+  desabilita_cct_nuevo();
+  verifica_personal(categoria,cct);
 
 
 }
@@ -1074,7 +1081,15 @@ function enviar_ciclo15(){
   var y =document.getElementById('searchText').value;
   document.getElementById('excel').href="/descargar-estadistica911/"+x;
 
-  location.href="/estadistica911?searchText="+y+"&ciclo_escolar="+x;
+  location.href="/quejas?searchText="+y+"&ciclo_escolar="+x;
+}
+
+function enviar_ciclo16(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var y =document.getElementById('searchText').value;
+  document.getElementById('excel').href="/descargar-quejas/"+x;
+
+  location.href="/quejas?searchText="+y+"&ciclo_escolar="+x;
 }
 
 
@@ -1684,15 +1699,15 @@ function valida_sostenimiento() {
 
          swal("WARNING!","Los rechazos correspondientes a la quincena <<"+qna+">> <<"+sostenimiento+">> ya han sido registrados anteriormente.","warning");
    				 			             //  document.getElementById("error_nominacapturada").innerHTML = "La Quincena que intenta registrar ya ha sido insertada anteriormente";
-                             return false;
-                           }
+                              return false;
+                            }
 
-                         }
+                          }
 
-                       }else{
-                        document.getElementById('file').disabled=false;
-                      }
-                    });
+                        }else{
+                          document.getElementById('file').disabled=false;
+                        }
+                      });
 }
 
 function cambia_reclamos(){
@@ -2794,7 +2809,7 @@ function direc(){
 
     console.log(res);
   });
-    console.log(dire);
+  console.log(dire);
 }
 
 function cuenta() {

@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
     "content-hash": "42b20c61248a27bed85c8b63dd1f28d0",
-=======
-    "content-hash": "fd7e72f834ce5213a44f6c85a48b611d",
->>>>>>> 1510048037f11b21a768c373fc06d89c3f5ed623
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -219,64 +215,6 @@
                 "string"
             ],
             "time": "2018-01-09T20:05:19+00:00"
-<<<<<<< HEAD
-=======
-        },
-        {
-            "name": "genealabs/phpgmaps",
-            "version": "0.3.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GeneaLabs/Phpgmaps.git",
-                "reference": "d258433d0491226597e7cd62b7ca388c35afe943"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GeneaLabs/Phpgmaps/zipball/d258433d0491226597e7cd62b7ca388c35afe943",
-                "reference": "d258433d0491226597e7cd62b7ca388c35afe943",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "5.*",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-laravel4": "1.0-dev",
-                    "dev-develop": "2.0-dev",
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GeneaLabs\\Phpgmaps\\": "src/GeneaLabs/Phpgmaps/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mike Bronner",
-                    "email": "mike@genealabs.com",
-                    "role": "maintainer"
-                },
-                {
-                    "name": "Michael Hopkins",
-                    "role": "developer"
-                }
-            ],
-            "description": "Laravel implementation of BIOSTALL's CodeIgniter Google Maps API, originally by Michael Hopkins at Appitventures.",
-            "keywords": [
-                "biostall",
-                "googlemaps",
-                "laravel",
-                "phpgmaps"
-            ],
-            "abandoned": "GeneaLabs/laravel-maps",
-            "time": "2016-08-07T20:39:00+00:00"
         },
         {
             "name": "genealabs/phpgmaps",
@@ -380,7 +318,6 @@
             ],
             "abandoned": "laravelcollective/html",
             "time": "2015-01-01T16:31:18+00:00"
->>>>>>> d2681a147ef81e59ad5604c38e2219a764b9f0e3
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -2580,18 +2517,6 @@
         },
         {
             "name": "doctrine/instantiator",
-<<<<<<< HEAD
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda",
-                "reference": "185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda",
-=======
             "version": "1.2.0",
             "source": {
                 "type": "git",
@@ -2602,7 +2527,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/doctrine/instantiator/zipball/a2c590166b2133a4633738648b6b064edae0814a",
                 "reference": "a2c590166b2133a4633738648b6b064edae0814a",
->>>>>>> d2681a147ef81e59ad5604c38e2219a764b9f0e3
                 "shasum": ""
             },
             "require": {
@@ -2612,15 +2536,10 @@
                 "doctrine/coding-standard": "^6.0",
                 "ext-pdo": "*",
                 "ext-phar": "*",
-<<<<<<< HEAD
-                "phpunit/phpunit": "^6.2.3",
-                "squizlabs/php_codesniffer": "^3.0.2"
-=======
                 "phpbench/phpbench": "^0.13",
                 "phpstan/phpstan-phpunit": "^0.11",
                 "phpstan/phpstan-shim": "^0.11",
                 "phpunit/phpunit": "^7.0"
->>>>>>> d2681a147ef81e59ad5604c38e2219a764b9f0e3
             },
             "type": "library",
             "extra": {
@@ -2650,9 +2569,6 @@
                 "constructor",
                 "instantiate"
             ],
-<<<<<<< HEAD
-            "time": "2017-07-22T11:58:36+00:00"
-=======
             "time": "2019-03-17T17:37:11+00:00"
         },
         {
@@ -2720,7 +2636,6 @@
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
             "time": "2018-12-14T02:40:31+00:00"
->>>>>>> d2681a147ef81e59ad5604c38e2219a764b9f0e3
         },
         {
             "name": "fzaninotto/faker",
@@ -3015,18 +2930,6 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-<<<<<<< HEAD
-            "version": "4.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "94fd0001232e47129dd3504189fa1c7225010d08"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/94fd0001232e47129dd3504189fa1c7225010d08",
-                "reference": "94fd0001232e47129dd3504189fa1c7225010d08",
-=======
             "version": "4.3.1",
             "source": {
                 "type": "git",
@@ -3037,7 +2940,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c",
                 "reference": "bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c",
->>>>>>> d2681a147ef81e59ad5604c38e2219a764b9f0e3
                 "shasum": ""
             },
             "require": {
@@ -3075,11 +2977,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-<<<<<<< HEAD
-            "time": "2017-11-30T07:14:17+00:00"
-=======
             "time": "2019-04-30T17:48:53+00:00"
->>>>>>> d2681a147ef81e59ad5604c38e2219a764b9f0e3
         },
         {
             "name": "phpdocumentor/type-resolver",
