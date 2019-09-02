@@ -42,15 +42,12 @@ Route::get('services', function () {
 	return view('services');
 });
 /////////////////////////////////////////////////////////////
-<<<<<<< HEAD
+
 Route::get('materiales_a', function () {
 	return view('materiales');
 });
  
-=======
 
-
->>>>>>> 1363b15a4aa21941e84a5751e86f59358975141b
 //////////////////reintegros///////////////////////////////
 Route::resource('reintegros', 'ReintegrosController');
 Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
@@ -475,13 +472,10 @@ Route::post('resolverqueja/{id}', 'QuejasController@resolverqueja');
 
 //CONSULTA PAGOS
 Route::resource('consulta_pagos', 'ConsultaPagosController');
-<<<<<<< HEAD
 Route::get('pdf_comprobante/{rfc}/{ciclo}/{qna}/{sostenimiento}', array('as'=> '/pdf_comprobante','uses'=>'ConsultaPagosController@invoice')); 
 
 
 //CONSULTA LISTAS
 Route::resource('consulta_listas', 'ListasPublicasController');
 Route::get('pdf_consulta_listas/{cct}/{ciclo}/{mes}', array('as'=> '/pdf_consulta_listas','uses'=>'ListasPublicasController@generar_pdf_listas')); 
-=======
-Route::get('pdf_comprobante/{rfc}/{ciclo}/{qna}/{sostenimiento}', array('as'=> '/pdf_comprobante','uses'=>'ConsultaPagosController@invoice'));
->>>>>>> 1363b15a4aa21941e84a5751e86f59358975141b
+
