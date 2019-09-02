@@ -200,6 +200,16 @@ class NominaCapturadaController extends Controller
 
 
           $id_captura= DB::table('captura')->where('rfc','=',$value->rfc)->where('estado','=','ACTIVO')->first();
+              //SI ES INACTIVO SOLO LE ACTUALIZA  LOS PAGOS REGISTRADOS Y LO REGISTRA EN PAGOS IMPROCEDENTES
+    $id_captura_inactivo= DB::table('captura')->where('rfc','=',$value->rfc)->where('estado','=','INACTIVO')->first();
+    if (count($id_captura_inactivo) > 0){
+     $captura2=CapturaModel::findOrFail($id_captura_inactivo->id);
+     $captura2->pagos_registrados=1;
+     $captura2->qna_actual=1;
+     $captura2->update();
+   }
+   ///
+
           if ($id_captura == null) {
            $letra=substr($value->cat_puesto,0,1);
            if ($letra == "S") {
@@ -231,8 +241,13 @@ class NominaCapturadaController extends Controller
           $improcedente->id_ciclo=$id_ciclo;
           $improcedente->captura=$user;
           $improcedente->save();
+
           $data3=['region'=>$value->region,'nom_emp'=>$value->nom_emp,'rfc'=>$value->rfc,'motivo'=>"NO SE ENCUENTRA EL RFC ACTIVO EN EL SISTEMA "];
           array_push($improcedentes, $data3);
+
+          $data3=['region'=>$value->region,'nom_emp'=>$value->nombre,'rfc'=>$value->rfc,'motivo'=>"NO SE ENCUENTRA EL RFC ACTIVO EN EL SISTEMA "];
+          array_push($improcedentes, $data3);
+
 
                       //AQUI ACTUALIZA CADA QNA EL PLAN CONTRASTE CUANDO NO ENCONTRO ACTIVO AL EMPLEADO LO MANDA AL CCT 917
           if($letra == "S"){
@@ -401,6 +416,7 @@ class NominaCapturadaController extends Controller
 
     $id_captura= DB::table('captura')->where('rfc','=',$value->rfc)->where('estado','=','ACTIVO')->first();
 
+
     if ($id_captura == null) {
       $letra=substr($value->cat_puesto,0,1);
       if ($letra == "S") {
@@ -453,57 +469,121 @@ class NominaCapturadaController extends Controller
        $plan->update();
      }
 
-            # code...
-   }else{
-     $captura=CapturaModel::findOrFail($id_captura->id);
-     $captura->pagos_registrados=1;
-     $captura->qna_actual=1;
-     $captura->update();
+    //SI ES INACTIVO SOLO LE ACTUALIZA  LOS PAGOS REGISTRADOS Y LO REGISTRA EN PAGOS IMPROCEDENTES
+    $id_captura_inactivo= DB::table('captura')->where('rfc','=',$value->rfc)->where('estado','=','INACTIVO')->first();
+    if (count($id_captura_inactivo) > 0){
+     $captura2=CapturaModel::findOrFail($id_captura_inactivo->id);
+     $captura2->pagos_registrados=1;
+     $captura2->qna_actual=1;
+     $captura2->update();
+   }
+   ///
 
-     if($id_captura->categoria == "DIRECTOR"){
-       $total_director_fed= $total_director_fed+1;
-       $total_dedu_director_fed=  $total_dedu_director_fed + $value->ded;
-       $total_liqui_director_fed=$total_liqui_director_fed + $value->neto;
-       $total_perce_director_fed=$total_perce_director_fed + $value->perc;
 
-     }elseif ($id_captura->categoria == "DOCENTE" || $id_captura->categoria == "USAER"  || $id_captura->categoria == "EDUCACION FISICA") {
-       $total_docente_fed= $total_docente_fed+1;
-       $total_dedu_docente_fed=$total_dedu_docente_fed + $value->ded;
-       $total_liqui_docente_fed=$total_liqui_docente_fed + $value->neto;
-       $total_perce_docente_fed=$total_perce_docente_fed + $value->perc;
-           # code...
-     }elseif ($id_captura->categoria == "INTENDENTE") {
-           # code...
+
+   if ($id_captura == null) {
+    $letra=substr($value->cat_puesto,0,1);
+    if ($letra == "S") {
       $total_intendente_fed= $total_intendente_fed+1;
       $total_dedu_intendente_fed=$total_dedu_intendente_fed + $value->ded;
       $total_liqui_intendente_fed=$total_liqui_intendente_fed + $value->neto;
       $total_perce_intendente_fed=$total_perce_intendente_fed + $value->perc;
-           # code...
-    }
+        # code...
+    }else{
+      $total_docente_fed= $total_docente_fed+1;
+      $total_dedu_docente_fed=$total_dedu_docente_fed + $value->ded;
+      $total_liqui_docente_fed=$total_liqui_docente_fed + $value->neto;
+      $total_perce_docente_fed=$total_perce_docente_fed + $value->perc;
 
-            //AQUI ACTUALIZA CADA QNA EL PLAN CONTRASTE SEGUN SU CCT, SIEMPRE Y CUANDO ESTE ACTIVO EN EL SISTEMA
-    if($id_captura->categoria == "DIRECTOR"){
-      $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$id_captura->id_cct_etc)->first()->id;
+    }
+    $improcedente= new PagosImprocedentesModel;
+    $improcedente->region=$value->region;
+    $improcedente->nom_emp=$value->nom_emp;
+    $improcedente->rfc=$value->rfc;
+    $improcedente->qna_ini= $value->qna_ini_01;
+    $improcedente->qna_fin=$value->qna_fin_01;
+    $improcedente->qna_pago=$value->qna_pago;
+    $improcedente->num_cheque=$value->num_cheque;
+    $improcedente->perc= $value->perc;
+    $improcedente->ded=$value->ded;
+    $improcedente->neto= $value->neto;
+    $improcedente->id_ciclo=$id_ciclo;
+    $improcedente->captura=$user;
+    $improcedente->observaciones="NO SE ENCUENTRA ACTIVO EN LA CAPTURA DE PETC";
+    $improcedente->captura="PENDIENTE";
+
+    $improcedente->save();
+
+    $data3=['region'=>$value->region,'nom_emp'=>$value->nom_emp,'rfc'=>$value->rfc,'motivo'=>"NO SE ENCUENTRA EL RFC ACTIVO EN EL SISTEMA "];
+    array_push($improcedentes, $data3);
+
+
+                      //AQUI ACTUALIZA CADA QNA EL PLAN CONTRASTE CUANDO NO ENCONTRO ACTIVO AL EMPLEADO LO MANDA AL CCT 917
+    if($letra == "S"){
+      $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=','917')->first()->id;
       $plan=PlanContasteNominaModel::findOrFail($id_plan);
-      $plan->monto_directores=$plan->monto_directores+$value->perc;
-      $plan->deducciones_directores= $plan->deducciones_directores+$value->ded;
+      $plan->monto_intendentes=$plan->monto_intendentes+$value->perc;
+      $plan->deducciones_intendentes= $plan->deducciones_intendentes+$value->ded;
       $plan->update();
-    }elseif($id_captura->categoria == "DOCENTE" || $id_captura->categoria == "USAER" || $id_captura->categoria == "EDUCACION FISICA" ){
-     $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$id_captura->id_cct_etc)->first()->id;
+    }else{
+     $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=','917')->first()->id;
      $plan=PlanContasteNominaModel::findOrFail($id_plan);
      $plan->monto_docentes=$plan->monto_docentes+$value->perc;
      $plan->deducciones_docentes= $plan->deducciones_docentes+$value->ded;
      $plan->update();
-   }elseif($id_captura->categoria == "INTENDENTE" ){
-     $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$id_captura->id_cct_etc)->first()->id;
-     $plan=PlanContasteNominaModel::findOrFail($id_plan);
-     $plan->monto_intendentes=$plan->monto_intendentes+$value->perc;
-     $plan->deducciones_intendentes= $plan->deducciones_intendentes+$value->ded;
-     $plan->update();
-
    }
 
+            # code...
+ }else{
+   $captura=CapturaModel::findOrFail($id_captura->id);
+   $captura->pagos_registrados=1;
+   $captura->qna_actual=1;
+   $captura->update();
+
+   if($id_captura->categoria == "DIRECTOR"){
+     $total_director_fed= $total_director_fed+1;
+     $total_dedu_director_fed=  $total_dedu_director_fed + $value->ded;
+     $total_liqui_director_fed=$total_liqui_director_fed + $value->neto;
+     $total_perce_director_fed=$total_perce_director_fed + $value->perc;
+
+   }elseif ($id_captura->categoria == "DOCENTE" || $id_captura->categoria == "USAER"  || $id_captura->categoria == "EDUCACION FISICA") {
+     $total_docente_fed= $total_docente_fed+1;
+     $total_dedu_docente_fed=$total_dedu_docente_fed + $value->ded;
+     $total_liqui_docente_fed=$total_liqui_docente_fed + $value->neto;
+     $total_perce_docente_fed=$total_perce_docente_fed + $value->perc;
+           # code...
+   }elseif ($id_captura->categoria == "INTENDENTE") {
+           # code...
+    $total_intendente_fed= $total_intendente_fed+1;
+    $total_dedu_intendente_fed=$total_dedu_intendente_fed + $value->ded;
+    $total_liqui_intendente_fed=$total_liqui_intendente_fed + $value->neto;
+    $total_perce_intendente_fed=$total_perce_intendente_fed + $value->perc;
+           # code...
+  }
+
+            //AQUI ACTUALIZA CADA QNA EL PLAN CONTRASTE SEGUN SU CCT, SIEMPRE Y CUANDO ESTE ACTIVO EN EL SISTEMA
+  if($id_captura->categoria == "DIRECTOR"){
+    $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$id_captura->id_cct_etc)->first()->id;
+    $plan=PlanContasteNominaModel::findOrFail($id_plan);
+    $plan->monto_directores=$plan->monto_directores+$value->perc;
+    $plan->deducciones_directores= $plan->deducciones_directores+$value->ded;
+    $plan->update();
+  }elseif($id_captura->categoria == "DOCENTE" || $id_captura->categoria == "USAER" || $id_captura->categoria == "EDUCACION FISICA" ){
+   $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$id_captura->id_cct_etc)->first()->id;
+   $plan=PlanContasteNominaModel::findOrFail($id_plan);
+   $plan->monto_docentes=$plan->monto_docentes+$value->perc;
+   $plan->deducciones_docentes= $plan->deducciones_docentes+$value->ded;
+   $plan->update();
+ }elseif($id_captura->categoria == "INTENDENTE" ){
+   $id_plan=DB::table('plan_contraste_nomina')->where('id_cct_etc','=',$id_captura->id_cct_etc)->first()->id;
+   $plan=PlanContasteNominaModel::findOrFail($id_plan);
+   $plan->monto_intendentes=$plan->monto_intendentes+$value->perc;
+   $plan->deducciones_intendentes= $plan->deducciones_intendentes+$value->ded;
+   $plan->update();
+
  }
+
+}
 
 
 

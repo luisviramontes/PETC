@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TarjetasFortalecimientoModel extends Model
 {
-	protected $table= "TarjetasFortalecimiento";
+	protected $table= "tarjetasfortalecimiento";
     //
     //
 }

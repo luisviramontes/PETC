@@ -173,7 +173,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">CCT <strog class="theme_color">*</strog></label>
 													<div class="col-sm-8">
-														<select name="cct" id="cct" class="form-control select2"   value="{{Input::old('cct')}}"  onchange="captura_personal();traersos()" required>
+														<select name="cct" id="cct" class="form-control select2"   value="{{Input::old('cct')}}"  onchange="captura_personal()" required>
 															<option selected>
 																Selecciona una opción
 															</option>

@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 class AuthController extends Controller
 {
 
-    protected $redirectTo = '/captura';
+    protected $redirectTo = '/';
 
     /*
     |--------------------------------------------------------------------------

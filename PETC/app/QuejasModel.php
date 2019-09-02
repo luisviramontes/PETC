@@ -4,8 +4,8 @@ namespace petc;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Director_CCTModel extends Model
+class QuejasModel extends Model
 {
-	protected $table= "director_cct";
+	protected $table="quejas";
     //
 }

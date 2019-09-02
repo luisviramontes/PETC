@@ -55,7 +55,7 @@
 									Acerca del PETC
 								</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" >¿Que es El PETC?</a>
+									<a class="dropdown-item" href="/about" target="_blank">¿Que es El PETC?</a>
 									<a class="dropdown-item" href="/img/documentos/RO2019.pdf" target="_blank">Reglas de Operacion</a>
 									<a class="dropdown-item" href="/img/documentos/CM2019.pdf" target="_blank">Convenio Marco</a>
 									<a class="dropdown-item" href="/img/documentos/RG2019.pdf" target="_blank" >Criterios Para El Ejercicio de Los Rubros De Gasto </a>
@@ -63,9 +63,21 @@
 									<a class="dropdown-item" href="/img/documentos/LIPRI2018.pdf" target="_blank">Lineamientos Primaria</a>
 									<a class="dropdown-item" href="/img/documentos/LITEL2018.pdf" target="_blank">Lineamientos Telesecundaria</a>
 									<a class="dropdown-item" href="projects.html">Tipos de Apoyo</a>
+									<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>
 								</div>
 							</li>
-							<li><a href="normatividad">Normatividad</a></li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" href="normatividad" id="navbardrop" data-toggle="dropdown">
+									Nomina 
+								</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="/consulta_pagos">Consulta Tus Pagos</a>
+									<a class="dropdown-item" href="projects.html">Lista de Asistencia</a>
+									<a class="dropdown-item" href="projects.html">Rechazos de Pago</a>
+									<a class="dropdown-item" href="projects.html">Alimentación</a>
+								</div>
+								</li>
+
 							<li class="dropdown">
 								<a class="dropdown-toggle" href="normatividad" id="navbardrop" data-toggle="dropdown">
 									Áreas
@@ -141,7 +153,7 @@
 					<div class="single-cat-widget">
 						<div class="content relative">
 							<div class="overlay overlay-bg"></div>
-							<a href="/captura" target="_blank">
+							<a href="../captura" target="_blank">
 								<div class="thumb">
 									<img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget1.jpg" alt="">
 								</div>
@@ -319,7 +331,7 @@
 									<img class="image img-fluid" src="img/projects/p1.png" alt="">
 								</div>
 								<div class="middle">
-									<h4>Actividad hecha recientemente</h4>
+									<h4>Servicio de Alimentación</h4>
 									<div class="cat">Descripcion</div>
 								</div>
 								<a class="overlay" href="#"></a>
@@ -409,13 +421,13 @@
 				<div class="active-testimonial">
 					<div class="single-testimonial item d-flex flex-row">
 						<div class="thumb">
-							<img class="" src="img/testimonial/t1.png" alt="">
-						</div>
+								<img class="" src="img/personal_etc/cesar.jpeg" alt="">
+								</div>
 						<div class="desc">
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 							</p>
-							<h4>Prof.Antonio Reyes Carlos</h4>
+							<h4>Prof. César Pérez Hernández</h4> 
 							<div class="bottom">
 								<p>Coordinador Estatal del PETC</p>
 							</div>
@@ -423,7 +435,7 @@
 					</div>
 					<div class="single-testimonial item d-flex flex-row">
 						<div class="thumb">
-							<img class="" src="img/testimonial/t2.png" alt="">
+							<img class="" src="img/personal_etc/adriana.jpeg" alt="">
 						</div>
 						<div class="desc">
 							<p>
@@ -437,7 +449,7 @@
 					</div>
 					<div class="single-testimonial item d-flex flex-row">
 						<div class="thumb">
-							<img class="" src="img/testimonial/t3.png" alt="">
+							<img class="" src="img/personal_etc/sebas.jpeg" alt="">
 						</div>
 						<div class="desc">
 							<p>
@@ -471,7 +483,7 @@
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 							</p>
-							<h4>Ing.David</h4>
+							<h4>Ing.David Garcia</h4>
 							<div class="bottom">
 								<p>Encargado del Área de Materiales</p>
 							</div>
@@ -490,44 +502,44 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Top Products</h4>
+					<h4>PETC</h4>
 					<ul>
-						<li><a href="#">Managed Website</a></li>
-						<li><a href="#">Manage Reputation</a></li>
-						<li><a href="#">Power Tools</a></li>
-						<li><a href="#">Marketing Service</a></li>
+						<li><a href="#">Busca Tu Escuela</a></li>
+						<li><a href="quejas/create">Quejas y Denuncias</a></li>
+						<li><a href="#">Historico del Programa</a></li>
+						<li><a href="#">Ayuda</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Quick Links</h4>
+					<h4>Propuesta Pedagógica</h4>
 					<ul>
-						<li><a href="#">Jobs</a></li>
-						<li><a href="#">Brand Assets</a></li>
-						<li><a href="#">Investor Relations</a></li>
-						<li><a href="#">Terms of Service</a></li>
+						<li><a href="#">Ficheros Didacticos</a></li>
+						<li><a href="#">Herramientas</a></li>
+						<li><a href="#">Guias</a></li>
+						<li><a href="#">Lineas de Trabajo</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Features</h4>
+					<h4>Areas</h4>
 					<ul>
-						<li><a href="#">Jobs</a></li>
-						<li><a href="#">Brand Assets</a></li>
-						<li><a href="#">Investor Relations</a></li>
-						<li><a href="#">Terms of Service</a></li>
+						<li><a href="#">Alimentación</a></li>
+						<li><a href="#">Nomina</a></li>
+						<li><a href="#">Materiales</a></li>
+						<li><a href="#">Academica</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Resources</h4>
+					<h4>Recursos</h4>
 					<ul>
-						<li><a href="#">Guides</a></li>
-						<li><a href="#">Research</a></li>
-						<li><a href="#">Experts</a></li>
-						<li><a href="#">Agencies</a></li>
+						<li><a href="#">Avisos</a></li>
+						<li><a href="#">Documentos</a></li>
+						<li><a href="#">Circulares</a></li>
+						<li><a href="#">Comunicados</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-4 col-md-6 single-footer-widget">
-					<h4>Newsletter</h4>
-					<p>You can trust us. we only send promo offers,</p>
+					<h4>Subscribete</h4>
+					<p>A todos los Eventos del PETC</p>
 					<div class="form-wrap" id="mc_embed_signup">
 						<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
 						method="get" class="form-inline">
@@ -548,7 +560,7 @@
 		<div class="row footer-bottom d-flex justify-content-between">
 			<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Sitio Elaborado por <a href="https://colorlib.com" target="_blank">ISC Luis Viramontes, ISC Daniel Pacheco</a>
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 			</p>
 			<div class="col-lg-4 col-sm-12 footer-social">

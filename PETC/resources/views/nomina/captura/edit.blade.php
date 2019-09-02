@@ -160,11 +160,18 @@
 															<option value="REINCORPORACION">REINCORPORACION</option>
 															<option value="CAMBIOCCT" >CAMBIO DE CCT</option>
 															<option value="CAMBIOFUNCION" selected>CAMBIO DE FUNCION</option>
-															@else
+															@elseif($personal->tipo_movimiento == "ALTA")
 															<option value="INICIO" >DESDE INICIO DE CICLO</option>
 															<option value="NUEVO" >NUEVO RECURSO </option>
 															<option value="ALTA" selected>ALTA</option>
 															<option value="REINCORPORACION" >REINCORPORACION</option>
+															<option value="CAMBIOCCT" >CAMBIO DE CCT</option>
+															<option value="CAMBIOFUNCION" >CAMBIO DE FUNCION</option>
+															@elseif($personal->tipo_movimiento == "BAJA")
+															<option value="INICIO" >DESDE INICIO DE CICLO</option>
+															<option value="NUEVO" >NUEVO RECURSO </option>
+															<option value="ALTA" >ALTA</option>
+															<option value="REINCORPORACION" selected>REINCORPORACION</option>
 															<option value="CAMBIOCCT" >CAMBIO DE CCT</option>
 															<option value="CAMBIOFUNCION" >CAMBIO DE FUNCION</option>
 															@endif
@@ -508,7 +515,7 @@
           		var z = document.getElementById('error_movimiento').value;
           		var c = document.getElementById('error_fecha').value;
           		var x = document.getElementById('error_clave').value;
-          alert(z);
+  
 
           		if (z == 1 || c == 1 || x == 1){
           			return false;
@@ -597,6 +604,7 @@ window.onload = function() {
 	var z = "{{$personal->tipo_movimiento}}";
 	var y= "{{$personal->categoria}}";
 	var w= "{{$personal->dias_trabajados}}";
+	alert(z);
 
 	if(x.length > 0){
 		var select=String(x);
