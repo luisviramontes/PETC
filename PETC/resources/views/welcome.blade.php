@@ -72,7 +72,7 @@
 								</a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="/consulta_pagos">Consulta Tus Pagos</a>
-									<a class="dropdown-item" href="projects.html">Lista de Asistencia</a>
+									<a class="dropdown-item" href="/consulta_listas">Lista de Asistencia</a>
 									<a class="dropdown-item" href="projects.html">Rechazos de Pago</a>
 									<a class="dropdown-item" href="projects.html">Alimentación</a>
 								</div>
@@ -80,10 +80,10 @@
 
 							<li class="dropdown">
 								<a class="dropdown-toggle" href="normatividad" id="navbardrop" data-toggle="dropdown">
-									Áreas
+									Alimentación
 								</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="/captura">Nomina y Sistemas</a>
+									<a class="dropdown-item" href="/captura">Herramientas</a>
 									<a class="dropdown-item" href="projects.html">Academica</a>
 									<a class="dropdown-item" href="projects.html">Materiales</a>
 									<a class="dropdown-item" href="projects.html">Alimentación</a>
@@ -91,10 +91,14 @@
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-									Seguimiento y Monitoreo
+									Academica
 								</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="projects.html">Visitas de Seguimiento</a>								
+								<a class="dropdown-item" href="projects.html">Contraloria Social</a>
+									<a class="dropdown-item" href="/materiales_a">Materiales de Apoyo</a>
+									<a class="dropdown-item" href="projects.html">Lineas de Trabajo</a>
+									<a class="dropdown-item" href="projects.html">Capacitaciónes</a>
+									<a class="dropdown-item" href="projects.html">Herramientas</a>								
 								</div>
 							</li>
 							<li><a href="contact">Escuelas Incorporadas</a></li>					

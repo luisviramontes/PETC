@@ -42,7 +42,9 @@ Route::get('services', function () {
 	return view('services');
 });
 /////////////////////////////////////////////////////////////
-
+Route::get('materiales_a', function () {
+	return view('materiales');
+});
  
 //////////////////reintegros///////////////////////////////
 Route::resource('reintegros', 'ReintegrosController');
@@ -120,7 +122,7 @@ Route::resource('bajas_contrato', 'BajasContratoController');
 Route::resource('cambios_cct', 'CambiosCctController');
 
 //CAPTURA PERSONAL
-Route::resource('captura', 'CapturaController');
+Route::resource('captura', 'CapturaController'); 
 Route::get('descargar-tabla-captura', 'CapturaController@excel')->name('nomina.captura.excel');
 Route::get('ver_datoscaptura/{id}/{ciclo}', array('as'=> '/ver_datoscaptura','uses'=>'CapturaController@verInformacion'));
 Route::get('validarcaptura/{cct}/{puesto}/{rfc}', 'CapturaController@validarCaptura');
@@ -467,3 +469,8 @@ Route::post('resolverqueja/{id}', 'QuejasController@resolverqueja');
 //CONSULTA PAGOS
 Route::resource('consulta_pagos', 'ConsultaPagosController');
 Route::get('pdf_comprobante/{rfc}/{ciclo}/{qna}/{sostenimiento}', array('as'=> '/pdf_comprobante','uses'=>'ConsultaPagosController@invoice')); 
+
+
+//CONSULTA LISTAS
+Route::resource('consulta_listas', 'ListasPublicasController');
+Route::get('pdf_consulta_listas/{cct}/{ciclo}/{mes}', array('as'=> '/pdf_consulta_listas','uses'=>'ListasPublicasController@generar_pdf_listas')); 
