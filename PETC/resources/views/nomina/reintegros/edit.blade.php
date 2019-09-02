@@ -71,13 +71,13 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">CCT <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select  name="id_centro_trabajo" id="id_centro_trabajo" onchange="cctescuela();valida_cctre()" class="form-control select2" required>
+														<select  name="id_centro_trabajo" id="id_centro_trabajo" onchange="cctescuela();valida_cctre();traercct()" class="form-control select2" required>
 															<option selected>
 																Selecciona una opción
 															</option>
 															@foreach($cct as $cct)
 															<option value="{{$cct->id}}">
-																{{$cct->cct}}
+																{{$cct->cct}} - {{$cct->nombre_escuela}}
 															</option>
 														@endforeach
 														</select>
@@ -90,7 +90,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Nombre <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<select  name="id_captura" id="id_captura"  onchange="nombre_clave();valida_nom();nombre_sos();direc()" class="form-control select2" required>
+														<select  name="id_captura" id="id_captura"  onchange="nombre_clave();valida_nom();direc();" class="form-control select2" required>
 															<option selected>
 																Selecciona una opción
 															</option>
@@ -125,10 +125,15 @@
 													</div>
 												</div>
 
-												<div class="form-group" style="display: none">
+												<div class="form-group" style="display:none;">
 													<label class="col-sm-3 control-label">Sostenimiento: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="id_reg" id="id_reg" disabled type="text"  class="form-control" required value="{{Input::old('id_reg')}}" />
+
+														<select readonly name="id_reg" id="id_reg" class="form-control" required>
+
+
+														</select>
+														<div class="help-block with-errors"></div>
 													</div>
 												</div>
 
@@ -161,7 +166,7 @@
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Total de Reclamo: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="total" id="total" type="text" readonly class="form-control" required value="{{Input::old('total')}}" />
+														<input name="total" id="total" type="text" onchange="numero();" class="form-control" required value="{{Input::old('total')}}" />
 
 													</div>
 													<span id="errorUnidad" style="color:#FF0000;"></span>
@@ -175,6 +180,7 @@
 													</div>
 
 												</div>
+
 
 
 
@@ -322,7 +328,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">N° Oficio: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input onchange="num_ofi();" maxlength="3" minlength="3" name="oficio_aux" onkeypress="return soloNumeros(event)" id="oficio_aux" class="form-control" required />
+								<input onchange="num_ofi();" placeholder="{{$reintegros->num_oficio}}" maxlength="3" minlength="3" name="oficio_aux" onkeypress="return soloNumeros(event)" id="oficio_aux" class="form-control"  required />
 							</div>
 						</div>
 

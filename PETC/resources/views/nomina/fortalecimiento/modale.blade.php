@@ -29,6 +29,12 @@
 						</div>
 					</div>
 
+          <div align="center">
+            <h4 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong> Nota: <u> <b> El archivo excel Tiene que Llevar los encabezados de la Siguiente Forma </b> </u> </strong></h4>
+            <img src="{{asset('img/ejemplos/fortas.png')}}" id="src"  alt="correcto" height="1000px" width="1000px" class="img-thumbnail">
+
+          </div>
+
           <div class="form-group">
           <div class="">
          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

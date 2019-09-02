@@ -116,7 +116,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Extención: <strog class="theme_color"></strog></label>
 							<div class="col-sm-6">
-								<input name="ext" id="ext" type="text" placeholder="xxxx"   onkeypress="soloNumeros(event)" class="form-control"  value="{{Input::old('ext')}}" />
+								<input name="ext" id="ext" type="text" placeholder="xxxx" maxlength="4"  onkeypress="soloNumeros(event)" class="form-control"  value="{{Input::old('ext')}}" />
 							</div>
 						</div>
 

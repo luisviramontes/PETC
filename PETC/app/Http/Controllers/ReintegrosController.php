@@ -224,6 +224,7 @@ class ReintegrosController extends Controller
 
 
        $ofico_emite->num_oficio=$oficio_aux;
+       $ofico_emite->nombre_oficio=$request->get('oficio');
        $ofico_emite->id_dirigido=$dirigido_aux;
        $ofico_emite->asunto="Solicitud de Pago";
        $ofico_emite->referencia="Nomina PETC";
@@ -355,6 +356,7 @@ class ReintegrosController extends Controller
     public function edit($id)
     {
 
+      $oficioemit=DB::table('oficiosemitidos')->where('estado','=','ACTIVO')->get();
       $genero=DB::table('directoriointerno')->where('estado','=','ACTIVO')->get();
       $dirigido=DB::table('directorioexterno')->where('estado','=','ACTIVO')->get();
 
@@ -419,6 +421,7 @@ class ReintegrosController extends Controller
       $id_oficio_aux=$reintegros->id_oficio;
       $oficio=OficiosEmitidosModel::findOrFail($id_oficio_aux);
       $oficio->num_oficio=$request->get('oficio_aux');
+      $oficio->nombre_oficio=$request->get('oficio');
       $oficio->id_dirigido=$dirigido_aux;
       $oficio->asunto="Solicitud de Pago";
       $oficio->referencia="Nomina PETC";
@@ -482,7 +485,7 @@ class ReintegrosController extends Controller
 
       $reintegros->update();
 
-      return Redirect::to('reintegros');
+      return redirect('reintegros');
     }
 
     /**
@@ -587,16 +590,25 @@ public function traerpersonal(Request $request,$cct)
 
 public function traerdire(Request $request,$dire)
   {
-    $director=DB::table('centro_trabajo')
-    ->where('centro_trabajo.id','=',$dire)
-    ->where('centro_trabajo.estado','=','ACTIVO')
-    ->join('region','centro_trabajo.id_region', '=', 'region.id' ) //director_regional,sostenimiento
-    ->join('directorio_regional','directorio_regional.id_region', '=', 'region.id' ) //director_regional,sostenimiento
-    ->select('directorio_regional.id','directorio_regional.director_regional', 'directorio_regional.estado')
+    $director=DirectorioRegionalModel::
+    select('directorio_regional.id','directorio_regional.director_regional', 'directorio_regional.estado')
+    ->where('directorio_regional.id','=',$dire)
+    ->where('directorio_regional.estado','=','ACTIVO')
     ->get();
 
     return response()->json(
       $director->toArray());
+}
+
+public function traercct(Request $request,$cct)
+  {
+    $cctc =CentroTrabajoModel::
+    select('id','estado','id_region')
+    ->where('id','=',$cct)->where('estado','=','ACTIVO')
+    ->get();
+
+    return response()->json(
+      $cctc->toArray());
 }
 
 public function cuenta(Request $request,$nombre)

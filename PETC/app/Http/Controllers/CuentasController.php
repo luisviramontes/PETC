@@ -81,7 +81,7 @@ class CuentasController extends Controller
       $user = Auth::user()->name;
       $cuenta= new CuentasModel;
       $cuenta-> nombre = $request ->nombre;
-      $cuenta -> num_cuenta = $request ->num_cuenta;
+      $cuenta -> num_cuenta = $request ->cuenta;
       $cuenta -> clave_in = $request ->clave_in;
       $cuenta -> secretaria = $request ->secretaria;
       $cuenta -> id_banco = $request ->id_banco;
@@ -162,7 +162,7 @@ class CuentasController extends Controller
       $user = Auth::user()->name;
       $cuenta = CuentasModel::find($id);
       $cuenta-> nombre = $request ->nombre;
-      $cuenta -> num_cuenta = $request ->num_cuenta;
+      $cuenta -> num_cuenta = $request ->cuenta;
       $cuenta -> clave_in = $request ->clave_in;
       $cuenta -> secretaria = $request ->secretaria;
       $cuenta -> id_banco = $request ->id_banco;

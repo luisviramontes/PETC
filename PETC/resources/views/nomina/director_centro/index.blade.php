@@ -31,9 +31,9 @@
 										<a class="btn btn-sm btn-success tooltips" href="{{ route('captura.create')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Registrar Nuevo Empleado"> <i class="fa fa-plus"></i> Registrar </a>
 
 
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.directores-cte.excel')}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.directores-cte.excel')}}" id="excel" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
 
-										<a class="btn btn-primary btn-sm" href="{{URL::action('DirectorCentroController@invoice' )}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" target="_blank" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 		
+										<a class="btn btn-primary btn-sm" href="{{URL::action('DirectorCentroController@invoice','2')}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" target="_blank" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
 
 
@@ -237,6 +237,10 @@
 						<script type="text/javascript">
 							window.onload=function() {
 								document.getElementById('searchText').focus();
+								var x =document.getElementById('ciclo_escolar').value;
+								document.getElementById('excel').href="/descargar-directores-cte/"+x;
+								document.getElementById('invoice').href="/pdf_directores/"+x;
+
 
 							}
 
@@ -257,5 +261,16 @@
 								var y = document.getElementById('doc').value;
 
 							}
+
+
+
+
+								function cambia_ruta_lista(){
+									 var x =document.getElementById('ciclo_escolar').value;
+									 document.getElementById('excel').href="/descargar-directores-cte/"+x;
+									 document.getElementById('invoice').href="/pdf_directores/"+x;
+
+								 }
+
 						</script>
 						@endsection

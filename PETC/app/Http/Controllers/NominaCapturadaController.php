@@ -48,14 +48,14 @@ class NominaCapturadaController extends Controller
        $ciclos=DB::table('ciclo_escolar')->get();
 
        if($query == "" && $query2 == ""){
-        $query2=2;        
+        $query2=2;
         $nomina_capturada = DB::table('nomina_capturada')
-        ->where('id_ciclo','=',$query2)        
+        ->where('id_ciclo','=',$query2)
         ->paginate(24);
 
       }elseif($query == "" && $query2 != ""){
         $nomina_capturada = DB::table('nomina_capturada')
-        ->where('id_ciclo','=',$query2)     
+        ->where('id_ciclo','=',$query2)
         ->paginate(24);
       }else{
         $nomina_capturada = DB::table('nomina_capturada')
@@ -78,7 +78,7 @@ class NominaCapturadaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {    
+    {
       $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
@@ -99,7 +99,7 @@ class NominaCapturadaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(NominaCapturadaRequest $formulario)
-    { 
+    {
 
       $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
@@ -165,7 +165,7 @@ class NominaCapturadaController extends Controller
          $id_captura= DB::table('captura')->where('sostenimiento','=','ESTATAL')->where('qna_actual','=',"1")->get();
          $cuenta_captura=count($id_captura);
 
-         for ($i=0; $i < $cuenta_captura ; $i++) { 
+         for ($i=0; $i < $cuenta_captura ; $i++) {
            $captura=CapturaModel::findOrFail($id_captura[$i]->id);
            $captura->qna_actual=0;
            $captura->update();
@@ -175,7 +175,7 @@ class NominaCapturadaController extends Controller
 
 
 
-         foreach ($data as $key => $value) {        
+         foreach ($data as $key => $value) {
           $est= new NominaEstatalModel;
           $est->bco = $value->bco;
           $est->num_cheque = $value->num_cheque;
@@ -197,7 +197,7 @@ class NominaCapturadaController extends Controller
           $est->captura = $user;
           $est->save();
 
-          
+
 
           $id_captura= DB::table('captura')->where('rfc','=',$value->rfc)->where('estado','=','ACTIVO')->first();
           if ($id_captura == null) {
@@ -211,10 +211,10 @@ class NominaCapturadaController extends Controller
           }else{
             $total_docente_est= $total_docente_est+1;
             $total_dedu_docente_est=$total_dedu_docente_est + $value->ded;
-            $total_liqui_docente_est=$total_liqui_docente_est + $value->neto;        
+            $total_liqui_docente_est=$total_liqui_docente_est + $value->neto;
             $total_perce_docente_est=$total_perce_docente_est + $value->perc;
 
-          } 
+          }
 
 
           $improcedente= new PagosImprocedentesModel;
@@ -232,7 +232,7 @@ class NominaCapturadaController extends Controller
           $improcedente->captura=$user;
           $improcedente->save();
           $data3=['region'=>$value->region,'nom_emp'=>$value->nom_emp,'rfc'=>$value->rfc,'motivo'=>"NO SE ENCUENTRA EL RFC ACTIVO EN EL SISTEMA "];
-          array_push($improcedentes, $data3);     
+          array_push($improcedentes, $data3);
 
                       //AQUI ACTUALIZA CADA QNA EL PLAN CONTRASTE CUANDO NO ENCONTRO ACTIVO AL EMPLEADO LO MANDA AL CCT 917
           if($letra == "S"){
@@ -351,8 +351,8 @@ class NominaCapturadaController extends Controller
    $total_perce_docente_fed=0;
 
 
-   $total_intendente_fed= 0;               
-   $total_dedu_intendente_fed=0;            
+   $total_intendente_fed= 0;
+   $total_dedu_intendente_fed=0;
    $total_liqui_intendente_fed=0;
    $total_perce_intendente_fed=0;
 
@@ -364,7 +364,7 @@ class NominaCapturadaController extends Controller
    $id_captura= DB::table('captura')->where('sostenimiento','=','FEDERAL')->where('qna_actual','=',"1")->get();
    $cuenta_captura=count($id_captura);
 
-   for ($i=0; $i < $cuenta_captura ; $i++) { 
+   for ($i=0; $i < $cuenta_captura ; $i++) {
      $captura=CapturaModel::findOrFail($id_captura[$i]->id);
      $captura->qna_actual=0;
      $captura->update();
@@ -435,7 +435,7 @@ class NominaCapturadaController extends Controller
       $improcedente->save();
 
       $data3=['region'=>$value->region,'nom_emp'=>$value->nom_emp,'rfc'=>$value->rfc,'motivo'=>"NO SE ENCUENTRA EL RFC ACTIVO EN EL SISTEMA "];
-      array_push($improcedentes, $data3);     
+      array_push($improcedentes, $data3);
 
 
                       //AQUI ACTUALIZA CADA QNA EL PLAN CONTRASTE CUANDO NO ENCONTRO ACTIVO AL EMPLEADO LO MANDA AL CCT 917
@@ -551,7 +551,7 @@ $tabla6->save();
 
 
 
-if($nomina->save()){ 
+if($nomina->save()){
 
   if($sostenimiento== "FEDERAL"){
     $total_dire=$total_director_fed;
@@ -797,7 +797,7 @@ public function invoice($id){
       $nomina->update();
       return redirect('nomina_capturada');
     }}
-    
+
 
     ////////////exel////////////////
 
@@ -815,7 +815,7 @@ public function invoice($id){
          $sheet->setOrientation('landscape');
        });
      })->export('xls');
-   } 
+   }
 
    public function validar_nomina($qna,$sostenimiento,$tipo)
    {
@@ -864,10 +864,10 @@ public function invoice($id){
 
 
     $cuadros_cifra=DB::table('cuadros_cifra')->where('id_qna','=',$id_qna)->get();
-    $tabla_pagos=DB::table('tabla_pagos')->where('qna','=',$qna)->get();    
-    //$pagos_improcedente=DB::table('pagos_improcedentes')->where('qna_pago','=',$qna)->get(); 
+    $tabla_pagos=DB::table('tabla_pagos')->where('qna','=',$qna)->get();
+    //$pagos_improcedente=DB::table('pagos_improcedentes')->where('qna_pago','=',$qna)->get();
 
-    return view("nomina.nomina_capturada.ver_captura",['cuadros_cifra_neto'=>$cuadros_cifra_neto,'cuadros_cifra_dedu'=>$cuadros_cifra_dedu,'cuadros_cifra_totales'=>$cuadros_cifra_totales,'cuadros_cifra_perce'=>$cuadros_cifra_perce,"cuadros_cifra" => $cuadros_cifra, "tabla_pagos" => $tabla_pagos,'qna'=>$qna]);  
+    return view("nomina.nomina_capturada.ver_captura",['cuadros_cifra_neto'=>$cuadros_cifra_neto,'cuadros_cifra_dedu'=>$cuadros_cifra_dedu,'cuadros_cifra_totales'=>$cuadros_cifra_totales,'cuadros_cifra_perce'=>$cuadros_cifra_perce,"cuadros_cifra" => $cuadros_cifra, "tabla_pagos" => $tabla_pagos,'qna'=>$qna]);
 
   }
 
@@ -884,7 +884,7 @@ public function invoice($id){
 
 
    $cuadros_cifra=DB::table('cuadros_cifra')->where('id_qna','=',$id_qna)->get();
-   $tabla_pagos=DB::table('tabla_pagos')->where('qna','=',$qna)->first();    
+   $tabla_pagos=DB::table('tabla_pagos')->where('qna','=',$qna)->first();
       //    $directorio_regional= DB::table('tabulador_pagos')->where('ciclo','=',$id)->first();
          //$material   = AlmacenMaterial:: findOrFail($id);
         //$customPaper = array(0,0,567.00,283.80);

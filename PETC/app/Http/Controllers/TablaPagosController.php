@@ -46,12 +46,23 @@ class TablaPagosController extends Controller
         $aux=$request->get('searchText');
 
         $query=trim($request->GET('searchText'));
-        $tabla_2= DB::table('tabla_pagos')->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')->where('id_ciclo','=',$aux)->first(); 
-    
+        $tabla_2= DB::table('tabla_pagos')
+        ->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')
+        ->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')
+        ->where('id_ciclo','=',$aux)
+        ->first();
+
         if(is_null($tabla_2)){
-           $tabla_2= DB::table('tabla_pagos')->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')->where('tabla_pagos.id_ciclo','=','1')->first();
+           $tabla_2= DB::table('tabla_pagos')
+           ->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')
+           ->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')
+           ->where('tabla_pagos.id_ciclo','=','1')->first();
        }
-     $tabla_pagos= DB::table('tabla_pagos')->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')->where('tabla_pagos.id_ciclo','LIKE','%'.$query.'%')->paginate(24);
+     $tabla_pagos= DB::table('tabla_pagos')
+     ->join('ciclo_escolar','ciclo_escolar.id','=','tabla_pagos.id_ciclo')
+     ->select('tabla_pagos.*','ciclo_escolar.ciclo as ciclo')
+     ->where('tabla_pagos.id_ciclo','LIKE','%'.$query.'%')
+     ->paginate(24);
 
      return view('nomina.tabla_pagos.index',["tabla_pagos"=>$tabla_pagos,"searchText"=>$query,'ciclos'=> $ciclos,"tabla_2"=>$tabla_2]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
@@ -94,10 +105,10 @@ class TablaPagosController extends Controller
         $tabla->id_ciclo=$request->get('ciclo');
         $tabla2=CicloEscolarModel::findOrFail($tabla->id_ciclo);
         $name3 = explode("-",$tabla2->ciclo);
-        $x=$request->get('qna'); 
+        $x=$request->get('qna');
 
         if ($x > 16 && $x < 24) {
-            $tabla->qna=$name3[0].$request->get('qna'); 
+            $tabla->qna=$name3[0].$request->get('qna');
             # code...
         }else{
             $tabla->qna=$name3[1].$request->get('qna');
@@ -107,7 +118,7 @@ class TablaPagosController extends Controller
         $tabla->pago_docente=$request->get('pago_docente');
         $tabla->pago_intendente=$request->get('pago_intendente');
         $tabla->captura=$user;
-        
+
         $tabla->save();
         return Redirect::to('tabla_pagos');
 
@@ -178,10 +189,10 @@ class TablaPagosController extends Controller
         $pago->id_ciclo=$request->get('ciclo');
         $tabla2=CicloEscolarModel::findOrFail($pago->id_ciclo);
         $name3 = explode("-",$tabla2->ciclo);
-        $x=$request->get('qna'); 
+        $x=$request->get('qna');
 
         if ($x > 16 && $x < 24) {
-            $pago->qna=$name3[0].$request->get('qna'); 
+            $pago->qna=$name3[0].$request->get('qna');
             # code...
         }else{
             $pago->qna=$name3[1].$request->get('qna');

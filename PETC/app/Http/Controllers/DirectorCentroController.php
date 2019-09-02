@@ -37,13 +37,20 @@ class DirectorCentroController extends Controller
        {
        // $aux=$request->get('searchText');
           $query=trim($request->GET('searchText'));
+
           $ciclos=DB::table('ciclo_escolar')->get();
           $query2=trim($request->GET('ciclo_escolar'));
 
+
+          if($query == "" && $query2 == ""){
+          $query2=2;
           $personal= DB::table('director_cct')
           ->join('captura','captura.id','=','director_cct.id_captura')
           ->join('cat_puesto','cat_puesto.id','=','captura.clave')
           ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+
+
+           ->where('director_cct.id_ciclo','=',$query2)
 
           ->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')
           ->join('region', 'region.id', '=','centro_trabajo.id_region')
@@ -59,6 +66,55 @@ class DirectorCentroController extends Controller
           'region.region',
           'municipios.municipio',
           'localidades.nom_loc')
+            ->paginate(40);
+
+          }elseif ($query == "" && $query2 != "") {
+
+            $personal= DB::table('director_cct')
+            ->join('captura','captura.id','=','director_cct.id_captura')
+            ->join('cat_puesto','cat_puesto.id','=','captura.clave')
+            ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+
+
+             ->where('director_cct.id_ciclo','=',$query2)
+
+            ->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')
+            ->join('region', 'region.id', '=','centro_trabajo.id_region')
+            ->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
+            ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
+            ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
+
+            ->select('captura.*',
+            'cat_puesto.cat_puesto',
+            'centro_trabajo.cct',
+            'centro_trabajo.nombre_escuela',
+            'ciclo_escolar.ciclo',
+            'region.region',
+            'municipios.municipio',
+            'localidades.nom_loc')
+              ->paginate(40);
+
+            }else{
+              $personal= DB::table('director_cct')
+              ->join('captura','captura.id','=','director_cct.id_captura')
+              ->join('cat_puesto','cat_puesto.id','=','captura.clave')
+              ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+
+              ->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')
+              ->join('region', 'region.id', '=','centro_trabajo.id_region')
+              ->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
+              ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')
+              ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
+
+              ->select('captura.*',
+              'cat_puesto.cat_puesto',
+              'centro_trabajo.cct',
+              'centro_trabajo.nombre_escuela',
+              'ciclo_escolar.ciclo',
+              'region.region',
+              'municipios.municipio',
+              'localidades.nom_loc')
+
 
           ->where('captura.categoria','=','DIRECTOR')
           ->where('ciclo_escolar','=',$query2)
@@ -68,6 +124,7 @@ class DirectorCentroController extends Controller
           ->orwhere('centro_trabajo.cct','LIKE','%'.$query.'%')
           ->paginate(40);
 
+        }
           return view('nomina.director_centro.index',["personal"=>$personal,"searchText"=>$query,"ciclo_escolar"=>$query2,"ciclos"=>$ciclos]);
         // return view('nomina.tabla_pagos.index',['tabla_pagos' => $tabla_pagos,'ciclos'=> $ciclos]);
         //
@@ -138,9 +195,20 @@ class DirectorCentroController extends Controller
         //
     }
 
-    public function invoice()
+    public function invoice($id)
     {
-        $personal= DB::table('director_cct')->join('captura','captura.id','=','director_cct.id_captura')->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')->join('region', 'region.id', '=','centro_trabajo.id_region')->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')->select('captura.*','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region')->where('captura.estado','=','ACTIVO')->where('captura.categoria','=','DIRECTOR')->orderby('region.region','desc')->get();
+        $personal= DB::table('director_cct')
+        ->where('director_cct.id_ciclo','=',$id)
+        ->join('captura','captura.id','=','director_cct.id_captura')
+        ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+        ->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')
+        ->join('region', 'region.id', '=','centro_trabajo.id_region')
+        ->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
+        ->select('captura.*','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region')
+        ->where('captura.estado','=','ACTIVO')
+        ->where('captura.categoria','=','DIRECTOR')
+        ->orderby('region.region','desc')
+        ->get();
 
         //print_r($);
         $view =  \View::make('nomina.director_centro.invoice', compact('personal'))->render();

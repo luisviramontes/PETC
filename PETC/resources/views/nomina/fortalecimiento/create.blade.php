@@ -26,7 +26,7 @@
 							<div class="btn-group pull-right">
 								<div class="actions">
 										<span class="badge badge-info">Subir Fortalecimientos</span>
-										<a class="btn btn-sm btn-success tooltips" data-original-title="Subir Fortalecimientos Excel" data-target="#modal-delete" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-plus"></i></a>
+										<a class="btn btn-sm btn-success tooltips" data-original-title="Subir Fortalecimientos Excel" data-target="#modal-delete" data-toggle="modal" style="margin-right: 10px;"  role="button"><i class="fa fa-upload"></i></a>
 
 										@include('nomina.fortalecimiento.modale')
 								</div>
@@ -49,7 +49,7 @@
 									</option>
 									@foreach($cct as $cct)
 									<option value="{{$cct->id}}">
-										{{$cct->cct}}
+										{{$cct->cct}}-{{$cct->nombre_escuela}}
 									</option>
 									@endforeach
 								</select>

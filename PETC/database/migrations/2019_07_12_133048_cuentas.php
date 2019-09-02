@@ -15,8 +15,8 @@ class Cuentas extends Migration
         Schema::create('cuentas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->integer('num_cuenta');
-            $table->integer('clave_in');
+            $table->string('num_cuenta');
+            $table->string('clave_in');
             $table->string('secretaria');
             $table->integer('id_banco')->unsigned();
             $table->foreign('id_banco')->references('id')->on('bancos');

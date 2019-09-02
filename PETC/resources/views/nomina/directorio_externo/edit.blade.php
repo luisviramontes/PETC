@@ -42,18 +42,18 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">LIC;<strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<select name="lic" id="lic" class="form-control select2" required> 
+								<select name="lic" id="lic" class="form-control select2" required>
 									<option value="Mtro" >Mtro</option>
 									<option value="Mtra" >Mtra </option>
 									<option value="Dra">Dra</option>
 									<option value="Dr">Dr</option>
-									<option value="Ing">Ing</option>	
+									<option value="Ing">Ing</option>
 									<option value="Lic">Lic</option>
 									<option value="Prof">Prof</option>
-									<option value="Profa">Profa</option>				
+									<option value="Profa">Profa</option>
 								</select>
-								
-							</div> 
+
+							</div>
 						</div>
 
 						<div class="form-group">
@@ -113,7 +113,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Extención: <strog class="theme_color"></strog></label>
 							<div class="col-sm-6">
-								<input name="ext" id="ext" type="text"   onkeypress="soloNumeros(event)" class="form-control"  value="{{$personal->ext}}" />
+								<input name="ext" id="ext" type="text" maxlength="4"  onkeypress="soloNumeros(event)" class="form-control"  value="{{$personal->ext}}" />
 							</div>
 						</div>
 
@@ -124,7 +124,7 @@
 							</div>
 						</div>
 
-						
+
 
 
 
