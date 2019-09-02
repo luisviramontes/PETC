@@ -43,7 +43,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Nombre: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="nombre" id="nombre" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" type="text" maxlength=""  class="form-control valid" required value="{{Input::old('nombre_banco')}}" />
+								<input name="nombre" id="nombre" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" type="text" maxlength=""  class="form-control valid" required value="{{Input::old('nombre')}}" />
 								<div class="help-block with-errors"></div>
 								<div class="text-danger" id='error_nombre'>{{$errors->formulario->first('nombre')}}</div>
 							</div>
@@ -52,18 +52,17 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Cuenta: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="num_cuenta" id="num_cuenta" type="text" onkeypress="return soloNumeros(event)" maxlength="16" class="form-control valid" required value="{{Input::old('cuenta')}}" />
+								<input name="cuenta" id="cuenta" onkeypress="return soloNumeros(event)" type="text" maxlength="16"  class="form-control" required value="{{Input::old('cuenta')}}" />
 								<div class="help-block with-errors"></div>
-								<div class="text-danger" id='error_cuenta'>{{$errors->formulario->first('cuenta')}}</div>
+								<div class="text-danger" id='error_nombre'>{{$errors->formulario->first('cuenta')}}</div>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Clave Interbancaria: <strog class="theme_color">*</strog></label>
 							<div class="col-sm-6">
-								<input name="clave_in" id="clave_in" type="text" onkeypress="return soloNumeros(event)" maxlength="18" class="form-control valid" required value="{{Input::old('cuenta')}}" />
-								<div class="help-block with-errors"></div>
-								<div class="text-danger" id='error_clave_in'>{{$errors->formulario->first('clave_in')}}</div>
+								<input name="clave_in" id="clave_in" type="text" onkeypress="return soloNumeros(event)" maxlength="18" class="form-control" required value="{{Input::old('clave_in')}}" />
+
 							</div>
 						</div>
 
@@ -129,7 +128,7 @@ function validar_banco() {
 
 	 		 }else if(document.getElementById('id_banco').value != "Selecciona una opción"){
 	 					document.getElementById('submit').disabled=false;
-	 						 document.getElementById("error_id_banco").innerHTML = "";	
+	 						 document.getElementById("error_id_banco").innerHTML = "";
 
 	 		 }
 }

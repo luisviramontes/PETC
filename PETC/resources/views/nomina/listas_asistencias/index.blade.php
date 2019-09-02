@@ -33,8 +33,8 @@
 										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.listas_asistencias.excel')}}" id="excel" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
 										<a class="btn btn-primary btn-sm" href="{{URL::action('ListasAsistenciasController@invoice','2')}}" id="invoice" style="margin-right: 10px;" data-toggle="tooltip" target="_blank" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
-										
-									
+
+
 									</div>
 
 								</a>
@@ -128,7 +128,7 @@
 				</tbody>
 						<tfoot>
 							<tr>
-      
+
 								<th>Clave Centro Trabajo </th>
 								<th>Nombre de la Escuela </th>
 								<th>Ciclo Escolar</th>
@@ -138,6 +138,7 @@
 								<th>Captura</th>
 								<th>Estado</th>
 								<th>Fecha de Registro</th>
+								<th>Fecha de Entrega</th>
 
 
 								<td><center><b>Editar</b></center></td>

@@ -659,7 +659,7 @@ function validarInput(input) {
      document.getElementById('docente_cu').style.display = 'block';
      document.getElementById('docente_cubrir').required = true
  //   document.getElementById('docente_cubrir').style.display = 'none';
- //SE AGREGO EL RFC PARA EVITAR QUE TRAIGA EL MISMO DOCENTE QUE SE DA DE ALTA 01/09/2019 
+ //SE AGREGO EL RFC PARA EVITAR QUE TRAIGA EL MISMO DOCENTE QUE SE DA DE ALTA 01/09/2019
  var route = "http://localhost:8000/validarcaptura/"+cct+"/"+categoria+"/"+rfc;
 
  limpiar_input();
@@ -836,10 +836,15 @@ function valida_nomina(){
   var filePath = fileInput.value;
   var aux=0;
 
-  if (sostenimiento=="FEDERAL"){
+
+
+  if (sostenimiento =="Selecciona una opción"){
+
+  }else if(sostenimiento =="FEDERAL"){
     document.getElementById('src').src="/img/ejemplos/nf.png";
   }else{
     document.getElementById('src').src="/img/ejemplos/ne.png";
+
   }
 
   $.get(route,function(res){
@@ -1003,9 +1008,10 @@ function enviar_ciclo_centro_trabajo(){ //funciona
 function enviar_ciclo_director_centro(){
   var x =document.getElementById('ciclo_escolar').value;
   var y =document.getElementById('searchText').value;
- // document.getElementById('excel').href="nomina.nomina_capturada.excel";
+  document.getElementById('excel').href="nomina.directores-cte.excel";
  document.getElementById('invoice').href="/pdf_directores/"+x;
  location.href="/director_centro_trabajo?ciclo_escolar="+x+"&searchText="+y;
+ console.log(x.value);
 }
 
 function enviar_ciclo_listas(){ //funcina
@@ -2792,6 +2798,7 @@ function direc(){
   var route = "http://localhost:8000/traerdire/"+dire;
 
   $.get(route,function(res){
+
     if(res.length > 0){
 
       for (var i = 0; i < res.length; i++) {
@@ -2809,7 +2816,12 @@ function direc(){
 
     console.log(res);
   });
+
+
+  ;
+
   console.log(dire);
+
 }
 
 function cuenta() {
@@ -2876,7 +2888,7 @@ function cuenta() {
   document.getElementById('categoria').value=categoria;
   document.getElementById('dirigido_a').value=cct;
 }
-
+/*
 function nombre_sos() {
   var select2 = document.getElementById("id_captura");
   var selectedOption2 = select2.selectedIndex;
@@ -2890,7 +2902,7 @@ function nombre_sos() {
   document.getElementById('id_reg').value=id_reg;
 
 }
-
+*/
 function num_ofi(){
 	var ciclo = document.getElementById('ciclo_escolar').value;
 	var x= document.getElementById('oficio_aux').value;
@@ -2910,6 +2922,32 @@ function num_ofi(){
   }
 });
 }
+
+function traercct(){
+  var cct = document.getElementById("id_centro_trabajo").value;
+
+  var route = "http://localhost:8000/traercct/"+cct;
+
+  $.get(route,function(res){
+      console.log(res);
+    if(res.length > 0){
+      for (var i = 0; i < res.length; i++) {
+        if(res[i].estado =="ACTIVO"){
+          var x = document.getElementById("id_reg");
+          var option = document.createElement("option");
+          option.text = res[i].id+"_"+res[i].id_region;
+          option.value = res[i].id_region;
+
+          x.add(option, x[i]);
+          console.log(option.value);
+
+        }
+
+      }
+    }
+  });
+}
+
 
 function cctescuela(){
   var cct = document.getElementById("id_centro_trabajo").value;

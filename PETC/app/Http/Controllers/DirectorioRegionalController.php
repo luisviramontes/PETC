@@ -40,7 +40,9 @@ class DirectorioRegionalController extends Controller
       if($request)
       {
        $query=trim($request->GET('searchText'));
-       $directorio_regional = DB::table('directorio_regional')->join('region','region.id','=','directorio_regional.id_region')->select('directorio_regional.*','region.sostenimiento','region.region')
+       $directorio_regional = DB::table('directorio_regional')
+       ->join('region','region.id','=','directorio_regional.id_region')
+       ->select('directorio_regional.*','region.sostenimiento','region.region')
        ->where('region','LIKE','%'.$query.'%')
        ->orwhere('sostenimiento','LIKE','%'.$query.'%')
        ->orwhere('nombre_enlace','LIKE','%'.$query.'%')
@@ -65,7 +67,7 @@ class DirectorioRegionalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
+    {
               $tipo_usuario = Auth::user()->tipo_usuario;
       if($tipo_usuario <> "2" || $tipo_usuario=="5"){
        return view('permisos');
@@ -133,7 +135,10 @@ class DirectorioRegionalController extends Controller
     //convertir y descargar pdf
 
     public function invoice($id){
-      $directorio_regional= DB::table('directorio_regional')->get();
+      $directorio_regional= DB::table('directorio_regional')
+      ->join('region','region.id','=','directorio_regional.id_region')
+      ->select('directorio_regional.*','region.sostenimiento','region.region')
+      ->get();
       $date = date('Y-m-d');
       $invoice = "2222";
        // print_r($materiales);
@@ -193,7 +198,7 @@ class DirectorioRegionalController extends Controller
 
       $directorio = DirectorioRegionalModel::find($id);
         //asignamos nuevos valores
-      $directorio -> id_region = $formulario ->region;
+      $directorio -> id_region = $request ->region;
       $directorio -> nombre_enlace=$request ->nombre_enlace;
       $directorio -> telefono=$request->telefono;
       $directorio -> ext1_enlace=$request ->ext1_enlace;

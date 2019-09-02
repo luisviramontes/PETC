@@ -61,7 +61,7 @@
             <div class="form-group">
               <label class="col-sm-3 control-label">Sostenimiento <strog class="theme_color">*</strog></label>
               <div class="col-sm-6">
-                <select name="sostenimiento" id="sostenimiento" class="form-control" value="{{Input::old('sostenimiento')}}"  onchange="valida_sos();validar_quincenaExis();validar_quincena()" required>
+                <select name="sostenimiento" id="sostenimiento" class="form-control" value="{{Input::old('sostenimiento')}}"  onchange="valida_sos();validar_quincenaExis();validar_quincena();cambia_img()" required>
 									<option>
 											Selecciona una opción
 									</option>
@@ -120,6 +120,7 @@
 
 
 
+
 						<div class="form-group">
 						  <label class="col-sm-3 control-label">Subir Nomina: <strog class="theme_color">*</strog></label>
 						  <div class="col-sm-6">
@@ -132,6 +133,11 @@
 
 
 
+						<div align="center">
+					<h4 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong> Nota: <u> <b> El archivo excel Tiene que Llevar los encabezados de la Siguiente Forma </b> </u> </strong></h4>
+				<img  id="src" height="1000px" width="1000px" class="img-thumbnail">
+
+				</div>
 
 
 
@@ -205,6 +211,18 @@ function valida_qna() {
 			}
 		}
 
+		function cambia_img(){
+
+			if (document.getElementById('sostenimiento').value =="Selecciona una opción"){
+
+			}else if(document.getElementById('sostenimiento').value =="FEDERAL"){
+				document.getElementById('src').src="/img/ejemplos/rechfed.png";
+			}else{
+				document.getElementById('src').src="/img/ejemplos/rechest.png";
+
+			}
+
+		}
 
 		function valida_tipo() {
 				if( document.getElementById('tipo').value == "Selecciona una opción"){

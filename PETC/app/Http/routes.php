@@ -42,10 +42,15 @@ Route::get('services', function () {
 	return view('services');
 });
 /////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 Route::get('materiales_a', function () {
 	return view('materiales');
 });
  
+=======
+
+
+>>>>>>> 1363b15a4aa21941e84a5751e86f59358975141b
 //////////////////reintegros///////////////////////////////
 Route::resource('reintegros', 'ReintegrosController');
 Route::get('descargar-categoria-puesto', 'CatPuestoController@excel')->name('nomina.cat_puesto.excel');
@@ -59,6 +64,7 @@ Route::get('pdf_reintegros/{id}', array('as'=> '/pdf_reintegros','uses'=>'Reinte
 Route::get('busca_rein/{ciclo}','ReintegrosController@busca_rein');
 Route::get('busca_rein_region/{region}/{ciclo}','ReintegrosController@busca_rein_region');
 Route::get('descargar-reintegros/{ciclo}', 'ReintegrosController@excel')->name('nomina.reintegros.excel');
+Route::get('traercct/{cct}','ReintegrosController@traercct');
 
 /////////////////////////////////////////////////////////////
 
@@ -223,7 +229,7 @@ Route::post('guardar_contrato/{id}', 'CapturaController@guardar_contrato')->name
 ///CENTRO DE TRABAJO
 Route::resource('centro_trabajo', 'CentroTrabajoController');
 Route::get('descargar-centros-trabajo', 'CentroTrabajoController@excel')->name('nomina.centro_trabajo.excel');
-Route::get('pdf_centros_trabajo', array('as'=> '/pdf_centros_trabajo','uses'=>'CentroTrabajoController@invoice'));
+Route::get('pdf_centros_trabajo/{id}', array('as'=> '/pdf_centros_trabajo','uses'=>'CentroTrabajoController@invoice'));
 Route::get('verInformacionCentro/{id}/{ciclo}', array('as'=> '/verInformacionCentro','uses'=>'CentroTrabajoController@verInformacion'));
 Route::get('pdf_centro_cct/{cct}/{ciclo}', array('as'=> '/pdf_centro_cct','uses'=>'CentroTrabajoController@invoice_centro_cct'));
 Route::get('pdf_plantilla_personal/{cct}/{ciclo}', array('as'=> '/pdf_plantilla_personal','uses'=>'CentroTrabajoController@invoice_plantilla'));
@@ -233,7 +239,7 @@ Route::get('ver_centros_filtro/{op}/{id}', array('as'=> '/ver_centros_filtro','u
 
 //DIRECTOR->CENTRO DE TRABAJO
 Route::resource('director_centro_trabajo', 'DirectorCentroController');
-Route::get('pdf_directores/', array('as'=> '/pdf_directores','uses'=>'DirectorCentroController@invoice'));
+Route::get('pdf_directores/{id}', array('as'=> '/pdf_directores','uses'=>'DirectorCentroController@invoice'));
 Route::get('descargar-directores-cte', 'DirectorCentroController@excel')->name('nomina.directores-cte.excel');
 
 
@@ -389,7 +395,7 @@ Route::get('buscar_oficio2/{oficio}/{ciclo}', 'OficiosEmitidosController@buscar_
 Route::get('ultimo_oficio/{id}', 'OficiosEmitidosController@ultimo_oficio');
 Route::get('buscar_oficio3/{oficio}/{id}', 'OficiosEmitidosController@buscar_oficio3');
 Route::get('ver_oficios_e', array('as'=> '/ver_oficios_e','uses'=>'OficiosEmitidosController@ver_oficios_e'));
-Route::get('ver_oficios_ciclo/{ciclo}/','OficiosEmitidosController@ver_oficios_ciclo'); 
+Route::get('ver_oficios_ciclo/{ciclo}/','OficiosEmitidosController@ver_oficios_ciclo');
 Route::get('ver_oficios_area/{ciclo}/{area}','OficiosEmitidosController@ver_oficios_area');
 Route::get('ver_oficios_persona/','OficiosEmitidosController@ver_oficios_persona');
 Route::get('ver_oficios_personar/','OficiosEmitidosController@ver_oficios_personar');
@@ -461,6 +467,7 @@ Route::get('gmaps', ['as'=>'gmaps','uses' => 'GmapsController@index']);
 //CALENDARIO
 Route::get('calendario', ['as'=>'calendario','uses' => 'CalendarioController@index']);
 
+
 //QUEJAS Y DENUNCIAS
 Route::resource('quejas', 'QuejasController');
 Route::get('descargar-quejas/{ciclo}', 'QuejasController@excel')->name('administrativa.quejas.excel');
@@ -468,9 +475,13 @@ Route::post('resolverqueja/{id}', 'QuejasController@resolverqueja');
 
 //CONSULTA PAGOS
 Route::resource('consulta_pagos', 'ConsultaPagosController');
+<<<<<<< HEAD
 Route::get('pdf_comprobante/{rfc}/{ciclo}/{qna}/{sostenimiento}', array('as'=> '/pdf_comprobante','uses'=>'ConsultaPagosController@invoice')); 
 
 
 //CONSULTA LISTAS
 Route::resource('consulta_listas', 'ListasPublicasController');
 Route::get('pdf_consulta_listas/{cct}/{ciclo}/{mes}', array('as'=> '/pdf_consulta_listas','uses'=>'ListasPublicasController@generar_pdf_listas')); 
+=======
+Route::get('pdf_comprobante/{rfc}/{ciclo}/{qna}/{sostenimiento}', array('as'=> '/pdf_comprobante','uses'=>'ConsultaPagosController@invoice'));
+>>>>>>> 1363b15a4aa21941e84a5751e86f59358975141b

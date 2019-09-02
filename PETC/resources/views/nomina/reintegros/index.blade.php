@@ -115,6 +115,7 @@
 								<td style="background-color:#FFE4E1;">{{$reintegro->categoria}} </td>
 								<td style="background-color:#FFE4E1;">{{$reintegro->num_dias}} </td>
 								<td style="background-color:#FFE4E1;">{{$reintegro->director_regional}} </td>
+								<td style="background-color:#FFE4E1;">{{$reintegro->ciclo}} </td>
 								<td style="background-color:#FFE4E1;">{{$reintegro->oficio}} </td>
 								<td style="background-color:#FFE4E1;">{{$reintegro->motivo}} </td>
 								<td style="background-color:#FFE4E1;">${{number_format($reintegro->total, 2)}} </td>

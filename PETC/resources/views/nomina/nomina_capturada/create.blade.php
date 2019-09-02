@@ -153,7 +153,7 @@
 
  	<div align="center">
 	<h4 class="content-header " style="margin-top: -5px;">&nbsp;&nbsp;<strong> Nota: <u> <b> El archivo excel Tiene que Llevar los encabezados de la Siguiente Forma </b> </u> </strong></h4>
-<img src="{{asset('img/ejemplos/nf.png')}}" id="src"  alt="correcto" height="1000px" width="1000px" class="img-thumbnail">
+<img src="" id="src"   height="1000px" width="1000px" class="img-thumbnail">
 
 </div>
 
@@ -192,7 +192,7 @@
 
 <script type="text/javascript">
 	window.onload = function(callback) {
-		setTimeout(function(){valida_qna()},1000); 
+		setTimeout(function(){valida_qna()},1000);
 		//valida_qna();
 		valida_sos();
 		valida_tipo();

@@ -272,7 +272,7 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Con Vo.Bo: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
-							<select name="vo" id="vo"  class="form-control select" ">
+							<select name="vo" id="vo"  class="form-control select">
 								@foreach($dirigido as $dirigido3)
 								@if($dirigido3->id == 19)
 								<option value='{{$dirigido3->puesto}}_{{$dirigido3->nombre_c}}_{{$dirigido3->id}}_{{$dirigido3->lic}}' selected>
@@ -323,7 +323,7 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">C.c.p: <strog class="theme_color">*</strog></label>
 						<div class="col-sm-6">
-							<select name="ccp" id="ccp"  class="form-control select" ">
+							<select name="ccp" id="ccp"  class="form-control select">
 								@foreach($dirigido as $dirigido4)
 								@if($dirigido4->id == 63)
 								<option value='{{$dirigido4->puesto}}_{{$dirigido4->nombre_c}}_{{$dirigido4->id}}_{{$dirigido4->lic}}_{{$dirigido4->a_n}}' selected>
