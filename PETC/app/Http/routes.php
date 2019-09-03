@@ -495,3 +495,10 @@ Route::get('pdf_consulta_listas/{cct}/{ciclo}/{mes}', array('as'=> '/pdf_consult
 Route::resource('ubica_escuela', 'UbicaEscuelaController');
 Route::get('traer_localidad/{mun}','UbicaEscuelaController@traer_localidad'); 
 Route::get('buscar_esc_loc/{loc}','UbicaEscuelaController@buscar_esc_loc');
+
+//CAPACITACIONES
+Route::resource('capacitaciones', 'CapacitacionesController');
+Route::get('descargar-capacitaciones/{ciclo}', 'CapacitacionesController@excel')->name('academica.capacitaciones.excel');
+Route::post('capacitacion_realizada/{id}', 'CapacitacionesController@capacitacion_realizada');
+
+Route::get('capacitaciones_public', 'ConsultaPagosController@capacitaciones_public');

@@ -36,7 +36,7 @@ class ConsultaPagosController extends Controller
 
         $captura=DB::table('captura')->where('rfc','=',$query4)->where('id_cct_etc','=',$query)->where('pagos_registrados','=','1')->where('sostenimiento','=',$query3)->get();
         if(count($captura) > 0){
-              if($query3 == "FEDERAL"){
+          if($query3 == "FEDERAL"){
            $nomina_federal = DB::table('nomina_federal')
            ->where('ciclo_escolar','=',$query2)
            ->where('rfc','=',$query4)
@@ -49,63 +49,63 @@ class ConsultaPagosController extends Controller
      }
      return view('nomina.consulta_pagos.index',["cct"=>$cct,"ciclos"=>$ciclos,"nomina_federal" => $nomina_federal,"cct2"=>$query,"ciclo_escolar"=>$query2,"sostenimiento"=>$query3,"rfc_input"=>$query4]);
 
-        }else{
-              if($query3 == "FEDERAL"){
-           $nomina_federal = DB::table('nomina_federal')
-           ->where('ciclo_escolar','=',$query2)
-           ->where('rfc','=','NO VALIDO')
-           ->get();
+ }else{
+  if($query3 == "FEDERAL"){
+   $nomina_federal = DB::table('nomina_federal')
+   ->where('ciclo_escolar','=',$query2)
+   ->where('rfc','=','NO VALIDO')
+   ->get();
 
-       }else{
-         $nomina_federal = DB::table('nomina_estatal')
-         ->where('ciclo_escolar','=',$query2)
-         ->where('rfc','=','NO VALIDO')->get();
-     }
-     return view('nomina.consulta_pagos.index',["cct"=>$cct,"ciclos"=>$ciclos,"nomina_federal" => $nomina_federal,"cct2"=>$query,"ciclo_escolar"=>$query2,"sostenimiento"=>$query3,"rfc_input"=>$query4]);
+}else{
+ $nomina_federal = DB::table('nomina_estatal')
+ ->where('ciclo_escolar','=',$query2)
+ ->where('rfc','=','NO VALIDO')->get();
+}
+return view('nomina.consulta_pagos.index',["cct"=>$cct,"ciclos"=>$ciclos,"nomina_federal" => $nomina_federal,"cct2"=>$query,"ciclo_escolar"=>$query2,"sostenimiento"=>$query3,"rfc_input"=>$query4]);
 
-        }
-      
-
- }
-
- public function invoice($rfc,$ciclo,$qna,$sostenimiento){
-
-     $personal= DB::table('captura')
-     ->join('cat_puesto','cat_puesto.id','=','captura.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
-     ->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')
-     ->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
-     ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
-     ->select('captura.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc')
-     ->where('captura.rfc','=',$rfc)->first();
+}
 
 
-  if($sostenimiento == "FEDERAL"){
-           $nomina = DB::table('nomina_federal')
-           ->where('ciclo_escolar','=',$ciclo)
-           ->where('rfc','=',$rfc)
-           ->where('qna_pago','=',$qna)
-           ->first();
+}
 
-       }else{
-         $nomina = DB::table('nomina_estatal')
-            ->where('ciclo_escolar','=',$ciclo)
-           ->where('rfc','=',$rfc)
-           ->where('qna_pago','=',$qna)
-           ->first();
-     }
+public function invoice($rfc,$ciclo,$qna,$sostenimiento){
+
+ $personal= DB::table('captura')
+ ->join('cat_puesto','cat_puesto.id','=','captura.clave')->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')
+ ->select('centro_trabajo.id_region','centro_trabajo.id_localidades','centro_trabajo.id_municipios')
+ ->join('region', 'region.id', '=','centro_trabajo.id_region')->join('localidades', 'localidades.id', '=','centro_trabajo.id_localidades')
+ ->join('municipios', 'municipios.id', '=','centro_trabajo.id_municipios')->join('ciclo_escolar', 'ciclo_escolar.id', '=','captura.id_ciclo')
+ ->select('captura.*','cat_puesto.cat_puesto','centro_trabajo.cct','centro_trabajo.nombre_escuela','ciclo_escolar.ciclo','region.region','municipios.municipio','localidades.nom_loc')
+ ->where('captura.rfc','=',$rfc)->first();
 
 
-     $date = date('Y-m-d');
-     $invoice = "2222";
+ if($sostenimiento == "FEDERAL"){
+   $nomina = DB::table('nomina_federal')
+   ->where('ciclo_escolar','=',$ciclo)
+   ->where('rfc','=',$rfc)
+   ->where('qna_pago','=',$qna)
+   ->first();
+
+}else{
+ $nomina = DB::table('nomina_estatal')
+ ->where('ciclo_escolar','=',$ciclo)
+ ->where('rfc','=',$rfc)
+ ->where('qna_pago','=',$qna)
+ ->first();
+}
+
+
+$date = date('Y-m-d');
+$invoice = "2222";
         //print_r($);
-     $view =  \View::make('nomina.consulta_pagos.invoice', compact('nomina','personal','sostenimiento'))->render();
+$view =  \View::make('nomina.consulta_pagos.invoice', compact('nomina','personal','sostenimiento'))->render();
         //->setPaper($customPaper, 'landscape');
-     $pdf = \App::make('dompdf.wrapper');
-     $pdf->loadHTML($view);
-     return $pdf->stream('invoice');
+$pdf = \App::make('dompdf.wrapper');
+$pdf->loadHTML($view);
+return $pdf->stream('invoice');
 
 
- }
+}
 
         //
 
@@ -174,5 +174,13 @@ class ConsultaPagosController extends Controller
     public function destroy($id)
     {
         //
-    }
+    } 
+
+    public function capacitaciones_public(){
+     $capacitaciones= DB::table('capacitaciones')
+     ->join('ciclo_escolar', 'ciclo_escolar.id', '=','capacitaciones.id_ciclo')
+     ->select('capacitaciones.*','ciclo_escolar.ciclo')
+     ->paginate(40);
+     return view('academica.capacitaciones.capacitaciones',["capacitaciones"=>$capacitaciones]);
+ }
 }
