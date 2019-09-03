@@ -73,8 +73,7 @@
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="/consulta_pagos">Consulta Tus Pagos</a>
 									<a class="dropdown-item" href="/consulta_listas">Lista de Asistencia</a>
-									<a class="dropdown-item" href="projects.html">Rechazos de Pago</a>
-									<a class="dropdown-item" href="projects.html">Alimentación</a>
+									<a class="dropdown-item" href="projects.html">Rechazos de Pago</a>								
 								</div>
 								</li>
 
@@ -83,9 +82,9 @@
 									Alimentación
 								</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="/captura">Herramientas</a>
-									<a class="dropdown-item" href="projects.html">Academica</a>
-									<a class="dropdown-item" href="projects.html">Materiales</a>
+									<a class="dropdown-item" href="/servicio_a">Herramientas</a>
+									<a class="dropdown-item" href="projects.html">Alimentación</a>
+									<a class="dropdown-item" href="projects.html">Alimentación</a>
 									<a class="dropdown-item" href="projects.html">Alimentación</a>
 								</div>
 							</li>
@@ -94,9 +93,9 @@
 									Academica
 								</a>
 								<div class="dropdown-menu">
-								<a class="dropdown-item" href="projects.html">Contraloria Social</a>
+								<a class="dropdown-item" href="/contraloria_s">Contraloria Social</a>
 									<a class="dropdown-item" href="/materiales_a">Materiales de Apoyo</a>
-									<a class="dropdown-item" href="projects.html">Lineas de Trabajo</a>
+									<a class="dropdown-item" href="/ficheros">Lineas de Trabajo</a>
 									<a class="dropdown-item" href="projects.html">Capacitaciónes</a>
 									<a class="dropdown-item" href="projects.html">Herramientas</a>								
 								</div>
@@ -508,7 +507,7 @@
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>PETC</h4>
 					<ul>
-						<li><a href="#">Busca Tu Escuela</a></li>
+						<li><a href="/buscar_esc_loc">Busca Tu Escuela</a></li>
 						<li><a href="quejas/create">Quejas y Denuncias</a></li>
 						<li><a href="#">Historico del Programa</a></li>
 						<li><a href="#">Ayuda</a></li>
@@ -517,16 +516,16 @@
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Propuesta Pedagógica</h4>
 					<ul>
-						<li><a href="#">Ficheros Didacticos</a></li>
-						<li><a href="#">Herramientas</a></li>
+						<li><a href="/materiales_a">Ficheros Didacticos</a></li>
+						<li><a href="/materiales_a">Herramientas</a></li>
 						<li><a href="#">Guias</a></li>
-						<li><a href="#">Lineas de Trabajo</a></li>
+						<li><a href="/ficheros">Lineas de Trabajo</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Areas</h4>
 					<ul>
-						<li><a href="#">Alimentación</a></li>
+						<li><a href="/servicio_a">Alimentación</a></li>
 						<li><a href="#">Nomina</a></li>
 						<li><a href="#">Materiales</a></li>
 						<li><a href="#">Academica</a></li>

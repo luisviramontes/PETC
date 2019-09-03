@@ -43,10 +43,22 @@ Route::get('services', function () {
 });
 /////////////////////////////////////////////////////////////
 
+//VISTAS ACADEMICAS
 Route::get('materiales_a', function () {
-	return view('materiales');
+	return view('academica/materiales');
+});
+Route::get('ficheros', function () {
+	return view('academica/ficheros');
 });
  
+Route::get('contraloria_s', function () {
+	return view('academica/contraloria');
+});
+
+//VISTAS ALIMENTACION
+ Route::get('servicio_a', function () {
+	return view('alimentacion/servicio_a');
+});
 
 //////////////////reintegros///////////////////////////////
 Route::resource('reintegros', 'ReintegrosController');
@@ -479,3 +491,7 @@ Route::get('pdf_comprobante/{rfc}/{ciclo}/{qna}/{sostenimiento}', array('as'=> '
 Route::resource('consulta_listas', 'ListasPublicasController');
 Route::get('pdf_consulta_listas/{cct}/{ciclo}/{mes}', array('as'=> '/pdf_consulta_listas','uses'=>'ListasPublicasController@generar_pdf_listas')); 
 
+//UBICA TU ESCUELA
+Route::resource('ubica_escuela', 'UbicaEscuelaController');
+Route::get('traer_localidad/{mun}','UbicaEscuelaController@traer_localidad'); 
+Route::get('buscar_esc_loc/{loc}','UbicaEscuelaController@buscar_esc_loc');
