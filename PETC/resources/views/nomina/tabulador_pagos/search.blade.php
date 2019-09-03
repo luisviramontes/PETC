@@ -9,8 +9,9 @@
 				@endforeach
 			</select>
 		<span class="input-group-btn">
-			<button type="submit" class="btn btn-primary">Buscar</button>			
+			<button type="submit" class="btn btn-primary">Buscar</button>
 
 		</span>
 	</div>
 </div>
+{!! Form::close() !!}

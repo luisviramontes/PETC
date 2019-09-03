@@ -15,7 +15,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	
+
 
 	<title>PETC</title>
 
@@ -56,10 +56,10 @@
 								</a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="/about" target="_blank">¿Que es El PETC?</a>
-									<a class="dropdown-item" href="/img/documentos/RO2019.pdf" target="_blank">Reglas de Operacion</a>
+									<a class="dropdown-item" href="/img/documentos/RO2019.pdf" target="_blank">Reglas de Operación</a>
 									<a class="dropdown-item" href="/img/documentos/CM2019.pdf" target="_blank">Convenio Marco</a>
 									<a class="dropdown-item" href="/img/documentos/RG2019.pdf" target="_blank" >Criterios Para El Ejercicio de Los Rubros De Gasto </a>
-									<a class="dropdown-item" href="/img/documentos/LPRE2018.pdf" target="_blank"">Lineamientos Preescolar</a>
+									<a class="dropdown-item" href="/img/documentos/LPRE2018.pdf" target="_blank">Lineamientos Preescolar</a>
 									<a class="dropdown-item" href="/img/documentos/LIPRI2018.pdf" target="_blank">Lineamientos Primaria</a>
 									<a class="dropdown-item" href="/img/documentos/LITEL2018.pdf" target="_blank">Lineamientos Telesecundaria</a>
 									<a class="dropdown-item" href="projects.html">Tipos de Apoyo</a>
@@ -68,7 +68,7 @@
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" href="normatividad" id="navbardrop" data-toggle="dropdown">
-									Nomina 
+									Nomina
 								</a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="/consulta_pagos">Consulta Tus Pagos</a>
@@ -84,24 +84,24 @@
 								</a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="/captura">Herramientas</a>
-									<a class="dropdown-item" href="projects.html">Academica</a>
+									<a class="dropdown-item" href="projects.html">Académica</a>
 									<a class="dropdown-item" href="projects.html">Materiales</a>
 									<a class="dropdown-item" href="projects.html">Alimentación</a>
 								</div>
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-									Academica
+									Académica
 								</a>
 								<div class="dropdown-menu">
-								<a class="dropdown-item" href="projects.html">Contraloria Social</a>
+								<a class="dropdown-item" href="projects.html">Contraloría Social</a>
 									<a class="dropdown-item" href="/materiales_a">Materiales de Apoyo</a>
-									<a class="dropdown-item" href="projects.html">Lineas de Trabajo</a>
-									<a class="dropdown-item" href="projects.html">Capacitaciónes</a>
-									<a class="dropdown-item" href="projects.html">Herramientas</a>								
+									<a class="dropdown-item" href="projects.html">Líneas de Trabajo</a>
+									<a class="dropdown-item" href="projects.html">Capacitaciones</a>
+									<a class="dropdown-item" href="projects.html">Herramientas</a>
 								</div>
 							</li>
-							<li><a href="contact">Escuelas Incorporadas</a></li>					
+							<li><a href="contact">Escuelas Incorporadas</a></li>
 						</ul>
 					</div>
 				</div>
@@ -116,7 +116,7 @@
 			<div class="container">
 				<div class="row fullscreen">
 					<div class="banner-content col-lg-12">
-						<p>El día en que México lleve acabo la gran revolución educativa que requiere tendra que ampliar sustancialmente el tiempo de
+						<p>El día en que México lleve acabo la gran revolución educativa que requiere tendrá que ampliar sustancialmente el tiempo de
 							la jornada escolar en su educación básica, recuperar aquella escuela "de mañana y tarde". <br>By. Pablo Latapí.  </p>
 							<h1>
 								Programa Escuelas <br>
@@ -179,7 +179,7 @@
 									<img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget2.jpg" alt="">
 								</div>
 								<div class="content-details">
-									<h4 class="content-title mx-auto text-uppercase">Academicos</h4>
+									<h4 class="content-title mx-auto text-uppercase">Académicos</h4>
 									<span></span>
 									<p></p>
 								</div>
@@ -318,8 +318,8 @@
 							<li class="active" data-filter=".all">Todas</li>
 							<li data-filter=".semana">Semana</li>
 							<li data-filter=".mes">Mes</li>
-							<li data-filter=".ultimes">Ultimos meses</li>
-							<li data-filter=".año">año</li>
+							<li data-filter=".ultimes">Últimos meses</li>
+							<li data-filter=".año">Año</li>
 						</ul>
 					</div>
 				</div>
@@ -336,7 +336,7 @@
 								</div>
 								<div class="middle">
 									<h4>Servicio de Alimentación</h4>
-									<div class="cat">Descripcion</div>
+									<div class="cat">Descripción</div>
 								</div>
 								<a class="overlay" href="#"></a>
 							</div>
@@ -351,7 +351,7 @@
 								</div>
 								<div class="middle">
 									<h4>Actividad hecha recientemente</h4>
-									<div class="cat">Descripcion</div>
+									<div class="cat">Descripción</div>
 								</div>
 								<a class="overlay" href="#"></a>
 							</div>
@@ -366,7 +366,7 @@
 								</div>
 								<div class="middle">
 									<h4>Actividad hecha recientemente</h4>
-									<div class="cat">Descripcion</div>
+									<div class="cat">Descripción</div>
 								</div>
 								<a class="overlay" href="#"></a>
 							</div>
@@ -381,7 +381,7 @@
 								</div>
 								<div class="middle">
 									<h4>Actividad hecha recientemente</h4>
-									<div class="cat">Descripcion</div>
+									<div class="cat">Descripción</div>
 								</div>
 								<a class="overlay" href="#"></a>
 							</div>
@@ -431,7 +431,7 @@
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 							</p>
-							<h4>Prof. César Pérez Hernández</h4> 
+							<h4>Prof. César Pérez Hernández</h4>
 							<div class="bottom">
 								<p>Coordinador Estatal del PETC</p>
 							</div>
@@ -447,7 +447,7 @@
 							</p>
 							<h4>Lic.Adriana Lopez</h4>
 							<div class="bottom">
-								<p>Encargada del Área de Alimentacion</p>
+								<p>Encargada del Área de Alimentación</p>
 							</div>
 						</div>
 					</div>
@@ -475,7 +475,7 @@
 							</p>
 							<h4>Lic.Antonio Soriano</h4>
 							<div class="bottom">
-								<p>Encargado del Área Academica</p>
+								<p>Encargado del Área Académica</p>
 							</div>
 						</div>
 					</div>
@@ -510,26 +510,26 @@
 					<ul>
 						<li><a href="#">Busca Tu Escuela</a></li>
 						<li><a href="quejas/create">Quejas y Denuncias</a></li>
-						<li><a href="#">Historico del Programa</a></li>
+						<li><a href="#">Histórico del Programa</a></li>
 						<li><a href="#">Ayuda</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Propuesta Pedagógica</h4>
 					<ul>
-						<li><a href="#">Ficheros Didacticos</a></li>
+						<li><a href="#">Ficheros Didácticos</a></li>
 						<li><a href="#">Herramientas</a></li>
-						<li><a href="#">Guias</a></li>
+						<li><a href="#">Guías</a></li>
 						<li><a href="#">Lineas de Trabajo</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Areas</h4>
+					<h4>Áreas</h4>
 					<ul>
 						<li><a href="#">Alimentación</a></li>
 						<li><a href="#">Nomina</a></li>
 						<li><a href="#">Materiales</a></li>
-						<li><a href="#">Academica</a></li>
+						<li><a href="#">Académica</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
@@ -542,7 +542,7 @@
 					</ul>
 				</div>
 				<div class="col-lg-4 col-md-6 single-footer-widget">
-					<h4>Subscribete</h4>
+					<h4>Suscríbete</h4>
 					<p>A todos los Eventos del PETC</p>
 					<div class="form-wrap" id="mc_embed_signup">
 						<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"

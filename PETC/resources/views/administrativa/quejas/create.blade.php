@@ -54,7 +54,7 @@
 							<div id="smartwizard">
 								<ul>
 									<li><a href="#step-1">Quejas y Denuncias</a></li>
-									<li><a href="#step-2">Información de la Queja ó Denuncias</a></li>
+									<li><a href="#step-2">Información de la Queja o Denuncias</a></li>
 								</ul>
 								<div>
 									<div id="step-1" class="">
@@ -129,7 +129,7 @@
 															<p class="textogral"><font color="#666666" size="2" >        <br>
 																O cualquier acto irregular o violaci&oacute;n al Art. 5 de la de Responsabilidades de los Servidores P&uacute;blicos del Estado </font></p></div><br>
 																<table width="527">
-																	
+
 																</table>
 																<br>
 																<div id="inicio"> <p class="textogral"><font color="#666666" size="2"><u>Entiendo que:</u></font><br>
@@ -226,7 +226,7 @@
 																		{{$ct->cct}}-{{$ct->nombre_escuela}}
 																		</option>
 																		@endforeach
-																	</select>																
+																	</select>
 																</div>
 															</div><!--/form-group-->
 
@@ -286,9 +286,9 @@
 	<h3 class="h3titulo">Descripción de los Hechos</h3>
 <table width="520" border="1" align="center" cellpadding="0" cellspacing="0">
                 <tr>
-                	
+
                     <td><textarea onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"  name="descripcion" cols="70" rows="10" class="forma" id="textarea"></textarea></td>
-              
+
                   </tr>
                   </table>
 

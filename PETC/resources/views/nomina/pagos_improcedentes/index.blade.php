@@ -15,7 +15,7 @@
 <div class="container clear_both padding_fix">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="block-web"> 
+			<div class="block-web">
 				<div class="header">
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
@@ -23,16 +23,16 @@
 							<h2 class="content-header" style="margin-top: -5px;">&nbsp;&nbsp;<strong>Pagos Improcedentes</strong></h2>
 							@include('nomina.pagos_improcedentes.search')
 						</div>
-						<div class="col-md-5"> 
+						<div class="col-md-5">
 							<div class="btn-group pull-right">
 								<b>
 
 									<div class="btn-group" style="margin-right: 10px;">
 
 
-										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.pagos-improcedentes.excel',1)}}"  id="excel" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a> 
+										<a class="btn btn-sm btn-warning tooltips" href="{{ route('nomina.pagos-improcedentes.excel',1)}}"  id="excel" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-download"></i> Descargar </a>
 
-										<a class="btn btn-primary btn-sm"  id="invoice" href="{{URL::action('PagosImprocedentesController@invoice',2)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" target="_blank" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a> 
+										<a class="btn btn-primary btn-sm"  id="invoice" href="{{URL::action('PagosImprocedentesController@invoice',2)}}" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" target="_blank" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
 
 
@@ -87,9 +87,9 @@
 								<td style="background-color: #DBFFC2;">$ <?php echo  number_format($pagos->neto) ?></td>
 								<td style="display:none;" >{{$pagos->observaciones}} </th>
 								<td style="display:none;" > {{$pagos->ciclo}} </th>
-									<td style="background-color: #DBFFC2;">{{$pagos->estado}} </th>								
-									<td style="display:none;" >{{$pagos->captura}} </td>						
-										<td style="background-color: #DBFFC2;"> 
+									<td style="background-color: #DBFFC2;">{{$pagos->estado}} </th>
+									<td style="display:none;" >{{$pagos->captura}} </td>
+										<td style="background-color: #DBFFC2;">
 											<a class="btn btn-sm btn-success tooltips" data-target="#modal-delete2-{{$pagos->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"> <i class="glyphicon glyphicon-ok"></i></a>
 										</td>
 										<td style="background-color: #DBFFC2;">
@@ -101,7 +101,7 @@
 										</tr>
 										@else
 
-											<tr class="gradeX">			
+											<tr class="gradeX">
 											<td style="background-color: #FFE4E1;">{{$pagos->region}} </td>
 											<td style="background-color: #FFE4E1;">{{$pagos->rfc}} </td>
 											<td style="background-color: #FFE4E1;">{{$pagos->nom_emp}}</td>
@@ -114,9 +114,9 @@
 											<td style="background-color: #FFE4E1;">$ <?php echo  number_format($pagos->neto) ?></td>
 												<td style="display:none;" >{{$pagos->observaciones}} </th>
 												<td style="display:none;" >{{$pagos->ciclo}} </th>
-													<td style="background-color: #FFE4E1;">{{$pagos->estado}} </th>								
-														<td style="display:none;" >{{$pagos->captura}} </td>						
-														<td style="background-color: #FFE4E1;"> 
+													<td style="background-color: #FFE4E1;">{{$pagos->estado}} </th>
+														<td style="display:none;" >{{$pagos->captura}} </td>
+														<td style="background-color: #FFE4E1;">
 															<center>
 																<a class="btn btn-sm btn-success tooltips" data-target="#modal-delete2-{{$pagos->id}}" data-toggle="modal" style="margin-right: 10px;"  role="button"> <i class="glyphicon glyphicon-ok"></i></a>
 															</center>
@@ -136,7 +136,7 @@
 													</tbody>
 													<tfoot>
 														<tr>
-															<th></th> 
+															<th></th>
 															<th>Región </th>
 															<th>R.F.C</th>
 															<th>Nombre </th>
@@ -158,26 +158,26 @@
 													</tfoot>
 
 												</table>
-													
+
 											</div><!--/table-responsive-->
 										</div><!--/porlets-content-->
 									</div><!--/block-web-->
 								</div><!--/col-md-12-->
-							</div><!--/row--> 
+							</div><!--/row-->
 						</div>
 						<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 						<script type="text/javascript">
 							window.onload=function(){
 								var x =document.getElementById('ciclo_escolar2').value;
-								document.getElementById('excel').href="/descargar-pagos-improcedentes/"+x; 
-								document.getElementById('invoice').href="/pdf-pagos-improcedentes/"+x; 
+								document.getElementById('excel').href="/descargar-pagos-improcedentes/"+x;
+								document.getElementById('invoice').href="/pdf-pagos-improcedentes/"+x;
 
 							}
 
 							function cambia_ruta(){
 								var x =document.getElementById('ciclo_escolar2').value;
-								document.getElementById('excel').href="/descargar-pagos-improcedentes/"+x; 
-								document.getElementById('invoice').href="/pdf-pagos-improcedentes/"+x; 
+								document.getElementById('excel').href="/descargar-pagos-improcedentes/"+x;
+								document.getElementById('invoice').href="/pdf-pagos-improcedentes/"+x;
 							}
 
 

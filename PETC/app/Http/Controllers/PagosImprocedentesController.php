@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection as Collection;
 
 class PagosImprocedentesController extends Controller
-{ 
+{
     public function __construct()
     {
         $this->middleware('auth');
@@ -43,7 +43,40 @@ class PagosImprocedentesController extends Controller
 
     $ciclos=DB::table('ciclo_escolar')->get();
 
-    $pagos=DB::table('pagos_improcedentes')->where('pagos_improcedentes.id_ciclo','=',$query2) ->where('rfc','LIKE','%'.$query.'%')->orwhere('nom_emp','LIKE','%'.$query.'%')->join('ciclo_escolar','ciclo_escolar.id','=','pagos_improcedentes.id_ciclo')->select('pagos_improcedentes.*','ciclo_escolar.ciclo')->orderby('pagos_improcedentes.estado','desc')->paginate(40);
+
+
+
+    if($query == "" && $query2 == ""){
+        $query2=2;
+        $pagos=DB::table('pagos_improcedentes')
+        ->join('ciclo_escolar','ciclo_escolar.id','=','pagos_improcedentes.id_ciclo')
+
+        ->where('pagos_improcedentes.id_ciclo','=',$query2)
+        ->select('pagos_improcedentes.*','ciclo_escolar.ciclo')
+        ->paginate(40);
+    }elseif ($query == "" && $query2 != "") {
+
+      $pagos=DB::table('pagos_improcedentes')
+      ->join('ciclo_escolar','ciclo_escolar.id','=','pagos_improcedentes.id_ciclo')
+
+      ->where('pagos_improcedentes.id_ciclo','=',$query2)
+      ->select('pagos_improcedentes.*','ciclo_escolar.ciclo')
+      ->paginate(40);
+    }else {
+      $pagos=DB::table('pagos_improcedentes')
+      ->join('ciclo_escolar','ciclo_escolar.id','=','pagos_improcedentes.id_ciclo')
+
+      ->where('pagos_improcedentes.id_ciclo','=',$query2)
+      ->select('pagos_improcedentes.*','ciclo_escolar.ciclo')
+
+      ->where('rfc','LIKE','%'.$query.'%')
+      ->orwhere('nom_emp','LIKE','%'.$query.'%')
+      ->orderby('pagos_improcedentes.estado','desc')
+
+      ->paginate(40);
+    }
+
+
 
     return view('nomina.pagos_improcedentes.index',["ciclos"=>$ciclos,"pagos" => $pagos,"ciclo_escolar2"=>$query2,"searchText"=>$query]);
 

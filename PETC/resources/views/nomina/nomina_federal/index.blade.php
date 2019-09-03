@@ -25,7 +25,7 @@
 
 
 
-						</div> 
+						</div>
 						<div class="col-md-5">
 							<div class="btn-group pull-right">
 								<b>
@@ -38,7 +38,7 @@
 											<a class="btn btn-primary btn-sm" href="{{URL::action('NominaCapturadaController@invoice','2019-2020')}}" target="_blank" style="margin-right: 10px;" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"> <i class="fa fa-print"></i> Generar PDF</a>
 
 
- 
+
 										</div>
 									</div>
 
@@ -124,23 +124,36 @@
 						@include('nomina.nomina_federal.modal')
 						@endforeach
 					</tbody>
-						<!--<tfoot>
+						<tfoot>
 							<tr>
                 <th></th>
-								<th>Quincena </th>
-								<th>Dias Trabajados</th>
-								<th>Pago por Director </th>
-								<th>Pago por Docente </th>
-								<th>Pago por Intendente </th>
-								<th>Ciclo </th>>
-								<th>Capturo </th>
-								<th>Modificado</th>
+								<th>Region </th>
+								<th>RFC</th>
+								<th>Nom Empeado</th>
+								<th style="display:none;">Entidad Federal</th>
+								<th style="display:none;">CT Clasif</th>
+								<th style="display:none;">CT ID</th>
+								<th style="display:none;">CT Sec</th>
+								<th style="display:none;">CT Digito Ver</th>
+								<th style="display:none;">Cod Pago</th>
+								<th style="display:none;">Unidad</th>
+								<th style="display:none;">Subunidad</th>
+								<th style="display:none;">Cat Puesto</th>
+								<th style="display:none;">Horas</th>
+								<th style="display:none;">Cons Plaza</th>
+								<th>Qna Ini</th>
+								<th>Qna Fin</th>
+								<th>Qna Pago</th>
+								<th>Num Cheque</th>
+								<th>PERC</th>
+								<th >DED</th>
+								<th>Neto</th>
+								<th style="display:none;">Ciclo escolar</th>
+								<th>Fecha de Registro</th>
+								<th style="display:none;">Captura</th>
 
-
-								<td><center><b>Editar</b></center></td>
-								<td><center><b>Borrar</b></center></td>
 							</tr>
-						</tfoot> -->
+						</tfoot>
 					</table>
 
 				</div><!--/table-responsive-->

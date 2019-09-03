@@ -678,7 +678,7 @@ if($nomina->save()){
 }
 }
 }}
-
+}
 
     //convertir y descargar pdf
 

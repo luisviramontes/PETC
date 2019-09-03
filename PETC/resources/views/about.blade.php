@@ -55,7 +55,7 @@
 							</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="projects.html">Momina y Sistemas</a>
-								<a class="dropdown-item" href="projects.html">Academicos</a>
+								<a class="dropdown-item" href="projects.html">Académicos</a>
                 <a class="dropdown-item" href="projects.html">Materiales</a>
                 <a class="dropdown-item" href="projects.html">Alimentación</a>
 							</div>
@@ -122,7 +122,7 @@
 	<!-- End About Area -->
 
 	<!--Galeria-->
-	
+
 	<!--galeria -->
 
 	<!-- Start testimonial Area -->
@@ -145,7 +145,7 @@
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 							</p>
-							<h4>Prof. César Pérez Hernández</h4> 
+							<h4>Prof. César Pérez Hernández</h4>
 							<div class="bottom">
 								<p>Coordinador Estatal del PETC</p>
 							</div>
@@ -189,7 +189,7 @@
 							</p>
 							<h4>Lic.Antonio Soriano</h4>
 							<div class="bottom">
-								<p>Encargado del Área Academica</p>
+								<p>Encargado del Área Académica</p>
 							</div>
 						</div>
 					</div>
@@ -207,7 +207,7 @@
 							</div>
 						</div>
 					</div>
-				</div> 
+				</div>
 			</div>
 		</div>
 	</section>
@@ -223,27 +223,27 @@
 					<h4>PETC</h4>
 					<ul>
 						<li><a href="#">Busca Tu Escuela</a></li>
-						<li><a href="#">Quejas y Denuncias</a></li>
-						<li><a href="#">Historico del Programa</a></li>
+						<li><a href="quejas/create">Quejas y Denuncias</a></li>
+						<li><a href="#">Histórico del Programa</a></li>
 						<li><a href="#">Ayuda</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Propuesta Pedagógica</h4>
 					<ul>
-						<li><a href="#">Ficheros Didacticos</a></li>
+						<li><a href="#">Ficheros Didácticos</a></li>
 						<li><a href="#">Herramientas</a></li>
-						<li><a href="#">Guias</a></li>
+						<li><a href="#">Guías</a></li>
 						<li><a href="#">Lineas de Trabajo</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Areas</h4>
+					<h4>Áreas</h4>
 					<ul>
 						<li><a href="#">Alimentación</a></li>
 						<li><a href="#">Nomina</a></li>
 						<li><a href="#">Materiales</a></li>
-						<li><a href="#">Academica</a></li>
+						<li><a href="#">Académica</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
@@ -256,7 +256,7 @@
 					</ul>
 				</div>
 				<div class="col-lg-4 col-md-6 single-footer-widget">
-					<h4>Subscribete</h4>
+					<h4>Suscríbete</h4>
 					<p>A todos los Eventos del PETC</p>
 					<div class="form-wrap" id="mc_embed_signup">
 						<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
@@ -275,22 +275,22 @@
 				</div>
 			</div>
 		</div>
-			<div class="row footer-bottom d-flex justify-content-between">
-				<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Sitio Elaborado por  <a href="https://colorlib.com" target="_blank">ISC Luis Viramontes, ISC Daniel Pacheco</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				</p>
-				<div class="col-lg-4 col-sm-12 footer-social">
-					<a href="#"><i class="fa fa-facebook-f"></i></a>
-					<a href="#"><i class="fa fa-twitter"></i></a>
-					<a href="#"><i class="fa fa-dribbble"></i></a>
-					<a href="#"><i class="fa fa-linkedin"></i></a>
-				</div>
+		<div class="row footer-bottom d-flex justify-content-between">
+			<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Sitio Elaborado por <a href="https://colorlib.com" target="_blank">ISC Luis Viramontes, ISC Daniel Pacheco</a>
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			</p>
+			<div class="col-lg-4 col-sm-12 footer-social">
+				<a href="#"><i class="fa fa-facebook-f"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-dribbble"></i></a>
+				<a href="#"><i class="fa fa-linkedin"></i></a>
 			</div>
 		</div>
-	</footer>
-	<!-- End footer Area -->
+	</div>
+</footer>
+<!-- End footer Area -->
 
 	<script src="js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

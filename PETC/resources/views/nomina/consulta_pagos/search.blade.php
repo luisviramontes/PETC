@@ -5,7 +5,10 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label">CCT PETC<strog class="theme_color">*</strog></label>
 		<div class="col-sm-8">
-			<select name="cct2" id="cct2" class="form-control select2"   value="{{$cct2}}" required>				
+			<select name="cct2" id="cct2" class="form-control select2"   value="{{$cct2}}" required>
+				<option selected>
+					Selecciona una opción
+				</option>
 				@foreach($cct as $ct)
 				@if($ct->id == $cct2)
 				<option value="{{$ct->id}}" selected>
@@ -17,7 +20,7 @@
 							</option>
 							@endif
 								@endforeach
-							</select>				
+							</select>
 						</div>
 					</div><!--/form-group-->
 
@@ -26,6 +29,7 @@
 						<label class="col-sm-3 control-label">Sostenimiento;<strog class="theme_color">*</strog></label>
 						<div class="col-sm-8">
 							<select name="sostenimiento" id="sostenimiento" class="form-control select" required>
+								
 
 								@if($sostenimiento == "FEDERAL")
 
@@ -57,7 +61,10 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Seleccione Ciclo Escolar : <strog class="theme_color"></strog></label>
 						<div class="col-sm-6">
-							<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2" "  >
+							<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2">
+								<option selected>
+									Selecciona una opción
+								</option>
 								@foreach($ciclos as $ciclo)
 								@if($ciclo->ciclo == $ciclo_escolar)
 								<option value='{{$ciclo->ciclo}}' selected>
