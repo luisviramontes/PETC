@@ -74,7 +74,6 @@
 									<a class="dropdown-item" href="/consulta_pagos">Consulta Tus Pagos</a>
 									<a class="dropdown-item" href="/consulta_listas">Lista de Asistencia</a>
 									<a class="dropdown-item" href="projects.html">Rechazos de Pago</a>
-									<a class="dropdown-item" href="projects.html">Alimentación</a>
 								</div>
 								</li>
 
@@ -83,9 +82,15 @@
 									Alimentación
 								</a>
 								<div class="dropdown-menu">
+
 									<a class="dropdown-item" href="/captura">Herramientas</a>
 									<a class="dropdown-item" href="projects.html">Académica</a>
 									<a class="dropdown-item" href="projects.html">Materiales</a>
+
+									<a class="dropdown-item" href="/servicio_a">Herramientas</a>
+									<a class="dropdown-item" href="projects.html">Alimentación</a>
+									<a class="dropdown-item" href="projects.html">Alimentación</a>
+
 									<a class="dropdown-item" href="projects.html">Alimentación</a>
 								</div>
 							</li>
@@ -94,11 +99,19 @@
 									Académica
 								</a>
 								<div class="dropdown-menu">
+
 								<a class="dropdown-item" href="projects.html">Contraloría Social</a>
 									<a class="dropdown-item" href="/materiales_a">Materiales de Apoyo</a>
 									<a class="dropdown-item" href="projects.html">Líneas de Trabajo</a>
 									<a class="dropdown-item" href="projects.html">Capacitaciones</a>
 									<a class="dropdown-item" href="projects.html">Herramientas</a>
+=======
+								<a class="dropdown-item" href="/contraloria_s">Contraloria Social</a>
+									<a class="dropdown-item" href="/materiales_a">Materiales de Apoyo</a>
+									<a class="dropdown-item" href="/ficheros">Lineas de Trabajo</a>
+									<a class="dropdown-item" href="projects.html">Capacitaciónes</a>
+									<a class="dropdown-item" href="projects.html">Herramientas</a>
+>>>>>>> d94d497545ab02bc27c5c2694348fae55c6267b2
 								</div>
 							</li>
 							<li><a href="contact">Escuelas Incorporadas</a></li>
@@ -508,7 +521,7 @@
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>PETC</h4>
 					<ul>
-						<li><a href="#">Busca Tu Escuela</a></li>
+						<li><a href="/buscar_esc_loc">Busca Tu Escuela</a></li>
 						<li><a href="quejas/create">Quejas y Denuncias</a></li>
 						<li><a href="#">Histórico del Programa</a></li>
 						<li><a href="#">Ayuda</a></li>
@@ -517,16 +530,23 @@
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Propuesta Pedagógica</h4>
 					<ul>
+<<<<<<< HEAD
 						<li><a href="#">Ficheros Didácticos</a></li>
 						<li><a href="#">Herramientas</a></li>
 						<li><a href="#">Guías</a></li>
 						<li><a href="#">Lineas de Trabajo</a></li>
+=======
+						<li><a href="/materiales_a">Ficheros Didacticos</a></li>
+						<li><a href="/materiales_a">Herramientas</a></li>
+						<li><a href="#">Guias</a></li>
+						<li><a href="/ficheros">Lineas de Trabajo</a></li>
+>>>>>>> d94d497545ab02bc27c5c2694348fae55c6267b2
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Áreas</h4>
 					<ul>
-						<li><a href="#">Alimentación</a></li>
+						<li><a href="/servicio_a">Alimentación</a></li>
 						<li><a href="#">Nomina</a></li>
 						<li><a href="#">Materiales</a></li>
 						<li><a href="#">Académica</a></li>

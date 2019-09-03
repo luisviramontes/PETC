@@ -195,9 +195,7 @@
 															<option value="NOMINA Y SISTEMAS">NOMINA Y SISTEMAS</option>
 															<option value="ACADEMICA">ACADEMICA</option>
 
-															<option value="RECEPCION">RECEPCION</option>
-															<option value="FINANCIERA">FINANCIERA</option>
-															<option value="MATERIALES">MATERIALES</option>
+															
 
 															<option value="RECEPCION">RECEPCION</option>
 															<option value="FINANCIERA">FINANCIERA</option>

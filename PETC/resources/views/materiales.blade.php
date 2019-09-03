@@ -209,6 +209,230 @@ en la clase.
 		</section>
 		<!-- End About Area -->
 
+		<!-- Start About Area -->
+		<section class="about-area section-gap-bottom">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-lg-7 col-md-12 about-left">						
+						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-xoE3aDX8uO-orientaciones_etc_131115.pdff"><img  class="img-fluid" src="img/academica/img/mejorar.png"  title="ESCUELAS DE TIEMPO COMPLETO" ></a>
+					</div>
+					<div class="col-lg-5 col-md-12 about-right">
+						<div class="section-title text-left">
+
+							<h2>Una ETC Centrada en Mejorar la Calidad de los Aprendizajes de las Niñas y los Niños
+<br /></h2>
+						</div>
+						<div align="justify">
+							<p>
+Una ETC Centrada en Mejorar la Calidad de los Aprendizajes de las Niñas y los Niños
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End About Area -->
+
+
+
+		<!-- Start About Area -->
+		<section class="about-area section-gap-bottom">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-lg-7 col-md-12 about-left">						
+						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-3P5YYTZJKF-recomendaciones_131115.pdf"><img  class="img-fluid" src="img/academica/img/recomendacion.png"  title="Recomendaciones" ></a>
+					</div>
+					<div class="col-lg-5 col-md-12 about-right">
+						<div class="section-title text-left">
+
+							<h2>Recomendaciónes<br /></h2>
+						</div>
+						<div align="justify">
+							<p>
+								Recomendaciónes para la Incorporación del Enfoque Intercultural en el Fichero de Actividades Didácticas para Escuelas de Tiempo Complet
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End About Area -->
+
+				<!-- Start About Area -->
+		<section class="about-area section-gap-bottom">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-lg-7 col-md-12 about-left">						
+						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-I4nAFuGWF9-experiencias__de__xito_en_etc_categor_as_final_24112015.pdf"><img  class="img-fluid" src="img/academica/img/experiencias.png"  title="Experiencias" ></a>
+					</div>
+					<div class="col-lg-5 col-md-12 about-right">
+						<div class="section-title text-left">
+
+							<h2>Experiencias<br />De Éxito</h2>
+						</div>
+						<div align="justify">
+							<p>
+								Experiencias De Éxito Para Construir Una Nueva Escuela Mexicana
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End About Area -->
+
+				<!-- Start About Area -->
+		<section class="about-area section-gap-bottom">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-lg-7 col-md-12 about-left">						
+						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-UFAM2EHr1g-fichas_introductorias_ok_etc2014.pdf"><img  class="img-fluid" src="img/academica/img/fichero.png"  title="FICHERO DE ACTIVIDADES" ></a>
+					</div>
+					<div class="col-lg-5 col-md-12 about-right">
+						<div class="section-title text-left">
+
+							<h2>FICHERO DE ACTIVIDADES
+<br />DIDÁCTICAS</h2>
+						</div>
+						<div align="justify">
+							<p>
+							Estimadas Maestras y Estimados Maestros:
+La Secretaría de Educación Pública ha elaborado el Fichero de actividades didácticas para Escuelas de
+Tiempo Completo, con el propósito de ofrecer un conjunto de actividades pedagógicas, diversas y flexibles
+que orienten la labor educativa de los docentes. Las fichas son alternativas de trabajo que pueden ser aplicadas de
+la manera en que se presentan o con las variaciones que consideren pertinentes los maestros, dependiendo de su
+contexto y necesidades.
+Con este material de apoyo se propone abordar cada línea de trabajo. La implementación de las actividades permite
+a los alumnos desarrollar y ejercitar habilidades intelectuales, habilidades prácticas, conocimientos, valores
+éticos, actitudes y emociones. Dichas actividades pueden transformarse y ajustarse con base en la experiencia del
+docente y de acuerdo con las necesidades que observe en sus alumnos y las características del grupo
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End About Area -->
+
+						<!-- Start About Area -->
+		<section class="about-area section-gap-bottom">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-lg-7 col-md-12 about-left">						
+						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201703/201703-3-RSC-z0GgiwlYL8-fichas_actividades_petc_curvas.pdf"><img  class="img-fluid" src="img/academica/img/actividades.png"  title="Actividades Didácticas" ></a>
+					</div>
+					<div class="col-lg-5 col-md-12 about-right">
+						<div class="section-title text-left">
+
+							<h2>Actividades Didácticas Para Desarrollar
+<br />Las Lineas de Trabajo Educativas Para Preescolar </h2>
+						</div>
+						<div align="justify">
+							<p>
+					Actividades Didácticas Para Desarrollar Las Lineas de Trabajo Educativas Para Preescolar 
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End About Area -->
+
+								<!-- Start About Area -->
+		<section class="about-area section-gap-bottom">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-lg-7 col-md-12 about-left">						
+						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201802/201802-RSC-cRW0ubDTOl-VF_Orientacionesacercadelusodeltiempoenlajornadaescolar.pdf"><img  class="img-fluid" src="img/academica/img/orientaciones.png"  title="Actividades Didácticas" ></a>
+					</div>
+					<div class="col-lg-5 col-md-12 about-right">
+						<div class="section-title text-left">
+
+							<h2>Orientaciones para la
+organización y uso del tiempo 
+<br />en la jornada escolar de una
+escuela de tiempo completo </h2>
+						</div>
+						<div align="justify">
+							<p>
+					Orientaciones para la organización y uso del tiempo en la jornada escolar de una escuela
+de tiempo completo es un documento elaborado por la Coordinación Pedagógica del
+Programa Escuelas de Tiempo Completo de la Dirección General de Desarrollo de la Gestión
+Educativa, Subsecretaría de Educación Básica.
+ 
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End About Area -->
+
+								<!-- Start About Area -->
+		<section class="about-area section-gap-bottom">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-lg-7 col-md-12 about-left">						
+						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201810/201810-RSC-WB84ZA20r5-Herramientas_para_el_director_Observacin_de_Clase.pdf"><img  class="img-fluid" src="img/academica/img/observacion clase.png"  title="Herramientas Para el Director" ></a>
+					</div>
+					<div class="col-lg-5 col-md-12 about-right">
+						<div class="section-title text-left">
+
+							<h2>Herramientas Para el Director
+<br />OBSERVACIÓN DE CLASE </h2>
+						</div>
+						<div align="justify">
+							<p>
+OBSERVACIÓN DE CLASE
+ 
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End About Area -->
+
+				<section class="about-area section-gap-bottom">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-lg-7 col-md-12 about-left">						
+						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201712/201712-RSC-vwygEFk42G-Guia_seguridad2.PDF"><img  class="img-fluid" src="img/academica/img/riesgos.png"  title="Guía Básica para la Gestión Integralr" ></a>
+					</div>
+					<div class="col-lg-5 col-md-12 about-right">
+						<div class="section-title text-left">
+
+							<h2>Guía Básica para la Gestión Integral
+<br />de Riesgos en
+Escuelas de Tiempo Completo </h2>
+						</div>
+						<div align="justify">
+							<p>
+La presente Guía fue elaborada con el objetivo de proporcionar a las y los responsables de
+las Escuelas de Tiempo Completo, una herramienta de consulta ágil y útil para la prevención
+de riesgos, considerando los factores estructurales como los no estructurales de los cuales una
+escuela depende para ser “segura”, para la comunidad educativa en su conjunto.
+Es un documento que busca aportar elementos para el establecimiento de una cultura de prevención,
+que reduzca los factores que generan diversos tipos de riesgo (amenazas y vulnerabilidades),
+a través del conocimiento de medidas básicas de seguridad, cuidado y protección en el ámbito
+escolar.
+ 
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End About Area -->
+
 
 		<!--Galeria-->
 
