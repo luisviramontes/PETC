@@ -15,7 +15,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>CAPACITACIONES PETC</title>
+	<title>AVISOS PETC</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto:400,500" rel="stylesheet">
 	<!--
@@ -75,7 +75,7 @@
 			<div class="container">
 				<div class="row justify-content-between align-items-center text-center banner-content">
 					<div class="col-lg-12">
-						<h1 class="text-white">CAPACITACIONES PETC</h1>
+						<h1 class="text-white">AVISOS PETC</h1>
 						<p></p>
 					</div>
 				</div>
@@ -83,7 +83,7 @@
 		</section>
 		<!-- End top-section Area -->
 
-		@foreach($capacitaciones  as $capacitaciones)
+		@foreach($avisos  as $avisos)
 
 
 		<!-- Start About Area -->
@@ -91,24 +91,22 @@
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
 					<div class="col-lg-7 col-md-12 about-left">						
-						<a target="_blank"  href="{{asset('img/capacitaciones/'.$capacitaciones->archivo)}}"><img  class="img-fluid" src="{{asset('img/capacitaciones/'.$capacitaciones->archivo)}}"  title="$capacitaciones->nombre_capacitacion" ></a>
+						<a target="_blank" href="{{asset('img/administrativa/avisos/pdf/'.$avisos->archivo)}}"><img  class="img-fluid" src="{{asset('img/administrativa/avisos/imagen/'.$avisos->imagen)}}"  title="$avisos->nombre_aviso" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
 						<div class="section-title text-left">
 
-							<h2>{{$capacitaciones->nombre_capacitacion}}<br />
+							<h2>{{$avisos->nombre_aviso}}<br />
 								</h2>
 							</div>
 							<div align="justify">
 								<p>
-									<b> DIRIGIDO PARA:<b/> {{$capacitaciones->dirigido}} <br/>
-									<b> LUGAR:<b/> {{$capacitaciones->lugar}} <br/>
-									<b> DIA:<b/> {{$capacitaciones->dia}} <br/>
-									<b> HORA:<b/> {{$capacitaciones->hora}} <br/>
-									<b> IMPARTE CAPACITACIÓN:<b/> {{$capacitaciones->imparte}} <br/>
-									<b> ÁREA:<b/> {{$capacitaciones->area}} <br/>
-									<b> MOTIVO:<b/> {{$capacitaciones->motivo}} <br/>
-									<b> DESCRIPCIÓN:<b/> {{$capacitaciones->descripcion}} <br/>
+									<b> DIRIGIDO PARA:<b/> {{$avisos->dirigido}} <br/>
+									<b> FECHA:<b/> {{$avisos->fecha_emite}} <br/>
+									<b> ÁREA:<b/> {{$avisos->area}} <br/>
+									<b> MOTIVO:<b/> {{$avisos->motivo}} <br/>
+									<b> DESCRIPCIÓN:<b/> {{$avisos->descripcion}} <br/>
+									<b> CICLO ESCOLAR:<b/> {{$avisos->ciclo}} <br/>
 								</p>
 							</div>
 

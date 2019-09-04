@@ -156,7 +156,7 @@
 
 
 												<div class="form-group">
-													<label class="col-sm-3 control-label">Dirijido Para: <strog class="theme_color"></strog></label>
+													<label class="col-sm-3 control-label">Dirigido Para: <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
 														<input name="dirijido" id="dirijido" type="text" onkeypress="return soloLetras(event)"  class="form-control"  value="{{Input::old('dirijido')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 													</div>

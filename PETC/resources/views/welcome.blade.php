@@ -1,3 +1,5 @@
+@inject('metodo','petc\Http\Controllers\ConsultaPagosController')
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -103,15 +105,10 @@
 								<a class="dropdown-item" href="projects.html">Contraloría Social</a>
 									<a class="dropdown-item" href="/materiales_a">Materiales de Apoyo</a>
 									<a class="dropdown-item" href="projects.html">Líneas de Trabajo</a>
-									<a class="dropdown-item" href="projects.html">Capacitaciones</a>
+									<a class="dropdown-item" href="/capacitaciones_public">Capacitaciones</a>
 									<a class="dropdown-item" href="projects.html">Herramientas</a>
-=======
-								<a class="dropdown-item" href="/contraloria_s">Contraloria Social</a>
-									<a class="dropdown-item" href="/materiales_a">Materiales de Apoyo</a>
-									<a class="dropdown-item" href="/ficheros">Lineas de Trabajo</a>
-									<a class="dropdown-item" href="projects.html">Capacitaciónes</a>
-									<a class="dropdown-item" href="projects.html">Herramientas</a>
->>>>>>> d94d497545ab02bc27c5c2694348fae55c6267b2
+
+
 								</div>
 							</li>
 							<li><a href="contact">Escuelas Incorporadas</a></li>
@@ -322,7 +319,7 @@
 				<div class="col-lg-8">
 					<div class="section-title text-center">
 						<h4></h4>
-						<h2>Actividades Recientes</h2>
+						<h2>Actividad Reciente en los Últimos 2 Meses</h2>
 					</div>
 				</div>
 				<div class="col-lg-12">
@@ -331,8 +328,8 @@
 							<li class="active" data-filter=".all">Todas</li>
 							<li data-filter=".semana">Semana</li>
 							<li data-filter=".mes">Mes</li>
-							<li data-filter=".ultimes">Últimos meses</li>
-							<li data-filter=".año">Año</li>
+							<li data-filter=".ultimes">Últimos 2 meses</li>
+							<li data-filter=".hoy">Hoy</li>
 						</ul>
 					</div>
 				</div>
@@ -340,6 +337,28 @@
 			<div class="filters-content">
 				<div class="row grid">
 					<div class="col-lg-4 col-md-6 grid-sizer"></div>
+
+@FOREACH($metodo->actividad_publica_f() as $metodo)
+
+
+	<div class="{{asset('col-lg-8 grid-item col-md-6 '.$metodo['tipo'])}}">
+						<div class="single-project">
+							<div class="relative">
+								<div class="thumb">
+									<img class="image img-fluid" s src="{{asset('img/administrativa/actividad/'.$metodo['archivo'])}}" alt="">
+								</div>
+								<div class="middle">
+									<h4>{{$metodo['nombre_actividad']}}</h4>
+									<div class="cat">{{$metodo['motivo']}}</div>
+									<div class="cat">Lugar: {{$metodo['lugar']}}</div>
+										<div class="cat">Fecha: {{$metodo['fecha']}}</div>
+								</div>
+								<a class="overlay" href="#"></a>
+							</div>
+						</div>
+					</div>
+
+ @ENDFOREACH
 
 					<div class="col-lg-4 col-md-6 grid-item all semana" data-wow-delay="0s">
 						<div class="single-project">
@@ -530,17 +549,11 @@
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Propuesta Pedagógica</h4>
 					<ul>
-<<<<<<< HEAD
+
 						<li><a href="#">Ficheros Didácticos</a></li>
-						<li><a href="#">Herramientas</a></li>
+						<li><a href="/capacitaciones_public">Capacitaciones</a></li>
 						<li><a href="#">Guías</a></li>
 						<li><a href="#">Lineas de Trabajo</a></li>
-=======
-						<li><a href="/materiales_a">Ficheros Didacticos</a></li>
-						<li><a href="/materiales_a">Herramientas</a></li>
-						<li><a href="#">Guias</a></li>
-						<li><a href="/ficheros">Lineas de Trabajo</a></li>
->>>>>>> d94d497545ab02bc27c5c2694348fae55c6267b2
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
@@ -555,10 +568,8 @@
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Recursos</h4>
 					<ul>
-						<li><a href="#">Avisos</a></li>
-						<li><a href="#">Documentos</a></li>
-						<li><a href="#">Circulares</a></li>
-						<li><a href="#">Comunicados</a></li>
+						<li><a href="/avisos_publicos">Avisos</a></li>
+						<li><a href="/capacitaciones_public">Capacitaciones</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-4 col-md-6 single-footer-widget">

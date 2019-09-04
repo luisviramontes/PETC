@@ -33,7 +33,7 @@ class CapacitacionesController extends Controller
       $this->middleware('auth');
   }
   public function index(request $request)
-  {
+  { 
      if($request)
      { 
         $query=trim($request->GET('searchText'));
@@ -58,7 +58,7 @@ class CapacitacionesController extends Controller
       }else{
           $capacitaciones= DB::table('capacitaciones')
           ->join('ciclo_escolar', 'ciclo_escolar.id', '=','capacitaciones.id_ciclo')
-          ->where('ciclo_escolar.id','=',$query2)->where('capacitaciones.num_oficio','LIKE','%'.$query.'%')->orwhere('capacitaciones.nombre_capacitacion','LIKE','%'.$query.'%')->orwhere('capacitaciones.dirigido','LIKE','%'.$query.'%')->orwhere('capacitaciones.lugar','LIKE','%'.$query.'%')->orwhere('capacitaciones.imparte','LIKE','%'.$query.'%')
+          ->where('ciclo_escolar.id','=',$query2)->orwhere('capacitaciones.nombre_capacitacion','LIKE','%'.$query.'%')->orwhere('capacitaciones.dirigido','LIKE','%'.$query.'%')->orwhere('capacitaciones.lugar','LIKE','%'.$query.'%')->orwhere('capacitaciones.imparte','LIKE','%'.$query.'%')
           ->select('capacitaciones.*','ciclo_escolar.ciclo')
           ->paginate(40);
       }

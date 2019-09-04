@@ -502,3 +502,14 @@ Route::get('descargar-capacitaciones/{ciclo}', 'CapacitacionesController@excel')
 Route::post('capacitacion_realizada/{id}', 'CapacitacionesController@capacitacion_realizada');
 
 Route::get('capacitaciones_public', 'ConsultaPagosController@capacitaciones_public');
+
+//AVISOS
+Route::resource('avisos', 'AvisosController');
+Route::get('descargar-avisos/{ciclo}', 'AvisosController@excel')->name('administrativa.avisos.excel');
+Route::get('avisos_publicos', 'ConsultaPagosController@avisos_publicos');
+
+//ACTIVIDADES
+Route::resource('actividad', 'ActividadController');
+Route::get('descargar-actividad/{ciclo}', 'ActividadController@excel')->name('administrativa.actividad.excel');
+Route::get('actividad_publica', 'ConsultaPagosController@actividad_publica');
+

@@ -13,13 +13,13 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <div class="pull-left breadcrumb_admin clear_both">
 	<div class="pull-left page_title theme_color">
-		<h1>Editar Capacitación</h1>
+		<h1>Registrar Avisos</h1>
 		<h2 class="active"></h2>
 	</div>
 	<div class="pull-right">
 		<ol class="breadcrumb">
 			<li><a href="?c=Inicio">Inicio</a></li>
-			<li><a href="?c=">Editar Capacitación</a></li>
+			<li><a href="?c=">Registrar Avisos</a></li>
 			<li class="active"></li>
 		</ol>
 	</div>
@@ -49,57 +49,45 @@
 
 				<div class="porlets-content">
 					<div  class="form-horizontal row-border" > <!--acomodo-->
-								<form action="{{url('/capacitaciones', [$capacitaciones->id])}}" method="post" class="form-horizontal row-border" parsley-validate novalidate files="true" enctype="multipart/form-data" accept-charset="UTF-8">
-						{{csrf_field()}}
-						<input type="hidden" name="_method" value="PUT">						
+						<form class="" id="myForm" action="{{route('avisos.store')}}" method="post" role="form" enctype="multipart/form-data" parsley-validate novalidate data-toggle="validator">
+							{{csrf_field()}}
 							<div id="smartwizard">
 								<ul>
-									<li><a href="#step-1">Editar Capacitación</a></li>
-									<li><a href="#step-2">Editar Capacitación</a></li>
+									<li><a href="#step-1">Registrar Avisos</a></li>
+									<li><a href="#step-2">Registrar Avisos</a></li>
 								</ul>
 								<div>
 									<div id="step-1" class="">
 										<div class="user-profile-content">
 
 											<div id="form-step-0" role="form" data-toggle="validator">
-												<h3 class="h3titulo">Capacitaciónes</h3>
+												<h3 class="h3titulo">Avisos</h3>
 
 												<div class="form-group">
-													<label class="col-sm-3 control-label">Nombre de la Capacitación: <strog class="theme_color">*</strog></label>
+													<label class="col-sm-3 control-label">Nombre del Aviso: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="nombre_c" id="nombre_c" type="text"   class="form-control" required value="{{$capacitaciones->nombre_capacitacion}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+														<input name="nombre" id="nombre" type="text"   class="form-control" required value="{{Input::old('nombre')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 													</div>
 												</div>
 
+											
+
 												<div class="form-group">
-													<label class="col-sm-3 control-label">Lugar: <strog class="theme_color">*</strog></label>
+													<label class="col-sm-3 control-label">Fecha: <strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="lugar" id="lugar" type="text"   class="form-control" required value="{{$capacitaciones->lugar}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+
+														<input type="date" name="fecha" id="fecha" value="2019-08-26" class="form-control mask"   required>
 													</div>
 												</div>
 
-												<div class="form-group">
-													<label class="col-sm-3 control-label">Dia: <strog class="theme_color">*</strog></label>
-													<div class="col-sm-6">
-
-														<input type="date" name="fecha" id="fecha" value="{{$capacitaciones->dia}}" class="form-control mask"   required>
-													</div>
-												</div>
-
-												<div class="form-group">
-													<label class="col-sm-3 control-label">Hora: <strog class="theme_color">*</strog></label>
-													<div class="col-sm-6">
-
-														<input type="time" name="hora" value="{{$capacitaciones->hora}}" max="22:30:00" min="10:00:00" step="1"  required>
-													</div>
-												</div>
+											
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Seleccione Ciclo Escolar : <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
 														<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2" >
 															@foreach($ciclos as $ciclo)
-															@if($ciclo->id == $capacitaciones->id_ciclo)
+															@if($ciclo->id == 2)
 															<option value='{{$ciclo->id}}' selected>
 																{{$ciclo->ciclo}}
 															</option>
@@ -125,107 +113,71 @@
 									<div id="step-2" class="">
 										<div class="user-profile-content">
 											<div id="form-step-1" role="form" data-toggle="validator">
-												<h3 class="h3titulo">Datos de La Capacitación</h3>
+												<h3 class="h3titulo">Datos del Aviso</h3>
 
 
-												<div class="form-group">
-													<label class="col-sm-3 control-label">Imparte: <strog class="theme_color"></strog></label>
+											
+
+													<div class="form-group">
+													<label class="col-sm-3 control-label">Área;<strog class="theme_color">*</strog></label>
 													<div class="col-sm-6">
-														<input name="imparte" id="imparte" type="text" onkeypress="return soloLetras(event)"  class="form-control"  value="{{$capacitaciones->imparte}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
-													</div>
-												</div>
-
-												<div class="form-group">
-													<label class="col-sm-3 control-label">Área en la que se Incorpora;<strog class="theme_color">*</strog></label>
-													<div class="col-sm-6">
-														<select name="area" id="area" class="form-control select" required> 
-															@if($capacitaciones->area == "ALIMENTACION")
-															<option value="ALIMENTACION" selected>ALIMENTACION</option>
-															<option value="NOMINA Y SISTEMAS">NOMINA Y SISTEMAS</option>
-															<option value="ACADEMICA">ACADEMICA</option>
-															<option value="RECEPCION">RECEPCION</option>	
-															<option value="FINANCIERA">FINANCIERA</option>	
-															<option value="MATERIALES">MATERIALES</option>	
-															@elseif($capacitaciones->area == "NOMINA Y SISTEMAS")	
-															<option value="ALIMENTACION" >ALIMENTACION</option>
-															<option value="NOMINA Y SISTEMAS" selected>NOMINA Y SISTEMAS</option>
-															<option value="ACADEMICA">ACADEMICA</option>
-															<option value="RECEPCION">RECEPCION</option>	
-															<option value="FINANCIERA">FINANCIERA</option>	
-															<option value="MATERIALES">MATERIALES</option>	
-															@elseif($capacitaciones->area == "ACADEMICA")	
+														<select name="area" id="area"  class="form-control select" required>
+															<option selected>
+																Seleccione una opción
+															</option>
 															<option value="ALIMENTACION" >ALIMENTACION</option>
 															<option value="NOMINA Y SISTEMAS">NOMINA Y SISTEMAS</option>
-															<option value="ACADEMICA" selected>ACADEMICA</option>
-															<option value="RECEPCION">RECEPCION</option>	
-															<option value="FINANCIERA">FINANCIERA</option>	
-															<option value="MATERIALES">MATERIALES</option>	@elseif($capacitaciones->area == "RECEPCION")	
-															<option value="ALIMENTACION" >ALIMENTACION</option>
-															<option value="NOMINA Y SISTEMAS">NOMINA Y SISTEMAS</option>
-															<option value="ACADEMICA">ACADEMICA</option>
-															<option value="RECEPCION" selected>RECEPCION</option>	
-															<option value="FINANCIERA">FINANCIERA</option>	
-															<option value="MATERIALES">MATERIALES</option>	@elseif($capacitaciones->area == "FINANCIERA")	
-															<option value="ALIMENTACION" >ALIMENTACION</option>
-															<option value="NOMINA Y SISTEMAS">NOMINA Y SISTEMAS</option>
-															<option value="ACADEMICA">ACADEMICA</option>
-															<option value="RECEPCION">RECEPCION</option>	
-															<option value="FINANCIERA" selected>FINANCIERA</option>	
+															<option value="ACADEMICA">ACADEMICA</option>				
+															<option value="RECEPCION">RECEPCION</option>
+															<option value="FINANCIERA">FINANCIERA</option>
 															<option value="MATERIALES">MATERIALES</option>
-															@else
-															<option value="ALIMENTACION" >ALIMENTACION</option>
-															<option value="NOMINA Y SISTEMAS">NOMINA Y SISTEMAS</option>
-															<option value="ACADEMICA">ACADEMICA</option>
-															<option value="RECEPCION">RECEPCION</option>	
-															<option value="FINANCIERA">FINANCIERA</option>	
-															<option value="MATERIALES" selected>MATERIALES</option>
+															<option value="JURIDICA">JURIDICA</option>
+															<option value="ADMINISTRATIVA">ADMINISTRATIVA</option>
 
-															@endif	
-														</select>
-													</div> 
+														</select>															
+													</div>
 												</div>
 
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Dirigido Para: <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
-														<input name="dirijido" id="dirijido" type="text" onkeypress="return soloLetras(event)"  class="form-control"  value="{{$capacitaciones->dirigido}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+														<input name="dirijido" id="dirijido" type="text" onkeypress="return soloLetras(event)"  class="form-control"  value="{{Input::old('dirijido')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 													</div>
 												</div>
 
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Motivo: <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
-														<input name="motivo" id="motivo" type="text"  class="form-control"  value="{{$capacitaciones->motivo}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+														<input name="motivo" id="motivo" type="text"  class="form-control"  value="{{Input::old('motivo')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 													</div>
 												</div>
 												
 												<div class="form-group">
 													<label class="col-sm-3 control-label">Descripción: <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
-														<input name="descripcion" id="descripcion" type="text"  class="form-control"  value="{{$capacitaciones->descripcion}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
+														<input name="descripcion" id="descripcion" type="text"  class="form-control"  value="{{Input::old('descripcion')}}"   onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" />
 													</div>
 												</div>
 												
-
-
+													<div class="form-group">
+													<label class="col-sm-3 control-label">Anexar Documento PDF: <strog class="theme_color"></strog></label>
+													<div class="col-sm-6">
+														<input name="archivo" id="archivo" type="file"  accept=".pdf" />
+													</div>
+												</div>
 
 												<div class="form-group">
-													<label class="col-sm-3 control-label">Archivo: <strog class="theme_color"></strog></label>
+													<label class="col-sm-3 control-label">Anexar Imagen: <strog class="theme_color"></strog></label>
 													<div class="col-sm-6">
-														<input name="archivo" id="archivo" value="{{$capacitaciones->archivo}}"  type="file"  accept=".jpg, .jpeg, .png" />
-														@if (($capacitaciones->archivo)!="")
-														<img src="{{asset('img/capacitaciones/'.$capacitaciones->archivo)}}" alt="{{$capacitaciones->nombre}}" height="100px" width="100px" class="img-thumbnail">
-														@endif
+														<input name="imagen" id="imagen" type="file"  accept=".jpg, .jpeg, .png" />
 													</div>
 												</div>
-												
-
 
 												<div class="form-group">
 													<div class="col-sm-offset-7 col-sm-5">
 														<button id="submit"  class="btn btn-primary">Guardar</button>
-														<a href="{{url('/capacitaciones')}}" class="btn btn-default"> Cancelar</a>
+														<a href="{{url('/avisos')}}" class="btn btn-default"> Cancelar</a>
 													</div>
 												</div><!--/form-group-->
 
@@ -233,20 +185,27 @@
 
 
 
-	</div><!--user-profile-content-->
-									</div><!--step-2-->
+											</div>
+										</div>
 
 
 
-								</div><!--validator-->
-							</div><!--user-profile-content-->
-						</div><!--step-2-->
+									</div><!--validator-->
 
-					</div>
-				</div>  <!--smartwizard-->            
-			</form>
-		</div><!--/form-horizontal-->
-	</div><!--/porlets-content-->
+								</div><!--user-profile-content-->
+							</div><!--step-2-->
+
+
+
+						</div><!--validator-->
+					</div><!--user-profile-content-->
+				</div><!--step-2-->
+
+			</div>
+		</div>  <!--smartwizard-->
+	</form>
+</div><!--/form-horizontal-->
+</div><!--/porlets-content-->
 </div><!--/block-web-->
 </div><!--/col-md-12-->
 </div><!--/row-->
@@ -303,10 +262,10 @@
           // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
           if(stepDirection === 'forward' && elmForm){
           	if(stepNumber == 0){
-
+       
 
           	}else if (stepNumber == 1){
-
+          	
 
           	}
 
