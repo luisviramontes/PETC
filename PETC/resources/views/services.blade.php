@@ -95,7 +95,7 @@
 									<img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget1.jpg" alt="">
 								</div>
 								<div class="content-details" >
-									<h4 class="content-title mx-auto text-uppercase" >Nomina y Sistemas</h4>
+									<h4 class="content-title mx-auto text-uppercase" >Nómina y Sistemas</h4>
 									<span></span>
 									<p></p>
 								</div>
@@ -176,7 +176,7 @@
 						<div class="col-lg-6 col-md-6">
 							<div class="single-offer">
 								<a href="#">
-									<h4>Nomina y Sistemas</h4>
+									<h4>Nómina y Sistemas</h4>
 								</a>
 								<p>
 									Days so us evening for herb bearing lesser man female night gathering creeping great first our bearing appear
@@ -253,7 +253,7 @@
 					<h4>Áreas</h4>
 					<ul>
 						<li><a href="#">Alimentación</a></li>
-						<li><a href="#">Nomina</a></li>
+						<li><a href="#">Nómina</a></li>
 						<li><a href="#">Materiales</a></li>
 						<li><a href="#">Académica</a></li>
 					</ul>

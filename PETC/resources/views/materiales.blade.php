@@ -90,7 +90,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-DhHUfnDlJH-propuesta_pedagogica_final.pdf"><img  class="img-fluid" src="img/academica/img/propuesta pedagogica.png"  title="Propuesta Pedagógica" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -127,7 +127,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-7Se2wAlfkI-desaf_os_matem_ticos_131115.pdf"><img  class="img-fluid" src="img/academica/img/desafios matematicos.png"  title="Desafios Matematicos " ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -151,7 +151,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-BpdWnrfiGS-bibliotecas_escolares.pdf"><img  class="img-fluid" src="img/academica/img/biblioteca.png"  title="Biblioteca" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -180,7 +180,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-jwJxF9tEfo-observaci_n_de_clase.pdf"><img  class="img-fluid" src="img/academica/img/observacion.png"  title="Observación de clase" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -199,7 +199,7 @@ Herramientas para el supervisor como un recurso para obtener información
 en torno a cómo los docentes emplean el tiempo destinado al aprendizaje
 de sus alumnos, las actividades académicas más frecuentes, los materiales
 didácticos que utilizan e identificar a los alumnos que no están involucrados
-en la clase. 
+en la clase.
 							</p>
 						</div>
 
@@ -213,7 +213,7 @@ en la clase.
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-xoE3aDX8uO-orientaciones_etc_131115.pdff"><img  class="img-fluid" src="img/academica/img/mejorar.png"  title="ESCUELAS DE TIEMPO COMPLETO" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -240,7 +240,7 @@ Una ETC Centrada en Mejorar la Calidad de los Aprendizajes de las Niñas y los N
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-3P5YYTZJKF-recomendaciones_131115.pdf"><img  class="img-fluid" src="img/academica/img/recomendacion.png"  title="Recomendaciones" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -264,7 +264,7 @@ Una ETC Centrada en Mejorar la Calidad de los Aprendizajes de las Niñas y los N
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-I4nAFuGWF9-experiencias__de__xito_en_etc_categor_as_final_24112015.pdf"><img  class="img-fluid" src="img/academica/img/experiencias.png"  title="Experiencias" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -288,7 +288,7 @@ Una ETC Centrada en Mejorar la Calidad de los Aprendizajes de las Niñas y los N
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-UFAM2EHr1g-fichas_introductorias_ok_etc2014.pdf"><img  class="img-fluid" src="img/academica/img/fichero.png"  title="FICHERO DE ACTIVIDADES" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -322,7 +322,7 @@ docente y de acuerdo con las necesidades que observe en sus alumnos y las caract
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201703/201703-3-RSC-z0GgiwlYL8-fichas_actividades_petc_curvas.pdf"><img  class="img-fluid" src="img/academica/img/actividades.png"  title="Actividades Didácticas" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -333,7 +333,7 @@ docente y de acuerdo con las necesidades que observe en sus alumnos y las caract
 						</div>
 						<div align="justify">
 							<p>
-					Actividades Didácticas Para Desarrollar Las Lineas de Trabajo Educativas Para Preescolar 
+					Actividades Didácticas Para Desarrollar Las Lineas de Trabajo Educativas Para Preescolar
 							</p>
 						</div>
 
@@ -347,14 +347,14 @@ docente y de acuerdo con las necesidades que observe en sus alumnos y las caract
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201802/201802-RSC-cRW0ubDTOl-VF_Orientacionesacercadelusodeltiempoenlajornadaescolar.pdf"><img  class="img-fluid" src="img/academica/img/orientaciones.png"  title="Actividades Didácticas" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
 						<div class="section-title text-left">
 
 							<h2>Orientaciones para la
-organización y uso del tiempo 
+organización y uso del tiempo
 <br />en la jornada escolar de una
 escuela de tiempo completo </h2>
 						</div>
@@ -364,7 +364,7 @@ escuela de tiempo completo </h2>
 de tiempo completo es un documento elaborado por la Coordinación Pedagógica del
 Programa Escuelas de Tiempo Completo de la Dirección General de Desarrollo de la Gestión
 Educativa, Subsecretaría de Educación Básica.
- 
+
 							</p>
 						</div>
 
@@ -378,7 +378,7 @@ Educativa, Subsecretaría de Educación Básica.
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201810/201810-RSC-WB84ZA20r5-Herramientas_para_el_director_Observacin_de_Clase.pdf"><img  class="img-fluid" src="img/academica/img/observacion clase.png"  title="Herramientas Para el Director" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -390,7 +390,7 @@ Educativa, Subsecretaría de Educación Básica.
 						<div align="justify">
 							<p>
 OBSERVACIÓN DE CLASE
- 
+
 							</p>
 						</div>
 
@@ -403,7 +403,7 @@ OBSERVACIÓN DE CLASE
 				<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201712/201712-RSC-vwygEFk42G-Guia_seguridad2.PDF"><img  class="img-fluid" src="img/academica/img/riesgos.png"  title="Guía Básica para la Gestión Integralr" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -423,7 +423,7 @@ Es un documento que busca aportar elementos para el establecimiento de una cultu
 que reduzca los factores que generan diversos tipos de riesgo (amenazas y vulnerabilidades),
 a través del conocimiento de medidas básicas de seguridad, cuidado y protección en el ámbito
 escolar.
- 
+
 							</p>
 						</div>
 
@@ -458,7 +458,7 @@ escolar.
 								<p>
 									Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 								</p>
-								<h4>Prof. César Pérez Hernández</h4> 
+								<h4>Prof. César Pérez Hernández</h4>
 								<div class="bottom">
 									<p>Coordinador Estatal del PETC</p>
 								</div>
@@ -520,7 +520,7 @@ escolar.
 								</div>
 							</div>
 						</div>
-					</div> 
+					</div>
 				</div>
 			</div>
 		</section>

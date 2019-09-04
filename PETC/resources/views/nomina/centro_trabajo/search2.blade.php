@@ -4,6 +4,9 @@
 	<label class="col-sm-3 control-label">Seleccione Municipio: <strog class="theme_color"></strog></label>
 	<div class="col-sm-6">
 		<select name="municipio" id="municipio"  onchange="traer_localidad();" class="form-control select2">
+			<option selected>
+				Selecciona Municipio
+			</option>
 			@foreach($municipios as $municipios)
 			@IF($municipios->id ==$municipio)
 			<option value='{{$municipios->id}}' selected>

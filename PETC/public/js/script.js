@@ -1098,6 +1098,14 @@ function enviar_ciclo16(){
   location.href="/quejas?searchText="+y+"&ciclo_escolar="+x;
 }
 
+function enviar_ciclo_capacitacion(){
+  var x =document.getElementById('ciclo_escolar').value;
+  var y =document.getElementById('searchText').value;
+  document.getElementById('excel').href="/descargar-capacitaciones/"+x;
+
+  location.href="/capacitaciones?searchText="+y+"&ciclo_escolar="+x;
+}
+
 
 
 ///dir regional//

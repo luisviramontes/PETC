@@ -68,7 +68,7 @@
 							</li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" href="normatividad" id="navbardrop" data-toggle="dropdown">
-									Nomina
+									Nómina
 								</a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="/consulta_pagos">Consulta Tus Pagos</a>
@@ -86,12 +86,8 @@
 									<a class="dropdown-item" href="/captura">Herramientas</a>
 									<a class="dropdown-item" href="projects.html">Académica</a>
 									<a class="dropdown-item" href="projects.html">Materiales</a>
-
-									<a class="dropdown-item" href="/servicio_a">Herramientas</a>
-									<a class="dropdown-item" href="projects.html">Alimentación</a>
 									<a class="dropdown-item" href="projects.html">Alimentación</a>
 
-									<a class="dropdown-item" href="projects.html">Alimentación</a>
 								</div>
 							</li>
 							<li class="dropdown">
@@ -105,13 +101,7 @@
 									<a class="dropdown-item" href="projects.html">Líneas de Trabajo</a>
 									<a class="dropdown-item" href="projects.html">Capacitaciones</a>
 									<a class="dropdown-item" href="projects.html">Herramientas</a>
-=======
-								<a class="dropdown-item" href="/contraloria_s">Contraloria Social</a>
-									<a class="dropdown-item" href="/materiales_a">Materiales de Apoyo</a>
-									<a class="dropdown-item" href="/ficheros">Lineas de Trabajo</a>
-									<a class="dropdown-item" href="projects.html">Capacitaciónes</a>
-									<a class="dropdown-item" href="projects.html">Herramientas</a>
->>>>>>> d94d497545ab02bc27c5c2694348fae55c6267b2
+
 								</div>
 							</li>
 							<li><a href="contact">Escuelas Incorporadas</a></li>
@@ -175,7 +165,7 @@
 									<img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget1.jpg" alt="">
 								</div>
 								<div class="content-details" >
-									<h4 class="content-title mx-auto text-uppercase" >Nomina y Sistemas</h4>
+									<h4 class="content-title mx-auto text-uppercase" >Nómina y Sistemas</h4>
 									<span></span>
 									<p></p>
 								</div>
@@ -248,7 +238,7 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="feature-item">
 						<i class="fi flaticon-desk"></i>
-						<h4>Nomina y Sistemas</h4>
+						<h4>Nómina y Sistemas</h4>
 						<p>description o trabajo que realiza el área </p>
 					</div>
 				</div>
@@ -474,7 +464,7 @@
 							</p>
 							<h4>Lic.José Sebastian Vazquez</h4>
 							<div class="bottom">
-								<p>Encargado del Área de Nomina</p>
+								<p>Encargado del Área de Nómina</p>
 							</div>
 						</div>
 					</div>
@@ -530,24 +520,19 @@
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Propuesta Pedagógica</h4>
 					<ul>
-<<<<<<< HEAD
+
 						<li><a href="#">Ficheros Didácticos</a></li>
 						<li><a href="#">Herramientas</a></li>
 						<li><a href="#">Guías</a></li>
 						<li><a href="#">Lineas de Trabajo</a></li>
-=======
-						<li><a href="/materiales_a">Ficheros Didacticos</a></li>
-						<li><a href="/materiales_a">Herramientas</a></li>
-						<li><a href="#">Guias</a></li>
-						<li><a href="/ficheros">Lineas de Trabajo</a></li>
->>>>>>> d94d497545ab02bc27c5c2694348fae55c6267b2
+
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Áreas</h4>
 					<ul>
 						<li><a href="/servicio_a">Alimentación</a></li>
-						<li><a href="#">Nomina</a></li>
+						<li><a href="#">Nómina</a></li>
 						<li><a href="#">Materiales</a></li>
 						<li><a href="#">Académica</a></li>
 					</ul>

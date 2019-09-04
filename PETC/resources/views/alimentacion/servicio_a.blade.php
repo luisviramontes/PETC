@@ -47,14 +47,14 @@
 					<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 						<ul class="navbar-nav">
 							<li><a href="/">Inicio</a></li>
-							<li><a class="active" href="about">Nosotros</a></li>
+							<li><a class="active" href="about">Servicio de Alimentación</a></li>
 							<li><a href="services">Servicios</a></li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
 									Áreas
 								</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="projects.html">Nomina y Sistemas</a>
+									<a class="dropdown-item" href="projects.html">Nómina y Sistemas</a>
 									<a class="dropdown-item" href="projects.html">Academicos</a>
 									<a class="dropdown-item" href="projects.html">Materiales</a>
 									<a class="dropdown-item" href="projects.html">Alimentación</a>
@@ -90,7 +90,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-DhHUfnDlJH-propuesta_pedagogica_final.pdf"><img  class="img-fluid" src="img/alimentacion/img/recomendaciones.png"  title="Recomendaciones para una Alimentación Saludable" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -115,7 +115,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-TmzO4MC8tr-medidas_de_seguridad_saetc_131115.pdf"><img  class="img-fluid" src="img/alimentacion/img/medidas.png"  title="Medidas Básicas De Seguridad " ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -141,7 +141,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201801/201801-RSC-bwirzNCZcf-Cartelfos-5-claves-afiche-90x60.pdf"><img  class="img-fluid" src="img/alimentacion/img/5 claves.png"  title="LAS 5 CLAVES PARA MANTENER LOS ALIMENTOS SEGUROS " ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -152,7 +152,7 @@
 						<div align="justify">
 							<p>
 								LAS 5 CLAVES PARA MANTENER LOS ALIMENTOS SEGUROS...
-								… y prevenir enfermedades transmitidas por alimentos
+							  y prevenir enfermedades transmitidas por alimentos
 
 							</p>
 						</div>
@@ -167,7 +167,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-zixAj6b2Oe-recetas_para_la_escuela_ok.pdf"><img  class="img-fluid" src="img/alimentacion/img/recetas.png"  title="Recetas para la escuela y el hogar" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -197,7 +197,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank" href="img/alimentacion/pdf/Guia_para_la_asesoria_tecnica_a_resp_SA_ETC_.pdf"><img  class="img-fluid" src="img/alimentacion/img/practicas.png"  title="Prácticas de Higiene" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -224,7 +224,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank" href="img/alimentacion/pdf/Elemento 1,ETAS MAS COMUNES.pdf"><img  class="img-fluid" src="img/alimentacion/img/enfermedades.png"  title="Enfermedades Transmitidas por Alimentos." ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -249,7 +249,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank" href="img/alimentacion/pdf/Elemento 1,ENFERMEDADES TRANSMITIDAS.pdf"><img  class="img-fluid" src="img/alimentacion/img/enfermedades2.png"  title="Enfermedades Transmitidas por Alimentos." ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -274,7 +274,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank" href="img/alimentacion/pdf/Lineamientos_Generales_ExpendioyDistribucion_de_alimentos.pdf"><img  class="img-fluid" src="img/alimentacion/img/lineamietos se.png"  title="Norma Oficial Mexicana NOM-043-SSA2-2005" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -299,7 +299,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank" href="img/alimentacion/pdf/Tema 2. Menus Saludables.pdf"><img  class="img-fluid" src="img/alimentacion/img/menu saludable.png"  title="Menu Saludable" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -324,13 +324,13 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank" href="img/alimentacion/pdf/Subtema 2.1 Menu ciclico y alimentacion correcta.pdf"><img  class="img-fluid" src="img/alimentacion/img/menu ciclico.png"  title="Menú Ciclico y Alimentación Saludable " ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
 						<div class="section-title text-left">
 
-							<h2>Menú Ciclico y Alimentación Saludable <br /></h2>
+							<h2>Menú Cíclico y Alimentación Saludable <br /></h2>
 						</div>
 						<div align="justify">
 							<p>
@@ -349,7 +349,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank" href="img/alimentacion/pdf/Subtema 2.2 Grupos de Alimentos.pdf"><img  class="img-fluid" src="img/alimentacion/img/grupos alimentos.png"  title="Grupos de Alimentos" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -375,7 +375,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank" href="img/alimentacion/pdf/Jeopardy.pdf"><img  class="img-fluid" src="img/alimentacion/img/jeopardy.png"  title="Juego de Preguntas y Respuestas" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -401,7 +401,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank" href="img/alimentacion/pdf/MANUAL EC0334 DGADC.pdf"><img  class="img-fluid" src="img/alimentacion/img/manual.png"  title="MANUAL EC0334 DGADC" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -411,7 +411,7 @@
 						</div>
 						<div align="justify">
 							<p>
-								Manual para la alineación al  EC0334 DGADC "Preparación de Alimentos para la Población sujeta de asistencia social" 
+								Manual para la alineación al  EC0334 DGADC "Preparación de Alimentos para la Población sujeta de asistencia social"
 
 							</p>
 						</div>
@@ -427,7 +427,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank" href="img/alimentacion/pdf/Guia_Basica_GIRETC.pdf"><img  class="img-fluid" src="img/alimentacion/img/guia riesgos.png"  title="Guía Básica" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -439,7 +439,7 @@
 							<p>
 								La Guía Básica para la Gestión Integral de Riesgos en Escuelas de Tiempo Completo es un
 								documento elaborado por la Dirección General de Desarrollo de la Gestión Educativa de la
-								Subsecretaría de Educación Básica de la Secretaría de Educación Pública. 
+								Subsecretaría de Educación Básica de la Secretaría de Educación Pública.
 
 							</p>
 						</div>
@@ -455,7 +455,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank" href="img/alimentacion/pdf/Guia_PEAPC.pdf"><img  class="img-fluid" src="img/alimentacion/img/proteccion.png"  title="GUÍA PARA ELABORAR O ACTUALIZAR EL PROGRAMA ESCOLAR DE PROTECCIÓN CIVIL" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -484,18 +484,19 @@
 		</section>
 		<!-- End About Area -->
 
-		
+
 
 		<!--Galeria-->
 
 		<!--galeria -->
 
 		<!-- Start testimonial Area -->
-		<section class="testimonial-area relative section-gap-top bg-white" id="testimonial">
+		<section class="testimonial-area relative section-gap" id="testimonial">
 			<div class="container">
 				<div class="row d-flex justify-content-center">
 					<div class="col-lg-12">
 						<div class="section-title text-center">
+
 							<h2>Jefes de Área</h2>
 						</div>
 					</div>
@@ -504,13 +505,13 @@
 					<div class="active-testimonial">
 						<div class="single-testimonial item d-flex flex-row">
 							<div class="thumb">
-								<img class="" src="img/personal_etc/cesar.jpeg" alt="">
-							</div>
+									<img class="" src="img/personal_etc/cesar.jpeg" alt="">
+									</div>
 							<div class="desc">
 								<p>
 									Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 								</p>
-								<h4>Prof. César Pérez Hernández</h4> 
+								<h4>Prof. César Pérez Hernández</h4>
 								<div class="bottom">
 									<p>Coordinador Estatal del PETC</p>
 								</div>
@@ -526,13 +527,13 @@
 								</p>
 								<h4>Lic.Adriana Lopez</h4>
 								<div class="bottom">
-									<p>Encargada del Área de Alimentacion</p>
+									<p>Encargada del Área de Alimentación</p>
 								</div>
 							</div>
 						</div>
 						<div class="single-testimonial item d-flex flex-row">
 							<div class="thumb">
-								<img class="" src="img/personal_etc/adriana.jpeg" alt="">
+								<img class="" src="img/personal_etc/sebas.jpeg" alt="">
 							</div>
 							<div class="desc">
 								<p>
@@ -540,7 +541,7 @@
 								</p>
 								<h4>Lic.José Sebastian Vazquez</h4>
 								<div class="bottom">
-									<p>Encargado del Área de Nomina</p>
+									<p>Encargado del Área de Nómina</p>
 								</div>
 							</div>
 						</div>
@@ -554,7 +555,7 @@
 								</p>
 								<h4>Lic.Antonio Soriano</h4>
 								<div class="bottom">
-									<p>Encargado del Área Academica</p>
+									<p>Encargado del Área Académica</p>
 								</div>
 							</div>
 						</div>
@@ -572,7 +573,7 @@
 								</div>
 							</div>
 						</div>
-					</div> 
+					</div>
 				</div>
 			</div>
 		</section>
@@ -587,28 +588,30 @@
 					<div class="col-lg-2 col-md-6 single-footer-widget">
 						<h4>PETC</h4>
 						<ul>
-							<li><a href="#">Busca Tu Escuela</a></li>
-							<li><a href="#">Quejas y Denuncias</a></li>
-							<li><a href="#">Historico del Programa</a></li>
+							<li><a href="/buscar_esc_loc">Busca Tu Escuela</a></li>
+							<li><a href="quejas/create">Quejas y Denuncias</a></li>
+							<li><a href="#">Histórico del Programa</a></li>
 							<li><a href="#">Ayuda</a></li>
 						</ul>
 					</div>
 					<div class="col-lg-2 col-md-6 single-footer-widget">
 						<h4>Propuesta Pedagógica</h4>
 						<ul>
-							<li><a href="#">Ficheros Didacticos</a></li>
+
+							<li><a href="#">Ficheros Didácticos</a></li>
 							<li><a href="#">Herramientas</a></li>
-							<li><a href="#">Guias</a></li>
+							<li><a href="#">Guías</a></li>
 							<li><a href="#">Lineas de Trabajo</a></li>
+
 						</ul>
 					</div>
 					<div class="col-lg-2 col-md-6 single-footer-widget">
-						<h4>Areas</h4>
+						<h4>Áreas</h4>
 						<ul>
-							<li><a href="#">Alimentación</a></li>
-							<li><a href="#">Nomina</a></li>
+							<li><a href="/servicio_a">Alimentación</a></li>
+							<li><a href="#">Nómina</a></li>
 							<li><a href="#">Materiales</a></li>
-							<li><a href="#">Academica</a></li>
+							<li><a href="#">Académica</a></li>
 						</ul>
 					</div>
 					<div class="col-lg-2 col-md-6 single-footer-widget">
@@ -621,7 +624,7 @@
 						</ul>
 					</div>
 					<div class="col-lg-4 col-md-6 single-footer-widget">
-						<h4>Subscribete</h4>
+						<h4>Suscríbete</h4>
 						<p>A todos los Eventos del PETC</p>
 						<div class="form-wrap" id="mc_embed_signup">
 							<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
@@ -643,7 +646,7 @@
 			<div class="row footer-bottom d-flex justify-content-between">
 				<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Sitio Elaborado por  <a href="https://colorlib.com" target="_blank">ISC Luis Viramontes, ISC Daniel Pacheco</a>
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Sitio Elaborado por <a href="https://colorlib.com" target="_blank">ISC Luis Viramontes, ISC Daniel Pacheco</a>
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 				</p>
 				<div class="col-lg-4 col-sm-12 footer-social">

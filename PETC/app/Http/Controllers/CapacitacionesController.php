@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection as Collection;
 
 class CapacitacionesController extends Controller
-{ 
+{
     /**
      * Display a listing of the resource.
      *
@@ -35,19 +35,21 @@ class CapacitacionesController extends Controller
   public function index(request $request)
   {
      if($request)
-     { 
+     {
         $query=trim($request->GET('searchText'));
         $query2=trim($request->GET('ciclo_escolar'));
         $ciclos=DB::table('ciclo_escolar')->get();
 
 
         if($query == ""  && $query2 == ""){
+          $query2=2;
             $capacitaciones= DB::table('capacitaciones')
             ->join('ciclo_escolar', 'ciclo_escolar.id', '=','capacitaciones.id_ciclo')
+            ->where('ciclo_escolar.id','=',$query2)
             ->select('capacitaciones.*','ciclo_escolar.ciclo')
             ->paginate(40);
 
-        }elseif($query2 <> "" && $query == "") {
+        }elseif($query2 != "" && $query == "") {
           $capacitaciones= DB::table('capacitaciones')
           ->join('ciclo_escolar', 'ciclo_escolar.id', '=','capacitaciones.id_ciclo')
           ->where('ciclo_escolar.id','=',$query2)
@@ -186,12 +188,22 @@ class CapacitacionesController extends Controller
      */
     public function destroy($id)
     {
-       $capacitaciones = CapacitacionesModel::find($id);
+      /* $capacitaciones = CapacitacionesModel::find($id);
        $capacitaciones->delete();
        return redirect('/capacitaciones');
-        //
-   }
+        // */
+        $tipo_usuario = Auth::user()->tipo_usuario;
+        if($tipo_usuario <> "2" || $tipo_usuario=="5"){
 
+        }else{
+        $user = Auth::user()->name;
+        $capacitacion=CapacitacionesModel::findOrFail($id);
+        $capacitacion->estado="INACTIVO";
+        $capacitacion->captura=$user;
+        $capacitacion->update();
+          return redirect('capacitaciones');
+     }
+   }
    public function capacitacion_realizada($id){
        $capacitaciones = CapacitacionesModel::find($id);
        $user = Auth::user()->name;
