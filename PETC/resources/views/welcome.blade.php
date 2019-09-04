@@ -64,7 +64,9 @@
 									<a class="dropdown-item" href="/img/documentos/LPRE2018.pdf" target="_blank">Lineamientos Preescolar</a>
 									<a class="dropdown-item" href="/img/documentos/LIPRI2018.pdf" target="_blank">Lineamientos Primaria</a>
 									<a class="dropdown-item" href="/img/documentos/LITEL2018.pdf" target="_blank">Lineamientos Telesecundaria</a>
-									<a class="dropdown-item" href="projects.html">Tipos de Apoyo</a>
+									<a class="dropdown-item" href="/avisos_publicos">Avisos</a>
+									<a class="dropdown-item" href="/actividad_publica">Actividad Reciente</a>
+									<a class="dropdown-item" href="/capacitaciones_public">Capacitaciones</a>	
 									<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>
 								</div>
 							</li>
@@ -75,9 +77,9 @@
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="/consulta_pagos">Consulta Tus Pagos</a>
 									<a class="dropdown-item" href="/consulta_listas">Lista de Asistencia</a>
-									<a class="dropdown-item" href="projects.html">Rechazos de Pago</a>
+									<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>
 								</div>
-								</li>
+							</li>
 
 							<li class="dropdown">
 								<a class="dropdown-toggle" href="normatividad" id="navbardrop" data-toggle="dropdown">
@@ -85,10 +87,8 @@
 								</a>
 								<div class="dropdown-menu">
 
-									<a class="dropdown-item" href="/captura">Herramientas</a>
-									<a class="dropdown-item" href="projects.html">Académica</a>
-									<a class="dropdown-item" href="projects.html">Materiales</a>
-									<a class="dropdown-item" href="projects.html">Alimentación</a>
+									<a class="dropdown-item" href="/servicio_a">Herramientas</a>
+									<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>
 
 								</div>
 							</li>
@@ -98,22 +98,22 @@
 								</a>
 								<div class="dropdown-menu">
 
-								<a class="dropdown-item" href="projects.html">Contraloría Social</a>
+									<a class="dropdown-item" href="/contraloria_s">Contraloría Social</a>
 									<a class="dropdown-item" href="/materiales_a">Materiales de Apoyo</a>
-									<a class="dropdown-item" href="projects.html">Líneas de Trabajo</a>
-<<<<<<< HEAD
+									<a class="dropdown-item" href="/ficheros">Líneas de Trabajo</a>
 									<a class="dropdown-item" href="/capacitaciones_public">Capacitaciones</a>
-									<a class="dropdown-item" href="projects.html">Herramientas</a>
-
-
-=======
-									<a class="dropdown-item" href="projects.html">Capacitaciones</a>
-									<a class="dropdown-item" href="projects.html">Herramientas</a>
-
->>>>>>> 55277fdaf630b22125cc23eb65b867b85f1aba62
+									<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>								
 								</div>
 							</li>
-							<li><a href="contact">Escuelas Incorporadas</a></li>
+							<li class="dropdown">
+							<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+									Escuelas Incorporadas
+								</a>							
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="/ubica_escuela">Ubica tu Escuela</a>
+									<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>	
+								</div>
+							</li>							
 						</ul>
 					</div>
 				</div>
@@ -340,10 +340,10 @@
 				<div class="row grid">
 					<div class="col-lg-4 col-md-6 grid-sizer"></div>
 
-@FOREACH($metodo->actividad_publica_f() as $metodo)
+					@FOREACH($metodo->actividad_publica_f() as $metodo)
 
 
-	<div class="{{asset('col-lg-8 grid-item col-md-6 '.$metodo['tipo'])}}">
+					<div class="{{asset('col-lg-8 grid-item col-md-6 '.$metodo['tipo'])}}">
 						<div class="single-project">
 							<div class="relative">
 								<div class="thumb">
@@ -353,74 +353,15 @@
 									<h4>{{$metodo['nombre_actividad']}}</h4>
 									<div class="cat">{{$metodo['motivo']}}</div>
 									<div class="cat">Lugar: {{$metodo['lugar']}}</div>
-										<div class="cat">Fecha: {{$metodo['fecha']}}</div>
+									<div class="cat">Fecha: {{$metodo['fecha']}}</div>
 								</div>
 								<a class="overlay" href="#"></a>
 							</div>
 						</div>
 					</div>
 
- @ENDFOREACH
+					@ENDFOREACH
 
-					<div class="col-lg-4 col-md-6 grid-item all semana" data-wow-delay="0s">
-						<div class="single-project">
-							<div class="relative">
-								<div class="thumb">
-									<img class="image img-fluid" src="img/projects/p1.png" alt="">
-								</div>
-								<div class="middle">
-									<h4>Servicio de Alimentación</h4>
-									<div class="cat">Descripción</div>
-								</div>
-								<a class="overlay" href="#"></a>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-8 grid-item col-md-6 all mes latest">
-						<div class="single-project">
-							<div class="relative">
-								<div class="thumb">
-									<img class="image img-fluid" src="img/projects/p2.png" alt="">
-								</div>
-								<div class="middle">
-									<h4>Actividad hecha recientemente</h4>
-									<div class="cat">Descripción</div>
-								</div>
-								<a class="overlay" href="#"></a>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-8 grid-item col-md-6 all ultimes">
-						<div class="single-project">
-							<div class="relative">
-								<div class="thumb">
-									<img class="image img-fluid" src="img/projects/p3.png" alt="">
-								</div>
-								<div class="middle">
-									<h4>Actividad hecha recientemente</h4>
-									<div class="cat">Descripción</div>
-								</div>
-								<a class="overlay" href="#"></a>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 grid-item col-md-6 all año">
-						<div class="single-project">
-							<div class="relative">
-								<div class="thumb">
-									<img class="image img-fluid" src="img/projects/p4.png" alt="">
-								</div>
-								<div class="middle">
-									<h4>Actividad hecha recientemente</h4>
-									<div class="cat">Descripción</div>
-								</div>
-								<a class="overlay" href="#"></a>
-							</div>
-						</div>
-					</div>
 
 				</div>
 			</div>
@@ -459,8 +400,8 @@
 				<div class="active-testimonial">
 					<div class="single-testimonial item d-flex flex-row">
 						<div class="thumb">
-								<img class="" src="img/personal_etc/cesar.jpeg" alt="">
-								</div>
+							<img class="" src="img/personal_etc/cesar.jpeg" alt="">
+						</div>
 						<div class="desc">
 							<p>
 								Give dry stars form. Us called an won't winged had land cru abundantly land Midst
@@ -556,10 +497,7 @@
 						<li><a href="/capacitaciones_public">Capacitaciones</a></li>
 						<li><a href="#">Guías</a></li>
 						<li><a href="#">Lineas de Trabajo</a></li>
-<<<<<<< HEAD
-=======
 
->>>>>>> 55277fdaf630b22125cc23eb65b867b85f1aba62
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
@@ -601,7 +539,7 @@
 		<div class="row footer-bottom d-flex justify-content-between">
 			<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Sitio Elaborado por <a href="https://colorlib.com" target="_blank">ISC Luis Viramontes, ISC Daniel Pacheco</a>
+				Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Sitio Elaborado por <a href="https://colorlib.com" target="_blank">ISC Luis Viramontes, ISC Daniel Pacheco</a>
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 			</p>
 			<div class="col-lg-4 col-sm-12 footer-social">
