@@ -47,15 +47,15 @@
 					<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 						<ul class="navbar-nav">
 							<li><a href="/">Inicio</a></li>
-							<li><a class="active" href="about">Nosotros</a></li>
+							<li><a class="active" href="about">Materiales de Apoyo</a></li>
 							<li><a href="services">Servicios</a></li>
 							<li class="dropdown">
 								<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
 									Áreas
 								</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="projects.html">Nomina y Sistemas</a>
-									<a class="dropdown-item" href="projects.html">Academicos</a>
+									<a class="dropdown-item" href="projects.html">Nómina y Sistemas</a>
+									<a class="dropdown-item" href="projects.html">Académicos</a>
 									<a class="dropdown-item" href="projects.html">Materiales</a>
 									<a class="dropdown-item" href="projects.html">Alimentación</a>
 								</div>
@@ -90,13 +90,13 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-DhHUfnDlJH-propuesta_pedagogica_final.pdf"><img  class="img-fluid" src="img/academica/img/propuesta pedagogica.png"  title="Propuesta Pedagógica" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
 						<div class="section-title text-left">
 
-							<h2>Propuesta<br />Pedagógica. </h2>
+							<h2>Propuesta<br/>Pedagógica. </h2>
 						</div>
 						<div align="justify">
 							<p>
@@ -113,7 +113,7 @@
 								y con ello la comprensión lectora, para con ello
 								poder producir textos que le permitan comunicar
 								sus ideas, pensamientos, inquietudes, problemas,
-								entre otros
+								entre otros.
 							</p>
 						</div>
 
@@ -127,13 +127,13 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-7Se2wAlfkI-desaf_os_matem_ticos_131115.pdf"><img  class="img-fluid" src="img/academica/img/desafios matematicos.png"  title="Desafios Matematicos " ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
 						<div class="section-title text-left">
 
-							<h2>Desafios<br />Matematicos. </h2>
+							<h2>Desafíos<br/>Matematicos. </h2>
 						</div>
 						<div align="justify">
 							<p>
@@ -151,7 +151,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-BpdWnrfiGS-bibliotecas_escolares.pdf"><img  class="img-fluid" src="img/academica/img/biblioteca.png"  title="Biblioteca" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -166,7 +166,7 @@
 								aprenden a leer y escribir. La escuela es el lugar idóneo
 								para ello, pues ofrece un ambiente favorable para incluir
 								espacios donde los maestros generen experiencias significativas
-								en la vida de sus alumnos: la biblioteca escolar
+								en la vida de sus alumnos: la biblioteca escolar.
 							</p>
 						</div>
 
@@ -180,14 +180,14 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-jwJxF9tEfo-observaci_n_de_clase.pdf"><img  class="img-fluid" src="img/academica/img/observacion.png"  title="Observación de clase" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
 						<div class="section-title text-left">
 
 							<h2>Observación
-<br />de Clase</h2>
+<br/>de Clase</h2>
 						</div>
 						<div align="justify">
 							<p>
@@ -199,7 +199,7 @@ Herramientas para el supervisor como un recurso para obtener información
 en torno a cómo los docentes emplean el tiempo destinado al aprendizaje
 de sus alumnos, las actividades académicas más frecuentes, los materiales
 didácticos que utilizan e identificar a los alumnos que no están involucrados
-en la clase. 
+en la clase.
 							</p>
 						</div>
 
@@ -213,7 +213,7 @@ en la clase.
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-xoE3aDX8uO-orientaciones_etc_131115.pdff"><img  class="img-fluid" src="img/academica/img/mejorar.png"  title="ESCUELAS DE TIEMPO COMPLETO" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -240,17 +240,17 @@ Una ETC Centrada en Mejorar la Calidad de los Aprendizajes de las Niñas y los N
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-3P5YYTZJKF-recomendaciones_131115.pdf"><img  class="img-fluid" src="img/academica/img/recomendacion.png"  title="Recomendaciones" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
 						<div class="section-title text-left">
 
-							<h2>Recomendaciónes<br /></h2>
+							<h2>Recomendaciones<br /></h2>
 						</div>
 						<div align="justify">
 							<p>
-								Recomendaciónes para la Incorporación del Enfoque Intercultural en el Fichero de Actividades Didácticas para Escuelas de Tiempo Complet
+								Recomendaciones para la Incorporación del Enfoque Intercultural en el Fichero de Actividades Didácticas para Escuelas de Tiempo Completo
 							</p>
 						</div>
 
@@ -264,13 +264,13 @@ Una ETC Centrada en Mejorar la Calidad de los Aprendizajes de las Niñas y los N
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-I4nAFuGWF9-experiencias__de__xito_en_etc_categor_as_final_24112015.pdf"><img  class="img-fluid" src="img/academica/img/experiencias.png"  title="Experiencias" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
 						<div class="section-title text-left">
 
-							<h2>Experiencias<br />De Éxito</h2>
+							<h2>Experiencias<br/>De Éxito</h2>
 						</div>
 						<div align="justify">
 							<p>
@@ -288,14 +288,14 @@ Una ETC Centrada en Mejorar la Calidad de los Aprendizajes de las Niñas y los N
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="img/academica/pdf/201611-3-RSC-UFAM2EHr1g-fichas_introductorias_ok_etc2014.pdf"><img  class="img-fluid" src="img/academica/img/fichero.png"  title="FICHERO DE ACTIVIDADES" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
 						<div class="section-title text-left">
 
 							<h2>FICHERO DE ACTIVIDADES
-<br />DIDÁCTICAS</h2>
+<br/>DIDÁCTICAS</h2>
 						</div>
 						<div align="justify">
 							<p>
@@ -308,7 +308,7 @@ contexto y necesidades.
 Con este material de apoyo se propone abordar cada línea de trabajo. La implementación de las actividades permite
 a los alumnos desarrollar y ejercitar habilidades intelectuales, habilidades prácticas, conocimientos, valores
 éticos, actitudes y emociones. Dichas actividades pueden transformarse y ajustarse con base en la experiencia del
-docente y de acuerdo con las necesidades que observe en sus alumnos y las características del grupo
+docente y de acuerdo con las necesidades que observe en sus alumnos y las características del grupo.
 							</p>
 						</div>
 
@@ -322,7 +322,7 @@ docente y de acuerdo con las necesidades que observe en sus alumnos y las caract
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201703/201703-3-RSC-z0GgiwlYL8-fichas_actividades_petc_curvas.pdf"><img  class="img-fluid" src="img/academica/img/actividades.png"  title="Actividades Didácticas" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -333,7 +333,7 @@ docente y de acuerdo con las necesidades que observe en sus alumnos y las caract
 						</div>
 						<div align="justify">
 							<p>
-					Actividades Didácticas Para Desarrollar Las Lineas de Trabajo Educativas Para Preescolar 
+					Actividades Didácticas Para Desarrollar Las Lineas de Trabajo Educativas Para Preescolar
 							</p>
 						</div>
 
@@ -347,15 +347,15 @@ docente y de acuerdo con las necesidades que observe en sus alumnos y las caract
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201802/201802-RSC-cRW0ubDTOl-VF_Orientacionesacercadelusodeltiempoenlajornadaescolar.pdf"><img  class="img-fluid" src="img/academica/img/orientaciones.png"  title="Actividades Didácticas" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
 						<div class="section-title text-left">
 
 							<h2>Orientaciones para la
-organización y uso del tiempo 
-<br />en la jornada escolar de una
+organización y uso del tiempo
+<br/>en la jornada escolar de una
 escuela de tiempo completo </h2>
 						</div>
 						<div align="justify">
@@ -364,7 +364,7 @@ escuela de tiempo completo </h2>
 de tiempo completo es un documento elaborado por la Coordinación Pedagógica del
 Programa Escuelas de Tiempo Completo de la Dirección General de Desarrollo de la Gestión
 Educativa, Subsecretaría de Educación Básica.
- 
+
 							</p>
 						</div>
 
@@ -378,19 +378,19 @@ Educativa, Subsecretaría de Educación Básica.
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201810/201810-RSC-WB84ZA20r5-Herramientas_para_el_director_Observacin_de_Clase.pdf"><img  class="img-fluid" src="img/academica/img/observacion clase.png"  title="Herramientas Para el Director" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
 						<div class="section-title text-left">
 
 							<h2>Herramientas Para el Director
-<br />OBSERVACIÓN DE CLASE </h2>
+<br/>OBSERVACIÓN DE CLASE </h2>
 						</div>
 						<div align="justify">
 							<p>
 OBSERVACIÓN DE CLASE
- 
+
 							</p>
 						</div>
 
@@ -403,7 +403,7 @@ OBSERVACIÓN DE CLASE
 				<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201712/201712-RSC-vwygEFk42G-Guia_seguridad2.PDF"><img  class="img-fluid" src="img/academica/img/riesgos.png"  title="Guía Básica para la Gestión Integralr" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -423,7 +423,7 @@ Es un documento que busca aportar elementos para el establecimiento de una cultu
 que reduzca los factores que generan diversos tipos de riesgo (amenazas y vulnerabilidades),
 a través del conocimiento de medidas básicas de seguridad, cuidado y protección en el ámbito
 escolar.
- 
+
 							</p>
 						</div>
 
@@ -439,11 +439,12 @@ escolar.
 		<!--galeria -->
 
 		<!-- Start testimonial Area -->
-		<section class="testimonial-area relative section-gap-top bg-white" id="testimonial">
+		<section class="testimonial-area relative section-gap" id="testimonial">
 			<div class="container">
 				<div class="row d-flex justify-content-center">
 					<div class="col-lg-12">
 						<div class="section-title text-center">
+
 							<h2>Jefes de Área</h2>
 						</div>
 					</div>
@@ -452,13 +453,13 @@ escolar.
 					<div class="active-testimonial">
 						<div class="single-testimonial item d-flex flex-row">
 							<div class="thumb">
-								<img class="" src="img/personal_etc/cesar.jpeg" alt="">
-							</div>
+									<img class="" src="img/personal_etc/cesar.jpeg" alt="">
+									</div>
 							<div class="desc">
 								<p>
 									Give dry stars form. Us called an won't winged had land cru abundantly land Midst
 								</p>
-								<h4>Prof. César Pérez Hernández</h4> 
+								<h4>Prof. César Pérez Hernández</h4>
 								<div class="bottom">
 									<p>Coordinador Estatal del PETC</p>
 								</div>
@@ -474,13 +475,13 @@ escolar.
 								</p>
 								<h4>Lic.Adriana Lopez</h4>
 								<div class="bottom">
-									<p>Encargada del Área de Alimentacion</p>
+									<p>Encargada del Área de Alimentación</p>
 								</div>
 							</div>
 						</div>
 						<div class="single-testimonial item d-flex flex-row">
 							<div class="thumb">
-								<img class="" src="img/personal_etc/adriana.jpeg" alt="">
+								<img class="" src="img/personal_etc/sebas.jpeg" alt="">
 							</div>
 							<div class="desc">
 								<p>
@@ -488,7 +489,7 @@ escolar.
 								</p>
 								<h4>Lic.José Sebastian Vazquez</h4>
 								<div class="bottom">
-									<p>Encargado del Área de Nomina</p>
+									<p>Encargado del Área de Nómina</p>
 								</div>
 							</div>
 						</div>
@@ -502,7 +503,7 @@ escolar.
 								</p>
 								<h4>Lic.Antonio Soriano</h4>
 								<div class="bottom">
-									<p>Encargado del Área Academica</p>
+									<p>Encargado del Área Académica</p>
 								</div>
 							</div>
 						</div>
@@ -520,7 +521,7 @@ escolar.
 								</div>
 							</div>
 						</div>
-					</div> 
+					</div>
 				</div>
 			</div>
 		</section>
@@ -535,28 +536,35 @@ escolar.
 					<div class="col-lg-2 col-md-6 single-footer-widget">
 						<h4>PETC</h4>
 						<ul>
-							<li><a href="#">Busca Tu Escuela</a></li>
-							<li><a href="#">Quejas y Denuncias</a></li>
-							<li><a href="#">Historico del Programa</a></li>
+							<li><a href="/buscar_esc_loc">Busca Tu Escuela</a></li>
+							<li><a href="quejas/create">Quejas y Denuncias</a></li>
+							<li><a href="#">Histórico del Programa</a></li>
 							<li><a href="#">Ayuda</a></li>
 						</ul>
 					</div>
 					<div class="col-lg-2 col-md-6 single-footer-widget">
 						<h4>Propuesta Pedagógica</h4>
 						<ul>
-							<li><a href="#">Ficheros Didacticos</a></li>
+
+							<li><a href="#">Ficheros Didácticos</a></li>
 							<li><a href="#">Herramientas</a></li>
-							<li><a href="#">Guias</a></li>
+							<li><a href="#">Guías</a></li>
 							<li><a href="#">Lineas de Trabajo</a></li>
+
+							<li><a href="/materiales_a">Ficheros Didacticos</a></li>
+							<li><a href="/materiales_a">Herramientas</a></li>
+							<li><a href="#">Guias</a></li>
+							<li><a href="/ficheros">Lineas de Trabajo</a></li>
+
 						</ul>
 					</div>
 					<div class="col-lg-2 col-md-6 single-footer-widget">
-						<h4>Areas</h4>
+						<h4>Áreas</h4>
 						<ul>
-							<li><a href="#">Alimentación</a></li>
-							<li><a href="#">Nomina</a></li>
+							<li><a href="/servicio_a">Alimentación</a></li>
+							<li><a href="#">Nómina</a></li>
 							<li><a href="#">Materiales</a></li>
-							<li><a href="#">Academica</a></li>
+							<li><a href="#">Académica</a></li>
 						</ul>
 					</div>
 					<div class="col-lg-2 col-md-6 single-footer-widget">
@@ -569,7 +577,7 @@ escolar.
 						</ul>
 					</div>
 					<div class="col-lg-4 col-md-6 single-footer-widget">
-						<h4>Subscribete</h4>
+						<h4>Suscríbete</h4>
 						<p>A todos los Eventos del PETC</p>
 						<div class="form-wrap" id="mc_embed_signup">
 							<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
@@ -591,7 +599,7 @@ escolar.
 			<div class="row footer-bottom d-flex justify-content-between">
 				<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Sitio Elaborado por  <a href="https://colorlib.com" target="_blank">ISC Luis Viramontes, ISC Daniel Pacheco</a>
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Sitio Elaborado por <a href="https://colorlib.com" target="_blank">ISC Luis Viramontes, ISC Daniel Pacheco</a>
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 				</p>
 				<div class="col-lg-4 col-sm-12 footer-social">

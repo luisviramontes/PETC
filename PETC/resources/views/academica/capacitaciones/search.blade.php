@@ -17,7 +17,7 @@
 <div class="form-group">
 	<label class="col-sm-3 control-label">Seleccione Ciclo Escolar : <strog class="theme_color"></strog></label>
 	<div class="col-sm-6">
-		<select name="ciclo_escolar" id="ciclo_escolar" class="form-control select2" >
+		<select name="ciclo_escolar" id="ciclo_escolar" onchange="enviar_ciclo_capacitacion();cambia_ruta_capa()" class="form-control select2" >
 			@foreach($ciclos as $ciclo)
 			@if($ciclo->id == $ciclo_escolar)
 			<option value='{{$ciclo->id}}' selected>

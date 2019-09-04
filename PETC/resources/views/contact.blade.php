@@ -54,8 +54,8 @@
 								Áreas
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="projects.html">Nomina y Sistemas</a>
-								<a class="dropdown-item" href="projects.html">Academicos</a>
+								<a class="dropdown-item" href="projects.html">Nómina y Sistemas</a>
+								<a class="dropdown-item" href="projects.html">Académicos</a>
                 <a class="dropdown-item" href="projects.html">Materiales</a>
                 <a class="dropdown-item" href="projects.html">Alimentación</a>
 							</div>

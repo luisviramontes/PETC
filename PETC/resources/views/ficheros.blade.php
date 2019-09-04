@@ -54,7 +54,7 @@
 									Áreas
 								</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="projects.html">Nomina y Sistemas</a>
+									<a class="dropdown-item" href="projects.html">Nómina y Sistemas</a>
 									<a class="dropdown-item" href="projects.html">Academicos</a>
 									<a class="dropdown-item" href="projects.html">Materiales</a>
 									<a class="dropdown-item" href="projects.html">Alimentación</a>
@@ -90,7 +90,7 @@
 		<section class="about-area section-gap-bottom">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-7 col-md-12 about-left">						
+					<div class="col-lg-7 col-md-12 about-left">
 						<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201805/201805-RSC-TZrfIqpR4s-Fichero_Preescolar_2017_vsCorregida.pdf"><img  class="img-fluid" src="img/academica/img/fichero preescolar.png"  title="ichero de Actividades" ></a>
 					</div>
 					<div class="col-lg-5 col-md-12 about-right">
@@ -122,7 +122,7 @@
 			<section class="about-area section-gap-bottom">
 				<div class="container">
 					<div class="row align-items-center justify-content-center">
-						<div class="col-lg-7 col-md-12 about-left">						
+						<div class="col-lg-7 col-md-12 about-left">
 							<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-4HltNuXuOG-fichero_vivir_saludable_ok_etc_2014.pdf"><img  class="img-fluid" src="img/academica/img/vivir saludable.png"  title="Vivir saludablemente " ></a>
 						</div>
 						<div class="col-lg-5 col-md-12 about-right">
@@ -157,7 +157,7 @@
 			<section class="about-area section-gap-bottom">
 				<div class="container">
 					<div class="row align-items-center justify-content-center">
-						<div class="col-lg-7 col-md-12 about-left">						
+						<div class="col-lg-7 col-md-12 about-left">
 							<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-UPw3DDlPYU-ficherotic_ok_etc_2014.pdf"><img  class="img-fluid" src="img/academica/img/aprender tic.png"  title="Aprender Con TICS" ></a>
 						</div>
 						<div class="col-lg-5 col-md-12 about-right">
@@ -190,7 +190,7 @@
 			<section class="about-area section-gap-bottom">
 				<div class="container">
 					<div class="row align-items-center justify-content-center">
-						<div class="col-lg-7 col-md-12 about-left">						
+						<div class="col-lg-7 col-md-12 about-left">
 							<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-qyLbwb42Sd-fichero_leery_escribir_ok_etc_2014.pdf" ><img  class="img-fluid" src="img/academica/img/leer y escribir.png"  title="Aprender Con TICS" ></a>
 						</div>
 						<div class="col-lg-5 col-md-12 about-right">
@@ -219,7 +219,7 @@
 				<section class="about-area section-gap-bottom">
 					<div class="container">
 						<div class="row align-items-center justify-content-center">
-							<div class="col-lg-7 col-md-12 about-left">						
+							<div class="col-lg-7 col-md-12 about-left">
 								<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-jlOM9Y0hCr-fichero_jugar-numeros_ok_etc_2014.pdf"><img  class="img-fluid" src="img/academica/img/jugar numeros.png"  title="Jugar Con Números" ></a>
 							</div>
 							<div class="col-lg-5 col-md-12 about-right">
@@ -254,7 +254,7 @@
 					<section class="about-area section-gap-bottom">
 						<div class="container">
 							<div class="row align-items-center justify-content-center">
-								<div class="col-lg-7 col-md-12 about-left">						
+								<div class="col-lg-7 col-md-12 about-left">
 									<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-USOtb5bsOJ-fichero_convivir_ok_etc_2014.pdf"><img  class="img-fluid" src="img/academica/img/aprender convivir.png"  title="Aprender" ></a>
 								</div>
 								<div class="col-lg-5 col-md-12 about-right">
@@ -285,7 +285,7 @@
 					<section class="about-area section-gap-bottom">
 						<div class="container">
 							<div class="row align-items-center justify-content-center">
-								<div class="col-lg-7 col-md-12 about-left">						
+								<div class="col-lg-7 col-md-12 about-left">
 									<a target="_blank"  href="https://educacionbasica.sep.gob.mx/multimedia/RSC/BASICA/Documento/201611/201611-3-RSC-D4PjMSu3ZV-fichero_lengua_indigena_ok_etc_2014.pdf"><img  class="img-fluid" src="img/academica/img/leer y escribir lengua.png"  title="Experiencias" ></a>
 								</div>
 								<div class="col-lg-5 col-md-12 about-right">
@@ -317,7 +317,7 @@ acuerdo con propósitos específicos.
 					<section class="about-area section-gap-bottom">
 						<div class="container">
 							<div class="row align-items-center justify-content-center">
-								<div class="col-lg-7 col-md-12 about-left">						
+								<div class="col-lg-7 col-md-12 about-left">
 									<a target="_blank"  href="img/academica/pdf/201611-3-RSC-UFAM2EHr1g-fichas_introductorias_ok_etc2014.pdf"><img  class="img-fluid" src="img/academica/img/expresar.png"  title="Expresar" ></a>
 								</div>
 								<div class="col-lg-5 col-md-12 about-right">
@@ -346,7 +346,7 @@ enseñanza-aprendizaje.
 						</section>
 						<!-- End About Area -->
 
-						
+
 
 
 
@@ -376,7 +376,7 @@ enseñanza-aprendizaje.
 														<h4>Areas</h4>
 														<ul>
 															<li><a href="#">Alimentación</a></li>
-															<li><a href="#">Nomina</a></li>
+															<li><a href="#">Nómina</a></li>
 															<li><a href="#">Materiales</a></li>
 															<li><a href="#">Academica</a></li>
 														</ul>

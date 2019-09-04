@@ -175,7 +175,7 @@
 							</p>
 							<h4>Lic.José Sebastian Vazquez</h4>
 							<div class="bottom">
-								<p>Encargado del Área de Nomina</p>
+								<p>Encargado del Área de Nómina</p>
 							</div>
 						</div>
 					</div>
@@ -241,7 +241,7 @@
 					<h4>Áreas</h4>
 					<ul>
 						<li><a href="#">Alimentación</a></li>
-						<li><a href="#">Nomina</a></li>
+						<li><a href="#">Nómina</a></li>
 						<li><a href="#">Materiales</a></li>
 						<li><a href="#">Académica</a></li>
 					</ul>
