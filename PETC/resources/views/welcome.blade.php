@@ -484,29 +484,32 @@
 					<h4>PETC</h4>
 					<ul>
 						<li><a href="/buscar_esc_loc">Busca Tu Escuela</a></li>
+						<li><a href="/capacitaciones_public">Capacitaciones</a></li>
 						<li><a href="quejas/create">Quejas y Denuncias</a></li>
-						<li><a href="#">Histórico del Programa</a></li>
-						<li><a href="#">Ayuda</a></li>
+						<li><a href="/img/documentos/LINEA DEL TIEMPO ETC 2012-2019 23AGO.pdf">Histórico del Programa</a></li>
+						<li><a href="/contact">Ayuda</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Propuesta Pedagógica</h4>
 					<ul>
 
-						<li><a href="#">Ficheros Didácticos</a></li>
+						<li><a href="/materiales_a">Ficheros Didácticos</a></li>
 						<li><a href="/capacitaciones_public">Capacitaciones</a></li>
-						<li><a href="#">Guías</a></li>
-						<li><a href="#">Lineas de Trabajo</a></li>
+						<li><a href="/materiales_a">Guías</a></li>
+						<li><a href="/ficheros">Lineas de Trabajo</a></li>
+						<li><a href="/contraloria_s">Contraloría Social</a></li>
 
 					</ul>
+				
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
 					<h4>Áreas</h4>
 					<ul>
 						<li><a href="/servicio_a">Alimentación</a></li>
-						<li><a href="#">Nómina</a></li>
+						<li><a href="/captura">Nómina</a></li>
 						<li><a href="#">Materiales</a></li>
-						<li><a href="#">Académica</a></li>
+						<li><a href="/materiales_a">Académica</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
@@ -533,7 +536,7 @@
 
 						<div class="info"></div>
 					</form>
-				</div>
+				</div> 
 			</div>
 		</div>
 		<div class="row footer-bottom d-flex justify-content-between">

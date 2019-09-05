@@ -33,7 +33,7 @@ class TablaPagosController extends Controller
     public function index(request $request)
     {
         $tipo_usuario = Auth::user()->tipo_usuario;
-      if($tipo_usuario <> "2" || $tipo_usuario=="5"){
+      if($tipo_usuario <> "1" && $tipo_usuario <> "2"  && $tipo_usuario <> "3" && $tipo_usuario <> "4" &&    $tipo_usuario <> "5" && $tipo_usuario <> "6"){
        return view('permisos');
 
       }else{

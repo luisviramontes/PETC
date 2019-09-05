@@ -135,9 +135,9 @@
 
         <!--\\\\\\\left_nav start \\\\\\-->
 
- @if (Auth::guest())
-  @else
-@if(Auth::user()->tipo_usuario == 2 || Auth::user()->tipo_usuario==5)
+        @if (Auth::guest())
+        @else
+        @if(Auth::user()->tipo_usuario == 2)
 
         <div class="left_nav_slidebar">
           <ul >
@@ -303,33 +303,742 @@
             </ul>        
           </li>
 
-     
+          <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-pencil"></i> Actividad Reciente <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('actividad')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Actividad Reciente</b> </a> </li>                        
+            </ul>
+          </li>
+
+          <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i> Avisos <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Avisos</b> </a> </li>                        
+            </ul>
+          </li>
+
+          <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-road"></i>Capacitaciones <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Capacitaciones</b> </a> </li>                        
+            </ul>
+          </li>
+
+          <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i>Quejas Y Denuncias <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="{{url('quejas')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Quejas Y Denuncias</b> </a> </li>                        
+            </ul>
+          </li>
+
+
+
 
 
         </ul>
       </div>
-      @else
+      @elseif (Auth::user()->tipo_usuario == 1)
 
-      @endif
-      @endif 
+      <div class="left_nav_slidebar">
+        <ul >
+        </li>
+
+
+        <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Alimentación <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('servicio_a')}}" target="_blank"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Alimentación</b> </a> </li>                        
+          </ul>
+        </li>
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-pencil"></i> Actividad Reciente <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('actividad')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Actividad Reciente</b> </a> </li>                        
+          </ul>
+        </li>
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i> Avisos <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Avisos</b> </a> </li>                        
+          </ul>
+        </li>
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-road"></i>Capacitaciones <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Capacitaciones</b> </a> </li>                        
+          </ul>
+        </li>
+
+
+
+
+        <li> <a href="javascript:void(0);"> <i class="fa fa-home"></i> ESCUELAS <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Centros de Trabajo</b> </a> </li>
+            <li> <a href="{{url('ver_centros_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Informe de CTE</b> </a> </li>
+            <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>
+            <li> <a href="{{url('municipios')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Municipios</b> </a> </li>
+            <li> <a href="{{url('localidades')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Localidades</b> </a> </li>
+          </ul>
+        </li>
+
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-phone-alt"></i> DIRECTORIO <span class="plus"><i class="fa fa-plus"></i></span></a>
+          <ul>
+            <li> <a href="{{url('region')}}"> <span>&nbsp;</span> <i class="glyphicon glyphicon-phone-alt"></i> <b>Regiónes</b> </a> </li>
+            <li> <a href="{{url('directorio_regional')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio Regional</b> </a> </li>
+            <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>              
+            <li> <a href="{{url('directorio_externo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio SEDUZAC</b> </a> </li>
+            <li> <a href="{{url('directorio_interno')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio PETC</b> </a> </li>
+
+
+
+
+          </ul>
+        </li>
+
+
+
+
+
+
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-tasks"></i> FORTALECIMIENTO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('fortalecimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recurso de Fortalecimeinto</b> </a> </li>
+            <li> <a href="{{url('tarjetas_fortalecimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tarjetas de Fortalecimeinto</b> </a> </li>
+            <li> <a href="{{url('generar_cartas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cartas Compromiso</b> </a> </li>
+          </ul>
+        </li>
+
+
+
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i> SOLICITUDES DE INGRESO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('solicitudes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
+          </ul>
+        </li>
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i>Oficios <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('oficiosrecibidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recibidos</b> </a> </li>
+            <li> <a href="{{url('oficiosemitidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Emitidos</b> </a> </li>
+          </ul>
+        </li>
+
+
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-th"></i> Estadisticas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('estadistica911')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Estadistica 911</b> </a> </li>
+          </ul>
+        </li>
+
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-road"></i> Otros <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('gmaps')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mapas</b> </a> </li>  
+            <li> <a href="{{url('calendario')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Eventos</b> </a> </li>            
+          </ul>        
+        </li>
+
+
+
+
+      </ul>
     </div>
-    <!--\\\\\\\left_nav end \\\\\\-->
-    <div class="contentpanel">
-
-      @yield('contenido')
-
-      <div class="row col-md-6 col-md-offset-3"  style="height: 1000px;" >
-
-      </div>
-
-      <!--\\\\\\\ container  end \\\\\\-->
-    </div>
 
 
+    @elseif(Auth::user()->tipo_usuario == 3)
 
-    <!--\\\\\\\ content panel end \\\\\\-->
+    <div class="left_nav_slidebar">
+      <ul >
+        <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="glyphicon glyphicon-usd"></i> NOMINA<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+
+
+          <ul  >
+            <li> <a href="{{url('nomina_federal')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Federal</b> </a> </li>
+            <li> <a href="{{url('nomina_estatal')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Estatal</b> </a> </li> 
+            <li> <a href="{{url('nomina_capturada')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Nominas Capturadas</b> </a> </li>
+            <li> <a href="{{url('cuadros_cifras?ciclo_escolar2=2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadro Cifras</b> </a> </li>
+            <li> <a href="{{url('pagos_improcedentes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pagos Improcedentes</b> </a> </li>
+            <li> <a href="{{url('plan_contraste')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Plan Contraste</b> </a> </li> 
+            <li> <a href="{{url('calculo_nomina')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Calculo de Nomina</b> </a> </li>                        
+
+          </ul>
+        </li>
+
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-pencil"></i> CAPTURA <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Captura</b> </a> </li>                        
+          </ul>
+
+
+        </li>
+        <li> <a href="javascript:void(0);"> <i class="fa fa-home"></i> ESCUELAS <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Centros de Trabajo</b> </a> </li>
+            <li> <a href="{{url('ver_centros_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Informe de CTE</b> </a> </li>
+            <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>
+            <li> <a href="{{url('municipios')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Municipios</b> </a> </li>
+            <li> <a href="{{url('localidades')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Localidades</b> </a> </li>
+          </ul>
+        </li>
+
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-phone-alt"></i> DIRECTORIO <span class="plus"><i class="fa fa-plus"></i></span></a>
+          <ul>
+            <li> <a href="{{url('region')}}"> <span>&nbsp;</span> <i class="glyphicon glyphicon-phone-alt"></i> <b>Regiónes</b> </a> </li>
+            <li> <a href="{{url('directorio_regional')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio Regional</b> </a> </li>
+            <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>              
+            <li> <a href="{{url('directorio_externo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio SEDUZAC</b> </a> </li>
+            <li> <a href="{{url('directorio_interno')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio PETC</b> </a> </li>
+
+
+
+
+          </ul>
+        </li>
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-pushpin"></i> LISTAS DE ASISTENCIA <span class="plus"><i class="fa fa-plus"></i></span></a>
+          <ul>
+            <li> <a href="{{url('listas_asistencias')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Asistencia</b> </a> </li>
+            <li> <a href="{{url('inasistencias2/2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inasistencias</b> </a> </li>
+            <li> <a href="{{url('ver_listas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Listas</b> </a> </li>
+          </ul>
+        </li>
+
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> REINTEGROS <span class="plus"><i class="fa fa-plus"></i></span></a>
+          <ul>
+            <li> <a href="{{url('reintegros')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reintegros</b> </a> </li>
+
+          </ul>
+        </li>
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i> RECLAMOS <span class="plus"><i class="fa fa-plus"></i></span></a>
+          <ul>
+            <li> <a href="{{url('reclamos2/2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reclamos</b> </a> </li>
+
+          </ul>
+        </li>
+
+        <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i>PAGOS <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+           <li> <a href="{{url('ciclo_escolar')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ciclo Escolar</b> </a> </li>
+           <li> <a href="{{url('tabla_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tabla de Pagos</b> </a> </li>
+         </ul>
+         <ul>
+          <li> <a href="{{url('tabulador_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tabla de Pagos Por Dia Laborado</b> </a> </li>
+        </ul>
+        <ul>
+          <li> <a href="{{url('calculadora_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Calculadora de Pagos</b> </a> </li>
+        </ul>
+      </li>
+
+
+      <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-tasks"></i> FORTALECIMIENTO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+        <ul>
+          <li> <a href="{{url('fortalecimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recurso de Fortalecimeinto</b> </a> </li>
+          <li> <a href="{{url('tarjetas_fortalecimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tarjetas de Fortalecimeinto</b> </a> </li>
+          <li> <a href="{{url('generar_cartas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cartas Compromiso</b> </a> </li>
+        </ul>
+      </li>
+
+
+      <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-user"></i> CATEGORIAS/PUESTO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+        <ul>
+          <li> <a href="{{url('cat_puesto')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Categorias y Puestos</b> </a> </li>
+        </ul>
+      </li>
+
+      <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i> SOLICITUDES DE INGRESO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+        <ul>
+          <li> <a href="{{url('solicitudes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
+        </ul>
+      </li>
+
+      <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i>Oficios <span class="plus"><i class="fa fa-plus"></i></span> </a>
+        <ul>
+          <li> <a href="{{url('oficiosrecibidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recibidos</b> </a> </li>
+          <li> <a href="{{url('oficiosemitidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Emitidos</b> </a> </li>
+        </ul>
+      </li>
+
+      <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Bancos <span class="plus"><i class="fa fa-plus"></i></span> </a>
+        <ul>
+          <li> <a href="{{url('bancos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bancos</b> </a> </li>
+          <li> <a href="{{url('cuentas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuentas</b> </a> </li>
+        </ul>
+      </li>
+
+      <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-th"></i> Estadisticas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+        <ul>
+          <li> <a href="{{url('estadistica911')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Estadistica 911</b> </a> </li>
+        </ul>
+      </li>
+
+      <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-pencil"></i> Actividad Reciente <span class="plus"><i class="fa fa-plus"></i></span> </a>
+        <ul>
+          <li> <a href="{{url('actividad')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Actividad Reciente</b> </a> </li>                        
+        </ul>
+      </li>
+
+      <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i> Avisos <span class="plus"><i class="fa fa-plus"></i></span> </a>
+        <ul>
+          <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Avisos</b> </a> </li>                        
+        </ul>
+      </li>
+
+      <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-th"></i>Capacitaciones <span class="plus"><i class="fa fa-plus"></i></span> </a>
+        <ul>
+          <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Capacitaciones</b> </a> </li>                        
+        </ul>
+      </li>
+
+      <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i>Quejas Y Denuncias <span class="plus"><i class="fa fa-plus"></i></span> </a>
+        <ul>
+          <li> <a href="{{url('quejas')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Quejas Y Denuncias</b> </a> </li>                        
+        </ul>
+      </li>
+
+
+      <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-road"></i> Otros <span class="plus"><i class="fa fa-plus"></i></span> </a>
+        <ul>
+          <li> <a href="{{url('gmaps')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mapas</b> </a> </li>  
+          <li> <a href="{{url('calendario')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Eventos</b> </a> </li>            
+        </ul>        
+      </li>
+
+
+
+
+    </ul>
   </div>
-  <!--\\\\\\\ inner end\\\\\\-->
+
+
+
+  @elseif(Auth::user()->tipo_usuario == 4)
+  <div class="left_nav_slidebar">
+    <ul >
+    </li>
+
+
+    <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Herramientas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('servicio_a')}}" target="_blank"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Contraloría Social</b> </a> </li>     
+        <li> <a href="{{url('ficheros')}}" target="_blank"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Líneas de Trabajo</b> </a> </li>         
+        <li> <a href="{{url('materiales_a')}}" target="_blank"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Guías y Doc</b> </a> </li>                        
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-pencil"></i> Actividad Reciente <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('actividad')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Actividad Reciente</b> </a> </li>                        
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i> Avisos <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Avisos</b> </a> </li>                        
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-road"></i>Capacitaciones <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Capacitaciones</b> </a> </li>                        
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i>Quejas Y Denuncias <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('quejas')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Quejas Y Denuncias</b> </a> </li>                        
+      </ul>
+    </li>
+
+
+
+
+    <li> <a href="javascript:void(0);"> <i class="fa fa-home"></i> ESCUELAS <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Centros de Trabajo</b> </a> </li>
+        <li> <a href="{{url('ver_centros_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Informe de CTE</b> </a> </li>
+        <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>
+        <li> <a href="{{url('municipios')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Municipios</b> </a> </li>
+        <li> <a href="{{url('localidades')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Localidades</b> </a> </li>
+      </ul>
+    </li>
+
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-phone-alt"></i> DIRECTORIO <span class="plus"><i class="fa fa-plus"></i></span></a>
+      <ul>
+        <li> <a href="{{url('region')}}"> <span>&nbsp;</span> <i class="glyphicon glyphicon-phone-alt"></i> <b>Regiónes</b> </a> </li>
+        <li> <a href="{{url('directorio_regional')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio Regional</b> </a> </li>
+        <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>              
+        <li> <a href="{{url('directorio_externo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio SEDUZAC</b> </a> </li>
+        <li> <a href="{{url('directorio_interno')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio PETC</b> </a> </li>
+
+
+
+
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i> SOLICITUDES DE INGRESO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('solicitudes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i>Oficios <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('oficiosrecibidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recibidos</b> </a> </li>
+        <li> <a href="{{url('oficiosemitidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Emitidos</b> </a> </li>
+      </ul>
+    </li>
+
+
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-th"></i> Estadisticas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('estadistica911')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Estadistica 911</b> </a> </li>
+      </ul>
+    </li>
+
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-road"></i> Otros <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('gmaps')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mapas</b> </a> </li>  
+        <li> <a href="{{url('calendario')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Eventos</b> </a> </li>            
+      </ul>        
+    </li>
+
+
+
+
+  </ul>
+</div>
+
+@elseif(Auth::user()->tipo_usuario == 5)
+<div class="left_nav_slidebar">
+  <ul >
+    <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="glyphicon glyphicon-usd"></i> NOMINA<span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+
+
+      <ul  >
+        <li> <a href="{{url('nomina_federal')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Federal</b> </a> </li>
+        <li> <a href="{{url('nomina_estatal')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Estatal</b> </a> </li> 
+        <li> <a href="{{url('nomina_capturada')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Nominas Capturadas</b> </a> </li>
+        <li> <a href="{{url('cuadros_cifras?ciclo_escolar2=2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Cuadro Cifras</b> </a> </li>
+        <li> <a href="{{url('pagos_improcedentes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Pagos Improcedentes</b> </a> </li>
+        <li> <a href="{{url('plan_contraste')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Plan Contraste</b> </a> </li> 
+        <li> <a href="{{url('calculo_nomina')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >Calculo de Nomina</b> </a> </li>                        
+
+      </ul>
+    </li>
+    <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>FEDERAL <span class="plus"><i class="fa fa-plus"></i></span></a>
+      <ul>
+        <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
+        <li> <a href="{{url('interinosfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Interinos</b> </a> </li>
+        <li> <a href="{{url('altasfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Altas</b> </a> </li>
+        <li> <a href="{{url('bajasfed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bajas</b> </a> </li>
+        <li> <a href="{{url('cambios_cct_fed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios CTE</b> </a> </li>
+        <li> <a href="{{url('cambios_funcion_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios de Función</b> </a> </li>
+        <li> <a href="{{url('rechazos_fed')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Rechazos</b> </a> </li>
+
+      </ul>
+
+    </li>
+    <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>ESTATAL<span class="plus"><i class="fa fa-plus"></i></span></a>
+      <ul>
+        <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Captura</b> </a> </li>
+        <li> <a href="{{url('interinosest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Interinos</b> </a> </li>
+        <li> <a href="{{url('altasest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Altas</b> </a> </li>
+        <li> <a href="{{url('bajasest')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bajas</b> </a> </li>
+        <li> <a href="{{url('cambios_cct_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios CTE</b> </a> </li>
+        <li> <a href="{{url('cambios_funcion_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cambios de Función</b> </a> </li>
+        <li> <a href="{{url('rechazos_est')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Rechazos</b> </a> </li>
+      </ul>
+
+
+
+
+    </li>
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-pencil"></i> CAPTURA <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('captura')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Captura</b> </a> </li>                        
+      </ul>
+
+
+    </li>
+    <li> <a href="javascript:void(0);"> <i class="fa fa-home"></i> ESCUELAS <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Centros de Trabajo</b> </a> </li>
+        <li> <a href="{{url('ver_centros_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Informe de CTE</b> </a> </li>
+        <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>
+        <li> <a href="{{url('municipios')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Municipios</b> </a> </li>
+        <li> <a href="{{url('localidades')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Localidades</b> </a> </li>
+      </ul>
+    </li>
+
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-phone-alt"></i> DIRECTORIO <span class="plus"><i class="fa fa-plus"></i></span></a>
+      <ul>
+        <li> <a href="{{url('region')}}"> <span>&nbsp;</span> <i class="glyphicon glyphicon-phone-alt"></i> <b>Regiónes</b> </a> </li>
+        <li> <a href="{{url('directorio_regional')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio Regional</b> </a> </li>
+        <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>              
+        <li> <a href="{{url('directorio_externo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio SEDUZAC</b> </a> </li>
+        <li> <a href="{{url('directorio_interno')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio PETC</b> </a> </li>
+
+
+
+
+      </ul>
+    </li>
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-pushpin"></i> LISTAS DE ASISTENCIA <span class="plus"><i class="fa fa-plus"></i></span></a>
+      <ul>
+        <li> <a href="{{url('listas_asistencias')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Listas de Asistencia</b> </a> </li>
+        <li> <a href="{{url('recepcion_listas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recepción de Listas </b> </a> </li>
+        <li> <a href="{{url('genera_listas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Generar Listas </b> </a> </li>
+        <li> <a href="{{url('inasistencias2/2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Inasistencias</b> </a> </li>
+        <li> <a href="{{url('ver_listas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reporte de Listas</b> </a> </li>
+      </ul>
+    </li>
+
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> REINTEGROS <span class="plus"><i class="fa fa-plus"></i></span></a>
+      <ul>
+        <li> <a href="{{url('reintegros')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reintegros</b> </a> </li>
+
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i> RECLAMOS <span class="plus"><i class="fa fa-plus"></i></span></a>
+      <ul>
+        <li> <a href="{{url('reclamos2/2')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Reclamos</b> </a> </li>
+
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i>PAGOS <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+       <li> <a href="{{url('ciclo_escolar')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Ciclo Escolar</b> </a> </li>
+       <li> <a href="{{url('tabla_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tabla de Pagos</b> </a> </li>
+     </ul>
+     <ul>
+      <li> <a href="{{url('tabulador_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tabla de Pagos Por Dia Laborado</b> </a> </li>
+    </ul>
+    <ul>
+      <li> <a href="{{url('calculadora_pagos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Calculadora de Pagos</b> </a> </li>
+    </ul>
+  </li>
+
+
+  <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-tasks"></i> FORTALECIMIENTO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('fortalecimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recurso de Fortalecimeinto</b> </a> </li>
+      <li> <a href="{{url('tarjetas_fortalecimiento')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tarjetas de Fortalecimeinto</b> </a> </li>
+      <li> <a href="{{url('tarjetas_forta')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Importar Tarjetas</b> </a> </li>
+      <li> <a href="{{url('generar_cartas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cartas Compromiso</b> </a> </li>
+    </ul>
+  </li>
+
+
+  <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-user"></i> CATEGORIAS/PUESTO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('cat_puesto')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Categorias y Puestos</b> </a> </li>
+    </ul>
+  </li>
+
+  <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i> SOLICITUDES DE INGRESO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('solicitudes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
+    </ul>
+  </li>
+
+  <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i>Oficios <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('oficiosrecibidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recibidos</b> </a> </li>
+      <li> <a href="{{url('oficiosemitidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Emitidos</b> </a> </li>
+    </ul>
+  </li>
+
+  <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-usd"></i> Bancos <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('bancos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Bancos</b> </a> </li>
+      <li> <a href="{{url('cuentas')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Cuentas</b> </a> </li>
+    </ul>
+  </li>
+
+  <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-th"></i> Estadisticas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('estadistica911')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Estadistica 911</b> </a> </li>
+    </ul>
+  </li>
+
+
+  <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-road"></i> Otros <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('gmaps')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mapas</b> </a> </li>  
+      <li> <a href="{{url('calendario')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Eventos</b> </a> </li>            
+    </ul>        
+  </li>
+
+  <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-pencil"></i> Actividad Reciente <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('actividad')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Actividad Reciente</b> </a> </li>                        
+    </ul>
+  </li>
+
+  <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i> Avisos <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Avisos</b> </a> </li>                        
+    </ul>
+  </li>
+
+  <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-road"></i>Capacitaciones <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Capacitaciones</b> </a> </li>                        
+    </ul>
+  </li>
+
+  <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i>Quejas Y Denuncias <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('quejas')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Quejas Y Denuncias</b> </a> </li>                        
+    </ul>
+  </li>
+
+  <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i>Herramientas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+    <ul>
+      <li> <a href="{{url('servicio_a')}}" target="_blank"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Contraloría Social</b> </a> </li>     
+      <li> <a href="{{url('ficheros')}}" target="_blank"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Líneas de Trabajo</b> </a> </li>         
+      <li> <a href="{{url('materiales_a')}}" target="_blank"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Guías y Doc</b> </a> </li>                        
+    </ul>
+  </li>
+
+  <li> <a href="javascript:void(0);"> <i class="fa fa-tasks"></i> Alimentación <span class="plus"><i class="fa fa-plus"></i></span> </a>
+          <ul>
+            <li> <a href="{{url('servicio_a')}}" target="_blank"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Alimentación</b> </a> </li>                        
+          </ul>
+        </li>
+
+
+
+
+
+</ul>
+</div>
+
+@elseif(Auth::user()->tipo_usuario == 6)
+  <div class="left_nav_slidebar">
+    <ul >
+    </li>
+
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-pencil"></i> Actividad Reciente <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('actividad')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Actividad Reciente</b> </a> </li>                        
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i> Avisos <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Avisos</b> </a> </li>                        
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-road"></i>Capacitaciones <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('avisos')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Capacitaciones</b> </a> </li>                        
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i>Quejas Y Denuncias <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('quejas')}}"> <span>&nbsp;</span> <i class="fa fa-edit"></i> <b>Quejas Y Denuncias</b> </a> </li>                        
+      </ul>
+    </li>
+
+
+
+
+    <li> <a href="javascript:void(0);"> <i class="fa fa-home"></i> ESCUELAS <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Centros de Trabajo</b> </a> </li>
+        <li> <a href="{{url('ver_centros_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Informe de CTE</b> </a> </li>
+        <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>
+        <li> <a href="{{url('municipios')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Municipios</b> </a> </li>
+        <li> <a href="{{url('localidades')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Localidades</b> </a> </li>
+      </ul>
+    </li>
+
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-phone-alt"></i> DIRECTORIO <span class="plus"><i class="fa fa-plus"></i></span></a>
+      <ul>
+        <li> <a href="{{url('region')}}"> <span>&nbsp;</span> <i class="glyphicon glyphicon-phone-alt"></i> <b>Regiónes</b> </a> </li>
+        <li> <a href="{{url('directorio_regional')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio Regional</b> </a> </li>
+        <li> <a href="{{url('director_centro_trabajo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directores PETC</b> </a> </li>              
+        <li> <a href="{{url('directorio_externo')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio SEDUZAC</b> </a> </li>
+        <li> <a href="{{url('directorio_interno')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Directorio PETC</b> </a> </li>
+
+
+
+
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-folder-open"></i> SOLICITUDES DE INGRESO <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('solicitudes')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Solicitudes</b> </a> </li>
+      </ul>
+    </li>
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-paperclip"></i>Oficios <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('oficiosrecibidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Recibidos</b> </a> </li>
+        <li> <a href="{{url('oficiosemitidos')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Emitidos</b> </a> </li>
+      </ul>
+    </li>
+
+
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-th"></i> Estadisticas <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('estadistica911')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Estadistica 911</b> </a> </li>
+      </ul>
+    </li>
+
+
+    <li> <a href="javascript:void(0);"> <i class="glyphicon glyphicon-road"></i> Otros <span class="plus"><i class="fa fa-plus"></i></span> </a>
+      <ul>
+        <li> <a href="{{url('gmaps')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Mapas</b> </a> </li>  
+        <li> <a href="{{url('calendario')}}"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Eventos</b> </a> </li>            
+      </ul>        
+    </li>
+
+
+
+
+  </ul>
+</div>
+
+
+@endif
+@endif 
+</div>
+<!--\\\\\\\left_nav end \\\\\\-->
+<div class="contentpanel">
+
+  @yield('contenido')
+
+  <div class="row col-md-6 col-md-offset-3"  style="height: 1000px;" >
+
+  </div>
+
+  <!--\\\\\\\ container  end \\\\\\-->
+</div>
+
+
+
+<!--\\\\\\\ content panel end \\\\\\-->
+</div>
+<!--\\\\\\\ inner end\\\\\\-->
 </div>
 {!!Html::script('js/jquery-2.1.0.js')!!}
 {!!Html::script('js/script.js')!!}

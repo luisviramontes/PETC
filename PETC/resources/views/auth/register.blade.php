@@ -37,18 +37,18 @@
                                     Alimentación
                                 </option>
                                 <option value='2'>
-                                    Nomina
+                                    Nómina
                                 </option>
                                 <option value='3'>
-                                    Financieros
+                                    Financieros/Juridicos
                                 </option>
                                 <option value='4'>
                                     Academico
                                 </option>
                                   <option value='6'>
-                                    Administrativo
+                                    Recepción/Administrativo
                                 </option>
-                                
+                                 
                             </select>                        
                     </div>
 
