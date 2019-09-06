@@ -50,11 +50,11 @@ class CapturaController extends Controller
      }else{
 
        if($request)
-       { 
+       {
         $query=trim($request->GET('searchText'));
 
         if($query == "" ){
-  
+
         $personal= DB::table('captura')
         ->join('cat_puesto','cat_puesto.id','=','captura.clave')
         ->join('centro_trabajo', 'centro_trabajo.id', '=','captura.id_cct_etc')

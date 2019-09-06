@@ -15,7 +15,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>Nosotros</title>
+	<title>¿Quienes Somos?</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto:400,500" rel="stylesheet">
 	<!--
@@ -32,42 +32,89 @@
 
 <body>
 
-	<!-- Start Header Area -->
+	<!-- Start Header Area editado CDPT -->
 	<header class="default-header">
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<div class="container">
-				<a class="navbar-brand" href="/">
+				<a class="navbar-brand" href="index.html">
 					<img src="img/logopetc.png" width="95px" height="45px" alt="">
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-				 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="fa fa-bars"></span>
-				</button>
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="fa fa-bars"></span>
+			</button>
 
-				<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
-					<ul class="navbar-nav">
-						<li><a href="/">Inicio</a></li>
-						<li><a class="active" href="about">Nosotros</a></li>
-						<li><a href="services">Servicios</a></li>
-						<li class="dropdown">
-							<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-								Áreas
-							</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="projects.html">Momina y Sistemas</a>
-								<a class="dropdown-item" href="projects.html">Académicos</a>
-                <a class="dropdown-item" href="projects.html">Materiales</a>
-                <a class="dropdown-item" href="projects.html">Alimentación</a>
-							</div>
-						</li>
-						<li><a href="contact">Contacto</a></li>
-						<li><a href="contact.html">Registro</a></li>
-					</ul>
-				</div>
+			<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+				<ul class="navbar-nav">
+					<li><a class="" href="/">Inicio</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+							Acerca del PETC
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/about" target="_blank">¿Que es El PETC?</a>
+							<a class="dropdown-item" href="/img/documentos/RO2019.pdf" target="_blank">Reglas de Operación</a>
+							<a class="dropdown-item" href="/img/documentos/CM2019.pdf" target="_blank">Convenio Marco</a>
+							<a class="dropdown-item" href="/img/documentos/RG2019.pdf" target="_blank" >Criterios Para El Ejercicio de Los Rubros De Gasto </a>
+							<a class="dropdown-item" href="/img/documentos/LPRE2018.pdf" target="_blank">Lineamientos Preescolar</a>
+							<a class="dropdown-item" href="/img/documentos/LIPRI2018.pdf" target="_blank">Lineamientos Primaria</a>
+							<a class="dropdown-item" href="/img/documentos/LITEL2018.pdf" target="_blank">Lineamientos Telesecundaria</a>
+							<a class="dropdown-item" href="/avisos_publicos">Avisos</a>
+							<a class="dropdown-item" href="/actividad_publica">Actividad Reciente</a>
+							<a class="dropdown-item" href="/capacitaciones_public">Capacitaciones</a>
+							<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>
+						</div>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" href="normatividad" id="navbardrop" data-toggle="dropdown">
+							Nómina
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/consulta_pagos">Consulta Tus Pagos</a>
+							<a class="dropdown-item" href="/consulta_listas">Lista de Asistencia</a>
+							<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>
+						</div>
+					</li>
+
+					<li class="dropdown">
+						<a class="dropdown-toggle" href="normatividad" id="navbardrop" data-toggle="dropdown">
+							Alimentación
+						</a>
+						<div class="dropdown-menu">
+
+							<a class="dropdown-item" href="/servicio_a">Herramientas</a>
+							<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>
+
+						</div>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+							Académica
+						</a>
+						<div class="dropdown-menu">
+
+							<a class="dropdown-item" href="/contraloria_s">Contraloría Social</a>
+							<a class="dropdown-item" href="/materiales_a">Materiales de Apoyo</a>
+							<a class="dropdown-item" href="/ficheros">Líneas de Trabajo</a>
+							<a class="dropdown-item" href="/capacitaciones_public">Capacitaciones</a>
+							<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>
+						</div>
+					</li>
+					<li class="dropdown">
+					<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+							Escuelas Incorporadas
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/ubica_escuela">Ubica tu Escuela</a>
+							<a class="dropdown-item" href="quejas/create">Quejas y Denuncias</a>
+						</div>
+					</li>
+				</ul>
 			</div>
-		</nav>
-	</header>
-	<!-- End Header Area -->
+		</div>
+	</nav>
+</header>
+<!-- End Header Area -->
 
 	<!-- Start top-section Area -->
 	<section class="banner-area relative">
@@ -75,7 +122,7 @@
 		<div class="container">
 			<div class="row justify-content-between align-items-center text-center banner-content">
 				<div class="col-lg-12">
-					<h1 class="text-white">NOSOTROS</h1>
+					<h1 class="text-white">¿QUIENES SOMOS?</h1>
 					<p></p>
 				</div>
 			</div>

@@ -16,7 +16,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="block-web">
-				<div class="header"> 
+				<div class="header">
 					<div class="row" style="margin-top: 15px; margin-bottom: 12px;">
 						<div class="col-sm-7">
 							<div class="actions"> </div>
@@ -130,7 +130,7 @@
 												</td>
 												<td style="display:none;" >{{$datos->nombre_escuela}} </td>
 												<td style="display:none;" >{{$datos->tipo_movimiento}} </td>
-
+													
 												@else
 												<tr class="gradeX">
 													<td style="background-color: #FFE4E1;">{{$datos->region}} {{$datos->sostenimiento}}</td>
@@ -179,7 +179,7 @@
 																	<a href="{{URL::action('CapturaController@edit',$datos->id)}}" class="btn btn-primary btn -sm" role="button"><i class="fa fa-edit"></i></a>
 																</td>
 																<td style="background-color: #FFE4E1;">
-																	</
+
 																</td>
 																<td style="display:none;" >{{$datos->nombre_escuela}} </td>
 																<td style="display:none;" >{{$datos->tipo_movimiento}} </td>
